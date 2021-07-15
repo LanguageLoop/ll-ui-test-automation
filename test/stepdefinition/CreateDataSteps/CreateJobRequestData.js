@@ -55,9 +55,9 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   {
   }
   browser.pause(2000)
-
+ 
   action.clickElement(jobRequestPage.submitButton)
- jobRequestPage.successMessageText.waitForExist({timeout:10000})
+ jobRequestPage.successMessageText.waitForExist({timeout:20000})
 browser.waitUntil(
       () => jobRequestPage.successMessageText.getText().includes("The Job#"), 10000, 'link not visible'
   );
