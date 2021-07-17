@@ -1,5 +1,3 @@
-
-
 When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
  action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,listitem)
 })
@@ -43,6 +41,9 @@ When(/^I select assignment type "(.*)"$/, function(assignmenttype){
 })
 
 When(/^I select duration "(.*)"$/, function(duration){
+  let times=$('(//input[contains(@id,"wtEarliestStartTime")])[1]')
+   times.waitUntil(()=>{
+    return times.getValue()!=null}, 5000)
   action.selectTextFromDropdown(jobRequestPage.durationDropdown, duration)
 })
 
