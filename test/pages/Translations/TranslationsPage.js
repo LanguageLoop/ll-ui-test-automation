@@ -28,6 +28,12 @@ module.exports ={
     get nextButton()
     {
         return $('input[value="Next"]')
+    },
+    get projName()
+    {
+        return $('//input[contains(@id,"wt64_block_wtColumn1_wtProjname")]')
     }
+
+    
     
 }

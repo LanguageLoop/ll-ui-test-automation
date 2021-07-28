@@ -24,15 +24,17 @@ When(/^I enter  campus pin "([^"]*)"$/, function(args1) {
 
 });
 
-When(/^I click next button$/, function() {
-	
+
+When(/^I click next$/, function() {
 	action.clickElement(translationsPage.nextButton)
 	browser.pause(7000)
 });
 
-When(/^I enter "([^"]*)"$/, (args1) => {
-	console.log(args1);
-	return true;
+
+When(/^I enter "([^"]*)"$/, function(project)  {
+	project = project + (Math.floor(Math.random() * 1000000) + 1).toString()
+	translationsPage.projName.setValue(project)
+	browser.pause(3000)
 });
 
 When(/^I select "([^"]*)", "([^"]*)","([^"]*)"$/, (args1,args2) => {
