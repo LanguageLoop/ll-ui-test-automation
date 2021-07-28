@@ -75,7 +75,7 @@ When(/^I click submit button$/,function(){
     action.clickElement(jobRequestPage.submitButton)
   }
   else{
-  jobRequestPage.submitButton.waitForClickable({timeout:5000})
+  jobRequestPage.submitButton.waitForClickable({timeout:5000})  
   jobRequestPage.submitButton.moveTo()
   action.clickElement(jobRequestPage.submitButton)
 
@@ -92,6 +92,7 @@ When(/^I click submit and summary button$/,function(){
 })
 
 When(/^I click next button$/,function(){
+  jobRequestPage.nextButton.waitForClickable({timeout:5000})
   action.clickElement(jobRequestPage.nextButton)
 })
 
@@ -160,7 +161,7 @@ When(/^I click add interpreters button$/,function(){
 When(/^I handle duplicate job warning window$/,function(){
   
   try{
-    jobRequestPage.continueButton.waitForExist({timeout:10000})
+    jobRequestPage.continueButton.waitForClickable({timeout:10000})
     action.clickElement(jobRequestPage.continueButton)
   }
   catch(Err)
@@ -180,7 +181,7 @@ When(/^I click back link$/, function(){
 When(/^I enter location "(.*)"$/, function(location){
   //browser.pause(2000)
   try{
-  jobRequestPage.locationInput.waitForExist({timeout:3000})
+  jobRequestPage.locationInput.waitForExist({timeout:10000})
   action.enterLocation(jobRequestPage.locationInput,location)
   }
   catch(Err){}
