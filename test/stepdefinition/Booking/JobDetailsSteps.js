@@ -6,7 +6,7 @@ When(/^I click on Duplicate button$/, function(){
 })
 
 When(/^I click on Edit button$/, function(){
-    browser.pause(2000)
+    jobDetailsPage.editButton.waitForClickable({timeout:10000},{interval:1000})
     action.clickElement(jobDetailsPage.editButton)
     browser.pause(5000)
 })

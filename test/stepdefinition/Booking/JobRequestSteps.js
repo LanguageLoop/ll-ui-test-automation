@@ -3,7 +3,11 @@ When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
 })
 
 When(/^I select language "(.*)"$/,   function(listitem){
-  browser.pause(2000)
+  jobRequestPage.saveAndProceedToSummaryButton.waitUntil(()=>{
+   return jobRequestPage.saveAndProceedToSummaryButton.isClickable()}, {
+    timeout: 10000, timeoutMsg: 'edit page not loaded within 10s'
+
+  })
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,listitem)
 })
 
