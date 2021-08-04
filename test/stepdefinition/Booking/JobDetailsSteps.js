@@ -6,11 +6,12 @@ When(/^I click on Duplicate button$/, function(){
 })
 
 When(/^I click on Edit button$/, function(){
+    browser.pause(5000)
     jobDetailsPage.editButton.waitForClickable({timeout:10000},{interval:1000})
     action.clickElement(jobDetailsPage.editButton)
     jobRequestPage.saveAndProceedToSummaryButton.waitUntil(()=>{
         return jobRequestPage.saveAndProceedToSummaryButton.isClickable()}, {
-         timeout: 10000, timeoutMsg: 'edit page not loaded within 10s'
+         timeout: 20000, timeoutMsg: 'edit page not loaded within 20s', interval:1000
      
        })
 })
@@ -96,6 +97,13 @@ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(origina
     //action.clickElement(jobDetailsPage.autoNotificationLink)
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus)
     browser.pause(9000)
+    const audit= $("//*[text()[contains(.,'status changed to Allocated')]]")
+    audit.waitUntil(()=>{
+                return  audit.isDisplayed()},{
+            timeout: 50000, timeoutMsg: 'audit not displayed in 50s', interval:1000
+        
+          })
+        
 })
 
 When(/^I click on accept metro service checkbox$/, function(){

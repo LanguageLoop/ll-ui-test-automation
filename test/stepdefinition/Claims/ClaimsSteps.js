@@ -101,7 +101,7 @@ When(/^I click reprocess campus button$/, function(){
 
 When(/^I click process contractor button$/, function(){
     browser.refresh()
-    browser.pause(2000)
+    claimsPage.processContractorButton.waitForClickable({timeout:10000},{interval:1000})
     action.clickElement(claimsPage.processContractorButton)
     browser.pause(2000)
 })
