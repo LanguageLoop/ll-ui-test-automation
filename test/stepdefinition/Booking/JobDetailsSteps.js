@@ -100,7 +100,7 @@ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(origina
     const audit= $("//*[text()[contains(.,'status changed to Allocated')]]")
     audit.waitUntil(()=>{
                 return  audit.isDisplayed()},{
-            timeout: 50000, timeoutMsg: 'audit not displayed in 50s', interval:1000
+            timeout: 50000, timeoutMsg: 'audit not displayed in 50secs', interval:1000
         
           })
         
