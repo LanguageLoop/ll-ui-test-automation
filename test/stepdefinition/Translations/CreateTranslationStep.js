@@ -1,3 +1,5 @@
+const { wrapCallSite } = require("source-map-support");
+
 When(/^I click translations link$/, function() {
 	translationsPage.translationsLink.waitForExist({timeout:5000})
     action.clickElement(translationsPage.translationsLink)
@@ -37,38 +39,40 @@ When(/^I enter "([^"]*)"$/, function(project)  {
 	browser.pause(3000)
 });
 
-When(/^I select "([^"]*)", "([^"]*)","([^"]*)"$/, (args1,args2) => {
-	console.log(args1,args2);
-	return true;
+When(/^I select "([^"]*)", "([^"]*)","([^"]*)"$/, function (manager,service,workflow) {
+	translationsPage.projManager.selectByVisibleText(manager)
+	browser.pause(2000)
+	translationsPage.serviceType.selectByVisibleText(service)
+	browser.pause(2000)
+	translationsPage.selWorkflow.selectByVisibleText(workflow)
+	browser.pause(2000)
 });
 
-When(/^I select "([^"]*)"$/, (args1) => {
-	console.log(args1);
-	return true;
+When(/^I select preferred delivery date$/, () => {
+	var preferDeldate = datetime.getLongNoticeDate()
+	action.enterDate(translationsPage.delDate,preferDeldate)
 });
 
-When(/^I select "([^"]*)"$/, (args1) => {
-	console.log(args1);
-	return true;
+
+When(/^I select "([^"]*)" and "([^"]*)"$/, function(langFrom,langTo)  {
+	action.enterValueAndPressReturn(translationsPage.languageFrom,langFrom)
+	action.enterValueAndPressReturn(translationsPage.languageTo,langTo)
 });
 
-When(/^I select "([^"]*)"$/, (args1) => {
-	console.log(args1);
-	return true;
+
+When(/^I upload translation files$/, function()  {
+	action.clickElement(translationsPage.addFilesLink)
+	translationsPage.addFiles.waitForExist()
+	action.uploadFile(translationsPage.addFiles,"./test/data/translationfile1.docx")
+	translationsPage.upload.waitUntil(()=>{
+		return translationsPage.upload.isClickable()},7000)
+	action.clickElement(translationsPage.upload)
 });
 
-When(/^I select "([^"]*)" and "([^"]*)"$/, (args1,args2) => {
-	console.log(args1,args2);
-	return true;
-});
 
-When(/^I upload "([^"]*)"$/, (args1) => {
-	console.log(args1);
-	return true;
-});
-
-When(/^I click on Save & Proceed button$/, () => {
-	return true;
+When(/^I click on Save & Proceed button$/, function()  {
+	action.clickElement(translationsPage.save)
+	browser.pause(4000)
 });
 
 When(/^I click on Submit$/, () => {

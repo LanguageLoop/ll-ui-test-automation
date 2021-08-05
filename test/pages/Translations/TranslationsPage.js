@@ -32,8 +32,47 @@ module.exports ={
     get projName()
     {
         return $('//input[contains(@id,"wt64_block_wtColumn1_wtProjname")]')
-    }
-
+    },
+    get projManager()
+    {
+        return $('//select[contains(@id,"wtColumn1_wtcmbProjectOfficer")]')
+    },
+    get serviceType()
+    {
+        return $('//select[contains(@id,"wtColumn1_wtcmbService")]')
+    },
+    get selWorkflow()
+    {
+        return $('//select[contains(@id,"wtColumn1_wtcmbWorkflow")]')
+    },
+    get delDate()
+    {
+        return $('//input[contains(@id,"wtColumn1_wtEarliestStart2")]')
+    },
+    get languageFrom()
+    {
+        return $('//div[contains(@id,"wt64_block_wtColumn1_wtcbLanguage")]')
+    },
+    get languageTo()
+    {
+        return $('#select2-chosen-4')
+    },
+    get addFilesLink()
+    {
+        return $('a[tabindex="235"]')
+    },
+    get addFiles()
+    {
+        return $('input[type="file"]')
+    },
+    get upload()
+    {
+        return $('input[value="Upload"]')
+    },
     
+    get save()
+    {
+        return $('input[value="Save & Proceed"]')
+    },
     
 }

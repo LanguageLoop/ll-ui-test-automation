@@ -89,6 +89,17 @@ module.exports={
         this.enterValue(timeField,timeValue)
     },
 
+    enterDate(dateField,dateValue)
+    {
+        browser.pause(1000)
+        this.clickElement(dateField)
+        this.clearValue(dateField)
+        this.enterValueAndPressReturn(dateField,dateValue.toString())  
+        browser.pause(1000)
+        browser.keys("Tab")        
+    },
+
+
     enterLocation(locationField,location)
     {
        
