@@ -57,7 +57,7 @@ Feature: Contract Management features
 
     Examples: 
    | username          | password   | contract title                 | language          | naati level |
-   | LLAdmin@looped.in |  Uranus@6  | Victorian Government - Bill To | AFRIKAANS - Video | Recognised  |
+   | LLAdmin@looped.in |  Uranus@6  | Victorian Government - Bill To | AFRIKAANS - Video | Non-Accredited  |
 
    @AddCommonInstructions 
    Scenario Outline: Add common instructions for contract

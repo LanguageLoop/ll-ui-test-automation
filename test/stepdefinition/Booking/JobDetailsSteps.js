@@ -53,8 +53,9 @@ When(/^I select "(.*)" on behalf$/, function(onbehalf){
 })
 
 When(/^I submit cancel job confirmation$/, function(){
-    browser.pause(2000)
+    jobDetailsPage.cancelSubmitButton.waitForClickable({timeout:10000},{interval:1000})
     action.clickElement(jobDetailsPage.cancelSubmitButton)
+    browser.waitUntil(()=>browser.getTitle()==='Bookings',20000,'Cancel taking more time',1000)
 })
 
 When(/^I confirm yes to cancellation fee$/, function(){
