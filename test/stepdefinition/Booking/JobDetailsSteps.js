@@ -97,14 +97,7 @@ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(origina
     browser.pause(5000)
     //action.clickElement(jobDetailsPage.autoNotificationLink)
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus)
-    browser.pause(9000)
-    const audit= $("//*[text()[contains(.,'status changed to Allocated')]]")
-    audit.waitUntil(()=>{
-                return  audit.isDisplayed()},{
-            timeout: 50000, timeoutMsg: 'audit not displayed in 50secs', interval:1000
-        
-          })
-        
+    browser.pause(9000)      
 })
 
 When(/^I click on accept metro service checkbox$/, function(){
