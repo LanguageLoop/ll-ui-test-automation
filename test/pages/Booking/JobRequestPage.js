@@ -182,7 +182,8 @@ module.exports={
     },
 
     get departmentInput(){
-        return $('//*[text()="Department"]/../..//input[contains(@id,"txtInputStd")]')
+        //return $('//*[text()="Department"]/../..//input[contains(@id,"txtInputStd")]')
+        return $('//input[contains(@id,"ctl00_wttxtInputStd")]')
     },
 
     get yourReferenceInput(){
