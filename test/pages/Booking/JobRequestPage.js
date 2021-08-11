@@ -182,17 +182,15 @@ module.exports={
     },
 
     get departmentInput(){
-        return $('//*[text()="Department"]/../..//input')
-        //return $('//*[text()="Department"]/../..//input[contains(@id,"wtcbSaveAsCommon")]')
+        return $('//*[text()="Department"]/../../..//input[contains(@id,"txtInputStd")]')
     },
 
     get yourReferenceInput(){
-        return $('//*[text()="Your Reference"]/../..//input[contains(@id,"wtcbSaveAsCommon")]')
-        //return $('//input[contains(@id,"ctl04_wttxtInputStd")]')
+        return $('//*[text()="Your reference"]/../../..//input[contains(@id,"txtInputStd")]')
     },
 
     get POInput(){
-        return $('//*[text()="PO Number"]/../..//input[contains(@id,"wtcbSaveAsCommon")]')
+        return $('//*[text()="PO Number"]/../../..//input[contains(@id,"txtInputStd")]')
     },
 
     get nesLink(){

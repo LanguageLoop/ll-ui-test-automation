@@ -25,7 +25,7 @@ When(/^I enter time "(.*)"$/,function(time){
   browser.keys('Tab')
 })
 
-When(/^I enter schedule "(.*)" and "(.*)"$/,function(dateStr,timeStr){
+When(/^I enter schedule "(.*)" and "(.*)"$/,{ wrapperOptions: { retry: 2 } },function(dateStr,timeStr){
   var temp_date_time = datetime.getScheduleDateTime(dateStr,timeStr)
   action.enterDateAndTime(jobRequestPage.dateInput,jobRequestPage.timeInput,temp_date_time[0],temp_date_time[1])
 })
