@@ -28,6 +28,7 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   interpretingPage.newJobRequestButton.waitForClickable({timeout:5000},{interval:500})
   action.clickElement(interpretingPage.newJobRequestButton)
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
+  jobRequestPage.requesterNameDropdown.waitForExist({timeout:5000},{interval:500})
   action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,requester)
   browser.pause(2000)
   action.clickElement(jobRequestPage.nextButton)

@@ -22,6 +22,7 @@ Given(/^the looped in login page is opened$/,  function(){
     action.enterValue(Login.usernameInput,username)
     action.enterValue(Login.passwordInput,password)
     action.clickElement(Login.loginButton) 
+    browser.waitUntil(()=>browser.getTitle()==="HomePage",{timeout:20000, timeoutMsg:'login not happened within 20s', interval:500 })
     
 })
 
