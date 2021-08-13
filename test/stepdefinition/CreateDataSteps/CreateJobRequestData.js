@@ -122,7 +122,9 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   }
   browser.pause(2000)
 
-  action.clickElement(jobRequestPage.submitButton)
+  //action.clickElement(jobRequestPage.submitButton)
+  jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
+  browser.execute("arguments[0].click();", jobRequestPage.submitButton);
  jobRequestPage.successMessageText.waitForExist({timeout:10000})
 browser.waitUntil(
       () => jobRequestPage.successMessageText.getText().includes("The Job#"), 10000, 'link not visible'
