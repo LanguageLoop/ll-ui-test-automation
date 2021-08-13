@@ -68,7 +68,8 @@ When(/^I click save and proceed to summary button$/,function(){
 When(/^I click submit button$/,function(){
   browser.pause(2000)
   jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
-  action.clickElement(jobRequestPage.submitButton)
+  browser.execute("arguments[0].click();", jobRequestPage.submitButton);
+  //action.clickElement(jobRequestPage.submitButton)
   /*console.time('t1')
   if(jobRequestPage.submitButton.isClickable())
   {

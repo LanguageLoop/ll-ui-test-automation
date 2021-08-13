@@ -4,6 +4,7 @@ When(/^I upload bulk booking file$/, function(){
 })
 
 When(/^I click on next link$/, function(){
+    bulkUploadPage.nextLink.waitForClickable({timeout:10000},{interval:500})
     action.clickElement(bulkUploadPage.nextLink)
 })
 
