@@ -58,15 +58,14 @@ When(/^I create a new campus$/,{timeout:3600000}, function(){
         action.clickElement(accountManagementPage.chargeGSTCheckbox)
     
         action.clearValue(accountManagementPage.companyNameInput)
+        
         action.enterValue(accountManagementPage.companyNameInput,companyname)
-    
+        
         action.enterValue(accountManagementPage.tradingNameInput,tradingname)
-    
-    
         action.enterValue(accountManagementPage.PONumberInput,ponumber)
-    
+        accountManagementPage.selectBillToLink.waitForDisplayed({timeout:5000,timeoutMsg:'select bill to link not displayed',interval:500})
         action.clickElement(accountManagementPage.selectBillToLink)
-    
+        
         browser.pause(5000)
         action.enterValue(accountManagementPage.searchBillToInput,billto)
     
