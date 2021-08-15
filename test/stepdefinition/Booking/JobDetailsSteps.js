@@ -1,8 +1,10 @@
-
 When(/^I click on Duplicate button$/, function(){
     browser.pause(2000)
     action.clickElement(jobDetailsPage.duplicateButton)
-    browser.pause(2000)
+    //browser.pause(2000)
+    browser.waitUntil(
+        () => jobRequestPage.natureOfRequestInput.isEnabled(),{timeout:10000, timeoutMsg:'Input is not enabled in 10s',interval:500}
+    )
 })
 
 When(/^I click on Edit button$/, function(){

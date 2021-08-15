@@ -9,6 +9,8 @@ When(/^I select language "(.*)"$/,   function(listitem){
 
 When(/^I enter campus pin "(.*)"$/,function(campuspin){
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
+  const jobType=$('label[class="ButtonGroup_button Button active"]')
+  browser.waitUntil(()=> jobRequestPage.requesterNameDropdown.isEnabled(),{timeout:7000,timeoutMsg:'job type is not enabled',interval:500})
 })
 
 When(/^I select campus pin "(.*)"$/,function(campuspin){

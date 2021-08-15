@@ -13,7 +13,7 @@ Given(/^the looped in login page is opened$/,  function(){
     
  })
 
- When(/^I login with "(.*)" and "(.*)"$/,   function(username,password){
+ When(/^I login with "(.*)" and "(.*)"$/, { wrapperOptions: { retry: 2 } },  function(username,password){
   /*  if(username.includes("LLAdmin"))
     {
        username="admin@ll.com"
