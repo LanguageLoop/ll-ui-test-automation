@@ -271,6 +271,19 @@ When(/^I delete the added cancellation fee$/, function(){
 
 When(/^I click add NES button$/, function(){
     browser.pause(2000)
+    var tlength= campusDetailsPage.nesTableRows.length
+    var temp1 =campusDetailsPage.nesTableRows[tlength-1].$$('td')[1]
+    if(temp1!=null)
+    {    
+    var tlength= campusDetailsPage.nesTableRows.length
+    //click the toggle button
+    action.clickElement(campusDetailsPage.nesTableRows[tlength-1].$('label'))
+    browser.pause(2000)
+    //click remove link
+    var rlength= campusDetailsPage.nesRemoveLinks.length
+    action.clickElement(campusDetailsPage.nesRemoveLinks[rlength-1])
+    browser.acceptAlert()
+    }    
     action.clickElement(campusDetailsPage.addNESButton)
 })
 
