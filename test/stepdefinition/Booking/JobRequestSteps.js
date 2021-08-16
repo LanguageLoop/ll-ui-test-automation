@@ -96,7 +96,7 @@ When(/^I click submit and summary button$/,function(){
 })
 
 When(/^I click next button$/,function(){
-  jobRequestPage.nextButton.waitForClickable({timeout:5000})
+  jobRequestPage.nextButton.waitForClickable({timeout:5000,timeoutMsg:'next button not clickable in 5s',interval:500})
   action.clickElement(jobRequestPage.nextButton)
 })
 

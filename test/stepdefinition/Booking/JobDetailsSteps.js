@@ -100,6 +100,12 @@ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(origina
     //action.clickElement(jobDetailsPage.autoNotificationLink)
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus)
     browser.pause(9000)      
+    const confimationWindow =$('//*[text()[contains(.,"Overlap Confirmation")]]')
+    if(confimationWindow.isDisplayed())
+    {
+        const confirmYes =$('//input[contains(@id,"wtActions_wt145")]')
+        action.clickElement(confirmYes)
+    }
 })
 
 When(/^I click on accept metro service checkbox$/, function(){
