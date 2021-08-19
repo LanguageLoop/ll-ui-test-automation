@@ -44,7 +44,7 @@ Feature: Interpreter features
    
    Examples:
   | job notice length |admin username    | admin password | contractor username      | contractor password | dropdownfilter      | to date     | job id  | campus pin  |  Requester Name      |
-  | long notice       |LLAdmin@looped.in |   Uranus@6     | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 | 33124       |  Automation Tester   |
+  | long notice       |LLAdmin@looped.in |   Octopus@6     | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 | 33124       |  Automation Tester   |
   
 
  @AcceptJobs 
@@ -65,7 +65,7 @@ Feature: Interpreter features
    
     Examples:
    | contractor username  | contractor password | dropdownfilter      | to date     | admin username    | admin password |
-   | jabmon1@hotmail.com  | Test1               | Available Jobs      |  13-05-2022 | LLAdmin@looped.in | Uranus@6        |
+   | jabmon1@hotmail.com  | Test1               | Available Jobs      |  13-05-2022 | LLAdmin@looped.in | Octopus@6        |
   
  
  @UnavailableJobs 
@@ -82,6 +82,6 @@ Feature: Interpreter features
    
    Examples:
   | job notice length |admin username    | admin password | contractor username      | contractor password | dropdownfilter      | to date     | job id  |
-  | long notice       |LLAdmin@looped.in |   Uranus@6     | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 |
+  | long notice       |LLAdmin@looped.in |   Octopus@6     | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 |
   
 

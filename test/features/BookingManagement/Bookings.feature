@@ -29,8 +29,8 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | username           | password  | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        |
-   | LLAdmin@looped.in  | Uranus@6  | Management     |  33124     |  Automation Tester  |  ARABIC    |   Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au |
-   | LLAdmin@looped.in  | Uranus@6  | Management     |  33124     |  Automation Tester  |  ARABIC    |  Halfday          | long notice  | 09:30 | 4 hours  | hh@bb.com.au |
+   | LLAdmin@looped.in  | Octopus@6  | Management     |  33124     |  Automation Tester  |  ARABIC    |   Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au |
+   | LLAdmin@looped.in  | Octopus@6  | Management     |  33124     |  Automation Tester  |  ARABIC    |  Halfday          | long notice  | 09:30 | 4 hours  | hh@bb.com.au |
   
   
    @CreateJobRequest @ManualReason
@@ -57,7 +57,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        | manual reason      |
-   | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |      Halfday      | long notice  | 09:30 | 4 hours  | hh@bb.com.au | manual reason text |
+   | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |      Halfday      | long notice  | 09:30 | 4 hours  | hh@bb.com.au | manual reason text |
   
    @CreateJobRequest @GenderPreference @GenderMust
    Scenario Outline: Create Booking with gender preference
@@ -83,7 +83,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        | gender preference  |
-   | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |  Halfday          | short notice | 09:30 | 4 hours  | hh@bb.com.au | Female             |
+   | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |  Halfday          | short notice | 09:30 | 4 hours  | hh@bb.com.au | Female             |
   
    @CreateJobRequest @PreferredInterpreters @InterpreterMust
    Scenario Outline: Create Booking with preferred interpreters
@@ -110,7 +110,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        | interpreter count  |
-   | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |      Halfday      | long notice  | 09:30 | 4 hours  | hh@bb.com.au | 3                  |
+   | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |      Halfday      | long notice  | 09:30 | 4 hours  | hh@bb.com.au | 3                  |
   
 
   @CreateJobRequest @AncestryPreference @AncestryMust
@@ -137,7 +137,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        | ancestry preference  |
-   | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |   Halfday         | long notice  | 09:30 | 4 hours  | hh@bb.com.au | Austrian             |
+   | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |   Halfday         | long notice  | 09:30 | 4 hours  | hh@bb.com.au | Austrian             |
   
   @CreateJobRequest @ReligionPreference @ReligionMust
    Scenario Outline: Create Booking with religion must preference
@@ -164,7 +164,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        | religion preference  |
-   | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |     Halfday       | short notice | 09:30 | 4 hours  | hh@bb.com.au | Christian            |
+   | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |     Halfday       | short notice | 09:30 | 4 hours  | hh@bb.com.au | Christian            |
   
   @CreateJobRequest @DuplicateJob
   Scenario Outline: Create a job request as a duplicate of another job
@@ -187,7 +187,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | job notice length | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | duration | email        | job status  |
-   |  long notice      | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |     Halfday       | long notice  | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+   |  long notice      | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |     Halfday       | long notice  | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
   
   @CreateJobRequest @BulkUpload
   Scenario Outline: Upload bulk jobs through excel file
@@ -207,7 +207,7 @@ Feature: Create new booking for Interpreters
 
    Examples:
    | job notice length | username           | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type           | date         | time  | duration | email        | job status  |
-   | long notice       | LLAdmin@looped.in  | Uranus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |  Zero min ongoing         | short notice | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+   | long notice       | LLAdmin@looped.in  | Octopus@6 | Management     |  33124     |  Automation Tester  |  ARABIC    |  Zero min ongoing         | short notice | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
   
 
   @CreateJobRequest @CBO1

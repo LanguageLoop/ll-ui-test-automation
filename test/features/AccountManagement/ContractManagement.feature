@@ -19,7 +19,7 @@ Feature: Contract Management features
 
    Examples:
    | username          | password   | contract title      | contract number | payment terms     | commencement date | completion date |
-   | LLAdmin@looped.in |  Uranus@6  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
+   | LLAdmin@looped.in |  Octopus@6  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
 
   @DuplicateContract
   Scenario Outline: Duplicate contract
@@ -38,7 +38,7 @@ Feature: Contract Management features
 
    Examples:
    | username          | password   | contract title      | contract number | payment terms     | commencement date | completion date |
-   | LLAdmin@looped.in |  Uranus@6  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
+   | LLAdmin@looped.in |  Octopus@6  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
 
    @AddMinimumNAATILevel @tt
    Scenario Outline: Add minium naati level for contract
@@ -57,7 +57,7 @@ Feature: Contract Management features
 
     Examples: 
    | username          | password   | contract title                 | language          | naati level |
-   | LLAdmin@looped.in |  Uranus@6  | Victorian Government - Bill To | AFRIKAANS - Video | Non-Accredited  |
+   | LLAdmin@looped.in |  Octopus@6  | Victorian Government - Bill To | AFRIKAANS - Video | Non-Accredited  |
 
    @AddCommonInstructions 
    Scenario Outline: Add common instructions for contract
@@ -75,7 +75,7 @@ Feature: Contract Management features
 
     Examples: 
    | username          | password   | contract title                 | title              | description         |
-   | LLAdmin@looped.in |  Uranus@6  | Victorian Government - Bill To | Automation Testing | simple description  |
+   | LLAdmin@looped.in |  Octopus@6  | Victorian Government - Bill To | Automation Testing | simple description  |
 
    @AddContractRate
    Scenario Outline: Add contract rates
@@ -91,7 +91,7 @@ Feature: Contract Management features
 
     Examples: 
    | username          | password   |language               | contract title      | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing|
-   | LLAdmin@looped.in |  Uranus@6  | All Languages - Video | Automation Contract | Automation Rate | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |    
+   | LLAdmin@looped.in |  Octopus@6  | All Languages - Video | Automation Contract | Automation Rate | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |    
 
     
    @AddAssignmentType
@@ -111,5 +111,5 @@ Feature: Contract Management features
 
     Examples: 
    | username          | password   | contract title                 | assignment label      | description         |
-   | LLAdmin@looped.in |  Uranus@6  | Victorian Government - Bill To | Automation Assignment | simple description  |
+   | LLAdmin@looped.in |  Octopus@6  | Victorian Government - Bill To | Automation Assignment | simple description  |
           

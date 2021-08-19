@@ -34,7 +34,7 @@ Feature: Campus Management features
    
    Examples:
    | username           | password    | campus type  | campus address1                             | campus address2                              | postname1   | postname2    |  postal address1                   | postal address2  | abn         | campus name  | entity type | entity name  | po number | invoice frequency | business name   |  bill to                | videoloop pin |
-   | LLAdmin@looped.in  | Uranus@6    | Metro        |  1 St Kilda Rd, St Kilda VIC 3182           |  1 St Kilda Rd, St Kilda VIC 3182, Australia |  first post | second post  |  1 St Kilda Rd, St Kilda VIC 3182  |  St Kilda Street | 53819971946 | Melbourne LL | Government  | ll company   | 42345     | Weekly            | ll trading name | department of transport | 1234          |
+   | LLAdmin@looped.in  | Octopus@6    | Metro        |  1 St Kilda Rd, St Kilda VIC 3182           |  1 St Kilda Rd, St Kilda VIC 3182, Australia |  first post | second post  |  1 St Kilda Rd, St Kilda VIC 3182  |  St Kilda Street | 53819971946 | Melbourne LL | Government  | ll company   | 42345     | Weekly            | ll trading name | department of transport | 1234          |
   
   @ViewCampus  @ScheduleRates
   Scenario Outline: View campus schedule rates
@@ -47,7 +47,7 @@ Feature: Campus Management features
 
    Examples:
    | username          | password   | campus id        |
-   | LLAdmin@looped.in |  Uranus@6  |  33124           |
+   | LLAdmin@looped.in |  Octopus@6  |  33124           |
 
   @ViewCampus  @BillToContracts
   Scenario Outline: View campus bill to contracts
@@ -59,7 +59,7 @@ Feature: Campus Management features
 
    Examples:
    | username          | password   | campus id |
-   | LLAdmin@looped.in |  Uranus@6  | 33124     |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     |
 
    @ViewCampus  @AddGenderPreference
   Scenario Outline: View campus gender preferences.
@@ -78,7 +78,7 @@ Feature: Campus Management features
 
    Examples:
    | username          | password   | campus id      |
-   | LLAdmin@looped.in |  Uranus@6  | 33124          |
+   | LLAdmin@looped.in |  Octopus@6  | 33124          |
 
   @ViewCampus  @AddVaccination
   Scenario Outline: View campus vaccinations
@@ -95,7 +95,7 @@ Feature: Campus Management features
 
    Examples:
    | username          | password   | campus id | disease      | valid months |
-   | LLAdmin@looped.in |  Uranus@6  | 33124     |  Hepatitis B |  2           |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     |  Hepatitis B |  2           |
 
   @ViewCampus  @AddDimension
   Scenario Outline: View campus add dimension
@@ -110,7 +110,7 @@ Feature: Campus Management features
 
    Examples:
    | username          | password   | campus id | dimension type   | dimension value |
-   | LLAdmin@looped.in |  Uranus@6  | 33124     |  Client Type     |  Commercial     |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     |  Client Type     |  Commercial     |
 
   @ViewCampus  @AddNote1
   Scenario Outline: View campus add notes
@@ -126,7 +126,7 @@ Feature: Campus Management features
 
    Examples: 
    | username          | password   | campus id | note title     | note message         |
-   | LLAdmin@looped.in |  Uranus@6  | 33124     |  Auto notes    |  Test Automation     |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     |  Auto notes    |  Test Automation     |
 
   @ViewCampus  @TravelRates
   Scenario Outline: View campus check travel rates section.
@@ -138,7 +138,7 @@ Feature: Campus Management features
 
    Examples: 
    | username          | password   | campus id |
-   | LLAdmin@looped.in |  Uranus@6  | 33124     | 
+   | LLAdmin@looped.in |  Octopus@6  | 33124     | 
 
    @ViewCampus  @AddNAATIOverride1
   Scenario Outline: Add naati override for campus.
@@ -156,7 +156,7 @@ Feature: Campus Management features
 
    Examples: 
    | username          | password   | campus id         | language                       | naati level |
-   | LLAdmin@looped.in |  Uranus@6  | Melbourne LL      | GERMAN - Video Conferencing    | Recognised  |
+   | LLAdmin@looped.in |  Octopus@6  | Melbourne LL      | GERMAN - Video Conferencing    | Recognised  |
 
   # @ViewCampus  @CancellationFee
   # Scenario Outline: View campus add cancellation fee.
@@ -177,7 +177,7 @@ Feature: Campus Management features
 
   #  Examples: 
   #  | username          | password   | campus id          | fee name    | hours before  | duration | client fee | unable to service fee | failed to attend fee |
-  #  | LLAdmin@looped.in |  Uranus@6  | Melbourne LL       | Testing fee |  96           |  1       |   5        |        10             |     15               | 
+  #  | LLAdmin@looped.in |  Octopus@6  | Melbourne LL       | Testing fee |  96           |  1       |   5        |        10             |     15               | 
 
   @ViewCampus  @NES
   Scenario Outline: Add NES
@@ -193,7 +193,7 @@ Feature: Campus Management features
 
    Examples: 
    | username          | password   | campus id        | language                      |
-   | LLAdmin@looped.in |  Uranus@6  | Melbourne LL     | GERMAN - Video Conferencing   |
+   | LLAdmin@looped.in |  Octopus@6  | Melbourne LL     | GERMAN - Video Conferencing   |
 
   @ViewCampus  @CommonInstruction
   Scenario Outline: View campus check common instructions section.
@@ -210,7 +210,7 @@ Feature: Campus Management features
 
    Examples: 
    | username          | password   | campus id  | title               | description      |
-   | LLAdmin@looped.in |  Uranus@6  |  32548     | Automation Testing  | Test Instruction |
+   | LLAdmin@looped.in |  Octopus@6  |  32548     | Automation Testing  | Test Instruction |
 
    @ViewCampus  @CustomizedField
   Scenario Outline: View campus check travel rates section.
@@ -226,4 +226,4 @@ Feature: Campus Management features
 
    Examples: 
    | username          | password   | campus id | field name        | 
-   | LLAdmin@looped.in |  Uranus@6  | 32548     | Automation Field  | 
+   | LLAdmin@looped.in |  Octopus@6  | 32548     | Automation Field  | 

@@ -3,7 +3,7 @@ Feature: Changing status of the booking for interpreters
 
    Background: Load Loopedin login page
    Given the looped in login page is opened
-   When I login with "LLAdmin@looped.in" and "Uranus@6"
+   When I login with "LLAdmin@looped.in" and "Octopus@6"
    And I create a new job request with minimal fields "long notice"
    And I click Interpreting header link
    And I select "Allocations" from the filter dropdown

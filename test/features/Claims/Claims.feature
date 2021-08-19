@@ -16,12 +16,12 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status                 | before date | job id  |
-   | LLAdmin@looped.in  | Uranus@6    | Completed              |  13-05-2022 | 1560450 |
-   | LLAdmin@looped.in  | Uranus@6    | Signed off             |  13-05-2022 | 1560450 |
-   | LLAdmin@looped.in  | Uranus@6    | All                    |  13-05-2022 | 1544161 |
-   | LLAdmin@looped.in  | Uranus@6    |  Processed             |  13-05-2022 | 1560450 |
-   | LLAdmin@looped.in  | Uranus@6    | Cancelled & Processed  |  13-05-2022 | 1537266 |
-   | LLAdmin@looped.in  | Uranus@6    | Cancelled & Signed off |  13-05-2022 | 1537266 |
+   | LLAdmin@looped.in  | Octopus@6    | Completed              |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off             |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | Octopus@6    | All                    |  13-05-2022 | 1544161 |
+   | LLAdmin@looped.in  | Octopus@6    |  Processed             |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | Octopus@6    | Cancelled & Processed  |  13-05-2022 | 1537266 |
+   | LLAdmin@looped.in  | Octopus@6    | Cancelled & Signed off |  13-05-2022 | 1537266 |
 
   @ProcessClaims @ProcessCampus @ProcessContractor @v1
   Scenario Outline: Process claims - process contractor, campus
@@ -45,7 +45,7 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
 
   @ProcessClaims @ProcessCampusAndContractor
   Scenario Outline: Process claims - process campus and contractor
@@ -68,7 +68,7 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
 
   @ProcessClaims @ProcessCampusOnly
   Scenario Outline: Process claims -  process campus only
@@ -91,7 +91,7 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Completed   |  13-05-2022 | 1560450 | Processed    |
+   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Processed    |
 
   @ProcessClaims @ReprocessCampusOnly 
   Scenario Outline: Process claims - campus only
@@ -116,7 +116,7 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
 
   @ProcessClaims @ReprocessContractorOnly
   Scenario Outline: Process claims - contractor only
@@ -141,7 +141,7 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
 
   @ProcessClaims @ReprocessCampusAndContractor
   Scenario Outline: Process claims - reprocess campus and contractor
@@ -166,7 +166,7 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
 
   
   #  @ProcessClaims @Extend
@@ -187,7 +187,7 @@ Feature: Claims processing features
 
   #  Examples:
   #  | username           | password    | status      | to date     | job id  | claim status |
-  #  | LLAdmin@looped.in  | Uranus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+  #  | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
 
  @BulkProcessClaims
   Scenario Outline: Process claims - bulk claims
@@ -232,7 +232,7 @@ Feature: Claims processing features
 
    Examples:
    | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Uranus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
 
   @ProcessClaims @VicRoads
   Scenario Outline: Process claims - vic roads
@@ -273,5 +273,5 @@ Feature: Claims processing features
    
    Examples:
    | username           | password    | status      | to date     | job id  | claim status | campus name            |
-   | LLAdmin@looped.in  | Uranus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   | vic roads wodonga      |
+   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   | vic roads wodonga      |
 
