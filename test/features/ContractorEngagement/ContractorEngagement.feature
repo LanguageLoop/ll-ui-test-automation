@@ -16,7 +16,7 @@ Feature: Contractor Engagement features
    
    Examples: 
    | username           | password | salutation |   gender  | name                  |  pin  | mobile     | dob        | email        | address                   |
-   | LLAdmin@looped.in  | Uranus@6 | Mr         |  Male     | Automation Contractor |  2323 | 0400000000 | 20-04-1982 | aa           |  St Kilda VIC, Australia  |
+   | LLAdmin@looped.in  | Octopus@6 | Mr         |  Male     | Automation Contractor |  2323 | 0400000000 | 20-04-1982 | aa           |  St Kilda VIC, Australia  |
 
 
   @AddNAATIAccreditation
@@ -31,7 +31,7 @@ Feature: Contractor Engagement features
    
   Examples:
   | username           |  password |  contractor  | service        | from       |   to     | level      |
-  | LLAdmin@looped.in  | Uranus@6  | Automation   |  Interpreter   |  AFRIKAANS | ENGLISH  | Recognised |
+  | LLAdmin@looped.in  | Octopus@6  | Automation   |  Interpreter   |  AFRIKAANS | ENGLISH  | Recognised |
 
 
    @AddContractorNotes 
@@ -46,7 +46,7 @@ Feature: Contractor Engagement features
    
   Examples:
   | username           |  password |  contractor  | title       |  message   |
-  | LLAdmin@looped.in  | Uranus@6  | Automation   |  Automation |  Testing   |
+  | LLAdmin@looped.in  | Octopus@6  | Automation   |  Automation |  Testing   |
 
    @AddWorkEligbility  
   Scenario Outline: Add contractor work eligibility 
@@ -62,7 +62,7 @@ Feature: Contractor Engagement features
    
   Examples:
   | username           |  password |  contractor  | clearance       | salutation | gender    | name        |  pin  | mobile      |  dob         |  email    | address                  | id                  | number | years |
-  | LLAdmin@looped.in  | Uranus@6  | Automation   |  Police Check   |  Mr        |  female   | Automation  | 1232  | 0400000000  | 12-12-1982   | all       | St Kilda VIC, Australia  | Permanent Residence | 123456 |    4  |
+  | LLAdmin@looped.in  | Octopus@6  | Automation   |  Police Check   |  Mr        |  female   | Automation  | 1232  | 0400000000  | 12-12-1982   | all       | St Kilda VIC, Australia  | Permanent Residence | 123456 |    4  |
 
 
    @AddClearance  
@@ -80,7 +80,7 @@ Feature: Contractor Engagement features
    
   Examples:
   | username           |  password |  contractor  | clearance       | salutation | gender    | name        |  pin  | mobile      |  dob         |  email    | address                  |
-  | LLAdmin@looped.in  | Uranus@6  | Automation   |  Police Check   |  Mr        |  female   | Automation  | 1232  | 0400000000  | 12-12-1982   | all       | St Kilda VIC, Australia  |
+  | LLAdmin@looped.in  | Octopus@6  | Automation   |  Police Check   |  Mr        |  female   | Automation  | 1232  | 0400000000  | 12-12-1982   | all       | St Kilda VIC, Australia  |
 
 
   @AddAvailability 
@@ -97,7 +97,7 @@ Feature: Contractor Engagement features
    
    Examples: 
    | username           | password | salutation |   gender  | name                  |  pin  | mobile     | dob        | email        | address                   |  type        |  words  |
-   | LLAdmin@looped.in  | Uranus@6 | Mr         |  Male     | Automation Contractor |  2323 | 0400000000 | 20-04-1982 | aa           |  St Kilda VIC, Australia  | Translation  |   5     |
+   | LLAdmin@looped.in  | Octopus@6 | Mr         |  Male     | Automation Contractor |  2323 | 0400000000 | 20-04-1982 | aa           |  St Kilda VIC, Australia  | Translation  |   5     |
 
 
     @AddWorkPreference 
@@ -112,7 +112,7 @@ Feature: Contractor Engagement features
    
   Examples:
   | username           |  password |  contractor  | company                     |
-  | LLAdmin@looped.in  | Uranus@6  | Automation   |   BOLTON CLARKE - DH RDNS   |
+  | LLAdmin@looped.in  | Octopus@6  | Automation   |   BOLTON CLARKE - DH RDNS   |
 
 
     @AddReferees @test12  
@@ -127,7 +127,7 @@ Feature: Contractor Engagement features
    
   Examples:
   | username           |  password |  contractor  | agency            |  name       |
-  | LLAdmin@looped.in  | Uranus@6  | Automation   |   BOLTON CLARKE   | Auto tester |
+  | LLAdmin@looped.in  | Octopus@6  | Automation   |   BOLTON CLARKE   | Auto tester |
 
 
 
