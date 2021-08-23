@@ -35,7 +35,7 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
 
   browser.pause(2000)
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,language)
-
+ 
   action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
   action.selectTextFromDropdown(jobRequestPage.naatiLevelDropdown, naatilevel)
   action.enterDateAndTime(jobRequestPage.dateInput,jobRequestPage.timeInput, temp_date_time[0],temp_date_time[1] ) 
@@ -98,13 +98,20 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   action.clickElement(jobRequestPage.preferredInterpreterMustCheckBox)
   action.clickElement(jobRequestPage.addInterpreterLink)
   browser.pause(5000)
+  const findInterpreter=$("//*[text()[contains(.,'Find Interpreter')]]")
+  while(findInterpreter.isDisplayed()==false){
+  action.clickElement(jobRequestPage.addInterpreterLink)
+  browser.waitUntil(()=> findInterpreter.isDisplayed(),{timeout:7000, timeoutMsg:'Find interpreter modal not displayed in 10s', interval:500} )
+  console.log("inside "+findInterpreter.isDisplayed())
+    break
+}
   action.enterValue(jobRequestPage.searchForInterpreterInput,interpreter)
   browser.pause(5000)
   //select the first interpreter
   var check_boxes=jobRequestPage.interpreterSearchResultsCheckBoxes
   action.clickElement(check_boxes[0])
   action.clickElement(jobRequestPage.addInterpretersButton)
-
+  
   action.enterValue(jobRequestPage.confirmEmailInput,"hh@ll.com.au")
  // browser.pause(4000)
 
