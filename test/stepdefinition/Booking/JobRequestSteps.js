@@ -64,12 +64,13 @@ When(/^I enter "(.*)" email address$/,function(email){
 })
 
 When(/^I click save and proceed to summary button$/,function(){
+  jobRequestPage.saveAndProceedToSummaryButton.waitForClickable({timeout:7000},{timeoutMsg:'saveAndProceedToSummaryButton not clickable in 7s'},{interval:500})
   action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
 })
 
 When(/^I click submit button$/,function(){
   browser.pause(2000)
-  jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
+  jobRequestPage.submitButton.waitForClickable({timeout:10000},{timeoutMsg:'submit not clickable in 10s'},{interval:1000})  
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
   //action.clickElement(jobRequestPage.submitButton)
   /*console.time('t1')
@@ -124,6 +125,8 @@ When(/^I select ancestry "(.*)"$/,function(ancestry){
   browser.pause(1000)
   action.enterValueAndPressReturn(jobRequestPage.ancestryDropdown,ancestry)
   browser.pause(1000)
+  console.log(jobRequestPage.ancestryDropdown.getText())
+  chai.expect(jobRequestPage.ancestryDropdown.getText().includes(ancestry)).to.be.true
 })
 
 When(/^I click religion preference must checkbox$/,function(){
