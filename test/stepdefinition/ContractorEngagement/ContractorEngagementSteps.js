@@ -41,9 +41,19 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
     browser.keys("Enter")
     action.clickElement(contractorEngagementPage.emailPreferenceCheckbox)
     action.uploadFile(contractorEngagementPage.workContractFileControl,"./test/data/ContractDocument.docx")
-    browser.pause(3000)
+    const uploadedFile=$("//div[text()[contains(.,'ContractDocument.docx')]]")
+    browser.waitUntil(()=>uploadedFile.getText()==='ContractDocument.docx',{timeout:5000,timeoutMsg:'file not uploaded in 5s',inteval:500})
+    //browser.pause(3000)
     
-    action.clickElement(contractorEngagementPage.saveContractorButton)
+    //action.clickElement(contractorEngagementPage.saveContractorButton)
+    browser.waitUntil(function(){
+        if(browser.getTitle()==='Contractors'){
+         contractorEngagementPage.saveContractorButton.click()
+        }
+         return browser.getTitle()==='PreviewContractorProfile'
+}, 5000)
+    
+    browser.waitUntil(()=>browser.getTitle()==='PreviewContractorProfile',{timeout:5000,timeoutMsg:'preview title not displayed in 5s',inteval:500})
 })
 
 When(/^I search and open contractor "(.*)"$/, function(contractor){
