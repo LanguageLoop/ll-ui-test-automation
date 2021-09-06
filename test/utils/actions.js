@@ -112,7 +112,17 @@ module.exports={
       //  browser.keys("ArrowDown")
        // browser.keys("Enter")
         browser.pause(2000)
-    }
+    },
+    enterStartDate(dateField,dateValue)
+    {
+        browser.pause(1000)
+        this.clickElement(dateField)
+        this.clearValue(dateField)
+        dateValue = "" + dateValue
+        this.enterValueAndPressReturn(dateField,dateValue)  
+        browser.pause(1000)
+        browser.keys("Tab")        
+    },
 
 }
 

@@ -85,6 +85,30 @@ When(/^I enter naati details "(.*)","(.*)","(.*)","(.*)"$/, function(service,fro
     action.clickElement(contractorEngagementPage.saveAndCloseButton)
 })
 
+When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function(service,from,to,level,naati)  {
+	browser.pause(2000)
+    action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown,service)
+    action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown,from)
+    action.enterValueAndPressReturn(contractorEngagementPage.toLanguageDropdown,to)
+    action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown,level)
+    action.enterValue(contractorEngagementPage.naatiNumber,naati)
+
+    action.clickElement(contractorEngagementPage.validateButton)
+    var txt = contractorEngagementPage.validFrom.getText()
+    var fields = txt.split(':');
+    browser.pause(1000)
+    console.log(fields[1])
+
+    action.enterStartDate(contractorEngagementPage.dateIssuedInput,fields[1] )
+    action.clickElement(contractorEngagementPage.saveAndCloseButton)
+    browser.pause(2000)
+    if(contractorEngagementPage.translatorXTMAlert.isDisplayed())
+    {
+        action.clickElement(contractorEngagementPage.xtmConfirmButton)
+        //execute("arguments[0].click();", contractorEngagementPage.xtmConfirmButton);
+    }
+});
+
 When(/^I click add notes link$/,function(){
     browser.pause(2000)
     action.clickElement(contractorEngagementPage.addNotesLink)
@@ -266,23 +290,32 @@ Then(/^I delete contractor notes$/, function(){
     var tlength= contractorEngagementPage.notesTableRows.length
     contractorEngagementPage.notesTableRows[tlength-1].$('label').click()
     browser.pause(2000)
-    contractorEngagementPage.notesTableRows[tlength-1].$('//a[contains(text(),"Remove")]').click()
+    //contractorEngagementPage.notesTableRows[tlength-1].$('//a[contains(text(),"Remove")]').waitForClickable({timeout:4000},{interval:500},{timeoutMsg:'not clickable'})
+    //contractorEngagementPage.notesTableRows[tlength-1].$('//a[contains(text(),"Remove")]').click()
+    browser.execute("arguments[0].click();", contractorEngagementPage.notesTableRows[tlength-1].$('//a[contains(text(),"Remove")]'));
 
 })
 
 Then(/^I verify the created naati accreditation "(.*)","(.*)"$/, function(from,to){
     browser.pause(4000)
    var tlength= contractorEngagementPage.naatiTableRows.length
-   var temp_value= contractorEngagementPage.naatiTableRows[tlength-1].getText()
+   console.log(tlength)
+   //var temp_value= contractorEngagementPage.naatiTableRows[tlength-1].getText()
+   for(var i=1;i<tlength;i++){
+    var temp_value= contractorEngagementPage.naatiTableRows[i].getText()
    console.log("DRAVID $$$$ "+temp_value)
    chai.expect(temp_value.includes(from)).to.be.true
+   }
 })
 
 Then(/^I delete the naati accreditation$/, function(){
     var tlength= contractorEngagementPage.naatiTableRows.length
+    //for(var j=1;j<tlength;j++){
   contractorEngagementPage.naatiTableRows[tlength-1].$('label').click()
   browser.pause(2000)
-  contractorEngagementPage.naatiTableRows[tlength-1].$('//a[contains(text(),"Remove")]').click()
+  browser.execute("arguments[0].click();", contractorEngagementPage.naatiTableRows[tlength-1].$('//a[contains(text(),"Remove")]'));
+  browser.pause(2000)
+   // }
 })
 
 Then(/^I verify contractor is created$/, function(){
@@ -291,4 +324,15 @@ Then(/^I verify contractor is created$/, function(){
     browser.pause(2000)
     var searchresult =$$('//table[contains(@id,"Contractor")]//td')[1].getText()
     chai.expect(searchresult==GlobalData.NEW_CONTRACTOR_NAME)
+})
+
+Then(/^I see any naati accreditation already present$/, function() {
+	var tlength= contractorEngagementPage.naatiTableRows.length
+    if(contractorEngagementPage.noNaatiAccreditation.isDisplayed()==false){
+    for(var j=1;j<tlength;j++){
+  contractorEngagementPage.naatiTableRows[j].$('label').click()
+  browser.pause(2000)
+  contractorEngagementPage.naatiTableRows[j].$('//a[contains(text(),"Remove")]').click()
+    }
+}
 })

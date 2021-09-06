@@ -139,3 +139,19 @@ Feature: Contractor Engagement features
    #When I want data
 
 
+  @ValidateNAATIAccreditation@valNaati
+  Scenario Outline: Add naati accreditation where LL Language name is different from NAATI language name
+   When I login with "<username>" and "<password>"
+   And I click contractor engagement link
+   And I search and open contractor "<contractor>"
+   And I see any naati accreditation already present
+   And I click add accreditation link
+   And I enter all naati details "<service>","<from>","<to>","<level>","<naati>"
+   Then I verify the created naati accreditation "<from>","<to>"
+   And I delete the naati accreditation
+   
+  Examples:
+  | username           |  password |  contractor  | service        | from     |   to     | level                              |naati  |
+  | LLAdmin@looped.in  | Octopus@6  |   6155      |  Interpreter   | ASSYRIAN | ENGLISH  | Recognised Practising Interpreter  |CPN9LK67K|
+  | LLAdmin@looped.in  | Octopus@6  |   6268      |  Translator    | ASSYRIAN | ENGLISH  | 3-into English                     |CPN7CL35L|
+  | LLAdmin@looped.in  | Octopus@6  |   6268      |  Translator    | ENGLISH  | ASSYRIAN | 3-from English                     |CPN7CL35L|

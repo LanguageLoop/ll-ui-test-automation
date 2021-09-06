@@ -358,8 +358,26 @@ module.exports = {
     get referencesToggleButtons(){
         return $$('//*[text()="References"]/..//label')
     },
-
-
-
-
+    
+    get validateButton(){
+        return $("input[value='Validate']")
+    },
+    get naatiNumber(){
+        return $('//*[text()[contains(.,"NAATI Number/Practitioner ID")]]/../..//input[contains(@id,"wttxtNAATINumber")]')
+        
+    },
+    get validFrom(){
+        return $('//*[text()[contains(.,"Valid from")]]')
+        
+    },
+    get translatorXTMAlert(){
+        return $('//*[text()[contains(.,"Attention!")]]')
+    },
+    get xtmConfirmButton(){
+        return $('input[type="Submit"][value="Confirm"]')
+    },
+    get noNaatiAccreditation(){
+        return $('//*[text()[contains(.,"No NAATI accreditations to show...")]]')
+    }
+    
 }
