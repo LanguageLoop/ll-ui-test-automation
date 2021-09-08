@@ -99,7 +99,11 @@ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(origina
     browser.pause(5000)
     //action.clickElement(jobDetailsPage.autoNotificationLink)
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus)
-    browser.pause(9000)      
+    browser.pause(12000)      
+    /*var jobStatus = $('//*[contains(@id,"wtcontJobStatusVisible")]')
+    var jobStatuses =['Allocated','Voicemail Left','Refused Job','Unavailable']
+    browser.waitUntil(()=> {
+        return jobStatuses.filter(jobstat=>jobstat===jobStatus.getText()) },{timeout:15000,timeoutMsg:'jobStatus not changed in 15s',interval:2000})*/
     const confimationWindow =$('//*[text()[contains(.,"Overlap Confirmation")]]')
     if(confimationWindow.isDisplayed())
     {
