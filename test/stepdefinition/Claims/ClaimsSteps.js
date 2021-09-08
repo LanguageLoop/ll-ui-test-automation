@@ -43,12 +43,12 @@ When(/^I click on first job id from claims job list$/, function(){
 
 When(/^I get the campus fee for first job$/, function(){
     browser.pause(2000)
-    GlobalData.CAMPUS_FEE= claimsPage.campusFeeCell.getText()
+    GlobalData.CAMPUS_FEE= claimsPage.campusFeeCell.getText().replace('$','')
 })
 
 When(/^I get the contractor fee for first job$/, function(){
     browser.pause(2000)
-    GlobalData.CONTRACTOR_FEE= claimsPage.contractorFeeCell.getText()
+    GlobalData.CONTRACTOR_FEE= claimsPage.contractorFeeCell.getText().replace('$','')
 })
 
 When(/^I get job actual minutes$/, function(){
@@ -146,7 +146,8 @@ When(/^I click reprocess campus and contractor button$/, function(){
 When(/^I handle reprocess confirmation$/, function(){
     try{
         claimsPage.reprocessConfirmYesButton.waitForExist({timeout:5000})
-        claimsPage.reprocessConfirmYesButton.click()
+        browser.execute("arguments[0].click();", claimsPage.reprocessConfirmYesButton)
+        //claimsPage.reprocessConfirmYesButton.click()
       
       }
     catch(Err)
@@ -221,7 +222,7 @@ Then(/^I confirm the bulk claim process success message appears$/, function(){
 })
 
 Then(/^I verify the contractor fee$/, function(){
-    chai.expect(claimsPage.contractorFeeInput.getAttribute("value").replace(" ","")==GlobalData.CONTRACTOR_FEE).to.be.true
+    chai.expect(GlobalData.CONTRACTOR_FEE.includes(claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))).to.be.true
 })
 
 Then(/^I verify vic road travel fee$/, function(){
@@ -235,7 +236,7 @@ Then(/^I verify vic road travel fee$/, function(){
 Then(/^I verify the campus fee$/, function(){
     console.log("ACTUAL :"+claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))
     console.log("EXPECTED :"+GlobalData.CAMPUS_FEE)
-    chai.expect(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ","")==GlobalData.CAMPUS_FEE).to.be.true
+    chai.expect(GlobalData.CAMPUS_FEE.includes(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))).to.be.true
 })
 
 Then(/^I verify the job status is "(.*)"$/, function(jobstatus){
