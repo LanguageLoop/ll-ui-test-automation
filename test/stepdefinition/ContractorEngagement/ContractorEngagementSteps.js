@@ -43,7 +43,7 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
     action.uploadFile(contractorEngagementPage.workContractFileControl,"./test/data/ContractDocument.docx")
     const uploadedFile=$("//div[text()[contains(.,'ContractDocument.docx')]]")
     browser.waitUntil(()=>uploadedFile.getText()==='ContractDocument.docx',{timeout:5000,timeoutMsg:'file not uploaded in 5s',inteval:500})
-    //browser.pause(3000)
+    browser.pause(3000)
     
     //action.clickElement(contractorEngagementPage.saveContractorButton)
     browser.waitUntil(function(){
