@@ -163,14 +163,14 @@ When(/^I click reprocess contractor button$/, function(){
 })
 
 When(/^I click process campus and contractor button$/, function(){
-    browser.refresh()
-    browser.pause(2000)
+    //browser.refresh()
+    browser.pause(3000)
     action.clickElement(claimsPage.processCampusAndContractorButton)
 })
 
 When(/^I click reprocess campus and contractor button$/, function(){
-    browser.refresh()
-    browser.pause(2000)
+    //browser.refresh()
+    browser.pause(3000)
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
 })
 
