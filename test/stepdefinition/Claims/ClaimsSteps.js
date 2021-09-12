@@ -77,30 +77,56 @@ When(/^I enter new job finish time$/, function(){
 })
 
 When(/^I click process campus button$/, function(){
-    browser.refresh()
+    //browser.refresh()
     if(claimsPage.processCampusButton.isDisplayed()){
-    browser.pause(2000)
-    action.clickElement(claimsPage.processCampusButton)
+    //browser.pause(2000)
+    browser.waitUntil(()=> {
+        return claimsPage.processCampusButton.isClickable()},
+        {timeout: 5000, timeoutMsg: 'processCampusButton not displayed in 5s', interval:500})
+    browser.execute("arguments[0].click();", claimsPage.processCampusButton)
+    //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
     }
      else {
     browser.pause(2000)
-    action.clickElement(claimsPage.reprocessCampusButton)
+    browser.execute("arguments[0].click();", claimsPage.reprocessCampusButton)
+    //action.clickElement(claimsPage.reprocessCampusButton)
     browser.pause(2000)
-    action.clickElement(claimsPage.processCampusButton)
+    browser.execute("arguments[0].click();", claimsPage.processCampusButton)
+    //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
     }
 })
 
 When(/^I click reprocess campus button$/, function(){
-    browser.refresh()
+    //browser.refresh()
+    if(claimsPage.reprocessCampusButton.isDisplayed())
+    {
+    console.log('1')
     browser.pause(2000)
     action.clickElement(claimsPage.reprocessCampusButton)
     browser.pause(2000)
+    }
+    else if (claimsPage.processCampusButton.isDisplayed())
+    {
+    console.log('2')
+    browser.pause(2000)
+    action.clickElement(claimsPage.processCampusButton)
+    //browser.pause(2000)
+    browser.waitUntil(()=> {
+    return claimsPage.reprocessCampusButton.isClickable()},
+    {timeout: 5000, timeoutMsg: 'reprocessCampusButton not displayed in 5s', interval:500})
+    console.log('3')
+    action.clickElement(claimsPage.reprocessCampusButton)
+    //browser.pause(2000)
+    browser.waitUntil(()=> {
+        return claimsPage.processCampusButton.isClickable()},
+        {timeout: 5000, timeoutMsg: 'processCampusButton not displayed in 5s', interval:500})
+    }
 })
 
 When(/^I click process contractor button$/, function(){
-    browser.refresh()
+    //browser.refresh()
     claimsPage.processContractorButton.waitForClickable({timeout:10000},{interval:1000})
     action.clickElement(claimsPage.processContractorButton)
     browser.pause(2000)
@@ -111,20 +137,25 @@ When(/^I click reprocess contractor button$/, function(){
     if(claimsPage.reprocessContractorButton.isDisplayed()){
 
     browser.pause(2000)
-    action.clickElement(claimsPage.reprocessContractorButton)
+    browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
+    //action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
     }
     else if(claimsPage.processCampusButton.isDisplayed()){
     browser.pause(2000)
-    action.clickElement(claimsPage.processCampusButton)
+    browser.execute("arguments[0].click();", claimsPage.processCampusButton)
+    //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
-    action.clickElement(claimsPage.reprocessContractorButton)
+    browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
+    //action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
     }
     else{
     browser.pause(2000)
-    action.clickElement(claimsPage.processContractorButton)
+    browser.execute("arguments[0].click();", claimsPage.processContractorButton)
+    //action.clickElement(claimsPage.processContractorButton)
     browser.pause(2000)
+    browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
     action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
     }
@@ -224,13 +255,13 @@ Then(/^I confirm the bulk claim process success message appears$/, function(){
 Then(/^I verify the contractor fee$/, function(){
     console.log("ACTUAL :"+claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))
     console.log("EXPECTED :"+GlobalData.CONTRACTOR_FEE)
-    //chai.expect(GlobalData.CONTRACTOR_FEE.includes(claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))).to.be.true
-    chai.expect(claimsPage.contractorFeeInput.getAttribute("value").replace(" ","")==GlobalData.CONTRACTOR_FEE).to.be.true
+    chai.expect(GlobalData.CONTRACTOR_FEE.includes(claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))).to.be.true
+    //chai.expect(claimsPage.contractorFeeInput.getAttribute("value").replace(" ","")==GlobalData.CONTRACTOR_FEE).to.be.true
 })
 
 Then(/^I verify vic road travel fee$/, function(){
-    var travel_distance= claimsPage.travelledKMInput.getAttribute("text")
-    var actual_travel_fee= claimsPage.travelFeeInput.getAttribute("text")
+    var travel_distance= claimsPage.travelledKMInput.getAttribute("value")
+    var actual_travel_fee= claimsPage.travelFeeInput.getAttribute("value")
 
     var expected_travel_fee= travel_distance*0.85
     console.log("Expected Travel Fee :"+expected_travel_fee +"  Actual Travel Fee :"+actual_travel_fee)
@@ -239,8 +270,8 @@ Then(/^I verify vic road travel fee$/, function(){
 Then(/^I verify the campus fee$/, function(){
     console.log("ACTUAL :"+claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))
     console.log("EXPECTED :"+GlobalData.CAMPUS_FEE)
-    //chai.expect(GlobalData.CAMPUS_FEE.includes(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))).to.be.true
-    chai.expect(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ","")==GlobalData.CAMPUS_FEE).to.be.true
+    chai.expect(GlobalData.CAMPUS_FEE.includes(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))).to.be.true
+    //chai.expect(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ","")==GlobalData.CAMPUS_FEE).to.be.true
 })
 
 Then(/^I verify the job status is "(.*)"$/, function(jobstatus){
