@@ -106,7 +106,7 @@ Feature: Claims processing features
    Then I verify the contractor fee
    And I verify the campus fee
    And I click reprocess campus button
-   #And I handle reprocess confirmation
+   And I handle reprocess confirmation
    And I click process campus button
    And I click Claims header link
    And I close all special search criteria

@@ -25,7 +25,11 @@ When(/^I click on new job request button$/,function(){
 
 When(/^I select "(.*)" job status$/,function(jobstatus){
   action.selectTextFromDropdown(interpretingPage.jobStatusDropdown,jobstatus)
-  browser.pause(2000)
+
+  browser.waitUntil(()=> {
+    return interpretingPage.jobStatusDropdown.getValue()!='__ossli_0'},
+    {timeout: 15000, timeoutMsg: ' dropdown value not selected with in 15s', interval:500})
+  //browser.pause(2000)
 })
 
 

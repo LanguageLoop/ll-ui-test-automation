@@ -79,10 +79,7 @@ When(/^I enter new job finish time$/, function(){
 When(/^I click process campus button$/, function(){
     //browser.refresh()
     if(claimsPage.processCampusButton.isDisplayed()){
-    //browser.pause(2000)
-    browser.waitUntil(()=> {
-        return claimsPage.processCampusButton.isClickable()},
-        {timeout: 5000, timeoutMsg: 'processCampusButton not displayed in 5s', interval:500})
+    browser.pause(2000)
     browser.execute("arguments[0].click();", claimsPage.processCampusButton)
     //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
@@ -102,61 +99,85 @@ When(/^I click reprocess campus button$/, function(){
     //browser.refresh()
     if(claimsPage.reprocessCampusButton.isDisplayed())
     {
-    console.log('1')
-    browser.pause(2000)
-    action.clickElement(claimsPage.reprocessCampusButton)
-    browser.pause(2000)
-    }
-    else if (claimsPage.processCampusButton.isDisplayed())
-    {
-    console.log('2')
-    browser.pause(2000)
-    action.clickElement(claimsPage.processCampusButton)
-    //browser.pause(2000)
+    //console.log('1')
     browser.waitUntil(()=> {
     return claimsPage.reprocessCampusButton.isClickable()},
-    {timeout: 5000, timeoutMsg: 'reprocessCampusButton not displayed in 5s', interval:500})
-    console.log('3')
+    {timeout: 15000, timeoutMsg: 'reprocessCampusButton not displayed in 15s', interval:500})
     action.clickElement(claimsPage.reprocessCampusButton)
-    //browser.pause(2000)
     browser.waitUntil(()=> {
+    //console.log('1a')
+    return claimsPage.processCampusButton.isDisplayed()},
+    {timeout: 15000, timeoutMsg: 'processCampusButton not displayed in 15s', interval:500})
+    //console.log('1b')
+    }
+    else 
+    {
+        //console.log('2')
+        browser.pause(2000)
+        action.clickElement(claimsPage.processCampusButton)
+        //browser.pause(2000)
+        browser.waitUntil(()=> {
+        //console.log('2a')
+        return claimsPage.reprocessCampusButton.isClickable()},
+        {timeout: 15000, timeoutMsg: 'reprocessCampusButton not displayed in 15s', interval:500})
+        //console.log('3')
+        action.clickElement(claimsPage.reprocessCampusButton)
+        browser.pause(2000)
+        browser.waitUntil(()=> {
+        //console.log('3a')
         return claimsPage.processCampusButton.isClickable()},
-        {timeout: 5000, timeoutMsg: 'processCampusButton not displayed in 5s', interval:500})
+        {timeout: 15000, timeoutMsg: 'processCampusButton not displayed in 15s', interval:500})
     }
 })
 
 When(/^I click process contractor button$/, function(){
     //browser.refresh()
-    claimsPage.processContractorButton.waitForClickable({timeout:10000},{interval:1000})
+    //claimsPage.processContractorButton.waitForClickable({timeout:10000},{interval:1000})
+    browser.waitUntil(()=> {
+        return claimsPage.processContractorButton.isClickable()},
+        {timeout: 15000, timeoutMsg: 'processContractorButton not displayed in 15s', interval:500})
     action.clickElement(claimsPage.processContractorButton)
     browser.pause(2000)
 })
 
 When(/^I click reprocess contractor button$/, function(){
-    browser.refresh()
+    //browser.refresh()
     if(claimsPage.reprocessContractorButton.isDisplayed()){
 
     browser.pause(2000)
+    //console.log('1')
     browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
     //action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
     }
     else if(claimsPage.processCampusButton.isDisplayed()){
     browser.pause(2000)
+    //console.log('2')
     browser.execute("arguments[0].click();", claimsPage.processCampusButton)
     //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
+    //console.log('3')
+    browser.waitUntil(()=> {
+        //console.log('3a')
+        return claimsPage.reprocessContractorButton.isClickable()},
+        {timeout: 15000, timeoutMsg: 'reprocessContractorButton not displayed in 15s', interval:500})
     browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
     //action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
     }
     else{
     browser.pause(2000)
+    //console.log('4')
     browser.execute("arguments[0].click();", claimsPage.processContractorButton)
     //action.clickElement(claimsPage.processContractorButton)
-    browser.pause(2000)
+    //browser.pause(2000)
+    browser.waitUntil(()=> {
+        //console.log('4a')
+        return claimsPage.reprocessContractorButton.isClickable()},
+        {timeout: 15000, timeoutMsg: 'reprocessContractorButton not displayed in 15s', interval:500})
     browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
-    action.clickElement(claimsPage.reprocessContractorButton)
+    //console.log('5')
+    //action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
     }
     
@@ -171,7 +192,28 @@ When(/^I click process campus and contractor button$/, function(){
 When(/^I click reprocess campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)
+    if(claimsPage.reprocessCampusAndContractorButton.isDisplayed()){
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
+    browser.pause(3000)
+    }
+    else if (claimsPage.processContractorButton.isDisplayed()){
+    action.clickElement(claimsPage.processContractorButton)
+    browser.waitUntil(()=> {
+    //    console.log('2')
+    return claimsPage.reprocessCampusAndContractorButton.isClickable()},
+    {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
+    action.clickElement(claimsPage.reprocessCampusAndContractorButton)
+    }
+    else {
+        browser.pause(3000)
+        action.clickElement(claimsPage.processCampusAndContractorButton) 
+        browser.waitUntil(()=> {
+    //        console.log('3')
+        return claimsPage.reprocessCampusAndContractorButton.isClickable()},
+        {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
+        action.clickElement(claimsPage.reprocessCampusAndContractorButton)
+    }
+
 })
 
 When(/^I handle reprocess confirmation$/, function(){
