@@ -311,9 +311,11 @@ Then(/^I verify vic road travel fee$/, function(){
 })
 
 Then(/^I verify the campus fee$/, function(){
-    console.log("ACTUAL :"+claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))
+    var $less = claimsPage.jobCampusFeeInput.getAttribute("value").replace("$","")
+    console.log("$less :"+$less)
+    //console.log("ACTUAL :"+claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))
     console.log("EXPECTED :"+GlobalData.CAMPUS_FEE)
-    chai.expect(GlobalData.CAMPUS_FEE.includes(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))).to.be.true
+    chai.expect(GlobalData.CAMPUS_FEE.includes(claimsPage.jobCampusFeeInput.getAttribute("value").replace("$",""))).to.be.true
     //chai.expect(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ","")==GlobalData.CAMPUS_FEE).to.be.true
 })
 
