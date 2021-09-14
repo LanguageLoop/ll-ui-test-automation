@@ -297,8 +297,8 @@ Then(/^I confirm the bulk claim process success message appears$/, function(){
 
 Then(/^I verify the contractor fee$/, function(){
     //console.log("ACTUAL :"+claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))
-    var $lessContactorFee = claimsPage.contractorFeeInput.getAttribute("value").replace("$","")
-    console.log("$lessContactorFee :"+$lessContactorFee)
+    var lessContactorFee = claimsPage.contractorFeeInput.getAttribute("value").replace("$","")
+    console.log("$lessContactorFee :"+lessContactorFee)
     console.log("EXPECTED :"+GlobalData.CONTRACTOR_FEE)
     chai.expect(GlobalData.CONTRACTOR_FEE.includes(lessContactorFee.replace(" ",""))).to.be.true
     //chai.expect(claimsPage.contractorFeeInput.getAttribute("value").replace(" ","")==GlobalData.CONTRACTOR_FEE).to.be.true
@@ -313,11 +313,11 @@ Then(/^I verify vic road travel fee$/, function(){
 })
 
 Then(/^I verify the campus fee$/, function(){
-    var $less = claimsPage.jobCampusFeeInput.getAttribute("value").replace("$","")
-    console.log("$less :"+$less)
+    var less = claimsPage.jobCampusFeeInput.getAttribute("value").replace("$","")
+    console.log("$less :"+less)
     //console.log("ACTUAL :"+claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ",""))
     console.log("EXPECTED :"+GlobalData.CAMPUS_FEE)
-    chai.expect(GlobalData.CAMPUS_FEE.includes($less.replace(" ",""))).to.be.true
+    chai.expect(GlobalData.CAMPUS_FEE.includes(less.replace(" ",""))).to.be.true
     //chai.expect(claimsPage.jobCampusFeeInput.getAttribute("value").replace(" ","")==GlobalData.CAMPUS_FEE).to.be.true
 })
 
