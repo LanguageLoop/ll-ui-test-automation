@@ -219,7 +219,7 @@ When(/^I click reprocess campus and contractor button$/, function(){
 
 When(/^I handle reprocess confirmation$/, function(){
     try{
-        claimsPage.reprocessConfirmYesButton.waitForExist({timeout:5000})
+        claimsPage.reprocessConfirmYesButton.waitForClickable({timeout:10000,timeoutMsg:'Not able to click Yes in 10s',interval:500})
         browser.execute("arguments[0].click();", claimsPage.reprocessConfirmYesButton)
         //claimsPage.reprocessConfirmYesButton.click()
       
