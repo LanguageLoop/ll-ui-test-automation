@@ -296,9 +296,11 @@ Then(/^I confirm the bulk claim process success message appears$/, function(){
 })
 
 Then(/^I verify the contractor fee$/, function(){
-    console.log("ACTUAL :"+claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))
+    //console.log("ACTUAL :"+claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))
+    var $lessContactorFee = claimsPage.jobCampusFeeInput.getAttribute("value").replace("$","")
+    console.log("$lessContactorFee :"+$lessContactorFee)
     console.log("EXPECTED :"+GlobalData.CONTRACTOR_FEE)
-    chai.expect(GlobalData.CONTRACTOR_FEE.includes(claimsPage.contractorFeeInput.getAttribute("value").replace(" ",""))).to.be.true
+    chai.expect(GlobalData.CONTRACTOR_FEE.includes(claimsPage.contractorFeeInput.getAttribute("value").replace("$",""))).to.be.true
     //chai.expect(claimsPage.contractorFeeInput.getAttribute("value").replace(" ","")==GlobalData.CONTRACTOR_FEE).to.be.true
 })
 
