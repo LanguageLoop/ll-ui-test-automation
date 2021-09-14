@@ -49,6 +49,7 @@ When(/^I get the campus fee for first job$/, function(){
 When(/^I get the contractor fee for first job$/, function(){
     browser.pause(2000)
     GlobalData.CONTRACTOR_FEE= claimsPage.contractorFeeCell.getText().replace('$','')
+    console.log("contractorFeeCell:"+GlobalData.CONTRACTOR_FEE)
 })
 
 When(/^I get job actual minutes$/, function(){

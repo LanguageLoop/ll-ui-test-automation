@@ -23,7 +23,8 @@ var campusDetailsPage=require('./test/pages/CampusDetails/CampusDetails')
 var accountManagementPage=require('./test/pages/AccountManagement/AccountManagementPage')
 var contractManagementPage= require('./test/pages/ContractManagement/ContractManagement')
 var contractorEngagementPage= require('./test/pages/ContractorEngagement/ContractorEngagement')
-
+//var translationsPage= require('./test/pages/Translations/TranslationsPage')
+//var xtmPage = require('./test/pages/Translations/XTMPage')
 var myProfilePage= require('./test/pages/MyProfile/MyProfile')
 
 var chai= require('chai')
@@ -85,7 +86,8 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/features/**/*.feature'
+        //'./test/features/**/*.feature'
+        './test/features/**/Claims.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -126,7 +128,7 @@ exports.config = {
             //args:['window-size=1280,720'], 
             //args: ['--start-maximized'] ,
           
-               // "binary":"C:/Users/HAR/AppData/Local/Google/Chrome/Application/chrome.exe"
+                //"binary":"C:/Program Files/Google/Chrome/Application/chrome.exe"
                
            }
         // If outputDir is provided WebdriverIO can capture driver session logs
@@ -142,6 +144,7 @@ exports.config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     logLevel: 'error',
+    //logLevel:'info',
     //
     // Set specific log levels per logger
     // loggers:
@@ -321,7 +324,8 @@ exports.config = {
         global.accountManagementPage=accountManagementPage
         global.contractManagementPage=contractManagementPage
         global.contractorEngagementPage= contractorEngagementPage
-
+        //global.translationsPage=translationsPage
+        //global.xtmPage = xtmPage
         
      },
     /**
@@ -358,6 +362,7 @@ exports.config = {
          GlobalData.EDIT_BOOKING_SEARCH_JOB_ID=""
          GlobalData.ACCEPT_BOOKING_JOB_ID=""
          GlobalData.CURRENT_JOB_ID=""
+         //GlobalData.CURRENT_PROJECT_ID=""
          global.scenarioName=scenario.name
      },
     /**
