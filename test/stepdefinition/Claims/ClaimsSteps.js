@@ -79,6 +79,7 @@ When(/^I enter new job finish time$/, function(){
 
 When(/^I click process campus button$/, function(){
     //browser.refresh()
+    browser.pause(4000)
     if(claimsPage.processCampusButton.isDisplayed()){
     browser.pause(2000)
     browser.execute("arguments[0].click();", claimsPage.processCampusButton)
@@ -105,10 +106,11 @@ When(/^I click reprocess campus button$/, function(){
     return claimsPage.reprocessCampusButton.isClickable()},
     {timeout: 15000, timeoutMsg: 'reprocessCampusButton not displayed in 15s', interval:500})
     action.clickElement(claimsPage.reprocessCampusButton)
-    browser.waitUntil(()=> {
+    browser.pause(3000)
+    /*browser.waitUntil(()=> {
     //console.log('1a')
     return claimsPage.processCampusButton.isDisplayed()},
-    {timeout: 15000, timeoutMsg: 'processCampusButton not displayed in 15s', interval:500})
+    {timeout: 15000, timeoutMsg: 'processCampusButton not displayed in 15s', interval:500})*/
     //console.log('1b')
     }
     else 
@@ -219,7 +221,7 @@ When(/^I click reprocess campus and contractor button$/, function(){
 
 When(/^I handle reprocess confirmation$/, function(){
     try{
-        claimsPage.reprocessConfirmYesButton.waitForClickable({timeout:10000,timeoutMsg:'Not able to click Yes in 10s',interval:500})
+        claimsPage.reprocessConfirmYesButton.waitForExist({timeout:10000,timeoutMsg:'Not able to click Yes in 10s',interval:500})
         browser.execute("arguments[0].click();", claimsPage.reprocessConfirmYesButton)
         //claimsPage.reprocessConfirmYesButton.click()
       
