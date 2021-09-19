@@ -23,7 +23,7 @@ Feature: Edit existing booking
    And I click add preferred interpreter button
    And I select "1" interpreters from the list
    And I click add interpreters button
-   And I enter department "<department>"
+   #And I enter department "<department>"
    And I enter PO number "<PO Number>"
    And I click nes link
    And I enter nes first name "<nes first name>"
