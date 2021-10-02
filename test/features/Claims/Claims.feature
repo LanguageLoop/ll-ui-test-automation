@@ -243,7 +243,7 @@ Feature: Claims processing features
    And I click on job id from interpreting job search results
    And I switch to the job allocation window
    And I refresh the page
-   And I search for contractor "Rasoul OMID"
+   And I search for contractor "Abbas Steven KAZEMI"
    And I set the contractor job status from "Not eligible" to "Allocated"
    And I navigate to dev page
    And I set the job to "Complete"
@@ -263,8 +263,7 @@ Feature: Claims processing features
    Then I verify the contractor fee
    And I verify the campus fee
    And I verify vic road travel fee
-   And I click process campus button
-   And I click process contractor button
+   And I click process campus and contractor button
    And I click Claims header link
    And I close all special search criteria
    And I search for selected job request

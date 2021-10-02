@@ -95,7 +95,7 @@ When(/^I click process campus button$/, function(){
     //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
     }
-})
+})    
 
 When(/^I click reprocess campus button$/, function(){
     //browser.refresh()
@@ -189,7 +189,8 @@ When(/^I click reprocess contractor button$/, function(){
 When(/^I click process campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)
-    action.clickElement(claimsPage.processCampusAndContractorButton)
+    browser.execute("arguments[0].click();", claimsPage.processCampusAndContractorButton)
+    browser.pause(2000)
 })
 
 When(/^I click reprocess campus and contractor button$/, function(){
