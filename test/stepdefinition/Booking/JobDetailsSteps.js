@@ -99,7 +99,7 @@ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(origina
     browser.pause(5000)
     //action.clickElement(jobDetailsPage.autoNotificationLink)
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus)
-    browser.pause(12000)      
+    browser.pause(20000)      
     /*var jobStatus = $('//*[contains(@id,"wtcontJobStatusVisible")]')
     var jobStatuses =['Allocated','Voicemail Left','Refused Job','Unavailable']
     browser.waitUntil(()=> {
