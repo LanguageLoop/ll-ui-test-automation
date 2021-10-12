@@ -193,6 +193,20 @@ When(/^I click process campus and contractor button$/, function(){
     browser.pause(2000)
 })
 
+
+When(/^I click process campus and contractor on claims page$/, function() {
+	browser.refresh()
+    claimsPage.processCampusAndContractorButton.waitForClickable({timeout:7000,timeoutMsg:'button not clickable',interval:1000})
+    claimsPage.processCampusAndContractorButton.click()
+    var signOff=$("//div/span[text()[contains(.,'Signed off')]]")
+    browser.waitUntil(()=> {
+        console.log('4a')
+        return signOff.isDisplayed()},
+        {timeout: 15000, timeoutMsg: 'signoff not dispalyed in 15s', interval:1000})
+    browser.pause(2000)
+});
+
+
 When(/^I click reprocess campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)

@@ -260,10 +260,10 @@ Feature: Claims processing features
    And I get the contractor fee for first job
    And I click on first job id from claims job list
    And I switch to the claims window
+   And I click process campus and contractor on claims page
    Then I verify the contractor fee
    And I verify the campus fee
    And I verify vic road travel fee
-   And I click process campus and contractor button
    And I click Claims header link
    And I close all special search criteria
    And I search for selected job request
