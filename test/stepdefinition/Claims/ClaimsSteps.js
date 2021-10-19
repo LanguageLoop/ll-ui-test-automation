@@ -212,7 +212,7 @@ When(/^I click reprocess campus and contractor button$/, function(){
     browser.pause(3000)
     if(claimsPage.reprocessCampusAndContractorButton.isDisplayed()){
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
-    browser.pause(3000)
+    browser.pause(7000)
     }
     else if (claimsPage.processContractorButton.isDisplayed()){
     action.clickElement(claimsPage.processContractorButton)
@@ -221,6 +221,10 @@ When(/^I click reprocess campus and contractor button$/, function(){
     return claimsPage.reprocessCampusAndContractorButton.isClickable()},
     {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
+    browser.waitUntil(()=> {
+        //    console.log('2')
+        return claimsPage.processCampusAndContractorButton.isClickable()},
+        {timeout: 15000, timeoutMsg: 'processCampusAndContractorButton not displayed in 15s', interval:500})
     }
     else {
         browser.pause(3000)
@@ -248,8 +252,8 @@ When(/^I handle reprocess confirmation$/, function(){
 
 When(/^I handle reprocess campus and contractor confirmation$/, function(){
     try{
-        claimsPage.reprocessCampusAndContractorConfirmYesButton.waitForExist({timeout:5000})
-        claimsPage.reprocessCampusAndContractorConfirmYesButton.click()
+        claimsPage.reprocessCampusAndContractorConfirmYesButtonNew.waitForExist({timeout:5000})
+        claimsPage.reprocessCampusAndContractorConfirmYesButtonNew.click()
       
       }
     catch(Err)

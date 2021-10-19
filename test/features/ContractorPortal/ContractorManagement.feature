@@ -75,7 +75,7 @@ Feature: Contractor Management features
     
   Examples:
    | username                 | password | dropdownfilter      |  contractor name  | start date   |  end date   |
-   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  10/10/2021  |  18/10/2021 |
+   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  10/10/2023  |  18/10/2023 |
 
 @ExpiredLanguageToggle
    Scenario Outline: Toggle between expired and current naati languages

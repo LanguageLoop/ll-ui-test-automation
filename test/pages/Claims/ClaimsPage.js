@@ -80,6 +80,10 @@ module.exports ={
     get reprocessCampusAndContractorConfirmYesButton(){
         return $('//*[text()="Reprocess Campus"]/../..//input[@value="Yes"]')
     },
+    get reprocessCampusAndContractorConfirmYesButtonNew(){
+        return $('//*[text()="Reprocess Campus and Contractor"]/../..//input[@value="Yes"]')
+    },
+    
 
     get campusCentreColumn(){
         return $('//*[@data-columnname="CampusTitle"]')
