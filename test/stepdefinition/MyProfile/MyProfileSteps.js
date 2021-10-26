@@ -5,6 +5,8 @@ When(/^I click reset password button$/,  function(){
 
  When(/^I click edit profile details link$/, function(){
      action.clickElement(myProfilePage.editDetailsLink)
+     let contractorDetailsModal=$("//span[text()[contains(.,'My Details')]]")
+     contractorDetailsModal.waitForDisplayed({timeout:10000, timeoutMsg:'modal not displayed within 10s', interval:1000})
  })
 
  When(/^I enter preferred name "(.*)"$/, function(preferredname){
@@ -25,7 +27,7 @@ When(/^I click reset password button$/,  function(){
 
  When(/^I click save button in my details$/, function(){
      action.clickElement(myProfilePage.saveButton)
-     browser.pause(2000)
+     browser.waitUntil(()=>browser.getTitle()==="PreviewContractorProfile" ,{timeout:10000, timeoutMsg:'save not happened within 10s', interval:1000 })
  })
 
  When(/^I click on emergency contact link$/, function(){
@@ -178,9 +180,9 @@ Then(/^I verify naati table is present$/, function(){
     chai.expect(myProfilePage.emergencyFirstNameInput.getAttribute("value")==firstname).to.be.true
     chai.expect(myProfilePage.emergencyLastNameInput.getAttribute("value")==lastname).to.be.true
     chai.expect(myProfilePage.emergencyPhoneNumberInput.getAttribute("value").replace(/\s/g,"")==phonenumber).to.be.true
-    chai.expect(myProfilePage.emergencyRelationshipDropdownSelectedText.getAttribute('text')==relationship).to.be.true
-    chai.expect(myProfilePage.emergencyAddressInput.getAttribute("value")==address).to.be.true
-    chai.expect(myProfilePage.emergencyCountryDropdownSelectedText.getAttribute("text")==country).to.be.true
+    chai.expect(myProfilePage.emergencyRelationshipDropdownSelectedText.getText()==relationship).to.be.true
+    chai.expect(myProfilePage.emergencyAddressInput.getText()==address).to.be.true
+    chai.expect(myProfilePage.emergencyCountryDropdownSelectedText.getText()==country).to.be.true
     chai.expect(myProfilePage.emergencyEmailInput.getAttribute("value")==email).to.be.true
  })
 
