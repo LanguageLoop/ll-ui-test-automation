@@ -25,7 +25,8 @@ module.exports={
                 temp_time=this.getTwoHoursTime().toString()
                 break
             case "random future date":
-                temp_date=this.getRandomFutureDate().toString()
+                //temp_date=this.getRandomFutureDate().toString()
+                temp_date=this.generateRandomDate().toString()
                 temp_time="09:30"
                 break
         }
@@ -106,6 +107,12 @@ module.exports={
         console.log("RANDOM NUMBER :::: "+randomnumber)
         temp_date=new Date()
         temp_date.setHours(temp_date.getHours() + randomnumber)
+        temp_date=temp_date.getDate()+"-"+(temp_date.getMonth()+1)+"-"+temp_date.getFullYear()
+        return temp_date
+    },
+    generateRandomDate() { 
+        temp_date=new Date()
+        temp_date.setDate(temp_date.getDate()+30)
         temp_date=temp_date.getDate()+"-"+(temp_date.getMonth()+1)+"-"+temp_date.getFullYear()
         return temp_date
     },
