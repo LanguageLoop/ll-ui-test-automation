@@ -42,7 +42,7 @@
     "webdriverio": "^6.0.13"
   },
   "dependencies": {
-    "log4js": "^6.2.0",
+    "log4js": "^6.4.0",
     "npm-pack-all": "^1.11.1",
     "source-map-support": "^0.5.16"
   }
