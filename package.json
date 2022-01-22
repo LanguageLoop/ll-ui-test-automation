@@ -31,7 +31,7 @@
     "cucumber-html-reporter": "^5.2.0",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.19",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "npm-bundle": "^3.0.3",
     "pngjs": "^5.0.0",
     "wdio-chromedriver-service": "^6.0.4",
