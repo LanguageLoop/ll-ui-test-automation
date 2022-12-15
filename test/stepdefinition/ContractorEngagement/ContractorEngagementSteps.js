@@ -257,14 +257,14 @@ Then(/^I verify clearance "(.*)"$/, function(clearance){
 
 Then(/^I delete clearances$/, function(){
     browser.pause(4000)
-    $('//a[contains(@id,"wtPlaceholderLinks_wt9")]').scrollIntoView({block: "center"})
+    $('//a[contains(@id,"wtPlaceholderLinks_wt")]').scrollIntoView({block: "center"})
     var ct= contractorEngagementPage.clearanceItems.length
     console.log("DRAVID $$$ "+ct)
     for( var i=0;i<ct;i++)
     {
         contractorEngagementPage.clearanceItems[i].$('label').click()
         browser.pause(2000)
-        contractorEngagementPage.clearanceItems[i].$('//a[contains(@id,"wtPlaceholderLinks_wt9")]').click()
+        contractorEngagementPage.clearanceItems[i].$('//a[contains(@id,"wtPlaceholderLinks_wt")]').click()
 
     }
 })
