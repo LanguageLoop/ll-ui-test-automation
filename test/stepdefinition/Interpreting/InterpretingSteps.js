@@ -112,7 +112,8 @@ When(/^I click return job button$/, function(){
 })
 
 When(/^I click "(.*)" user link$/, function(user){
-  action.clickElement($('//*[text()="'+user+'"]'))
+  const  usernameElt = $('//*[text()="<dynamic>"]'.replace("<dynamic>",user));
+  action.clickElement(usernameElt);
 })
 
 When(/^I keep refreshing$/, function(){

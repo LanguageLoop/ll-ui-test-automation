@@ -1,9 +1,11 @@
 
 When(/^I click reset password button$/,  function(){
+   action.elementExists(myProfilePage.resetPasswordButton)
    action.clickElement(myProfilePage.resetPasswordButton)
  })
 
  When(/^I click edit profile details link$/, function(){
+     action.elementExists(myProfilePage.editDetailsLink)
      action.clickElement(myProfilePage.editDetailsLink)
      let contractorDetailsModal=$("//span[text()[contains(.,'My Details')]]")
      contractorDetailsModal.waitForDisplayed({timeout:10000, timeoutMsg:'modal not displayed within 10s', interval:1000})
@@ -31,6 +33,8 @@ When(/^I click reset password button$/,  function(){
  })
 
  When(/^I click on emergency contact link$/, function(){
+     browser.pause(2000)
+     action.elementExists(myProfilePage.emergencyContactLink)
      action.clickElement(myProfilePage.emergencyContactLink)
  })
 
@@ -177,6 +181,7 @@ Then(/^I verify naati table is present$/, function(){
  })
 
  Then(/^I verify the emergency contact details are updated "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/,function(firstname,lastname,phonenumber,relationship,address,country,email){
+    action.elementExists(myProfilePage.emergencyFirstNameInput)
     chai.expect(myProfilePage.emergencyFirstNameInput.getAttribute("value")==firstname).to.be.true
     chai.expect(myProfilePage.emergencyLastNameInput.getAttribute("value")==lastname).to.be.true
     chai.expect(myProfilePage.emergencyPhoneNumberInput.getAttribute("value").replace(/\s/g,"")==phonenumber).to.be.true

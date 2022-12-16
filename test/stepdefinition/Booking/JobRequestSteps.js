@@ -14,6 +14,7 @@ When(/^I enter campus pin "(.*)"$/,function(campuspin){
 })
 
 When(/^I select campus pin "(.*)"$/,function(campuspin){
+  browser.pause(2000)
   action.enterValueAndPressReturn(jobRequestPage.campusPINComboBox,campuspin)
 })
 
