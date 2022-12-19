@@ -126,5 +126,15 @@ module.exports={
         browser.keys("Tab")        
     },
 
+    domStatusComplete() {
+        browser.waitUntil(
+            function () {
+                const state = browser.execute(function () {
+                    return document.readyState;
+                });
+                return state === 'complete';
+            }, {timeout: 60000, timeoutMsg: 'Page is not completely loaded in 60 seconds'}
+        );
+    }
 }
 
