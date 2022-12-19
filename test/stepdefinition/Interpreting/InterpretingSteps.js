@@ -25,6 +25,7 @@ When(/^I click on new job request button$/,function(){
 
 When(/^I select "(.*)" job status$/,function(jobstatus){
   action.selectTextFromDropdown(interpretingPage.jobStatusDropdown,jobstatus)
+  browser.pause(4000);
 
   browser.waitUntil(()=> {
     return interpretingPage.jobStatusDropdown.getValue()!='__ossli_0'},

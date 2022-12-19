@@ -189,7 +189,8 @@ When(/^I click reprocess contractor button$/, function(){
 When(/^I click process campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)
-    browser.execute("arguments[0].click();", claimsPage.processCampusAndContractorButton)
+    // browser.execute("arguments[0].click();", claimsPage.processCampusAndContractorButton)
+    action.clickElement(claimsPage.processCampusAndContractorButton)
     browser.pause(2000)
 })
 
@@ -267,6 +268,7 @@ When(/^I click the first campus centre from search results$/, function(){
 })
 
 When(/^I select "(.*)" jobs from search results$/, function(count){
+    browser.pause(4000)
     var boxes= claimsPage.selectJobsCheckboxes
     for(var i=0;i<count;i++)
     {

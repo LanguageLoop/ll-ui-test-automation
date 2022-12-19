@@ -1,5 +1,6 @@
 
 When(/^I click reset password button$/,  function(){
+   action.domStatusComplete();
    action.elementExists(myProfilePage.resetPasswordButton)
    action.clickElement(myProfilePage.resetPasswordButton)
  })
@@ -181,6 +182,7 @@ Then(/^I verify naati table is present$/, function(){
  })
 
  Then(/^I verify the emergency contact details are updated "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/,function(firstname,lastname,phonenumber,relationship,address,country,email){
+    action.domStatusComplete();
     action.elementExists(myProfilePage.emergencyFirstNameInput)
     chai.expect(myProfilePage.emergencyFirstNameInput.getAttribute("value")==firstname).to.be.true
     chai.expect(myProfilePage.emergencyLastNameInput.getAttribute("value")==lastname).to.be.true

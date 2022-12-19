@@ -27,6 +27,7 @@ module.exports={
 
     enterValueAndPressReturn(elt, value)
     {
+        elt.waitForExist({timeout: 20000})
         elt.waitForDisplayed()
         elt.waitForEnabled()
         elt.waitForClickable()
@@ -40,6 +41,7 @@ module.exports={
 
     clickElement(elt)
     {
+        elt.waitForExist({timeout: 20000})
         elt.waitForDisplayed({timeout:10000})
         elt.waitForClickable()
         elt.click() 
@@ -124,5 +126,15 @@ module.exports={
         browser.keys("Tab")        
     },
 
+    domStatusComplete() {
+        browser.waitUntil(
+            function () {
+                const state = browser.execute(function () {
+                    return document.readyState;
+                });
+                return state === 'complete';
+            }, {timeout: 60000, timeoutMsg: 'Page is not completely loaded in 60 seconds'}
+        );
+    }
 }
 
