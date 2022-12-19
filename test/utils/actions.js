@@ -27,6 +27,7 @@ module.exports={
 
     enterValueAndPressReturn(elt, value)
     {
+        elt.waitForExist({timeout: 20000})
         elt.waitForDisplayed()
         elt.waitForEnabled()
         elt.waitForClickable()
@@ -40,6 +41,7 @@ module.exports={
 
     clickElement(elt)
     {
+        elt.waitForExist({timeout: 20000})
         elt.waitForDisplayed({timeout:10000})
         elt.waitForClickable()
         elt.click() 
