@@ -135,6 +135,25 @@ module.exports={
                 return state === 'complete';
             }, {timeout: 60000, timeoutMsg: 'Page is not completely loaded in 60 seconds'}
         );
+    },
+
+    waitForElementClickable(elt){
+        elt.waitForClickable({timeout: 60000})
+    },
+
+    isClickableWait(elt,waitTime){
+        let isClickable = false;
+        let i = 0;
+        while (i <= waitTime) {
+            isClickable = elt.isClickable();
+            if (isClickable) {
+                break;
+            } else {
+                browser.pause(500);
+                i = i + 500;
+            }
+        }
+        return isClickable;
     }
 }
 
