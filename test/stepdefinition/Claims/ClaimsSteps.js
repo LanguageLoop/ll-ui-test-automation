@@ -80,6 +80,7 @@ When(/^I enter new job finish time$/, function(){
 When(/^I click process campus button$/, function(){
     //browser.refresh()
     browser.pause(4000)
+    action.isClickableWait(claimsPage.processCampusButton,30000)
     if(claimsPage.processCampusButton.isDisplayed()){
     browser.pause(2000)
     browser.execute("arguments[0].click();", claimsPage.processCampusButton)
@@ -88,9 +89,11 @@ When(/^I click process campus button$/, function(){
     }
      else {
     browser.pause(2000)
+    action.isClickableWait(claimsPage.reprocessCampusButton,30000)
     browser.execute("arguments[0].click();", claimsPage.reprocessCampusButton)
     //action.clickElement(claimsPage.reprocessCampusButton)
     browser.pause(2000)
+    action.isClickableWait(claimsPage.processCampusButton,30000)
     browser.execute("arguments[0].click();", claimsPage.processCampusButton)
     //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
@@ -99,6 +102,7 @@ When(/^I click process campus button$/, function(){
 
 When(/^I click reprocess campus button$/, function(){
     //browser.refresh()
+    action.isClickableWait(claimsPage.reprocessCampusButton,30000)
     if(claimsPage.reprocessCampusButton.isDisplayed())
     {
     //console.log('1')
@@ -117,6 +121,7 @@ When(/^I click reprocess campus button$/, function(){
     {
         //console.log('2')
         browser.pause(2000)
+        action.isClickableWait(claimsPage.processCampusButton,30000)
         action.clickElement(claimsPage.processCampusButton)
         //browser.pause(2000)
         browser.waitUntil(()=> {
@@ -124,6 +129,7 @@ When(/^I click reprocess campus button$/, function(){
         return claimsPage.reprocessCampusButton.isClickable()},
         {timeout: 15000, timeoutMsg: 'reprocessCampusButton not displayed in 15s', interval:500})
         //console.log('3')
+        action.isClickableWait(claimsPage.reprocessCampusButton,30000)
         action.clickElement(claimsPage.reprocessCampusButton)
         browser.pause(2000)
         browser.waitUntil(()=> {
@@ -135,7 +141,7 @@ When(/^I click reprocess campus button$/, function(){
 
 When(/^I click process contractor button$/, function(){
     //browser.refresh()
-    //claimsPage.processContractorButton.waitForClickable({timeout:10000},{interval:1000})
+    action.isClickableWait(claimsPage.processContractorButton,30000)
     browser.waitUntil(()=> {
         return claimsPage.processContractorButton.isClickable()},
         {timeout: 15000, timeoutMsg: 'processContractorButton not displayed in 15s', interval:500})
@@ -145,6 +151,7 @@ When(/^I click process contractor button$/, function(){
 
 When(/^I click reprocess contractor button$/, function(){
     //browser.refresh()
+    action.isClickableWait(claimsPage.reprocessContractorButton,30000)
     if(claimsPage.reprocessContractorButton.isDisplayed()){
 
     browser.pause(2000)
@@ -156,6 +163,7 @@ When(/^I click reprocess contractor button$/, function(){
     else if(claimsPage.processCampusButton.isDisplayed()){
     browser.pause(2000)
     //console.log('2')
+    action.isClickableWait(claimsPage.processCampusButton,30000)
     browser.execute("arguments[0].click();", claimsPage.processCampusButton)
     //action.clickElement(claimsPage.processCampusButton)
     browser.pause(2000)
@@ -164,6 +172,7 @@ When(/^I click reprocess contractor button$/, function(){
         //console.log('3a')
         return claimsPage.reprocessContractorButton.isClickable()},
         {timeout: 15000, timeoutMsg: 'reprocessContractorButton not displayed in 15s', interval:500})
+    action.isClickableWait(claimsPage.reprocessContractorButton,30000)
     browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
     //action.clickElement(claimsPage.reprocessContractorButton)
     browser.pause(2000)
@@ -171,6 +180,7 @@ When(/^I click reprocess contractor button$/, function(){
     else{
     browser.pause(2000)
     //console.log('4')
+    action.isClickableWait(claimsPage.processContractorButton,30000)
     browser.execute("arguments[0].click();", claimsPage.processContractorButton)
     //action.clickElement(claimsPage.processContractorButton)
     //browser.pause(2000)
@@ -178,6 +188,7 @@ When(/^I click reprocess contractor button$/, function(){
         //console.log('4a')
         return claimsPage.reprocessContractorButton.isClickable()},
         {timeout: 15000, timeoutMsg: 'reprocessContractorButton not displayed in 15s', interval:500})
+    action.isClickableWait(claimsPage.reprocessContractorButton,30000)
     browser.execute("arguments[0].click();", claimsPage.reprocessContractorButton)
     //console.log('5')
     //action.clickElement(claimsPage.reprocessContractorButton)
@@ -190,6 +201,7 @@ When(/^I click process campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)
     // browser.execute("arguments[0].click();", claimsPage.processCampusAndContractorButton)
+    action.isClickableWait(claimsPage.processCampusAndContractorButton,30000)
     action.clickElement(claimsPage.processCampusAndContractorButton)
     browser.pause(2000)
 })
@@ -211,16 +223,20 @@ When(/^I click process campus and contractor on claims page$/, function() {
 When(/^I click reprocess campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)
+    action.domStatusComplete();
+    action.isClickableWait(claimsPage.reprocessCampusAndContractorButton,30000)
     if(claimsPage.reprocessCampusAndContractorButton.isDisplayed()){
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
     browser.pause(7000)
     }
     else if (claimsPage.processContractorButton.isDisplayed()){
+    action.isClickableWait(claimsPage.processContractorButton,30000)
     action.clickElement(claimsPage.processContractorButton)
     browser.waitUntil(()=> {
     //    console.log('2')
     return claimsPage.reprocessCampusAndContractorButton.isClickable()},
     {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
+    action.isClickableWait(claimsPage.reprocessCampusAndContractorButton,30000)
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
     browser.waitUntil(()=> {
         //    console.log('2')
@@ -229,11 +245,13 @@ When(/^I click reprocess campus and contractor button$/, function(){
     }
     else {
         browser.pause(3000)
+        action.isClickableWait(claimsPage.processCampusAndContractorButton,30000)
         action.clickElement(claimsPage.processCampusAndContractorButton) 
         browser.waitUntil(()=> {
     //        console.log('3')
         return claimsPage.reprocessCampusAndContractorButton.isClickable()},
         {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
+        action.isClickableWait(claimsPage.reprocessCampusAndContractorButton,30000)
         action.clickElement(claimsPage.reprocessCampusAndContractorButton)
     }
 
@@ -279,6 +297,7 @@ When(/^I select "(.*)" jobs from search results$/, function(count){
 
 When(/^I click bulk process claim button$/, function(){
     browser.pause(2000)
+    action.isClickableWait(claimsPage.bulkClaimProcessButton,30000)
     action.clickElement(claimsPage.bulkClaimProcessButton)
 })
 
