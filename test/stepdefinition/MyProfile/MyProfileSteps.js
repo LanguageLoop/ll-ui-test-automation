@@ -8,6 +8,7 @@ When(/^I click reset password button$/,  function(){
 
  When(/^I click edit profile details link$/, function(){
      browser.pause(4000)
+     action.isClickableWait(myProfilePage.editDetailsLink,30000)
      action.waitForElementClickable(myProfilePage.editDetailsLink)
      action.clickElement(myProfilePage.editDetailsLink)
      let contractorDetailsModal=$("//span[text()[contains(.,'My Details')]]")
