@@ -32,9 +32,9 @@ Feature: Contractor Management features
     Then I verify the profile details are updated "<preferred name>","<abn>","<company name>"
 
   Examples:
-   | username                 | password | dropdownfilter      |  contractor name  | preferred name |  abn         | company name   |
-   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Su            |  53819971946 |  LL            |
-   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Suzanne       |  53819971946 |  HANNA, SUZANE |
+   | username                 | password | dropdownfilter      |  contractor name  | preferred name |  abn         |  company name       |
+   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Su            |  50664505657 |  VITS LANGUAGELINK |
+   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Suzanne       |  53819971946 |  HANNA, SUZANE     |
 
    @EmergencyContact
    Scenario Outline: Edit emergency contact details
