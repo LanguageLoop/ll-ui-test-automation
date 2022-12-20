@@ -29,7 +29,7 @@ module.exports={
     },
 
     get natureOfRequestInput(){
-        return $('//label[text()="Nature Of Request"]/..//input')
+        return $('//label[text()="Nature Of Request"]/..//select')
     },
 
     get naatiLevelDropdown(){

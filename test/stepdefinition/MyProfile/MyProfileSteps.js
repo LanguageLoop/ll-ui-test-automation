@@ -1,12 +1,14 @@
 
 When(/^I click reset password button$/,  function(){
    action.domStatusComplete();
+   action.waitForElementClickable(myProfilePage.editDetailsLink)
    action.elementExists(myProfilePage.resetPasswordButton)
    action.clickElement(myProfilePage.resetPasswordButton)
  })
 
  When(/^I click edit profile details link$/, function(){
-     action.elementExists(myProfilePage.editDetailsLink)
+     browser.pause(4000)
+     action.waitForElementClickable(myProfilePage.editDetailsLink)
      action.clickElement(myProfilePage.editDetailsLink)
      let contractorDetailsModal=$("//span[text()[contains(.,'My Details')]]")
      contractorDetailsModal.waitForDisplayed({timeout:10000, timeoutMsg:'modal not displayed within 10s', interval:1000})
