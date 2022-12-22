@@ -8,6 +8,7 @@ When(/^I select language "(.*)"$/,   function(listitem){
 })
 
 When(/^I enter campus pin "(.*)"$/,function(campuspin){
+  action.isClickableWait(jobRequestPage.campusPinInput,20000)
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
   const jobType=$('label[class="ButtonGroup_button Button active"]')
   browser.waitUntil(()=> jobRequestPage.requesterNameDropdown.isEnabled(),{timeout:7000,timeoutMsg:'job type is not enabled',interval:500})
@@ -30,6 +31,7 @@ When(/^I enter time "(.*)"$/,function(time){
 
 When(/^I enter schedule "(.*)" and "(.*)"$/,function(dateStr,timeStr){
   var temp_date_time = datetime.getScheduleDateTime(dateStr,timeStr)
+  action.isClickableWait(jobRequestPage.dateInput,20000)
   action.enterDateAndTime(jobRequestPage.dateInput,jobRequestPage.timeInput,temp_date_time[0],temp_date_time[1])
 })
 
