@@ -154,6 +154,21 @@ module.exports={
             }
         }
         return isClickable;
-    }
+    },
+
+    isVisibleWait(elt,waitTime){
+        let isVisible = false;
+        let i = 0;
+        while (i <= waitTime) {
+            isVisible = elt.isDisplayed();
+            if (isVisible) {
+                break;
+            } else {
+                browser.pause(500);
+                i = i + 500;
+            }
+        }
+        return isVisible;
+    },
 }
 
