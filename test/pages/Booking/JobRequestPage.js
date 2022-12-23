@@ -263,6 +263,10 @@ module.exports={
 
     get campusPINComboBox(){
         return $('//*[contains(text(),"Campus PIN")]/..//select')
+    },
+
+    get jobGotUpdatedWarningMessage(){
+        return $('//span[text()="This job got updated. Please refresh your browser and try it again."]')
     }
 
 

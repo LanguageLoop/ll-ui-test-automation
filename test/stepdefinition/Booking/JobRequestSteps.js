@@ -67,6 +67,7 @@ When(/^I enter "(.*)" email address$/,function(email){
 })
 
 When(/^I click save and proceed to summary button$/,function(){
+  action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
   jobRequestPage.saveAndProceedToSummaryButton.waitForClickable({timeout:7000},{timeoutMsg:'saveAndProceedToSummaryButton not clickable in 7s'},{interval:500})
   action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
 })
@@ -181,6 +182,7 @@ When(/^I handle duplicate job warning window$/,function(){
 })
 
 When(/^I click yes to confirm editing job request$/, function(){
+  action.isClickableWait(jobRequestPage.editJobConfirmationYesButton)
   action.clickElement(jobRequestPage.editJobConfirmationYesButton)
 })
 
@@ -332,6 +334,22 @@ Then(/^the job created success message should appear$/, function(){
 Then(/^I verify the created job id is listed$/, function(){
   browser.pause(2000)
   chai.expect(action.elementExists('//a[text()="'+GlobalData.CURRENT_JOB_ID+'"]')).to.be.true
+})
+
+When(/^I handle job updated warning message by refreshing "(.*)"$/,function(assignmenttype){
+  try {
+    let refreshCount = 0;
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage,10000) && refreshCount <5){
+      browser.refresh()
+      action.isClickableWait(jobRequestPage.assignmentTypeDropdown,30000)
+      action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
+      action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
+      action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
+      refreshCount++
+    }
+  } catch (Err){
+    console.log("Failed to handle job updated warning message-"+Err)
+  }
 })
 
 

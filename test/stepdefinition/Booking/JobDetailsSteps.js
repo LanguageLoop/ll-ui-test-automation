@@ -94,20 +94,23 @@ When(/^I refresh the page$/, function(){
 
 When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(original_jobstatus,new_jobstatus){
     browser.pause(2000)
+    action.isClickableWait($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),30000)
     action.elementExists(jobDetailsPage.contractorListTable)
     action.clickElement($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'))
     browser.pause(5000)
     //action.clickElement(jobDetailsPage.autoNotificationLink)
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus)
-    browser.pause(20000)      
+    // browser.pause(20000)
     /*var jobStatus = $('//*[contains(@id,"wtcontJobStatusVisible")]')
     var jobStatuses =['Allocated','Voicemail Left','Refused Job','Unavailable']
     browser.waitUntil(()=> {
         return jobStatuses.filter(jobstat=>jobstat===jobStatus.getText()) },{timeout:15000,timeoutMsg:'jobStatus not changed in 15s',interval:2000})*/
-    const confimationWindow =$('//*[text()[contains(.,"Overlap Confirmation")]]')
-    if(confimationWindow.isDisplayed())
+    const confirmationWindow =$('//*[text()[contains(.,"Overlap Confirmation")]]')
+    action.isVisibleWait(confirmationWindow,30000)
+    if(confirmationWindow.isDisplayed())
     {
         const confirmYes =$('//input[contains(@id,"wtActions_wt145")]')
+        action.isClickableWait(confirmYes,30000)
         action.clickElement(confirmYes)
     }
 })

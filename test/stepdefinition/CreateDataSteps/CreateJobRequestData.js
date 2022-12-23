@@ -27,6 +27,7 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   action.selectTextFromDropdown(interpretingPage.filterDropdown,"Management")
   interpretingPage.newJobRequestButton.waitForClickable({timeout:5000},{interval:500})
   action.clickElement(interpretingPage.newJobRequestButton)
+  action.isClickableWait(jobRequestPage.campusPinInput,30000)
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
   jobRequestPage.requesterNameDropdown.waitForExist({timeout:5000},{interval:500})
   action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,requester)
@@ -34,6 +35,7 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   action.clickElement(jobRequestPage.nextButton)
 
   browser.pause(2000)
+  action.isClickableWait(jobRequestPage.languageDropdown,30000)
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,language)
  
   action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
@@ -46,10 +48,12 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   action.enterDateAndTime(jobRequestPage.confirmationDate,jobRequestPage.confirmationTime,temp_conf_date_time[0],temp_conf_date_time[1])
  // browser.keys('Tab')
   browser.pause(2000)
+  action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
   action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
   browser.pause(2000)
 
   try{
+    action.isClickableWait(jobRequestPage.continueButton,30000)
     jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
     browser.execute("arguments[0].click();", jobRequestPage.continueButton)
     //action.clickElement(jobRequestPage.continueButton)
@@ -60,6 +64,7 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   browser.pause(4000)
   //jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})
   //action.clickElement(jobRequestPage.submitButton)
+  action.isClickableWait(jobRequestPage.submitButton,30000)
   jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
  jobRequestPage.successMessageText.waitForExist({timeout:30000},{interval:500})
@@ -81,12 +86,14 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   action.clickElement(homePage.InterpretingLink)
   action.selectTextFromDropdown(interpretingPage.filterDropdown,"Management")
   action.clickElement(interpretingPage.newJobRequestButton)
+  action.isClickableWait(jobRequestPage.campusPinInput,30000)
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
   action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,requester)
   browser.pause(2000)
   action.clickElement(jobRequestPage.nextButton)
 
   browser.pause(2000)
+  action.isClickableWait(jobRequestPage.languageDropdown,30000)
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,language)
 
   action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
@@ -118,10 +125,12 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   action.enterDateAndTime(jobRequestPage.confirmationDate,jobRequestPage.confirmationTime,temp_conf_date_time[0],temp_conf_date_time[1])
  // browser.keys('Tab')
   browser.pause(2000)
+  action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
   action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
   browser.pause(2000)
 
   try{
+    action.isClickableWait(jobRequestPage.continueButton,30000)
     jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
     browser.execute("arguments[0].click();", jobRequestPage.continueButton)
     //action.clickElement(jobRequestPage.continueButton)
@@ -132,6 +141,7 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   browser.pause(2000)
 
   //action.clickElement(jobRequestPage.submitButton)
+  action.isClickableWait(jobRequestPage.submitButton,30000)
   jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
  jobRequestPage.successMessageText.waitForExist({timeout:10000})
