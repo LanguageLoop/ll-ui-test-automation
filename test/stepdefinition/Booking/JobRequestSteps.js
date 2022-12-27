@@ -339,7 +339,8 @@ Then(/^I verify the created job id is listed$/, function(){
 When(/^I handle job updated warning message by refreshing "(.*)"$/,function(assignmenttype){
   try {
     let refreshCount = 0;
-    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage,10000) && refreshCount <5){
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage,10000) && refreshCount <10){
+      console.log("Refreshing-"+refreshCount)
       browser.refresh()
       action.isClickableWait(jobRequestPage.assignmentTypeDropdown,30000)
       action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
