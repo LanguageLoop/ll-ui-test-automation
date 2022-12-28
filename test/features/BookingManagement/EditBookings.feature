@@ -69,7 +69,7 @@ Feature: Edit existing booking
    And I enter "<email>" email address
    And I enter confirmation phone number "<confirmation phone number>"
    And I click save and proceed to summary button
-   And I handle job updated warning message by refreshing "<assignment type>"
+   And I handle job updated warning message by refreshing assignment type "<assignment type>"
    And I handle duplicate job warning window
    And I click yes to confirm editing job request 
    And I search for created job request
@@ -108,6 +108,7 @@ Feature: Edit existing booking
    And I enter report to name "<report name>"
    And I enter interpreter instructions "<instruction>"
    And I click save and proceed to summary button
+   And I handle job updated warning message by refreshing NAATI type "<NAATI>"
    And I handle duplicate job warning window
    And I click yes to confirm editing job request 
    And I search for created job request

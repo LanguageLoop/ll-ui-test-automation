@@ -336,14 +336,31 @@ Then(/^I verify the created job id is listed$/, function(){
   chai.expect(action.elementExists('//a[text()="'+GlobalData.CURRENT_JOB_ID+'"]')).to.be.true
 })
 
-When(/^I handle job updated warning message by refreshing "(.*)"$/,function(assignmenttype){
+When(/^I handle job updated warning message by refreshing assignment type "(.*)"$/,function(assignmenttype){
   try {
     let refreshCount = 0;
     while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage,10000) && refreshCount <10){
-      console.log("Refreshing-"+refreshCount)
+      console.log("Refreshing assignment type-"+refreshCount)
       browser.refresh()
       action.isClickableWait(jobRequestPage.assignmentTypeDropdown,30000)
       action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
+      action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
+      action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
+      refreshCount++
+    }
+  } catch (Err){
+    console.log("Failed to handle job updated warning message-"+Err)
+  }
+})
+
+When(/^I handle job updated warning message by refreshing NAATI type "(.*)"$/,function(naati){
+  try {
+    let refreshCount = 0;
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage,10000) && refreshCount <10){
+      console.log("Refreshing naati-"+refreshCount)
+      browser.refresh()
+      action.clickElement(jobRequestPage.nextButton)
+      action.selectTextFromDropdown(jobRequestPage.naatiLevelDropdown,naati)
       action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
       action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
       refreshCount++
