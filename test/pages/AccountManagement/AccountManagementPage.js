@@ -142,8 +142,61 @@ module.exports ={
 
     get addContractLink(){
         return $('//*[contains(text(),"Add contract")]')
+    },
+
+    get dimensionTagPlusIcon(){
+        return $('//a[contains(@id,"DimensionTagging")]/child::span[@class="fa fa-fw fa-plus"]')
+    },
+
+    get dimensionListDropdown(){
+        return $('//select[contains(@id,"DimensionTagging")]')
+    },
+
+    get selectAValueDropdownOptionsListCount(){
+        return $$('//option[text()=" - select a value - "]/following-sibling::option').length
+    },
+
+    get selectAValueDropdownOptionsList(){
+        return $('//option[text()=" - select a value - "]/following-sibling::option')
+    },
+
+    get shortCodeListDropdown(){
+        return $('//select[contains(@id,"DimensionTagging")]')
+    },
+
+    get selectAValueListOptionLocator(){
+        return '//option[text()=" - select a value - "]/following-sibling::option[<dynamic>]';
+    },
+
+    get selectAValueListOptionTextLocator(){
+        return '//option[text()=" - select a value - "]/following-sibling::option[text()="<dynamic>"]';
+    },
+
+    get tagLocator(){
+        return "//i[text()='<dynamic1>']/parent::span[text()='<dynamic2>']"
+    },
+
+    get dimensionListOptionLocator(){
+        return '//option[text()=" - select a dimension list - "]/following-sibling::option[text()="<dynamic>"]'
+    },
+
+    get dimensionTagDeleteCrossIcon(){
+        return '//i[text()="<dynamic1>"]/parent::span[text()="<dynamic2>"]//child::span'
+    },
+
+    get crossIconNextToDropdown(){
+        return $('//select[contains(@id,"DimensionTagging")]/following-sibling::a')
+    },
+
+    get dimensionTagsCount(){
+        return $$('//span[@class="dimensionTagCloud"]//child::i').length
+    },
+
+    get campusPageHeader(){
+        return $('//div[@class="Heading1 Title PH OSInline"][text()="Campus"]')
+    },
+
+    get dimensionTagCloudSection(){
+        return $('//div[text()="Dimension Tag Cloud"]/parent::div')
     }
-
-
-
 }
