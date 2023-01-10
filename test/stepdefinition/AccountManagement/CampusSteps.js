@@ -533,3 +533,126 @@ Then(/^I verify bill to contract section is present$/,function(){
     chai.expect(action.elementExists(campusDetailsPage.billToDetailsTable)).to.be.true
 
 })
+
+When(/^They select the plus icon$/, function(){
+    GlobalData.TAGS_COUNT_BEFORE_CANCEL = accountManagementPage.dimensionTagsCount
+    action.isVisibleWait(accountManagementPage.dimensionTagPlusIcon,10000)
+    action.clickElement(accountManagementPage.dimensionTagPlusIcon)
+})
+
+When(/^Open the Dimension list dropdown$/, function(){
+    action.isClickableWait(accountManagementPage.dimensionListDropdown,10000)
+    action.clickElement(accountManagementPage.dimensionListDropdown)
+})
+
+When(/^Selects the "(.*)" dimension list option$/, function(dimensionListOption){
+    action.isClickableWait(accountManagementPage.dimensionListDropdown,10000)
+    action.selectTextFromDropdown(accountManagementPage.dimensionListDropdown,dimensionListOption)
+})
+
+Then(/^They will see the new short codes$/,function(){
+    accountManagementPage.selectAValueDropdownOptionsList.waitForExist();
+    action.isVisibleWait(accountManagementPage.selectAValueDropdownOptionsList)
+    let shortCodeListOptionsCount = accountManagementPage.selectAValueDropdownOptionsListCount
+    GlobalData.SHORT_CODE_OPTIONS = [];
+    GlobalData.SHORT_CODE_OPTIONS_INITIALS = [];
+    for (let optionIndex=1; optionIndex<=shortCodeListOptionsCount; optionIndex++){
+        let shortCodeListOptionElement = $(accountManagementPage.selectAValueListOptionLocator.replace("<dynamic>",optionIndex.toString()));
+        action.isVisibleWait(action.getElementText(shortCodeListOptionElement))
+        GlobalData.SHORT_CODE_OPTIONS.push(action.getElementText(shortCodeListOptionElement))
+        GlobalData.SHORT_CODE_OPTIONS_INITIALS.push(GlobalData.SHORT_CODE_OPTIONS[optionIndex - 1].toString().charAt(0))
+    }
+    chai.expect(shortCodeListOptionsCount).to.equal(GlobalData.SHORT_CODE_OPTIONS.length)
+    chai.expect(shortCodeListOptionsCount).to.equal(GlobalData.SHORT_CODE_OPTIONS_INITIALS.length)
+})
+
+Then(/^The new short codes will appear at the top of the list in alphabetical order A-Z$/,function(){
+    let shortCodeOptionsOrderedList = [...GlobalData.SHORT_CODE_OPTIONS].sort()
+    chai.expect(GlobalData.SHORT_CODE_OPTIONS).to.have.members(shortCodeOptionsOrderedList)
+    let shortCodeOptionsOrderedInitials = [...GlobalData.SHORT_CODE_OPTIONS_INITIALS].sort()
+    chai.expect(GlobalData.SHORT_CODE_OPTIONS_INITIALS).to.have.ordered.members(shortCodeOptionsOrderedInitials)
+})
+
+When(/^They select a value "(.*)" from the select a value dropdown$/, function(shortCodeOptionValue){
+    action.isVisibleWait(accountManagementPage.shortCodeListDropdown,10000)
+    let dimensionListOptionValueElement = $(accountManagementPage.selectAValueListOptionTextLocator.replace("<dynamic>",shortCodeOptionValue))
+    action.waitForElementExist(dimensionListOptionValueElement,10000,false,"Short code option-"+shortCodeOptionValue+" does not exist",500)
+    action.selectTextFromDropdown(accountManagementPage.shortCodeListDropdown,shortCodeOptionValue)
+})
+
+Then(/^The tag "(.*)","(.*)" will be added in the Dimension Tag Cloud section$/,function(dimensionListOption,optionValue){
+    let tagElement = $(accountManagementPage.tagLocator.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
+    let tagVisibleStatus = action.isVisibleWait(tagElement,10000);
+    chai.expect(tagVisibleStatus).to.be.true;
+})
+
+Then(/^They will see the "(.*)" dimension list option$/,function(budgetCodeOption){
+    let budgetCodeOptionElement = $(accountManagementPage.dimensionListOptionLocator.replace("<dynamic>",budgetCodeOption));
+    let budgetCodeOptionVisibleStatus = action.isVisibleWait(budgetCodeOptionElement,10000);
+    chai.expect(budgetCodeOptionVisibleStatus).to.be.true;
+})
+
+When(/^Delete the tag "(.*)","(.*)"$/, function(dimensionListOption,optionValue){
+    let dimensionTagDeleteCrossIconElement = $(accountManagementPage.dimensionTagDeleteCrossIcon.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
+    let tagClickable = action.isClickableWait(dimensionTagDeleteCrossIconElement,10000)
+    if (tagClickable){
+        action.clickElement(dimensionTagDeleteCrossIconElement)
+        dimensionTagDeleteCrossIconElement.waitForExist({ timeout:10000, reverse:true, timeoutMsg:"the tag is not deleted within timeout", interval :500 })
+    }
+})
+
+When(/^They add the "(.*)" list option dimension$/, function(dimensionListOption){
+    action.isClickableWait(accountManagementPage.dimensionListDropdown,10000)
+    action.selectTextFromDropdown(accountManagementPage.dimensionListDropdown,dimensionListOption)
+})
+
+Then(/^They will be able to see the list of Budget Code values$/,function(){
+    accountManagementPage.selectAValueDropdownOptionsList.waitForExist();
+    action.isVisibleWait(accountManagementPage.selectAValueDropdownOptionsList)
+    let budgetCodeListOptionsCount = accountManagementPage.selectAValueDropdownOptionsListCount
+    GlobalData.BUDGET_CODE_OPTIONS = [];
+    for (let optionIndex=1; optionIndex<=budgetCodeListOptionsCount; optionIndex++){
+        let budgetCodeListOptionElement = $(accountManagementPage.selectAValueListOptionLocator.replace("<dynamic>",optionIndex.toString()));
+        action.isVisibleWait(action.getElementText(budgetCodeListOptionElement))
+        GlobalData.BUDGET_CODE_OPTIONS.push(action.getElementText(budgetCodeListOptionElement))
+    }
+    chai.expect(budgetCodeListOptionsCount).to.equal(GlobalData.BUDGET_CODE_OPTIONS.length)
+})
+
+When(/^They select a value "(.*)" from the Budget Code dropdown$/, function(budgetCodeOptionValue){
+    action.isVisibleWait(accountManagementPage.dimensionListDropdown,10000)
+    let dimensionListOptionValueElement = $(accountManagementPage.selectAValueListOptionTextLocator.replace("<dynamic>",budgetCodeOptionValue))
+    action.waitForElementExist(dimensionListOptionValueElement,10000,false,"Short code option-"+budgetCodeOptionValue+" does not exist",500)
+    action.selectTextFromDropdown(accountManagementPage.dimensionListDropdown,budgetCodeOptionValue)
+})
+
+When(/^The dimension dropdown is displayed$/, function(){
+    let dimensionDropdownDisplayStatus = action.isClickableWait(accountManagementPage.dimensionListDropdown,10000)
+    chai.expect(dimensionDropdownDisplayStatus).to.be.true;
+})
+
+When(/^They select the x next to the dropdown$/, function(){
+    action.isClickableWait(accountManagementPage.crossIconNextToDropdown,10000)
+    action.clickElement(accountManagementPage.crossIconNextToDropdown)
+    accountManagementPage.crossIconNextToDropdown.waitForExist({ timeout:10000, reverse:true, timeoutMsg:"the x icon is not removed within timeout", interval :500 })
+})
+
+Then(/^The adding of a dimension is cancelled$/,function(){
+    let dimensionDropdownDisplayStatus = action.isVisibleWait(accountManagementPage.dimensionListDropdown,5000);
+    chai.expect(dimensionDropdownDisplayStatus).to.be.false;
+})
+
+Then(/^The tag will not be added to the Dimension Tag Cloud section$/,function(){
+    let tagsCountAfterCancel = accountManagementPage.dimensionTagsCount
+    chai.expect(tagsCountAfterCancel).to.equal(GlobalData.TAGS_COUNT_BEFORE_CANCEL)
+})
+
+Given(/^The Admin is viewing the Campus page$/,function(){
+    let campusPageHeaderDisplayStatus = action.isVisibleWait(accountManagementPage.campusPageHeader,2000);
+    chai.expect(campusPageHeaderDisplayStatus).to.be.true;
+})
+
+Given(/^The Admin is viewing the Dimension Tag Cloud section$/,function(){
+    let dimensionTagCloudSectionDisplayStatus = action.isVisibleWait(accountManagementPage.dimensionTagCloudSection,2000);
+    chai.expect(dimensionTagCloudSectionDisplayStatus).to.be.true;
+})
