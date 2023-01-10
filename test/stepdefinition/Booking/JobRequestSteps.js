@@ -20,6 +20,7 @@ When(/^I select campus pin "(.*)"$/,function(campuspin){
 })
 
 When(/^I enter time "(.*)"$/,function(time){
+  action.isClickableWait(jobRequestPage.timeInput,20000)
   jobRequestPage.timeInput.waitForExist({timeout:5000})
   jobRequestPage.timeInput.waitForEnabled({timeout:5000})
   jobRequestPage.timeInput.waitForClickable({timeout:5000})
