@@ -170,5 +170,14 @@ module.exports={
         }
         return isVisible;
     },
+
+    getElementText(elt){
+        let elementText = elt.getText()
+        return elementText;
+    },
+
+    waitForElementExist(elt,timeoutValue,reverseAction,timeoutMessage,intervalValue){
+        elt.waitForExist({ timeout:timeoutValue, reverse:reverseAction, timeoutMsg:timeoutMessage, interval:intervalValue })
+    }
 }
 
