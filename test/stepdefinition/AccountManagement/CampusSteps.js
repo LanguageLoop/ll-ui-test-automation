@@ -541,6 +541,7 @@ When(/^They select the plus icon$/, function(){
 })
 
 When(/^Open the Dimension list dropdown$/, function(){
+    action.elementExists(accountManagementPage.dimensionListDropdown,10000)
     action.isClickableWait(accountManagementPage.dimensionListDropdown,10000)
     action.clickElement(accountManagementPage.dimensionListDropdown)
 })
@@ -583,6 +584,7 @@ When(/^They select a value "(.*)" from the select a value dropdown$/, function(s
 Then(/^The tag "(.*)","(.*)" will be added in the Dimension Tag Cloud section$/,function(dimensionListOption,optionValue){
     let tagElement = $(accountManagementPage.tagLocator.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
     let tagVisibleStatus = action.isVisibleWait(tagElement,10000);
+    GlobalData.TAGS_COUNT_AFTER_ADD = accountManagementPage.dimensionTagsCount
     chai.expect(tagVisibleStatus).to.be.true;
 })
 
@@ -592,13 +594,11 @@ Then(/^They will see the "(.*)" dimension list option$/,function(budgetCodeOptio
     chai.expect(budgetCodeOptionVisibleStatus).to.be.true;
 })
 
-When(/^Delete the tag "(.*)","(.*)"$/, function(dimensionListOption,optionValue){
+When(/^They select the red cross x on the tag "(.*)","(.*)"$/, function(dimensionListOption,optionValue){
     let dimensionTagDeleteCrossIconElement = $(accountManagementPage.dimensionTagDeleteCrossIcon.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
     let tagClickable = action.isClickableWait(dimensionTagDeleteCrossIconElement,10000)
-    if (tagClickable){
-        action.clickElement(dimensionTagDeleteCrossIconElement)
-        dimensionTagDeleteCrossIconElement.waitForExist({ timeout:10000, reverse:true, timeoutMsg:"the tag is not deleted within timeout", interval :500 })
-    }
+    action.clickElement(dimensionTagDeleteCrossIconElement)
+    dimensionTagDeleteCrossIconElement.waitForExist({ timeout:10000, reverse:true, timeoutMsg:"the tag is not deleted within timeout", interval :500 })
 })
 
 When(/^They add the "(.*)" list option dimension$/, function(dimensionListOption){
@@ -627,7 +627,7 @@ When(/^They select a value "(.*)" from the Budget Code dropdown$/, function(budg
 })
 
 When(/^The dimension dropdown is displayed$/, function(){
-    let dimensionDropdownDisplayStatus = action.isClickableWait(accountManagementPage.dimensionListDropdown,10000)
+    let dimensionDropdownDisplayStatus = action.isVisibleWait(accountManagementPage.dimensionListDropdown,10000)
     chai.expect(dimensionDropdownDisplayStatus).to.be.true;
 })
 
@@ -655,4 +655,20 @@ Given(/^The Admin is viewing the Campus page$/,function(){
 Given(/^The Admin is viewing the Dimension Tag Cloud section$/,function(){
     let dimensionTagCloudSectionDisplayStatus = action.isVisibleWait(accountManagementPage.dimensionTagCloudSection,2000);
     chai.expect(dimensionTagCloudSectionDisplayStatus).to.be.true;
+})
+
+Given(/^The select a value dropdown is displayed$/, function(){
+    let selectAValueDropdownDisplayStatus = action.isVisibleWait(accountManagementPage.selectAValueDropdown,10000)
+    chai.expect(selectAValueDropdownDisplayStatus).to.be.true;
+})
+
+Then(/^The tag will be deleted$/,function(){
+    let tagsCountAfterDelete = accountManagementPage.dimensionTagsCount
+    chai.assert.isBelow(tagsCountAfterDelete,parseInt(GlobalData.TAGS_COUNT_AFTER_ADD),'Expected tags after delete-'+tagsCountAfterDelete+' is strictly less than-'+GlobalData.TAGS_COUNT_AFTER_ADD)
+})
+
+Then(/^The tag "(.*)","(.*)" will not be visible in the Dimension Tag Cloud section$/,function(dimensionListOption,optionValue){
+    let tagElement = $(accountManagementPage.tagLocator.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
+    let tagVisibleStatus = action.isVisibleWait(tagElement,5000);
+    chai.expect(tagVisibleStatus).to.be.false;
 })
