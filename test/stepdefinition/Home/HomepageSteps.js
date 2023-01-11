@@ -41,3 +41,7 @@ When(/^I handle contractor message$/, function(){
     {
     }
 })
+
+When(/^I click Admin header link$/,   function(){
+   action.clickElement(homePage.adminLink)
+})
