@@ -198,5 +198,9 @@ module.exports ={
 
     get dimensionTagCloudSection(){
         return $('//div[text()="Dimension Tag Cloud"]/parent::div')
+    },
+
+    get selectAValueDropdown(){
+        return $('//option[text()=" - select a value - "]/parent::select')
     }
 }

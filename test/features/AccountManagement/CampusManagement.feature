@@ -258,7 +258,7 @@ Feature: Campus Management features
   And Selects the "<shortcode option>" dimension list option
   And They select a value "<shortcode value>" from the select a value dropdown
   Then The tag "<shortcode option>","<shortcode value>" will be added in the Dimension Tag Cloud section
-  And Delete the tag "<shortcode option>","<shortcode value>"
+  And They select the red cross x on the tag "<shortcode option>","<shortcode value>"
 
   Examples:
    | username          | password    | campus id | shortcode option | shortcode value |
@@ -309,7 +309,7 @@ Feature: Campus Management features
   And They add the "<budget code option>" list option dimension
   And They select a value "<budget code value>" from the select a value dropdown
   Then The tag "<budget code option>","<budget code value>" will be added in the Dimension Tag Cloud section
-  And Delete the tag "<budget code option>","<budget code value>"
+  And They select the red cross x on the tag "<budget code option>","<budget code value>"
 
   Examples:
    | username          | password    | campus id | budget code option | budget code value |
@@ -332,3 +332,42 @@ Feature: Campus Management features
   Examples:
    | username          | password    | campus id |
    | LLAdmin@looped.in |  Octopus@6  | 33124     |
+
+  #LL-443 Scenario 5b: Admin cancels adding a dimension and value
+ @CancelAddingDimensionValue
+ Scenario Outline: Admin cancels adding a dimension and value
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And The Admin is viewing the Dimension Tag Cloud section
+  And They select the plus icon
+  And They add the "<budget code option>" list option dimension
+  And The select a value dropdown is displayed
+  And They select the x next to the dropdown
+  Then The adding of a dimension is cancelled
+  And The tag will not be added to the Dimension Tag Cloud section
+
+  Examples:
+   | username          | password    | campus id | budget code option |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        |
+
+  #LL-443 Scenario 6: Admin removes dimension and value
+ @RemoveDimensionValue
+ Scenario Outline: Admin removes dimension and value
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And They select the plus icon
+  And Open the Dimension list dropdown
+  And They add the "<budget code option>" list option dimension
+  And They select a value "<budget code value>" from the select a value dropdown
+  And The tag "<budget code option>","<budget code value>" will be added in the Dimension Tag Cloud section
+  And They select the red cross x on the tag "<budget code option>","<budget code value>"
+  Then The tag will be deleted
+  And The tag "<budget code option>","<budget code value>" will not be visible in the Dimension Tag Cloud section
+
+  Examples:
+   | username          | password    | campus id | budget code option | budget code value |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |

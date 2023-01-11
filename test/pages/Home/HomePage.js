@@ -25,4 +25,9 @@ module.exports = {
 
     get contractorMessageOKButton(){
         return $('//*[contains(text(),"Message for Interpreters")]/../..//input[@type="submit"]/..')
-    }}
+    },
+
+    get adminLink(){
+        return $('//a[text()="Admin"]')
+    }
+}

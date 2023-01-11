@@ -26,6 +26,7 @@ var contractorEngagementPage= require('./test/pages/ContractorEngagement/Contrac
 //var translationsPage= require('./test/pages/Translations/TranslationsPage')
 //var xtmPage = require('./test/pages/Translations/XTMPage')
 var myProfilePage= require('./test/pages/MyProfile/MyProfile')
+var adminPage = require('./test/pages/Home/AdminPage.js')
 
 var chai= require('chai')
 var action=require('./test/utils/actions')
@@ -324,6 +325,7 @@ exports.config = {
         global.accountManagementPage=accountManagementPage
         global.contractManagementPage=contractManagementPage
         global.contractorEngagementPage= contractorEngagementPage
+        global.adminPage = adminPage
         //global.translationsPage=translationsPage
         //global.xtmPage = xtmPage
         
