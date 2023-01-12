@@ -178,6 +178,21 @@ module.exports={
 
     waitForElementExist(elt,timeoutValue,reverseAction,timeoutMessage,intervalValue){
         elt.waitForExist({ timeout:timeoutValue, reverse:reverseAction, timeoutMsg:timeoutMessage, interval:intervalValue })
-    }
+    },
+
+    isExistingWait(elt,waitTime){
+        let isExisting = false;
+        let i = 0;
+        while (i <= waitTime) {
+            isExisting = elt.isExisting();
+            if (isExisting) {
+                break;
+            } else {
+                browser.pause(500);
+                i = i + 500;
+            }
+        }
+        return isExisting;
+    },
 }
 

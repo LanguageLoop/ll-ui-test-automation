@@ -27,6 +27,38 @@ module.exports = {
     },
 
     get creationDateRowValueLocator(){
-        return '(//table[contains(@id,"UserDetailTable")]/child::tbody//child::td[3])[<dynamic>]'
-    }
+        return '(//table[contains(@id,"UserDetailTable")]/child::tbody//child::td[3])[<dynamic>]';
+    },
+
+    get creationDateColumnHeader(){
+        return $('//th[text()="Creation date"]');
+    },
+
+    get accountsTableFirstRow(){
+        return $('//table[contains(@id,"UserDetailTable")]/child::tbody/child::tr[1]');
+    },
+
+    get roleFilterDropdown(){
+        return $('//select[contains(@id,"UserManagement") and contains(@id,"dropdown")]');
+    },
+
+    get roleFilterDropdownBelowSearchField(){
+        return $('//input[@title="Search by Name, Username, Mobile Number and Role"]/ancestor::div/descendant::select[contains(@id,"UserManagement") and contains(@id,"dropdown")]');
+    },
+
+    get roleDropdownGroupLabelsLocator(){
+        return '//optgroup[@label="<dynamic>"]';
+    },
+
+    get clientGroupOptionsLocator(){
+        return '//optgroup[@label="Client Group"]/child::option[text()="<dynamic>"]';
+    },
+
+    get contractorGroupOptionsLocator(){
+        return '//optgroup[@label="Contractor Group"]/child::option[text()="<dynamic>"]';
+    },
+
+    get staffGroupOptionsLocator(){
+        return '//optgroup[@label="Staff Group"]/child::option[text()="<dynamic>"]';
+    },
 }

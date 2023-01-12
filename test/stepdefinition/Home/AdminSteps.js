@@ -34,3 +34,84 @@ Then(/^The table will be sorted by Creation Date by default newest at the top$/,
    let newestFirstStatus = dateNew > dateOld;
    chai.expect(newestFirstStatus).to.be.true;
 })
+
+When(/^They click the Creation Date column header$/, function() {
+   action.isClickableWait(adminPage.creationDateColumnHeader,5000);
+   action.clickElement(adminPage.creationDateColumnHeader);
+})
+
+Then(/^The table order will be reversed and will be sorted by oldest-newest Creation Date$/, function() {
+   let creationDateRow1Element = $(adminPage.creationDateRowValueLocator.replace("<dynamic>","1"));
+   let blankDateText = "", oldestAccountText = "LL Admin";
+   browser.waitUntil(
+       () => action.getElementText(creationDateRow1Element) === blankDateText,
+       {
+          timeout: 5000,
+          timeoutMsg: 'Expected Dates to be sorted in reverse'
+       }
+   );
+   let creationDateRow1Value = action.getElementText(creationDateRow1Element);
+   let firstRowText = action.getElementText(adminPage.accountsTableFirstRow);
+   chai.expect(creationDateRow1Value).to.equal(blankDateText);
+   chai.expect(firstRowText).to.includes(oldestAccountText);
+})
+
+Then(/^They will see a Role filter dropdown$/, function() {
+   let roleDropdownDisplayStatus = action.isVisibleWait(adminPage.roleFilterDropdown,5000);
+   chai.expect(roleDropdownDisplayStatus).to.be.true;
+})
+
+Then(/^This will be below the search field$/, function() {
+   let roleDropdownBelowSearchStatus = action.isVisibleWait(adminPage.roleFilterDropdownBelowSearchField,5000);
+   chai.expect(roleDropdownBelowSearchStatus).to.be.true;
+})
+
+Then(/^The options will be grouped into the following labels: "(.*)","(.*)","(.*)"$/, function(clientGroupLabel,contractorGroupLabel,StaffGroupLabel) {
+   let clientGroupLabelElement = $(adminPage.roleDropdownGroupLabelsLocator.replace("<dynamic>",clientGroupLabel));
+   let clientGroupLabelExistStatus = action.isExistingWait(clientGroupLabelElement,2000);
+   let contractorGroupLabelElement = $(adminPage.roleDropdownGroupLabelsLocator.replace("<dynamic>",contractorGroupLabel));
+   let contractorGroupLabelExistStatus = action.isExistingWait(contractorGroupLabelElement,2000);
+   let staffGroupLabelElement = $(adminPage.roleDropdownGroupLabelsLocator.replace("<dynamic>",StaffGroupLabel));
+   let staffGroupLabelExistStatus = action.isExistingWait(staffGroupLabelElement,2000);
+   chai.expect(clientGroupLabelExistStatus).to.be.true;
+   chai.expect(contractorGroupLabelExistStatus).to.be.true;
+   chai.expect(staffGroupLabelExistStatus).to.be.true;
+})
+
+Then(/^These labels "(.*)","(.*)","(.*)" are not clickable$/, function(clientGroupLabel,contractorGroupLabel,StaffGroupLabel) {
+   let clientGroupLabelElement = $(adminPage.roleDropdownGroupLabelsLocator.replace("<dynamic>",clientGroupLabel));
+   let clientGroupLabelClickableStatus = action.isClickableWait(clientGroupLabelElement,2000);
+   let contractorGroupLabelElement = $(adminPage.roleDropdownGroupLabelsLocator.replace("<dynamic>",contractorGroupLabel));
+   let contractorGroupLabelClickableStatus = action.isClickableWait(contractorGroupLabelElement,2000);
+   let staffGroupLabelElement = $(adminPage.roleDropdownGroupLabelsLocator.replace("<dynamic>",StaffGroupLabel));
+   let staffGroupLabelClickableStatus = action.isClickableWait(staffGroupLabelElement,2000);
+   chai.expect(clientGroupLabelClickableStatus).to.be.false;
+   chai.expect(contractorGroupLabelClickableStatus).to.be.false;
+   chai.expect(staffGroupLabelClickableStatus).to.be.false;
+})
+
+Given(/^The Admin or Internal user has clicked the Role filter dropdown$/, function() {
+   action.isVisibleWait(adminPage.roleFilterDropdown,5000);
+   action.clickElement(adminPage.roleFilterDropdown);
+})
+
+Then(/^They will see the following child options in the order under each label: Client Group "(.*)" Contractor Group "(.*)" Staff Group"(.*)"$/, function(clientGroupOptions,contractorGroupOptions,staffGroupOptions) {
+   let clientGroupOptionsList = clientGroupOptions.split(",");
+   for (let optionIndex=0; optionIndex < clientGroupOptionsList.length; optionIndex++){
+      let clientGroupOption = $(adminPage.clientGroupOptionsLocator.replace("<dynamic>",clientGroupOptionsList[optionIndex]));
+      let clientOptionExistStatus = action.isExistingWait(clientGroupOption,5000);
+      chai.expect(clientOptionExistStatus).to.be.true;
+   }
+   let contractorGroupOptionsList = contractorGroupOptions.split(",");
+   for (let optionIndex=0; optionIndex < contractorGroupOptionsList.length; optionIndex++){
+      let contractorGroupOption = $(adminPage.contractorGroupOptionsLocator.replace("<dynamic>",contractorGroupOptionsList[optionIndex]));
+      let contractorOptionExistStatus = action.isExistingWait(contractorGroupOption,5000);
+      chai.expect(contractorOptionExistStatus).to.be.true;
+   }
+   let staffGroupOptionsList = staffGroupOptions.split(",");
+   for (let optionIndex=0; optionIndex < staffGroupOptionsList.length; optionIndex++){
+      let staffGroupOption = $(adminPage.staffGroupOptionsLocator.replace("<dynamic>",staffGroupOptionsList[optionIndex]));
+      let staffOptionExistStatus = action.isExistingWait(staffGroupOption,5000);
+      chai.expect(staffOptionExistStatus).to.be.true;
+   }
+})
