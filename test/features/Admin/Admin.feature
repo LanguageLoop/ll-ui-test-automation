@@ -61,7 +61,42 @@ Feature: Admin features
     And They will see a Role filter dropdown
     And The Admin or Internal user has clicked the Role filter dropdown
     Then They will see the following child options in the order under each label: Client Group "<Client Group Options>" Contractor Group "<Contractor Group Options>" Staff Group"<Staff Group Options>"
+    And These options Client Group "<Client Group Options>" Contractor Group "<Contractor Group Options>" Staff Group"<Staff Group Options>" can be selected
 
     Examples:
       | username          | password  | Client Group Options                                                                                | Contractor Group Options | Staff Group Options                                                                                                                                                                                                                                                                                                                                                           |
       | LLAdmin@looped.in | Octopus@6 | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor               | Account Manager,Account Payable Officer,Account Receivable Officer,Administrator,After Hours Customer Service,Contractor Engagement Officer ,Customer Service Manager,Customer Service Officer,Developer Features,Finance Manager,Marketing,Relationships and Growth Manager,Senior Customer Service Officer,Team Leader,Translation Project Coordinator,Translations Manager |
+
+    #LL-607 Scenario 3 - user selects option
+  @UserSelectsRoleOption
+  Scenario Outline: User selects option
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Accounts section on the Admin page
+    And They view the table
+    And They will see a Role filter dropdown
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    Then The dropdown is closed
+    When The user has clicked the search button
+    Then The table is filtered by the selected role and shows result "<expected oldest result>"
+
+    Examples:
+      | username          | password  | role filter option | expected oldest result |
+      | LLAdmin@looped.in | Octopus@6 | Bookings Officer   | Phteven Smith          |
+
+    #LL-607 Scenario 4 - user selects All Roles
+  @UserSelectsAllRoles
+  Scenario Outline: User selects All Roles
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Accounts section on the Admin page
+    And They view the table
+    And They will see a Role filter dropdown
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The dropdown is closed
+    And The user has clicked the search button
+    Then The table shows all accounts "<expected result admin>", "<expected result non admin>" regardless of the role
+
+    Examples:
+      | username          | password  | role filter option | expected result admin  | expected result non admin |
+      | LLAdmin@looped.in | Octopus@6 | All Roles          | LL Admin               | Phteven Smith             |
