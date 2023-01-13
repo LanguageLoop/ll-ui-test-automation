@@ -115,3 +115,70 @@ Then(/^They will see the following child options in the order under each label: 
       chai.expect(staffOptionExistStatus).to.be.true;
    }
 })
+
+Then(/^These options Client Group "(.*)" Contractor Group "(.*)" Staff Group"(.*)" can be selected$/, function(clientGroupOptions,contractorGroupOptions,staffGroupOptions) {
+   let clientGroupOptionsList = clientGroupOptions.split(",");
+   for (let optionIndex=0; optionIndex < clientGroupOptionsList.length; optionIndex++){
+      let clientGroupOption = $(adminPage.clientGroupOptionsLocator.replace("<dynamic>",clientGroupOptionsList[optionIndex]));
+      action.selectTextFromDropdown(adminPage.roleFilterDropdown,clientGroupOptionsList[optionIndex]);
+      let clientOptionSelectedStatus = action.isSelectedWait(clientGroupOption,5000);
+      chai.expect(clientOptionSelectedStatus).to.be.true;
+   }
+   let contractorGroupOptionsList = contractorGroupOptions.split(",");
+   for (let optionIndex=0; optionIndex < contractorGroupOptionsList.length; optionIndex++){
+      let contractorGroupOption = $(adminPage.contractorGroupOptionsLocator.replace("<dynamic>",contractorGroupOptionsList[optionIndex]));
+      action.selectTextFromDropdown(adminPage.roleFilterDropdown,contractorGroupOptionsList[optionIndex]);
+      let contractorOptionSelectedStatus = action.isSelectedWait(contractorGroupOption,5000);
+      chai.expect(contractorOptionSelectedStatus).to.be.true;
+   }
+   let staffGroupOptionsList = staffGroupOptions.split(",");
+   for (let optionIndex=0; optionIndex < staffGroupOptionsList.length; optionIndex++){
+      let staffGroupOption = $(adminPage.staffGroupOptionsLocator.replace("<dynamic>",staffGroupOptionsList[optionIndex]));
+      action.selectTextFromDropdown(adminPage.roleFilterDropdown,staffGroupOptionsList[optionIndex]);
+      let staffOptionSelectedStatus = action.isSelectedWait(staffGroupOption,5000);
+      chai.expect(staffOptionSelectedStatus).to.be.true;
+   }
+})
+
+Given(/^The user has selected an option "(.*)" from the Role filter dropdown$/, function(roleFilterOption) {
+   action.clickElement(adminPage.roleFilterDropdown);
+   action.selectTextFromDropdown(adminPage.roleFilterDropdown,roleFilterOption);
+})
+
+Then(/^The dropdown is closed$/, function() {
+   action.clickElement(adminPage.roleFilterDropdown);
+})
+
+When(/^The user has clicked the search button$/, function() {
+   action.isClickableWait(adminPage.searchButton,5000)
+   action.clickElement(adminPage.searchButton);
+})
+
+Then(/^The table is filtered by the selected role and shows result "(.*)"$/, function(expectedOldestResultForRole) {
+   action.isClickableWait(adminPage.creationDateColumnHeader,5000)
+   action.clickElement(adminPage.creationDateColumnHeader);
+   browser.waitUntil(
+       () => action.getElementText(adminPage.accountsTableFirstRow).includes(expectedOldestResultForRole),
+       {
+          timeout: 5000,
+          timeoutMsg: 'Expected table to be sorted with the oldest results'
+       }
+   );
+   let firstRowText = action.getElementText(adminPage.accountsTableFirstRow);
+   chai.expect(firstRowText).to.includes(expectedOldestResultForRole);
+})
+
+Then(/^The table shows all accounts "(.*)", "(.*)" regardless of the role$/, function(expectedResultAdmin,expectedResultNonAdmin) {
+   action.isClickableWait(adminPage.creationDateColumnHeader,5000)
+   action.clickElement(adminPage.creationDateColumnHeader);
+   browser.waitUntil(
+       () => action.getElementText(adminPage.accountsUserDetailsTable).includes(expectedResultAdmin),
+       {
+          timeout: 5000,
+          timeoutMsg: 'Expected table to be sorted with all the oldest results'
+       }
+   );
+   let tableText = action.getElementText(adminPage.accountsUserDetailsTable);
+   chai.expect(tableText).to.includes(expectedResultAdmin);
+   chai.expect(tableText).to.includes(expectedResultNonAdmin);
+})
