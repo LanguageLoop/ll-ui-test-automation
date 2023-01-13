@@ -61,4 +61,8 @@ module.exports = {
     get staffGroupOptionsLocator(){
         return '//optgroup[@label="Staff Group"]/child::option[text()="<dynamic>"]';
     },
+
+    get searchButton(){
+        return $('//input[contains(@id,"UserManagement") and contains(@value,"Search")]')
+    }
 }
