@@ -195,6 +195,39 @@ module.exports={
         }
         temp_date=temp_date.getDate()+"-"+(temp_date.getMonth()+1)+"-"+temp_date.getFullYear()
         return temp_date
+    },
+
+    /**
+     * converts the date input in DD/MM/YYYY HH:mm:ss format and outputs date in full text string format
+     * @param dateString date sting in DD/MM/YYYY HH:mm:ss format
+     * @returns {Date}
+     */
+    parseDateString(dateString) {
+        var dateParts = dateString.split(' ');
+        var dateOnlyString = dateParts[0];
+        var timeString = dateParts[1];
+        var dateOnlyParts = dateOnlyString.split('/');
+        var year = dateOnlyParts[2];
+        var month = dateOnlyParts[1] - 1;
+        var day = dateOnlyParts[0];
+        var timeParts = timeString.split(':');
+        var hours = timeParts[0];
+        var minutes = timeParts[1];
+        var seconds = timeParts[2];
+        return new Date(year, month, day, hours, minutes, seconds);
+    },
+
+    /**
+     * Returns current date in HH/MM/YYYY format
+     * @returns {string}
+     */
+    getCurrentDate(){
+        const today = new Date()
+        const year = today.getFullYear()
+        const month = `${today.getMonth() + 1}`.padStart(2, "0")
+        const day = `${today.getDate()}`.padStart(2, "0")
+        const stringDate = [day, month, year].join("/")
+        return stringDate;
     }
     
 
