@@ -371,3 +371,24 @@ Feature: Campus Management features
   Examples:
    | username          | password    | campus id | budget code option | budget code value |
    | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |
+
+  #LL-612 Scenario 1: Admin creates CBO from Campus
+ @CreateCBOFromCampus
+ Scenario Outline: Admin creates CBO from Campus
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And The Admin is on the Campus Management page > Manage Campus popup
+  And They click Assign Booking Officer > Add New User
+  And Fill out all the required details "<firstname>", email, "<landline number>" on the Select User popup
+  And They click the Save button on the Select User popup
+  Then The user is created
+  When The booking officer popup is closed
+  And I click Admin header link
+  Then The user "<firstname>" will be displayed in the Admin > Accounts section
+  And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS
+
+  Examples:
+   | username          | password    | campus id | firstname     | landline number |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     | AutomationCBO | 0212345678      |
