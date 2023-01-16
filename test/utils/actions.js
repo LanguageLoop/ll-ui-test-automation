@@ -194,5 +194,20 @@ module.exports={
         }
         return isExisting;
     },
+
+    isSelectedWait(elt,waitTime){
+        let isSelected = false;
+        let i = 0;
+        while (i <= waitTime) {
+            isSelected = elt.isSelected();
+            if (isSelected) {
+                break;
+            } else {
+                browser.pause(500);
+                i = i + 500;
+            }
+        }
+        return isSelected;
+    },
 }
 
