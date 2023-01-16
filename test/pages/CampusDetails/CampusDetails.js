@@ -329,6 +329,38 @@ module.exports ={
     get customizedFieldRemoveButton()
     {
         return $('//table[contains(@id,"CustFieldOverride")]//*[@class="fa fa-fw fa-trash-o fa-lg"]')
+    },
+
+    get manageCampusPopup(){
+        return $('//div[contains(@class,"Campus DialogContainer")]');
+    },
+
+    get assignBookingOfficerLink(){
+        return $('//span[text()="Assign booking officer"]/parent::a');
+    },
+
+    get addNewUserButton(){
+        return $('//input[contains(@id,"BookingOfficerDialog")][@value="Add New User"]');
+    },
+
+    get firstNameFieldBookingOfficer(){
+        return $('//input[contains(@id,"FirstName") and contains(@id,"BookingOfficerDialog")]')
+    },
+
+    get emailFieldBookingOfficer(){
+        return $('//input[contains(@id,"UserEmail") and contains(@id,"BookingOfficerDialog")]')
+    },
+
+    get landLineNumberFieldBookingOfficer(){
+        return $('//input[contains(@id,"LandlinePhoneNumber") and contains(@id,"BookingOfficerDialog")]')
+    },
+
+    get saveButtonBookingOfficer(){
+        return $('//input[contains(@id,"btnSave") and contains(@id,"BookingOfficerDialog")]')
+    },
+
+    get bookingOfficerPopupCloseButton(){
+        return $('//a[contains(@id,"dialogCampusForm_block_wtlbtnAltusDialogClose")]');
     }
 
 

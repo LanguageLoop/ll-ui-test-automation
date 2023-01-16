@@ -64,5 +64,9 @@ module.exports = {
 
     get searchButton(){
         return $('//input[contains(@id,"UserManagement") and contains(@value,"Search")]')
+    },
+
+    get creationDateOfCreatedUserLocator(){
+        return '//table[contains(@id,"UserDetailTable")]/child::tbody//child::a[contains(normalize-space(),"<dynamic>")]/following::td[2]'
     }
 }

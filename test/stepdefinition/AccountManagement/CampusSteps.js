@@ -672,3 +672,44 @@ Then(/^The tag "(.*)","(.*)" will not be visible in the Dimension Tag Cloud sect
     let tagVisibleStatus = action.isVisibleWait(tagElement,5000);
     chai.expect(tagVisibleStatus).to.be.false;
 })
+
+Given(/^The Admin is on the Campus Management page > Manage Campus popup$/, function(){
+    action.clickElement(campusDetailsPage.manageCampusLink);
+    let manageCampusPopupDisplayStatus = action.isVisibleWait(campusDetailsPage.manageCampusPopup,10000);
+    chai.expect(manageCampusPopupDisplayStatus).to.be.true;
+})
+
+Given(/^They click Assign Booking Officer > Add New User$/, function(){
+    action.isVisibleWait(campusDetailsPage.assignBookingOfficerLink,10000)
+    action.isClickableWait(campusDetailsPage.assignBookingOfficerLink,10000)
+    action.clickElement(campusDetailsPage.assignBookingOfficerLink);
+    action.isVisibleWait(campusDetailsPage.addNewUserButton,10000);
+    action.isClickableWait(campusDetailsPage.addNewUserButton,10000);
+    action.clickElement(campusDetailsPage.addNewUserButton);
+})
+
+Given(/^Fill out all the required details "(.*)", email, "(.*)" on the Select User popup$/, function(firstName,landLineNumber){
+    action.isVisibleWait(campusDetailsPage.firstNameFieldBookingOfficer,10000);
+    firstName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
+    GlobalData.BOOKING_OFFICER_FIRSTNAME = firstName
+    action.enterValue(campusDetailsPage.firstNameFieldBookingOfficer,GlobalData.BOOKING_OFFICER_FIRSTNAME);
+    let email = GlobalData.BOOKING_OFFICER_FIRSTNAME + "@ll.com"
+    action.enterValue(campusDetailsPage.emailFieldBookingOfficer,email);
+    action.enterValue(campusDetailsPage.landLineNumberFieldBookingOfficer,landLineNumber);
+})
+
+When(/^They click the Save button on the Select User popup$/,function(){
+    action.isClickableWait(campusDetailsPage.saveButtonBookingOfficer,10000);
+    action.clickElement(campusDetailsPage.saveButtonBookingOfficer);
+})
+
+Then(/^The user is created$/,function(){
+    let assignBOLinkDisplayStatus = action.isVisibleWait(campusDetailsPage.assignBookingOfficerLink,20000);
+    chai.expect(assignBOLinkDisplayStatus).to.be.true;
+})
+
+When(/^The booking officer popup is closed$/,function(){
+    action.isVisibleWait(campusDetailsPage.bookingOfficerPopupCloseButton,10000);
+    action.isClickableWait(campusDetailsPage.bookingOfficerPopupCloseButton,10000);
+    action.clickElement(campusDetailsPage.bookingOfficerPopupCloseButton);
+})

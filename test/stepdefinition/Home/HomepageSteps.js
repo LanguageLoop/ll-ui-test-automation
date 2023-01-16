@@ -43,5 +43,6 @@ When(/^I handle contractor message$/, function(){
 })
 
 When(/^I click Admin header link$/,   function(){
+   action.isClickableWait(homePage.adminLink,10000)
    action.clickElement(homePage.adminLink)
 })

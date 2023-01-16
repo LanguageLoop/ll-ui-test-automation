@@ -29,9 +29,9 @@ Then(/^The table will be sorted by Creation Date by default newest at the top$/,
    let creationDateRow2Element = $(adminPage.creationDateRowValueLocator.replace("<dynamic>","2"));
    let creationDateRow1Value = action.getElementText(creationDateRow1Element)
    let creationDateRow2Value = action.getElementText(creationDateRow2Element)
-   let dateNew = new Date(creationDateRow1Value);
-   let dateOld = new Date(creationDateRow2Value);
-   let newestFirstStatus = dateNew > dateOld;
+   let dateNew = datetime.parseDateString(creationDateRow1Value);
+   let dateOld = datetime.parseDateString(creationDateRow2Value);
+   let newestFirstStatus = dateNew.getTime() > dateOld.getTime();
    chai.expect(newestFirstStatus).to.be.true;
 })
 
@@ -161,7 +161,7 @@ Then(/^The table is filtered by the selected role and shows result "(.*)"$/, fun
        () => action.getElementText(adminPage.accountsTableFirstRow).includes(expectedOldestResultForRole),
        {
           timeout: 5000,
-          timeoutMsg: 'Expected table to be sorted with the oldest results'
+          timeoutMsg: 'Expected table to be sorted with the oldest results within given time'
        }
    );
    let firstRowText = action.getElementText(adminPage.accountsTableFirstRow);
@@ -175,10 +175,35 @@ Then(/^The table shows all accounts "(.*)", "(.*)" regardless of the role$/, fun
        () => action.getElementText(adminPage.accountsUserDetailsTable).includes(expectedResultAdmin),
        {
           timeout: 5000,
-          timeoutMsg: 'Expected table to be sorted with all the oldest results'
+          timeoutMsg: 'Expected table to be sorted with all the oldest results within given time'
        }
    );
    let tableText = action.getElementText(adminPage.accountsUserDetailsTable);
    chai.expect(tableText).to.includes(expectedResultAdmin);
    chai.expect(tableText).to.includes(expectedResultNonAdmin);
+})
+
+Then(/^The user "(.*)" will be displayed in the Admin > Accounts section$/, function(expectedUser) {
+   expectedUser = GlobalData.BOOKING_OFFICER_FIRSTNAME;
+   browser.waitUntil(
+       () => action.getElementText(adminPage.accountsUserDetailsTable).includes(expectedUser),
+       {
+          timeout: 5000,
+          timeoutMsg: 'Expected table to be sorted with all the oldest results within given time'
+       }
+   );
+   let tableText = action.getElementText(adminPage.accountsUserDetailsTable);
+   chai.expect(tableText).to.includes(expectedUser);
+})
+
+Then(/^The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS$/, function() {
+   let createdUserCreationDateTextElement = $(adminPage.creationDateOfCreatedUserLocator.replace("<dynamic>",GlobalData.BOOKING_OFFICER_FIRSTNAME));
+   action.isVisibleWait(createdUserCreationDateTextElement,10000);
+   let creationDateActual = action.getElementText(createdUserCreationDateTextElement);
+   let currentDate = datetime.getCurrentDate();
+   chai.expect(creationDateActual.split(" ")[0]).to.equal(currentDate)
+   chai.expect(creationDateActual.charAt(2)).to.equal("/")
+   chai.expect(creationDateActual.charAt(5)).to.equal("/")
+   chai.expect(creationDateActual.charAt(13)).to.equal(":")
+   chai.expect(creationDateActual.charAt(16)).to.equal(":")
 })
