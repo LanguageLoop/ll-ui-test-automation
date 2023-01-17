@@ -68,5 +68,41 @@ module.exports = {
 
     get creationDateOfCreatedUserLocator(){
         return '//table[contains(@id,"UserDetailTable")]/child::tbody//child::a[contains(normalize-space(),"<dynamic>")]/following::td[2]'
+    },
+
+    get createAccountButton(){
+        return $('//input[@value="Create Account"]');
+    },
+
+    get roleToggleLocator(){
+        return '//span[text()="<dynamic>"]/parent::div/following-sibling::div//child::label';
+    },
+
+    get firstNameFieldCreateAccount(){
+        return $('//input[contains(@id,"FirstName")]');
+    },
+
+    get emailFieldCreateAccount(){
+        return $('//input[contains(@id,"UserEmail")]');
+    },
+
+    get landLineNumberFieldCreateAccount(){
+        return $('//input[contains(@id,"LandlinePhoneNumber")]');
+    },
+
+    get saveDetailButton(){
+        return $('//input[@value="Save Detail"]');
+    },
+
+    get userCreatedMessage(){
+        return $('//span[text()="User profile was successfully saved."]');
+    },
+
+    get userProfileNameText(){
+        return $('//span[@class="Text_white"]');
+    },
+
+    get createdDateTextUnderProfilePic(){
+        return $('//div[contains(text(),"Created Date:")]')
     }
 }
