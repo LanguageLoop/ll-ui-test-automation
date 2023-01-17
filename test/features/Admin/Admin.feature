@@ -100,3 +100,34 @@ Feature: Admin features
     Examples:
       | username          | password  | role filter option | expected result admin  | expected result non admin |
       | LLAdmin@looped.in | Octopus@6 | All Roles          | LL Admin               | Phteven Smith             |
+
+    #LL-612 Scenario 3 - Admin creates New Account
+  @AdminCreatesNewAccount
+  Scenario Outline: User selects All Roles
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And Clicks Create Account
+    And Selects any role "<role toggle>"
+    And Fills out all the required details "<firstname>", email, "<landline number> in Admin Page"
+    And They click the Save Detail button
+    Then The user is created in Admin Page
+    And I click Admin header link
+    And The user "<firstname>" will be displayed in the Admin > Accounts section
+    And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS
+
+    Examples:
+      | username          | password  | role toggle | firstname     | landline number |
+      | LLAdmin@looped.in | Octopus@6 | Contractor  | AutomationCBO | 0212345678      |
+
+    #LL-612 Scenario 4 - View created date
+  @ViewCreatedDate
+  Scenario Outline: User selects All Roles
+    When I login with "<username>" and "<password>"
+    And The user has access to the User’s profile
+    And They view the profile
+    Then They will see the Created Date: DD MM YYYY HH:MM:SS under the Profile picture box AND this applies to all roles
+
+    Examples:
+      | username          | password  |
+      | zenq2@ll.com.au   | Reset@312 |
+      | zenq@cbo11.com    | Test1     |

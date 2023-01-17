@@ -371,5 +371,37 @@ When(/^I handle job updated warning message by refreshing NAATI type "(.*)"$/,fu
   }
 })
 
+Given(/^Click the Plus New Requester button$/, function(){
+    action.isClickableWait(jobRequestPage.newRequesterPlusButton,10000);
+    action.clickElement(jobRequestPage.newRequesterPlusButton);
+})
+
+Given(/^Clicks Add New User$/, function(){
+  action.isExistingWait(jobRequestPage.addNewUserButton,10000);
+  action.isClickableWait(jobRequestPage.addNewUserButton,10000);
+  action.clickElement(jobRequestPage.addNewUserButton);
+})
+
+Given(/^Fill out all the required details "(.*)", email, "(.*)"$/, function(firstName,landLineNumber){
+  action.isVisibleWait(jobRequestPage.firstNameFieldBookingOfficer,10000);
+  firstName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
+  GlobalData.BOOKING_OFFICER_FIRSTNAME = firstName
+  action.enterValue(jobRequestPage.firstNameFieldBookingOfficer,GlobalData.BOOKING_OFFICER_FIRSTNAME);
+  let email = GlobalData.BOOKING_OFFICER_FIRSTNAME + "@ll.com"
+  action.enterValue(jobRequestPage.emailFieldBookingOfficer,email);
+  action.enterValue(jobRequestPage.landLineNumberFieldBookingOfficer,landLineNumber);
+})
+
+When(/^They click the Save button$/, function(){
+  action.isClickableWait(jobRequestPage.saveButtonBookingOfficer,10000);
+  action.clickElement(jobRequestPage.saveButtonBookingOfficer);
+})
+
+Then(/^The user is created in job request$/,function(){
+  let requesterNameTextActual = $(jobRequestPage.requesterNameTextValueLocator.replace("<dynamic>",GlobalData.BOOKING_OFFICER_FIRSTNAME))
+  let requesterNameDisplayStatus = action.isVisibleWait(requesterNameTextActual,10000);
+  chai.expect(requesterNameDisplayStatus).to.be.true;
+})
+
 
 

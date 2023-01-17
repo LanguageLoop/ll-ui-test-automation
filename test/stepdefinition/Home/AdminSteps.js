@@ -207,3 +207,53 @@ Then(/^The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:
    chai.expect(creationDateActual.charAt(13)).to.equal(":")
    chai.expect(creationDateActual.charAt(16)).to.equal(":")
 })
+
+When(/^Clicks Create Account$/, function () {
+   action.isClickableWait(adminPage.createAccountButton, 5000);
+   action.clickElement(adminPage.createAccountButton);
+})
+
+When(/^Selects any role "(.*)"$/, function (role) {
+   let roleToggleElement = $(adminPage.roleToggleLocator.replace("<dynamic>", role));
+   action.isClickableWait(roleToggleElement, 10000);
+   action.clickElement(roleToggleElement);
+})
+
+Given(/^Fills out all the required details "(.*)", email, "(.*) in Admin Page"$/, function (firstName, landLineNumber) {
+   action.isVisibleWait(adminPage.firstNameFieldCreateAccount, 10000);
+   firstName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
+   GlobalData.BOOKING_OFFICER_FIRSTNAME = firstName
+   action.enterValue(adminPage.firstNameFieldCreateAccount, GlobalData.BOOKING_OFFICER_FIRSTNAME);
+   let email = GlobalData.BOOKING_OFFICER_FIRSTNAME + "@ll.com"
+   action.enterValue(adminPage.emailFieldCreateAccount, email);
+   action.enterValue(adminPage.landLineNumberFieldCreateAccount, landLineNumber);
+})
+
+When(/^They click the Save Detail button$/, function () {
+   action.isClickableWait(adminPage.saveDetailButton, 10000);
+   action.clickElement(adminPage.saveDetailButton);
+})
+
+Then(/^The user is created in Admin Page$/, function () {
+   let userCreatedMessageDisplayStatus = action.isVisibleWait(adminPage.userCreatedMessage, 10000);
+   chai.expect(userCreatedMessageDisplayStatus).to.be.true;
+})
+
+Given(/^The user has access to the User’s profile$/, function () {
+   let userProfileNameDisplayStatus = action.isVisibleWait(adminPage.userProfileNameText, 10000);
+   chai.expect(userProfileNameDisplayStatus).to.be.true;
+})
+
+Given(/^They view the profile$/, function () {
+   action.isClickableWait(adminPage.userProfileNameText, 10000);
+   action.clickElement(adminPage.userProfileNameText);
+})
+
+Then(/^They will see the Created Date: DD MM YYYY HH:MM:SS under the Profile picture box AND this applies to all roles$/, function () {
+   let createdDateFullText = action.getElementText(adminPage.createdDateTextUnderProfilePic);
+   let createdDateValue = createdDateFullText.split(": ")[1];
+   chai.expect(createdDateValue.charAt(2)).to.equal("/");
+   chai.expect(createdDateValue.charAt(5)).to.equal("/");
+   chai.expect(createdDateValue.charAt(13)).to.equal(":");
+   chai.expect(createdDateValue.charAt(16)).to.equal(":");
+})

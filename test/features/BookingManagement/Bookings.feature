@@ -234,4 +234,24 @@ Feature: Create new booking for Interpreters
    Examples:
    | username      | password  | dropdownfilter | campus pin                        | Requester Name      | language   | assignment type   | date         | time  | duration | email        |
    | divya@bc.com  | Test1     | Management     |  33124 - BOLTON CLARKE - DH RDNS  |  Automation Tester  |  ARABIC    |   Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au |
-  
+
+    #LL-612 Scenario 2 - Admin creates CBO from New Booking
+  @CreateCBOFromNewBooking
+  Scenario Outline: Admin creates CBO from New Booking
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdown filter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And Click the Plus New Requester button
+    And Clicks Add New User
+    And Fill out all the required details "<firstname>", email, "<landline number>"
+    And They click the Save button
+    Then The user is created in job request
+    And I click Admin header link
+    And The user "<firstname>" will be displayed in the Admin > Accounts section
+    And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS
+
+    Examples:
+      | username          | password    |dropdown filter | campus pin | firstname     | landline number |
+      | LLAdmin@looped.in |  Octopus@6  |Management      |  33124     | AutomationCBO | 0212345678      |
