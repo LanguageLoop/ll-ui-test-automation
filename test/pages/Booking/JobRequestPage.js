@@ -267,7 +267,33 @@ module.exports={
 
     get jobGotUpdatedWarningMessage(){
         return $('//span[text()="This job got updated. Please refresh your browser and try it again."]')
+    },
+
+    get newRequesterPlusButton(){
+        return $('//div[@class="ButtonFindBookingOfficer OSInline"][not(@style)]');
+    },
+
+    get addNewUserButton(){
+        return $('//input[@value="Add New User"][not(contains(@id,"FindCBO"))]');
+    },
+
+    get firstNameFieldBookingOfficer(){
+        return $('//input[contains(@id,"FirstName") and not (contains(@id,"FindCBO"))]');
+    },
+
+    get emailFieldBookingOfficer(){
+        return $('//input[contains(@id,"UserEmail") and not (contains(@id,"FindCBO"))]');
+    },
+
+    get landLineNumberFieldBookingOfficer(){
+        return $('//input[contains(@id,"LandlinePhoneNumber") and not (contains(@id,"FindCBO"))]');
+    },
+
+    get saveButtonBookingOfficer(){
+        return $('//input[contains(@id,"btnSave") and not (contains(@id,"FindCBO"))]');
+    },
+
+    get requesterNameTextValueLocator(){
+        return '//span[normalize-space()="<dynamic>"]';
     }
-
-
 }
