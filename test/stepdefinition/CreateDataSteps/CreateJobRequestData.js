@@ -25,6 +25,7 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   
   action.clickElement(homePage.InterpretingLink)
   action.selectTextFromDropdown(interpretingPage.filterDropdown,"Management")
+  action.isClickableWait(interpretingPage.newJobRequestButton,10000)
   interpretingPage.newJobRequestButton.waitForClickable({timeout:5000},{interval:500})
   action.clickElement(interpretingPage.newJobRequestButton)
   action.isClickableWait(jobRequestPage.campusPinInput,30000)
@@ -112,16 +113,19 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   console.log("inside "+findInterpreter.isDisplayed())
     break
 }
+  action.isClickableWait(jobRequestPage.searchForInterpreterInput,10000)
   action.enterValue(jobRequestPage.searchForInterpreterInput,interpreter)
   browser.pause(5000)
   //select the first interpreter
   var check_boxes=jobRequestPage.interpreterSearchResultsCheckBoxes
+  action.isClickableWait(check_boxes[0],10000)
   action.clickElement(check_boxes[0])
+  action.isClickableWait(jobRequestPage.addInterpretersButton,10000)
   action.clickElement(jobRequestPage.addInterpretersButton)
-  
+  action.isClickableWait(jobRequestPage.confirmEmailInput,10000)
   action.enterValue(jobRequestPage.confirmEmailInput,"hh@ll.com.au")
  // browser.pause(4000)
-
+  action.isClickableWait(jobRequestPage.confirmationDate,10000)
   action.enterDateAndTime(jobRequestPage.confirmationDate,jobRequestPage.confirmationTime,temp_conf_date_time[0],temp_conf_date_time[1])
  // browser.keys('Tab')
   browser.pause(2000)
