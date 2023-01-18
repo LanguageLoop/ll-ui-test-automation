@@ -29,5 +29,9 @@ module.exports = {
 
     get adminLink(){
         return $('//a[text()="Admin"]')
+    },
+
+    get ODTILink(){
+        return $('//a[text()="ODTI"]')
     }
 }

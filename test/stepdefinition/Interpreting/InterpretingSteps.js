@@ -15,6 +15,7 @@ When(/^I handle the message for interpreters dialog$/, function(){
 
 When(/^I select "(.*)" from the filter dropdown$/,   function(listitem){
   browser.pause(2000)
+  action.isVisibleWait(interpretingPage.filterDropdown,20000)
   action.selectTextFromDropdown(interpretingPage.filterDropdown,listitem)
   browser.pause(2000)
 })
@@ -49,6 +50,7 @@ When(/^I click on first job id from interpreting job list$/, function(){
 
 When(/^I click on first job id from accepted job list$/, function(){
   browser.pause(2000)
+  action.isVisibleWait(interpretingPage.jobIdLinkFromSearchResult,20000)
   action.doubleClickElement(interpretingPage.jobIdLinkFromSearchResult)
 })
 
@@ -67,6 +69,7 @@ When(/^I search for created job request$/, function(){
   action.clickElement(interpretingPage.searchJobInput)
   action.clearValue(interpretingPage.searchJobInput)
   action.enterValueAndPressReturn(interpretingPage.searchJobInput,GlobalData.CURRENT_JOB_ID.toString())
+  console.log("JOB ID: "+GlobalData.CURRENT_JOB_ID.toString());
 })
 
 When(/^I search for selected job request$/, function(){

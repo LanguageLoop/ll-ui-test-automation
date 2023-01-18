@@ -46,3 +46,8 @@ When(/^I click Admin header link$/,   function(){
    action.isClickableWait(homePage.adminLink,10000)
    action.clickElement(homePage.adminLink)
 })
+
+When(/^I click ODTI header link$/,   function(){
+   action.isClickableWait(homePage.ODTILink,10000)
+   action.clickElement(homePage.ODTILink)
+})
