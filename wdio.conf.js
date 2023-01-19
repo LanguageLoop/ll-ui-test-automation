@@ -27,6 +27,7 @@ var contractorEngagementPage= require('./test/pages/ContractorEngagement/Contrac
 //var xtmPage = require('./test/pages/Translations/XTMPage')
 var myProfilePage= require('./test/pages/MyProfile/MyProfile')
 var adminPage = require('./test/pages/Home/AdminPage.js')
+var ODTIJobsPage = require('./test/pages/ODTI/ODTIJobsPage.js')
 
 var chai= require('chai')
 var action=require('./test/utils/actions')
@@ -326,6 +327,7 @@ exports.config = {
         global.contractManagementPage=contractManagementPage
         global.contractorEngagementPage= contractorEngagementPage
         global.adminPage = adminPage
+        global.ODTIJobsPage = ODTIJobsPage
         //global.translationsPage=translationsPage
         //global.xtmPage = xtmPage
         
