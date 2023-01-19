@@ -45,8 +45,16 @@ module.exports ={
         return '(//select[contains(@id,"Field")])[<dynamic>]';
     },
 
+    get filterFieldDropdownOptionLocator(){
+        return '(//select[contains(@id,"Field")])[<dynamic1>]/child::option[text()="<dynamic2>"]';
+    },
+
     get filterComparisonDropdownLocator(){
         return '(//select[contains(@id,"Comparison")])[<dynamic>]';
+    },
+
+    get filterComparisonDropdownOptionLocator(){
+        return '(//select[contains(@id,"Comparison")])[<dynamic1>]/child::option[text()="<dynamic2>"]';
     },
 
     get filterValueDropdown(){
