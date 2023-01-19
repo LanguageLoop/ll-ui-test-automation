@@ -87,19 +87,26 @@ When(/^I enter naati details "(.*)","(.*)","(.*)","(.*)"$/, function(service,fro
 
 When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function(service,from,to,level,naati)  {
 	browser.pause(2000)
+    action.isVisibleWait(contractorEngagementPage.serviceDropdown,10000)
     action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown,service)
+    action.isVisibleWait(contractorEngagementPage.fromLanguageDropdown,10000)
     action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown,from)
+    action.isVisibleWait(contractorEngagementPage.toLanguageDropdown,10000)
     action.enterValueAndPressReturn(contractorEngagementPage.toLanguageDropdown,to)
+    action.isVisibleWait(contractorEngagementPage.naatiAccreditationDropdown,10000)
     action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown,level)
+    action.isClickableWait(contractorEngagementPage.naatiNumber,10000)
     action.enterValue(contractorEngagementPage.naatiNumber,naati)
-
+    action.isClickableWait(contractorEngagementPage.validateButton,10000)
     action.clickElement(contractorEngagementPage.validateButton)
+    action.isExistingWait(contractorEngagementPage.validFrom,10000)
     var txt = contractorEngagementPage.validFrom.getText()
     var fields = txt.split(':');
     browser.pause(1000)
     console.log(fields[1])
-
+    action.isClickableWait(contractorEngagementPage.dateIssuedInput,10000)
     action.enterStartDate(contractorEngagementPage.dateIssuedInput,fields[1] )
+    action.isClickableWait(contractorEngagementPage.saveAndCloseButton,10000)
     action.clickElement(contractorEngagementPage.saveAndCloseButton)
     browser.pause(2000)
     if(contractorEngagementPage.translatorXTMAlert.isDisplayed())
