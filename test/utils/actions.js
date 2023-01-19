@@ -127,14 +127,15 @@ module.exports={
     },
 
     domStatusComplete() {
-        browser.waitUntil(
-            function () {
-                const state = browser.execute(function () {
-                    return document.readyState;
-                });
-                return state === 'complete';
-            }, {timeout: 60000, timeoutMsg: 'Page is not completely loaded in 60 seconds'}
-        );
+        browser.waitUntil(() => {
+            return browser.execute(() => {
+                return document.readyState === 'complete';
+            });
+        }, {
+            timeout: 30000, // 30 seconds
+            interval: 1000, // check every 1 second
+            timeoutMsg: 'Page not loaded after 30 seconds'
+        });
     },
 
     waitForElementClickable(elt){
