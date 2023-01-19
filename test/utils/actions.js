@@ -209,5 +209,20 @@ module.exports={
         }
         return isSelected;
     },
+
+    addValueAndPressReturnTab(elt, value)
+    {
+        this.isClickableWait(elt,20000)
+        elt.clearValue()
+        elt.click()
+        elt.addValue(value)
+        browser.keys('Enter')
+        browser.keys("Tab")
+        browser.pause(2000)
+    },
+
+    pressKeys(keys){
+        browser.keys(keys)
+    }
 }
 
