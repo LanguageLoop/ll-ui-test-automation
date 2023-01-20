@@ -224,6 +224,11 @@ module.exports={
 
     pressKeys(keys){
         browser.keys(keys)
-    }
+    },
+
+    getElementValue(elt){
+        let elementValue = elt.getValue()
+        return elementValue;
+    },
 }
 
