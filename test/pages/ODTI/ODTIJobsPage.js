@@ -63,5 +63,13 @@ module.exports ={
 
     get filterValueTextBoxLocator(){
         return '(//input[contains(@id,"ListAdvanceSearchRule")])[<dynamic>]';
+    },
+
+    get callStartDateTimeTextLocator(){
+        return '//tbody/child::tr[<dynamic>]/child::td[2]/child::div//child::span[1]';
+    },
+
+    get odtiJobTableColumnHeaders(){
+        return $('//th[contains(@class,"TableRecords_Header")]/parent::tr');
     }
 }
