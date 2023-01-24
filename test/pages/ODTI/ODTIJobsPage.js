@@ -71,5 +71,33 @@ module.exports ={
 
     get odtiJobTableColumnHeaders(){
         return $('//th[contains(@class,"TableRecords_Header")]/parent::tr');
-    }
+    },
+
+    get campusNameValueTextLocator(){
+        return '//tbody/child::tr[<dynamic>]/child::td[4]/child::span[1]';
+    },
+
+    get interpreterNameValueTextLocator(){
+        return '//tbody/child::tr[<dynamic>]/child::td[6]/child::div//child::span[1]';
+    },
+
+    get noBillingsMessageText(){
+        return $('//td[text()="No odti billings to show..."]');
+    },
+
+    get exportToExcelLink(){
+        return $('//a[contains(text(),"Export ") and contains (text(),"Excel")]');
+    },
+
+    get actualCountArrowButton(){
+        return $('//div[contains(@id,"GetCount")]/child::span');
+    },
+
+    get actualCountRecordsValueText(){
+        return $('//div[contains(@id,"CounterClaim")]');
+    },
+
+    get searchByTextBox(){
+        return $('//input[contains(@id,"SearchInput")]')
+    },
 }

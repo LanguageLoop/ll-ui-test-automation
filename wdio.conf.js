@@ -129,6 +129,16 @@ exports.config = {
             args:['window-size=2880,1800'], 
             //args:['window-size=1280,720'], 
             //args: ['--start-maximized'] ,
+            prefs: {
+                profile: {
+                    default_content_settings: {
+                        popups: 0,
+                    },
+                },
+                download: {
+                    default_directory: process.cwd()
+                }
+            },
           
                 //"binary":"C:/Program Files/Google/Chrome/Application/chrome.exe"
                

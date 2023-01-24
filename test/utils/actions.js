@@ -230,5 +230,10 @@ module.exports={
         let elementValue = elt.getValue()
         return elementValue;
     },
+
+    getElementTagName(elt){
+        let elementTagName = elt.getTagName()
+        return elementTagName;
+    },
 }
 
