@@ -163,3 +163,14 @@ Then(/^The Excel file is downloaded$/, function () {
     browser.pause(5000);
 })
 
+When(/^I click on actual count arrow button$/, function () {
+    action.isClickableWait(ODTIJobsPage.actualCountArrowButton,20000);
+    action.clickElement(ODTIJobsPage.actualCountArrowButton);
+})
+
+Then(/^The actual count of records is greater than expected records "(.*)"$/, function (expectedCount) {
+    action.isVisibleWait(ODTIJobsPage.actualCountRecordsValueText,10000);
+    let actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
+    chai.expect(parseInt(actualCountOfRecords)).to.be.greaterThan(parseInt(expectedCount));
+})
+
