@@ -235,3 +235,53 @@ Feature: ODTI features
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
       | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 |
+
+    #Scenario 10 - Export to excel: CBO user has only one campus:
+    #Select the campus from the dropdown and select the desired Start Date and End date filters that has records to display
+  @Regression @RegressionS10 @CBOOneCampusExportExcel
+  Scenario Outline: CBO user has only one campus Select the campus and export to excel
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    And I click on Export to Excel link
+    Then The Excel file is downloaded
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                      | start date | end date   |
+      | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 02-01-2023 | 18-01-2023 |
+
+    #Scenario 11 - Export to excel: CBO user has multiple campuses
+    #Selecting the Start Date and End Date filters which doesnot have any records to display and clicking on Export to excel link
+  @Regression @RegressionS11 @CBOMultipleCampusNoRecordsExportExcel
+  Scenario Outline: CBO user has multiple campuses Select the campus and export to excel when no records available
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    And The No odti billings to show... message is displayed
+    And I click on Export to Excel link
+    Then The Excel file is downloaded
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                      | start date | end date   |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 |
+
+    #Scenario 12 - Verifying the records exported to excel when the records are more than 500 for the selected filters
+  @Regression @RegressionS12 @CBOMultipleCampusNoRecordsExportExcel
+  Scenario Outline: CBO user records exported to excel when the records are more than 500 for the selected filters
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    And I click on actual count arrow button
+    Then The actual count of records is greater than expected records "<records count>"
+    When I click on Export to Excel link
+    Then The Excel file is downloaded
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                      | start date | end date   | records count |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 | 500           |
