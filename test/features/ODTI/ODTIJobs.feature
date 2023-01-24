@@ -270,7 +270,7 @@ Feature: ODTI features
       | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 |
 
     #Scenario 12 - Verifying the records exported to excel when the records are more than 500 for the selected filters
-  @Regression @RegressionS12 @CBOMultipleCampusNoRecordsExportExcel
+  @Regression @RegressionS12 @CBOMoreThan500RecordsExportExcel
   Scenario Outline: CBO user records exported to excel when the records are more than 500 for the selected filters
     When I login with "<username cbo>" and "<password cbo>"
     And I click ODTI header link
