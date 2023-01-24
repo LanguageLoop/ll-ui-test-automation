@@ -87,5 +87,17 @@ module.exports ={
 
     get exportToExcelLink(){
         return $('//a[contains(text(),"Export ") and contains (text(),"Excel")]');
-    }
+    },
+
+    get actualCountArrowButton(){
+        return $('//div[contains(@id,"GetCount")]/child::span');
+    },
+
+    get actualCountRecordsValueText(){
+        return $('//div[contains(@id,"CounterClaim")]');
+    },
+
+    get searchByTextBox(){
+        return $('//input[contains(@id,"SearchInput")]')
+    },
 }
