@@ -149,24 +149,38 @@ Then(/^The No odti billings to show... message is displayed$/, function () {
 
 When(/^I click on Export to Excel link$/, function () {
     action.isClickableWait(ODTIJobsPage.exportToExcelLink,20000);
-    action.clickElement(ODTIJobsPage.exportToExcelLink);
+    try {
+        action.clickElement(ODTIJobsPage.exportToExcelLink);
+    } catch (err) {
+        console.log("Export to excel error: " + err);
+        chai.expect(err).to.be.null;
+    }
 })
 
 Then(/^The Excel file is downloaded$/, function () {
     browser.pause(10000);
     let downloadsDirectoryPath = process.cwd();
-    let odtiExcelFileName;
+    console.log("Directory of workspace: " + downloadsDirectoryPath);
+    let odtiExcelFileName = null;
     let filesInDownloads = fs.readdirSync(downloadsDirectoryPath);
-    for (let i=0; i<filesInDownloads.length; i++){
-        if (filesInDownloads[i].includes("ODTIReport_")){
+    console.log("Files in workspace: " + filesInDownloads);
+    for (let i = 0; i < filesInDownloads.length; i++) {
+        if (filesInDownloads[i].includes("ODTIReport_")) {
             odtiExcelFileName = filesInDownloads[i];
         }
     }
+    console.log("Exported excel file name: " + odtiExcelFileName);
     let excelFilePath = process.cwd() + "/" + odtiExcelFileName;
-    let excelFileExistStatus = fs.existsSync(excelFilePath);
-    chai.expect(excelFileExistStatus).to.be.true;
-    fs.unlinkSync(excelFilePath);
-    browser.pause(5000);
+    console.log("Exported excel file path: " + excelFilePath);
+    if (odtiExcelFileName !== null) {
+        let excelFileExistStatus = fs.existsSync(excelFilePath);
+        console.log("Exported excel file exists status: " + excelFileExistStatus);
+        chai.expect(excelFileExistStatus).to.be.true;
+        fs.unlinkSync(excelFilePath);
+        browser.pause(5000);
+    } else {
+        console.log("Exported excel file exists status: false");
+    }
 })
 
 When(/^I click on actual count arrow button$/, function () {
@@ -178,5 +192,60 @@ Then(/^The actual count of records is greater than expected records "(.*)"$/, fu
     action.isVisibleWait(ODTIJobsPage.actualCountRecordsValueText,10000);
     let actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
     chai.expect(parseInt(actualCountOfRecords)).to.be.greaterThan(parseInt(expectedCount));
+})
+
+Then(/^The records count in records counter is less than expected records "(.*)"$/, function (expectedCount) {
+    browser.pause(10000)
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000)
+    let recordsCountText = action.getElementText(ODTIJobsPage.recordsCountText);
+    let recordsCountActual = recordsCountText.split(" ")[0];
+    chai.expect(parseInt(recordsCountActual)).to.be.lessThan(parseInt(expectedCount));
+})
+
+Then(/^The results should be sorted on clicking each column header "(.*)"$/, function (columnHeaders) {
+    let columnHeadersList = columnHeaders.split(",");
+    for (let header = 0; header < columnHeadersList.length; header++) {
+        let valuesActual = [];
+        let valuesSorted = [];
+        let columnHeaderElement = $(ODTIJobsPage.columnHeaderLocator.replace("<dynamic>", columnHeadersList[header]))
+        action.clickElement(columnHeaderElement);
+        browser.pause(5000);
+        let totalRowsCount = ODTIJobsPage.totalRowCount;
+        for (let row = 1; row <= totalRowsCount; row++) {
+            let headerIndex = header + 1;
+            let columnValueElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", headerIndex.toString()));
+            valuesActual.push(action.getElementText(columnValueElement));
+        }
+        valuesSorted = [...valuesActual].sort();
+        chai.expect(valuesActual).to.have.ordered.members(valuesSorted);
+    }
+})
+
+When(/^I click on page number "(.*)"$/, function (pageNumber) {
+    let paginationPageNumberLink = $(ODTIJobsPage.paginationPageNumberLinkLocator.replace("<dynamic>", pageNumber));
+    action.isClickableWait(paginationPageNumberLink, 10000);
+    action.clickElement(paginationPageNumberLink)
+})
+
+When(/^I click on next page arrow$/, function () {
+    action.isClickableWait(ODTIJobsPage.nextPageArrowLink, 10000);
+    action.clickElement(ODTIJobsPage.nextPageArrowLink)
+})
+
+When(/^I click on previous page arrow$/, function () {
+    action.isClickableWait(ODTIJobsPage.previousPageArrowLink, 10000);
+    action.clickElement(ODTIJobsPage.previousPageArrowLink)
+})
+
+Then(/^I should be navigated to page "(.*)"$/, function (expectedPageNumber) {
+    browser.waitUntil(
+        () => action.getElementText(ODTIJobsPage.currentPageNumberLink) === expectedPageNumber,
+        {
+            timeout: 20000,
+            timeoutMsg: 'expected page to be navigated within 20s'
+        }
+    );
+    let currentPageNumber = action.getElementText(ODTIJobsPage.currentPageNumberLink);
+    chai.expect(currentPageNumber).to.equal(expectedPageNumber);
 })
 

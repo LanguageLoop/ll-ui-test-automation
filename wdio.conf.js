@@ -136,7 +136,8 @@ exports.config = {
                     },
                 },
                 download: {
-                    default_directory: process.cwd()
+                    default_directory: process.cwd(),
+                    prompt_for_download: false,
                 }
             },
           
