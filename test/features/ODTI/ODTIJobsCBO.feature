@@ -1,5 +1,5 @@
-@ODTI
-Feature: ODTI features
+@ODTIJobsCBO
+Feature: ODTI Jobs CBO features
 
   Background: Load the Loopedin login page
     Given the looped in login page is opened
