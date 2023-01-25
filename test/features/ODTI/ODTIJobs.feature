@@ -278,10 +278,60 @@ Feature: ODTI features
     And I select campus "<campus id>" from the Campus dropdown
     And I enter Start Date "<start date>" and End Date "<end date>"
     And I click on actual count arrow button
-    Then The actual count of records is greater than expected records "<records count>"
-    When I click on Export to Excel link
+    And The actual count of records is greater than expected records "<records count>"
+    And I click on Export to Excel link
     Then The Excel file is downloaded
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | records count |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 | 500           |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-03-2022 | 24-01-2023 | 500           |
+
+    #Scenario 13 - Verifying the records exported to excel when the records are less than 500 for the selected filters
+  @Regression @RegressionS13 @CBOLessThan500RecordsExportExcel
+  Scenario Outline: CBO user records exported to excel when the records are less than 500 for the selected filters
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    And I click on actual count arrow button
+    And The records count in records counter is less than expected records "<records count>"
+    And I click on Export to Excel link
+    Then The Excel file is downloaded
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                      | start date | end date   | records count |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 16-01-2023 | 20-01-2023 | 500           |
+
+    #Scenario 14 - User should be able to perform sorting on each column
+  @Regression @RegressionS14 @CBOTableColumnsSort
+  Scenario Outline: CBO user records exported to excel when the records are less than 500 for the selected filters
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    Then The results should be sorted on clicking each column header "<column headers>"
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                      | start date | end date   | column headers                                                                                  |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 18-01-2023 | 20-01-2023 | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type |
+
+    #Scenario 15 - User should be able to view different pages using pagination when they are more number of records
+  @Regression @RegressionS15 @Pagination
+  Scenario Outline: User should be able to view different pages using pagination when they are more number of records
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    And I click on page number "<page number>"
+    Then I should be navigated to page "<page number>"
+    And I click on next page arrow
+    And I should be navigated to page "<next page number>"
+    And I click on previous page arrow
+    And I should be navigated to page "<previous page number>"
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                      | start date | end date   | page number | next page number  | previous page number |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-10-2022 | 20-01-2023 | 2           | 3                 | 2                    |
