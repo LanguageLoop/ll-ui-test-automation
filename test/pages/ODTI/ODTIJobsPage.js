@@ -100,4 +100,28 @@ module.exports ={
     get searchByTextBox(){
         return $('//input[contains(@id,"SearchInput")]')
     },
+
+    get columnHeaderLocator(){
+        return '//*[text()="<dynamic>"]';
+    },
+
+    get columnValueTextLocator(){
+        return '//tbody/child::tr[<dynamic1>]/child::td[<dynamic2>]//child::span[1]';
+    },
+
+    get paginationPageNumberLinkLocator(){
+        return '//*[contains(@class,"ListNavigation") and contains (text(),"<dynamic>")]'
+    },
+
+    get nextPageArrowLink(){
+        return $('//a[text()="next"]');
+    },
+
+    get previousPageArrowLink(){
+        return $('//a[text()="previous"]');
+    },
+
+    get currentPageNumberLink(){
+        return $('//span[@class="ListNavigation_CurrentPageNumber"]');
+    }
 }
