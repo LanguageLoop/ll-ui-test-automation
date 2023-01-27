@@ -249,3 +249,12 @@ Then(/^I should be navigated to page "(.*)"$/, function (expectedPageNumber) {
     chai.expect(currentPageNumber).to.equal(expectedPageNumber);
 })
 
+Then(/^The columns available for ODTI Jobs for the user doesn't contain "(.*)"$/, function (expectedHeaders) {
+    action.isVisibleWait(ODTIJobsPage.odtiJobTableColumnHeaders, 10000);
+    let odtiColumnHeadersActual = action.getElementText(ODTIJobsPage.odtiJobTableColumnHeaders);
+    let headerListExpected = expectedHeaders.split(",");
+    for (let headerIndex = 0; headerIndex < headerListExpected.length; headerIndex++) {
+        chai.expect(odtiColumnHeadersActual).to.not.includes(headerListExpected[headerIndex]);
+    }
+})
+

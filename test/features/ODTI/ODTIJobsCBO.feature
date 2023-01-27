@@ -335,3 +335,48 @@ Feature: ODTI Jobs CBO features
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | page number | next page number  | previous page number |
       | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-10-2022 | 20-01-2023 | 2           | 3                 | 2                    |
+
+    #Scenario 16 - Verify the CLIENT CHARGE SUBTOTAL is displayed when CBO user on admin side has the checkbox 'Show $ amounts on On Demand TI Dashboard' checked
+  @Regression @RegressionS16 @CBOViewsClientChargeSubtotal
+  Scenario Outline: CBO user can see CLIENT CHARGE SUBTOTAL when the CBO user on admin side has the checkbox enabled
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And I search and select account "<username cbo>" in Admin
+    And I click Edit Profile Button in Account Profile
+    And I select show dollar amounts on ODTI checkbox if not already selected
+    And I click save detail button
+    And the looped in login page is opened
+    And I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    Then The columns available for ODTI Jobs for the user are "<column headers>"
+
+    Examples:
+      | username          | password  | username cbo   | password cbo | column headers         |
+      | LLAdmin@looped.in | Octopus@6 | zenq@cbo11.com | Test1        | CLIENT CHARGE SUBTOTAL |
+
+    #Scenario 17 - Verify the CLIENT CHARGE SUBTOTAL is not displayed when CBO user on admin side has the checkbox 'Show $ amounts on On Demand TI Dashboard' un checked
+  @Regression @RegressionS17 @CBODoesNotViewClientChargeSubtotal
+  Scenario Outline: CBO user cannot see CLIENT CHARGE SUBTOTAL when the CBO user on admin side has the checkbox disabled
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And I search and select account "<username cbo>" in Admin
+    And I click Edit Profile Button in Account Profile
+    And I unselect show dollar amounts on ODTI checkbox if already selected
+    And I click save detail button
+    And the looped in login page is opened
+    And I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    Then The columns available for ODTI Jobs for the user doesn't contain "<column headers>"
+    And the looped in login page is opened
+    And I login with "<username>" and "<password>"
+    And I click Admin header link
+    And I search and select account "<username cbo>" in Admin
+    And I click Edit Profile Button in Account Profile
+    And I select show dollar amounts on ODTI checkbox if not already selected
+    And I click save detail button
+
+    Examples:
+      | username          | password  | username cbo   | password cbo | column headers         |
+      | LLAdmin@looped.in | Octopus@6 | zenq@cbo11.com | Test1        | CLIENT CHARGE SUBTOTAL |

@@ -257,3 +257,55 @@ Then(/^They will see the Created Date: DD MM YYYY HH:MM:SS under the Profile pic
    chai.expect(createdDateValue.charAt(13)).to.equal(":");
    chai.expect(createdDateValue.charAt(16)).to.equal(":");
 })
+
+When(/^I search and select account "(.*)" in Admin$/, function (account) {
+   action.isVisibleWait(adminPage.accountsSearchByTextBox,10000);
+   action.enterValue(adminPage.accountsSearchByTextBox,account);
+   action.isClickableWait(adminPage.searchButton,10000);
+   action.clickElement(adminPage.searchButton);
+   let accountSearchResultLink = $(adminPage.accountSearchResultLinkLocator.replace("<dynamic>",account));
+   action.isClickableWait(accountSearchResultLink,20000)
+   action.clickElement(accountSearchResultLink);
+})
+
+When(/^I click Edit Profile Button in Account Profile$/, function () {
+   action.isClickableWait(adminPage.editProfileButton,10000);
+   action.clickElement(adminPage.editProfileButton);
+})
+
+When(/^I select show dollar amounts on ODTI checkbox if not already selected$/, function () {
+   let show$AmountsOnODTISelectedStatus = action.isSelectedWait(adminPage.show$AmountsOnODTICheckbox,10000);
+   if (show$AmountsOnODTISelectedStatus === false){
+      action.clickElement(adminPage.show$AmountsOnODTICheckbox);
+   }
+   browser.waitUntil(
+       () => action.isSelectedWait(adminPage.show$AmountsOnODTICheckbox,0) === true,
+       {
+          timeout: 5000,
+          timeoutMsg: 'Expected checkbox to selected with in 5 sec'
+       }
+   );
+   show$AmountsOnODTISelectedStatus = action.isSelectedWait(adminPage.show$AmountsOnODTICheckbox,10000);
+   chai.expect(show$AmountsOnODTISelectedStatus).to.be.true;
+})
+
+When(/^I unselect show dollar amounts on ODTI checkbox if already selected$/, function () {
+   let show$AmountsOnODTISelectedStatus = action.isSelectedWait(adminPage.show$AmountsOnODTICheckbox,10000);
+   if (show$AmountsOnODTISelectedStatus === true){
+      action.clickElement(adminPage.show$AmountsOnODTICheckbox);
+   }
+   browser.waitUntil(
+       () => action.isSelectedWait(adminPage.show$AmountsOnODTICheckbox,0) === false,
+       {
+          timeout: 5000,
+          timeoutMsg: 'Expected checkbox to be not selected with in 5 sec'
+       }
+   );
+   show$AmountsOnODTISelectedStatus = action.isSelectedWait(adminPage.show$AmountsOnODTICheckbox,10000);
+   chai.expect(show$AmountsOnODTISelectedStatus).to.be.false;
+})
+
+When(/^I click save detail button$/, function () {
+   action.isClickableWait(adminPage.saveDetailButton,10000);
+   action.clickElement(adminPage.saveDetailButton);
+})
