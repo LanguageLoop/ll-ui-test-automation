@@ -59,14 +59,16 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
 When(/^I search and open contractor "(.*)"$/, function(contractor){
     browser.pause(2000)
     action.enterValue(contractorEngagementPage.searchContractorInput, contractor)
-    browser.pause(3000)
-    $('//table[contains(@id,"Contractor")]//td//a').click()
+    let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>",contractor));
+    action.isVisibleWait(contractorSearchResultElement,20000);
+    action.clickElement(contractorSearchResultElement);
 })
 
 When(/^I search and open created contractor$/, function(){
     browser.pause(2000)
     action.enterValue(contractorEngagementPage.searchContractorInput, GlobalData.NEW_CONTRACTOR_NAME)
-    browser.pause(3000)
+    let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>",GlobalData.NEW_CONTRACTOR_NAME));
+    action.isVisibleWait(contractorSearchResultElement,20000);
     $('//table[contains(@id,"Contractor")]//td//a').click()
 })
 
@@ -99,20 +101,21 @@ When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function(
     action.enterValue(contractorEngagementPage.naatiNumber,naati)
     action.isClickableWait(contractorEngagementPage.validateButton,10000)
     action.clickElement(contractorEngagementPage.validateButton)
-    action.isExistingWait(contractorEngagementPage.validFrom,10000)
+    action.isVisibleWait(contractorEngagementPage.validFrom,30000)
     var txt = contractorEngagementPage.validFrom.getText()
-    var fields = txt.split(':');
+    console.log(txt)
+    var fields = txt.split(': ');
     browser.pause(1000)
-    console.log(fields[1])
+    console.log(fields[1].replace(/[/.]/g,"-"))
     action.isClickableWait(contractorEngagementPage.dateIssuedInput,10000)
-    action.enterStartDate(contractorEngagementPage.dateIssuedInput,fields[1] )
+    action.addValueAndPressReturnTab(contractorEngagementPage.dateIssuedInput,fields[1].replace(/[/.]/g,"-"))
     action.isClickableWait(contractorEngagementPage.saveAndCloseButton,10000)
     action.clickElement(contractorEngagementPage.saveAndCloseButton)
     browser.pause(2000)
-    if(contractorEngagementPage.translatorXTMAlert.isDisplayed())
+    if (action.isVisibleWait(contractorEngagementPage.translatorXTMAlert,5000))
     {
+        action.isClickableWait(contractorEngagementPage.xtmConfirmButton,5000)
         action.clickElement(contractorEngagementPage.xtmConfirmButton)
-        //execute("arguments[0].click();", contractorEngagementPage.xtmConfirmButton);
     }
 });
 

@@ -378,6 +378,10 @@ module.exports = {
     },
     get noNaatiAccreditation(){
         return $('//*[text()[contains(.,"No NAATI accreditations to show...")]]')
+    },
+
+    get contractorSearchResultLocator(){
+        return '//table[contains(@id,"Contractor")]//td/a[text()="<dynamic>"]'
     }
     
 }
