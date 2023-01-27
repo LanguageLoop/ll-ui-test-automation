@@ -104,5 +104,21 @@ module.exports = {
 
     get createdDateTextUnderProfilePic(){
         return $('//div[contains(text(),"Created Date:")]')
-    }
+    },
+
+    get accountsSearchByTextBox(){
+        return $('//input[@title="Search by Name, Username, Mobile Number and Role"]');
+    },
+
+    get accountSearchResultLinkLocator(){
+        return '//table[contains(@id,"UserDetailTable")]//child::td[text()="<dynamic>"]/preceding-sibling::td/child::a';
+    },
+
+    get editProfileButton(){
+        return $('//input[@value="Edit Profile"]');
+    },
+
+    get show$AmountsOnODTICheckbox(){
+        return $('//div[text()="Show $ amounts on On Demand TI Dashboard"]/parent::div//child::input');
+    },
 }
