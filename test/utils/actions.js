@@ -235,5 +235,21 @@ module.exports={
         let elementTagName = elt.getTagName()
         return elementTagName;
     },
+
+    waitUntilLoadingIconDisappears() {
+        let loadingIconAjaxWait = $('//div[@class="Feedback_AjaxWait" and (contains(@style,"opacity"))]');
+        loadingIconAjaxWait.waitForExist({
+            timeout: 30000,
+            reverse: true,
+            timeoutMsg: 'Loading Icon still exists after 30 sec',
+            interval: 2000
+        });
+        loadingIconAjaxWait.waitForDisplayed({
+            timeout: 30000,
+            reverse: true,
+            timeoutMsg: 'Loading Icon still visible after 30 sec',
+            interval: 2000
+        })
+    }
 }
 
