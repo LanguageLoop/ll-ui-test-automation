@@ -305,7 +305,7 @@ Feature: ODTI Jobs CBO features
 
     #Scenario 14 - User should be able to perform sorting on each column
   @Regression @RegressionS14 @CBOTableColumnsSort
-  Scenario Outline: CBO user records exported to excel when the records are less than 500 for the selected filters
+  Scenario Outline: CBO user should be able to perform sorting on each column
     When I login with "<username cbo>" and "<password cbo>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
