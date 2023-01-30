@@ -61,7 +61,7 @@ When(/^I search and open contractor "(.*)"$/, function(contractor){
     action.enterValue(contractorEngagementPage.searchContractorInput, contractor)
     let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>",contractor));
     action.isVisibleWait(contractorSearchResultElement,20000);
-    action.clickElement(contractorSearchResultElement);
+    $('//table[contains(@id,"Contractor")]//td//a').click()
 })
 
 When(/^I search and open created contractor$/, function(){
