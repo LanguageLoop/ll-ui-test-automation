@@ -381,7 +381,7 @@ module.exports = {
     },
 
     get contractorSearchResultLocator(){
-        return '//table[contains(@id,"Contractor")]//td/a[text()="<dynamic>"]'
+        return '//table[contains(@id,"Contractor")]//td/a[contains(text(),"<dynamic>")]'
     }
     
 }
