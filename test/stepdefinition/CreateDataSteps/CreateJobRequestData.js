@@ -107,7 +107,7 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   action.clickElement(jobRequestPage.addInterpreterLink)
   browser.pause(5000)
   const findInterpreter=$("//*[text()[contains(.,'Find Interpreter')]]")
-  while(findInterpreter.isDisplayed()==false){
+  while(action.isVisibleWait(findInterpreter,10000)==false){
   action.clickElement(jobRequestPage.addInterpreterLink)
   browser.waitUntil(()=> findInterpreter.isDisplayed(),{timeout:7000, timeoutMsg:'Find interpreter modal not displayed in 10s', interval:500} )
   console.log("inside "+findInterpreter.isDisplayed())
