@@ -217,13 +217,17 @@ Then(/^The results should be sorted on clicking each column header "(.*)"$/, fun
         let valuesActual = [];
         let valuesSorted = [];
         let columnHeaderElement = $(ODTIJobsPage.columnHeaderLocator.replace("<dynamic>", columnHeadersList[header]))
-        action.clickElement(columnHeaderElement);
+        if (columnHeadersList[header] !== "Empty") {
+            action.clickElement(columnHeaderElement);
+        }
         browser.pause(5000);
         let totalRowsCount = ODTIJobsPage.totalRowCount;
         for (let row = 1; row <= totalRowsCount; row++) {
             let headerIndex = header + 1;
             let columnValueElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", headerIndex.toString()));
-            valuesActual.push(action.getElementText(columnValueElement));
+            if (action.isExistingWait(columnValueElement, 0)) {
+                valuesActual.push(action.getElementText(columnValueElement));
+            }
         }
         valuesSorted = [...valuesActual].sort();
         chai.expect(valuesActual).to.have.ordered.members(valuesSorted);
@@ -265,5 +269,20 @@ Then(/^The columns available for ODTI Jobs for the user doesn't contain "(.*)"$/
     for (let headerIndex = 0; headerIndex < headerListExpected.length; headerIndex++) {
         chai.expect(odtiColumnHeadersActual).to.not.includes(headerListExpected[headerIndex]);
     }
+})
+
+Then(/^The ODTI Service Charge ID and Campus Name results are not clickable and read only$/, function () {
+    browser.pause(5000)
+    let clickableTageName = "a";
+    let serviceChargeID1TextElement = $(ODTIJobsPage.odtiServiceChargeIDTextLocator.replace("<dynamic>", "1"));
+    let serviceChargeIDVisibleStatus = action.isVisibleWait(serviceChargeID1TextElement,10000);
+    let serviceChargeIDTagName = action.getElementTagName(serviceChargeID1TextElement);
+    chai.expect(serviceChargeIDVisibleStatus).to.be.true;
+    chai.expect(serviceChargeIDTagName).to.not.equal(clickableTageName);
+    let campusName1TextElement = $(ODTIJobsPage.campusNameValueTextLocator.replace("<dynamic>", "1"));
+    let campusNameVisibleStatus = action.isVisibleWait(campusName1TextElement,10000);
+    let campusNameTagName = action.getElementTagName(campusName1TextElement);
+    chai.expect(campusNameVisibleStatus).to.be.true;
+    chai.expect(campusNameTagName).to.not.equal(clickableTageName);
 })
 
