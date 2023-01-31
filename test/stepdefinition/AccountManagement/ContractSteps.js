@@ -19,6 +19,7 @@ When(/^I enter contract title "(.*)"$/, function(name){
     //make the contract title unique by appending a random number
     name = name + (Math.floor(Math.random() * 100000) + 1).toString()
     GlobalData.CONTRACT_TITLE= name
+    action.isVisibleWait(contractManagementPage.contractTitleInput,10000);
     action.enterValue(contractManagementPage.contractTitleInput, name)
 })
 
@@ -186,6 +187,8 @@ Then(/^I verify duplicate contract is created "(.*)"$/, function(title){
     //add one to the number. because when you duplicate a contract, the title is appended by number and 1 is added to it.
     var temp_number= (parseInt(res)+1)
     console.log("Expected :"+ title+(parseInt(res)+1))
+    action.waitUntilLoadingIconDisappears();
+    action.isExistingWait(contractManagementPage.contractHeadingText,10000);
     chai.expect(contractManagementPage.contractHeadingText.getText().toString() == title+(parseInt(res)+1)).to.be.true
 })
 
