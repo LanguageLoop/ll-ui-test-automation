@@ -286,3 +286,14 @@ Then(/^The ODTI Service Charge ID and Campus Name results are not clickable and 
     chai.expect(campusNameTagName).to.not.equal(clickableTageName);
 })
 
+Then(/^All the available jobs are displayed$/, function () {
+    let availableJobsDisplayStatus = action.isVisibleWait(ODTIJobsPage.availableJobRecordsTable, 10000);
+    chai.expect(availableJobsDisplayStatus).to.be.true;
+})
+
+Then(/^The records count in records counter has expected records "(.*)"$/, function (expectedCount) {
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000)
+    let recordsCountTextActual = action.getElementText(ODTIJobsPage.recordsCountText);
+    chai.expect(recordsCountTextActual).to.includes(expectedCount);
+})
+

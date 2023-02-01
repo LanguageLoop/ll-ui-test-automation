@@ -106,7 +106,7 @@ module.exports ={
     },
 
     get columnValueTextLocator(){
-        return '//tbody/child::tr[<dynamic1>]/child::td[<dynamic2>]//child::span[1]';
+        return '//tbody/child::tr[<dynamic1>]/child::td[<dynamic2>]//child::*[1]';
     },
 
     get paginationPageNumberLinkLocator(){
@@ -123,5 +123,9 @@ module.exports ={
 
     get currentPageNumberLink(){
         return $('//span[@class="ListNavigation_CurrentPageNumber"]');
+    },
+
+    get availableJobRecordsTable() {
+        return $('//div[@class="TableRecords_Wrapper"]');
     }
 }

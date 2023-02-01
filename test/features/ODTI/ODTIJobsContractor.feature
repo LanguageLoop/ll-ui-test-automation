@@ -153,3 +153,23 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username contractor      | password contractor | start date | end date   | records count |
       | csaramella@yahoo.com.au  | Test1               | 01-01-2022 | 01-01-2023 | 500           |
+
+    #Scenario 9 - User should be able to view different pages using pagination when they are more number if records
+  @Regression @RegressionS25 @ContractorPagination
+  Scenario Outline: Contractor should be able to view different pages using pagination
+    When I login with "<username contractor>" and "<password contractor>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    And I click on page number "<page number>"
+    Then I should be navigated to page "<page number>"
+    And I click on next page arrow
+    And I should be navigated to page "<next page number>"
+    And I click on previous page arrow
+    And I should be navigated to page "<previous page number>"
+
+    Examples:
+      | username contractor      | password contractor | start date | end date   | page number | next page number  | previous page number |
+      | luciacheung192@gmail.com | Test1               | 01-07-2022 | 31-01-2023 | 2           | 3                 | 2                    |
+
+    #Scenario 8 - User should be able to perform sorting on each column - ON HOLD due to Interpreting Fee Sort issue
