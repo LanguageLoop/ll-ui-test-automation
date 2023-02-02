@@ -102,7 +102,7 @@ module.exports ={
     },
 
     get columnHeaderLocator(){
-        return '//*[text()="<dynamic>"]';
+        return '//tr//*[text()="<dynamic>"]';
     },
 
     get columnValueTextLocator(){
@@ -127,5 +127,9 @@ module.exports ={
 
     get availableJobRecordsTable() {
         return $('//div[@class="TableRecords_Wrapper"]');
+    },
+
+    get titleDropdownOption(){
+        return '//select[contains(@id,"Title")]/child::option[text()="<dynamic>"]';
     }
 }
