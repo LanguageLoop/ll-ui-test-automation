@@ -47,6 +47,62 @@ Feature: ODTI Jobs CSO features
       | username cso   | password cso | expected records |
       | zenq@cso10.com | Test1        | 500              |
 
+    #Scenario 4 - AS CSO User - Verify the results displayed on performing search by Contractor using the Search field
+  @Regression @RegressionS32 @CSOSearchByContractor
+  Scenario Outline: CSO user can perform search by Contractor using the Search field
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I enter the search value "<contractor>" in the search field
+    Then The records are displayed only for the entered filter value "<Interpreter Name>" under column number "<Interpreter Name column number>"
+
+    Examples:
+      | username cso   | password cso | contractor | Interpreter Name | Interpreter Name column number |
+      | zenq@cso10.com | Test1        | Majid      | Majid BRAHMAN    | 6                              |
+
+    #Scenario 5 - AS CSO User - Verify the results displayed on performing search by Language using the Search field
+  @Regression @RegressionS33 @CSOSearchByLanguage
+  Scenario Outline: CSO user can perform search by Language using the Search field
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I enter the search value "<language>" in the search field
+    Then The records are displayed only for the entered filter value "<language>" under column number "<Language column number>"
+
+    Examples:
+      | username cso   | password cso | language | Language column number |
+      | zenq@cso10.com | Test1        | CROATIAN | 5                      |
+
+    #Scenario 6 - AS CSO User - Verify the results displayed on performing search by Contact ID using the Search field
+  @Regression @RegressionS34 @CSOSearchByContactID
+  Scenario Outline: CSO user can perform search by Contact ID using the Search field
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I enter the search value "<contact ID>" in the search field
+    Then The records are displayed only for the entered filter value "<ODTI SERVICE CHARGE ID>" under column number "<ODTI SERVICE CHARGE ID column number>"
+
+    Examples:
+      | username cso   | password cso | contact ID   | ODTI SERVICE CHARGE ID | ODTI SERVICE CHARGE ID column number |
+      | zenq@cso10.com | Test1        | 197934812168 | 100000002470           | 1                                    |
+
+    #Scenario 7 - AS CSO User - Verify the results displayed on performing search using invalid data on entering in Search field
+  @Regression @RegressionS35 @CSOSearchByInvalidData
+  Scenario Outline: CSO user sees No odti billings to show message search is performed using invalid data
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I enter the search value "<invalid value>" in the search field
+    Then The No odti billings to show... message is displayed
+
+    Examples:
+      | username cso   | password cso | invalid value     |
+      | zenq@cso10.com | Test1        | AutoInvalidSearch |
+
     #Scenario 8 - As CSO User - Verify the Columns available in the ODTI Jobs as CSO user
   @Regression @RegressionS29 @CSOColumnHeaders
   Scenario Outline: CSO user has columns available in the ODTI Jobs
@@ -56,7 +112,7 @@ Feature: ODTI Jobs CSO features
     Then The columns available for ODTI Jobs for the user are "<column headers>"
 
     Examples:
-      | username cso   | password cso | column headers                                                                                                          |  
+      | username cso   | password cso | column headers                                                                                                          |
       | zenq@cso10.com | Test1        | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL  |
 
       #Scenario 10 - User should be able to view different pages using pagination when they are more number of records
@@ -66,7 +122,7 @@ Feature: ODTI Jobs CSO features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I click on page number "<page number>"
-    Then I should be navigated to page "<page number>"  
+    Then I should be navigated to page "<page number>"
     And I click on next page arrow
     And I should be navigated to page "<next page number>"
     And I click on previous page arrow
