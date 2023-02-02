@@ -1,6 +1,9 @@
 When(/^I view the ODTI > ODTI Jobs page$/, function () {
     action.isVisibleWait(ODTIJobsPage.titleDropdown, 10000);
     action.selectTextFromDropdown(ODTIJobsPage.titleDropdown, "ODTI Jobs");
+    let ODTIJobsOptionInTitleDropdown = $(ODTIJobsPage.titleDropdownOption.replace("<dynamic>","ODTI Jobs"));
+    let optionSelectedStatus = action.isSelectedWait(ODTIJobsOptionInTitleDropdown, 10000);
+    chai.expect(optionSelectedStatus).to.be.true;
 })
 
 When(/^I select campus "(.*)" from the Campus dropdown$/, function (campusID) {
@@ -229,7 +232,11 @@ Then(/^The results should be sorted on clicking each column header "(.*)"$/, fun
                 valuesActual.push(action.getElementText(columnValueElement));
             }
         }
-        valuesSorted = [...valuesActual].sort();
+        if (valuesActual[1].includes(":") && valuesActual[1].length <= 5) {
+            valuesSorted = [...valuesActual].sort((a, b) => a - b);
+        } else {
+            valuesSorted = [...valuesActual].sort();
+        }
         chai.expect(valuesActual).to.have.ordered.members(valuesSorted);
     }
 })
@@ -295,5 +302,20 @@ Then(/^The records count in records counter has expected records "(.*)"$/, funct
     action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000)
     let recordsCountTextActual = action.getElementText(ODTIJobsPage.recordsCountText);
     chai.expect(recordsCountTextActual).to.includes(expectedCount);
+})
+
+When(/^I enter the search value "(.*)" in the search field$/, function (searchValue) {
+    action.isVisibleWait(ODTIJobsPage.searchByTextBox,10000);
+    action.addValueAndPressReturnTab(ODTIJobsPage.searchByTextBox,searchValue);
+})
+
+Then(/^The records are displayed only for the entered filter value "(.*)" under column number "(.*)"$/, function (columnFilterValue, columnNumber) {
+    browser.pause(5000);
+    let totalRowsCount = ODTIJobsPage.totalRowCount;
+    for (let row = 1; row <= totalRowsCount; row++) {
+        let columnValueElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", columnNumber.toString()));
+        let actualColumnValue = action.getElementText(columnValueElement);
+        chai.expect(actualColumnValue).to.equal(columnFilterValue);
+    }
 })
 
