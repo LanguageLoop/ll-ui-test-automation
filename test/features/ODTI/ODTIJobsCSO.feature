@@ -102,3 +102,32 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | invalid value     |
       | zenq@cso10.com | Test1        | AutoInvalidSearch |
+
+    #Scenario 8 - As CSO User - Verify the Columns available in the ODTI Jobs as CSO user
+  @Regression @RegressionS29 @CSOColumnHeaders
+  Scenario Outline: CSO user has columns available in the ODTI Jobs
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    Then The columns available for ODTI Jobs for the user are "<column headers>"
+
+    Examples:
+      | username cso   | password cso | column headers                                                                                                          |
+      | zenq@cso10.com | Test1        | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL  |
+
+      #Scenario 10 - User should be able to view different pages using pagination when they are more number of records
+  @Regression @RegressionS30 @CSOPagination
+  Scenario Outline: User should be able to view different pages using pagination when they are more number of records
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on page number "<page number>"
+    Then I should be navigated to page "<page number>"
+    And I click on next page arrow
+    And I should be navigated to page "<next page number>"
+    And I click on previous page arrow
+    And I should be navigated to page "<previous page number>"
+
+      Examples:
+      | username cso   | password cso | page number | next page number  | previous page number |
+      | zenq@cso10.com | Test1        | 3           | 4                 | 3                    |
