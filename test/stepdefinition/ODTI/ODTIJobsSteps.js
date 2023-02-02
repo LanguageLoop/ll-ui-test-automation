@@ -114,6 +114,7 @@ Then(/^The results displayed are within the date range "(.*)", "(.*)"$/, functio
 })
 
 Then(/^The columns available for ODTI Jobs for the user are "(.*)"$/, function (expectedHeaders) {
+    action.isVisibleWait(ODTIJobsPage.exportToExcelLink,30000);
     action.isVisibleWait(ODTIJobsPage.odtiJobTableColumnHeaders, 10000);
     let odtiColumnHeadersActual = action.getElementText(ODTIJobsPage.odtiJobTableColumnHeaders);
     let headerListExpected = expectedHeaders.split(",");
