@@ -235,6 +235,11 @@ Then(/^The results should be sorted on clicking each column header "(.*)"$/, fun
         }
         if (valuesActual[1].includes(":") && valuesActual[1].length <= 5) {
             valuesSorted = [...valuesActual].sort((a, b) => a - b);
+        } else if (valuesActual[1].includes("$")) {
+            valuesActual = valuesActual.map(function (element) {
+                return element.replace(/\$/g, "");
+            });
+            valuesSorted = [...valuesActual].sort((a, b) => a - b);
         } else {
             valuesSorted = [...valuesActual].sort();
         }
