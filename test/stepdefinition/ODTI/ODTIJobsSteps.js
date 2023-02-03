@@ -343,3 +343,65 @@ Then(/^I should be navigated to the Job detail page "(.*)" of the respective job
     chai.expect(jobIDValueInJobDetails).to.includes(GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE);
 })
 
+When(/^I add dropdown filter "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (filterOption, filterOptionIndex, filterComparator, filterComparatorIndex, filterValue, filterValueIndex) {
+    let filterFieldDropdownElement = $(ODTIJobsPage.filterFieldDropdownLocator.replace("<dynamic>", filterOptionIndex));
+    action.isVisibleWait(filterFieldDropdownElement, 20000);
+    let filterFieldDropdownOptionElement = $(ODTIJobsPage.filterFieldDropdownOptionLocator.replace("<dynamic1>", filterOptionIndex).replace("<dynamic2>", filterOption));
+    action.isExistingWait(filterFieldDropdownOptionElement, 20000);
+    action.selectTextFromDropdown(filterFieldDropdownElement, filterOption);
+    let filterComparisonDropdownElement = $(ODTIJobsPage.filterComparisonDropdownLocator.replace("<dynamic>", filterComparatorIndex));
+    action.isVisibleWait(filterComparisonDropdownElement, 20000);
+    let filterComparisonDropdownOptionElement = $(ODTIJobsPage.filterComparisonDropdownOptionLocator.replace("<dynamic1>", filterComparatorIndex).replace("<dynamic2>", filterComparator));
+    action.isExistingWait(filterComparisonDropdownOptionElement, 20000)
+    action.selectTextFromDropdown(filterComparisonDropdownElement, filterComparator);
+    let filterValueTextBoxElement = $(ODTIJobsPage.filterValueDropdownLocator.replace("<dynamic>", filterValueIndex));
+    action.isVisibleWait(filterValueTextBoxElement, 20000);
+    action.selectTextFromDropdown(filterValueTextBoxElement, filterValue);
+    action.clickElement(ODTIJobsPage.searchByTextBox);
+    let filterValueOptionElement = $(ODTIJobsPage.filterValueDropdownOptionLocator.replace("<dynamic1>", filterValueIndex).replace("<dynamic2>", filterValue));
+    browser.pause(5000);
+    let filterValueSet = action.isSelectedWait(filterValueOptionElement);
+    let counter = 0;
+    //Checking and re-setting the value if not its set as expected
+    while (filterValueSet !== false && counter < 5) {
+        action.selectTextFromDropdown(filterValueTextBoxElement, filterValue);
+        action.clickElement(ODTIJobsPage.searchByTextBox);
+        browser.pause(5000);
+        filterValueSet = action.isSelectedWait(filterValueOptionElement);
+        counter++;
+    }
+})
+
+When(/^I get the records count in ODTI before adding filters$/, function () {
+    browser.pause(5000)
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000);
+    GlobalData.ODTI_JOB_RECORDS_COUNT = action.getElementText(ODTIJobsPage.recordsCountText);
+    console.log("Job records before adding filters: " + GlobalData.ODTI_JOB_RECORDS_COUNT);
+})
+
+Then(/^The total record value should be updated as per the number of records displayed$/, function () {
+    browser.pause(5000)
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000)
+    let recordsCountAfterFilters = action.getElementText(ODTIJobsPage.recordsCountText);
+    console.log("Job records after adding filters: " + recordsCountAfterFilters);
+    chai.expect(GlobalData.ODTI_JOB_RECORDS_COUNT).to.not.equal(recordsCountAfterFilters);
+})
+
+When(/^I Click on the X Icon beside the filters applied$/, function () {
+    let xIconsCount = ODTIJobsPage.filterCloseXIconsCount
+    for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
+        action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000);
+        action.clickElement(ODTIJobsPage.filterCloseXIcon);
+
+    }
+})
+
+Then(/^All the Jobs are displayed as no filters are applied and the number of records gets updated$/, function () {
+    browser.pause(5000)
+    action.waitUntilLoadingIconDisappears();
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000)
+    let recordsCountAfterFiltersRemoved = action.getElementText(ODTIJobsPage.recordsCountText);
+    console.log("Job records after removing filters: " + recordsCountAfterFiltersRemoved);
+    chai.expect(GlobalData.ODTI_JOB_RECORDS_COUNT).to.equal(recordsCountAfterFiltersRemoved);
+})
+
