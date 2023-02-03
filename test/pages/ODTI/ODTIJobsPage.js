@@ -131,5 +131,13 @@ module.exports ={
 
     get titleDropdownOption(){
         return '//select[contains(@id,"Title")]/child::option[text()="<dynamic>"]';
+    },
+
+    get columnValueLinkLocator(){
+        return '//tbody/child::tr[<dynamic1>]/child::td[<dynamic2>]//child::a[1]';
+    },
+
+    get jobIDTextInODTIJobDetailsPage() {
+        return $('//span[contains(text(),"Job ID #")]');
     }
 }

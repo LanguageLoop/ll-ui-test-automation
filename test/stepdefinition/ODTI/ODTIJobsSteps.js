@@ -325,3 +325,21 @@ Then(/^The records are displayed only for the entered filter value "(.*)" under 
     }
 })
 
+When(/^I click on a Job ID value under ODTI SERVICE CHARGE ID column$/, function () {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let jobIdFirstValueElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "1"));
+    action.isVisibleWait(jobIdFirstValueElement,10000);
+    GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE = action.getElementText(jobIdFirstValueElement);
+    action.clickElement(jobIdFirstValueElement);
+})
+
+Then(/^I should be navigated to the Job detail page "(.*)" of the respective job that is clicked$/, function (expectedPageUrl) {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobDetailsPage,10000);
+    let currentPageUrlActual = action.getPageUrl();
+    chai.expect(currentPageUrlActual).to.includes(expectedPageUrl);
+    let jobIDValueInJobDetails = action.getElementText(ODTIJobsPage.jobIDTextInODTIJobDetailsPage);
+    chai.expect(jobIDValueInJobDetails).to.includes(GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE);
+})
+

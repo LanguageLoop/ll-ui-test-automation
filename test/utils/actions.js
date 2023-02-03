@@ -250,6 +250,20 @@ module.exports={
             timeoutMsg: 'Loading Icon still visible after 30 sec',
             interval: 2000
         })
+    },
+
+    getPageUrl() {
+        let pageURL = browser.getUrl();
+        console.log("Page URL is: "+pageURL);
+        return pageURL;
+    },
+
+    navigateToLatestWindow() {
+        browser.pause(2000);
+        let windowHandles = browser.getWindowHandles();
+        let newWindowHandle = windowHandles[windowHandles.length - 1];
+        browser.switchToWindow(newWindowHandle);
+        console.log("Switched to window: "+newWindowHandle);
     }
 }
 
