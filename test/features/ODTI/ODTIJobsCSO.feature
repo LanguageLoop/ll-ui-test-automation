@@ -131,3 +131,17 @@ Feature: ODTI Jobs CSO features
       Examples:
       | username cso   | password cso | page number | next page number  | previous page number |
       | zenq@cso10.com | Test1        | 3           | 4                 | 3                    |
+
+    #Scenario 11 - AS CSO User - User should be able to click jobs under 'ODTI SERVICE CHARGE ID' column
+  @Regression @RegressionS36 @CSOSearchByContactID
+  Scenario Outline: CSO user should be able to click jobs under ODTI SERVICE CHARGE ID column
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    Then I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
+
+    Examples:
+      | username cso   | password cso | job detail page url        |
+      | zenq@cso10.com | Test1        | OnDemandTI/JobDetails.aspx |
