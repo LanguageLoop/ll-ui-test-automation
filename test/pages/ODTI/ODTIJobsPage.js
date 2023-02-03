@@ -151,5 +151,21 @@ module.exports = {
 
    get selectedInterpreterNameText() {
         return $('//div[@class="PreferredName"]/span');
+    },
+
+    get filterValueDropdownLocator() {
+        return '(//select[contains(@id,"dropdown")])[<dynamic>]';
+    },
+
+    get filterValueDropdownOptionLocator() {
+        return '(//select[contains(@id,"dropdown")])[<dynamic1>]/child::option[text()="<dynamic2>"]';
+    },
+
+    get filterCloseXIconsCount() {
+        return $$('//span[@class="fa fa-fw fa-close"]/parent::a').length;
+    },
+
+    get filterCloseXIcon() {
+        return $('//span[@class="fa fa-fw fa-close"]/parent::a');
     }
 }

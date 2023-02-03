@@ -133,7 +133,7 @@ Feature: ODTI Jobs CSO features
       | zenq@cso10.com | Test1        | 3           | 4                 | 3                    |
 
     #Scenario 11 - AS CSO User - User should be able to click jobs under 'ODTI SERVICE CHARGE ID' column
-  @Regression @RegressionS36 @CSOSearchByContactID
+  @Regression @RegressionS36 @CSOClicksJobID
   Scenario Outline: CSO user should be able to click jobs under ODTI SERVICE CHARGE ID column
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
@@ -189,3 +189,59 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso |  Interpreter detail page url                      |
       | zenq@cso10.com | Test1        |  ManagementModules/PreviewContractorProfile.aspx  |
+
+    #Scenario 14 - As CSO User - Applying Advanced Search Filters
+  @Regression @RegressionS39 @CSOAdvancedFilters
+  Scenario Outline: CSO user can apply advanced search filters
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click Advanced search link in Admin
+    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    Then The records are displayed only for the entered filter value "<language>" under column number "<Language column number>"
+    And The records are displayed only for the entered filter value "<Interpreter Name>" under column number "<Interpreter Name column number>"
+
+    Examples:
+      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | language | Language column number | Interpreter Name | Interpreter Name column number |
+      | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              |
+
+    #Scenario 15 - As CSO User - Applying Advanced Search Filters and verify that results  are display only for the selected filters and the total records value should be updated
+  @Regression @RegressionS40 @CSOAdvancedFilterRecords
+  Scenario Outline: CSO user can apply advanced search filters
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I get the records count in ODTI before adding filters
+    And I click Advanced search link in Admin
+    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    Then The total record value should be updated as per the number of records displayed
+
+    Examples:
+      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
+      | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    |
+
+    #Scenario 16 - As CSO User - Removing the applied Advanced Search filters
+  @Regression @RegressionS41 @CSOAdvancedFiltersRemoved
+  Scenario Outline: CSO user can apply advanced search filters
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I get the records count in ODTI before adding filters
+    And I click Advanced search link in Admin
+    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    And The total record value should be updated as per the number of records displayed
+    And I Click on the X Icon beside the filters applied
+    Then All the Jobs are displayed as no filters are applied and the number of records gets updated
+
+    Examples:
+      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
+      | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    |
