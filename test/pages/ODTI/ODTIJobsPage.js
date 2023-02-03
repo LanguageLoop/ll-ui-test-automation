@@ -1,127 +1,127 @@
 
-module.exports ={
+module.exports = {
 
-    get titleDropdown(){
+    get titleDropdown() {
         return $('//select[contains(@id,"Title")]');
     },
 
-    get campusDropdown(){
+    get campusDropdown() {
         return $('//select[contains(@id,"Campus")]');
     },
 
-    get startDateTextBox(){
+    get startDateTextBox() {
         return $('//span[text()="Start Date"]/parent::div/parent::div/child::input');
     },
 
-    get endDateTextBox(){
+    get endDateTextBox() {
         return $('//span[text()="End Date"]/parent::div/parent::div/child::input');
     },
 
-    get recordsCountText(){
+    get recordsCountText() {
         return $('//div[@class="Counter_Message"]');
     },
 
-    get callStartHeader(){
+    get callStartHeader() {
         return $('//div[text()="Call Start"]');
     },
 
-    get totalRowCount(){
+    get totalRowCount() {
         return $$('//tbody/child::tr/child::td[1]/child::div//child::span').length;
     },
 
-    get odtiServiceChargeIDTextLocator(){
+    get odtiServiceChargeIDTextLocator() {
         return '//tbody/child::tr[<dynamic>]/child::td[1]/child::div//child::span[1]';
     },
 
-    get recordStatusSelectedOption(){
+    get recordStatusSelectedOption() {
         return $('//select[contains(@id,"Field")]/option[text()="RecordStatus"][@selected]');
     },
 
-    get advancedSearchLink(){
+    get advancedSearchLink() {
         return $('//a[contains(text(),"Advanced search")]');
     },
 
-    get filterFieldDropdownLocator(){
+    get filterFieldDropdownLocator() {
         return '(//select[contains(@id,"Field")])[<dynamic>]';
     },
 
-    get filterFieldDropdownOptionLocator(){
+    get filterFieldDropdownOptionLocator() {
         return '(//select[contains(@id,"Field")])[<dynamic1>]/child::option[text()="<dynamic2>"]';
     },
 
-    get filterComparisonDropdownLocator(){
+    get filterComparisonDropdownLocator() {
         return '(//select[contains(@id,"Comparison")])[<dynamic>]';
     },
 
-    get filterComparisonDropdownOptionLocator(){
+    get filterComparisonDropdownOptionLocator() {
         return '(//select[contains(@id,"Comparison")])[<dynamic1>]/child::option[text()="<dynamic2>"]';
     },
 
-    get filterValueDropdown(){
+    get filterValueDropdown() {
         return $('//select[contains(@id,"dropdown")]');
     },
 
-    get filterValueTextBoxLocator(){
+    get filterValueTextBoxLocator() {
         return '(//input[contains(@id,"ListAdvanceSearchRule")])[<dynamic>]';
     },
 
-    get callStartDateTimeTextLocator(){
+    get callStartDateTimeTextLocator() {
         return '//tbody/child::tr[<dynamic>]/child::td[2]/child::div//child::span[1]';
     },
 
-    get odtiJobTableColumnHeaders(){
+    get odtiJobTableColumnHeaders() {
         return $('//th[contains(@class,"TableRecords_Header")]/parent::tr');
     },
 
-    get campusNameValueTextLocator(){
+    get campusNameValueTextLocator() {
         return '//tbody/child::tr[<dynamic>]/child::td[4]/child::span[1]';
     },
 
-    get interpreterNameValueTextLocator(){
+    get interpreterNameValueTextLocator() {
         return '//tbody/child::tr[<dynamic>]/child::td[6]/child::div//child::span[1]';
     },
 
-    get noBillingsMessageText(){
+    get noBillingsMessageText() {
         return $('//td[text()="No odti billings to show..."]');
     },
 
-    get exportToExcelLink(){
+    get exportToExcelLink() {
         return $('//a[contains(text(),"Export ") and contains (text(),"Excel")]');
     },
 
-    get actualCountArrowButton(){
+    get actualCountArrowButton() {
         return $('//div[contains(@id,"GetCount")]/child::span');
     },
 
-    get actualCountRecordsValueText(){
+    get actualCountRecordsValueText() {
         return $('//div[contains(@id,"CounterClaim")]');
     },
 
-    get searchByTextBox(){
+    get searchByTextBox() {
         return $('//input[contains(@id,"SearchInput")]')
     },
 
-    get columnHeaderLocator(){
+    get columnHeaderLocator() {
         return '//tr//*[text()="<dynamic>"]';
     },
 
-    get columnValueTextLocator(){
+    get columnValueTextLocator() {
         return '//tbody/child::tr[<dynamic1>]/child::td[<dynamic2>]//child::*[1]';
     },
 
-    get paginationPageNumberLinkLocator(){
+    get paginationPageNumberLinkLocator() {
         return '//*[contains(@class,"ListNavigation") and contains (text(),"<dynamic>")]'
     },
 
-    get nextPageArrowLink(){
+    get nextPageArrowLink() {
         return $('//a[text()="next"]');
     },
 
-    get previousPageArrowLink(){
+    get previousPageArrowLink() {
         return $('//a[text()="previous"]');
     },
 
-    get currentPageNumberLink(){
+    get currentPageNumberLink() {
         return $('//span[@class="ListNavigation_CurrentPageNumber"]');
     },
 
@@ -129,15 +129,27 @@ module.exports ={
         return $('//div[@class="TableRecords_Wrapper"]');
     },
 
-    get titleDropdownOption(){
+    get titleDropdownOption() {
         return '//select[contains(@id,"Title")]/child::option[text()="<dynamic>"]';
     },
 
-    get columnValueLinkLocator(){
+    get columnValueLinkLocator() {
         return '//tbody/child::tr[<dynamic1>]/child::td[<dynamic2>]//child::a[1]';
     },
 
     get jobIDTextInODTIJobDetailsPage() {
         return $('//span[contains(text(),"Job ID #")]');
+    },
+
+    get campusContactsText() {
+        return $('//span[text()="Campus Contacts"]');
+    },
+
+    get selectedCampusNameText() {
+        return $('//div[@class="Name"]');
+    },
+
+   get selectedInterpreterNameText() {
+        return $('//div[@class="PreferredName"]/span');
     }
 }
