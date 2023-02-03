@@ -1,7 +1,7 @@
 When(/^I view the ODTI > ODTI Jobs page$/, function () {
     action.isVisibleWait(ODTIJobsPage.titleDropdown, 10000);
     action.selectTextFromDropdown(ODTIJobsPage.titleDropdown, "ODTI Jobs");
-    let ODTIJobsOptionInTitleDropdown = $(ODTIJobsPage.titleDropdownOption.replace("<dynamic>","ODTI Jobs"));
+    let ODTIJobsOptionInTitleDropdown = $(ODTIJobsPage.titleDropdownOption.replace("<dynamic>", "ODTI Jobs"));
     let optionSelectedStatus = action.isSelectedWait(ODTIJobsOptionInTitleDropdown, 10000);
     chai.expect(optionSelectedStatus).to.be.true;
 })
@@ -117,7 +117,7 @@ Then(/^The results displayed are within the date range "(.*)", "(.*)"$/, functio
 })
 
 Then(/^The columns available for ODTI Jobs for the user are "(.*)"$/, function (expectedHeaders) {
-    action.isVisibleWait(ODTIJobsPage.exportToExcelLink,30000);
+    action.isVisibleWait(ODTIJobsPage.exportToExcelLink, 30000);
     action.isVisibleWait(ODTIJobsPage.odtiJobTableColumnHeaders, 10000);
     let odtiColumnHeadersActual = action.getElementText(ODTIJobsPage.odtiJobTableColumnHeaders);
     let headerListExpected = expectedHeaders.split(",");
@@ -130,29 +130,29 @@ Then(/^The ODTI Service Charge ID, Campus Name and Interpreter Name results are 
     browser.pause(5000)
     let clickableTageName = "a";
     let serviceChargeID1TextElement = $(ODTIJobsPage.odtiServiceChargeIDTextLocator.replace("<dynamic>", "1"));
-    let serviceChargeIDVisibleStatus = action.isVisibleWait(serviceChargeID1TextElement,10000);
+    let serviceChargeIDVisibleStatus = action.isVisibleWait(serviceChargeID1TextElement, 10000);
     let serviceChargeIDTagName = action.getElementTagName(serviceChargeID1TextElement);
     chai.expect(serviceChargeIDVisibleStatus).to.be.true;
     chai.expect(serviceChargeIDTagName).to.not.equal(clickableTageName);
     let campusName1TextElement = $(ODTIJobsPage.campusNameValueTextLocator.replace("<dynamic>", "1"));
-    let campusNameVisibleStatus = action.isVisibleWait(campusName1TextElement,10000);
+    let campusNameVisibleStatus = action.isVisibleWait(campusName1TextElement, 10000);
     let campusNameTagName = action.getElementTagName(campusName1TextElement);
     chai.expect(campusNameVisibleStatus).to.be.true;
     chai.expect(campusNameTagName).to.not.equal(clickableTageName);
     let interpreterName1TextElement = $(ODTIJobsPage.interpreterNameValueTextLocator.replace("<dynamic>", "1"));
-    let interpreterNameVisibleStatus = action.isVisibleWait(interpreterName1TextElement,10000);
+    let interpreterNameVisibleStatus = action.isVisibleWait(interpreterName1TextElement, 10000);
     let interpreterNameTagName = action.getElementTagName(interpreterName1TextElement);
     chai.expect(interpreterNameVisibleStatus).to.be.true;
     chai.expect(interpreterNameTagName).to.not.equal(clickableTageName);
 })
 
 Then(/^The No odti billings to show... message is displayed$/, function () {
-    let noBillingsMessageDisplayStatus = action.isVisibleWait(ODTIJobsPage.noBillingsMessageText,20000);
+    let noBillingsMessageDisplayStatus = action.isVisibleWait(ODTIJobsPage.noBillingsMessageText, 20000);
     chai.expect(noBillingsMessageDisplayStatus).to.be.true;
 })
 
 When(/^I click on Export to Excel link$/, function () {
-    action.isClickableWait(ODTIJobsPage.exportToExcelLink,20000);
+    action.isClickableWait(ODTIJobsPage.exportToExcelLink, 20000);
     try {
         action.clickElement(ODTIJobsPage.exportToExcelLink);
     } catch (err) {
@@ -189,12 +189,12 @@ Then(/^The Excel file is downloaded$/, function () {
 
 When(/^I click on actual count arrow button$/, function () {
     action.waitUntilLoadingIconDisappears();
-    action.isClickableWait(ODTIJobsPage.actualCountArrowButton,20000);
+    action.isClickableWait(ODTIJobsPage.actualCountArrowButton, 20000);
     action.clickElement(ODTIJobsPage.actualCountArrowButton);
 })
 
 Then(/^The actual count of records is greater than expected records "(.*)"$/, function (expectedCount) {
-    action.isVisibleWait(ODTIJobsPage.actualCountRecordsValueText,10000);
+    action.isVisibleWait(ODTIJobsPage.actualCountRecordsValueText, 10000);
     let actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
     let counter = 0;
     while (parseInt(actualCountOfRecords) <= 500 && counter < 5) {
@@ -288,12 +288,12 @@ Then(/^The ODTI Service Charge ID and Campus Name results are not clickable and 
     browser.pause(5000)
     let clickableTageName = "a";
     let serviceChargeID1TextElement = $(ODTIJobsPage.odtiServiceChargeIDTextLocator.replace("<dynamic>", "1"));
-    let serviceChargeIDVisibleStatus = action.isVisibleWait(serviceChargeID1TextElement,10000);
+    let serviceChargeIDVisibleStatus = action.isVisibleWait(serviceChargeID1TextElement, 10000);
     let serviceChargeIDTagName = action.getElementTagName(serviceChargeID1TextElement);
     chai.expect(serviceChargeIDVisibleStatus).to.be.true;
     chai.expect(serviceChargeIDTagName).to.not.equal(clickableTageName);
     let campusName1TextElement = $(ODTIJobsPage.campusNameValueTextLocator.replace("<dynamic>", "1"));
-    let campusNameVisibleStatus = action.isVisibleWait(campusName1TextElement,10000);
+    let campusNameVisibleStatus = action.isVisibleWait(campusName1TextElement, 10000);
     let campusNameTagName = action.getElementTagName(campusName1TextElement);
     chai.expect(campusNameVisibleStatus).to.be.true;
     chai.expect(campusNameTagName).to.not.equal(clickableTageName);
@@ -311,8 +311,8 @@ Then(/^The records count in records counter has expected records "(.*)"$/, funct
 })
 
 When(/^I enter the search value "(.*)" in the search field$/, function (searchValue) {
-    action.isVisibleWait(ODTIJobsPage.searchByTextBox,10000);
-    action.addValueAndPressReturnTab(ODTIJobsPage.searchByTextBox,searchValue);
+    action.isVisibleWait(ODTIJobsPage.searchByTextBox, 10000);
+    action.addValueAndPressReturnTab(ODTIJobsPage.searchByTextBox, searchValue);
 })
 
 Then(/^The records are displayed only for the entered filter value "(.*)" under column number "(.*)"$/, function (columnFilterValue, columnNumber) {
@@ -329,20 +329,37 @@ When(/^I click on a Job ID value under ODTI SERVICE CHARGE ID column$/, function
     browser.pause(5000);
     action.waitUntilLoadingIconDisappears();
     let jobIdFirstValueElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "1"));
-    action.isVisibleWait(jobIdFirstValueElement,10000);
+    action.isVisibleWait(jobIdFirstValueElement, 10000);
     GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE = action.getElementText(jobIdFirstValueElement);
     action.clickElement(jobIdFirstValueElement);
 })
 
 Then(/^I should be navigated to the Job detail page "(.*)" of the respective job that is clicked$/, function (expectedPageUrl) {
     action.navigateToLatestWindow();
-    action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobDetailsPage,10000);
+    action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobDetailsPage, 10000);
     let currentPageUrlActual = action.getPageUrl();
     chai.expect(currentPageUrlActual).to.includes(expectedPageUrl);
     let jobIDValueInJobDetails = action.getElementText(ODTIJobsPage.jobIDTextInODTIJobDetailsPage);
     chai.expect(jobIDValueInJobDetails).to.includes(GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE);
 })
 
+When(/^I click on a Campus Name value under Campus Name column$/, function () {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let firstCampusNameElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "4"));
+    action.isVisibleWait(firstCampusNameElement, 10000);
+    GlobalData.ODTI_CAMPUS_NAME = action.getElementText(firstCampusNameElement);
+    action.clickElement(firstCampusNameElement);
+})
+
+Then(/^I should be navigated to the Campus detail page "(.*)" of the respective Campus that is clicked$/, function (expectedCampusPageUrl) {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(ODTIJobsPage.selectedCampusNameText, 10000);
+    let currentCampusPageUrl = action.getPageUrl();
+    chai.expect(currentCampusPageUrl).to.includes(expectedCampusPageUrl);
+    let textInCampusPage = action.getElementText(ODTIJobsPage.selectedCampusNameText);
+    chai.expect(textInCampusPage).to.includes(GlobalData.ODTI_CAMPUS_NAME);
+})
 When(/^I add dropdown filter "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (filterOption, filterOptionIndex, filterComparator, filterComparatorIndex, filterValue, filterValueIndex) {
     let filterFieldDropdownElement = $(ODTIJobsPage.filterFieldDropdownLocator.replace("<dynamic>", filterOptionIndex));
     action.isVisibleWait(filterFieldDropdownElement, 20000);
@@ -392,7 +409,6 @@ When(/^I Click on the X Icon beside the filters applied$/, function () {
     for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
         action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000);
         action.clickElement(ODTIJobsPage.filterCloseXIcon);
-
     }
 })
 
@@ -405,3 +421,21 @@ Then(/^All the Jobs are displayed as no filters are applied and the number of re
     chai.expect(GlobalData.ODTI_JOB_RECORDS_COUNT).to.equal(recordsCountAfterFiltersRemoved);
 })
 
+
+When(/^I click on a Interpreter Name value under Interpreter Name column$/, function () {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let firstInterpreterNameElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "6"));
+    action.isVisibleWait(firstInterpreterNameElement, 10000);
+    GlobalData.ODTI_INTERPRETER_NAME = action.getElementText(firstInterpreterNameElement);
+    action.clickElement(firstInterpreterNameElement);
+})
+
+Then(/^I should be navigated to the Interpreter detail page "(.*)" of the respective Interpreter that is clicked$/, function (expectedInterpreterPageUrl) {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(ODTIJobsPage.selectedInterpreterNameText, 10000);
+    let currentInterpreterPageUrl = action.getPageUrl();
+    chai.expect(currentInterpreterPageUrl).to.includes(expectedInterpreterPageUrl);
+    let textInInterpreterPage = action.getElementText(ODTIJobsPage.selectedInterpreterNameText);
+    chai.expect(textInInterpreterPage).to.includes(GlobalData.ODTI_INTERPRETER_NAME);
+})

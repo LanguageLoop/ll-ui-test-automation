@@ -146,6 +146,50 @@ Feature: ODTI Jobs CSO features
       | username cso   | password cso | job detail page url        |
       | zenq@cso10.com | Test1        | OnDemandTI/JobDetails.aspx |
 
+      #Scenario 9 - User should be able to perform sorting on each column
+  @Regression @RegressionS31 @CSOTableColumnsSort
+  Scenario Outline: CSO user should be able to perform sorting on each column
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    Then The results should be sorted on clicking each column header "<column headers>"
+
+    Examples:
+      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2  | column headers                                                                                                         |
+      | zenq@cso10.com | Test1        | Job Date        | 2                     | After               | 2                         | 11-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                     | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type,Client Charge Subtotal |
+
+      #Scenario 12 - AS CSO User - User should be able to click Campus Name under 'Campus Name' column
+  @Regression @RegressionS37 @CSOClickCampusName
+  Scenario Outline: CSO user should be able to click Campus Name under Campus Name column
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click on a Campus Name value under Campus Name column
+    Then I should be navigated to the Campus detail page "<Campus detail page url>" of the respective Campus that is clicked
+
+    Examples:
+      | username cso   | password cso |  Campus detail page url                |
+      | zenq@cso10.com | Test1        |  ManagementModules/CampusDetails.aspx  |
+
+      #Scenario 13 - AS CSO User - User should be able to click Interpreter Name under 'Interpreter Name' column
+  @Regression @RegressionS38 @CSOClickInterpreterName
+  Scenario Outline: CSO user should be able to click Interpreter Name under Interpreter Name column
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click on a Interpreter Name value under Interpreter Name column
+    Then I should be navigated to the Interpreter detail page "<Interpreter detail page url>" of the respective Interpreter that is clicked
+
+    Examples:
+      | username cso   | password cso |  Interpreter detail page url                      |
+      | zenq@cso10.com | Test1        |  ManagementModules/PreviewContractorProfile.aspx  |
+
     #Scenario 14 - As CSO User - Applying Advanced Search Filters
   @Regression @RegressionS39 @CSOAdvancedFilters
   Scenario Outline: CSO user can apply advanced search filters
