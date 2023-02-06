@@ -382,6 +382,49 @@ module.exports = {
 
     get contractorSearchResultLocator(){
         return '//table[contains(@id,"Contractor")]//td/a[contains(text(),"<dynamic>")]'
-    }
-    
+    },
+
+    get addABlockLink() {
+        return $('//a[text()="Add a block"]');
+    },
+
+    get contractorBlockingModalPopup() {
+        return $('//span[text()="Contractor Blocking"]//parent::div/parent::div[contains(@id,"block_Modal")]');
+    },
+
+    get contractorBlockPopupTabs() {
+        return $('//div[contains(@id,"block_Modal")]//div[@class="Tabs_header noSwipe "]');
+    },
+
+    get billToTab() {
+        return $('//div[text()="Bill-To" and contains(@class,"Tabs__tab PH")]');
+    },
+
+    get listOfContractBillTos() {
+        return $('//span[@class="ListRecords" and contains(@id,"BillTos")]');
+    },
+
+    get billToSearchBox() {
+        return $('//input[contains(@id,"SearchBillTo")]');
+    },
+
+    get billToCheckBoxesCount() {
+        return $$('//input[@type="checkbox" and contains(@id,"BillTos")]').length;
+    },
+
+    get billToCheckBoxes() {
+        return $$('//input[@type="checkbox" and contains(@id,"BillTos")]');
+    },
+
+    get jobTypesListRecords() {
+        return $('//span[@class="ListRecords" and contains(@id,"ListRecords1")]');
+    },
+
+    get jobTypesCheckBoxesCount() {
+        return $$('//input[@type="checkbox" and contains(@id,"ListRecords1")]').length;
+    },
+
+    get jobTypesCheckBoxes() {
+        return $$('//input[@type="checkbox" and contains(@id,"ListRecords1")]');
+    },
 }

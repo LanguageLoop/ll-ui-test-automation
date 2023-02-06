@@ -346,3 +346,78 @@ Then(/^I see any naati accreditation already present$/, function() {
     }
 }
 })
+
+Given(/^the admin is on the Contractor Profile page$/, function () {
+    let currentPageUrl = action.getPageUrl();
+    chai.expect(currentPageUrl).to.includes("PreviewContractorProfile.aspx");
+})
+
+When(/^the admin clicks on Add a Block$/, function () {
+    action.isVisibleWait(contractorEngagementPage.addABlockLink, 10000);
+    action.clickElement(contractorEngagementPage.addABlockLink);
+})
+
+Then(/^the Contractor Blocking modal popup pops-up$/, function () {
+    let contractorBlockModalPopupDisplayStatus = action.isVisibleWait(contractorEngagementPage.contractorBlockingModalPopup, 10000);
+    chai.expect(contractorBlockModalPopupDisplayStatus).to.be.true;
+})
+
+Then(/^there should be 3 Tabs : "(.*)", "(.*)", "(.*)"$/, function (tab1Expected, tab2Expected, tab3Expected) {
+    let contractorBlockPopupTabsActual = action.getElementText(contractorEngagementPage.contractorBlockPopupTabs);
+    chai.expect(contractorBlockPopupTabsActual).to.includes(tab1Expected);
+    chai.expect(contractorBlockPopupTabsActual).to.includes(tab2Expected);
+    chai.expect(contractorBlockPopupTabsActual).to.includes(tab3Expected);
+})
+
+When(/^the admin clicks on the Bill To tab$/, function () {
+    action.isVisibleWait(contractorEngagementPage.billToTab, 10000);
+    action.clickElement(contractorEngagementPage.billToTab);
+})
+
+Then(/^it should show a list of Contract Bill To’s$/, function () {
+    let contractBillTosDisplayStatus = action.isVisibleWait(contractorEngagementPage.listOfContractBillTos, 10000);
+    chai.expect(contractBillTosDisplayStatus).to.be.true;
+})
+
+Then(/^the search box should allow the admin to filter by Bill To name "(.*)"$/, function (billToNameSearch) {
+    action.isVisibleWait(contractorEngagementPage.billToSearchBox, 10000);
+    action.addValueAndPressReturnTab(contractorEngagementPage.billToSearchBox, billToNameSearch);
+    let contractBillTosTextActual = action.getElementText(contractorEngagementPage.listOfContractBillTos, 10000);
+    chai.expect(contractBillTosTextActual).to.includes(billToNameSearch);
+})
+
+Then(/^the user can select 1 or more Bill Tos$/, function () {
+    action.clearValue(contractorEngagementPage.billToSearchBox);
+    browser.waitUntil(
+        () => contractorEngagementPage.billToCheckBoxesCount > 1,
+        {
+            timeout: 20000,
+            timeoutMsg: 'expected all Bill To checkboxes to display'
+        }
+    );
+    let billToCheckboxesCount = contractorEngagementPage.billToCheckBoxesCount;
+    for (let checkBoxIndex = 0; checkBoxIndex < billToCheckboxesCount; checkBoxIndex++) {
+        let checkBoxElements = contractorEngagementPage.billToCheckBoxes;
+        action.isVisibleWait(checkBoxElements[checkBoxIndex], 10000);
+        action.clickElement(checkBoxElements[checkBoxIndex]);
+        //short pause to let the checkboxes get selected
+        browser.pause(2000);
+        let checkBoxSelectedStatus = action.isSelectedWait(checkBoxElements[checkBoxIndex], 10000);
+        chai.expect(checkBoxSelectedStatus).to.be.true;
+    }
+})
+
+Then(/^it should show a list of Job Types, each with a checkbox$/, function () {
+    let jobTypesListDisplayStatus = action.isVisibleWait(contractorEngagementPage.jobTypesListRecords, 10000);
+    chai.expect(jobTypesListDisplayStatus).to.be.true;
+})
+
+Then(/^each should be default checked$/, function () {
+    let jobTypesCheckboxesCount = contractorEngagementPage.jobTypesCheckBoxesCount;
+    for (let checkBoxIndex = 0; checkBoxIndex < jobTypesCheckboxesCount; checkBoxIndex++) {
+        let checkBoxElements = contractorEngagementPage.jobTypesCheckBoxes;
+        action.isVisibleWait(checkBoxElements[checkBoxIndex], 10000);
+        let checkBoxSelectedStatus = action.isSelectedWait(checkBoxElements[checkBoxIndex], 10000);
+        chai.expect(checkBoxSelectedStatus).to.be.true;
+    }
+})
