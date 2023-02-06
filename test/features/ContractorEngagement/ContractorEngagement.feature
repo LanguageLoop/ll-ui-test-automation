@@ -155,3 +155,52 @@ Feature: Contractor Engagement features
   | LLAdmin@looped.in  | Octopus@6  |   6155      |  Interpreter   | ASSYRIAN | ENGLISH  | Recognised Practising Interpreter  |CPN9LK67K|
   | LLAdmin@looped.in  | Octopus@6  |   6268      |  Translator    | ASSYRIAN | ENGLISH  | 3-into English                     |CPN7CL35L|
   | LLAdmin@looped.in  | Octopus@6  |   6268      |  Translator    | ENGLISH  | ASSYRIAN | 3-from English                     |CPN7CL35L|
+
+   #Block COVID Vax Exemption UI Scenario 1: Admin user clicks Add a Block
+ @BlockCovidVaxExemption @AdminClicksAddBlock
+ Scenario Outline: Block COVID Vax Exemption UI Admin user clicks Add a Block
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and open contractor "<contractor>"
+  And the admin is on the Contractor Profile page
+  And the admin clicks on Add a Block
+  Then the Contractor Blocking modal popup pops-up
+  And there should be 3 Tabs : "<contractorPopupTab1>", "<contractorPopupTab2>", "<contractorPopupTab3>"
+
+  Examples:
+   | username           |  password |  contractor   | contractorPopupTab1 | contractorPopupTab2 | contractorPopupTab3 |
+   | LLAdmin@looped.in  | Octopus@6  | Automation   | Organisation        | Campus              | Bill-To             |
+
+  #Block COVID Vax Exemption UI Scenario 2a: Admin user clicks on the Bill To tab
+ @BlockCovidVaxExemption @AdminClicksBillTo
+ Scenario Outline: Block COVID Vax Exemption UI Admin user clicks on the Bill To tab
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and open contractor "<contractor>"
+  And the admin clicks on Add a Block
+  And the Contractor Blocking modal popup pops-up
+  And the admin clicks on the Bill To tab
+  Then it should show a list of Contract Bill To’s
+  And the search box should allow the admin to filter by Bill To name "<billToName>"
+  And the user can select 1 or more Bill Tos
+
+  Examples:
+   | username           |  password |  contractor   | billToName                    |
+   | LLAdmin@looped.in  | Octopus@6  | Automation   | Catholic Education - User Pay |
+
+
+   #Block COVID Vax Exemption UI Scenario 2b: Job Types Selection
+ @BlockCovidVaxExemption @JobTypesSelection
+ Scenario Outline: Block COVID Vax Exemption UI Job Types Selection
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and open contractor "<contractor>"
+  And the admin clicks on Add a Block
+  And the Contractor Blocking modal popup pops-up
+  And the admin clicks on the Bill To tab
+  Then it should show a list of Job Types, each with a checkbox
+  And each should be default checked
+
+  Examples:
+   | username           |  password |  contractor   |
+   | LLAdmin@looped.in  | Octopus@6  | Automation   |
