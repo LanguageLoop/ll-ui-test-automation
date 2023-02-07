@@ -412,12 +412,114 @@ Then(/^it should show a list of Job Types, each with a checkbox$/, function () {
     chai.expect(jobTypesListDisplayStatus).to.be.true;
 })
 
-Then(/^each should be default checked$/, function () {
+Then(/^each Job Type should be default checked$/, function () {
     let jobTypesCheckboxesCount = contractorEngagementPage.jobTypesCheckBoxesCount;
     for (let checkBoxIndex = 0; checkBoxIndex < jobTypesCheckboxesCount; checkBoxIndex++) {
         let checkBoxElements = contractorEngagementPage.jobTypesCheckBoxes;
         action.isVisibleWait(checkBoxElements[checkBoxIndex], 10000);
         let checkBoxSelectedStatus = action.isSelectedWait(checkBoxElements[checkBoxIndex], 10000);
         chai.expect(checkBoxSelectedStatus).to.be.true;
+    }
+})
+
+When(/^the inputs "(.*)", "(.*)" are valid in Bill-To tab$/, function (billTos, severityLevel) {
+    let billTosList = billTos.split(",");
+    for (let option = 0; option < billTosList.length; option++) {
+        let billToCode = billTosList[option].split("-")[0].trim();
+        action.addValueAndPressReturnTab(contractorEngagementPage.billToSearchBox, billToCode);
+        let billToCheckboxElement = $(contractorEngagementPage.billToDynamicCheckboxLocator.replace("<dynamic>", billTosList[option]));
+        action.isVisibleWait(billToCheckboxElement, 10000);
+        action.clickElement(billToCheckboxElement);
+    }
+    action.selectTextFromDropdown(contractorEngagementPage.billToSeverityDropdown, severityLevel);
+    action.enterValue(contractorEngagementPage.startDateBillTo, datetime.getShortNoticeDate());
+    action.enterValue(contractorEngagementPage.endDateBillTo, datetime.getRandomFutureDate());
+    action.pressKeys("Tab");
+})
+
+When(/^at least 1 Job Type "(.*)" is selected$/, function (jobTypes) {
+    let jobTypesCheckboxesCount = contractorEngagementPage.jobTypesCheckBoxesCount;
+    for (let checkBoxIndex = 0; checkBoxIndex < jobTypesCheckboxesCount; checkBoxIndex++) {
+        let checkBoxElements = contractorEngagementPage.jobTypesCheckBoxes;
+        action.isVisibleWait(checkBoxElements[checkBoxIndex], 10000);
+        let checkBoxSelectedStatus = action.isSelectedWait(checkBoxElements[checkBoxIndex], 10000);
+        if (checkBoxSelectedStatus === true) {
+            action.clickElement(checkBoxElements[checkBoxIndex])
+        }
+    }
+    let jobTypesList = jobTypes.split(",");
+    for (let option = 0; option < jobTypesList.length; option++) {
+        let jobTypeCheckboxElement = $(contractorEngagementPage.jobTypeDynamicCheckboxLocator.replace("<dynamic>", jobTypesList[option]));
+        action.isVisibleWait(jobTypeCheckboxElement, 10000);
+        action.clickElement(jobTypeCheckboxElement)
+    }
+})
+
+Then(/^the block is saved$/, function () {
+    action.isVisibleWait(contractorEngagementPage.addBlockButton, 10000);
+    action.clickElement(contractorEngagementPage.addBlockButton);
+})
+
+Then(/^the Contractor Blocking popup closes$/, function () {
+    browser.waitUntil(
+        () => action.isVisibleWait(contractorEngagementPage.contractorBlockingModalPopup,0) === false,
+        {
+            timeout: 10000,
+            timeoutMsg: 'expected Contractor Blocking popup to close in 10s'
+        }
+    );
+    let contractorBlockModalPopupDisplayStatus = action.isVisibleWait(contractorEngagementPage.contractorBlockingModalPopup, 3000);
+    chai.expect(contractorBlockModalPopupDisplayStatus).to.be.false;
+})
+
+Then(/^the new block rule is displayed on the contractor’s profile$/, function () {
+    let newBlockRulesOnProfileCount = contractorEngagementPage.newBlockRulesOnProfile.length;
+    for (let rule = 0; rule < newBlockRulesOnProfileCount.length; rule++) {
+        let newRuleDisplayStatus = action.isVisibleWait(contractorEngagementPage.newBlockRulesOnProfile[rule], 10000);
+        chai.expect(newRuleDisplayStatus).to.be.true;
+    }
+})
+
+Then(/^the selected JobTypes are applied to all the BillTo’s "(.*)" blocking for the contractor$/, function (billTos) {
+    let billTosExpected = billTos.split(",");
+    let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
+    for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
+        let newRuleLinkTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
+        chai.expect(newRuleLinkTextActual).to.includes(billTosExpected[rule]);
+    }
+})
+
+Then(/^the selected blocked Job Types "(.*)" are displayed in brackets after the Contractor name "(.*)"$/, function (jobTypes, contractorName) {
+    let jobTypesExpected = jobTypes.split(",");
+    let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
+    for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
+        let newRuleLinkTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
+        let jobTypesInBracketsNextToContractorName = " " + contractorName + " " + "[" + jobTypesExpected[0] + " " + jobTypesExpected[1] + "]"
+        chai.expect(newRuleLinkTextActual).to.includes(jobTypesInBracketsNextToContractorName);
+    }
+})
+
+Then(/^the block rules are removed$/, function () {
+    let rule = 0;
+    while (action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksToggleIcon, 1000) === true) {
+        action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksToggleIcon, 10000);
+        action.clickElement(contractorEngagementPage.newBlockRuleLinksToggleIcon);
+        action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksRemove, 10000);
+        action.clickElement(contractorEngagementPage.newBlockRuleLinksRemove);
+        browser.pause(3000);
+        rule++
+    }
+})
+
+Then(/^no blocked job types "(.*)" brackets will be displayed"$/, function (jobTypes) {
+    let jobTypesExpected = jobTypes.split(",");
+    let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
+    for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
+        let newRuleLinkTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
+        for(let option=0; option<jobTypesExpected.length; option++) {
+            chai.expect(newRuleLinkTextActual).to.not.includes(jobTypesExpected[option]);
+        }
+        chai.expect(newRuleLinkTextActual).to.not.includes("[");
+        chai.expect(newRuleLinkTextActual).to.not.includes("]");
     }
 })
