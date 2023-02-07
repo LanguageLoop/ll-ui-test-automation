@@ -121,4 +121,35 @@ module.exports = {
     get show$AmountsOnODTICheckbox(){
         return $('//div[text()="Show $ amounts on On Demand TI Dashboard"]/parent::div//child::input');
     },
+
+    get naatiAccreditations()
+    {
+        return $('//div[text()="Naati Accreditations"]/parent::div/parent::div');
+    },
+
+    get fisrtNaatiLevelElement() 
+    {
+        return '//table[contains(@id, "NaatiAccre")]/child::tbody/tr[<dynamic1>]/td[<dynamic2>]/a';
+    },
+
+    get fisrtNaatiWeightElement()
+    {
+        return '//table[contains(@id, "NaatiAccre")]/child::tbody/tr[<dynamic1>]/td[<dynamic2>]/div';
+    },
+
+    get manageNaatiAccreditationPopup()
+    {
+        return $('//span[text()="Manage Naati Accreditation"]');
+    },
+
+    get naatiWeightField()
+    {
+        return $('//input[contains(@name, "Naati_Weight")]');
+    },
+
+    get saveButton()
+    {
+        return $('//span[text()="Manage Naati Accreditation"]/following::input[contains(@id,"btnSaveModal")]');
+    },
+
 }

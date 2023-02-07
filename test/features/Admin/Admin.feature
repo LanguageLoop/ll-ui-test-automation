@@ -3,9 +3,9 @@ Feature: Admin features
 
   Background: Load the Loopedin login page
     Given the looped in login page is opened
-   
 
- #LL-608 Scenario 1 - new column displayed for creation date
+
+  #LL-608 Scenario 1 - new column displayed for creation date
   @NewColumnCreationDate
   Scenario Outline: New column displayed for creation date
     When I login with "<username>" and "<password>"
@@ -67,7 +67,7 @@ Feature: Admin features
       | username          | password  | Client Group Options                                                                                | Contractor Group Options | Staff Group Options                                                                                                                                                                                                                                                                                                                                                           |
       | LLAdmin@looped.in | Octopus@6 | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor               | Account Manager,Account Payable Officer,Account Receivable Officer,Administrator,After Hours Customer Service,Contractor Engagement Officer ,Customer Service Manager,Customer Service Officer,Developer Features,Finance Manager,Marketing,Relationships and Growth Manager,Senior Customer Service Officer,Team Leader,Translation Project Coordinator,Translations Manager |
 
-    #LL-607 Scenario 3 - user selects option
+  #LL-607 Scenario 3 - user selects option
   @UserSelectsRoleOption
   Scenario Outline: User selects option
     When I login with "<username>" and "<password>"
@@ -84,7 +84,7 @@ Feature: Admin features
       | username          | password  | role filter option | expected oldest result |
       | LLAdmin@looped.in | Octopus@6 | Bookings Officer   | Phteven Smith          |
 
-    #LL-607 Scenario 4 - user selects All Roles
+  #LL-607 Scenario 4 - user selects All Roles
   @UserSelectsAllRoles
   Scenario Outline: User selects All Roles
     When I login with "<username>" and "<password>"
@@ -98,10 +98,10 @@ Feature: Admin features
     Then The table shows all accounts "<expected result admin>", "<expected result non admin>" regardless of the role
 
     Examples:
-      | username          | password  | role filter option | expected result admin  | expected result non admin |
-      | LLAdmin@looped.in | Octopus@6 | All Roles          | LL Admin               | Phteven Smith             |
+      | username          | password  | role filter option | expected result admin | expected result non admin |
+      | LLAdmin@looped.in | Octopus@6 | All Roles          | LL Admin              | Phteven Smith             |
 
-    #LL-612 Scenario 3 - Admin creates New Account
+  #LL-612 Scenario 3 - Admin creates New Account
   @AdminCreatesNewAccount
   Scenario Outline: User selects All Roles
     When I login with "<username>" and "<password>"
@@ -119,7 +119,7 @@ Feature: Admin features
       | username          | password  | role toggle | firstname     | landline number |
       | LLAdmin@looped.in | Octopus@6 | Contractor  | AutomationCBO | 0212345678      |
 
-    #LL-612 Scenario 4 - View created date
+  #LL-612 Scenario 4 - View created date
   @ViewCreatedDate
   Scenario Outline: User selects All Roles
     When I login with "<username>" and "<password>"
@@ -128,6 +128,23 @@ Feature: Admin features
     Then They will see the Created Date: DD MM YYYY HH:MM:SS under the Profile picture box AND this applies to all roles
 
     Examples:
-      | username          | password  |
-      | zenq2@ll.com.au   | Reset@312 |
-      | zenq@cbo11.com    | Test1     |
+      | username        | password  |
+      | zenq2@ll.com.au | Reset@312 |
+      | zenq@cbo11.com  | Test1     |
+
+  #LL-696 Scenario 1 - NAATI weight less or equal to 1000
+  @NaatiEqual1000 @NaatiWeight
+  Scenario Outline: User enters NAATI weight less or equal to 1000
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Naati Accreditations section on the Admin page
+    And I select the fisrt Naati Level
+    And I see Manage Naati Accreditation popup is displayed
+    And I enter the NAATI Weight equal to "<Naati Weight>" by clearing the previous existing value
+    And I click on Save button
+    Then the entered Naati Weight should be saved and displayed value "<Naati Weight>"
+    And I revert the Naati Weight to the orginal value
+
+    Examples:
+      | username        | password  | Naati Weight |
+      | zenq1@ll.com.au | Reset@312 | 1000         |
