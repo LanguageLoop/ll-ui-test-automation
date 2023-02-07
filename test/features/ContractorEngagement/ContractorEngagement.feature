@@ -204,3 +204,47 @@ Feature: Contractor Engagement features
   Examples:
    | username           |  password |  contractor   |
    | LLAdmin@looped.in  | Octopus@6  | Automation   |
+
+  #LL-613 Block COVID Vax Exemption UI Scenario 3a: Admin user Saves a block, success
+ @BlockCovidVaxExemption @SavesBlockAtLeast1JobType
+ Scenario Outline: Block COVID Vax Exemption UI Admin user Saves a block, success
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and open contractor "<contractor>"
+  And the admin clicks on Add a Block
+  And the Contractor Blocking modal popup pops-up
+  And the admin clicks on the Bill To tab
+  And the inputs "<billTos>", "<severityLevel>" are valid in Bill-To tab
+  And at least 1 Job Type "<jobTypes>" is selected
+  Then the block is saved
+  And the Contractor Blocking popup closes
+  And the new block rule is displayed on the contractor’s profile
+  And the selected JobTypes are applied to all the BillTo’s "<billTos>" blocking for the contractor
+  And the selected blocked Job Types "<jobTypes>" are displayed in brackets after the Contractor name "<contractor>"
+  And the block rules are removed
+
+  Examples:
+   | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes              |
+   | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
+
+  #LL-613 Block COVID Vax Exemption UI Scenario 3b: Admin user Saves a block with all Job Types, success
+ @BlockCovidVaxExemption @SavesBlockAllJobTypes
+ Scenario Outline: Block COVID Vax Exemption UI Admin user Saves a block with all Job Types, success
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and open contractor "<contractor>"
+  And the admin clicks on Add a Block
+  And the Contractor Blocking modal popup pops-up
+  And the admin clicks on the Bill To tab
+  And the inputs "<billTos>", "<severityLevel>" are valid in Bill-To tab
+  And each Job Type should be default checked
+  Then the block is saved
+  And the Contractor Blocking popup closes
+  And the new block rule is displayed on the contractor’s profile
+  And the selected JobTypes are applied to all the BillTo’s "<billTos>" blocking for the contractor
+  And no blocked job types "<jobTypes>" brackets will be displayed"
+  And the block rules are removed
+
+  Examples:
+   | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes                                                                           |
+   | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | Translation,On Site,Pre-booked TI,Video Conferencing,VideoLoop,On Demand Telephone |
