@@ -1,386 +1,380 @@
-
 module.exports = {
-    
-    get addContractorLink(){
+
+    get addContractorLink() {
         return $('//*[contains(text(),"Add contractor")]')
     },
 
-    get salutationDropdown(){
+    get salutationDropdown() {
         return $('//*[text()="My Details"]/../..//*[text()="Salutation"]/..//select')
     },
 
-    get maleRadioButton(){
+    get maleRadioButton() {
         return $('//*[text()="My Details"]/../..//*[text()="Male"]/..//input')
     },
 
-    get femaleRadioButton(){
+    get femaleRadioButton() {
         return $('//*[text()="My Details"]/../..//*[text()="Female"]/..//input')
     },
 
-    get telephonePinInput(){
+    get telephonePinInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Telephone Pin"]/..//input')
     },
 
-    get firstNameInput(){
+    get firstNameInput() {
         return $('//*[text()="My Details"]/../..//*[text()="First Name"]/..//input')
     },
 
-    get lastNameInput(){
+    get lastNameInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Last Name"]/..//input')
     },
 
-    get mobileInput(){
+    get mobileInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Mobile"]/..//input')
     },
 
-    get telephoneInput(){
+    get telephoneInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Telephone"]/..//input')
     },
 
 
-    get countryOfBirthDropdown(){
+    get countryOfBirthDropdown() {
         return $('//*[text()="My Details"]/../..//*[text()="Country of Birth"]/..//select')
     },
 
-    get emailInput(){
+    get emailInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Email"]/..//input[contains(@name,"UserDetail")]')
     },
 
-    get emailPreferenceCheckbox()
-    {
+    get emailPreferenceCheckbox() {
         return $('//*[text()="My Details"]/../..//*[text()="Contact Preference"]/..//*[text()="Email"]/..//input')
     },
 
-    get smsPreferenceCheckbox()
-    {
+    get smsPreferenceCheckbox() {
         return $('//*[text()="My Details"]/../..//*[text()="Contact Preference"]/..//*[text()="SMS"]/..//input')
     },
 
-    get gstRegisteredCheckbox()
-    {
+    get gstRegisteredCheckbox() {
         return $('//*[text()="My Details"]/../..//*[text()="Contractor is registered for GST"]/..//input')
     },
 
-    get regionalCheckbox()
-    {
+    get regionalCheckbox() {
         return $('//*[text()="My Details"]/../..//*[text()="Regional Contractor"]/..//*[text()="SMS"]/..//input')
     },
 
-    get dateOfBirthDropdown(){
+    get dateOfBirthDropdown() {
         return $('//*[text()="My Details"]/../..//*[text()="DOB"]/..//input')
     },
 
-    get activationDateInput(){
-        return $('//*[text()="My Details"]/../..//*[text()="Start Activation Date Time"]/..//input')  
+    get activationDateInput() {
+        return $('//*[text()="My Details"]/../..//*[text()="Start Activation Date Time"]/..//input')
     },
 
-    get addressInput(){
+    get addressInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Address Search"]/..//input[contains(@name,"txtAddress")]')
     },
 
-    get postalAddressInput(){
+    get postalAddressInput() {
         return $$('//*[text()="My Details"]/../..//*[text()="Address Search"]/..//input[contains(@name,"txtAddress")]')[1]
     },
 
-    get workContractFileControl(){
+    get workContractFileControl() {
         return $('//*[text()="My Details"]/../..//*[text()="Work Contract File"]/..//*[@type="file"]')
     },
 
-    get saveContractorButton(){
+    get saveContractorButton() {
         return $('//*[text()="My Details"]/../..//input[@value="Save"]')
     },
 
-    get idTypeDropdown(){
+    get idTypeDropdown() {
         return $('//*[text()="My Details"]/../..//*[text()="ID Type"]/..//select')
     },
 
-    get idNumberInput(){
+    get idNumberInput() {
         return $('//*[text()="My Details"]/../..//*[text()="ID  Number"]/..//input')
     },
 
-    get photoIdFileControl(){
+    get photoIdFileControl() {
         return $('//*[text()="My Details"]/../..//*[text()="Photo ID"]/..//*[@type="file"]')
     },
 
-    get contractorABNInput(){
+    get contractorABNInput() {
         return $('//*[text()="My Details"]/../..//*[text()="Contractor ABN"]/..//input[contains(@name,"Contractor_ABN")]')
     },
 
-    get abnCheckButton(){
+    get abnCheckButton() {
         return $('//*[text()="My Details"]/../..//input[@value="Check"]')
     },
 
-    get saveButton(){
+    get saveButton() {
         return $('//*[text()="My Details"]/../..//input[@value="Save"]')
     },
 
-    get searchContractorInput(){
+    get searchContractorInput() {
         return $('//input[contains(@placeholder,"Search by Contractor")]')
     },
-    
-    get contractorTable(){
+
+    get contractorTable() {
         return $('//table[contains(@id,"Contractor")]')
     },
 
-    get contractorTableRows(){
+    get contractorTableRows() {
         return $$('//table[contains(@id,"Contractor")]//tr')
     },
 
     //NAATI Section
 
-    get addAccreditationLink(){
+    get addAccreditationLink() {
         return $('//*[contains(text(),"Add accreditation")]')
     },
 
-    get serviceDropdown(){
+    get serviceDropdown() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="Service"]/..//select')
     },
 
-    get fromLanguageDropdown(){
+    get fromLanguageDropdown() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="From Language"]/..//div')
     },
 
-    get toLanguageDropdown(){
+    get toLanguageDropdown() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="To Language"]/..//div')
     },
 
-    get naatiAccreditationDropdown(){
+    get naatiAccreditationDropdown() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="NAATI Accreditation"]/..//select')
     },
 
-    get checkNAATIButton(){
+    get checkNAATIButton() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//input[@value="Validate"]')
     },
 
-    get naatiNumberInput(){
+    get naatiNumberInput() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="NAATI Number/Practitioner ID"]/..//input')
-        
+
     },
 
-    get dateIssuedInput(){
+    get dateIssuedInput() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="Date Issued"]/..//input')
-        
+
     },
 
-    get dateOfExpiryInput(){
+    get dateOfExpiryInput() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//*[text()="Expiry Date"]/..//input')
-        
+
     },
 
 
-
-    get saveAndCloseButton(){
+    get saveAndCloseButton() {
         return $('//*[contains(text(),"NAATI Accreditation")]/../..//input[@value="Save & Close"]')
     },
 
-    get naatiTableRows(){
+    get naatiTableRows() {
         return $$('//*[contains(text(),"Naati")]/../../..//table//tr')
     },
 
     // Notes section
 
-    get addNotesLink(){
+    get addNotesLink() {
         return $('//*[contains(text(),"Add note")]')
     },
 
-    get noteTitleInput(){
+    get noteTitleInput() {
         return $('//*[text()="Note"]/../..//*[text()="Title"]/..//input')
     },
 
-    get noteMessageInput(){
+    get noteMessageInput() {
         return $('//*[text()="Note"]/../..//*[text()="Message"]/..//textarea')
     },
 
-    get notesTableRows(){
+    get notesTableRows() {
         return $$('//*[contains(text(),"Notes")]/../../..//table//tr')
 
     },
 
-    get saveNotesButton(){
+    get saveNotesButton() {
         return $('//*[text()="Note"]/../..//input[@value="Save"]')
     },
 
 
     // Work eligibility section
 
-    get addWorkEligbileLink(){
+    get addWorkEligbileLink() {
         return $('//*[contains(text(),"Manage work eligible")]')
     },
 
-    get workRightsDropdown(){
+    get workRightsDropdown() {
         return $('//*[contains(text(),"Manage work eligibility")]/../..//*[text()="Work Rights"]/..//select')
     },
 
-    get passportVisaNumberInput(){
+    get passportVisaNumberInput() {
         return $('//*[contains(text(),"Manage work eligibility")]/../..//*[text()="Passport/Visa Number"]/..//input')
     },
 
-    get proofOfVisaPassportFileControl(){
+    get proofOfVisaPassportFileControl() {
         return $('//*[contains(text(),"Manage work eligibility")]/../..//*[text()="Proof of PR / Visa"]/../..//*[@type="file"]')
     },
 
-    get yearsOfResidenceInput(){
+    get yearsOfResidenceInput() {
         return $('//*[contains(text(),"Manage work eligibility")]/../..//*[text()="Year of Residence in Australia"]/..//input')
     },
 
-    get saveWorkEligibilityButton(){
+    get saveWorkEligibilityButton() {
         return $('//*[contains(text(),"Manage work eligibility")]/../..//input[@value="Save"]')
     },
 
-    get workEligibilityDocumentLink(){
+    get workEligibilityDocumentLink() {
         return $('//*[text()="Work Eligibility"]/..//*[contains(text(),"Working rights.docx")]')
     },
 
     // clearance section
 
-    get addClearanceLink(){
+    get addClearanceLink() {
         return $('//*[contains(text(),"Add clearance")]')
     },
-    
-    get clearanceTypeDropdown(){
+
+    get clearanceTypeDropdown() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Clearance type"]/..//select')
     },
 
-    get clearanceDateOfIssueInput(){
+    get clearanceDateOfIssueInput() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Date of issue"]/..//input')
     },
 
-    get clearanceFileControl(){
+    get clearanceFileControl() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Proof of clearance"]/../..//*[@type="file"]')
     },
 
-    get childrenCardTypeDropdown(){
+    get childrenCardTypeDropdown() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Card type"]/..//select')
     },
 
-    get stateDropdown(){
+    get stateDropdown() {
         return $('//*[text()="Add clearance"]/../..//*[text()="State of issue"]/..//select')
     },
 
-    get documentReceivedDate(){
+    get documentReceivedDate() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Document Received Date"]/..//input')
     },
 
-    get documentExpiryDate(){
+    get documentExpiryDate() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Date of expiry"]/..//input')
     },
 
-    get cardNumberInput(){
+    get cardNumberInput() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Card number"]/..//input')
     },
 
-    get policeDateInput(){
+    get policeDateInput() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Date of issue"]/..//input')
     },
 
-    get saveClearanceButton(){
+    get saveClearanceButton() {
         return $('//*[text()="Add clearance"]/../..//input[@value="Save"]')
     },
 
-    get policeCheckToggleButton(){
+    get policeCheckToggleButton() {
         return $('//*[text()="Police Check"]/../../..//label')
     },
 
-    get childrenCheckToggleButton(){
+    get childrenCheckToggleButton() {
         return $('//*[text()="Working With Children"]/../../..//label')
     },
 
-    get clearanceItems(){
+    get clearanceItems() {
         return $$('//*[text()="Clearance"]/../..//*[@class="ClearanceListItem"]')
     },
 
 
     // Work availability
-    get addAvailabilityLink(){
+    get addAvailabilityLink() {
         return $('//*[contains(text(),"Add availability")]')
     },
 
-    get workAvailabilityTranslationItem(){
+    get workAvailabilityTranslationItem() {
         return $('//*[text()="Work Availability"]/..//*[text()="Translation"]')
     },
 
-    get translationAvailabilityCheckbox(){
+    get translationAvailabilityCheckbox() {
         return $('//*[text()="Add availability"]/../..//*[text()="Translation"]/..//input')
     },
 
-    get availabilitySegment(){
+    get availabilitySegment() {
         return $('//*[text()="Add availability"]/../..//tbody[@class="fc-body"]')
     },
-    
-    get wordsPerDayInput(){
+
+    get wordsPerDayInput() {
         return $('//*[text()="Add availability"]/../..//*[text()="Max Words per Day"]/..//input')
     },
 
-    get saveAvailabilityButton(){
+    get saveAvailabilityButton() {
         return $('//*[text()="Add availability"]/../..//input[@value="Save"]')
     },
 
     // Work preference section
 
-    get addWorkPreferenceLink(){
+    get addWorkPreferenceLink() {
         return $('//*[contains(text(),"Add work preference")]')
     },
 
-    get organisationSection(){
+    get organisationSection() {
         return $('//*[contains(text(),"Select Working Preference")]/../..//*[text()="Organisations"]')
     },
 
-    get searchCompanyNameInput(){
+    get searchCompanyNameInput() {
         return $('//*[contains(text(),"Select Working Preference")]/../..//*[text()="Organisations"]/../..//input[contains(@placeholder,"Search by Company Name")]')
     },
 
-    get saveWorkPreferenceButton(){
+    get saveWorkPreferenceButton() {
         return $('//*[contains(text(),"Select Working Preference")]/../..//input[@value="Save"]')
     },
 
-    get removeWorkPreferenceButtons(){
+    get removeWorkPreferenceButtons() {
         return $$('//*[text()="Working Preferences"]/../../../../../..//span[@class="fa fa-fw fa-remove"]')
     },
 
     // Referee section
 
-    get addRefereeLink(){
+    get addRefereeLink() {
         return $('//*[contains(text(),"Add referee")]')
     },
 
-    get agencyInput(){
+    get agencyInput() {
         return $('//*[text()="Referee"]/../..//*[text()="Agency"]/..//input')
     },
 
-    get refereeNameInput(){
+    get refereeNameInput() {
         return $('//*[text()="Referee"]/../..//*[text()="Name"]/..//input')
     },
 
-    get saveRefereeButton(){
+    get saveRefereeButton() {
         return $('//*[text()="Referee"]/../..//input[@value="Save"]')
     },
 
-    get referencesToggleButtons(){
+    get referencesToggleButtons() {
         return $$('//*[text()="References"]/..//label')
     },
-    
-    get validateButton(){
+
+    get validateButton() {
         return $("input[value='Validate']")
     },
-    get naatiNumber(){
+    get naatiNumber() {
         return $('//*[text()[contains(.,"NAATI Number/Practitioner ID")]]/../..//input[contains(@id,"wttxtNAATINumber")]')
-        
+
     },
-    get validFrom(){
+    get validFrom() {
         return $('//*[text()[contains(.,"Valid from")]]')
-        
+
     },
-    get translatorXTMAlert(){
+    get translatorXTMAlert() {
         return $('//*[text()[contains(.,"Attention!")]]')
     },
-    get xtmConfirmButton(){
+    get xtmConfirmButton() {
         return $('input[type="Submit"][value="Confirm"]')
     },
-    get noNaatiAccreditation(){
+    get noNaatiAccreditation() {
         return $('//*[text()[contains(.,"No NAATI accreditations to show...")]]')
     },
 
-    get contractorSearchResultLocator(){
+    get contractorSearchResultLocator() {
         return '//table[contains(@id,"Contractor")]//td/a[contains(text(),"<dynamic>")]'
     },
 
@@ -426,5 +420,45 @@ module.exports = {
 
     get jobTypesCheckBoxes() {
         return $$('//input[@type="checkbox" and contains(@id,"ListRecords1")]');
+    },
+
+    get billToDynamicCheckboxLocator() {
+        return '//span[contains(text(),"<dynamic>")]/parent::div/preceding-sibling::div/child::input';
+    },
+
+    get billToSeverityDropdown() {
+        return $('//select[contains(@id,"SeverityBillTo")]');
+    },
+
+    get startDateBillTo() {
+        return $('//input[contains(@id,"StartDateBillTo")]');
+    },
+
+    get endDateBillTo() {
+        return $('//input[contains(@id,"EndDateBillTo")]');
+    },
+
+    get addBlockButton() {
+        return $('//input[@value="Add Block"][@type="submit"]');
+    },
+
+    get jobTypeDynamicCheckboxLocator() {
+        return '//div[text()="<dynamic>"]/parent::div/child::div/child::input[@type="checkbox"]';
+    },
+
+    get newBlockRulesOnProfile() {
+        return $$('//table[contains(@id,"Blockings")]/child::tbody/child::tr');
+    },
+
+    get newBlockRuleLinksOnProfile() {
+        return $$('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[not(text()="Remove")]');
+    },
+
+    get newBlockRuleLinksToggleIcon() {
+        return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::label[contains(@id,"Toggle")]');
+    },
+
+    get newBlockRuleLinksRemove() {
+        return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[(text()="Remove")]');
     },
 }
