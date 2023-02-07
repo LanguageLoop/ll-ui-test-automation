@@ -427,4 +427,44 @@ module.exports = {
     get jobTypesCheckBoxes() {
         return $$('//input[@type="checkbox" and contains(@id,"ListRecords1")]');
     },
+
+    get billToDynamicCheckboxLocator() {
+        return '//span[contains(text(),"<dynamic>")]/parent::div/preceding-sibling::div/child::input';
+    },
+
+    get billToSeverityDropdown() {
+        return $('//select[contains(@id,"SeverityBillTo")]');
+    },
+
+    get startDateBillTo() {
+        return $('//input[contains(@id,"StartDateBillTo")]');
+    },
+
+    get endDateBillTo() {
+        return $('//input[contains(@id,"EndDateBillTo")]');
+    },
+
+    get addBlockButton() {
+        return $('//input[@value="Add Block"][@type="submit"]');
+    },
+
+    get jobTypeDynamicCheckboxLocator() {
+        return '//div[text()="<dynamic>"]/parent::div/child::div/child::input[@type="checkbox"]';
+    },
+
+    get newBlockRulesOnProfile() {
+        return $$('//table[contains(@id,"Blockings")]/child::tbody/child::tr');
+    },
+
+    get newBlockRuleLinksOnProfile() {
+        return $$('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[not(text()="Remove")]');
+    },
+
+    get newBlockRuleLinksToggleIcon() {
+        return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::label[contains(@id,"Toggle")]');
+    },
+
+    get newBlockRuleLinksRemove() {
+        return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[(text()="Remove")]');
+    },
 }
