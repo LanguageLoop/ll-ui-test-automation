@@ -219,6 +219,7 @@ When(/^I click nes link$/, function(){
 
 When(/^I enter nes first name "(.*)"$/, function(firstname){
   browser.pause(1000)
+  action.isVisibleWait(jobRequestPage.nesFirstNameInput,10000);
   action.enterValue(jobRequestPage.nesFirstNameInput,firstname)
 })
 
