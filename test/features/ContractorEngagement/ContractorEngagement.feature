@@ -221,7 +221,7 @@ Feature: Contractor Engagement features
     And the new block rule is displayed on the contractor’s profile
     And the selected JobTypes are applied to all the BillTo’s "<billTos>" blocking for the contractor
     And the selected blocked Job Types "<jobTypes>" are displayed in brackets after the Contractor name "<contractor>"
-    And the block rules are removed
+    And the admin clicks on Remove on a block
 
     Examples:
       | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes              |
@@ -242,9 +242,77 @@ Feature: Contractor Engagement features
     And the Contractor Blocking popup closes
     And the new block rule is displayed on the contractor’s profile
     And the selected JobTypes are applied to all the BillTo’s "<billTos>" blocking for the contractor
-    And no blocked job types "<jobTypes>" brackets will be displayed"
-    And the block rules are removed
+    And no blocked job types "<jobTypes>" brackets will be displayed
+    And the admin clicks on Remove on a block
 
     Examples:
       | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes                                                                           |
       | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | Translation,On Site,Pre-booked TI,Video Conferencing,VideoLoop,On Demand Telephone |
+
+    #LL-613 Block COVID Vax Exemption UI Scenario 3c: Admin user Saves a block
+  @BlockCovidVaxExemption @SavesBlockInvalidInputs
+  Scenario Outline: Block COVID Vax Exemption UI Admin user Saves a block
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTos>", "<severityLevel>", "<startDate>", "<endDate>" are invalid or incomplete in Bill-To tab
+    And each Job Type should be default checked
+    And the block is saved
+    Then the Contractor Blocking popup stays open
+    And an appropriate message "<feedbackMessage>" is displayed
+
+    Examples:
+      | username          | password  | contractor | billTos   | severityLevel | startDate   | endDate | feedbackMessage                        |
+      | LLAdmin@looped.in | Octopus@6 | Automation |           | Level         |             |         | At least one blocking must be selected |
+
+    #LL-613 Block COVID Vax Exemption UI Scenario 4: Admin edits a block
+  @BlockCovidVaxExemption @EditBlock
+  Scenario Outline: Block COVID Vax Exemption UI Admin edits a block
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And each Job Type should be default checked
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And the admin clicks on the name "<billTo>" of a block
+    And the block is a "<billToTab>" block
+    Then the Contractor Blocking modal popup pops-up
+    And the type of Block appears as the only tab "<billToTab>"
+    And the tab displays "<billToTab>"
+    And it should show a list of Job Types, each with a checkbox
+    And the Admin can make changes "<severityLevel>" and save
+    And the Contractor Blocking popup closes
+    And the admin clicks on Remove on a block
+
+    Examples:
+      | username          | password  | contractor | billTo                                   | severityLevel | billToTab |
+      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 2             | Bill-To   |
+
+    #LL-613 Block COVID Vax Exemption UI Scenario 5: Admin deletes a block
+  @BlockCovidVaxExemption @DeleteABlock
+  Scenario Outline: Block COVID Vax Exemption UI Admin deletes a block
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTos>", "<severityLevel>" are valid in Bill-To tab
+    And each Job Type should be default checked
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And the admin clicks on Remove on a block
+    Then the block "<billTos>" sadly disappears from the list…
+
+    Examples:
+      | username          | password  | contractor | billTos                                  | severityLevel |
+      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 1             |
