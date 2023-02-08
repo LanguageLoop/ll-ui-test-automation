@@ -152,4 +152,38 @@ module.exports = {
         return $('//span[text()="Manage Naati Accreditation"]/following::input[contains(@id,"btnSaveModal")]');
     },
 
+    get errorMessage()
+    {
+        return $('//span[contains(text(), "more than 1000")]');
+    },
+
+    get closeButton()
+    {
+        return $('//span[text()="Manage Naati Accreditation"]/preceding-sibling::a/child::span[contains(@class,"remove")]');
+    },
+
+    get languagesSection()
+    {
+        return $('//div[text()="Languages"]/parent::div/parent::div');
+    },
+
+    get languageSearchField()
+    {
+        return $('//input[@title="Search by language name or shortcode"]');
+    },
+
+    get searchButton()
+    {
+        return $('//input[contains(@id, "ServiceLanguage") and (@value="Search")]');
+    },
+
+    get languageResultTable()
+    {
+        return $('//table[contains(@id, "LanguageTable")]');
+    },
+
+    get languageText()
+    {
+        return '//a[contains(text(), "<dynamic>")]';
+    },
 }

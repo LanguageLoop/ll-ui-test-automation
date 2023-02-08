@@ -148,3 +148,35 @@ Feature: Admin features
     Examples:
       | username        | password  | Naati Weight |
       | zenq1@ll.com.au | Reset@312 | 1000         |
+
+ #LL-696 Scenario 2 - NAATI weight is greater than 1000
+  @NaatiGreater1000 @NaatiWeight
+  Scenario Outline: User enters NAATI weight greater than 1000
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Naati Accreditations section on the Admin page
+    And I select the fisrt Naati Level
+    And I see Manage Naati Accreditation popup is displayed
+    And I enter the NAATI Weight equal to "<Naati Weight>" by clearing the previous existing value
+    And I click on Save button
+    Then the error message "<Error Message>" is displayed
+    And the Naati Weight displays previous value only as the entered value is not saved
+
+    Examples:
+      | username          | password  |  Naati Weight  |  Error Message            |
+      | zenq1@ll.com.au   | Reset@312 |  2000          |  Can't be more than 1000  |
+
+#LL-675 Scenario 3 - Virtual label is displayed
+  @VirtualLable @VirtualLanguage
+  Scenario Outline: User verifies virtual language label
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+   And The Admin is viewing the Languages section on the Admin page
+   And I enter "<Language>" in search field
+  And I click on Search button
+  Then the result should display the "<Virtual Language>" text with virtual beside the name
+
+  Examples:
+      | username          | password  |  Language  |  Virtual Language  |
+      | zenq1@ll.com.au   | Reset@312 |  chinese   |  CHINESE (virtual) |
+      | zenq1@ll.com.au   | Reset@312 |  Karen     |  KAREN (virtual)   |
