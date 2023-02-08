@@ -371,3 +371,42 @@ When(/^I revert the Naati Weight to the orginal value$/, function () {
    let revertedValue = action.getElementText(naatiElelemntValue);
    chai.expect(revertedValue).to.equal(GlobalData.PREVIOUS_NAATI_VALUE);
 })
+
+Then(/^the error message "(.*)" is displayed$/, function (expectedErrorMessage) {
+   let actualErrorMessage = action.getElementText(adminPage.errorMessage);
+   console.log("actual text is",actualErrorMessage);
+   chai.expect(actualErrorMessage).to.includes(expectedErrorMessage);
+   })
+
+   When(/^the Naati Weight displays previous value only as the entered value is not saved$/, function (){
+      action.isClickableWait(adminPage.closeButton, 10000);
+      action.clickElement(adminPage.closeButton);
+      //let previousNaatiValue = action.getElementText(naatiElelemntValue);
+      let naatiElelemntValueAfterError = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
+   let naatiWeightValue = action.getElementText(naatiElelemntValueAfterError);
+     chai.expect(naatiWeightValue).to.equals(GlobalData.ACTUAL_NAATI_WEIGHT_VALUE);
+     console.log("after value", naatiWeightValue);
+     console.log("before value",GlobalData.ACTUAL_NAATI_WEIGHT_VALUE);
+    //let actualNaatiValue = action.getElementText(naatiElelemntValue);
+   })
+
+   When(/^The Admin is viewing the Languages section on the Admin page$/, function () {
+      let languageSections = action.isVisibleWait(adminPage.languagesSection, 5000);
+      chai.expect(languageSections).to.be.true;
+   })
+
+   When(/^I enter "(.*)" in search field$/, function (enteredLanguageName) {
+     action.isClickableWait(adminPage.languageSearchField);
+     action.enterValue(adminPage.languageSearchField, enteredLanguageName);
+   })
+
+   When(/^I click on Search button$/, function() {
+      action.isClickableWait(adminPage.searchButton);
+     action.clickElement(adminPage.searchButton);
+   })
+   
+   Then(/^the result should display the "(.*)" text with virtual beside the name$/, function (expectedLanguageText){
+       let actualLanguageTextElement = $(adminPage.languageText.replace("<dynamic>", expectedLanguageText));
+     let actualLanguageText = action.getElementText(actualLanguageTextElement);
+       chai.expect(actualLanguageText).to.equals(expectedLanguageText);
+    })
