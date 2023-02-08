@@ -446,10 +446,6 @@ module.exports = {
         return '//div[text()="<dynamic>"]/parent::div/child::div/child::input[@type="checkbox"]';
     },
 
-    get newBlockRulesOnProfile() {
-        return $$('//table[contains(@id,"Blockings")]/child::tbody/child::tr');
-    },
-
     get newBlockRuleLinksOnProfile() {
         return $$('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[not(text()="Remove")]');
     },
@@ -461,4 +457,24 @@ module.exports = {
     get newBlockRuleLinksRemove() {
         return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[(text()="Remove")]');
     },
+
+    get addBlockPopupFeedbackMessage() {
+        return $('//span[@class="Feedback_Message_Text"]');
+    },
+
+    get activeBlockerLinkLocator() {
+        return '//a[contains(@id,"Blockings") and contains(text(),"<dynamic>")]';
+    },
+
+    get activeTabOnAddBlockPopup() {
+        return $('//div[contains(@id,"block_Modal")]//div[@class="Tabs__tab PH active"]');
+    },
+
+    get activeTabNameLocator() {
+        return '//div[contains(@id,"block_Modal")]//div[@class="Tabs__tab PH active"][text()="<dynamic>"]';
+    },
+
+    get saveButtonOnBlockingPopup() {
+        return $('//input[contains(@id,"blockingDialog") and (@value="Save")]')
+    }
 }
