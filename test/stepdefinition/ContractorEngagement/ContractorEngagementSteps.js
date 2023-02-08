@@ -429,7 +429,9 @@ When(/^the inputs "(.*)", "(.*)" are valid in Bill-To tab$/, function (billTos, 
         action.addValueAndPressReturnTab(contractorEngagementPage.billToSearchBox, billToCode);
         let billToCheckboxElement = $(contractorEngagementPage.billToDynamicCheckboxLocator.replace("<dynamic>", billTosList[option]));
         action.isVisibleWait(billToCheckboxElement, 10000);
-        action.clickElement(billToCheckboxElement);
+        if (action.isSelectedWait(billToCheckboxElement, 1000) === false) {
+            action.clickElement(billToCheckboxElement);
+        }
     }
     action.selectTextFromDropdown(contractorEngagementPage.billToSeverityDropdown, severityLevel);
     action.enterValue(contractorEngagementPage.startDateBillTo, datetime.getShortNoticeDate());
@@ -473,9 +475,9 @@ Then(/^the Contractor Blocking popup closes$/, function () {
 })
 
 Then(/^the new block rule is displayed on the contractor’s profile$/, function () {
-    let newBlockRulesOnProfileCount = contractorEngagementPage.newBlockRulesOnProfile.length;
+    let newBlockRulesOnProfileCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
     for (let rule = 0; rule < newBlockRulesOnProfileCount.length; rule++) {
-        let newRuleDisplayStatus = action.isVisibleWait(contractorEngagementPage.newBlockRulesOnProfile[rule], 10000);
+        let newRuleDisplayStatus = action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
         chai.expect(newRuleDisplayStatus).to.be.true;
     }
 })
@@ -499,7 +501,7 @@ Then(/^the selected blocked Job Types "(.*)" are displayed in brackets after the
     }
 })
 
-Then(/^the block rules are removed$/, function () {
+Then(/^the admin clicks on Remove on a block$/, function () {
     let rule = 0;
     while (action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksToggleIcon, 1000) === true) {
         action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksToggleIcon, 10000);
@@ -511,7 +513,7 @@ Then(/^the block rules are removed$/, function () {
     }
 })
 
-Then(/^no blocked job types "(.*)" brackets will be displayed"$/, function (jobTypes) {
+Then(/^no blocked job types "(.*)" brackets will be displayed$/, function (jobTypes) {
     let jobTypesExpected = jobTypes.split(",");
     let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
     for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
@@ -522,4 +524,72 @@ Then(/^no blocked job types "(.*)" brackets will be displayed"$/, function (jobT
         chai.expect(newRuleLinkTextActual).to.not.includes("[");
         chai.expect(newRuleLinkTextActual).to.not.includes("]");
     }
+})
+
+When(/^the inputs "(.*)", "(.*)", "(.*)", "(.*)" are invalid or incomplete in Bill-To tab$/, function (billTos, severityLevel, startDate, endDate) {
+    if (billTos !== null) {
+        let billTosList = billTos.split(",");
+        for (let option = 0; option < billTosList.length; option++) {
+            let billToCode = billTosList[option].split("-")[0].trim();
+            action.addValueAndPressReturnTab(contractorEngagementPage.billToSearchBox, billToCode);
+            let billToCheckboxElement = $(contractorEngagementPage.billToDynamicCheckboxLocator.replace("<dynamic>", billTosList[option]));
+            action.isVisibleWait(billToCheckboxElement, 10000);
+            action.clickElement(billToCheckboxElement);
+        }
+    }
+    action.selectTextFromDropdown(contractorEngagementPage.billToSeverityDropdown, severityLevel);
+    action.enterValue(contractorEngagementPage.startDateBillTo, startDate);
+    action.enterValue(contractorEngagementPage.endDateBillTo, endDate);
+    action.pressKeys("Tab");
+})
+
+Then(/^the Contractor Blocking popup stays open$/, function () {
+    let contractorBlockModalPopupDisplayStatus = action.isVisibleWait(contractorEngagementPage.contractorBlockingModalPopup, 10000);
+    chai.expect(contractorBlockModalPopupDisplayStatus).to.be.true;
+})
+
+Then(/^an appropriate message "(.*)" is displayed$/, function (expectedMessage) {
+    action.isVisibleWait(contractorEngagementPage.addBlockPopupFeedbackMessage, 10000);
+    let addBlockPopupFeedbackMessageActual = action.getElementText(contractorEngagementPage.addBlockPopupFeedbackMessage);
+    chai.expect(addBlockPopupFeedbackMessageActual).to.equal(expectedMessage);
+})
+
+When(/^the admin clicks on the name "(.*)" of a block$/, function (blockName) {
+    let activeBlockerLinkElement = $(contractorEngagementPage.activeBlockerLinkLocator.replace("<dynamic>", blockName));
+    action.isVisibleWait(activeBlockerLinkElement, 10000);
+    action.clickElement(activeBlockerLinkElement);
+})
+
+When(/^the block is a "(.*)" block$/, function (tabName) {
+    action.isVisibleWait(contractorEngagementPage.activeTabOnAddBlockPopup, 10000);
+    let activeTabNameActual = action.getElementText(contractorEngagementPage.activeTabOnAddBlockPopup);
+    chai.expect(activeTabNameActual).to.equal(tabName);
+})
+
+Then(/^the type of Block appears as the only tab "(.*)"$/, function (tab1Expected) {
+    let contractorBlockPopupTabsActual = action.getElementText(contractorEngagementPage.contractorBlockPopupTabs);
+    chai.expect(contractorBlockPopupTabsActual).to.equal(tab1Expected);
+})
+
+When(/^the tab displays "(.*)"$/, function (tabName) {
+    let activeTabNameElement = $(contractorEngagementPage.activeTabNameLocator.replace("<dynamic>",tabName));
+    let activeTabNameDisplayStatus = action.isVisibleWait(activeTabNameElement,10000);
+    chai.expect(activeTabNameDisplayStatus).to.be.true;
+})
+
+When(/^the Admin can make changes "(.*)" and save$/, function (severityLevel) {
+    action.selectTextFromDropdown(contractorEngagementPage.billToSeverityDropdown, severityLevel);
+    action.enterValue(contractorEngagementPage.startDateBillTo, datetime.getShortNoticeDate());
+    action.enterValue(contractorEngagementPage.endDateBillTo, datetime.getRandomFutureDate());
+    action.pressKeys("Tab");
+    action.isVisibleWait(contractorEngagementPage.saveButtonOnBlockingPopup, 10000);
+    action.clickElement(contractorEngagementPage.saveButtonOnBlockingPopup);
+})
+
+Then(/^the block "(.*)" sadly disappears from the list…$/, function (blockName) {
+    let newBlockRulesOnProfileCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
+    chai.expect(newBlockRulesOnProfileCount).to.equal(0);
+    let activeBlockerLinkElement = $(contractorEngagementPage.activeBlockerLinkLocator.replace("<dynamic>", blockName));
+    let blockDisplayStatus = action.isVisibleWait(activeBlockerLinkElement, 3000);
+    chai.expect(blockDisplayStatus).to.be.false;
 })
