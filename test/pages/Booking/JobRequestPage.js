@@ -300,4 +300,16 @@ module.exports={
     get interpreterInstructionsText() {
         return $('//*[contains(text(),"Instructions for Interpreter")]');
     },
+
+    get jobTypeOptionLocator() {
+        return '//span[text()="<dynamic>"]//parent::label';
+    },
+
+    get contractorSearchBoxJobAllocation() {
+        return $('//input[@placeholder="Search by Name or Contractor ID"]');
+    },
+
+    get contractorJobStatusLinkLocator() {
+        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//a[contains(@id,"JobStatus")]';
+    }
 }

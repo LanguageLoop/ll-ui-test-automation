@@ -1,5 +1,3 @@
-const JobRequestPage = require("../../pages/Booking/JobRequestPage")
-
 When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
  action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,listitem)
 })
@@ -407,11 +405,31 @@ Then(/^The user is created in job request$/,function(){
 })
 
 Then(/^I see the Interpreter text "(.*)"$/, function(expectedInterpreterText){
-  action.isVisibleWait(JobRequestPage.interpreterInstructionsText, 10000);
-  let actualInterpreterText = action.getElementText(JobRequestPage.interpreterInstructionsText);
+  action.isVisibleWait(jobRequestPage.interpreterInstructionsText, 10000);
+  let actualInterpreterText = action.getElementText(jobRequestPage.interpreterInstructionsText);
   console.log("actual text is",actualInterpreterText);
-  console.log("expeted text is",expectedInterpreterText);
+  console.log("expected text is",expectedInterpreterText);
   chai.expect(actualInterpreterText).to.equals(expectedInterpreterText);
 })
+
+When(/^click on Job Type option "(.*)" in Job Requester Details$/,function(requestJobType){
+  let requestJobTypeOption = $(jobRequestPage.jobTypeOptionLocator.replace("<dynamic>",requestJobType));
+  action.isVisibleWait(requestJobTypeOption,10000);
+  action.clickElement(requestJobTypeOption);
+})
+
+When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameOrID){
+  action.waitUntilLoadingIconDisappears();
+  action.isVisibleWait(jobRequestPage.contractorSearchBoxJobAllocation,20000);
+  action.enterValue(jobRequestPage.contractorSearchBoxJobAllocation,contractorNameOrID);
+})
+
+When(/^the blocked contractor "(.*)" status is "(.*)" for that Job$/,function(contractorName,expectedStatus){
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
+  action.isVisibleWait(contractorJobStatusLink,1000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.equal(expectedStatus);
+})
+
 
 

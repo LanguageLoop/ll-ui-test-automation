@@ -361,6 +361,10 @@ module.exports ={
 
     get bookingOfficerPopupCloseButton(){
         return $('//a[contains(@id,"dialogCampusForm_block_wtlbtnAltusDialogClose")]');
+    },
+
+    get campusPinBillToCodeLinkLocator() {
+        return '//a[text()="<dynamic>"]';
     }
 
 

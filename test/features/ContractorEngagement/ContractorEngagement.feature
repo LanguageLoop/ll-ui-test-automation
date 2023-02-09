@@ -316,3 +316,26 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor | billTos                                  | severityLevel |
       | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 1             |
+
+    #LL-613 Block COVID Vax Exemption UI Scenario 6: Block Expires
+  @BlockCovidVaxExemption @BlockExpires
+  Scenario Outline: Block COVID Vax Exemption UI Block Expires
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And each Job Type should be default checked
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And the admin clicks on the name "<billTo>" of a block
+    And the expiry date "<startDate>", "<endDate>" is prior to the current date
+    And the Contractor Blocking popup closes
+    Then the block "<billTo>" sadly disappears from the list…
+
+    Examples:
+      | username          | password  | contractor | billTo                                   | severityLevel | startDate  | endDate    |
+      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 1             | 05-02-2023 | 06-02-2023 |
