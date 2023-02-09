@@ -401,8 +401,8 @@ Then(/^the error message "(.*)" is displayed$/, function (expectedErrorMessage) 
    })
 
    When(/^I click on Search button$/, function() {
-      action.isClickableWait(adminPage.searchButton);
-     action.clickElement(adminPage.searchButton);
+      action.isClickableWait(adminPage.searchLanguageButton);
+     action.clickElement(adminPage.searchLanguageButton);
    })
    
    Then(/^the result should display the "(.*)" text with virtual beside the name$/, function (expectedLanguageText){

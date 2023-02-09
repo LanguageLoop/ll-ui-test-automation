@@ -62,7 +62,7 @@ module.exports = {
         return '//optgroup[@label="Staff Group"]/child::option[text()="<dynamic>"]';
     },
 
-    get searchButton(){
+    get searchLanguageButton(){
         return $('//input[contains(@id,"UserManagement") and contains(@value,"Search")]')
     },
 
