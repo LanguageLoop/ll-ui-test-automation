@@ -404,5 +404,24 @@ Then(/^The user is created in job request$/,function(){
   chai.expect(requesterNameDisplayStatus).to.be.true;
 })
 
+When(/^click on Job Type option "(.*)" in Job Requester Details$/,function(requestJobType){
+  let requestJobTypeOption = $(jobRequestPage.jobTypeOptionLocator.replace("<dynamic>",requestJobType));
+  action.isVisibleWait(requestJobTypeOption,10000);
+  action.clickElement(requestJobTypeOption);
+})
+
+When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameOrID){
+  action.waitUntilLoadingIconDisappears();
+  action.isVisibleWait(jobRequestPage.contractorSearchBoxJobAllocation,20000);
+  action.enterValue(jobRequestPage.contractorSearchBoxJobAllocation,contractorNameOrID);
+})
+
+When(/^the blocked contractor "(.*)" status is "(.*)" for that Job$/,function(contractorName,expectedStatus){
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
+  action.isVisibleWait(contractorJobStatusLink,1000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.equal(expectedStatus);
+})
+
 
 
