@@ -593,3 +593,12 @@ Then(/^the block "(.*)" sadly disappears from the list…$/, function (blockName
     let blockDisplayStatus = action.isVisibleWait(activeBlockerLinkElement, 3000);
     chai.expect(blockDisplayStatus).to.be.false;
 })
+
+When(/^the expiry date "(.*)", "(.*)" is prior to the current date$/, function (startDate, endDate) {
+    action.isVisibleWait(contractorEngagementPage.startDateBillTo,10000)
+    action.enterValue(contractorEngagementPage.startDateBillTo, startDate);
+    action.enterValue(contractorEngagementPage.endDateBillTo, endDate);
+    action.pressKeys("Tab");
+    action.isVisibleWait(contractorEngagementPage.saveButtonOnBlockingPopup, 10000);
+    action.clickElement(contractorEngagementPage.saveButtonOnBlockingPopup);
+})
