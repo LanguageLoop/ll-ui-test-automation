@@ -295,5 +295,9 @@ module.exports={
 
     get requesterNameTextValueLocator(){
         return '//span[normalize-space()="<dynamic>"]';
-    }
+    },
+
+    get interpreterInstructionsText() {
+        return $('//*[contains(text(),"Instructions for Interpreter")]');
+    },
 }
