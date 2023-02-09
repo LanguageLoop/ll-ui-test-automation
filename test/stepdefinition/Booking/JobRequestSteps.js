@@ -405,10 +405,10 @@ Then(/^The user is created in job request$/,function(){
 })
 
 Then(/^I see the Interpreter text "(.*)"$/, function(expectedInterpreterText){
-  action.isVisibleWait(JobRequestPage.interpreterInstructionsText, 10000);
-  let actualInterpreterText = action.getElementText(JobRequestPage.interpreterInstructionsText);
+  action.isVisibleWait(jobRequestPage.interpreterInstructionsText, 10000);
+  let actualInterpreterText = action.getElementText(jobRequestPage.interpreterInstructionsText);
   console.log("actual text is",actualInterpreterText);
-  console.log("expeted text is",expectedInterpreterText);
+  console.log("expected text is",expectedInterpreterText);
   chai.expect(actualInterpreterText).to.equals(expectedInterpreterText);
 })
 
