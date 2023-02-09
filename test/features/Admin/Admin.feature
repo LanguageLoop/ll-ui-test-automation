@@ -149,7 +149,7 @@ Feature: Admin features
       | username        | password  | Naati Weight |
       | zenq1@ll.com.au | Reset@312 | 1000         |
 
- #LL-696 Scenario 2 - NAATI weight is greater than 1000
+  #LL-696 Scenario 2 - NAATI weight is greater than 1000
   @NaatiGreater1000 @NaatiWeight
   Scenario Outline: User enters NAATI weight greater than 1000
     When I login with "<username>" and "<password>"
@@ -163,20 +163,39 @@ Feature: Admin features
     And the Naati Weight displays previous value only as the entered value is not saved
 
     Examples:
-      | username          | password  |  Naati Weight  |  Error Message            |
-      | zenq1@ll.com.au   | Reset@312 |  2000          |  Can't be more than 1000  |
+      | username        | password  | Naati Weight | Error Message           |
+      | zenq1@ll.com.au | Reset@312 | 2000         | Can't be more than 1000 |
 
-#LL-675 Scenario 3 - Virtual label is displayed
+  #LL-675 Scenario 3 - Virtual label is displayed
   @VirtualLable @VirtualLanguage
   Scenario Outline: User verifies virtual language label
     When I login with "<username>" and "<password>"
     And I click Admin header link
-   And The Admin is viewing the Languages section on the Admin page
-   And I enter "<Language>" in search field
-  And I click on Search button
-  Then the result should display the "<Virtual Language>" text with virtual beside the name
+    And The Admin is viewing the Languages section on the Admin page
+    And I enter "<Language>" in search field
+    And I click on Search button
+    Then the result should display the "<Virtual Language>" text with virtual beside the name
 
-  Examples:
-      | username          | password  |  Language  |  Virtual Language  |
-      | zenq1@ll.com.au   | Reset@312 |  chinese   |  CHINESE (virtual) |
-      | zenq1@ll.com.au   | Reset@312 |  Karen     |  KAREN (virtual)   |
+    Examples:
+      | username        | password  | Language | Virtual Language  |
+      | zenq1@ll.com.au | Reset@312 | chinese  | CHINESE (virtual) |
+      | zenq1@ll.com.au | Reset@312 | Karen    | KAREN (virtual)   |
+
+
+  #LL-675 Scenario 4a,4b - Virtual language (Karen) and (chinese) explanation shown in popup
+  @LanguageExplanation @VirtualLanguage
+  Scenario Outline: User verifies if Karen and chinese languages explanation shown in popup
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Languages section on the Admin page
+    And I enter "<Language>" in search field
+    And I click on Search button
+    And the result should display the "<Virtual Language>" text with virtual beside the name
+    And I click on the Language "<Virtual Language>"
+    And I verify the Manage Language popup is displayed
+    Then the text "<Language Text>" is displayed
+
+    Examples:
+      | username        | password  | Language | Virtual Language  | Language Text                                                                                  |
+      | zenq1@ll.com.au | Reset@312 | chinese  | CHINESE (virtual) | CHINESE is a Virtual Language. It means the interpreter knows both MANDARIN and CANTONESE      |
+      | zenq1@ll.com.au | Reset@312 | Karen    | KAREN (virtual)   | KAREN is a Virtual Language. It means the interpreter knows both KAREN (Pwo) and KAREN (S'gaw) |

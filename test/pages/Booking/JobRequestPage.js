@@ -297,6 +297,10 @@ module.exports={
         return '//span[normalize-space()="<dynamic>"]';
     },
 
+    get interpreterInstructionsText() {
+        return $('//*[contains(text(),"Instructions for Interpreter")]');
+    },
+
     get jobTypeOptionLocator() {
         return '//span[text()="<dynamic>"]//parent::label';
     },

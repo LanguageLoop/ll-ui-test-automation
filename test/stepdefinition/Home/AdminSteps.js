@@ -374,39 +374,51 @@ When(/^I revert the Naati Weight to the orginal value$/, function () {
 
 Then(/^the error message "(.*)" is displayed$/, function (expectedErrorMessage) {
    let actualErrorMessage = action.getElementText(adminPage.errorMessage);
-   console.log("actual text is",actualErrorMessage);
    chai.expect(actualErrorMessage).to.includes(expectedErrorMessage);
-   })
+})
 
-   When(/^the Naati Weight displays previous value only as the entered value is not saved$/, function (){
-      action.isClickableWait(adminPage.closeButton, 10000);
-      action.clickElement(adminPage.closeButton);
-      //let previousNaatiValue = action.getElementText(naatiElelemntValue);
-      let naatiElelemntValueAfterError = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
+When(/^the Naati Weight displays previous value only as the entered value is not saved$/, function () {
+   action.isClickableWait(adminPage.closeButton, 10000);
+   action.clickElement(adminPage.closeButton);
+   let naatiElelemntValueAfterError = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
    let naatiWeightValue = action.getElementText(naatiElelemntValueAfterError);
-     chai.expect(naatiWeightValue).to.equals(GlobalData.ACTUAL_NAATI_WEIGHT_VALUE);
-     console.log("after value", naatiWeightValue);
-     console.log("before value",GlobalData.ACTUAL_NAATI_WEIGHT_VALUE);
-    //let actualNaatiValue = action.getElementText(naatiElelemntValue);
-   })
+   chai.expect(naatiWeightValue).to.equals(GlobalData.ACTUAL_NAATI_WEIGHT_VALUE);
+})
 
-   When(/^The Admin is viewing the Languages section on the Admin page$/, function () {
-      let languageSections = action.isVisibleWait(adminPage.languagesSection, 5000);
-      chai.expect(languageSections).to.be.true;
-   })
+When(/^The Admin is viewing the Languages section on the Admin page$/, function () {
+   let languageSections = action.isVisibleWait(adminPage.languagesSection, 5000);
+   chai.expect(languageSections).to.be.true;
+})
 
-   When(/^I enter "(.*)" in search field$/, function (enteredLanguageName) {
-     action.isClickableWait(adminPage.languageSearchField);
-     action.enterValue(adminPage.languageSearchField, enteredLanguageName);
-   })
+When(/^I enter "(.*)" in search field$/, function (enteredLanguageName) {
+   action.isClickableWait(adminPage.languageSearchField);
+   action.enterValue(adminPage.languageSearchField, enteredLanguageName);
+})
 
-   When(/^I click on Search button$/, function() {
-      action.isClickableWait(adminPage.searchLanguageButton);
-     action.clickElement(adminPage.searchLanguageButton);
-   })
-   
-   Then(/^the result should display the "(.*)" text with virtual beside the name$/, function (expectedLanguageText){
-       let actualLanguageTextElement = $(adminPage.languageText.replace("<dynamic>", expectedLanguageText));
-     let actualLanguageText = action.getElementText(actualLanguageTextElement);
-       chai.expect(actualLanguageText).to.equals(expectedLanguageText);
-    })
+When(/^I click on Search button$/, function () {
+   action.isClickableWait(adminPage.searchLanguageButton);
+   action.clickElement(adminPage.searchLanguageButton);
+})
+
+Then(/^the result should display the "(.*)" text with virtual beside the name$/, function (expectedLanguageText) {
+   let actualLanguageTextElement = $(adminPage.languageText.replace("<dynamic>", expectedLanguageText));
+   let actualLanguageText = action.getElementText(actualLanguageTextElement);
+   chai.expect(actualLanguageText).to.equals(expectedLanguageText);
+})
+
+When(/^I click on the Language "(.*)"$/, function (expectedLanguageName) {
+   let actualLanguageTextElement = $(adminPage.languageText.replace("<dynamic>", expectedLanguageName));
+   action.isClickableWait(actualLanguageTextElement, 10000);
+   action.clickElement(actualLanguageTextElement);
+})
+
+When(/^I verify the Manage Language popup is displayed$/, function () {
+   let manageLanguagePopupStatus = action.isVisibleWait(adminPage.manageLanguagePopup, 10000);
+   chai.expect(manageLanguagePopupStatus).to.be.true;
+})
+
+Then(/^the text "(.*)" is displayed$/, function (expectedLangExplanation) {
+   let actualLanguageExplanationValue = $(adminPage.languageExplanationText.replace("<dynamic>", expectedLangExplanation));
+   let actualLanguageExplanation = action.getElementText(actualLanguageExplanationValue);
+   chai.expect(actualLanguageExplanation).to.equals(expectedLangExplanation);
+})

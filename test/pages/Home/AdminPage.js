@@ -122,68 +122,62 @@ module.exports = {
         return $('//div[text()="Show $ amounts on On Demand TI Dashboard"]/parent::div//child::input');
     },
 
-    get naatiAccreditations()
-    {
+    get naatiAccreditations() {
         return $('//div[text()="Naati Accreditations"]/parent::div/parent::div');
     },
 
-    get fisrtNaatiLevelElement() 
-    {
+    get fisrtNaatiLevelElement() {
         return '//table[contains(@id, "NaatiAccre")]/child::tbody/tr[<dynamic1>]/td[<dynamic2>]/a';
     },
 
-    get fisrtNaatiWeightElement()
-    {
+    get fisrtNaatiWeightElement() {
         return '//table[contains(@id, "NaatiAccre")]/child::tbody/tr[<dynamic1>]/td[<dynamic2>]/div';
     },
 
-    get manageNaatiAccreditationPopup()
-    {
+    get manageNaatiAccreditationPopup() {
         return $('//span[text()="Manage Naati Accreditation"]');
     },
 
-    get naatiWeightField()
-    {
+    get naatiWeightField() {
         return $('//input[contains(@name, "Naati_Weight")]');
     },
 
-    get saveButton()
-    {
+    get saveButton() {
         return $('//span[text()="Manage Naati Accreditation"]/following::input[contains(@id,"btnSaveModal")]');
     },
 
-    get errorMessage()
-    {
+    get errorMessage() {
         return $('//span[contains(text(), "more than 1000")]');
     },
 
-    get closeButton()
-    {
+    get closeButton() {
         return $('//span[text()="Manage Naati Accreditation"]/preceding-sibling::a/child::span[contains(@class,"remove")]');
     },
 
-    get languagesSection()
-    {
+    get languagesSection() {
         return $('//div[text()="Languages"]/parent::div/parent::div');
     },
 
-    get languageSearchField()
-    {
+    get languageSearchField() {
         return $('//input[@title="Search by language name or shortcode"]');
     },
 
-    get searchLanguageButton()
-    {
+    get searchLanguageButton() {
         return $('//input[contains(@id, "ServiceLanguage") and (@value="Search")]');
     },
 
-    get languageResultTable()
-    {
+    get languageResultTable() {
         return $('//table[contains(@id, "LanguageTable")]');
     },
 
-    get languageText()
-    {
+    get languageText() {
         return '//a[contains(text(), "<dynamic>")]';
+    },
+    get manageLanguagePopup() {
+        return $('//span[text() = "Manage Language"]');
+    },
+
+    get languageExplanationText() {
+        return '//div[contains(text(), "<dynamic>")]';
     },
 }

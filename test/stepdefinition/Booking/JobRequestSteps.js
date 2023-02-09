@@ -404,6 +404,14 @@ Then(/^The user is created in job request$/,function(){
   chai.expect(requesterNameDisplayStatus).to.be.true;
 })
 
+Then(/^I see the Interpreter text "(.*)"$/, function(expectedInterpreterText){
+  action.isVisibleWait(JobRequestPage.interpreterInstructionsText, 10000);
+  let actualInterpreterText = action.getElementText(JobRequestPage.interpreterInstructionsText);
+  console.log("actual text is",actualInterpreterText);
+  console.log("expeted text is",expectedInterpreterText);
+  chai.expect(actualInterpreterText).to.equals(expectedInterpreterText);
+})
+
 When(/^click on Job Type option "(.*)" in Job Requester Details$/,function(requestJobType){
   let requestJobTypeOption = $(jobRequestPage.jobTypeOptionLocator.replace("<dynamic>",requestJobType));
   action.isVisibleWait(requestJobTypeOption,10000);
