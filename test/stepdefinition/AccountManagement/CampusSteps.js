@@ -713,3 +713,9 @@ When(/^The booking officer popup is closed$/,function(){
     action.isClickableWait(campusDetailsPage.bookingOfficerPopupCloseButton,10000);
     action.clickElement(campusDetailsPage.bookingOfficerPopupCloseButton);
 })
+
+Given(/^the Job Campus belongs to a certain BillTo "(.*)"$/,function(pinBillToCode){
+    let campusPinBillToCodeLink = $(campusDetailsPage.campusPinBillToCodeLinkLocator.replace("<dynamic>",pinBillToCode));
+    let campusPinBillToCodeLinkActualDisplayStatus = action.isVisibleWait(campusPinBillToCodeLink,10000);
+    chai.expect(campusPinBillToCodeLinkActualDisplayStatus).to.be.true;
+})
