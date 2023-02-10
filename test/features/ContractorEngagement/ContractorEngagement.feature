@@ -30,8 +30,8 @@ Feature: Contractor Engagement features
     And I delete the naati accreditation
 
     Examples:
-      | username          | password  | contractor | service     | from      | to      | level      |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Interpreter | AFRIKAANS | ENGLISH | Recognised |
+      | username          | password  | contractor  | service     | from      | to      | level      |
+      | LLAdmin@looped.in | Octopus@6 | Contractor1 | Interpreter | AFRIKAANS | ENGLISH | Recognised |
 
 
   @AddContractorNotes
