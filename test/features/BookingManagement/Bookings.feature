@@ -270,8 +270,6 @@ Feature: Create new booking for Interpreters
     Examples:
       | username cso   | password cso | campus pin | Requester Name    | Interpreter text                                                                            |
       | zenq@cso10.com | Test1        | 33124      | Automation Tester | Instructions for Interpreter (Please DO NOT include interpreter’s name or personal details) |
-      | username          | password    |dropdown filter | campus pin | firstname     | landline number |
-      | LLAdmin@looped.in |  Octopus@6  |Management      |  33124     | AutomationCBO | 0212345678      |
 
 
     #LL-682 Covid vax exemption allocation logic Scenario 1a: The contractor is blocked from a Bill To
