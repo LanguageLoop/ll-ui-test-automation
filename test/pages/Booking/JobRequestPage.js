@@ -311,5 +311,9 @@ module.exports={
 
     get contractorJobStatusLinkLocator() {
         return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//a[contains(@id,"JobStatus")]';
+    },
+
+    get resetAutoNotificationsLink() {
+        return $('//span[text()="Reset auto notifications"]/parent::a');
     }
 }

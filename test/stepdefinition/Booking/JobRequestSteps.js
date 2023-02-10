@@ -426,9 +426,23 @@ When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameO
 
 When(/^the blocked contractor "(.*)" status is "(.*)" for that Job$/,function(contractorName,expectedStatus){
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
-  action.isVisibleWait(contractorJobStatusLink,1000);
+  action.isVisibleWait(contractorJobStatusLink,10000);
   let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
   chai.expect(contractorJobStatusTextActual).to.equal(expectedStatus);
+})
+
+When(/^the blocked contractor "(.*)" status is eligible for that Job$/,function(contractorName){
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
+  action.isVisibleWait(contractorJobStatusLink,10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.not.equal("Not eligible");
+})
+
+When(/^user clicks on Reset auto notifications link and refresh the page$/,function(){
+  action.isVisibleWait(jobRequestPage.resetAutoNotificationsLink,20000);
+  action.clickElement(jobRequestPage.resetAutoNotificationsLink);
+  action.waitUntilLoadingIconDisappears();
+  browser.refresh();
 })
 
 
