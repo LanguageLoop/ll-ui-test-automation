@@ -602,3 +602,39 @@ When(/^the expiry date "(.*)", "(.*)" is prior to the current date$/, function (
     action.isVisibleWait(contractorEngagementPage.saveButtonOnBlockingPopup, 10000);
     action.clickElement(contractorEngagementPage.saveButtonOnBlockingPopup);
 })
+
+When(/^Add Naati Accreditation "(.*)","(.*)","(.*)","(.*)" if not available$/, function (service, from, to, level) {
+    let accreditationFromToLanguagesAvailable = $(contractorEngagementPage.accreditationFromToLanguagesLocator.replace("<dynamic1>",from).replace("<dynamic2>",to));
+    if (action.isVisibleWait(accreditationFromToLanguagesAvailable,1000) === false){
+        action.isVisibleWait(contractorEngagementPage.addAccreditationLink,10000);
+        action.clickElement(contractorEngagementPage.addAccreditationLink);
+        action.isVisibleWait(contractorEngagementPage.serviceDropdown,10000);
+        action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown, service);
+        action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown, from);
+        action.enterValueAndPressReturn(contractorEngagementPage.toLanguageDropdown, to);
+        action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown, level);
+        action.clickElement(contractorEngagementPage.saveAndCloseButton);
+    }
+})
+
+When(/^the Interpreter has one active NAATI accreditations for a language "(.*)" to "(.*)"$/, function (from, to) {
+    let accreditationLanguagesServiceLink = $(contractorEngagementPage.accreditationFromToLanguagesServiceLinkLocator.replace("<dynamic1>",from).replace("<dynamic2>",to));
+    action.isVisibleWait(accreditationLanguagesServiceLink,10000);
+    action.clickElement(accreditationLanguagesServiceLink);
+    action.isClickableWait(contractorEngagementPage.validateButton, 10000);
+    action.clickElement(contractorEngagementPage.validateButton);
+    action.isExistingWait(contractorEngagementPage.naatiCertificationsFirstText,10000)
+    let actualCertificationsCount = contractorEngagementPage.naatiCertificationsText.length;
+    action.clickElement(contractorEngagementPage.cancelButtonOnNaatiAcceditationPopup);
+    chai.expect(actualCertificationsCount).to.equal(1);
+})
+
+Then(/^on Contractor Details History page, the NAATI accreditation "(.*)" will have been allocated to the interpreter’s profile$/, function (expectedNaatiAccreditation) {
+    action.isVisibleWait(contractorEngagementPage.viewHistoryButton, 10000);
+    action.clickElement(contractorEngagementPage.viewHistoryButton);
+    action.isVisibleWait(contractorEngagementPage.showContractAuditTrialsLink, 10000);
+    action.clickElement(contractorEngagementPage.showContractAuditTrialsLink);
+    action.waitForElementExist(contractorEngagementPage.auditHistoryNoItemsToShowMessage, 20000, true, "No items to show message is displayed after 20s", 500);
+    let actualAuditHistoryBody = action.getElementText(contractorEngagementPage.auditHistoryTableBody);
+    chai.expect(actualAuditHistoryBody).to.includes(expectedNaatiAccreditation);
+})

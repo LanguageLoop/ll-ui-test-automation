@@ -162,6 +162,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin is on the Contractor Profile page
     And the admin clicks on Add a Block
     Then the Contractor Blocking modal popup pops-up
@@ -177,6 +178,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -195,6 +197,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -211,6 +214,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -233,6 +237,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -255,6 +260,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -274,6 +280,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -302,6 +309,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -323,6 +331,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -339,3 +348,16 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor | billTo                                   | severityLevel | startDate  | endDate    |
       | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 1             | 05-02-2023 | 06-02-2023 |
+
+    #LL-666 NAATI - Dual Certification Scenario 1b: 1 active NAATI accreditation
+  @NaatiDualCertification @OneActiveNaati
+  Scenario Outline: Block COVID Vax Exemption UI Block Expires
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And the Interpreter has one active NAATI accreditations for a language "<from>" to "<to>"
+    Then on Contractor Details History page, the NAATI accreditation "<Naati Accreditation>" will have been allocated to the interpreter’s profile
+
+    Examples:
+      | username          | password  | contractor    | Naati Accreditation               | from      | to      |
+      | LLAdmin@looped.in | Octopus@6 | Abir ISKANDAR | Certified Provisional Interpreter | ARABIC    | ENGLISH |

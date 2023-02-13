@@ -476,5 +476,41 @@ module.exports = {
 
     get saveButtonOnBlockingPopup() {
         return $('//input[contains(@id,"blockingDialog") and (@value="Save")]')
-    }
+    },
+
+    get accreditationFromToLanguagesLocator() {
+        return '//table[contains(@id,"NAATIAccreditation")]/tbody/tr/td[2][text()="<dynamic1> > <dynamic2>"]';
+    },
+
+    get accreditationFromToLanguagesServiceLinkLocator() {
+        return '//table[contains(@id,"NAATIAccreditation")]/tbody/tr/td[2][text()="<dynamic1> > <dynamic2>"]/preceding-sibling::td/a';
+    },
+
+    get viewHistoryButton() {
+        return $('//input[@value="View History" and (@class="Button")]');
+    },
+
+    get showContractAuditTrialsLink() {
+        return $('//a[text()="Show Contractor Audit Trails"]');
+    },
+
+    get auditHistoryNoItemsToShowMessage() {
+        return $('//td[text()="No items to show..."]');
+    },
+
+    get auditHistoryTableBody() {
+        return $('//table[contains(@id,"AuditHistory")]/tbody');
+    },
+
+    get naatiCertificationsText() {
+        return $$('//span[contains(@id,"Certifications")]/div');
+    },
+
+    get cancelButtonOnNaatiAcceditationPopup() {
+        return $('//input[@value="Cancel" and contains(@id,"dialogAccreditation")]')
+    },
+
+    get naatiCertificationsFirstText() {
+        return $('//span[contains(@id,"Certifications")]/div');
+    },
 }
