@@ -284,6 +284,8 @@ Feature: Create new booking for Interpreters
     And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -321,8 +323,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
 
     #LL-682 Covid vax exemption allocation logic Scenario 1b: The contractor is not Blocked from a Job Type
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo > AND they are not blocked from a Job Type
@@ -336,6 +338,8 @@ Feature: Create new booking for Interpreters
     And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -373,8 +377,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 2: The contractor is not blocked
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo >
@@ -388,6 +392,8 @@ Feature: Create new booking for Interpreters
     And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -425,5 +431,5 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
