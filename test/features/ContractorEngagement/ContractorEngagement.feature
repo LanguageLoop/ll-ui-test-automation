@@ -162,6 +162,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin is on the Contractor Profile page
     And the admin clicks on Add a Block
     Then the Contractor Blocking modal popup pops-up
@@ -177,6 +178,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -195,6 +197,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -211,6 +214,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -233,6 +237,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -255,6 +260,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -274,6 +280,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -302,6 +309,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
@@ -323,6 +331,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and open contractor "<contractor>"
+    And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
     And the admin clicks on the Bill To tab
