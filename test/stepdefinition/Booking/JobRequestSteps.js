@@ -422,6 +422,7 @@ When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameO
   action.waitUntilLoadingIconDisappears();
   action.isVisibleWait(jobRequestPage.contractorSearchBoxJobAllocation,20000);
   action.enterValue(jobRequestPage.contractorSearchBoxJobAllocation,contractorNameOrID);
+  action.pressKeys("Tab");
 })
 
 When(/^the blocked contractor "(.*)" status is "(.*)" for that Job$/,function(contractorName,expectedStatus){
@@ -445,5 +446,41 @@ When(/^user clicks on Reset auto notifications link and refresh the page$/,funct
   browser.refresh();
 })
 
+When(/^I enter travel approved "(.*)"$/, function (travelApproved) {
+  action.isVisibleWait(jobRequestPage.travelApprovedTextBox, 10000);
+  action.enterValue(jobRequestPage.travelApprovedTextBox, travelApproved);
+})
 
+When(/^Accept Metro Service is not selected$/, function () {
+  let acceptMetroServiceCheckboxStatus = action.isSelectedWait(jobRequestPage.acceptMetroServiceCheckbox, 1000);
+  chai.expect(acceptMetroServiceCheckboxStatus).to.be.false;
+})
+
+Then(/^interpreters "(.*)" who live outside the "(.*)" KM are not eligible for the job$/, function (contractorName, distance) {
+  let contractorDistanceActualText = $(jobRequestPage.contractorDistanceLocator.replace("<dynamic>", contractorName));
+  contractorDistanceActualText = action.getElementText(contractorDistanceActualText);
+  let contractorDistanceKmValue = contractorDistanceActualText.split(" ")[0];
+  chai.expect(parseInt(contractorDistanceKmValue)).to.be.greaterThan(parseInt(distance));
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.equal("Not eligible");
+})
+
+When(/^the booking is cancelled on behalf of "(.*)"$/, function (requesterName) {
+  action.isVisibleWait(jobRequestPage.jobStatusLink, 10000);
+  action.clickElement(jobRequestPage.jobStatusLink);
+  action.isVisibleWait(jobRequestPage.jobStatusDropdown, 10000);
+  action.selectTextFromDropdown(jobRequestPage.jobStatusDropdown, "Cancel");
+  action.isVisibleWait(jobRequestPage.jobCancelConfirmationPopupText, 10000);
+  action.isVisibleWait(jobRequestPage.cancelConfirmationYesButton, 10000);
+  action.clickElement(jobRequestPage.cancelConfirmationYesButton);
+  action.isVisibleWait(jobRequestPage.cancelReasonDropdown, 10000);
+  action.selectTextFromDropdown(jobRequestPage.cancelReasonDropdown, "Job request error (Date,Time, Duration, etc..)");
+  action.isVisibleWait(jobRequestPage.cancelOnBehalfDropdown, 10000);
+  action.selectTextFromDropdown(jobRequestPage.cancelOnBehalfDropdown, requesterName);
+  action.isVisibleWait(jobRequestPage.submitButtonConfirmationPopup, 10000);
+  action.clickElement(jobRequestPage.submitButtonConfirmationPopup);
+  action.isVisibleWait(jobRequestPage.searchByJobIdTextBox, 10000);
+})
 

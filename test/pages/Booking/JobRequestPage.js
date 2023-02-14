@@ -315,5 +315,49 @@ module.exports={
 
     get resetAutoNotificationsLink() {
         return $('//span[text()="Reset auto notifications"]/parent::a');
+    },
+
+    get travelApprovedTextBox() {
+        return $('//span[contains(text(),"Travel Approved")]/parent::div/parent::div/parent::div//input[@type="text"]');
+    },
+
+    get acceptMetroServiceCheckbox() {
+        return $('//input[contains(@id,"JobMetro") and (@type="checkbox")]')
+    },
+
+    get contractorDistanceLocator() {
+        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//div[contains(text(),"KM")]';
+    },
+
+    get jobStatusLink() {
+        return $('//span[contains(@id,"JobStatusCont")]/a[contains(@id,"JobStatus")]');
+    },
+
+    get jobStatusDropdown() {
+        return $('//span[contains(@id,"JobStatusCont")]/select');
+    },
+
+    get jobCancelConfirmationPopupText() {
+        return $('//div[text()="Are you sure, you want to cancel?"]');
+    },
+
+    get cancelConfirmationYesButton() {
+        return $('//input[contains(@id,"BtnYes")]');
+    },
+
+    get cancelReasonDropdown() {
+        return $('//select[contains(@id,"ReasonCmb")]');
+    },
+
+    get cancelOnBehalfDropdown() {
+        return $('//select[contains(@id,"CboCmb")]');
+    },
+
+    get submitButtonConfirmationPopup() {
+        return $('//input[@value="Submit" and contains(@id,"ContModal_Modal_wtConfirmationModal")]');
+    },
+
+    get searchByJobIdTextBox() {
+        return $('//input[@placeholder="Search by Job Id, campus name, and job address"]');
     }
 }

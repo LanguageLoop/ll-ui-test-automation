@@ -634,7 +634,16 @@ Then(/^on Contractor Details History page, the NAATI accreditation "(.*)" will h
     action.clickElement(contractorEngagementPage.viewHistoryButton);
     action.isVisibleWait(contractorEngagementPage.showContractAuditTrialsLink, 10000);
     action.clickElement(contractorEngagementPage.showContractAuditTrialsLink);
-    action.waitForElementExist(contractorEngagementPage.auditHistoryNoItemsToShowMessage, 20000, true, "No items to show message is displayed after 20s", 500);
+    action.isNotVisibleWait(contractorEngagementPage.auditHistoryNoItemsToShowMessage,20000);
     let actualAuditHistoryBody = action.getElementText(contractorEngagementPage.auditHistoryTableBody);
     chai.expect(actualAuditHistoryBody).to.includes(expectedNaatiAccreditation);
+})
+
+When(/^I search and select contractor "(.*)"$/, function (contractor) {
+    action.isVisibleWait(contractorEngagementPage.searchContractorInput,10000);
+    action.enterValue(contractorEngagementPage.searchContractorInput, contractor);
+    action.pressKeys("Tab");
+    let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>", contractor));
+    action.isVisibleWait(contractorSearchResultElement, 20000);
+    action.clickElement(contractorSearchResultElement);
 })

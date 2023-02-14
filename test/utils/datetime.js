@@ -185,7 +185,7 @@ module.exports={
         return temp_date
     },
 
-    getFortnightConfrimationDate()
+    getFortnightConfirmationDate()
     {
         temp_date=new Date()
         temp_date.setDate(temp_date.getDate()+13)
