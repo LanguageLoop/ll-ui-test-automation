@@ -161,7 +161,7 @@ Feature: Contractor Engagement features
   Scenario Outline: Block COVID Vax Exemption UI Admin user clicks Add a Block
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin is on the Contractor Profile page
     And the admin clicks on Add a Block
@@ -170,14 +170,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | contractorPopupTab1 | contractorPopupTab2 | contractorPopupTab3 |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Organisation        | Campus              | Bill-To             |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | Organisation        | Campus              | Bill-To             |
 
   #LL-613 Block COVID Vax Exemption UI Scenario 2a: Admin user clicks on the Bill To tab
   @BlockCovidVaxExemption @AdminClicksBillTo
   Scenario Outline: Block COVID Vax Exemption UI Admin user clicks on the Bill To tab
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -188,7 +188,7 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billToName                    |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Catholic Education - User Pay |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | Catholic Education - User Pay |
 
 
    #LL-613 Block COVID Vax Exemption UI Scenario 2b: Job Types Selection
@@ -196,7 +196,7 @@ Feature: Contractor Engagement features
   Scenario Outline: Block COVID Vax Exemption UI Job Types Selection
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -206,14 +206,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor |
-      | LLAdmin@looped.in | Octopus@6 | Automation |
+      | LLAdmin@looped.in | Octopus@6 | 12558      |
 
   #LL-613 Block COVID Vax Exemption UI Scenario 3a: Admin user Saves a block, success
   @BlockCovidVaxExemption @SavesBlockAtLeast1JobType
   Scenario Outline: Block COVID Vax Exemption UI Admin user Saves a block, success
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -229,14 +229,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes              |
-      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
 
   #LL-613 Block COVID Vax Exemption UI Scenario 3b: Admin user Saves a block with all Job Types, success
   @BlockCovidVaxExemption @SavesBlockAllJobTypes
   Scenario Outline: Block COVID Vax Exemption UI Admin user Saves a block with all Job Types, success
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -252,14 +252,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes                                                                           |
-      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | Translation,On Site,Pre-booked TI,Video Conferencing,VideoLoop,On Demand Telephone |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | Translation,On Site,Pre-booked TI,Video Conferencing,VideoLoop,On Demand Telephone |
 
     #LL-613 Block COVID Vax Exemption UI Scenario 3c: Admin user Saves a block
   @BlockCovidVaxExemption @SavesBlockInvalidInputs
   Scenario Outline: Block COVID Vax Exemption UI Admin user Saves a block
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -272,14 +272,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTos   | severityLevel | startDate   | endDate | feedbackMessage                        |
-      | LLAdmin@looped.in | Octopus@6 | Automation |           | Level         |             |         | At least one blocking must be selected |
+      | LLAdmin@looped.in | Octopus@6 | 12558      |           | Level         |             |         | At least one blocking must be selected |
 
     #LL-613 Block COVID Vax Exemption UI Scenario 4: Admin edits a block
   @BlockCovidVaxExemption @EditBlock
   Scenario Outline: Block COVID Vax Exemption UI Admin edits a block
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -301,14 +301,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTo                                   | severityLevel | billToTab |
-      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 2             | Bill-To   |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | 2             | Bill-To   |
 
     #LL-613 Block COVID Vax Exemption UI Scenario 5: Admin deletes a block
   @BlockCovidVaxExemption @DeleteABlock
   Scenario Outline: Block COVID Vax Exemption UI Admin deletes a block
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -323,14 +323,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTos                                  | severityLevel |
-      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 1             |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | 1             |
 
     #LL-613 Block COVID Vax Exemption UI Scenario 6: Block Expires
   @BlockCovidVaxExemption @BlockExpires
   Scenario Outline: Block COVID Vax Exemption UI Block Expires
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the admin clicks on Remove on a block
     And the admin clicks on Add a Block
     And the Contractor Blocking modal popup pops-up
@@ -347,14 +347,14 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTo                                   | severityLevel | startDate  | endDate    |
-      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay | 1             | 05-02-2023 | 06-02-2023 |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | 1             | 05-02-2023 | 06-02-2023 |
 
     #LL-666 NAATI - Dual Certification Scenario 1b: 1 active NAATI accreditation
   @NaatiDualCertification @OneActiveNaati
   Scenario Outline: Block COVID Vax Exemption UI Block Expires
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And the Interpreter has one active NAATI accreditations for a language "<from>" to "<to>"
     Then on Contractor Details History page, the NAATI accreditation "<Naati Accreditation>" will have been allocated to the interpreter’s profile
 
