@@ -351,7 +351,7 @@ Feature: Contractor Engagement features
 
     #LL-666 NAATI - Dual Certification Scenario 1b: 1 active NAATI accreditation
   @NaatiDualCertification @OneActiveNaati
-  Scenario Outline: Block COVID Vax Exemption UI Block Expires
+  Scenario Outline: Dual Certification One active NAATI accreditation
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I search and select contractor "<contractor>"
