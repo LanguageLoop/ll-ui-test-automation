@@ -23,7 +23,7 @@ Feature: Contractor Engagement features
   Scenario Outline: Add naati accreditation
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And I click add accreditation link
     And I enter naati details "<service>","<from>","<to>","<level>"
     Then I verify the created naati accreditation "<from>","<to>"
@@ -38,7 +38,7 @@ Feature: Contractor Engagement features
   Scenario Outline: Add contractor notes
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And I click add notes link
     And I enter contractor notes details "<title>","<message>"
     Then I verify contractor notes "<title>","<message>"
@@ -143,7 +143,7 @@ Feature: Contractor Engagement features
   Scenario Outline: Add naati accreditation where LL Language name is different from NAATI language name
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
-    And I search and open contractor "<contractor>"
+    And I search and select contractor "<contractor>"
     And I see any naati accreditation already present
     And I click add accreditation link
     And I enter all naati details "<service>","<from>","<to>","<level>","<naati>"
