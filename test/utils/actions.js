@@ -264,6 +264,27 @@ module.exports={
         let newWindowHandle = windowHandles[windowHandles.length - 1];
         browser.switchToWindow(newWindowHandle);
         console.log("Switched to window: "+newWindowHandle);
-    }
+    },
+
+    /**
+     * Waits until the element is NOT visible with in wait time
+     * @param elt
+     * @param waitTime
+     * @returns {boolean}
+     */
+    isNotVisibleWait(elt, waitTime) {
+        let isVisible = true;
+        let i = 0;
+        while (i <= waitTime) {
+            isVisible = elt.isDisplayed();
+            if (isVisible) {
+                browser.pause(500);
+                i = i + 500;
+            } else {
+                break;
+            }
+        }
+        return isVisible;
+    },
 }
 
