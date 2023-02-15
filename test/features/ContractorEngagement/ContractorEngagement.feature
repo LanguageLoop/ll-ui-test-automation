@@ -229,7 +229,7 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes              |
-      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
+      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
 
   #LL-613 Block COVID Vax Exemption UI Scenario 3b: Admin user Saves a block with all Job Types, success
   @BlockCovidVaxExemption @SavesBlockAllJobTypes
