@@ -484,3 +484,14 @@ When(/^the booking is cancelled on behalf of "(.*)"$/, function (requesterName) 
   action.isVisibleWait(jobRequestPage.searchByJobIdTextBox, 10000);
 })
 
+Then(/^interpreters "(.*)" who live between "(.*)" KM and "(.*)" KM are eligible for the job "(.*)"$/, function (contractorName, distanceFrom, distanceTo, expectedContractorStatus) {
+  let contractorDistanceActualText = $(jobRequestPage.contractorDistanceLocator.replace("<dynamic>", contractorName));
+  contractorDistanceActualText = action.getElementText(contractorDistanceActualText);
+  let contractorDistanceKmValue = contractorDistanceActualText.split(" ")[0];
+  let distanceIsBetweenValues = contractorDistanceKmValue >= distanceFrom && contractorDistanceKmValue <= distanceTo;
+  chai.expect(distanceIsBetweenValues).to.be.true;
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+})
