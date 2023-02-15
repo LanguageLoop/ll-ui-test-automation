@@ -324,13 +324,13 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | 12558      | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
 
     #LL-682 Covid vax exemption allocation logic Scenario 1b: The contractor is not Blocked from a Job Type
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo > AND they are not blocked from a Job Type
     #AND a contractor is blocked for that BillTo > THEN the blocked contractor is eligible for that Job
   @ContractorBlock @ContractorNotBlockedJobType
-  Scenario Outline: The contractor is blocked from a Bill To
+  Scenario Outline: The contractor is not Blocked from a Job Type
     When I login with "<username>" and "<password>"
     And I click account management link
     And I search for campus "<campus id>"
@@ -378,7 +378,7 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | 12558      | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 2: The contractor is not blocked
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo >
@@ -432,7 +432,7 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | 12558      | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-618 Scenario 1: Standard Job
   @MetroNotSelectedStandardOutside25
@@ -499,3 +499,67 @@ Feature: Create new booking for Interpreters
     Examples:
       | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor  | distance in KM   |
       | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
+
+    #LL-618 Scenario 3a: Other Campus, default distance is applied (standard) [Regression Test]
+  @MetroNotSelectedStandardOtherCampus
+  Scenario Outline: Interpreters who live between 25kms and 45kms are eligible for standard job when Accept Metro Service is not selected
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I enter confirmation date and time "<date>" and "<time>"
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And Accept Metro Service is not selected
+    Then interpreters "<contractor>" who live between "<distance from in KM>" KM and "<distance to in KM>" KM are eligible for the job "<job contractor status>"
+    And the booking is cancelled on behalf of "<Requester Name>"
+
+    Examples:
+      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | fortnight after | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | - No status -         |
+
+    #LL-618 Scenario 3b: Other Campus, default distance is applied (short notice) [Regression Test]
+  @MetroNotSelectedShortNoticeOtherCampus
+  Scenario Outline: Interpreters who live between 25kms and 45kms are eligible for short notice job when Accept Metro Service is not selected
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I enter confirmation date and time "<date>" and "<time>"
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And Accept Metro Service is not selected
+    Then interpreters "<contractor>" who live between "<distance from in KM>" KM and "<distance to in KM>" KM are eligible for the job "<job contractor status>"
+    And the booking is cancelled on behalf of "<Requester Name>"
+
+    Examples:
+      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice    | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | - No status -         |

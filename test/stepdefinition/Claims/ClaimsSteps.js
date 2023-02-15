@@ -303,6 +303,7 @@ When(/^I click bulk process claim button$/, function(){
 
 When(/^I confirm bulk claim process dialog$/, function(){
     browser.pause(2000)
+    action.isVisibleWait(claimsPage.bulkClaimConfirmOkButton)
     action.clickElement(claimsPage.bulkClaimConfirmOkButton)
 })
 
