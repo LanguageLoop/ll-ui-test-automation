@@ -599,7 +599,7 @@ Feature: Create new booking for Interpreters
 
     #LL-618 Scenario 3d: Other Campus, default distance is applied (short notice) [Regression Test]
   @MetroSelectedShortNoticeWithin100
-  Scenario Outline: Interpreters who live within the 25kms are eligible for standard job when Accept Metro Service is not selected
+  Scenario Outline: Interpreters who live within the 25kms are eligible for short notice job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
     And I select "<dropdownfilter>" from the filter dropdown
