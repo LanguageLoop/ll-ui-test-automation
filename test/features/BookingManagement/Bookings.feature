@@ -563,3 +563,69 @@ Feature: Create new booking for Interpreters
     Examples:
       | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
       | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice    | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | - No status -         |
+
+    #LL-618 Scenario 3c: Other Campus, default distance is applied (standard) [Regression Test]
+  @MetroNotSelectedStandardWithin25
+  Scenario Outline: Interpreters who live within the 25kms are eligible for standard job when Accept Metro Service is not selected
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter travel approved "<travel approved>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I enter confirmation date and time "<date>" and "<time>"
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And Accept Metro Service is not selected
+    Then interpreters "<contractor>" who live within the "<distance in KM>" KM are eligible for the job "<job contractor status>"
+    And the booking is cancelled on behalf of "<Requester Name>"
+
+    Examples:
+      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM   | job contractor status |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25               | Auto Notification     |
+
+    #LL-618 Scenario 3d: Other Campus, default distance is applied (short notice) [Regression Test]
+  @MetroSelectedShortNoticeWithin100
+  Scenario Outline: Interpreters who live within the 25kms are eligible for short notice job when Accept Metro Service is not selected
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter travel approved "<travel approved>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I enter confirmation date and time "<date>" and "<time>"
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And Accept Metro Service is selected
+    And search for contractor "<contractor>" in Job Allocation
+    Then interpreters "<contractor>" who live within the "<distance in KM>" KM are eligible for the job "<job contractor status>"
+    And the booking is cancelled on behalf of "<Requester Name>"
+
+    Examples:
+      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | - No status -         |

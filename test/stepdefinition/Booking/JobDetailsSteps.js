@@ -1,6 +1,9 @@
 When(/^I click on Duplicate button$/, function(){
     browser.pause(2000)
-    action.clickElement(jobDetailsPage.duplicateButton)
+    action.isVisibleWait(jobDetailsPage.duplicateButton,30000);
+    action.clickElement(jobDetailsPage.duplicateButton);
+    action.waitUntilLoadingIconDisappears();
+    action.isVisibleWait(jobRequestPage.natureOfRequestInput,30000);
     //browser.pause(2000)
     browser.waitUntil(
         () => jobRequestPage.natureOfRequestInput.isEnabled(),{timeout:10000, timeoutMsg:'Input is not enabled in 10s',interval:500}

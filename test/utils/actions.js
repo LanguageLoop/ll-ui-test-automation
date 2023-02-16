@@ -238,6 +238,7 @@ module.exports={
 
     waitUntilLoadingIconDisappears() {
         let loadingIconAjaxWait = $('//div[@class="Feedback_AjaxWait" and (contains(@style,"opacity"))]');
+        browser.pause(2000);
         loadingIconAjaxWait.waitForExist({
             timeout: 30000,
             reverse: true,

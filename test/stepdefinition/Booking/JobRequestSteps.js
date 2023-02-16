@@ -34,11 +34,13 @@ When(/^I enter schedule "(.*)" and "(.*)"$/,function(dateStr,timeStr){
   var temp_date_time = datetime.getScheduleDateTime(dateStr,timeStr)
   action.isClickableWait(jobRequestPage.dateInput,20000)
   action.enterDateAndTime(jobRequestPage.dateInput,jobRequestPage.timeInput,temp_date_time[0],temp_date_time[1])
+  action.waitUntilLoadingIconDisappears();
 })
 
 When(/^I enter confirmation date and time "(.*)" and "(.*)"$/, function(notice,timeStr){
   var temp_date_time=datetime.getConfirmationDateTime(notice,timeStr)
   action.enterDateAndTime(jobRequestPage.confirmationDate,jobRequestPage.confirmationTime,temp_date_time[0],temp_date_time[1])
+  action.waitUntilLoadingIconDisappears();
 })
 
 When(/^I select assignment type "(.*)"$/, function(assignmenttype){
@@ -71,11 +73,13 @@ When(/^I click save and proceed to summary button$/,function(){
   action.isClickableWait(jobRequestPage.saveAndProceedToSummaryButton,30000)
   jobRequestPage.saveAndProceedToSummaryButton.waitForClickable({timeout:7000},{timeoutMsg:'saveAndProceedToSummaryButton not clickable in 7s'},{interval:500})
   action.clickElement(jobRequestPage.saveAndProceedToSummaryButton)
+  action.waitUntilLoadingIconDisappears();
 })
 
 When(/^I click submit button$/,function(){
   browser.pause(2000)
-  jobRequestPage.submitButton.waitForClickable({timeout:10000},{timeoutMsg:'submit not clickable in 10s'},{interval:1000})  
+  action.isVisibleWait(jobRequestPage.submitButton,30000);
+  // jobRequestPage.submitButton.waitForClickable({timeout:10000},{timeoutMsg:'submit not clickable in 10s'},{interval:1000})
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
   //action.clickElement(jobRequestPage.submitButton)
   /*console.time('t1')
@@ -173,6 +177,7 @@ When(/^I click add interpreters button$/,function(){
 When(/^I handle duplicate job warning window$/,function(){
   
   try{
+    action.isVisibleWait(jobRequestPage.continueButton,20000);
     jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
     browser.execute("arguments[0].click();", jobRequestPage.continueButton)
     //action.clickElement(jobRequestPage.continueButton)
@@ -319,6 +324,7 @@ When(/^I click no change required button$/,function()
 
 Then(/^the job created success message should appear$/, function(){
   console.time('t2')
+  action.isVisibleWait(jobRequestPage.successMessageText,30000);
   jobRequestPage.successMessageText.waitForExist({timeout:12000})
   chai.expect(action.elementExists(jobRequestPage.successMessage)).to.be.true
   browser.waitUntil(
@@ -488,10 +494,29 @@ Then(/^interpreters "(.*)" who live between "(.*)" KM and "(.*)" KM are eligible
   let contractorDistanceActualText = $(jobRequestPage.contractorDistanceLocator.replace("<dynamic>", contractorName));
   contractorDistanceActualText = action.getElementText(contractorDistanceActualText);
   let contractorDistanceKmValue = contractorDistanceActualText.split(" ")[0];
-  let distanceIsBetweenValues = contractorDistanceKmValue >= distanceFrom && contractorDistanceKmValue <= distanceTo;
+  let distanceIsBetweenValues = parseInt(contractorDistanceKmValue) >= parseInt(distanceFrom) && parseInt(contractorDistanceKmValue) <= parseInt(distanceTo);
   chai.expect(distanceIsBetweenValues).to.be.true;
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
   action.isVisibleWait(contractorJobStatusLink, 10000);
   let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
   chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+})
+
+Then(/^interpreters "(.*)" who live within the "(.*)" KM are eligible for the job "(.*)"$/, function (contractorName, distance, expectedContractorStatus) {
+  let contractorDistanceActualText = $(jobRequestPage.contractorDistanceLocator.replace("<dynamic>", contractorName));
+  contractorDistanceActualText = action.getElementText(contractorDistanceActualText);
+  let contractorDistanceKmValue = contractorDistanceActualText.split(" ")[0];
+  let distanceIsWithinLimit = parseInt(contractorDistanceKmValue) <= parseInt(distance)
+  chai.expect(distanceIsWithinLimit).to.be.true;
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+})
+
+When(/^Accept Metro Service is selected$/, function () {
+  action.isVisibleWait(jobRequestPage.acceptMetroServiceCheckbox, 10000);
+  action.clickElement(jobRequestPage.acceptMetroServiceCheckbox);
+  let acceptMetroServiceCheckboxStatus = action.isSelectedWait(jobRequestPage.acceptMetroServiceCheckbox, 1000);
+  chai.expect(acceptMetroServiceCheckboxStatus).to.be.true;
 })

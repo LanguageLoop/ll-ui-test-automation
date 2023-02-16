@@ -1,10 +1,12 @@
 
 
 When(/^I click Interpreting header link$/,   function(){
+   action.isVisibleWait(homePage.InterpretingLink,30000);
    action.clickElement(homePage.InterpretingLink)
 })
 
 When(/^I click Claims header link$/,   function(){
+   action.isVisibleWait(homePage.claimsLink,30000);
    action.clickElement(homePage.claimsLink)
    browser.pause(2000)
 })
