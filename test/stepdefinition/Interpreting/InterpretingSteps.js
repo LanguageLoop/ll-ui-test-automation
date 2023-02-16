@@ -25,6 +25,7 @@ When(/^I click on new job request button$/,function(){
 })
 
 When(/^I select "(.*)" job status$/,function(jobstatus){
+  action.isVisibleWait(interpretingPage.jobStatusDropdown,30000);
   action.selectTextFromDropdown(interpretingPage.jobStatusDropdown,jobstatus)
   browser.pause(8000);
 
@@ -37,6 +38,7 @@ When(/^I select "(.*)" job status$/,function(jobstatus){
 
 When(/^I click on job id from interpreting job search results$/, function(){
   browser.pause(2000)
+  action.isVisibleWait(interpretingPage.jobIdColumnFromSearchResult,30000);
   action.clickElement(interpretingPage.jobIdColumnFromSearchResult)
   browser.pause(5000)
 })
@@ -66,6 +68,7 @@ When(/^I click on bulk upload button$/, function(){
 })
 
 When(/^I search for created job request$/, function(){
+  action.isVisibleWait(interpretingPage.searchJobInput,30000);
   action.clickElement(interpretingPage.searchJobInput)
   action.clearValue(interpretingPage.searchJobInput)
   action.enterValueAndPressReturn(interpretingPage.searchJobInput,GlobalData.CURRENT_JOB_ID.toString())
