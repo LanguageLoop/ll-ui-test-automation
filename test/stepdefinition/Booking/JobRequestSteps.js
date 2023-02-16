@@ -494,10 +494,29 @@ Then(/^interpreters "(.*)" who live between "(.*)" KM and "(.*)" KM are eligible
   let contractorDistanceActualText = $(jobRequestPage.contractorDistanceLocator.replace("<dynamic>", contractorName));
   contractorDistanceActualText = action.getElementText(contractorDistanceActualText);
   let contractorDistanceKmValue = contractorDistanceActualText.split(" ")[0];
-  let distanceIsBetweenValues = contractorDistanceKmValue >= distanceFrom && contractorDistanceKmValue <= distanceTo;
+  let distanceIsBetweenValues = parseInt(contractorDistanceKmValue) >= parseInt(distanceFrom) && parseInt(contractorDistanceKmValue) <= parseInt(distanceTo);
   chai.expect(distanceIsBetweenValues).to.be.true;
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
   action.isVisibleWait(contractorJobStatusLink, 10000);
   let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
   chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+})
+
+Then(/^interpreters "(.*)" who live within the "(.*)" KM are eligible for the job "(.*)"$/, function (contractorName, distance, expectedContractorStatus) {
+  let contractorDistanceActualText = $(jobRequestPage.contractorDistanceLocator.replace("<dynamic>", contractorName));
+  contractorDistanceActualText = action.getElementText(contractorDistanceActualText);
+  let contractorDistanceKmValue = contractorDistanceActualText.split(" ")[0];
+  let distanceIsWithinLimit = parseInt(contractorDistanceKmValue) <= parseInt(distance)
+  chai.expect(distanceIsWithinLimit).to.be.true;
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+})
+
+When(/^Accept Metro Service is selected$/, function () {
+  action.isVisibleWait(jobRequestPage.acceptMetroServiceCheckbox, 10000);
+  action.clickElement(jobRequestPage.acceptMetroServiceCheckbox);
+  let acceptMetroServiceCheckboxStatus = action.isSelectedWait(jobRequestPage.acceptMetroServiceCheckbox, 1000);
+  chai.expect(acceptMetroServiceCheckboxStatus).to.be.true;
 })
