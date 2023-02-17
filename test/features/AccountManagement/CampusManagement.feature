@@ -392,3 +392,33 @@ Feature: Campus Management features
   Examples:
    | username          | password    | campus id | firstname     | landline number |
    | LLAdmin@looped.in |  Octopus@6  | 33124     | AutomationCBO | 0212345678      |
+
+  #LL-642 Scenario 1a: Campuses in the Excel file have the same OLD shortcodes (CampusShortCode column) in the excel
+ @SameOldShortCodes @LL-642
+ Scenario Outline: Campuses in the list have the same OLD shortcodes
+  When I login with "<username>" and "<password>"
+  Then the campuses "<campus ids>" should have the original short code "<shortcode option>","<shortcode values>" attached in Dimension Tag Cloud section
+
+  Examples:
+   | username          | password    | campus ids                                                  | shortcode option | shortcode values                                                  |
+   | LLAdmin@looped.in |  Octopus@6  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Shortcode        | CV,VIC RD,Victoria Police,CSV,OPP,VLA,HPV,HEALTH,VIC RD,FAMILY CT |
+
+  #LL-642 Scenario 1b: Campuses in the Excel file have the same NEW shortcodes (Revised Shortcode / Organisation column) in the excel
+ @SameNewShortCodes @LL-642
+ Scenario Outline: Campuses in the list have the same NEW shortcodes
+  When I login with "<username>" and "<password>"
+  Then the campuses "<campus ids>" should have the original short code "<shortcode option>","<shortcode values>" attached in Dimension Tag Cloud section
+
+  Examples:
+   | username          | password    | campus ids                                                  | shortcode option | shortcode values                                                                                                                                                                             |
+   | LLAdmin@looped.in |  Octopus@6  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew     | Corrections Victoria,VicRoads Centre,Victoria Police,Magistrates,Office of Public Prosecutions,Victoria Legal Aid,Alfred Health,Alfred Health,VicRoads Centre,Federal Circuit Court of Aust. |
+
+  #LL-642 Scenario 4: New budget codes should still exist
+ @NewBudgetCodesExist @LL-642
+ Scenario Outline: New budget codes should still exist
+  When I login with "<username>" and "<password>"
+  Then the campuses "<campus ids>" should have the original short code "<budget code option>","<shortcode values>" attached in Dimension Tag Cloud section
+
+  Examples:
+   | username          | password    | campus ids                                                  | budget code option | shortcode values                                                                                                                                                                                    |
+   | LLAdmin@looped.in | Octopus@6   | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Budget Code        | Corrections Victoria,VicRoads,Victoria Police,Court Services Victoria (CSV),Dept of Justice (VIC),Victoria Legal Aid,Healthshare Victoria (HPV),Unallocated,VicRoads,Federal Circuit Court of Aust. |

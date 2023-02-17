@@ -719,3 +719,23 @@ Given(/^the Job Campus belongs to a certain BillTo "(.*)"$/,function(pinBillToCo
     let campusPinBillToCodeLinkActualDisplayStatus = action.isVisibleWait(campusPinBillToCodeLink,10000);
     chai.expect(campusPinBillToCodeLinkActualDisplayStatus).to.be.true;
 })
+
+Then(/^the campuses "(.*)" should have the original short code "(.*)","(.*)" attached in Dimension Tag Cloud section$/, function (campus, dimensionListOption, optionValues) {
+    let campusList = campus.split(",");
+    let optionValuesList = optionValues.split(",");
+    for (let optionIndex = 0; optionIndex < optionValuesList.length; optionIndex++) {
+        action.isVisibleWait(homePage.accountManagementLink, 20000);
+        action.clickElement(homePage.accountManagementLink)
+        action.isVisibleWait(accountManagementPage.searchCampusInput, 20000);
+        action.enterValueAndPressReturn(accountManagementPage.searchCampusInput, campusList[optionIndex]);
+        action.pressKeys("Tab");
+        action.waitUntilLoadingIconDisappears();
+        action.isVisibleWait(accountManagementPage.firstCampusLink, 20000);
+        action.clickElement(accountManagementPage.firstCampusLink);
+        let dimensionTagCloudSectionDisplayStatus = action.isVisibleWait(accountManagementPage.dimensionTagCloudSection, 2000);
+        chai.expect(dimensionTagCloudSectionDisplayStatus).to.be.true;
+        let tagElement = $(accountManagementPage.tagLocator.replace("<dynamic1>", dimensionListOption).replace("<dynamic2>", optionValuesList[optionIndex]));
+        let tagVisibleStatus = action.isVisibleWait(tagElement, 10000);
+        chai.expect(tagVisibleStatus).to.be.true;
+    }
+})
