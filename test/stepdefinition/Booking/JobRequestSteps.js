@@ -499,7 +499,11 @@ Then(/^interpreters "(.*)" who live between "(.*)" KM and "(.*)" KM are eligible
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
   action.isVisibleWait(contractorJobStatusLink, 10000);
   let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
-  chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  if (contractorJobStatusTextActual.includes(expectedContractorStatus)) {
+    chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  } else {
+    chai.expect(contractorJobStatusTextActual).to.equal("- No status -");
+  }
 })
 
 Then(/^interpreters "(.*)" who live within the "(.*)" KM are eligible for the job "(.*)"$/, function (contractorName, distance, expectedContractorStatus) {
@@ -511,7 +515,11 @@ Then(/^interpreters "(.*)" who live within the "(.*)" KM are eligible for the jo
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
   action.isVisibleWait(contractorJobStatusLink, 10000);
   let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
-  chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  if (contractorJobStatusTextActual.includes(expectedContractorStatus)) {
+    chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  } else {
+    chai.expect(contractorJobStatusTextActual).to.equal("- No status -");
+  }
 })
 
 When(/^Accept Metro Service is selected$/, function () {

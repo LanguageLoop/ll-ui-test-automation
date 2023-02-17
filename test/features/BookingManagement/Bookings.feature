@@ -435,7 +435,7 @@ Feature: Create new booking for Interpreters
       | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-618 Scenario 1: Standard Job
-  @MetroNotSelectedStandardOutside25
+  @MetroNotSelectedStandardOutside25 @LL-618
   Scenario Outline: Interpreters who live outside the 25kms are not eligible for standard job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
@@ -468,7 +468,7 @@ Feature: Create new booking for Interpreters
       | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
 
      #LL-618 Scenario 2: Short Notice Job (48 hours notice)
-  @MetroNotSelectedShortNoticeOutside25
+  @MetroNotSelectedShortNoticeOutside25 @LL-618
   Scenario Outline: Interpreters who live outside the 25kms are not eligible for Short Notice Job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
@@ -501,7 +501,7 @@ Feature: Create new booking for Interpreters
       | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
 
     #LL-618 Scenario 3a: Other Campus, default distance is applied (standard) [Regression Test]
-  @MetroNotSelectedStandardOtherCampus
+  @MetroNotSelectedStandardOtherCampus @LL-618
   Scenario Outline: Interpreters who live between 25kms and 45kms are eligible for standard job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
@@ -530,10 +530,10 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | fortnight after | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | - No status -         |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | fortnight after | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | Auto Notification     |
 
     #LL-618 Scenario 3b: Other Campus, default distance is applied (short notice) [Regression Test]
-  @MetroNotSelectedShortNoticeOtherCampus
+  @MetroNotSelectedShortNoticeOtherCampus @LL-618
   Scenario Outline: Interpreters who live between 25kms and 45kms are eligible for short notice job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
@@ -562,10 +562,10 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice    | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | - No status -         |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice    | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | Auto Notification     |
 
     #LL-618 Scenario 3c: Other Campus, default distance is applied (standard) [Regression Test]
-  @MetroNotSelectedStandardWithin25
+  @MetroNotSelectedStandardWithin25 @LL-618
   Scenario Outline: Interpreters who live within the 25kms are eligible for standard job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
@@ -598,7 +598,7 @@ Feature: Create new booking for Interpreters
       | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25               | Auto Notification     |
 
     #LL-618 Scenario 3d: Other Campus, default distance is applied (short notice) [Regression Test]
-  @MetroSelectedShortNoticeWithin100
+  @MetroSelectedShortNoticeWithin100 @LL-618
   Scenario Outline: Interpreters who live within the 25kms are eligible for short notice job when Accept Metro Service is not selected
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
@@ -628,4 +628,4 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | - No status -         |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     |
