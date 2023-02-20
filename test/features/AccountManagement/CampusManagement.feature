@@ -423,3 +423,53 @@ Feature: Campus Management features
   Examples:
    | username          | password    | campus ids                                                  | budget code option | shortcode values                                                                                                                                                                                    |
    | LLAdmin@looped.in | Octopus@6   | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Budget Code        | Corrections Victoria,VicRoads,Victoria Police,Court Services Victoria (CSV),Dept of Justice (VIC),Victoria Legal Aid,Healthshare Victoria (HPV),Unallocated,VicRoads,Federal Circuit Court of Aust. |
+
+  #LL-642 Scenario 5: New Dimension List is created ShortCodeNew
+ @ShortCodeNewExists @LL-642
+ Scenario Outline: Admin views Budget Code dimension
+  When I login with "<username>" and "<password>"
+  Then the campuses "<campus ids>" list should contain the new dimension called "<dimension list option>"
+
+  Examples:
+   | username          | password    | campus ids                                                  | dimension list option |
+   | LLAdmin@looped.in |  Octopus@6  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew          |
+
+  #LL-443 AC 7: User should not be able to add multiple dimensions list at same time
+ @MultipleDimensionsNotAtOnce @LL-443
+ Scenario Outline: User should not be able to add multiple dimensions list at same time
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And The Admin is viewing the Dimension Tag Cloud section
+  And They select the plus icon
+  And The dimension dropdown is displayed
+  And the dimension dropdown list has X icon beside the dropdown
+  Then there should not be any plus icon displayed and multiple dimensions cannot be added simultaneously
+
+  Examples:
+   | username          | password    | campus id |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     |
+
+
+   #LL-443 AC8: User should not be able to edit the saved/ existing dimensions.
+ @EditExistingDimensionNotAllowed
+ Scenario Outline: Admin removes dimension and value
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And They select the plus icon
+  And Open the Dimension list dropdown
+  And They add the "<budget code option>" list option dimension
+  And They select a value "<budget code value>" from the select a value dropdown
+  And The tag "<budget code option>","<budget code value>" will be added in the Dimension Tag Cloud section
+  And I click on the above dimension created "<budget code option>","<budget code value>"
+  Then the dimension "<budget code option>","<budget code value>" is not clickable, it should be readable only
+  And They select the red cross x on the tag "<budget code option>","<budget code value>"
+  And The tag will be deleted
+  And The tag "<budget code option>","<budget code value>" will not be visible in the Dimension Tag Cloud section
+
+  Examples:
+   | username          | password    | campus id | budget code option | budget code value |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |
