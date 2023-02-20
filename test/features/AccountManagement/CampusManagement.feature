@@ -241,6 +241,7 @@ Feature: Campus Management features
   And Selects the "<shortcode option>" dimension list option
   Then They will see the new short codes
   And The new short codes will appear at the top of the list in alphabetical order A-Z
+  And select a value dropdown options should not have any value with zzz- prefix in dropdown
 
   Examples:
    | username          | password    | campus id | shortcode option |
