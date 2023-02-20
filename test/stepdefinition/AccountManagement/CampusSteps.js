@@ -739,3 +739,47 @@ Then(/^the campuses "(.*)" should have the original short code "(.*)","(.*)" att
         chai.expect(tagVisibleStatus).to.be.true;
     }
 })
+
+Then(/^the campuses "(.*)" list should contain the new dimension called "(.*)"$/, function (campus, dimensionListOption) {
+    let campusList = campus.split(",");
+    for (let optionIndex = 0; optionIndex < campusList.length; optionIndex++) {
+        action.isVisibleWait(homePage.accountManagementLink, 20000);
+        action.clickElement(homePage.accountManagementLink)
+        action.isVisibleWait(accountManagementPage.searchCampusInput, 20000);
+        action.enterValueAndPressReturn(accountManagementPage.searchCampusInput, campusList[optionIndex]);
+        action.pressKeys("Tab");
+        action.waitUntilLoadingIconDisappears();
+        action.isVisibleWait(accountManagementPage.firstCampusLink, 20000);
+        action.clickElement(accountManagementPage.firstCampusLink);
+        action.isVisibleWait(accountManagementPage.dimensionTagPlusIcon, 10000);
+        action.clickElement(accountManagementPage.dimensionTagPlusIcon);
+        let dimensionListOptionElement = $(accountManagementPage.dimensionListOptionLocator.replace("<dynamic>", dimensionListOption));
+        let dimensionListOptionVisibleStatus = action.isVisibleWait(dimensionListOptionElement, 10000);
+        chai.expect(dimensionListOptionVisibleStatus).to.be.true;
+    }
+})
+
+When(/^the dimension dropdown list has X icon beside the dropdown$/, function(){
+    let xIconDisplayStatus = action.isVisibleWait(accountManagementPage.crossIconNextToDropdown,10000);
+    chai.expect(xIconDisplayStatus).to.be.true;
+})
+
+When(/^there should not be any plus icon displayed and multiple dimensions cannot be added simultaneously$/, function(){
+    let plusIconDisplayStatus = action.isVisibleWait(accountManagementPage.dimensionTagPlusIcon,10000);
+    chai.expect(plusIconDisplayStatus).to.be.false;
+})
+
+Then(/^select a value dropdown options should not have any value with zzz- prefix in dropdown$/,function(){
+    chai.expect(GlobalData.SHORT_CODE_OPTIONS).to.not.includes("zzz-");
+})
+
+Then(/^I click on the above dimension created "(.*)","(.*)"$/,function(dimensionListOption,optionValue){
+    let tagElement = $(accountManagementPage.tagLocator.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
+    action.clickElement(tagElement);
+})
+
+Then(/^the dimension "(.*)","(.*)" is not clickable, it should be readable only$/,function(dimensionListOption,optionValue){
+    let tagElement = $(accountManagementPage.tagLocator.replace("<dynamic1>",dimensionListOption).replace("<dynamic2>",optionValue))
+    let dimensionOptionTag = action.getElementTagName(tagElement);
+    chai.expect(dimensionOptionTag).to.not.equal("a");
+})
