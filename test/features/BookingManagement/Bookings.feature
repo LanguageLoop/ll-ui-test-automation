@@ -305,7 +305,6 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -359,7 +358,6 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -413,7 +411,6 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -449,7 +446,6 @@ Feature: Create new booking for Interpreters
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -482,7 +478,6 @@ Feature: Create new booking for Interpreters
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -514,7 +509,6 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -546,7 +540,6 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -579,7 +572,6 @@ Feature: Create new booking for Interpreters
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
@@ -612,7 +604,6 @@ Feature: Create new booking for Interpreters
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
     And I enter "<email>" email address
-    And I enter confirmation date and time "<date>" and "<time>"
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
