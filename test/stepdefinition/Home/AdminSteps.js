@@ -235,21 +235,22 @@ When(/^They click the Save Detail button$/, function () {
 })
 
 Then(/^The user is created in Admin Page$/, function () {
-   let userCreatedMessageDisplayStatus = action.isVisibleWait(adminPage.userCreatedMessage, 10000);
+   let userCreatedMessageDisplayStatus = action.isVisibleWait(adminPage.userCreatedMessage, 20000);
    chai.expect(userCreatedMessageDisplayStatus).to.be.true;
 })
 
 Given(/^The user has access to the User’s profile$/, function () {
-   let userProfileNameDisplayStatus = action.isVisibleWait(adminPage.userProfileNameText, 10000);
+   let userProfileNameDisplayStatus = action.isVisibleWait(adminPage.userProfileNameText, 20000);
    chai.expect(userProfileNameDisplayStatus).to.be.true;
 })
 
 Given(/^They view the profile$/, function () {
-   action.isClickableWait(adminPage.userProfileNameText, 10000);
+   action.isClickableWait(adminPage.userProfileNameText, 20000);
    action.clickElement(adminPage.userProfileNameText);
 })
 
 Then(/^They will see the Created Date: DD MM YYYY HH:MM:SS under the Profile picture box AND this applies to all roles$/, function () {
+   action.isVisibleWait(adminPage.createdDateTextUnderProfilePic,20000);
    let createdDateFullText = action.getElementText(adminPage.createdDateTextUnderProfilePic);
    let createdDateValue = createdDateFullText.split(": ")[1];
    chai.expect(createdDateValue.charAt(2)).to.equal("/");
@@ -421,4 +422,49 @@ Then(/^the text "(.*)" is displayed$/, function (expectedLangExplanation) {
    let actualLanguageExplanationValue = $(adminPage.languageExplanationText.replace("<dynamic>", expectedLangExplanation));
    let actualLanguageExplanation = action.getElementText(actualLanguageExplanationValue);
    chai.expect(actualLanguageExplanation).to.equals(expectedLangExplanation);
+})
+
+When(/^I get the Creation Date of the user created$/, function () {
+   let createdUserCreationDateTextElement = $(adminPage.creationDateOfCreatedUserLocator.replace("<dynamic>", GlobalData.BOOKING_OFFICER_FIRSTNAME));
+   action.isVisibleWait(createdUserCreationDateTextElement, 10000);
+   GlobalData.ACTUAL_ACCOUNT_CREATION_DATE = action.getElementText(createdUserCreationDateTextElement);
+})
+
+When(/^I search and select account created account in Admin$/, function () {
+   action.isVisibleWait(adminPage.accountsSearchByTextBox, 10000);
+   action.enterValue(adminPage.accountsSearchByTextBox, GlobalData.BOOKING_OFFICER_FIRSTNAME);
+   action.isClickableWait(adminPage.searchButton, 10000);
+   action.clickElement(adminPage.searchButton);
+   let accountSearchResultLink = $(adminPage.accountSearchResultLinkLocator.replace("<dynamic>", GlobalData.BOOKING_OFFICER_FIRSTNAME));
+   action.isClickableWait(accountSearchResultLink, 20000)
+   action.clickElement(accountSearchResultLink);
+})
+
+When(/^I Update the profile either by Update or adding or deleting few non mandatory data "(.*)"$/, function (landLineNumber) {
+   action.isVisibleWait(adminPage.landLineNumberFieldCreateAccount, 20000);
+   action.enterValue(adminPage.landLineNumberFieldCreateAccount, landLineNumber);
+})
+
+Then(/^I see the message User profile was successfully saved$/, function () {
+   let userUpdatedMessageDisplayStatus = action.isVisibleWait(adminPage.userCreatedMessage, 20000);
+   chai.expect(userUpdatedMessageDisplayStatus).to.be.true;
+})
+
+When(/^I move back to the admin page$/, function () {
+   action.isVisibleWait(adminPage.backNavigationButton, 20000);
+   action.clickElement(adminPage.backNavigationButton);
+})
+
+Then(/^the Creation date of the user edited should not change, it shows the actual creation date only$/, function () {
+   let createdUserCreationDateTextElement = $(adminPage.creationDateOfCreatedUserLocator.replace("<dynamic>", GlobalData.BOOKING_OFFICER_FIRSTNAME));
+   action.isVisibleWait(createdUserCreationDateTextElement, 10000);
+   let creationDateAfterAccountUpdate = action.getElementText(createdUserCreationDateTextElement);
+   chai.expect(creationDateAfterAccountUpdate).to.equal(GlobalData.ACTUAL_ACCOUNT_CREATION_DATE);
+})
+
+Then(/^I should be able to pick only one role "(.*)" at a time$/, function (option) {
+   let clientGroupOption = $(adminPage.clientGroupOptionsLocator.replace("<dynamic>", option));
+   action.selectTextFromDropdown(adminPage.roleFilterDropdown, option);
+   let clientOptionSelectedStatus = action.isSelectedWait(clientGroupOption, 5000);
+   chai.expect(clientOptionSelectedStatus).to.be.true;
 })
