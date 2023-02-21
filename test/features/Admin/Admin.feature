@@ -103,7 +103,7 @@ Feature: Admin features
 
   #LL-612 Scenario 3 - Admin creates New Account
   @AdminCreatesNewAccount
-  Scenario Outline: User selects All Roles
+  Scenario Outline: Admin creates New Account
     When I login with "<username>" and "<password>"
     And I click Admin header link
     And Clicks Create Account
@@ -121,7 +121,7 @@ Feature: Admin features
 
   #LL-612 Scenario 4 - View created date
   @ViewCreatedDate
-  Scenario Outline: User selects All Roles
+  Scenario Outline: View created date
     When I login with "<username>" and "<password>"
     And The user has access to the User’s profile
     And They view the profile
@@ -199,3 +199,58 @@ Feature: Admin features
       | username        | password  | Language | Virtual Language  | Language Text                                                                                  |
       | zenq1@ll.com.au | Reset@312 | chinese  | CHINESE (virtual) | CHINESE is a Virtual Language. It means the interpreter knows both MANDARIN and CANTONESE      |
       | zenq1@ll.com.au | Reset@312 | Karen    | KAREN (virtual)   | KAREN is a Virtual Language. It means the interpreter knows both KAREN (Pwo) and KAREN (S'gaw) |
+
+    #LL-608 Scenario 3- On editing the user account, creation date should not get updated
+  @CreationDateNotUpdatedAfterEdit @LL-608
+  Scenario Outline: On editing the user account, creation date should not get updated
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Accounts section on the Admin page
+    And Clicks Create Account
+    And Selects any role "<role toggle>"
+    And Fills out all the required details "<firstname>", email, "<landline number> in Admin Page"
+    And They click the Save Detail button
+    And The user is created in Admin Page
+    And I click Admin header link
+    And I get the Creation Date of the user created
+    And I search and select account created account in Admin
+    And I click Edit Profile Button in Account Profile
+    And I Update the profile either by Update or adding or deleting few non mandatory data "<landline number2>"
+    And They click the Save Detail button
+    And I see the message User profile was successfully saved
+    And I move back to the admin page
+    Then the Creation date of the user edited should not change, it shows the actual creation date only
+
+    Examples:
+      | username          | password  | role toggle | firstname     | landline number | landline number2 |
+      | LLAdmin@looped.in | Octopus@6 | Contractor  | AutomationCBO | 0212345678      | 0212348765       |
+
+    #LL-608 Scenario 4 - On selecting any role from dropdown, results obtained should also be sorted with newest date at the top
+  @SelectRoleResultsSorted @LL-608
+  Scenario Outline: New column displayed for creation date
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Accounts section on the Admin page
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The table will be sorted by Creation Date by default newest at the top
+
+    Examples:
+      | username          | password  | role filter option |
+      | LLAdmin@looped.in | Octopus@6 | Bookings Officer   |
+
+    #LL-607 Scenario 5 - User can select only one role at time
+  @SelectOnlyOneRole
+  Scenario Outline: User can select only one role at time
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Accounts section on the Admin page
+    And They will see a Role filter dropdown
+    And The Admin or Internal user has clicked the Role filter dropdown
+    And The user has selected an option "<role filter option1>" from the Role filter dropdown
+    Then I should be able to pick only one role "<role filter option1>" at a time
+    And The user has selected an option "<role filter option2>" from the Role filter dropdown
+    And I should be able to pick only one role "<role filter option2>" at a time
+
+    Examples:
+      | username          | password  | role filter option1 | role filter option2 |
+      | LLAdmin@looped.in | Octopus@6 | Bookings Officer    | Campus Manager      |
