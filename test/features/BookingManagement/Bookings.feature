@@ -211,7 +211,7 @@ Feature: Create new booking for Interpreters
 
 
   @CreateJobRequest @CBO1
-  Scenario Outline: Create Booking with minimal required field values
+  Scenario Outline: Create Booking with minimal required field values1
     When I login with "<username>" and "<password>"
     And I handle the message for interpreters dialog
     And I click Interpreting header link

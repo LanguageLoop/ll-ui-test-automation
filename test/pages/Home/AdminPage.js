@@ -111,7 +111,7 @@ module.exports = {
     },
 
     get accountSearchResultLinkLocator(){
-        return '//table[contains(@id,"UserDetailTable")]//child::td[text()="<dynamic>"]/preceding-sibling::td/child::a';
+        return '//table[contains(@id,"UserDetailTable")]//child::td[contains(text(),"<dynamic>")]/preceding-sibling::td/child::a';
     },
 
     get editProfileButton(){
@@ -180,4 +180,8 @@ module.exports = {
     get languageExplanationText() {
         return '//div[contains(text(), "<dynamic>")]';
     },
+
+    get backNavigationButton() {
+        return $('//span[@class="fa fa-fw fa-angle-left"]/parent::a[contains(@id,"Title")]');
+    }
 }

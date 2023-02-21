@@ -1,5 +1,6 @@
 When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
- action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,listitem)
+  action.isVisibleWait(jobRequestPage.requesterNameDropdown,20000);
+  action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,listitem);
 })
 
 When(/^I select language "(.*)"$/,   function(listitem){
@@ -20,6 +21,7 @@ When(/^I select campus pin "(.*)"$/,function(campuspin){
 })
 
 When(/^I enter time "(.*)"$/,function(time){
+  action.isVisibleWait(jobRequestPage.timeInput,20000)
   action.isClickableWait(jobRequestPage.timeInput,20000)
   jobRequestPage.timeInput.waitForExist({timeout:5000})
   jobRequestPage.timeInput.waitForEnabled({timeout:5000})
@@ -106,6 +108,7 @@ When(/^I click submit and summary button$/,function(){
 })
 
 When(/^I click next button$/,function(){
+  action.isVisibleWait(jobRequestPage.nextButton,20000);
   jobRequestPage.nextButton.waitForClickable({timeout:5000,timeoutMsg:'next button not clickable in 5s',interval:500})
   action.clickElement(jobRequestPage.nextButton)
 })

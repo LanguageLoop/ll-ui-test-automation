@@ -21,6 +21,7 @@ When(/^I close all special search criteria$/, function(){
 
 When(/^I click on first job id from claims job list$/, function(){
     browser.pause(4000)
+    action.isVisibleWait(interpretingPage.jobIdColumnFromSearchResult,20000);
     GlobalData.CURRENT_JOB_ID = interpretingPage.jobIdColumnFromSearchResult.getText()
     action.clickElement(interpretingPage.jobIdColumnFromSearchResult)
     browser.pause(5000)

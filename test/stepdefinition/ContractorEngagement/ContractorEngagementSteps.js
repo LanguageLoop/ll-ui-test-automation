@@ -635,6 +635,7 @@ Then(/^on Contractor Details History page, the NAATI accreditation "(.*)" will h
     action.isVisibleWait(contractorEngagementPage.showContractAuditTrialsLink, 10000);
     action.clickElement(contractorEngagementPage.showContractAuditTrialsLink);
     action.isNotVisibleWait(contractorEngagementPage.auditHistoryNoItemsToShowMessage,20000);
+    action.isNotVisibleWait(contractorEngagementPage.auditHistoryNoItemsToShowMessage,20000);
     let actualAuditHistoryBody = action.getElementText(contractorEngagementPage.auditHistoryTableBody);
     chai.expect(actualAuditHistoryBody).to.includes(expectedNaatiAccreditation);
 })
