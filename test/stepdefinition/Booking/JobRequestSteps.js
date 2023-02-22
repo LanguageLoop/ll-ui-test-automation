@@ -5,6 +5,7 @@ When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
 
 When(/^I select language "(.*)"$/,   function(listitem){
   browser.pause(2000)
+  action.isVisibleWait(jobRequestPage.languageDropdown,20000);
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,listitem)
 })
 
@@ -47,6 +48,7 @@ When(/^I enter confirmation date and time "(.*)" and "(.*)"$/, function(notice,t
 
 When(/^I select assignment type "(.*)"$/, function(assignmenttype){
   browser.pause(2000)
+  action.isVisibleWait(jobRequestPage.assignmentTypeDropdown,20000);
   action.enterValueAndPressReturn(jobRequestPage.assignmentTypeDropdown,assignmenttype)
 })
 
