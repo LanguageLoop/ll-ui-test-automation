@@ -361,3 +361,46 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor    | Naati Accreditation               | from      | to      |
       | LLAdmin@looped.in | Octopus@6 | Abir ISKANDAR | Certified Provisional Interpreter | ARABIC    | ENGLISH |
+
+    #LL-613 Scenario 7: User should be able to select multiple Bill To Codes
+  @BlockCovidVaxExemption @MultipleBillToCodes @LL-613
+  Scenario Outline: User should be able to select multiple Bill To Codes
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTos>", "<severityLevel>" are valid in Bill-To tab
+    And at least 1 Job Type "<jobTypes>" is selected
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the selected Bill Tos "<billTos>" are displayed in separate rows, each for 1 Bill To
+    Then I click on any of the above created blocks and see that block contains the selected Bill To "<billTos>" only
+    And the admin clicks on Remove on a block
+
+    Examples:
+      | username          | password  | contractor | billTos                                                                    | severityLevel | jobTypes              |
+      | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
+
+    #LL-613 Scenario 8: Verify the error message when Date Started is not entered
+  @BlockCovidVaxExemption @ErrorMessageDateStartedEmpty
+  Scenario Outline: Verify the error message when Date Started is not entered
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And it should show a list of Contract Bill To’s
+    And the user selects at least 1 Bill To "<billTos>"
+    And do not enter any value in Date Started field "<severityLevel>"
+    And the block is saved
+    Then the error message "<error message>" is displayed below the Date Started field
+
+
+    Examples:
+      | username          | password  | contractor | billTos                                  | severityLevel | error message   |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | Level         | Required field! |

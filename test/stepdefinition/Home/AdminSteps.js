@@ -235,6 +235,7 @@ When(/^They click the Save Detail button$/, function () {
 })
 
 Then(/^The user is created in Admin Page$/, function () {
+   action.isExistingWait(adminPage.userCreatedMessage, 20000);
    let userCreatedMessageDisplayStatus = action.isVisibleWait(adminPage.userCreatedMessage, 20000);
    chai.expect(userCreatedMessageDisplayStatus).to.be.true;
 })
@@ -467,4 +468,26 @@ Then(/^I should be able to pick only one role "(.*)" at a time$/, function (opti
    action.selectTextFromDropdown(adminPage.roleFilterDropdown, option);
    let clientOptionSelectedStatus = action.isSelectedWait(clientGroupOption, 5000);
    chai.expect(clientOptionSelectedStatus).to.be.true;
+})
+
+When(/^select multiple roles "(.*)"$/, function (roles) {
+   let rolesList = roles.split(",");
+   for (let index = 0; index < rolesList.length; index++) {
+      let roleToggleElement = $(adminPage.roleToggleLocator.replace("<dynamic>", rolesList[index]));
+      action.isClickableWait(roleToggleElement, 10000);
+      action.clickElement(roleToggleElement);
+   }
+})
+
+When(/^I search the account created account in Admin$/, function () {
+   action.isVisibleWait(adminPage.accountsSearchByTextBox, 10000);
+   action.enterValue(adminPage.accountsSearchByTextBox, GlobalData.BOOKING_OFFICER_FIRSTNAME);
+   action.isClickableWait(adminPage.searchButton, 10000);
+   action.clickElement(adminPage.searchButton);
+})
+
+Then(/^I should see the user that has selected role in the search results$/, function () {
+   let accountSearchResultLink = $(adminPage.accountSearchResultLinkLocator.replace("<dynamic>", GlobalData.BOOKING_OFFICER_FIRSTNAME));
+   let accountSearchResultDisplayStatus = action.isVisibleWait(accountSearchResultLink, 20000);
+   chai.expect(accountSearchResultDisplayStatus).to.be.true;
 })

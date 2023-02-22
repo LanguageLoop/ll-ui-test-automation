@@ -476,7 +476,7 @@ Then(/^the Contractor Blocking popup closes$/, function () {
 
 Then(/^the new block rule is displayed on the contractor’s profile$/, function () {
     let newBlockRulesOnProfileCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
-    for (let rule = 0; rule < newBlockRulesOnProfileCount.length; rule++) {
+    for (let rule = 0; rule < newBlockRulesOnProfileCount; rule++) {
         let newRuleDisplayStatus = action.isVisibleWait(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
         chai.expect(newRuleDisplayStatus).to.be.true;
     }
@@ -485,7 +485,7 @@ Then(/^the new block rule is displayed on the contractor’s profile$/, function
 Then(/^the selected JobTypes are applied to all the BillTo’s "(.*)" blocking for the contractor$/, function (billTos) {
     let billTosExpected = billTos.split(",");
     let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
-    for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
+    for (let rule = 0; rule < newBlockRulesLinksCount; rule++) {
         let newRuleLinkTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
         chai.expect(newRuleLinkTextActual).to.includes(billTosExpected[rule]);
     }
@@ -494,9 +494,9 @@ Then(/^the selected JobTypes are applied to all the BillTo’s "(.*)" blocking f
 Then(/^the selected blocked Job Types "(.*)" are displayed in brackets after the Contractor name "(.*)"$/, function (jobTypes, contractorName) {
     let jobTypesExpected = jobTypes.split(",");
     let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
-    for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
+    for (let rule = 0; rule < newBlockRulesLinksCount; rule++) {
         let newRuleLinkTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
-        let jobTypesInBracketsNextToContractorName = " " + contractorName + " " + "[" + jobTypesExpected[0] + " " + jobTypesExpected[1] + "]"
+        let jobTypesInBracketsNextToContractorName = " " + contractorName + " " + "[" + jobTypesExpected[0] + ", " + jobTypesExpected[1] + "]"
         chai.expect(newRuleLinkTextActual).to.includes(jobTypesInBracketsNextToContractorName);
     }
 })
@@ -516,7 +516,7 @@ Then(/^the admin clicks on Remove on a block$/, function () {
 Then(/^no blocked job types "(.*)" brackets will be displayed$/, function (jobTypes) {
     let jobTypesExpected = jobTypes.split(",");
     let newBlockRulesLinksCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
-    for (let rule = 0; rule < newBlockRulesLinksCount.length; rule++) {
+    for (let rule = 0; rule < newBlockRulesLinksCount; rule++) {
         let newRuleLinkTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule], 10000);
         for (let option = 0; option < jobTypesExpected.length; option++) {
             chai.expect(newRuleLinkTextActual).to.not.includes(jobTypesExpected[option]);
@@ -647,4 +647,51 @@ When(/^I search and select contractor "(.*)"$/, function (contractor) {
     let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>", contractor));
     action.isVisibleWait(contractorSearchResultElement, 20000);
     action.clickElement(contractorSearchResultElement);
+})
+
+Then(/^the selected Bill Tos "(.*)" are displayed in separate rows, each for 1 Bill To$/, function (billTos) {
+    let billTosList = billTos.split(",");
+    let newBlockRulesOnProfileCount = contractorEngagementPage.newBlockRuleLinksOnProfile.length;
+    for (let rule = 0; rule < newBlockRulesOnProfileCount; rule++) {
+        let newRuleTextActual = action.getElementText(contractorEngagementPage.newBlockRuleLinksOnProfile[rule]);
+        chai.expect(newRuleTextActual).to.includes(billTosList[rule])
+    }
+})
+
+Then(/^I click on any of the above created blocks and see that block contains the selected Bill To "(.*)" only$/, function (billTos) {
+    let billTosList = billTos.split(",");
+    for (let rule = 0; rule < billTosList.length; rule++) {
+        action.clickElement(contractorEngagementPage.newBlockRuleLinksOnProfile[rule]);
+        action.isVisibleWait(contractorEngagementPage.billToValueTextBox, 20000);
+        let billToValueActual = action.getElementValue(contractorEngagementPage.billToValueTextBox);
+        action.isVisibleWait(contractorEngagementPage.contractorBlockingPopupCloseButton, 20000);
+        action.clickElement(contractorEngagementPage.contractorBlockingPopupCloseButton);
+        chai.expect(billToValueActual).to.equal(billTosList[rule]);
+    }
+})
+
+When(/^the user selects at least 1 Bill To "(.*)"$/, function (billTos) {
+    if (billTos !== null) {
+        let billTosList = billTos.split(",");
+        for (let option = 0; option < billTosList.length; option++) {
+            let billToCode = billTosList[option].split("-")[0].trim();
+            action.addValueAndPressReturnTab(contractorEngagementPage.billToSearchBox, billToCode);
+            let billToCheckboxElement = $(contractorEngagementPage.billToDynamicCheckboxLocator.replace("<dynamic>", billTosList[option]));
+            action.isVisibleWait(billToCheckboxElement, 10000);
+            action.clickElement(billToCheckboxElement);
+        }
+    }
+})
+
+When(/^do not enter any value in Date Started field "(.*)"$/, function (severityLevel) {
+    action.selectTextFromDropdown(contractorEngagementPage.billToSeverityDropdown, severityLevel);
+    action.enterValue(contractorEngagementPage.startDateBillTo, "");
+    action.enterValue(contractorEngagementPage.endDateBillTo, datetime.getRandomFutureDate());
+    action.pressKeys("Tab");
+})
+
+Then(/^the error message "(.*)" is displayed below the Date Started field$/, function (errorMessage) {
+    action.isVisibleWait(contractorEngagementPage.dateStartedErrorMessage, 10000);
+    let errorMessageActual = action.getElementText(contractorEngagementPage.dateStartedErrorMessage);
+    chai.expect(errorMessageActual).to.equal(errorMessage);
 })

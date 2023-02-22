@@ -239,7 +239,7 @@ Feature: Admin features
       | LLAdmin@looped.in | Octopus@6 | Bookings Officer   |
 
     #LL-607 Scenario 5 - User can select only one role at time
-  @SelectOnlyOneRole
+  @SelectOnlyOneRole @LL-607
   Scenario Outline: User can select only one role at time
     When I login with "<username>" and "<password>"
     And I click Admin header link
@@ -254,3 +254,31 @@ Feature: Admin features
     Examples:
       | username          | password  | role filter option1 | role filter option2 |
       | LLAdmin@looped.in | Octopus@6 | Bookings Officer    | Campus Manager      |
+
+     #LL-607 Scenario 6 - User should appear in Search results, even if user has multiple roles and on selecting any one role
+  @UserMultipleRolesAppearsInSearch @LL-607
+  Scenario Outline: User should appear in Search results, even if user has multiple roles and on selecting any one role
+    When I login with "<username>" and "<password>"
+    And I click Admin header link
+    And The Admin is viewing the Accounts section on the Admin page
+    And Clicks Create Account
+    And select multiple roles "<roles toggle>"
+    And Fills out all the required details "<firstname>", email, "<landline number> in Admin Page"
+    And They click the Save Detail button
+    And The user is created in Admin Page
+    And I click Admin header link
+    And They will see a Role filter dropdown
+    And The Admin or Internal user has clicked the Role filter dropdown
+    And The user has selected an option "<role filter option1>" from the Role filter dropdown
+    And I search the account created account in Admin
+    Then I should see the user that has selected role in the search results
+    And The user has selected an option "<role filter option2>" from the Role filter dropdown
+    And I search the account created account in Admin
+    And I should see the user that has selected role in the search results
+    And The user has selected an option "<role filter option3>" from the Role filter dropdown
+    And I search the account created account in Admin
+    And I should see the user that has selected role in the search results
+
+    Examples:
+      | username          | password  | roles toggle                                         | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
+      | LLAdmin@looped.in | Octopus@6 | Bookings Officer,Contractor,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
