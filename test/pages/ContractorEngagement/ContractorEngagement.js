@@ -513,4 +513,16 @@ module.exports = {
     get naatiCertificationsFirstText() {
         return $('//span[contains(@id,"Certifications")]/div');
     },
+
+    get billToValueTextBox() {
+        return $('//input[contains(@id,"SearchInputWidget") and (@value)]');
+    },
+
+    get contractorBlockingPopupCloseButton() {
+        return $('//a[contains(@id,"DialogClose") and contains(@id,"blockingDialog")]');
+    },
+
+    get dateStartedErrorMessage() {
+        return $('//span[contains(@id,"ValidationMessage") and contains(@id,"StartDateBillTo")]');
+    }
 }
