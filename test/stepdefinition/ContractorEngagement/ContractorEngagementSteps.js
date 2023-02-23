@@ -695,3 +695,51 @@ Then(/^the error message "(.*)" is displayed below the Date Started field$/, fun
     let errorMessageActual = action.getElementText(contractorEngagementPage.dateStartedErrorMessage);
     chai.expect(errorMessageActual).to.equal(errorMessage);
 })
+
+When(/^do not select any Job Type$/, function () {
+    let jobTypesCheckboxesCount = contractorEngagementPage.jobTypesCheckBoxesCount;
+    for (let checkBoxIndex = 0; checkBoxIndex < jobTypesCheckboxesCount; checkBoxIndex++) {
+        let checkBoxElements = contractorEngagementPage.jobTypesCheckBoxes;
+        action.isVisibleWait(checkBoxElements[checkBoxIndex], 10000);
+        let checkBoxSelectedStatus = action.isSelectedWait(checkBoxElements[checkBoxIndex], 10000);
+        if (checkBoxSelectedStatus === true) {
+            action.clickElement(checkBoxElements[checkBoxIndex]);
+        }
+    }
+})
+
+Then(/^the error message "(.*)" is displayed below the Job Types$/, function (errorMessage) {
+    action.isVisibleWait(contractorEngagementPage.jobTypesErrorMessage, 10000);
+    let errorMessageActual = action.getElementText(contractorEngagementPage.jobTypesErrorMessage);
+    chai.expect(errorMessageActual).to.equal(errorMessage);
+})
+
+When(/^the Admin can make changes "(.*)"$/, function (severityLevel) {
+    action.selectTextFromDropdown(contractorEngagementPage.billToSeverityDropdown, severityLevel);
+    action.enterValue(contractorEngagementPage.startDateBillTo, datetime.getShortNoticeDate());
+    action.enterValue(contractorEngagementPage.endDateBillTo, datetime.getRandomFutureDate());
+    action.pressKeys("Tab");
+})
+
+When(/^click on Cancel icon$/, function () {
+    action.isVisibleWait(contractorEngagementPage.contractorBlockingPopupCloseButton, 10000);
+    action.clickElement(contractorEngagementPage.contractorBlockingPopupCloseButton);
+})
+
+Then(/^the changes made "(.*)" should not be displayed as we clicked on Cancel button$/, function (expectedSeverity) {
+    action.isVisibleWait(contractorEngagementPage.billToSeverityDropdown, 10000);
+    let severityLevelActual = action.getElementText(contractorEngagementPage.severitySelectedOption);
+    chai.expect(severityLevelActual).to.not.equal(expectedSeverity);
+})
+
+When(/^the block is created with expiry date "(.*)", "(.*)" prior to the current date$/, function (startDate, endDate) {
+    action.isVisibleWait(contractorEngagementPage.startDateBillTo,10000)
+    action.enterValue(contractorEngagementPage.startDateBillTo, startDate);
+    action.enterValue(contractorEngagementPage.endDateBillTo, endDate);
+    action.pressKeys("Tab");
+})
+
+When(/^I click on Show Expired toggle$/, function () {
+    action.isVisibleWait(contractorEngagementPage.showExpiredBlocksToggleCheck, 10000);
+    action.clickElement(contractorEngagementPage.showExpiredBlocksToggleCheck);
+})
