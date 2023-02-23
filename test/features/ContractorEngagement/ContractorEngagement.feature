@@ -387,7 +387,7 @@ Feature: Contractor Engagement features
       | LLAdmin@looped.in | Octopus@6 | Automation | UserPay1 - Catholic Education - User Pay,MAGC14 - Magistrates Court - Hume | 1             | On Site,Pre-booked TI |
 
     #LL-613 Scenario 8: Verify the error message when Date Started is not entered
-  @BlockCovidVaxExemption @ErrorMessageDateStartedEmpty
+  @BlockCovidVaxExemption @ErrorMessageDateStartedEmpty @LL-613
   Scenario Outline: Verify the error message when Date Started is not entered
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
@@ -406,3 +406,79 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor | billTos                                  | severityLevel | error message   |
       | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | Level         | Required field! |
+
+    #LL-613 Scenario 9: Verify the error message when no Job Types is selected
+  @BlockCovidVaxExemption @ErrorMessageNoJobTypes @LL-613
+  Scenario Outline: Verify the error message when no Job Types is selected
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And it should show a list of Contract Bill To’s
+    And the inputs "<billTos>", "<severityLevel>" are valid in Bill-To tab
+    And do not select any Job Type
+    And the block is saved
+    Then the error message "<error message>" is displayed below the Job Types
+
+    Examples:
+      | username          | password  | contractor | billTos                                  | severityLevel | error message                         |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | Level         | At least one Service must be checked! |
+
+    #LL-613 Scenario 10: Admin edits a block and do not Save the details
+  @BlockCovidVaxExemption @EditBlockDontSave @LL-613
+  Scenario Outline: Admin edits a block and do not Save the details
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And each Job Type should be default checked
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And the admin clicks on the name "<billTo>" of a block
+    And the block is a "<billToTab>" block
+    And the Contractor Blocking modal popup pops-up
+    And the type of Block appears as the only tab "<billToTab>"
+    And the tab displays "<billToTab>"
+    And it should show a list of Job Types, each with a checkbox
+    And the Admin can make changes "<severityLevel1>"
+    And click on Cancel icon
+    And the Contractor Blocking popup closes
+    And the admin clicks on the name "<billTo>" of a block
+    Then the changes made "<severityLevel1>" should not be displayed as we clicked on Cancel button
+    And click on Cancel icon
+    And the admin clicks on Remove on a block
+
+    Examples:
+      | username          | password  | contractor | billTo                                   | severityLevel | billToTab | severityLevel1  |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | 2             | Bill-To   | 1               |
+
+    #LL-613 Scenario 11: Admin views the expired blocks
+  @BlockCovidVaxExemption @ViewExpiredBlocks @LL-613
+  Scenario Outline: Admin views the expired blocks
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And it should show a list of Contract Bill To’s
+    And the user selects at least 1 Bill To "<billTos>"
+    And each Job Type should be default checked
+    And the block is created with expiry date "<startDate>", "<endDate>" prior to the current date
+    And the block is saved
+    And I click on Show Expired toggle
+    Then the selected Bill Tos "<billTos>" are displayed in separate rows, each for 1 Bill To
+    And the admin clicks on Remove on a block
+
+    Examples:
+      | username          | password  | contractor | billTos                                  | startDate  | endDate    |
+      | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | 05-02-2023 | 06-02-2023 |
