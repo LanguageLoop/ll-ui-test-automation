@@ -344,6 +344,8 @@ Feature: Contractor Engagement features
     And the expiry date "<startDate>", "<endDate>" is prior to the current date
     And the Contractor Blocking popup closes
     Then the block "<billTo>" sadly disappears from the list…
+    And I click on Show Expired toggle
+    And the admin clicks on Remove on a block
 
     Examples:
       | username          | password  | contractor | billTo                                   | severityLevel | startDate  | endDate    |
