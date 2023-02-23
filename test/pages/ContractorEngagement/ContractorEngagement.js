@@ -524,5 +524,17 @@ module.exports = {
 
     get dateStartedErrorMessage() {
         return $('//span[contains(@id,"ValidationMessage") and contains(@id,"StartDateBillTo")]');
+    },
+
+    get jobTypesErrorMessage() {
+        return $('//span[contains(@id,"ServiceValid")]/span[@class="ValidationMessage"]');
+    },
+
+    get severitySelectedOption() {
+        return $('//select[contains(@id,"SeverityBillTo")]/option[@selected]');
+    },
+
+    get showExpiredBlocksToggleCheck() {
+        return $('//label[contains(@id,"wt184_block_wtCheckbox")]');
     }
 }
