@@ -743,3 +743,8 @@ When(/^I click on Show Expired toggle$/, function () {
     action.isVisibleWait(contractorEngagementPage.showExpiredBlocksToggleCheck, 10000);
     action.clickElement(contractorEngagementPage.showExpiredBlocksToggleCheck);
 })
+
+When(/^I click on save on blocking popup$/, function () {
+    action.isVisibleWait(contractorEngagementPage.saveButtonOnBlockingPopup, 10000);
+    action.clickElement(contractorEngagementPage.saveButtonOnBlockingPopup);
+})

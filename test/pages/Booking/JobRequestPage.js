@@ -359,5 +359,9 @@ module.exports={
 
     get searchByJobIdTextBox() {
         return $('//input[@placeholder="Search by Job Id, campus name, and job address"]');
-    }
+    },
+
+    get organisationCampusBlocksContractorText() {
+        return $('//span[text()="1. Organisation/Campus blocks Contractor"]');
+    },
 }
