@@ -5,7 +5,7 @@ When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
 
 When(/^I select language "(.*)"$/,   function(listitem){
   browser.pause(2000)
-  action.isVisibleWait(jobRequestPage.languageDropdown,20000);
+  action.isVisibleWait(jobRequestPage.languageDropdown,30000);
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,listitem)
 })
 
@@ -532,4 +532,30 @@ When(/^Accept Metro Service is selected$/, function () {
   action.clickElement(jobRequestPage.acceptMetroServiceCheckbox);
   let acceptMetroServiceCheckboxStatus = action.isSelectedWait(jobRequestPage.acceptMetroServiceCheckbox, 1000);
   chai.expect(acceptMetroServiceCheckboxStatus).to.be.true;
+})
+
+When(/^the contractor "(.*)" above will not be eligible for the Prebooked job$/, function (contractorName) {
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000);
+  browser.execute((el) => {
+    const hoverEvent = new MouseEvent('mouseover', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    el.dispatchEvent(hoverEvent);
+  }, contractorJobStatusLink);
+  let contractorBlockedTextExistStatus = action.isExistingWait(jobRequestPage.organisationCampusBlocksContractorText, 3000);
+  chai.expect(contractorBlockedTextExistStatus).to.be.true;
+})
+
+When(/^the contractor above "(.*)" status will be "(.*)" for the Job$/,function(contractorName,expectedContractorStatus){
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
+  action.isVisibleWait(contractorJobStatusLink,10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  if (contractorJobStatusTextActual.includes(expectedContractorStatus)) {
+    chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  } else {
+    chai.expect(contractorJobStatusTextActual).to.equal("- No status -");
+  }
 })

@@ -188,6 +188,7 @@ Then(/^I verify duplicate contract is created "(.*)"$/, function(title){
     var temp_number= (parseInt(res)+1)
     console.log("Expected :"+ title+(parseInt(res)+1))
     action.waitUntilLoadingIconDisappears();
+    action.isExistingWait(contractManagementPage.contractHeadingText,10000);
     action.isVisibleWait(contractManagementPage.contractHeadingText,10000);
     chai.expect(contractManagementPage.contractHeadingText.getText().toString() == title+(parseInt(res)+1)).to.be.true
 })

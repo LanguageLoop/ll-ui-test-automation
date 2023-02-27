@@ -1,7 +1,9 @@
 
 When(/^I click reset password button$/,  function(){
    action.domStatusComplete();
+   action.isExistingWait(myProfilePage.editDetailsLink,30000);
    action.waitForElementClickable(myProfilePage.editDetailsLink)
+   action.isVisibleWait(myProfilePage.resetPasswordButton,30000);
    action.elementExists(myProfilePage.resetPasswordButton)
    action.clickElement(myProfilePage.resetPasswordButton)
  })
