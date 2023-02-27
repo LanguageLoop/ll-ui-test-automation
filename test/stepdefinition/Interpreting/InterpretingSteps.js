@@ -21,6 +21,7 @@ When(/^I select "(.*)" from the filter dropdown$/,   function(listitem){
 })
 
 When(/^I click on new job request button$/,function(){
+  action.isVisibleWait(interpretingPage.newJobRequestButton,20000);
   action.clickElement(interpretingPage.newJobRequestButton)
 })
 
