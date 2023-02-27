@@ -620,3 +620,266 @@ Feature: Create new booking for Interpreters
     Examples:
       | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status |
       | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     |
+
+    #LL-682 Covid vax exemption allocation logic Scenario 3: User creates a Prebooked Job and then user adds a block for PreBooked job type in the contractor page
+  #GIVEN a User has requested Prebooked job > #AND the Job Campus belongs to a certain BillTo
+  #AND a contractor has no block created for that BillTo > #AND I see the Prebooked job created has the above contractor eligible
+  #AND I add a block for Prebooked Job type for the above contractor for the Campus Bill To the job belongs to
+  #AND I refresh/reopen the above job created > #THEN the contractor above will not be eligible for the Prebooked job
+  @ContractorBlock @ContractorBlockedAfterJobCreated @LL-682
+  Scenario Outline: User creates a Prebooked Job and then user adds a block for PreBooked job type in the contractor page
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus id>"
+    And I click the first campus link from search results
+    And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    And search for contractor "<contractor>" in Job Allocation
+    And the contractor above "<contractor>" status will be "<eligible status>" for the Job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And at least 1 Job Type "<jobTypes>" is selected
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And I click Interpreting header link
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    Then the contractor "<contractor>" above will not be eligible for the Prebooked job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the block "<billTo>" sadly disappears from the list…
+
+    Examples:
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+
+    #LL-682 Covid vax exemption allocation logic Scenario 4: In contractor page, user edits the existing block that has prebooked type selected and deselects a PreBooked job type and verify the contractor eligibility for Prebooked job
+  #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type
+  #WHEN User has requested Prebooked job > #AND I see that the above contractor is not eligible for the above created prebooked job type
+  #AND in contractor, I edit the block and deselect the prebooked job type > #AND I refresh/reopen the above job created
+  #THEN the contractor above will be eligible for the Prebooked job
+  @ContractorBlock @ContractorUnblockedByEditing @LL-682
+  Scenario Outline: In contractor page, user edits the existing block that has prebooked type selected and deselects a PreBooked job type and verify the contractor eligibility for Prebooked job
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus id>"
+    And I click the first campus link from search results
+    And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And at least 1 Job Type "<jobTypes>" is selected
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    And search for contractor "<contractor>" in Job Allocation
+    And the blocked contractor "<contractor>" status is "<not eligible status>" for that Job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on the name "<billTo>" of a block
+    And it should show a list of Job Types, each with a checkbox
+    And do not select any Job Type
+    And at least 1 Job Type "<jobTypes2>" is selected
+    And I click on save on blocking popup
+    And I click Interpreting header link
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    Then the contractor above "<contractor>" status will be "<eligible status>" for the Job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the block "<billTo>" sadly disappears from the list…
+
+    Examples:
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | jobTypes2 | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | On Site   | Auto Notification |
+
+    #LL-682 Covid vax exemption allocation logic Scenario 5: In contractor page, user removes the existing block that has prebooked type selected and verify the contractor eligibility for Prebooked job
+  #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
+  #AND I see that the above contractor is not eligible for the above created prebooked job type
+  #AND in contractor page, I remove the block that has prebooked job type
+  #AND I refresh/reopen the above job created > #THEN the contractor above will be eligible for the Prebooked job
+  @ContractorBlock @ContractorUnblockedByRemoving @LL-682
+  Scenario Outline: In contractor page, user removes the existing block that has prebooked type selected and verify the contractor eligibility for Prebooked job
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus id>"
+    And I click the first campus link from search results
+    And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And at least 1 Job Type "<jobTypes>" is selected
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    And search for contractor "<contractor>" in Job Allocation
+    And the blocked contractor "<contractor>" status is "<not eligible status>" for that Job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And the block "<billTo>" sadly disappears from the list…
+    And I click Interpreting header link
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    Then the contractor above "<contractor>" status will be "<eligible status>" for the Job
+
+    Examples:
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
+
+    #LL-682 Covid vax exemption allocation logic Scenario 6: In contractor page, user makes the existing block that has prebooked type as expired and verify the contractor eligibility for Prebooked job
+  #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
+  #AND I see that the above contractor is not eligible for the above created prebooked job type
+  #AND in contractor page, I select the block that has prebooked job type > #AND I enter the date as past date in Date Finished field and save the block
+  #AND I refresh/reopen the above job created > #THEN the contractor above will be eligible for the Prebooked job
+  @ContractorBlock @ContractorUnblockedByExpiring @LL-682
+  Scenario Outline: In contractor page, user makes the existing block that has prebooked type as expired and verify the contractor eligibility for Prebooked job
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus id>"
+    And I click the first campus link from search results
+    And the Job Campus belongs to a certain BillTo "<campus PinBillToCode>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on Remove on a block
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
+    And the admin clicks on Add a Block
+    And the Contractor Blocking modal popup pops-up
+    And the admin clicks on the Bill To tab
+    And the inputs "<billTo>", "<severityLevel>" are valid in Bill-To tab
+    And at least 1 Job Type "<jobTypes>" is selected
+    And the block is saved
+    And the Contractor Blocking popup closes
+    And the new block rule is displayed on the contractor’s profile
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    And search for contractor "<contractor>" in Job Allocation
+    And the blocked contractor "<contractor>" status is "<not eligible status>" for that Job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And the admin clicks on the name "<billTo>" of a block
+    And the expiry date "<startDate>", "<endDate>" is prior to the current date
+    And the Contractor Blocking popup closes
+    And the block "<billTo>" sadly disappears from the list…
+    And I click Interpreting header link
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Reset auto notifications link and refresh the page
+    Then the contractor above "<contractor>" status will be "<eligible status>" for the Job
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And I click on Show Expired toggle
+    And the admin clicks on Remove on a block
+
+    Examples:
+      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
