@@ -754,3 +754,55 @@ When(/^I click on save on blocking popup$/, function () {
     action.isVisibleWait(contractorEngagementPage.saveButtonOnBlockingPopup, 10000);
     action.clickElement(contractorEngagementPage.saveButtonOnBlockingPopup);
 })
+
+When(/^I click on Manage basic details link$/, function () {
+    action.isVisibleWait(contractorEngagementPage.manageBasicDetails, 10000);
+    action.clickElement(contractorEngagementPage.manageBasicDetails);
+})
+
+When(/^I see the My Details popup is displayed$/, function () {
+    action.isVisibleWait(contractorEngagementPage.myDetailsPopup, 10000);
+})
+
+When(/^I clear the Contractor ABN and Company Name fields$/, function () {
+    action.isVisibleWait(contractorEngagementPage.contractorABNField, 10000);
+    action.isVisibleWait(contractorEngagementPage.companyNameField, 10000);
+    action.clearValue(contractorEngagementPage.contractorABNField);
+    action.clearValue(contractorEngagementPage.companyNameField);
+})
+
+When(/^I enter a valid "(.*)" without spaces$/, function (abnNumber) {
+    action.enterValue(contractorEngagementPage.contractorABNField, abnNumber);
+    action.pressKeys("Tab");
+    let actualABNNumber = action.getElementValue(contractorEngagementPage.contractorABNField);
+    chai.expect(actualABNNumber).to.equal(abnNumber);
+})
+
+When(/^I click on Check button$/, function () {
+    action.isClickableWait(contractorEngagementPage.checkButton, 10000);
+    action.clickElement(contractorEngagementPage.checkButton);
+})
+
+Then(/^a thumbs up icon will appear next to the Check button with hover over message ABN is valid$/, function () {
+    let thumpsUpIconDisplaysStatus = action.isVisibleWait(contractorEngagementPage.thumpsUpIcon, 10000);
+    chai.expect(thumpsUpIconDisplaysStatus).to.be.true;
+    action.moveToElement(contractorEngagementPage.thumpsUpIcon);
+    let abnValidTextStatus = action.isExistingWait(contractorEngagementPage.thumpsUpToolTipText, 1000)
+    chai.expect(abnValidTextStatus).to.be.true;
+})
+
+When(/^I enter invalid "(.*)" without spaces$/, function (invalidABNNumber) {
+    action.enterValue(contractorEngagementPage.contractorABNField, invalidABNNumber);
+    action.pressKeys("Tab");
+    let actualABNNumber = action.getElementValue(contractorEngagementPage.contractorABNField);
+    chai.expect(actualABNNumber).to.equal(invalidABNNumber);
+})
+
+Then(/^a thumbs down icon will appear next to the Check button with hover over error message No details found for ABN "(.*)"$/, function (enteredABNNumber) {
+    let thumpsDownIconDisplaysStatus = action.isVisibleWait(contractorEngagementPage.thumpsDownIcon, 10000);
+    chai.expect(thumpsDownIconDisplaysStatus).to.be.true;
+    action.moveToElement(contractorEngagementPage.thumpsDownIcon);
+    let inValidToolTipText = $(contractorEngagementPage.thumpsDownToolTipText.replace("<dynamic>", enteredABNNumber));
+    let abnInValidTextStatus = action.isExistingWait(inValidToolTipText, 1000)
+    chai.expect(abnInValidTextStatus).to.be.true;
+})

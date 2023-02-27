@@ -482,3 +482,37 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor | billTos                                  | startDate  | endDate    |
       | LLAdmin@looped.in | Octopus@6 | 12558      | UserPay1 - Catholic Education - User Pay | 05-02-2023 | 06-02-2023 |
+
+    #LL-672 NAV export: ABN validation Scenario 1a: Contractor ABN validated (check button)
+  @ABNValidation @ValidABN
+  Scenario Outline: Contractor ABN validated (check button)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter a valid "<ABN Number>" without spaces
+    And I click on Check button
+    Then a thumbs up icon will appear next to the Check button with hover over message ABN is valid
+
+    Examples:
+      | username          | password  | contractor | ABN Number  |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 32953689249 |
+
+    #LL-672 NAV export: ABN validation Scenario 1b: Contractor ABN invalid (check button)
+  @ABNValidation @InvalidABNCheckButton
+  Scenario Outline: Contractor ABN invalid (check button)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter invalid "<ABN Number>" without spaces
+    And I click on Check button
+    Then a thumbs down icon will appear next to the Check button with hover over error message No details found for ABN "<ABN Number>"
+
+    Examples:
+      | username          | password  | contractor | ABN Number |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 3295368924 |
