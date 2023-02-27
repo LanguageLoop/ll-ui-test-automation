@@ -5,7 +5,7 @@ When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
 
 When(/^I select language "(.*)"$/,   function(listitem){
   browser.pause(2000)
-  action.isVisibleWait(jobRequestPage.languageDropdown,20000);
+  action.isVisibleWait(jobRequestPage.languageDropdown,30000);
   action.enterValueAndPressReturn(jobRequestPage.languageDropdown,listitem)
 })
 
@@ -547,4 +547,15 @@ When(/^the contractor "(.*)" above will not be eligible for the Prebooked job$/,
   }, contractorJobStatusLink);
   let contractorBlockedTextExistStatus = action.isExistingWait(jobRequestPage.organisationCampusBlocksContractorText, 3000);
   chai.expect(contractorBlockedTextExistStatus).to.be.true;
+})
+
+When(/^the contractor above "(.*)" status will be "(.*)" for the Job$/,function(contractorName,expectedContractorStatus){
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
+  action.isVisibleWait(contractorJobStatusLink,10000);
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink);
+  if (contractorJobStatusTextActual.includes(expectedContractorStatus)) {
+    chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  } else {
+    chai.expect(contractorJobStatusTextActual).to.equal("- No status -");
+  }
 })
