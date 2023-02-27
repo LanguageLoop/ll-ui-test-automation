@@ -536,5 +536,41 @@ module.exports = {
 
     get showExpiredBlocksToggleCheck() {
         return $('//label[contains(@id,"wt184_block_wtCheckbox")]');
-    }
+    },
+
+    get manageBasicDetails() {
+        return $('//a[contains(text(), "Manage basic details")]');
+    },
+
+    get myDetailsPopup() {
+        return $('//span[text()="My Details"]');
+    },
+
+    get contractorABNField() {
+        return $('//div[contains(@id, "ManageBasicDetails")]/input[contains(@name, "Contractor_ABN")]');
+    },
+
+    get companyNameField() {
+        return $('//div[contains(@id, "ManageBasicDetails")]/input[contains(@name, "ABNCompanyName")]');
+    },
+
+    get checkButton() {
+        return $('//input[contains(@name, "ManageBasicDetails") and (@value = "Check")]');
+    },
+
+    get thumpsUpIcon() {
+        return $('//span[contains(@class,"thumbs-o-up")]');
+    },
+
+    get thumpsUpToolTipText() {
+        return $('//span[text()="ABN is valid."]');
+    },
+
+    get thumpsDownIcon() {
+        return $('//span[contains(@class,"thumbs-o-down")]');
+    },
+
+    get thumpsDownToolTipText() {
+        return '//span[text()="No details found for ABN <dynamic>"]';
+    },
 }

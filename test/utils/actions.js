@@ -287,5 +287,14 @@ module.exports={
         }
         return isVisible;
     },
+
+    /**
+     * Moves the mouse to the center of the element
+     * @param elt
+     */
+    moveToElement(elt) {
+        this.isVisibleWait(elt, 20000);
+        elt.moveTo();
+    }
 }
 
