@@ -282,3 +282,26 @@ Feature: Admin features
     Examples:
       | username          | password  | roles toggle                                         | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
       | LLAdmin@looped.in | Octopus@6 | Bookings Officer,Contractor,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
+
+    #LL-669 Log in screen - Invalid permissions : Scenario 1
+  @UserLoggedInUrlRedirect @LL-669
+  Scenario Outline: User should be redirected to homepage as a logged in user
+    When I login with "<username>" and "<password>"
+    And they try to access LoopedIn via "<login URL>"
+    Then they should be redirected to homepage "<homepage URL>" as a logged in user
+
+    Examples:
+      | username          | password  | login URL                                                 | homepage URL                                                |
+      | LLAdmin@looped.in | Octopus@6 | https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx | https://li-uat.languageloop.com.au/UserManagement/Home.aspx |
+
+    #LL-669 Log in screen - Invalid permissions : Scenario 2
+  @UserLoggedOutUrlRedirect @LL-669
+  Scenario Outline: User should be redirected to login page
+    When I login with "<username>" and "<password>"
+    And I click logout button
+    And they try to access LoopedIn via "<login URL>"
+    Then they should be redirected to login page "<login URL>"
+
+    Examples:
+      | username          | password  | login URL                                                 |
+      | LLAdmin@looped.in | Octopus@6 | https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx |
