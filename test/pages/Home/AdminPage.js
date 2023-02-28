@@ -183,5 +183,13 @@ module.exports = {
 
     get backNavigationButton() {
         return $('//span[@class="fa fa-fw fa-angle-left"]/parent::a[contains(@id,"Title")]');
-    }
+    },
+
+    get resetPasswordButton() {
+        return $('//input[@value="Reset Password"]');
+    },
+
+    get terminateUserButton() {
+        return $('//input[@value="Terminate User"]');
+    },
 }
