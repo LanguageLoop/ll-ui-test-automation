@@ -573,4 +573,8 @@ module.exports = {
     get thumpsDownToolTipText() {
         return '//span[text()="No details found for ABN <dynamic>"]';
     },
+
+    get thumpsDownToolTipForNoABN() {
+        return $('//span[text()="No details found for ABN "]');
+    },
 }

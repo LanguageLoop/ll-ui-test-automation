@@ -516,3 +516,64 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor | ABN Number |
       | LLAdmin@looped.in | Octopus@6 | Ivanka     | 3295368924 |
+
+    #LL-672 NAV export: ABN validation Scenario 2b: Contractor ABN validated (Save button)
+  @ABNValidation @ValidABNSaveButton
+  Scenario Outline: Contractor ABN validation without spaces (Save button)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter a valid "<ABN Number>" without spaces
+    And I click on Save contractor button
+    And I see My Details popup is closed
+    And I click on Manage basic details link
+    Then I see the ABN value is saved correctly and equals to "<ABN Number>"
+
+    Examples:
+      | username          | password  | contractor | ABN Number  |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 32953689249 |
+
+      #LL-672 NAV export: ABN validation Scenario 3a: Contractor ABN validated (Still Valid)
+  @ABNValidation @TwoValidABN
+  Scenario Outline: Contractor ABN validation (Still Valid)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter a valid "<ABN Number1>" without spaces
+    And I click on Check button
+    And a thumbs up icon will appear next to the Check button with hover over message ABN is valid
+    And I clear the Contractor ABN and Company Name fields
+    And I enter a valid "<ABN Number2>" without spaces
+    And I click on Save contractor button
+    And I see My Details popup is closed
+    And I click on Manage basic details link
+    Then I see the ABN value is saved correctly and equals to "<ABN Number2>"
+
+    Examples:
+      | username          | password  | contractor | ABN Number1 |  ABN Number2  |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 45217078984 |  32953689249  |
+
+     #LL-672 NAV export: ABN validation Scenario 3c: Contractor ABN validated with spaces (save button)
+  @ABNValidation @ValidABNSpacesSaveButton
+  Scenario Outline: Contractor ABN validated with Spaces (Save button)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter valid "<ABN Number1>" with spaces
+    And I click on Save contractor button
+    And I see My Details popup is closed
+    And I click on Manage basic details link
+    Then I see the ABN value is saved without spaces correctly and equals to "<ABN Number2>"
+
+    Examples:
+      | username          | password  | contractor | ABN Number1    |  ABN Number2  |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 329 536 892 49 |  32953689249  |

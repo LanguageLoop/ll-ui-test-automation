@@ -806,3 +806,38 @@ Then(/^a thumbs down icon will appear next to the Check button with hover over e
     let abnInValidTextStatus = action.isExistingWait(inValidToolTipText, 1000)
     chai.expect(abnInValidTextStatus).to.be.true;
 })
+
+When(/^I enter valid "(.*)" with spaces$/, function (abnNumber) {
+    action.enterValue(contractorEngagementPage.contractorABNField, abnNumber);
+    action.pressKeys("Tab");
+    let actualABNNumber = action.getElementValue(contractorEngagementPage.contractorABNField);
+    chai.expect(actualABNNumber).to.equal(abnNumber);
+})
+
+When(/^I see My Details popup is closed$/, function () {
+    let status = action.isClickableWait(contractorEngagementPage.manageBasicDetails, 10000);
+    chai.expect(status).to.be.true;
+})
+
+Then(/^I see the ABN value is saved correctly and equals to "(.*)"$/, function (abnNumber) {
+    let actualABNNumber = action.getElementValue(contractorEngagementPage.contractorABNField);
+    chai.expect(actualABNNumber).to.equal(abnNumber);
+})
+
+Then(/^I see the ABN value is saved without spaces correctly and equals to "(.*)"$/, function (abnNumber) {
+    let actualABNNumber = action.getElementValue(contractorEngagementPage.contractorABNField);
+    chai.expect(actualABNNumber).to.equal(abnNumber);
+})
+
+Then(/^a thumbs down icon will appear next to the Check button with hover over error message No details found for ABN$/, function (){
+    let thumpsDownIconDisplaysStatus = action.isVisibleWait(contractorEngagementPage.thumpsDownIcon, 10000);
+    chai.expect(thumpsDownIconDisplaysStatus).to.be.true;
+    action.moveToElement(contractorEngagementPage.thumpsDownIcon);
+    let abnValidTextStatus = action.isExistingWait(contractorEngagementPage.thumpsDownToolTipForNoABN, 1000)
+    chai.expect(abnValidTextStatus).to.be.true;
+})
+
+When(/^I click on Save contractor button$/, function () {
+    action.isClickableWait(contractorEngagementPage.saveContractorButton);
+    action.clickElement(contractorEngagementPage.saveContractorButton);
+})
