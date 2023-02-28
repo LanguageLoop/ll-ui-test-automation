@@ -225,19 +225,19 @@ When(/^I click reprocess campus and contractor button$/, function(){
     //browser.refresh()
     browser.pause(3000)
     action.domStatusComplete();
-    action.isClickableWait(claimsPage.reprocessCampusAndContractorButton,30000)
+    action.isVisibleWait(claimsPage.reprocessCampusAndContractorButton,30000)
     if(claimsPage.reprocessCampusAndContractorButton.isDisplayed()){
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
     browser.pause(7000)
     }
     else if (claimsPage.processContractorButton.isDisplayed()){
-    action.isClickableWait(claimsPage.processContractorButton,30000)
+    action.isVisibleWait(claimsPage.processContractorButton,30000)
     action.clickElement(claimsPage.processContractorButton)
     browser.waitUntil(()=> {
     //    console.log('2')
     return claimsPage.reprocessCampusAndContractorButton.isClickable()},
     {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
-    action.isClickableWait(claimsPage.reprocessCampusAndContractorButton,30000)
+    action.isVisibleWait(claimsPage.reprocessCampusAndContractorButton,30000)
     action.clickElement(claimsPage.reprocessCampusAndContractorButton)
     browser.waitUntil(()=> {
         //    console.log('2')
@@ -246,13 +246,13 @@ When(/^I click reprocess campus and contractor button$/, function(){
     }
     else {
         browser.pause(3000)
-        action.isClickableWait(claimsPage.processCampusAndContractorButton,30000)
+        action.isVisibleWait(claimsPage.processCampusAndContractorButton,30000)
         action.clickElement(claimsPage.processCampusAndContractorButton) 
         browser.waitUntil(()=> {
     //        console.log('3')
         return claimsPage.reprocessCampusAndContractorButton.isClickable()},
         {timeout: 15000, timeoutMsg: 'reprocessCampusAndContractorButton not displayed in 15s', interval:500})
-        action.isClickableWait(claimsPage.reprocessCampusAndContractorButton,30000)
+        action.isVisibleWait(claimsPage.reprocessCampusAndContractorButton,30000)
         action.clickElement(claimsPage.reprocessCampusAndContractorButton)
     }
 

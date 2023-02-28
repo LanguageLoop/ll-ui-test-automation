@@ -54,11 +54,13 @@ When(/^I upload contract file$/, function(){
 })
 
 When(/^I click save contract button$/, function(){
+    action.isVisibleWait(contractManagementPage.saveContractButton,10000)
     action.clickElement(contractManagementPage.saveContractButton)
     browser.pause(4000)
 })
 
 When(/^I click copy contract button$/, function(){
+    action.isVisibleWait(contractManagementPage.copyContractButton,10000)
     action.clickElement(contractManagementPage.copyContractButton)
     browser.pause(2000)
 })
@@ -190,6 +192,7 @@ Then(/^I verify duplicate contract is created "(.*)"$/, function(title){
     action.waitUntilLoadingIconDisappears();
     action.isExistingWait(contractManagementPage.contractHeadingText,10000);
     action.isVisibleWait(contractManagementPage.contractHeadingText,10000);
+    console.log("Actual :"+contractManagementPage.contractHeadingText.getText().toString())
     chai.expect(contractManagementPage.contractHeadingText.getText().toString() == title+(parseInt(res)+1)).to.be.true
 })
 

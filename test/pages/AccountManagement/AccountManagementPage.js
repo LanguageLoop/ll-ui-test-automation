@@ -202,5 +202,21 @@ module.exports ={
 
     get selectAValueDropdown(){
         return $('//option[text()=" - select a value - "]/parent::select')
-    }
+    },
+
+    get accountManagementPageTitleHeader() {
+        return $('//div[text()="Account Management" and contains(@id,"Title")]');
+    },
+
+    get accountsSectionHeader() {
+        return $('//span[text()="Accounts" and contains(@class,"Heading3")]');
+    },
+
+    get createAccountButton() {
+        return $('//input[@value="Create Account"]');
+    },
+
+    get accountManagementSearchResultLinkLocator(){
+        return '//table[contains(@id,"UserDetailTable")]//child::a[contains(text(),"<dynamic>")]';
+    },
 }
