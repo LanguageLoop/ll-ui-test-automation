@@ -491,3 +491,17 @@ Then(/^I should see the user that has selected role in the search results$/, fun
    let accountSearchResultDisplayStatus = action.isVisibleWait(accountSearchResultLink, 20000);
    chai.expect(accountSearchResultDisplayStatus).to.be.true;
 })
+
+When(/^they try to access LoopedIn via "(.*)"$/, function (URL) {
+   browser.url(URL);
+})
+
+Then(/^they should be redirected to homepage "(.*)" as a logged in user$/, function (expectedUrl) {
+   let pageUrlActual = action.getPageUrl();
+   chai.expect(pageUrlActual).to.equal(expectedUrl)
+})
+
+Then(/^they should be redirected to login page "(.*)"$/, function (expectedUrl) {
+   let pageUrlActual = action.getPageUrl();
+   chai.expect(pageUrlActual).to.equal(expectedUrl)
+})
