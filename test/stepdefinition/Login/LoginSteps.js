@@ -43,7 +43,7 @@ Given(/^the looped in login page is opened$/,  function(){
     action.enterValue(Login.passwordInput,password)
     action.clickElement(Login.loginButton) 
    }
-    browser.waitUntil(()=>browser.getTitle()==="HomePage" || browser.getTitle()==="Bookings" ,{timeout:20000, timeoutMsg:'login not happened within 20s', interval:500 })
+    browser.waitUntil(()=>browser.getTitle()==="HomePage" || browser.getTitle()==="Bookings" || browser.getTitle()==="Account Management" ,{timeout:20000, timeoutMsg:'login not happened within 20s', interval:500 })
     
 })
 
