@@ -68,3 +68,59 @@ Then(/^all Edit buttons will be disabled: Terminate User, Reset Password, Edit P
     let editProfileButtonStatus = action.isVisibleWait(adminPage.editProfileButton,1000);
     chai.expect(editProfileButtonStatus).to.be.false;
 })
+
+When(/^they click onto a user "(.*)" who belongs to the Client Group$/, function (account) {
+    let accountSearchResultLink = $(accountManagementPage.accountManagementSearchResultLinkLocator.replace("<dynamic>", account));
+    action.isClickableWait(accountSearchResultLink, 20000)
+    action.clickElement(accountSearchResultLink);
+})
+
+Then(/^they are taken to the Account Profile page$/, function () {
+    let accountProfilePageDisplayStatus = action.isVisibleWait(accountManagementPage.accountProfilePageTitleHeader,10000);
+    chai.expect(accountProfilePageDisplayStatus).to.be.true;
+})
+
+Then(/^the Edit Profile, Terminate User & Reset Password buttons are enabled$/, function () {
+    let terminateUserButtonStatus = action.isEnabledWait(adminPage.terminateUserButton,1000);
+    chai.expect(terminateUserButtonStatus).to.be.true;
+    let resetPasswordButtonStatus = action.isEnabledWait(adminPage.resetPasswordButton,1000);
+    chai.expect(resetPasswordButtonStatus).to.be.true;
+    let editProfileButtonStatus = action.isEnabledWait(adminPage.editProfileButton,1000);
+    chai.expect(editProfileButtonStatus).to.be.true;
+})
+
+When(/^they click onto a user "(.*)" who belongs to both the Staff and Client Group$/, function (account) {
+    let accountSearchResultLink = $(accountManagementPage.accountManagementSearchResultLinkLocator.replace("<dynamic>", account));
+    action.isClickableWait(accountSearchResultLink, 20000)
+    action.clickElement(accountSearchResultLink);
+})
+
+Then(/^they will not be able to edit the profile$/, function () {
+    let editProfileButtonStatus = action.isClickableWait(adminPage.editProfileButton,1000);
+    chai.expect(editProfileButtonStatus).to.be.false;
+})
+
+When(/^they click the Edit Profile button$/, function () {
+    action.isVisibleWait(adminPage.editProfileButton,10000);
+    action.clickElement(adminPage.editProfileButton);
+})
+
+Then(/^they will be able to edit the profile fields: "(.*)", "(.*)", "(.*)", "(.*)", "(.*)", "(.*)"$/, function (firstName, lastName, birthDay, officeLocation, landLineNumber, mobileNumber) {
+    action.isVisibleWait(adminPage.firstNameFieldCreateAccount, 10000);
+    firstName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
+    action.enterValue(adminPage.firstNameFieldCreateAccount, firstName);
+    lastName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
+    action.enterValue(adminPage.lastNameFieldCreateAccount, lastName);
+    action.enterValue(adminPage.birthDayTextBox, birthDay);
+    action.enterValue(adminPage.officeLocationTextBox, officeLocation);
+    action.enterValue(adminPage.landLineNumberFieldCreateAccount, landLineNumber);
+    action.enterValue(adminPage.mobileNumberTextBox, mobileNumber);
+    action.clickElement(adminPage.preventConcurrentSessionsCheckbox);
+})
+
+Then(/^they will not be able to edit Email and Start Date Time fields$/, function () {
+    let emailReadOnlyExistStatus = action.isExistingWait(adminPage.emailFieldReadOnly,1000);
+    chai.expect(emailReadOnlyExistStatus).to.be.true;
+    let startDateTimeReadOnlyExistStatus = action.isExistingWait(adminPage.startDateTimeReadOnly,1000);
+    chai.expect(startDateTimeReadOnlyExistStatus).to.be.true;
+})
