@@ -192,4 +192,32 @@ module.exports = {
     get terminateUserButton() {
         return $('//input[@value="Terminate User"]');
     },
+
+    get lastNameFieldCreateAccount(){
+        return $('//input[contains(@id,"LastName")]');
+    },
+
+    get emailFieldReadOnly() {
+        return $('//input[contains(@id,"UserEmail") and (@readonly="readonly")]');
+    },
+
+    get birthDayTextBox() {
+        return $('//input[contains(@id,"DOB")]');
+    },
+
+    get officeLocationTextBox() {
+        return $('//input[contains(@id,"txtAddress")]');
+    },
+
+    get mobileNumberTextBox() {
+        return $('//input[contains(@id,"MobilePhone")]');
+    },
+
+    get startDateTimeReadOnly() {
+        return $('//input[contains(@id,"StartDateTime") and (@readonly="readonly")]');
+    },
+
+    get preventConcurrentSessionsCheckbox() {
+        return $('//div[text()="Prevent concurrent sessions"]/preceding-sibling::div/input[@type="checkbox"]');
+    },
 }

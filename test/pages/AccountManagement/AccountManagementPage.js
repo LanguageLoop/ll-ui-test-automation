@@ -217,6 +217,10 @@ module.exports ={
     },
 
     get accountManagementSearchResultLinkLocator(){
-        return '//table[contains(@id,"UserDetailTable")]//child::a[contains(text(),"<dynamic>")]';
+        return '//table[contains(@id,"UserDetailTable")]//child::a[contains(text(),"<dynamic>") and contains(@id,"Management")]';
+    },
+
+    get accountProfilePageTitleHeader() {
+        return $('//div[text()="Account Profile" and contains(@id,"Title")]');
     },
 }
