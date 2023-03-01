@@ -295,6 +295,21 @@ module.exports={
     moveToElement(elt) {
         this.isVisibleWait(elt, 20000);
         elt.moveTo();
-    }
+    },
+
+    isEnabledWait(elt,waitTime){
+        let isEnabled = false;
+        let i = 0;
+        while (i <= waitTime) {
+            isEnabled = elt.isEnabled()
+            if (isEnabled) {
+                break;
+            } else {
+                browser.pause(500);
+                i = i + 500;
+            }
+        }
+        return isEnabled;
+    },
 }
 
