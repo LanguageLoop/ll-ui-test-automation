@@ -79,4 +79,67 @@ Feature: Account Management features
 
     Examples:
       | username        | password | role filter option | user account   | firstName     | lastName     | birthDay   | officeLocation       | landLineNumber | mobileNumber |
-      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | TestAutoFirst | TestAutoLast | 01-01-1996 | Test office location | 03 9875 4612   | 1234567890   |
+      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | TestAutoFirst | TestAutoLast | 01-01-1996 | Test office location | 03 9875 4612   | 12 3456 7890 |
+
+    #LL-619 Scenario 5: Contractor / Staff group roles hidden
+  @ContractorStaffGroupRolesHidden @LL-619
+  Scenario Outline: Contractor and Staff group roles hidden
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And they click the Edit Profile button
+    And they view the Roles section
+    Then they will only see the Client Group roles
+    And the Client Group toggles "<client group roles>" will be enabled
+    And the Account Manager can change the toggles "<client group roles>" as per existing logic
+    And all other roles "<other roles>" will be hidden
+
+    Examples:
+      | username        | password | role filter option | user account   | client group roles                                                                                  | other roles                  |
+      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor Group,Staff Group |
+
+    #LL-619 Scenario 6a: Save Client group profile
+  @SaveClientGroupProfile @LL-619
+  Scenario Outline: Save Client group profile
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And they click the Edit Profile button
+    And they will be able to edit the profile fields: "<firstName>", "<lastName>", "<birthDay>", "<officeLocation>", "<landLineNumber>", "<mobileNumber>"
+    And I click save detail button
+    Then I see the message User profile was successfully saved
+    And they are taken to the Account Profile page
+    And the saved data "<expectedData>" will be displayed
+    And they click the Edit Profile button
+    And the data changes are reset
+    And I click save detail button
+    And they are taken to the Account Profile page
+
+    Examples:
+      | username        | password | role filter option | user account   | firstName | lastName | birthDay   | officeLocation       | landLineNumber | mobileNumber | expectedData                                                                   |
+      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | Britney   | Spears   | 01-01-1996 | Test office location | 03 9875 4612   | 12 3456 7890 | 1st January 1996,Britney Spears,Test office location,03 9875 4612,12 3456 7890 |
+
+    #LL-619 Scenario 6b: Cancel Client group profile edits
+  @CancelClientGroupProfile @LL-619
+  Scenario Outline: Cancel Client group profile edits
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And they click the Edit Profile button
+    And they will be able to edit the profile fields: "<firstName>", "<lastName>", "<birthDay>", "<officeLocation>", "<landLineNumber>", "<mobileNumber>"
+    And they click Cancel button
+    Then the data "<expectedData>" will be not saved
+    And they are taken to the Account Profile page
+
+    Examples:
+      | username        | password | role filter option | user account   | firstName | lastName | birthDay   | officeLocation       | landLineNumber | mobileNumber | expectedData                                       |
+      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | Britney   | Spears   | 01-01-1996 | Test office location | 03 9875 4612   | 12 3456 7890 | 1st January 1996,Test office location,12 3456 7890 |
