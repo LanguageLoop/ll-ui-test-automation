@@ -107,9 +107,7 @@ When(/^they click the Edit Profile button$/, function () {
 
 Then(/^they will be able to edit the profile fields: "(.*)", "(.*)", "(.*)", "(.*)", "(.*)", "(.*)"$/, function (firstName, lastName, birthDay, officeLocation, landLineNumber, mobileNumber) {
     action.isVisibleWait(adminPage.firstNameFieldCreateAccount, 10000);
-    firstName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
     action.enterValue(adminPage.firstNameFieldCreateAccount, firstName);
-    lastName = firstName + (Math.floor(Math.random() * 100000) + 1).toString()
     action.enterValue(adminPage.lastNameFieldCreateAccount, lastName);
     action.enterValue(adminPage.birthDayTextBox, birthDay);
     action.enterValue(adminPage.officeLocationTextBox, officeLocation);
@@ -123,4 +121,71 @@ Then(/^they will not be able to edit Email and Start Date Time fields$/, functio
     chai.expect(emailReadOnlyExistStatus).to.be.true;
     let startDateTimeReadOnlyExistStatus = action.isExistingWait(adminPage.startDateTimeReadOnly,1000);
     chai.expect(startDateTimeReadOnlyExistStatus).to.be.true;
+})
+
+When(/^they view the Roles section$/, function () {
+    let rolesSectionDisplayStatus = action.isVisibleWait(adminPage.rolesSectionOnProfile,10000);
+    chai.expect(rolesSectionDisplayStatus).to.be.true;
+})
+
+Then(/^they will only see the Client Group roles$/, function () {
+    let clientGroupRolesDisplayStatus = action.isVisibleWait(adminPage.clientGroupRoles,10000);
+    chai.expect(clientGroupRolesDisplayStatus).to.be.true;
+})
+
+Then(/^the Client Group toggles "(.*)" will be enabled$/, function (toggleRoles) {
+    let toggleRolesList = toggleRoles.split(",");
+    for (let roleIndex = 0; roleIndex < toggleRolesList.length; roleIndex++) {
+        let roleToggleElement = $(adminPage.roleToggleEnabledLocator.replace("<dynamic>", toggleRolesList[roleIndex]));
+        let roleToggleEnabledStatus = action.isVisibleWait(roleToggleElement, 0);
+        chai.expect(roleToggleEnabledStatus).to.be.true;
+    }
+})
+
+Then(/^the Account Manager can change the toggles "(.*)" as per existing logic$/, function (toggleRoles) {
+    let toggleRolesList = toggleRoles.split(",");
+    for (let roleIndex = 0; roleIndex < toggleRolesList.length; roleIndex++) {
+        let roleToggleElement = $(adminPage.roleToggleLocator.replace("<dynamic>", toggleRolesList[roleIndex]));
+        let roleToggleClickableStatus = action.isClickableWait(roleToggleElement, 0);
+        chai.expect(roleToggleClickableStatus).to.be.true;
+    }
+})
+
+Then(/^all other roles "(.*)" will be hidden$/, function (roles) {
+    let rolesList = roles.split(",");
+    for (let roleIndex = 0; roleIndex < rolesList.length; roleIndex++) {
+        let groupRolesElement = $(adminPage.groupRolesDynamicLocator.replace("<dynamic>",rolesList[roleIndex]))
+        let groupRolesDisplayStatus = action.isVisibleWait(groupRolesElement,0);
+        chai.expect(groupRolesDisplayStatus).to.be.false;
+    }
+})
+
+Then(/^the saved data "(.*)" will be displayed$/, function (expectedData) {
+    let expectedDataList = expectedData.split(",");
+    for (let index = 0; index < expectedDataList.length; index++) {
+        let savedDataTextElement = $(adminPage.savedTextOnProfileDynamicLocator.replace("<dynamic>", expectedDataList[index]))
+        let savedDataDisplayStatus = action.isVisibleWait(savedDataTextElement, 1000);
+        chai.expect(savedDataDisplayStatus).to.be.true;
+    }
+})
+
+Then(/^the data changes are reset$/, function () {
+    action.clearValue(adminPage.birthDayTextBox);
+    action.clearValue(adminPage.officeLocationTextBox);
+    action.clearValue(adminPage.mobileNumberTextBox);
+    action.clickElement(adminPage.preventConcurrentSessionsCheckbox);
+})
+
+When(/^they click Cancel button$/, function () {
+    action.isVisibleWait(adminPage.cancelButtonEditProfile,10000)
+    action.clickElement(adminPage.cancelButtonEditProfile)
+})
+
+Then(/^the data "(.*)" will be not saved$/, function (expectedData) {
+    let expectedDataList = expectedData.split(",");
+    for (let index = 0; index < expectedDataList.length; index++) {
+        let savedDataTextElement = $(adminPage.savedTextOnProfileDynamicLocator.replace("<dynamic>", expectedDataList[index]))
+        let savedDataDisplayStatus = action.isVisibleWait(savedDataTextElement, 1000);
+        chai.expect(savedDataDisplayStatus).to.be.false;
+    }
 })

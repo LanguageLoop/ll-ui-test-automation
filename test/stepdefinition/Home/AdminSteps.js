@@ -315,8 +315,8 @@ When(/^I click save detail button$/, function () {
 When(/^The Admin is viewing the Naati Accreditations section on the Admin page$/, function () {
    let naatiAccreditationsSections = action.isVisibleWait(adminPage.naatiAccreditations, 5000);
    chai.expect(naatiAccreditationsSections).to.be.true;
-   let naatiElelemntValue = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
-   GlobalData.ACTUAL_NAATI_WEIGHT_VALUE = action.getElementText(naatiElelemntValue);
+   let naatiElementValue = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
+   GlobalData.ACTUAL_NAATI_WEIGHT_VALUE = action.getElementText(naatiElementValue);
 })
 
 When(/^I select the fisrt Naati Level$/, function () {
@@ -343,16 +343,16 @@ When(/^I click on Save button$/, function () {
 })
 
 Then(/^the entered Naati Weight should be saved and displayed value "(.*)"$/, function (expectedNewNaatiWeight) {
-   let naatiElelemntValue = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
+   let naatiElementValue = $(adminPage.fisrtNaatiWeightElement.replace("<dynamic1>", "1").replace("<dynamic2>", "5"));
    browser.waitUntil(
-      () => action.getElementText(naatiElelemntValue) === expectedNewNaatiWeight,
+      () => action.getElementText(naatiElementValue) === expectedNewNaatiWeight,
       {
          timeout: 20000,
          timeoutMsg: 'expected Naati weight to be displayed in 20s'
       }
    );
-   let naatiElelemntValueActual = action.getElementText(naatiElelemntValue);
-   chai.expect(naatiElelemntValueActual).to.equal(expectedNewNaatiWeight);
+   let naatiElementValueActual = action.getElementText(naatiElementValue);
+   chai.expect(naatiElementValueActual).to.equal(expectedNewNaatiWeight);
 })
 
 When(/^I revert the Naati Weight to the orginal value$/, function () {

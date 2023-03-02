@@ -220,4 +220,28 @@ module.exports = {
     get preventConcurrentSessionsCheckbox() {
         return $('//div[text()="Prevent concurrent sessions"]/preceding-sibling::div/input[@type="checkbox"]');
     },
+
+    get rolesSectionOnProfile() {
+        return $('//span[text()="Roles"]/parent::div');
+    },
+
+    get clientGroupRoles() {
+        return $('//span[text()="Client Group"]/parent::div');
+    },
+
+    get roleToggleEnabledLocator() {
+        return '//span[text()="<dynamic>"]/parent::div/following-sibling::div//child::label[contains(@class,"changed")]'
+    },
+
+    get groupRolesDynamicLocator() {
+        return '//span[text()="<dynamic>"]/parent::div';
+    },
+
+    get savedTextOnProfileDynamicLocator() {
+        return '//*[text()="<dynamic>"]';
+    },
+
+    get cancelButtonEditProfile() {
+        return $('//input[@value="Cancel" and (contains(@id,"Actions"))]')
+    }
 }
