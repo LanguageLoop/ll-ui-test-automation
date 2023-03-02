@@ -577,3 +577,54 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor | ABN Number1    |  ABN Number2  |
       | LLAdmin@looped.in | Octopus@6 | Ivanka     | 329 536 892 49 |  32953689249  |
+
+    #LL-672 NAV export: ABN validation Scenario 2a: Contractor ABN validated with spaces (check button)
+  @ABNValidation @ValidABNSpacesCheckButton
+  Scenario Outline: Contractor ABN validated with spaces (check button)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter valid "<ABN Number>" with spaces
+    And I click on Check button
+    Then a thumbs up icon will appear next to the Check button with hover over message ABN is valid
+
+    Examples:
+      | username          | password  | contractor | ABN Number     |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 329 536 892 49 |
+
+    #LL-672 NAV export: ABN validation Scenario 3b: Contractor ABN invalid (save button)
+  @ABNValidation @InValidABNSaveButton
+  Scenario Outline: Contractor ABN invalid (save button)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter invalid "<ABN Number>" without spaces
+    And I click on Save contractor button
+    Then a thumbs down icon will appear next to the Check button with hover over error message No details found for ABN "<ABN Number>"
+    And a error text message is displayed below the ABN filed No details found for ABN "<ABN Number>"
+
+    Examples:
+      | username          | password  | contractor | ABN Number |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 3295368924 |
+
+    #LL-672 NAV export: ABN validation Scenario 4: Contractor removes the ABN and click on Check button
+  @ABNValidation @RemoveABN
+  Scenario Outline: Contractor removes the ABN and click on Check button
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I click on Check button
+    Then a thumbs down icon will appear next to the Check button with hover over error message No details found for ABN
+
+    Examples:
+      | username          | password  | contractor |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     |

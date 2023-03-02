@@ -841,3 +841,8 @@ When(/^I click on Save contractor button$/, function () {
     action.isClickableWait(contractorEngagementPage.saveContractorButton);
     action.clickElement(contractorEngagementPage.saveContractorButton);
 })
+
+When(/^a error text message is displayed below the ABN filed No details found for ABN "(.*)"$/, function (enteredABNNumber){
+    let errorMessageDisplayStatus = action.isVisibleWait(contractorEngagementPage.thumpsDownIcon, 10000);
+    chai.expect(errorMessageDisplayStatus).to.be.true;
+})
