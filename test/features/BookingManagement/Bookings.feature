@@ -883,3 +883,21 @@ Feature: Create new booking for Interpreters
     Examples:
       | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
       | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
+
+    #LL-716 Expand the label on the client new job request screen
+    # In the ‘Instructions for Interpreters’, the user sees the following text as Label
+    #Instructions for Interpreter (Please DO NOT include interpreter’s name or personal details)
+  @CreateJobRequest @InstructionsForInterpreterLabel @LL-716
+  Scenario Outline: User sees the Instructions for Interpreters text as Label
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    Then in the ‘Instructions for Interpreters’, the user sees the text "<Instructions for Interpreters label>" as Label
+
+    Examples:
+      | username       | password | dropdownfilter | campus pin | Requester Name    | Instructions for Interpreters label                                                         |
+      | zenq@cso10.com | Test1    | Management     | 33124      | Automation Tester | Instructions for Interpreter (Please DO NOT include interpreter’s name or personal details) |

@@ -189,3 +189,40 @@ Then(/^the data "(.*)" will be not saved$/, function (expectedData) {
         chai.expect(savedDataDisplayStatus).to.be.false;
     }
 })
+
+When(/^the user clicks on the edit icon next to the email address$/, function () {
+    action.isVisibleWait(adminPage.editIconNextToEmailAddress,10000);
+    action.clickElement(adminPage.editIconNextToEmailAddress);
+})
+
+Then(/^the user will be taken to the edit email pop up where they can change the email address$/, function () {
+    let emailPopupDisplayStatus = action.isVisibleWait(adminPage.changeEmailPopup,10000);
+    chai.expect(emailPopupDisplayStatus).to.be.true;
+})
+
+When(/^has entered a new email address "(.*)","(.*)"$/, function (newEmail, confirmEmail) {
+    action.isVisibleWait(adminPage.newEmailTextBoxOnPopup, 10000);
+    action.enterValue(adminPage.newEmailTextBoxOnPopup, newEmail);
+    action.enterValue(adminPage.confirmEmailTextBoxOnPopup, confirmEmail);
+})
+
+When(/^the user presses ‘Change Email’ button$/, function () {
+    action.isVisibleWait(adminPage.changeEmailButton, 10000);
+    action.clickElement(adminPage.changeEmailButton);
+})
+
+Then(/^a message ‘Email address already exist.’ appears$/, function () {
+    let emailExistsDisplayStatus = action.isVisibleWait(adminPage.emailAddressAlreadyExistsMessage, 10000);
+    chai.expect(emailExistsDisplayStatus).to.be.true;
+})
+
+When(/^the user clicks 'X' icon$/, function () {
+    action.isVisibleWait(adminPage.changeEmailPopupCloseButton, 10000);
+    action.clickElement(adminPage.changeEmailPopupCloseButton);
+})
+
+Then(/^the email address "(.*)" should not be updated$/, function (emailAddress) {
+    let savedDataTextElement = $(adminPage.savedTextOnProfileDynamicLocator.replace("<dynamic>", emailAddress))
+    let savedDataDisplayStatus = action.isVisibleWait(savedDataTextElement, 1000);
+    chai.expect(savedDataDisplayStatus).to.be.false;
+})

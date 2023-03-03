@@ -364,4 +364,8 @@ module.exports={
     get organisationCampusBlocksContractorText() {
         return $('//span[text()="1. Organisation/Campus blocks Contractor"]');
     },
+
+    get instructionsForInterpreterLabelText() {
+        return $('//div[contains(text(),"Instructions for Interpreter")]');
+    }
 }

@@ -559,3 +559,9 @@ When(/^the contractor above "(.*)" status will be "(.*)" for the Job$/,function(
     chai.expect(contractorJobStatusTextActual).to.equal("- No status -");
   }
 })
+
+Then(/^in the ‘Instructions for Interpreters’, the user sees the text "(.*)" as Label$/, function (expectedLabel) {
+  action.isVisibleWait(jobRequestPage.instructionsForInterpreterLabelText, 10000);
+  let instructionsLabelActual = action.getElementText(jobRequestPage.instructionsForInterpreterLabelText);
+  chai.expect(instructionsLabelActual).to.equal(expectedLabel);
+})

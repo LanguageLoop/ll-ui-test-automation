@@ -243,5 +243,33 @@ module.exports = {
 
     get cancelButtonEditProfile() {
         return $('//input[@value="Cancel" and (contains(@id,"Actions"))]')
-    }
+    },
+
+    get editIconNextToEmailAddress() {
+        return $('//a[contains(@id,"MainContent_UserManagement_") and not(contains(@id,"Email"))]');
+    },
+
+    get changeEmailPopup() {
+        return $('//span[text()="Confirm Change of Email"]/parent::div/parent::div');
+    },
+
+    get newEmailTextBoxOnPopup() {
+        return $('//input[contains(@id,"NewEmail")]');
+    },
+
+    get confirmEmailTextBoxOnPopup() {
+        return $('//input[contains(@id,"ConfirmEmail")]');
+    },
+
+    get changeEmailButton() {
+        return $('//input[@value="Change email"]');
+    },
+
+    get emailAddressAlreadyExistsMessage() {
+        return $('//span[text()="Email address already exist."]');
+    },
+
+    get changeEmailPopupCloseButton() {
+        return $('//a[contains(@id,"ChangeEmailDialog_block_wtlbtnAltusDialogClose")]');
+    },
 }

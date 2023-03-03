@@ -143,3 +143,59 @@ Feature: Account Management features
     Examples:
       | username        | password | role filter option | user account   | firstName | lastName | birthDay   | officeLocation       | landLineNumber | mobileNumber | expectedData                                       |
       | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | Britney   | Spears   | 01-01-1996 | Test office location | 03 9875 4612   | 12 3456 7890 | 1st January 1996,Test office location,12 3456 7890 |
+
+    #LL-43 Scenario 1 - Edit email address
+  @EditEmailAddress @LL-43
+  Scenario Outline: Edit email address
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And they will only see the Client Group roles
+    And the user clicks on the edit icon next to the email address
+    Then the user will be taken to the edit email pop up where they can change the email address
+
+    Examples:
+      | username        | password | role filter option | user account   |
+      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears |
+
+    #LL-43 Scenario 6 - User tries to enter email which already exists
+  @EnteredEmailAlreadyExists @LL-43
+  Scenario Outline: User tries to enter email which already exists
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And the user clicks on the edit icon next to the email address
+    And the user will be taken to the edit email pop up where they can change the email address
+    And has entered a new email address "<emailAddress>","<emailAddress>"
+    And the user presses ‘Change Email’ button
+    Then a message ‘Email address already exist.’ appears
+
+    Examples:
+      | username          | password  | role filter option | user account   | emailAddress                |
+      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | britneyspears@police.gov.au |
+
+    #LL-43 Scenario 7 - User edits the email and click on Cancel icon in the popup
+  @EditEmailAndCancel @LL-43
+  Scenario Outline: User edits the email and click on Cancel icon in the popup
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And the user clicks on the edit icon next to the email address
+    And the user will be taken to the edit email pop up where they can change the email address
+    And has entered a new email address "<emailAddress>","<emailAddress>"
+    And the user clicks 'X' icon
+    Then the email address "<emailAddress>" should not be updated
+
+
+    Examples:
+      | username          | password  | role filter option | user account   | emailAddress             |
+      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au |
