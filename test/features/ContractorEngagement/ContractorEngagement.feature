@@ -628,3 +628,25 @@ Feature: Contractor Engagement features
     Examples:
       | username          | password  | contractor |
       | LLAdmin@looped.in | Octopus@6 | Ivanka     |
+
+  #LL-672 NAV export: ABN validation Scenario 3d: Contractor changes ABN (invalid)
+  @ABNValidation @InvalidChangesABN
+  Scenario Outline: Contractor changes ABN (invalid)
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and open contractor "<contractor>"
+    And I click on Manage basic details link
+    And I see the My Details popup is displayed
+    And I clear the Contractor ABN and Company Name fields
+    And I enter a valid "<ABN Number1>" without spaces
+    And I click on Check button
+    And a thumbs up icon will appear next to the Check button with hover over message ABN is valid
+    And I clear the Contractor ABN and Company Name fields
+    And I enter invalid "<ABN Number2>" without spaces
+    And I click on Save contractor button
+    And a thumbs down icon will appear next to the Check button with hover over error message No details found for ABN "<ABN Number2>"
+    Then a error text message is displayed below the ABN filed No details found for ABN "<ABN Number2>"
+
+    Examples:
+      | username          | password  | contractor |  ABN Number1  |  ABN Number2 |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     |  32953689249  |  329536892   |
