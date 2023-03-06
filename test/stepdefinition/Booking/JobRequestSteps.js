@@ -193,7 +193,7 @@ When(/^I handle duplicate job warning window$/,function(){
 })
 
 When(/^I click yes to confirm editing job request$/, function(){
-  action.isClickableWait(jobRequestPage.editJobConfirmationYesButton)
+  action.isVisibleWait(jobRequestPage.editJobConfirmationYesButton,10000)
   action.clickElement(jobRequestPage.editJobConfirmationYesButton)
 })
 
