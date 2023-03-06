@@ -272,4 +272,16 @@ module.exports = {
     get changeEmailPopupCloseButton() {
         return $('//a[contains(@id,"ChangeEmailDialog_block_wtlbtnAltusDialogClose")]');
     },
+
+    get userStatusText() {
+        return $('//div[@class="Status OSInline"]/label');
+    },
+
+    get confirmationEmailSentMessage() {
+        return $('//span[text()="Confirmation email has been sent to your new email address. Please complete the confirmation to accept the changes in system."]');
+    },
+
+    get emailAndConfirmEmailDoNotMatch() {
+        return $('//span[text()="Email and confirm email do not match"]');
+    }
 }

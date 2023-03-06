@@ -45,8 +45,10 @@ module.exports = {
     get savePassword()
     {
         return $('input[value="Save password"]')
-    }
-    
+    },
 
+    get invalidUsernameOrPasswordMessage() {
+        return $('//span[text()="Invalid username or password."]');
+    }
 }
 
