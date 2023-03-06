@@ -199,3 +199,69 @@ Feature: Account Management features
     Examples:
       | username          | password  | role filter option | user account   | emailAddress             |
       | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au |
+
+    #LL-43 Scenario 8 - User enters different emails in New Email field and Confirm Email field
+  @EmailsDoNotMatch @LL-43
+  Scenario Outline: User enters different emails in New Email field and Confirm Email field
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And the user clicks on the edit icon next to the email address
+    And the user will be taken to the edit email pop up where they can change the email address
+    And has entered a new email address "<newUserEmailAddress>","<confirmEmailAddress>"
+    And the user presses ‘Change Email’ button
+    Then a message ‘Email and confirm email do not match.’ appear
+
+    Examples:
+      | username          | password  | role filter option | user account   | newUserEmailAddress         | confirmEmailAddress      |
+      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | britneyspears@police.gov.au | testEmail1@police.gov.au |
+
+    #LL-43 Scenario 4a - Login with new email - new email not confirmed  (existing user)
+  @LoginNewEmailNewNotConfirmed @LL-43
+  Scenario Outline: Login with new email - new email not confirmed  (existing user)
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And the User Status is Active or Sleeping
+    And the user clicks on the edit icon next to the email address
+    And the user will be taken to the edit email pop up where they can change the email address
+    And has entered a new email address "<newUserEmailAddress>","<newUserEmailAddress>"
+    And the user presses ‘Change Email’ button
+    And the confirmation email is sent to the email address message is displayed
+    And the looped in login page is opened
+    And they login with their updated email "<newUserEmailAddress>" and "<newUserPassword>"
+    Then they will not be able to login
+    And the ‘Invalid username or password.’ error message will be displayed
+
+    Examples:
+      | username          | password  | role filter option | user account   | newUserEmailAddress      | newUserPassword |
+      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au | Test1           |
+
+    #LL-43 Scenario 4b - Login with old email - new email not confirmed  (existing user)
+  @LoginOldEmailNewNotConfirmed @LL-43
+  Scenario Outline: Login with old email - new email not confirmed  (existing user)
+    When I login with "<username>" and "<password>"
+    And they will see the Accounts section displayed
+    And The user has selected an option "<role filter option>" from the Role filter dropdown
+    And The user has clicked the search button
+    And they click onto a user "<user account>" who belongs to the Client Group
+    And they are taken to the Account Profile page
+    And the User Status is Active or Sleeping
+    And the user clicks on the edit icon next to the email address
+    And the user will be taken to the edit email pop up where they can change the email address
+    And has entered a new email address "<newUserEmailAddress>","<newUserEmailAddress>"
+    And the user presses ‘Change Email’ button
+    And the confirmation email is sent to the email address message is displayed
+    And the looped in login page is opened
+    And I login with "<oldUserEmail>" and "<oldUserPassword>"
+    Then they will be able to login
+
+    Examples:
+      | username          | password  | role filter option | user account   | newUserEmailAddress      | oldUserEmail                | oldUserPassword |
+      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au | britneyspears@police.gov.au | Test1           |
