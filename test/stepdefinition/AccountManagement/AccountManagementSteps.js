@@ -226,3 +226,22 @@ Then(/^the email address "(.*)" should not be updated$/, function (emailAddress)
     let savedDataDisplayStatus = action.isVisibleWait(savedDataTextElement, 1000);
     chai.expect(savedDataDisplayStatus).to.be.false;
 })
+
+When(/^the User Status is Active or Sleeping$/, function () {
+    let userStatusActual = action.getElementText(adminPage.userStatusText);
+    if (userStatusActual.includes("Active")) {
+        chai.expect(userStatusActual).to.equal("Active");
+    } else {
+        chai.expect(userStatusActual).to.equal("Sleeping");
+    }
+})
+
+Then(/^the confirmation email is sent to the email address message is displayed$/, function () {
+    let emailConfirmationSentMessageDisplayStatus = action.isVisibleWait(adminPage.confirmationEmailSentMessage, 10000);
+    chai.expect(emailConfirmationSentMessageDisplayStatus).to.be.true;
+})
+
+Then(/^a message ‘Email and confirm email do not match.’ appear$/, function () {
+    let emailsDoNotMatchMessageDisplayStatus = action.isVisibleWait(adminPage.emailAndConfirmEmailDoNotMatch, 10000);
+    chai.expect(emailsDoNotMatchMessageDisplayStatus).to.be.true;
+})

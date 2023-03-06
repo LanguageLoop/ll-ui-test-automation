@@ -47,3 +47,23 @@ Given(/^the looped in login page is opened$/,  function(){
     
 })
 
+Then(/^they will not be able to login$/, function () {
+    let loginButtonDisplayStatus = action.isVisibleWait(Login.loginButton, 10000);
+    chai.expect(loginButtonDisplayStatus).to.be.true;
+})
+
+Then(/^the ‘Invalid username or password.’ error message will be displayed$/, function () {
+    let invalidUserOrPasswordMessageDisplayStatus = action.isVisibleWait(Login.invalidUsernameOrPasswordMessage, 10000);
+    chai.expect(invalidUserOrPasswordMessageDisplayStatus).to.be.true;
+})
+
+When(/^they login with their updated email "(.*)" and "(.*)"$/, function (username, password) {
+    action.enterValue(Login.usernameInput, username);
+    action.enterValue(Login.passwordInput, password);
+    action.clickElement(Login.loginButton);
+})
+
+Then(/^they will be able to login$/, function () {
+    let loginButtonDisplayStatus = action.isVisibleWait(Login.loginButton, 1000);
+    chai.expect(loginButtonDisplayStatus).to.be.false;
+})
