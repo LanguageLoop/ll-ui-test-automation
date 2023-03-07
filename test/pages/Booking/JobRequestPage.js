@@ -338,7 +338,7 @@ module.exports={
     },
 
     get jobCancelConfirmationPopupText() {
-        return $('//div[text()="Are you sure, you want to cancel?"]');
+        return $('//div[text()="Are you sure, you want to cancel?" or (contains(text(),"Would you like to cancel?"))]');
     },
 
     get cancelConfirmationYesButton() {
