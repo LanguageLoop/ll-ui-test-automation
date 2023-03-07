@@ -213,7 +213,7 @@ Feature: Account Management features
     And the user will be taken to the edit email pop up where they can change the email address
     And has entered a new email address "<newUserEmailAddress>","<confirmEmailAddress>"
     And the user presses ‘Change Email’ button
-    Then a message ‘Email and confirm email do not match.’ appear
+    Then a message ‘Email and confirm email do not match.’ appears
 
     Examples:
       | username          | password  | role filter option | user account   | newUserEmailAddress         | confirmEmailAddress      |
