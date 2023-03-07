@@ -565,3 +565,56 @@ Then(/^in the ‘Instructions for Interpreters’, the user sees the text "(.*)"
   let instructionsLabelActual = action.getElementText(jobRequestPage.instructionsForInterpreterLabelText);
   chai.expect(instructionsLabelActual).to.equal(expectedLabel);
 })
+
+When(/^I handle job updated warning message by refreshing browser and change status "(.*)","(.*)","(.*)"$/, function (contractorNameOrID, original_jobStatus, new_jobStatus) {
+  try {
+    let refreshCount = 0;
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage, 10000) && refreshCount < 10) {
+      console.log("Refreshing browser-" + refreshCount)
+      browser.refresh()
+      action.isVisibleWait(jobRequestPage.contractorSearchBoxJobAllocation, 20000);
+      action.enterValue(jobRequestPage.contractorSearchBoxJobAllocation, contractorNameOrID);
+      action.pressKeys("Tab");
+      let jobStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + original_jobStatus + '"]')
+      action.isVisibleWait(jobStatusElement, 30000)
+      action.clickElement(jobStatusElement)
+      action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000)
+      action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus)
+      const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
+      action.isVisibleWait(confirmationWindow, 5000)
+      if (confirmationWindow.isDisplayed()) {
+        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+        action.isClickableWait(confirmYes, 30000)
+        action.clickElement(confirmYes)
+      }
+      refreshCount++
+    }
+  } catch (Err) {
+    console.log("Failed to handle job updated warning message-" + Err)
+  }
+})
+
+When(/^I handle duplicate job updated warning message by refreshing browser and change status "(.*)","(.*)"$/, function (original_jobStatus, new_jobStatus) {
+  try {
+    let refreshCount = 0;
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage, 10000) && refreshCount < 10) {
+      console.log("Refreshing browser-" + refreshCount)
+      browser.refresh()
+      let jobStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + original_jobStatus + '"]')
+      action.isVisibleWait(jobStatusElement, 30000)
+      action.clickElement(jobStatusElement)
+      action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000)
+      action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus)
+      const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
+      action.isVisibleWait(confirmationWindow, 5000)
+      if (confirmationWindow.isDisplayed()) {
+        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+        action.isClickableWait(confirmYes, 30000)
+        action.clickElement(confirmYes)
+      }
+      refreshCount++
+    }
+  } catch (Err) {
+    console.log("Failed to handle job updated warning message-" + Err)
+  }
+})
