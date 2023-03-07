@@ -3,10 +3,10 @@ When(/^I click on Duplicate button$/, function(){
     action.isVisibleWait(jobDetailsPage.duplicateButton,30000);
     action.clickElement(jobDetailsPage.duplicateButton);
     action.waitUntilLoadingIconDisappears();
-    action.isVisibleWait(jobRequestPage.natureOfRequestInput,30000);
+    action.isVisibleWait(jobRequestPage.dateInput,30000);
     //browser.pause(2000)
     browser.waitUntil(
-        () => jobRequestPage.natureOfRequestInput.isEnabled(),{timeout:10000, timeoutMsg:'Input is not enabled in 10s',interval:500}
+        () => jobRequestPage.dateInput.isEnabled(),{timeout:10000, timeoutMsg:'Input is not enabled in 10s',interval:500}
     )
 })
 
@@ -98,7 +98,7 @@ When(/^I refresh the page$/, function(){
 
 When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(original_jobstatus,new_jobstatus){
     browser.pause(2000)
-    action.isClickableWait($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),30000)
+    action.isVisibleWait($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),30000)
     action.elementExists(jobDetailsPage.contractorListTable)
     action.clickElement($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'))
     browser.pause(5000)
