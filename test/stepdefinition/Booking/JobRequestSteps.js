@@ -182,10 +182,12 @@ When(/^I click add interpreters button$/,function(){
 When(/^I handle duplicate job warning window$/,function(){
   
   try{
-    action.isVisibleWait(jobRequestPage.continueButton,20000);
-    jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
-    browser.execute("arguments[0].click();", jobRequestPage.continueButton)
-    //action.clickElement(jobRequestPage.continueButton)
+    let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
+    if(continueButtonVisibleStatus) {
+      jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
+      browser.execute("arguments[0].click();", jobRequestPage.continueButton)
+      //action.clickElement(jobRequestPage.continueButton)
+    }
   }
   catch(Err)
   {
@@ -564,4 +566,101 @@ Then(/^in the ‘Instructions for Interpreters’, the user sees the text "(.*)"
   action.isVisibleWait(jobRequestPage.instructionsForInterpreterLabelText, 10000);
   let instructionsLabelActual = action.getElementText(jobRequestPage.instructionsForInterpreterLabelText);
   chai.expect(instructionsLabelActual).to.equal(expectedLabel);
+})
+
+When(/^I handle job updated warning message by refreshing browser and change status "(.*)","(.*)","(.*)"$/, function (contractorNameOrID, original_jobStatus, new_jobStatus) {
+  try {
+    let refreshCount = 0;
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage, 10000) && refreshCount < 10) {
+      console.log("Refreshing browser-" + refreshCount)
+      browser.refresh()
+      action.isVisibleWait(jobRequestPage.contractorSearchBoxJobAllocation, 20000);
+      action.enterValue(jobRequestPage.contractorSearchBoxJobAllocation, contractorNameOrID);
+      action.pressKeys("Tab");
+      let jobStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + original_jobStatus + '"]')
+      action.isVisibleWait(jobStatusElement, 30000)
+      action.clickElement(jobStatusElement)
+      action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000)
+      action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus)
+      const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
+      action.isVisibleWait(confirmationWindow, 5000)
+      if (confirmationWindow.isDisplayed()) {
+        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+        action.isClickableWait(confirmYes, 30000)
+        action.clickElement(confirmYes)
+      }
+      refreshCount++
+    }
+  } catch (Err) {
+    console.log("Failed to handle job updated warning message-" + Err)
+  }
+})
+
+When(/^I handle duplicate job updated warning message by refreshing browser and change contractor "(.*)" status "(.*)","(.*)"$/, function (contractor, original_jobStatus, new_jobStatus) {
+  try {
+    let refreshCount = 0;
+    while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage, 10000) && refreshCount < 10) {
+      console.log("Refreshing browser-" + refreshCount)
+      browser.refresh()
+      let originalJobStatusList = original_jobStatus.split(",");
+      for (let i = 0; i < originalJobStatusList.length; i++) {
+        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="'+contractor+'"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
+        let statusVisible = action.isVisibleWait(contractorStatusElement, 10000);
+        if (statusVisible) {
+          action.clickElement(contractorStatusElement);
+          break;
+        }
+      }
+      action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000)
+      action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus)
+      const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
+      action.isVisibleWait(confirmationWindow, 5000)
+      if (confirmationWindow.isDisplayed()) {
+        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+        action.isClickableWait(confirmYes, 30000)
+        action.clickElement(confirmYes)
+      }
+      refreshCount++
+    }
+  } catch (Err) {
+    console.log("Failed to handle job updated warning message-" + Err)
+  }
+})
+
+When(/^I select campus pin "(.*)" from Campus PIN dropdown$/, function (campusPin) {
+  action.isVisibleWait(jobRequestPage.campusPinDropDown, 10000);
+  action.selectTextFromDropdown(jobRequestPage.campusPinDropDown, campusPin);
+})
+
+When(/^I enter schedule date$/, function () {
+  let tempDate = datetime.getShortNoticeDate()
+  action.isVisibleWait(jobRequestPage.dateInput, 20000);
+  action.enterValue(jobRequestPage.dateInput, tempDate);
+  action.waitUntilLoadingIconDisappears();
+})
+
+When(/they have selected a Time "(.*)" from the time picker$/, function (time) {
+  action.isVisibleWait(jobRequestPage.timePickerTextBox, 10000);
+  action.clickElement(jobRequestPage.timePickerTextBox);
+  let timePickerListOptionElements = $$(jobRequestPage.timePickerListOptionElements.replace("<dynamic>", time)).length;
+  for (let i = 1; i <= timePickerListOptionElements; i++) {
+    let timePickerListOption = $(jobRequestPage.timePickerListOptionLocator.replace("<dynamic1>", time).replace("<dynamic2>", i.toString()));
+    if (action.isVisibleWait(timePickerListOption, 3000)) {
+      action.clickElement(timePickerListOption);
+      action.isVisibleWait(jobRequestPage.campusTimeText, 10000);
+      break;
+    }
+  }
+})
+
+Then(/the Time "(.*)" will be selected and the time picker will close$/, function (time) {
+  browser.waitUntil(() => action.getElementAttribute(jobRequestPage.timePickerTextBox, "origvalue") === time, {
+    timeout: 10000,
+    timeoutMsg: 'time is not selected after 10sec',
+    interval: 500
+  })
+  let timeValueSelected = action.getElementAttribute(jobRequestPage.timePickerTextBox, "origvalue");
+  chai.expect(timeValueSelected).to.equal(time);
+  let timePickerListDisplayStatus = action.isVisibleWait(jobRequestPage.timePickerList, 1000);
+  chai.expect(timePickerListDisplayStatus).to.be.false;
 })

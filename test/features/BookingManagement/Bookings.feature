@@ -901,3 +901,94 @@ Feature: Create new booking for Interpreters
     Examples:
       | username       | password | dropdownfilter | campus pin | Requester Name    | Instructions for Interpreters label                                                         |
       | zenq@cso10.com | Test1    | Management     | 33124      | Automation Tester | Instructions for Interpreter (Please DO NOT include interpreter’s name or personal details) |
+
+    #LL-731 Scenario 1: User creates a Job by adding the same details as in the above mentioned issue and allocates the interpreter to job
+  @CreateAndAllocateJobToHnin28642 @LL-731
+  Scenario Outline: User creates a Job and allocates the interpreter Hnin HMONE to the job for campus 28642
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    Then I confirm the job status "<new status>"
+
+    Examples:
+      | username          | password  | dropdownfilter | campus pin | Requester Name | language  | assignment type        | date            | time  | email        | contractor | original status                 | new status |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 28642      | Karen          | BURMESE   | FH01-Interview/Meeting | short notice    | 09:30 | hh@bb.com.au | Hnin HMONE | Auto Notification,- No status - | Allocated  |
+
+    #LL-731 Scenario 2: User duplicates the a Job and allocates the interpreter to job
+  @DuplicateAndAllocateJobToHnin28642 @LL-731
+  Scenario Outline: User duplicates a Job and allocates the interpreter Hnin HMONE to the job for campus 28642
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    And I confirm the job status "<new status>"
+    And I click on Duplicate button
+    And I enter schedule "<date>" and "<time>"
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    Then I confirm the job status "<new status>"
+
+    Examples:
+      | username          | password  | dropdownfilter | campus pin | Requester Name | language | assignment type        | date         | time  | email        | contractor | original status                 | new status |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 28642      | Karen          | BURMESE  | FH01-Interview/Meeting | short notice | 09:30 | hh@bb.com.au | Hnin HMONE | Auto Notification,- No status - | Allocated  |
+
+    #LL-723 Scenario 1: Time picker closes after user selects time from time picker
+  @TimePickerCloseAfterSelectingTime @LL-723
+  Scenario Outline: Time picker closes after user selects time from time picker
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I click on new job request button
+    And I select campus pin "<campusPin>" from Campus PIN dropdown
+    And I select language "<language>"
+    And I enter schedule date
+    And they have selected a Time "<time>" from the time picker
+    Then the Time "<time>" will be selected and the time picker will close
+
+    Examples:
+      | username       | password | campusPin               | language | time  |
+      | zenq@cbo11.com | Test1    | 29449 - Contoso Pty LTD | zz-Zenq2 | 01:00 |

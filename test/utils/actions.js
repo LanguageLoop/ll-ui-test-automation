@@ -311,5 +311,10 @@ module.exports={
         }
         return isEnabled;
     },
+
+    getElementAttribute(elt,attributeName){
+        let elementAttributeValue = elt.getAttribute(attributeName)
+        return elementAttributeValue;
+    },
 }
 
