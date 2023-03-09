@@ -146,3 +146,24 @@ Then(/^I confirm the job is cancelled with fee$/,function(){
 Then(/^I confirm the job status "(.*)"$/, function(jobstatus){
     chai.expect(action.elementExists($('//div[@class="ContractorTable"]//a[text()="'+jobstatus+'"]'))).to.be.true
 })
+
+When(/^I change the contractor "(.*)" job status from "(.*)" to "(.*)"$/, function (contractor, original_jobStatus, new_jobStatus) {
+    let originalJobStatusList = original_jobStatus.split(",");
+    for (let i = 0; i < originalJobStatusList.length; i++) {
+        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="'+contractor+'"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
+        let statusVisible = action.isVisibleWait(contractorStatusElement, 10000);
+        if (statusVisible) {
+            action.clickElement(contractorStatusElement);
+            break;
+        }
+    }
+    action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000);
+    action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus);
+    const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]');
+    action.isVisibleWait(confirmationWindow, 30000);
+    if (confirmationWindow.isDisplayed()) {
+        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]');
+        action.isClickableWait(confirmYes, 30000);
+        action.clickElement(confirmYes);
+    }
+})
