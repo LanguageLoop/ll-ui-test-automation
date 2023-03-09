@@ -367,5 +367,29 @@ module.exports={
 
     get instructionsForInterpreterLabelText() {
         return $('//div[contains(text(),"Instructions for Interpreter")]');
+    },
+
+    get campusPinDropDown() {
+        return $('//select[contains(@id,"PINSingle")]');
+    },
+
+    get timePickerTextBox() {
+        return $('//input[contains(@id,"EarliestStartTime")]');
+    },
+
+    get timePickerList() {
+        return $('//div[contains(@class,"EarliestStartTime") and not(contains(@class,"top"))]');
+    },
+
+    get timePickerListOptionElements() {
+        return '(//div[contains(@class,"EarliestStartTime")]//li[text()="<dynamic>"])';
+    },
+
+    get timePickerListOptionLocator() {
+        return '(//div[contains(@class,"EarliestStartTime")]//li[text()="<dynamic1>"])[<dynamic2>]';
+    },
+
+    get campusTimeText() {
+        return $('//span[text()="Campus time:"]')
     }
 }
