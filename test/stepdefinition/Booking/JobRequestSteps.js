@@ -182,10 +182,12 @@ When(/^I click add interpreters button$/,function(){
 When(/^I handle duplicate job warning window$/,function(){
   
   try{
-    action.isVisibleWait(jobRequestPage.continueButton,20000);
-    jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
-    browser.execute("arguments[0].click();", jobRequestPage.continueButton)
-    //action.clickElement(jobRequestPage.continueButton)
+    let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
+    if(continueButtonVisibleStatus) {
+      jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
+      browser.execute("arguments[0].click();", jobRequestPage.continueButton)
+      //action.clickElement(jobRequestPage.continueButton)
+    }
   }
   catch(Err)
   {
@@ -594,15 +596,21 @@ When(/^I handle job updated warning message by refreshing browser and change sta
   }
 })
 
-When(/^I handle duplicate job updated warning message by refreshing browser and change status "(.*)","(.*)"$/, function (original_jobStatus, new_jobStatus) {
+When(/^I handle duplicate job updated warning message by refreshing browser and change contractor "(.*)" status "(.*)","(.*)"$/, function (contractor, original_jobStatus, new_jobStatus) {
   try {
     let refreshCount = 0;
     while (action.isVisibleWait(jobRequestPage.jobGotUpdatedWarningMessage, 10000) && refreshCount < 10) {
       console.log("Refreshing browser-" + refreshCount)
       browser.refresh()
-      let jobStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + original_jobStatus + '"]')
-      action.isVisibleWait(jobStatusElement, 30000)
-      action.clickElement(jobStatusElement)
+      let originalJobStatusList = original_jobStatus.split(",");
+      for (let i = 0; i < originalJobStatusList.length; i++) {
+        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="'+contractor+'"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
+        let statusVisible = action.isVisibleWait(contractorStatusElement, 10000);
+        if (statusVisible) {
+          action.clickElement(contractorStatusElement);
+          break;
+        }
+      }
       action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000)
       action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus)
       const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
