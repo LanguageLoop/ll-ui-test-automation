@@ -626,3 +626,41 @@ When(/^I handle duplicate job updated warning message by refreshing browser and 
     console.log("Failed to handle job updated warning message-" + Err)
   }
 })
+
+When(/^I select campus pin "(.*)" from Campus PIN dropdown$/, function (campusPin) {
+  action.isVisibleWait(jobRequestPage.campusPinDropDown, 10000);
+  action.selectTextFromDropdown(jobRequestPage.campusPinDropDown, campusPin);
+})
+
+When(/^I enter schedule date$/, function () {
+  let tempDate = datetime.getShortNoticeDate()
+  action.isVisibleWait(jobRequestPage.dateInput, 20000);
+  action.enterValue(jobRequestPage.dateInput, tempDate);
+  action.waitUntilLoadingIconDisappears();
+})
+
+When(/they have selected a Time "(.*)" from the time picker$/, function (time) {
+  action.isVisibleWait(jobRequestPage.timePickerTextBox, 10000);
+  action.clickElement(jobRequestPage.timePickerTextBox);
+  let timePickerListOptionElements = $$(jobRequestPage.timePickerListOptionElements.replace("<dynamic>", time)).length;
+  for (let i = 1; i <= timePickerListOptionElements; i++) {
+    let timePickerListOption = $(jobRequestPage.timePickerListOptionLocator.replace("<dynamic1>", time).replace("<dynamic2>", i.toString()));
+    if (action.isVisibleWait(timePickerListOption, 3000)) {
+      action.clickElement(timePickerListOption);
+      action.isVisibleWait(jobRequestPage.campusTimeText, 10000);
+      break;
+    }
+  }
+})
+
+Then(/the Time "(.*)" will be selected and the time picker will close$/, function (time) {
+  browser.waitUntil(() => action.getElementAttribute(jobRequestPage.timePickerTextBox, "origvalue") === time, {
+    timeout: 10000,
+    timeoutMsg: 'time is not selected after 10sec',
+    interval: 500
+  })
+  let timeValueSelected = action.getElementAttribute(jobRequestPage.timePickerTextBox, "origvalue");
+  chai.expect(timeValueSelected).to.equal(time);
+  let timePickerListDisplayStatus = action.isVisibleWait(jobRequestPage.timePickerList, 1000);
+  chai.expect(timePickerListDisplayStatus).to.be.false;
+})
