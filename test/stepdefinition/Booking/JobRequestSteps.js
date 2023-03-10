@@ -604,7 +604,7 @@ When(/^I handle duplicate job updated warning message by refreshing browser and 
       browser.refresh()
       let originalJobStatusList = original_jobStatus.split(",");
       for (let i = 0; i < originalJobStatusList.length; i++) {
-        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="'+contractor+'"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
+        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + contractor + '"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
         let statusVisible = action.isVisibleWait(contractorStatusElement, 10000);
         if (statusVisible) {
           action.clickElement(contractorStatusElement);
@@ -632,20 +632,23 @@ When(/^I select campus pin "(.*)" from Campus PIN dropdown$/, function (campusPi
   action.selectTextFromDropdown(jobRequestPage.campusPinDropDown, campusPin);
 })
 
-When(/^I enter schedule date$/, function () {
+When(/^I enter short notice schedule date$/, function () {
   let tempDate = datetime.getShortNoticeDate()
   action.isVisibleWait(jobRequestPage.dateInput, 20000);
   action.enterValue(jobRequestPage.dateInput, tempDate);
-  action.waitUntilLoadingIconDisappears();
+  browser.pause(4000)
 })
 
 When(/they have selected a Time "(.*)" from the time picker$/, function (time) {
   action.isVisibleWait(jobRequestPage.timePickerTextBox, 10000);
+  action.isEnabledWait(jobRequestPage.timePickerTextBox, 10000);
   action.clickElement(jobRequestPage.timePickerTextBox);
+  browser.pause(3000);
   let timePickerListOptionElements = $$(jobRequestPage.timePickerListOptionElements.replace("<dynamic>", time)).length;
   for (let i = 1; i <= timePickerListOptionElements; i++) {
     let timePickerListOption = $(jobRequestPage.timePickerListOptionLocator.replace("<dynamic1>", time).replace("<dynamic2>", i.toString()));
     if (action.isVisibleWait(timePickerListOption, 3000)) {
+      action.isClickableWait(timePickerListOption, 10000);
       action.clickElement(timePickerListOption);
       action.isVisibleWait(jobRequestPage.campusTimeText, 10000);
       break;
@@ -663,4 +666,11 @@ Then(/the Time "(.*)" will be selected and the time picker will close$/, functio
   chai.expect(timeValueSelected).to.equal(time);
   let timePickerListDisplayStatus = action.isVisibleWait(jobRequestPage.timePickerList, 1000);
   chai.expect(timePickerListDisplayStatus).to.be.false;
+})
+
+When(/^I enter long notice schedule date$/, function () {
+  let tempDate = datetime.getLongNoticeDate()
+  action.isVisibleWait(jobRequestPage.dateInput, 20000);
+  action.enterValue(jobRequestPage.dateInput, tempDate);
+  action.waitUntilLoadingIconDisappears();
 })
