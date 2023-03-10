@@ -571,6 +571,7 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
+    And I select NAATI type "<NAATI>"
     And I enter "<email>" email address
     And I click save and proceed to summary button
     And I handle duplicate job warning window
@@ -586,8 +587,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM   | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25               | Auto Notification     |
+      | username          | password  | dropdownfilter | campus pin | Requester Name | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM | job contractor status | NAATI          |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson    | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25             | Auto Notification     | Non-Accredited |
 
     #LL-618 Scenario 3d: Other Campus, default distance is applied (short notice) [Regression Test]
   @MetroSelectedShortNoticeWithin100 @LL-618
@@ -603,6 +604,7 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
+    And I select NAATI type "<NAATI>"
     And I enter "<email>" email address
     And I click save and proceed to summary button
     And I handle duplicate job warning window
@@ -618,8 +620,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     |
+      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status | NAATI          |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     | Non-Accredited |
 
     #LL-682 Covid vax exemption allocation logic Scenario 3: User creates a Prebooked Job and then user adds a block for PreBooked job type in the contractor page
   #GIVEN a User has requested Prebooked job > #AND the Job Campus belongs to a certain BillTo
