@@ -987,10 +987,29 @@ Feature: Create new booking for Interpreters
     And I click on new job request button
     And I select campus pin "<campusPin>" from Campus PIN dropdown
     And I select language "<language>"
-    And I enter schedule date
+    And I enter short notice schedule date
     And they have selected a Time "<time>" from the time picker
     Then the Time "<time>" will be selected and the time picker will close
 
     Examples:
       | username       | password | campusPin               | language | time  |
       | zenq@cbo11.com | Test1    | 29449 - Contoso Pty LTD | zz-Zenq2 | 01:00 |
+
+    #LL-723 Scenario 2: User changes the selected time and then set the Time again
+  @ChangeSelectedTimeAndSetTime @LL-723
+  Scenario Outline: Time picker closes after user selects time from time picker
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I click on new job request button
+    And I select campus pin "<campusPin>" from Campus PIN dropdown
+    And I select language "<language>"
+    And I enter long notice schedule date
+    And they have selected a Time "<time>" from the time picker
+    And the Time "<time>" will be selected and the time picker will close
+    And I enter short notice schedule date
+    And they have selected a Time "<new time>" from the time picker
+    Then the Time "<new time>" will be selected and the time picker will close
+
+    Examples:
+      | username       | password | campusPin               | language | time  | new time |
+      | zenq@cbo11.com | Test1    | 29449 - Contoso Pty LTD | zz-Zenq2 | 00:45 | 01:00    |
