@@ -53,3 +53,18 @@ When(/^I click ODTI header link$/,   function(){
    action.isClickableWait(homePage.ODTILink,10000)
    action.clickElement(homePage.ODTILink)
 })
+
+When(/^they view the main top navigation$/,   function(){
+   let topMenuDisplayStatus = action.isVisibleWait(homePage.mainTopNavigationMenu,1000)
+   chai.expect(topMenuDisplayStatus).to.be.true;
+})
+
+Then(/^they will see the ODTI menu item$/,   function(){
+   let ODTIMenuItem = action.isVisibleWait(homePage.ODTILink,10000)
+   chai.expect(ODTIMenuItem).to.be.true;
+})
+
+Then(/^it will appear between the Interpreting and Translation menu items$/,   function(){
+   let ODTIMenuItemBetweenInterpretingAndTranslation = action.isVisibleWait(homePage.ODTIMenuItemBetweenInterpretingAndTranslations,10000)
+   chai.expect(ODTIMenuItemBetweenInterpretingAndTranslation).to.be.true;
+})
