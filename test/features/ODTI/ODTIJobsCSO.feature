@@ -245,3 +245,26 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
       | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    |
+
+    #LL-447 Scenario 1 - CS user sees ODTI menu item
+  @LL-447 @CSUserSeesODTIMenu
+  Scenario Outline: CS user sees ODTI menu item
+    When I login with "<username>" and "<password>"
+    And they view the main top navigation
+    Then they will see the ODTI menu item
+    And it will appear between the Interpreting and Translation menu items
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-447 Scenario 2 - CS user clicks ODTI menu item
+  @LL-447 @CSUserClicksODTIMenu
+  Scenario Outline: CS user sees ODTI menu item
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    Then they are navigated to the ODTI page
+
+    Examples:
+      | username cso   | password cso |
+      | zenq@cso10.com | Test1        |

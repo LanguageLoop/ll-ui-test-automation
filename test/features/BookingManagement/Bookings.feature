@@ -571,6 +571,7 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
+    And I select NAATI type "<NAATI>"
     And I enter "<email>" email address
     And I click save and proceed to summary button
     And I handle duplicate job warning window
@@ -586,8 +587,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM   | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25               | Auto Notification     |
+      | username          | password  | dropdownfilter | campus pin | Requester Name | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM | job contractor status | NAATI          |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson    | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25             | Auto Notification     | Non-Accredited |
 
     #LL-618 Scenario 3d: Other Campus, default distance is applied (short notice) [Regression Test]
   @MetroSelectedShortNoticeWithin100 @LL-618
@@ -603,6 +604,7 @@ Feature: Create new booking for Interpreters
     And I select assignment type "<assignment type>"
     And I enter travel approved "<travel approved>"
     And I enter schedule "<date>" and "<time>"
+    And I select NAATI type "<NAATI>"
     And I enter "<email>" email address
     And I click save and proceed to summary button
     And I handle duplicate job warning window
@@ -618,8 +620,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     |
+      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status | NAATI          |
+      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     | Non-Accredited |
 
     #LL-682 Covid vax exemption allocation logic Scenario 3: User creates a Prebooked Job and then user adds a block for PreBooked job type in the contractor page
   #GIVEN a User has requested Prebooked job > #AND the Job Campus belongs to a certain BillTo
@@ -985,10 +987,29 @@ Feature: Create new booking for Interpreters
     And I click on new job request button
     And I select campus pin "<campusPin>" from Campus PIN dropdown
     And I select language "<language>"
-    And I enter schedule date
+    And I enter short notice schedule date
     And they have selected a Time "<time>" from the time picker
     Then the Time "<time>" will be selected and the time picker will close
 
     Examples:
       | username       | password | campusPin               | language | time  |
       | zenq@cbo11.com | Test1    | 29449 - Contoso Pty LTD | zz-Zenq2 | 01:00 |
+
+    #LL-723 Scenario 2: User changes the selected time and then set the Time again
+  @ChangeSelectedTimeAndSetTime @LL-723
+  Scenario Outline: Time picker closes after user selects time from time picker
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I click on new job request button
+    And I select campus pin "<campusPin>" from Campus PIN dropdown
+    And I select language "<language>"
+    And I enter long notice schedule date
+    And they have selected a Time "<time>" from the time picker
+    And the Time "<time>" will be selected and the time picker will close
+    And I enter short notice schedule date
+    And they have selected a Time "<new time>" from the time picker
+    Then the Time "<new time>" will be selected and the time picker will close
+
+    Examples:
+      | username       | password | campusPin               | language | time  | new time |
+      | zenq@cbo11.com | Test1    | 29449 - Contoso Pty LTD | zz-Zenq2 | 00:45 | 01:00    |
