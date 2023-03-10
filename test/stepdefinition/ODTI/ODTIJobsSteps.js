@@ -439,3 +439,8 @@ Then(/^I should be navigated to the Interpreter detail page "(.*)" of the respec
     let textInInterpreterPage = action.getElementText(ODTIJobsPage.selectedInterpreterNameText);
     chai.expect(textInInterpreterPage).to.includes(GlobalData.ODTI_INTERPRETER_NAME);
 })
+
+When(/^they are navigated to the ODTI page$/, function () {
+    let pageTitleActual = action.getPageTitle()
+    chai.expect(pageTitleActual).to.includes("ODTI");
+})
