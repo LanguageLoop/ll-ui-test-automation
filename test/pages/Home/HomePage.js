@@ -33,5 +33,13 @@ module.exports = {
 
     get ODTILink(){
         return $('//a[text()="ODTI"]')
+    },
+
+    get mainTopNavigationMenu() {
+        return $('//div[@class="Menu_TopMenus"]')
+    },
+
+    get ODTIMenuItemBetweenInterpretingAndTranslations() {
+        return $('//a[text()="Interpreting"]/following::a[text()="ODTI"]/following::a[text()="Translations"]');
     }
 }
