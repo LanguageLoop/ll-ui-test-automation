@@ -316,5 +316,11 @@ module.exports={
         let elementAttributeValue = elt.getAttribute(attributeName)
         return elementAttributeValue;
     },
+
+    getPageTitle() {
+        let pageTitle = browser.getTitle();
+        console.log("Page Title is: "+pageTitle);
+        return pageTitle;
+    },
 }
 
