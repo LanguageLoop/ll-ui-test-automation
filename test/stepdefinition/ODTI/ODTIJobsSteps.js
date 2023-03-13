@@ -444,3 +444,69 @@ When(/^they are navigated to the ODTI page$/, function () {
     let pageTitleActual = action.getPageTitle()
     chai.expect(pageTitleActual).to.includes("ODTI");
 })
+
+Then(/^they will see the ODTI Interpreters page by default$/, function () {
+    let ODTIInterpretersPageOption = $(ODTIJobsPage.ODTIJobsSwitchDropdownOptionLocator.replace("<dynamic>", "ODTI Interpreters"));
+    let InterpretersPageSelectedStatus = action.isSelectedWait(ODTIInterpretersPageOption, 10000);
+    chai.expect(InterpretersPageSelectedStatus).to.be.true;
+})
+
+Then(/^they will see a dropdown to switch to the ODTI Jobs page$/, function () {
+    let ODTIJobsSwitchDropdownDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTIJobsSwitchDropdown, 10000);
+    chai.expect(ODTIJobsSwitchDropdownDisplayStatus).to.be.true;
+})
+
+Then(/^they will see a dropdown to select Language$/, function () {
+    let ODTILanguageSwitchDropdownDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTILanguageSwitchDropdown, 10000);
+    chai.expect(ODTILanguageSwitchDropdownDisplayStatus).to.be.true;
+})
+
+Then(/^they will a dropdown to select Logon Status with label Any - LogOn Status$/, function () {
+    let ODTILogonStatusDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTILogonStatusDropdown, 10000);
+    chai.expect(ODTILogonStatusDisplayStatus).to.be.true;
+    let ODTILogonStatusDropdownLabelDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTILogonStatusDropdownLabel, 10000);
+    chai.expect(ODTILogonStatusDropdownLabelDisplayStatus).to.be.true;
+})
+
+Then(/^they will see a language searchable dropdown$/, function () {
+    action.isVisibleWait(ODTIJobsPage.ODTILanguageSwitchDropdown, 10000);
+    action.clickElement(ODTIJobsPage.ODTILanguageSwitchDropdown);
+    let languageDropdownSearchBoxDisplayStatus = action.isVisibleWait(ODTIJobsPage.languageDropdownSearchBox, 10000);
+    chai.expect(languageDropdownSearchBoxDisplayStatus).to.be.true;
+})
+
+Then(/^the label will be: Language$/, function () {
+    let languageDropdownLanguageLabelElement = $(ODTIJobsPage.ODTILanguageDropdownLabel.replace("<dynamic>", "- Language -"));
+    let languageDropdownLabelDisplayStatus = action.isVisibleWait(languageDropdownLanguageLabelElement, 10000);
+    chai.expect(languageDropdownLabelDisplayStatus).to.be.true;
+})
+
+Then(/^the user will be able to search for a language "(.*)"$/, function (language) {
+    if (action.isVisibleWait(ODTIJobsPage.languageDropdownSearchBox, 10000) === false) {
+        action.clickElement(ODTIJobsPage.ODTILanguageSwitchDropdown);
+    }
+    action.enterValueAndPressReturn(ODTIJobsPage.languageDropdownSearchBox, language);
+})
+
+Then(/^the user will be able to select a single Language "(.*)"$/, function (language) {
+    let languageSelectedElement = $(ODTIJobsPage.ODTILanguageDropdownLabel.replace("<dynamic>", language));
+    let languageSelectedDisplayStatus = action.isVisibleWait(languageSelectedElement, 10000);
+    chai.expect(languageSelectedDisplayStatus).to.be.true;
+})
+
+Then(/^the label will be: Any-LogOn Status$/, function () {
+    let logonStatusDropdownLabelElement = $(ODTIJobsPage.logonStatusDropdownOptionLabel.replace("<dynamic>", "Any - LogOn Status"));
+    let logonStatusDropdownLabelSelectedStatus = action.isSelectedWait(logonStatusDropdownLabelElement, 10000);
+    chai.expect(logonStatusDropdownLabelSelectedStatus).to.be.true;
+})
+
+Then(/^the user will be able to select status for the selected language using options "(.*)"$/, function (logonStatus) {
+    action.isVisibleWait(ODTIJobsPage.ODTILogonStatusDropdown);
+    let logonStatusListOptions = logonStatus.split(",");
+    for (let index = 0; index < logonStatusListOptions.length; index++) {
+        action.selectTextFromDropdown(ODTIJobsPage.ODTILogonStatusDropdown, logonStatusListOptions[index]);
+        let logonStatusDropdownLabelElement = $(ODTIJobsPage.logonStatusDropdownOptionLabel.replace("<dynamic>", logonStatusListOptions[index]));
+        let logonStatusDropdownLabelSelectedStatus = action.isSelectedWait(logonStatusDropdownLabelElement, 10000);
+        chai.expect(logonStatusDropdownLabelSelectedStatus).to.be.true;
+    }
+})

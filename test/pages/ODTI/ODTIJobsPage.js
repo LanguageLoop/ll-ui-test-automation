@@ -167,5 +167,41 @@ module.exports = {
 
     get filterCloseXIcon() {
         return $('//span[@class="fa fa-fw fa-close"]/parent::a');
-    }
+    },
+
+    get ODTIJobsSwitchDropdown() {
+        return $('//select[contains(@class,"BorderlessShadowlessDropdown")]');
+    },
+
+    get ODTIJobsSwitchDropdownOptionLocator() {
+        return '//select[contains(@class,"BorderlessShadowlessDropdown")]/option[text()="<dynamic>"]';
+    },
+
+    get ODTILanguageSwitchDropdown() {
+        return $('//div[contains(@id,"Language")]');
+    },
+
+    get ODTILanguageDropdownLabel() {
+        return '//span[text()="<dynamic>"]';
+    },
+
+    get ODTILogonStatusDropdown() {
+        return $('//select[contains(@id,"LogOn")]');
+    },
+
+    get ODTILogonStatusDropdownLabel() {
+        return $('//select[contains(@id,"LogOn")]/Option[text()="Any - LogOn Status"]');
+    },
+
+    get ODTILanguageSwitchDropdown() {
+        return $('//span[text()="- Language -"]');
+    },
+
+    get languageDropdownSearchBox() {
+        return $('//input[contains(@id,"s2id_autogen1_search")]')
+    },
+
+    get logonStatusDropdownOptionLabel() {
+        return '//select[contains(@id,"LogOn")]/option[text()="<dynamic>"]';
+    },
 }

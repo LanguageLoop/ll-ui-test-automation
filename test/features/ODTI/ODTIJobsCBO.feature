@@ -284,7 +284,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | records count |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-03-2022 | 24-01-2023 | 500           |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-03-2022 | 10-03-2023 | 500           |
 
     #Scenario 13 - Verifying the records exported to excel when the records are less than 500 for the selected filters
   @Regression @RegressionS13 @CBOLessThan500RecordsExportExcel
