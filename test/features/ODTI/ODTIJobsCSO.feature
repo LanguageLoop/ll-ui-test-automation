@@ -268,3 +268,50 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso |
       | zenq@cso10.com | Test1        |
+
+    #LL-447 Scenario 3 - CS user views ODTI Interpreters page
+  @LL-447 @CSUserViewsInterpretersPage
+  Scenario Outline: CS user views ODTI Interpreters page
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    Then they will see the ODTI Interpreters page by default
+    And they will see a dropdown to switch to the ODTI Jobs page
+    And they will see a dropdown to select Language
+    And they will a dropdown to select Logon Status with label Any - LogOn Status
+
+    Examples:
+      | username cso   | password cso |
+      | zenq@cso10.com | Test1        |
+
+    #LL-447 Scenario 4 - CS user views Language search
+  @LL-447 @CSUserViewsLanguageSearch
+  Scenario Outline: CS user views Language search
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    Then they will see a language searchable dropdown
+    And the label will be: Language
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select a single Language "<language>"
+
+    Examples:
+      | username cso   | password cso | language |
+      | zenq@cso10.com | Test1        | CHINESE  |
+
+    #LL-447 Scenario 4a - CS user views “Any-LogOn Status” search
+  @LL-447 @CSUserViewsLogOnStatusSearch
+  Scenario Outline: CS user views Any-LogOn Status search
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    Then they will a dropdown to select Logon Status with label Any - LogOn Status
+    And the label will be: Any-LogOn Status
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status options>"
+
+    Examples:
+      | username cso   | password cso | language | logon status options          |
+      | zenq@cso10.com | Test1        | CHINESE  | Any - LogOn Status,True,False |
