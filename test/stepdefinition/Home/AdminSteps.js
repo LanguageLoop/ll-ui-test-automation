@@ -215,6 +215,7 @@ When(/^Clicks Create Account$/, function () {
 
 When(/^Selects any role "(.*)"$/, function (role) {
    let roleToggleElement = $(adminPage.roleToggleLocator.replace("<dynamic>", role));
+   action.isVisibleWait(roleToggleElement, 10000);
    action.isClickableWait(roleToggleElement, 10000);
    action.clickElement(roleToggleElement);
 })
@@ -474,6 +475,7 @@ When(/^select multiple roles "(.*)"$/, function (roles) {
    let rolesList = roles.split(",");
    for (let index = 0; index < rolesList.length; index++) {
       let roleToggleElement = $(adminPage.roleToggleLocator.replace("<dynamic>", rolesList[index]));
+      action.isVisibleWait(roleToggleElement, 10000);
       action.isClickableWait(roleToggleElement, 10000);
       action.clickElement(roleToggleElement);
    }
