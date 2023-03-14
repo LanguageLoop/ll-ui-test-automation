@@ -510,3 +510,56 @@ Then(/^the user will be able to select status for the selected language using op
         chai.expect(logonStatusDropdownLabelSelectedStatus).to.be.true;
     }
 })
+
+Then(/^the table will appear$/, function () {
+    let ODTIInterpretersResultsTableDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTIInterpretersResultsTable,10000);
+    chai.expect(ODTIInterpretersResultsTableDisplayStatus).to.be.true;
+})
+
+Then(/^show only interpreters "(.*)" with that Language$/, function (interpreters) {
+    let interpretersList = interpreters.split(",");
+    let ODTIInterpretersResultsTableTextActual = action.getElementText(ODTIJobsPage.ODTIInterpretersResultsTableBody);
+    for (let index = 0; index < interpretersList.length; index++) {
+        chai.expect(ODTIInterpretersResultsTableTextActual).to.includes(interpretersList[index]);
+    }
+})
+
+Then(/^show only interpreters with selected Language and the LogOn Status "(.*)" containing "(.*)" status$/, function (columnNumber,logonStatus) {
+    browser.pause(5000);
+    let logonStatusList = logonStatus.split(",");
+    let logonStatusActual = [];
+    let totalRowsCount = ODTIJobsPage.interpreterResultRowsCount;
+    for (let row = 1; row <= totalRowsCount; row++) {
+        let columnValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", row.toString()).replace("<dynamicColumnNumber>", columnNumber.toString()));
+        let actualColumnValue = action.getElementText(columnValueElement);
+        logonStatusActual.push(actualColumnValue);
+    }
+    chai.expect(logonStatusActual).to.include.members(logonStatusList);
+})
+
+Then(/^the table will have the following columns: "(.*)"$/, function (expectedColumns) {
+    let columnsList = expectedColumns.split(",");
+    let ODTIInterpretersTableColumnsActual = action.getElementText(ODTIJobsPage.interpreterColumnHeaders);
+    for (let index = 0; index < columnsList.length; index++) {
+        chai.expect(ODTIInterpretersTableColumnsActual).to.includes(columnsList[index]);
+    }
+})
+
+Then(/^the data will be displayed under each column as per the mockup$/, function () {
+    let ODTITableDataDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTIInterpretersResultsTableBody,10000);
+    chai.expect(ODTITableDataDisplayStatus).to.be.true;
+})
+
+Then(/^Name will be hyperlinked to the Contractor profile$/, function () {
+    let columnValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "2"));
+    let actualContractorNameHTML = action.getElementHTML(columnValueElement);
+    chai.expect(actualContractorNameHTML).to.includes("<a ");
+    chai.expect(actualContractorNameHTML).to.includes("href");
+})
+
+Then(/^it will show the NAATI Level for that Language or Contractor$/, function () {
+    let interpreterNAATILevels = ["Conference (Senior)","Conference","Certified Interpreter","Professional","Certified Provisional Interpreter","Recognised","Non-Accredited"];
+    let columnValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "3"));
+    let actualNAATIText = action.getElementText(columnValueElement);
+    chai.expect(interpreterNAATILevels).to.include(actualNAATIText);
+})
