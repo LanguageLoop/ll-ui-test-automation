@@ -204,4 +204,28 @@ module.exports = {
     get logonStatusDropdownOptionLabel() {
         return '//select[contains(@id,"LogOn")]/option[text()="<dynamic>"]';
     },
+
+    get ODTIInterpretersResultsTable() {
+        return $('//table[contains(@id,"ContractorODTITable")]');
+    },
+
+    get ODTIInterpretersResultsTableBody() {
+        return $('//table[contains(@id,"ContractorODTITable")]/tbody');
+    },
+
+    get interpreterResultRowsCount(){
+        return $$('//table[contains(@id,"ContractorODTITable")]/tbody/tr').length;
+    },
+
+    get interpreterResultsValueLocator(){
+        return '//table[contains(@id,"ContractorODTITable")]/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]';
+    },
+
+    get interpreterColumnHeaders(){
+        return $('//table[contains(@id,"ContractorODTITable")]/thead/tr');
+    },
+
+    get interpreterColumnHeaders(){
+        return $('//table[contains(@id,"ContractorODTITable")]/thead/tr');
+    },
 }
