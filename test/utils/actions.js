@@ -322,5 +322,10 @@ module.exports={
         console.log("Page Title is: "+pageTitle);
         return pageTitle;
     },
+
+    getElementHTML(elt){
+        let elementHTML = elt.getHTML()
+        return elementHTML;
+    },
 }
 

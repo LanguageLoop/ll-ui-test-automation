@@ -315,3 +315,69 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | language | logon status options          |
       | zenq@cso10.com | Test1        | CHINESE  | Any - LogOn Status,True,False |
+
+    #LL-447 Scenario 5a - CS user selects language
+  @LL-447 @CSUserSelectsLanguage
+  Scenario Outline: CS user views Language search
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And they will see a language searchable dropdown
+    And the label will be: Language
+    And the user will be able to search for a language "<language>"
+    Then the table will appear
+    And show only interpreters "<interpreters>" with that Language
+
+    Examples:
+      | username cso   | password cso | language | interpreters                                          |
+      | zenq@cso10.com | Test1        | CHINESE  | Bowen (Bella) LYU,Lai Wan LEUNG,Lucia Yee Fong CHEUNG |
+
+  #LL-447 Scenario 5b - CS user selects 'Any-LogOn Status'.
+  @LL-447 @CSUserSelectsAnyLogOnStatus
+  Scenario Outline: CS user selects Any-LogOn Status
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    Then the table will appear
+    And show only interpreters with selected Language and the LogOn Status "<logon status column>" containing "<logon status results>" status
+
+    Examples:
+      | username cso   | password cso | language | logon status option | logon status column | logon status results |
+      | zenq@cso10.com | Test1        | Zenq3    | Any - LogOn Status  |   6                 | True,False           |
+
+    #LL-447 Scenario 6a - CS user views table
+  @LL-447 @CSUserViewsTable
+  Scenario Outline: CS user views table
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    Then the table will appear
+    And the table will have the following columns: "<column headers>"
+    And the data will be displayed under each column as per the mockup
+    And Name will be hyperlinked to the Contractor profile
+
+    Examples:
+      | username cso   | password cso | language | logon status option | column headers                                                                                                     |
+      | zenq@cso10.com | Test1        | Zenq3    | Any - LogOn Status  | CONTRACTOR ID,NAME,NAATI LEVEL,GENDER,PHONE,LOGON STATUS,ATTEMPTS,ON CALL,CURRENT BOOKING START/END,JOB/CONTACT ID |
+
+    #LL-447 Scenario Scenario 6b - NAATI level shown for current language
+  @LL-447 @NAATILevelShownForLanguage
+  Scenario Outline: NAATI level shown for current language
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the table will have the following columns: "<column headers>"
+    Then it will show the NAATI Level for that Language or Contractor
+
+    Examples:
+      | username cso   | password cso | language | column headers |
+      | zenq@cso10.com | Test1        | CHINESE  | NAATI LEVEL    |
