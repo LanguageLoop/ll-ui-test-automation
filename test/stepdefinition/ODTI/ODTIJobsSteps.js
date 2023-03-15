@@ -563,3 +563,15 @@ Then(/^it will show the NAATI Level for that Language or Contractor$/, function 
     let actualNAATIText = action.getElementText(columnValueElement);
     chai.expect(interpreterNAATILevels).to.include(actualNAATIText);
 })
+
+Then(/^the table will show the current ongoing job for the interpreter "(.*)"$/, function (interpreter) {
+    let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
+    let actualJobID = action.getElementText(columnValueElement);
+    chai.expect(actualJobID).to.equal(GlobalData.CURRENT_JOB_ID.toString());
+})
+
+Then(/^the table will not show cancelled jobs for the interpreter "(.*)"$/, function (interpreter) {
+    let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
+    let actualJobID = action.getElementText(columnValueElement);
+    chai.expect(actualJobID).to.not.equal(GlobalData.CURRENT_JOB_ID.toString());
+})
