@@ -674,3 +674,15 @@ When(/^I enter long notice schedule date$/, function () {
   action.enterValue(jobRequestPage.dateInput, tempDate);
   action.waitUntilLoadingIconDisappears();
 })
+
+When(/^I click continue on Job continue confirmation popup$/, function () {
+  let confirmationPopupElementsCount = jobRequestPage.jobContinueConfirmationPopupTextElements.length;
+  for (let index = 0; index < confirmationPopupElementsCount; index++) {
+    let popupElements = jobRequestPage.jobContinueConfirmationPopupTextElements;
+    action.isVisibleWait(popupElements[index], 10000);
+    let popupVisibleStatus = action.isVisibleWait(popupElements[index], 10000);
+    if (popupVisibleStatus === true) {
+      action.clickElement(jobRequestPage.continueButtonElements[index]);
+    }
+  }
+})

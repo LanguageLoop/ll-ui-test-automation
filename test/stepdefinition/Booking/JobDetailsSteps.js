@@ -150,7 +150,7 @@ Then(/^I confirm the job status "(.*)"$/, function(jobstatus){
 When(/^I change the contractor "(.*)" job status from "(.*)" to "(.*)"$/, function (contractor, original_jobStatus, new_jobStatus) {
     let originalJobStatusList = original_jobStatus.split(",");
     for (let i = 0; i < originalJobStatusList.length; i++) {
-        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="'+contractor+'"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
+        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[contains(text(),"'+contractor+'")]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
         let statusVisible = action.isVisibleWait(contractorStatusElement, 10000);
         if (statusVisible) {
             action.clickElement(contractorStatusElement);

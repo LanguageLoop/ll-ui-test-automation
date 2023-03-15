@@ -228,4 +228,8 @@ module.exports = {
     get interpreterColumnHeaders(){
         return $('//table[contains(@id,"ContractorODTITable")]/thead/tr');
     },
+
+    get interpreterResultsLinkTextValueLocator(){
+        return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]'
+    },
 }

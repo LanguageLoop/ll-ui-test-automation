@@ -29,6 +29,10 @@ module.exports={
                 temp_date=this.generateRandomDate().toString()
                 temp_time="09:30"
                 break
+            case "current date":
+                temp_date=this.getConfirmationDate().toString()
+                temp_time=this.getConfirmationTime().toString()
+                break
         }
         schedule.push(temp_date)
         schedule.push(temp_time)
@@ -160,7 +164,7 @@ module.exports={
     getConfirmationDate()
     {
         temp_date=new Date()
-        temp_date.setHours(temp_date.getHours()+22)
+        temp_date.setHours(temp_date.getHours())
         temp_date=temp_date.getDate()+"-"+(temp_date.getMonth()+1)+"-"+temp_date.getFullYear()
         return temp_date
     },
@@ -168,7 +172,7 @@ module.exports={
     getConfirmationTime()
     {
         temp_date=new Date()
-        temp_date.setHours(temp_date.getHours()+22)
+        temp_date.setHours(temp_date.getHours())
         temp_time=temp_date.getHours()+":"+temp_date.getMinutes()
         return temp_time
     },
@@ -218,7 +222,7 @@ module.exports={
     },
 
     /**
-     * Returns current date in HH/MM/YYYY format
+     * Returns current date in DD/MM/YYYY format
      * @returns {string}
      */
     getCurrentDate(){

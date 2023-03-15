@@ -367,7 +367,7 @@ Feature: ODTI Jobs CSO features
       | username cso   | password cso | language | logon status option | column headers                                                                                                     |
       | zenq@cso10.com | Test1        | Zenq3    | Any - LogOn Status  | CONTRACTOR ID,NAME,NAATI LEVEL,GENDER,PHONE,LOGON STATUS,ATTEMPTS,ON CALL,CURRENT BOOKING START/END,JOB/CONTACT ID |
 
-    #LL-447 Scenario Scenario 6b - NAATI level shown for current language
+    #LL-447 Scenario 6b - NAATI level shown for current language
   @LL-447 @NAATILevelShownForLanguage
   Scenario Outline: NAATI level shown for current language
     When I login with "<username cso>" and "<password cso>"
@@ -381,3 +381,65 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | language | column headers |
       | zenq@cso10.com | Test1        | CHINESE  | NAATI LEVEL    |
+
+    #LL-447 Scenario 6c - Table shows current job
+  #GIVEN the CS user is looking at the table
+  #THEN the table will show the current ongoing job for the interpreter
+  #AND the table will not show cancelled jobs
+  @LL-447 @TableShowsCurrentJob
+  Scenario Outline: Table shows current job
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I click continue on Job continue confirmation popup
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    And the looped in login page is opened
+    And I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the table will appear
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    Then the table will show the current ongoing job for the interpreter "<contractor>"
+    And the looped in login page is opened
+    And I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And the booking is cancelled on behalf of "<Requester Name>"
+    And the looped in login page is opened
+    And I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the table will appear
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    And the table will not show cancelled jobs for the interpreter "<contractor>"
+
+    Examples:
+      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option |
+      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  |
