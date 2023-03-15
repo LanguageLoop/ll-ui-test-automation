@@ -391,5 +391,13 @@ module.exports={
 
     get campusTimeText() {
         return $('//span[text()="Campus time:"]')
-    }
+    },
+
+    get jobContinueConfirmationPopupTextElements() {
+        return $$('//div[contains(text(),"continue?")]');
+    },
+
+    get continueButtonElements() {
+        return $$('//input[@value="Continue"]');
+    },
 }
