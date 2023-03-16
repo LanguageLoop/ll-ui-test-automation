@@ -389,6 +389,9 @@ Feature: ODTI Jobs CSO features
   @LL-447 @TableShowsCurrentJob
   Scenario Outline: Table shows current job
     When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
     And I click Interpreting header link
     And I select "<dropdownfilter>" from the filter dropdown
     And I click on new job request button
