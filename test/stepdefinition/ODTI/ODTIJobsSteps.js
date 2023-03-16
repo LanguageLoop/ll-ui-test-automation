@@ -409,6 +409,7 @@ When(/^I Click on the X Icon beside the filters applied$/, function () {
     for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
         action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000);
         action.clickElement(ODTIJobsPage.filterCloseXIcon);
+        browser.pause(5000);
     }
 })
 
@@ -574,4 +575,21 @@ Then(/^the table will not show cancelled jobs for the interpreter "(.*)"$/, func
     let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
     let actualJobID = action.getElementText(columnValueElement);
     chai.expect(actualJobID).to.not.equal(GlobalData.CURRENT_JOB_ID.toString());
+})
+
+Then(/^the table will also show the next pre-booked job for the interpreter "(.*)"$/, function (interpreter) {
+    let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
+    let actualJobID = action.getElementText(columnValueElement);
+    chai.expect(actualJobID).to.equal(GlobalData.CURRENT_JOB_ID.toString());
+})
+
+Then(/^this will be the next pre-booked job with a start time within the next 15 minutes for the interpreter "(.*)"$/, function (interpreter) {
+    let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "9"));
+    let bookingTimeActual = action.getElementText(columnValueElement);
+    bookingTimeActual = bookingTimeActual.split(" - ")[0].toString();
+    let bookingTime24HoursActual = datetime.get24HrsFormatTime(bookingTimeActual);
+    let temp_date_time = datetime.getScheduleDateTime("within fifteen minutes", "00:00");
+    let withInFifteenMinutesTime = temp_date_time[1];
+    let jobTimeIsWithinNext15Minutes = datetime.compareTimeValues(bookingTime24HoursActual, withInFifteenMinutesTime);
+    chai.expect(jobTimeIsWithinNext15Minutes).to.be.true;
 })

@@ -33,6 +33,10 @@ module.exports={
                 temp_date=this.getConfirmationDate().toString()
                 temp_time=this.getConfirmationTime().toString()
                 break
+            case "within fifteen minutes":
+                temp_date=this.getConfirmationDate().toString()
+                temp_time=this.getWithinFifteenMinutesConfirmationTime().toString()
+                break
         }
         schedule.push(temp_date)
         schedule.push(temp_time)
@@ -232,7 +236,63 @@ module.exports={
         const day = `${today.getDate()}`.padStart(2, "0")
         const stringDate = [day, month, year].join("/")
         return stringDate;
-    }
-    
+    },
 
+    /**
+     * Returns time which is within next fifteen minutes of current time
+     * @returns {string}
+     */
+    getWithinFifteenMinutesConfirmationTime() {
+        temp_date = new Date();
+        temp_date.setMinutes(temp_date.getMinutes() + 10);
+        temp_time = temp_date.getHours() + ":" + `${temp_date.getMinutes()}`.padStart(2, "0");
+        return temp_time;
+    },
+
+    /**
+     * Compares two time values and returns true if is time1 earlier than time2, returns false if time1 is later than time2 and returns
+     * @param time1
+     * @param time2
+     * @returns {null|boolean}
+     */
+    compareTimeValues(time1, time2) {
+        // Convert the time values to date objects
+        const date1 = new Date(`1970-01-01T${time1}:00Z`);
+        const date2 = new Date(`1970-01-01T${time2}:00Z`);
+        // Compare the date objects using the getTime() method
+        if (date1.getTime() < date2.getTime()) {
+            return true;
+        } else if (date1.getTime() > date2.getTime()) {
+            return false;
+        } else {
+            return null;
+        }
+    },
+
+    /**
+     * converts 12 Hrs time to 24 Hrs time format
+     * @param twelveHoursFormatTime
+     * @returns {string}
+     */
+    get24HrsFormatTime(twelveHoursFormatTime) {
+        let timeHoursAndMinutes = twelveHoursFormatTime.split(" ")[0].toString();
+        let timeHours = timeHoursAndMinutes.split(":")[0].toString();
+        let timeMinutes = timeHoursAndMinutes.split(":")[1].toString();
+        let timeMeridian = twelveHoursFormatTime.split(" ")[1].toString();
+        let time24HoursActual;
+        if (timeMeridian === "PM" && timeHours === "12") {
+            time24HoursActual = timeHours + ":" + timeMinutes;
+            return time24HoursActual;
+        } else if (timeMeridian === 'PM' && timeHours !== "12") {
+            timeHours = parseInt(timeHours) + 12;
+            time24HoursActual = timeHours + ":" + timeMinutes;
+            return time24HoursActual;
+        } else if (timeMeridian === 'AM' && timeHours === "12") {
+            time24HoursActual = "00" + ":" + timeMinutes;
+            return time24HoursActual;
+        } else {
+            time24HoursActual = timeHours + ":" + timeMinutes;
+            return time24HoursActual;
+        }
+    }
 }
