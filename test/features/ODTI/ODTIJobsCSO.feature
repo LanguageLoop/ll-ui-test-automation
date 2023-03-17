@@ -444,8 +444,8 @@ Feature: ODTI Jobs CSO features
     And the table will not show cancelled jobs for the interpreter "<contractor>"
 
     Examples:
-      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  |
+      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
+      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
 
     #LL-447Scenario 6d - Table shows next pre-booked job.
   #GIVEN the CS user is looking at the table
