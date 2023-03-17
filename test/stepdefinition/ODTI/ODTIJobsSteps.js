@@ -518,6 +518,7 @@ Then(/^the table will appear$/, function () {
 })
 
 Then(/^show only interpreters "(.*)" with that Language$/, function (interpreters) {
+    browser.pause(5000);
     let interpretersList = interpreters.split(",");
     let ODTIInterpretersResultsTableTextActual = action.getElementText(ODTIJobsPage.ODTIInterpretersResultsTableBody);
     for (let index = 0; index < interpretersList.length; index++) {
@@ -552,6 +553,7 @@ Then(/^the data will be displayed under each column as per the mockup$/, functio
 })
 
 Then(/^Name will be hyperlinked to the Contractor profile$/, function () {
+    browser.pause(5000);
     let columnValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "2"));
     let actualContractorNameHTML = action.getElementHTML(columnValueElement);
     chai.expect(actualContractorNameHTML).to.includes("<a ");
@@ -559,6 +561,7 @@ Then(/^Name will be hyperlinked to the Contractor profile$/, function () {
 })
 
 Then(/^it will show the NAATI Level for that Language or Contractor$/, function () {
+    browser.pause(5000);
     let interpreterNAATILevels = ["Conference (Senior)","Conference","Certified Interpreter","Professional","Certified Provisional Interpreter","Recognised","Non-Accredited"];
     let columnValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "3"));
     let actualNAATIText = action.getElementText(columnValueElement);
@@ -566,24 +569,28 @@ Then(/^it will show the NAATI Level for that Language or Contractor$/, function 
 })
 
 Then(/^the table will show the current ongoing job for the interpreter "(.*)"$/, function (interpreter) {
+    browser.pause(5000);
     let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
     let actualJobID = action.getElementText(columnValueElement);
     chai.expect(actualJobID).to.equal(GlobalData.CURRENT_JOB_ID.toString());
 })
 
 Then(/^the table will not show cancelled jobs for the interpreter "(.*)"$/, function (interpreter) {
+    browser.pause(5000);
     let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
     let actualJobID = action.getElementText(columnValueElement);
     chai.expect(actualJobID).to.not.equal(GlobalData.CURRENT_JOB_ID.toString());
 })
 
 Then(/^the table will also show the next pre-booked job for the interpreter "(.*)"$/, function (interpreter) {
+    browser.pause(5000);
     let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
     let actualJobID = action.getElementText(columnValueElement);
     chai.expect(actualJobID).to.equal(GlobalData.CURRENT_JOB_ID.toString());
 })
 
 Then(/^this will be the next pre-booked job with a start time within the next 15 minutes for the interpreter "(.*)"$/, function (interpreter) {
+    browser.pause(5000);
     let columnValueElement = $(ODTIJobsPage.interpreterResultsLinkTextValueLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "9"));
     let bookingTimeActual = action.getElementText(columnValueElement);
     bookingTimeActual = bookingTimeActual.split(" - ")[0].toString();
@@ -592,4 +599,48 @@ Then(/^this will be the next pre-booked job with a start time within the next 15
     let withInFifteenMinutesTime = temp_date_time[1];
     let jobTimeIsWithinNext15Minutes = datetime.compareTimeValues(bookingTime24HoursActual, withInFifteenMinutesTime);
     chai.expect(jobTimeIsWithinNext15Minutes).to.be.true;
+})
+
+Then(/^if the Job ID has no data, then the Start End time also has no data$/, function () {
+    browser.pause(5000);
+    let totalRowsCount = ODTIJobsPage.interpreterResultRowsCount;
+    for (let row = 1; row <= totalRowsCount; row++) {
+        let jobIdValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", row.toString()).replace("<dynamicColumnNumber>", "10"));
+        let bookingTimeValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", row.toString()).replace("<dynamicColumnNumber>", "9"));
+        let jobIdText = action.getElementText(jobIdValueElement);
+        let bookingTimeText = action.getElementText(bookingTimeValueElement);
+        if (jobIdText === "") {
+            chai.expect(bookingTimeText).to.equal("");
+        }
+    }
+})
+
+Then(/^if the Job ID has data, then the Start End time also has data$/, function () {
+    browser.pause(5000);
+    let totalRowsCount = ODTIJobsPage.interpreterResultRowsCount;
+    for (let row = 1; row <= totalRowsCount; row++) {
+        let jobIdValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", row.toString()).replace("<dynamicColumnNumber>", "10"));
+        let bookingTimeValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", row.toString()).replace("<dynamicColumnNumber>", "9"));
+        let jobIdText = action.getElementText(jobIdValueElement);
+        let bookingTimeText = action.getElementText(bookingTimeValueElement);
+        if (jobIdText !== "") {
+            chai.expect(bookingTimeText).to.not.equal("");
+        }
+    }
+})
+
+When(/^they click on the hyperlinked Contractor name$/, function () {
+    browser.pause(5000);
+    let actualContractorNameElement = $(ODTIJobsPage.interpreterResultsValueLinkLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "2"));
+    GlobalData.CONTRACTOR_NAME = action.getElementText(actualContractorNameElement).toLowerCase();
+    action.clickElement(actualContractorNameElement);
+})
+
+When(/^they are navigated to the Contractor Profile and this will open in a new browser tab$/, function () {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(ODTIJobsPage.selectedInterpreterNameText, 10000);
+    let currentInterpreterPageUrl = action.getPageUrl();
+    chai.expect(currentInterpreterPageUrl).to.includes("ManagementModules/PreviewContractorProfile.aspx");
+    let contractorNameInProfile = action.getElementText(ODTIJobsPage.selectedInterpreterNameText).toLowerCase();
+    chai.expect(contractorNameInProfile).to.includes(GlobalData.ODTI_INTERPRETER_NAME);
 })

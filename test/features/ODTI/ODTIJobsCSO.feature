@@ -444,8 +444,8 @@ Feature: ODTI Jobs CSO features
     And the table will not show cancelled jobs for the interpreter "<contractor>"
 
     Examples:
-      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  |
+      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
+      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
 
     #LL-447Scenario 6d - Table shows next pre-booked job.
   #GIVEN the CS user is looking at the table
@@ -505,3 +505,49 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date                   | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
       | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | within fifteen minutes | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
+
+    #LL-447 Scenario 6e - Table shows empty Job ID and Start/End Time
+  @LL-447 @TableShowsEmptyJobIdAndTime
+  Scenario Outline: Table shows empty Job ID and Start/End Time
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    Then if the Job ID has no data, then the Start End time also has no data
+
+    Examples:
+      | username cso   | password cso | language | logon status option |
+      | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  |
+
+    #LL-447 Scenario 6f - Table shows filled Job ID and Start/End Time
+  @LL-447 @TableShowsFilledJobIdAndTime
+  Scenario Outline: Table shows filled Job ID and Start/End Time
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    Then if the Job ID has data, then the Start End time also has data
+
+    Examples:
+      | username cso   | password cso | language | logon status option |
+      | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  |
+
+    #LL-447 Scenario 7 - CS user clicks contractor name
+  @LL-447 @CSUserClicksContractorName
+  Scenario Outline: CS user clicks contractor name
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    And they click on the hyperlinked Contractor name
+    Then they are navigated to the Contractor Profile and this will open in a new browser tab
+
+    Examples:
+      | username cso   | password cso | language | logon status option |
+      | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  |
