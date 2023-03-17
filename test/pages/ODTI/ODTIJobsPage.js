@@ -213,23 +213,27 @@ module.exports = {
         return $('//table[contains(@id,"ContractorODTITable")]/tbody');
     },
 
-    get interpreterResultRowsCount(){
+    get interpreterResultRowsCount() {
         return $$('//table[contains(@id,"ContractorODTITable")]/tbody/tr').length;
     },
 
-    get interpreterResultsValueLocator(){
+    get interpreterResultsValueLocator() {
         return '//table[contains(@id,"ContractorODTITable")]/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]';
     },
 
-    get interpreterColumnHeaders(){
+    get interpreterColumnHeaders() {
         return $('//table[contains(@id,"ContractorODTITable")]/thead/tr');
     },
 
-    get interpreterColumnHeaders(){
+    get interpreterColumnHeaders() {
         return $('//table[contains(@id,"ContractorODTITable")]/thead/tr');
     },
 
-    get interpreterResultsLinkTextValueLocator(){
+    get interpreterResultsLinkTextValueLocator() {
         return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]'
+    },
+
+    get interpreterResultsValueLinkLocator() {
+        return '//table[contains(@id,"ContractorODTITable")]/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]/a';
     },
 }
