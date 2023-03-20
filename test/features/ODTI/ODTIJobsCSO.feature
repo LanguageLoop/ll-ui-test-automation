@@ -551,3 +551,32 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | language | logon status option |
       | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  |
+
+    #LL-447 Scenario 9 - CS user do not select ‘Language' and 'Any-LogOn Status'.
+  @LL-447 @CSUserDoNotSelectLanguageAndLogOnStatus
+  Scenario Outline: CS user do not select Language and Any-LogOn Status
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    Then no results will be displayed in the table
+    And show the text as 'No items to show...’
+
+    Examples:
+      | username cso   | password cso |
+      | zenq@cso10.com | Test1        |
+
+    #LL-447 Scenario 10 - CS performs sorting on each column.
+  @LL-447 @CSUserPerformsSortODTIInterpreters
+  Scenario Outline: CS performs sorting on each column.
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    Then the columns are sorted correctly when I click on each column which are sortable "<column headers>"
+
+    Examples:
+      | username cso   | password cso | language | logon status option | column headers                                                                                                     |
+      | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  | Contractor ID,Name,NAATI Level,Gender,Empty,Logon Status,Attempts,On Call,CURRENT BOOKING Start/End,Job/Contact ID |

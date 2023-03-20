@@ -236,4 +236,12 @@ module.exports = {
     get interpreterResultsValueLinkLocator() {
         return '//table[contains(@id,"ContractorODTITable")]/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]/a';
     },
+
+    get ODTIInterpretersResultsEmptyTable() {
+        return $('//table[contains(@id,"ContractorODTITable") and contains(@class,"Empty")]');
+    },
+
+    get noItemsToShowText() {
+        return $('//td[text()="No items to show..."]');
+    }
 }
