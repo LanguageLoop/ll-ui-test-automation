@@ -644,3 +644,53 @@ When(/^they are navigated to the Contractor Profile and this will open in a new 
     let contractorNameInProfile = action.getElementText(ODTIJobsPage.selectedInterpreterNameText).toLowerCase();
     chai.expect(contractorNameInProfile).to.includes(GlobalData.CONTRACTOR_NAME);
 })
+
+Then(/^no results will be displayed in the table$/, function () {
+    let ODTIInterpretersResultsEmptyTableDisplayStatus = action.isVisibleWait(ODTIJobsPage.ODTIInterpretersResultsEmptyTable, 10000);
+    chai.expect(ODTIInterpretersResultsEmptyTableDisplayStatus).to.be.true;
+})
+
+Then(/^show the text as 'No items to show...’$/, function () {
+    let noItemsToShowTextDisplayStatus = action.isVisibleWait(ODTIJobsPage.noItemsToShowText, 1000);
+    chai.expect(noItemsToShowTextDisplayStatus).to.be.true;
+})
+
+Then(/^the columns are sorted correctly when I click on each column which are sortable "(.*)"$/, function (columnHeaders) {
+    let columnHeadersList = columnHeaders.split(",");
+    for (let header = 0; header < columnHeadersList.length; header++) {
+        let valuesActual = [];
+        let valuesSorted = [];
+        let timeMeridiemValues = [];
+        let columnHeaderElement = $(ODTIJobsPage.columnHeaderLocator.replace("<dynamic>", columnHeadersList[header]))
+        if (columnHeadersList[header] !== "Empty") {
+            action.clickElement(columnHeaderElement);
+            browser.pause(3000);
+            let totalRowsCount = ODTIJobsPage.interpreterResultRowsCount;
+            for (let row = 1; row <= totalRowsCount; row++) {
+                let headerIndex = header + 1;
+                let columnValueElement = $(ODTIJobsPage.interpreterResultsValueLocator.replace("<dynamicRowNumber>", row.toString()).replace("<dynamicColumnNumber>", headerIndex.toString()));
+                if (action.isExistingWait(columnValueElement, 0)) {
+                    valuesActual.push(action.getElementText(columnValueElement));
+                }
+            }
+            if (valuesActual[valuesActual.length - 1].includes(":")) {
+                for (let i = 0; i < valuesActual.length; i++) {
+                    let timeValueActual = valuesActual[i].split(" ")[1];
+                    if (timeValueActual === "AM" || timeValueActual === "PM") {
+                        timeMeridiemValues.push(timeValueActual);
+                    }
+                }
+                valuesActual = timeMeridiemValues;
+                valuesSorted = [...valuesActual].sort();
+            } else if (valuesActual[1].includes("$")) {
+                valuesActual = valuesActual.map(function (element) {
+                    return element.replace(/\$/g, "");
+                });
+                valuesSorted = [...valuesActual].sort((a, b) => a - b);
+            } else {
+                valuesSorted = [...valuesActual].sort();
+            }
+            chai.expect(valuesActual).to.have.ordered.members(valuesSorted);
+        }
+    }
+})
