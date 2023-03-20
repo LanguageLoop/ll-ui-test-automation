@@ -642,5 +642,5 @@ When(/^they are navigated to the Contractor Profile and this will open in a new 
     let currentInterpreterPageUrl = action.getPageUrl();
     chai.expect(currentInterpreterPageUrl).to.includes("ManagementModules/PreviewContractorProfile.aspx");
     let contractorNameInProfile = action.getElementText(ODTIJobsPage.selectedInterpreterNameText).toLowerCase();
-    chai.expect(contractorNameInProfile).to.includes(GlobalData.ODTI_INTERPRETER_NAME);
+    chai.expect(contractorNameInProfile).to.includes(GlobalData.CONTRACTOR_NAME);
 })
