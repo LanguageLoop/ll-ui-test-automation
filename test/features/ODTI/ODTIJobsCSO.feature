@@ -568,7 +568,7 @@ Feature: ODTI Jobs CSO features
 
     #LL-447 Scenario 10 - CS performs sorting on each column.
   @LL-447 @CSUserPerformsSortODTIInterpreters
-  Scenario Outline: CS performs sorting on each column.
+  Scenario Outline: CS performs sorting on each column
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And they are navigated to the ODTI page
@@ -580,3 +580,108 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | language | logon status option | column headers                                                                                                     |
       | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  | Contractor ID,Name,NAATI Level,Gender,Empty,Logon Status,Attempts,On Call,CURRENT BOOKING Start/End,Job/Contact ID |
+
+    #LL-447 Scenario 8 - CS user clicks Job ID
+  @LL-447 @CSUserClicksJobID
+  Scenario Outline: CS user clicks Job ID
+    When I login with "<username>" and "<password>"
+    And I click contractor engagement link
+    And I search and select contractor "<contractor>"
+    And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I click continue on Job continue confirmation popup
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    And the looped in login page is opened
+    And I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the table will appear
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    And they click on the hyperlinked Job ID "<contractor>"
+    Then they are navigated to the ODTI Job Details page and this will open in a new browser tab
+    And the looped in login page is opened
+    And I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And the booking is cancelled on behalf of "<Requester Name>"
+
+    Examples:
+      | username          | password  | contractor | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
+      | LLAdmin@looped.in | Octopus@6 | Automation |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
+
+    #LL-447 Scenario 11 - CS views different pages using page numbers in pagination.
+  @LL-447 @CSUserUsesPageNumbersInPagination
+  Scenario Outline: CS views different pages using page numbers in pagination
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    And the table will appear
+    And I click on page number "<page number>"
+    Then I should be navigated to page "<page number>"
+
+    Examples:
+      | username cso   | password cso | language | logon status option | page number |
+      | zenq@cso10.com | Test1        | ARABIC   | Any - LogOn Status  | 2           |
+
+    #LL-447 Scenario 12 - CS views different pages using ‘>’ arrows in pagination.
+  @LL-447 @CSUserUsesPaginationNextIcon
+  Scenario Outline: CS views different pages using ‘>’ arrows in pagination
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    And the table will appear
+    And I click on next page arrow
+    And I should be navigated to page "<page number>"
+
+    Examples:
+      | username cso   | password cso | language | logon status option | page number |
+      | zenq@cso10.com | Test1        | ARABIC   | Any - LogOn Status  | 2           |
+
+    #LL-447 Scenario 13 - CS views different pages using ‘<’ arrows in pagination
+  @LL-447 @CSUserUsesPaginationPreviousIcon
+  Scenario Outline: CS views different pages using ‘<’ arrows in pagination
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And they are navigated to the ODTI page
+    And they will see the ODTI Interpreters page by default
+    And the user will be able to search for a language "<language>"
+    And the user will be able to select status for the selected language using options "<logon status option>"
+    And the table will appear
+    And I click on next page arrow
+    And I click on previous page arrow
+    And I should be navigated to page "<page number>"
+
+    Examples:
+      | username cso   | password cso | language | logon status option | page number |
+      | zenq@cso10.com | Test1        | ARABIC   | Any - LogOn Status  | 1           |
