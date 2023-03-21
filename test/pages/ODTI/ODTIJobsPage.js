@@ -243,5 +243,13 @@ module.exports = {
 
     get noItemsToShowText() {
         return $('//td[text()="No items to show..."]');
-    }
+    },
+
+    get interpreterResultsLinkTextLinkLocator() {
+        return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]/a'
+    },
+
+    get jobIDTextInODTIJobAllocationPage() {
+        return $('//div[contains(text(),"Job ID #")]');
+    },
 }
