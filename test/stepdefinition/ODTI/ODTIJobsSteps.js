@@ -694,3 +694,19 @@ Then(/^the columns are sorted correctly when I click on each column which are so
         }
     }
 })
+
+When(/^they click on the hyperlinked Job ID "(.*)"$/, function (interpreter) {
+    browser.pause(5000);
+    let jobIDLinkElement = $(ODTIJobsPage.interpreterResultsLinkTextLinkLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
+    GlobalData.ODTI_JOB_CONTRACT_ID = action.getElementText(jobIDLinkElement);
+    action.clickElement(jobIDLinkElement);
+})
+
+When(/^they are navigated to the ODTI Job Details page and this will open in a new browser tab$/, function () {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobAllocationPage, 10000);
+    let currentInterpreterPageUrl = action.getPageUrl();
+    chai.expect(currentInterpreterPageUrl).to.includes("BookingJobAllocation.aspx");
+    let jobIDInAllocationPage = action.getElementText(ODTIJobsPage.jobIDTextInODTIJobAllocationPage);
+    chai.expect(jobIDInAllocationPage).to.includes(GlobalData.ODTI_JOB_CONTRACT_ID);
+})
