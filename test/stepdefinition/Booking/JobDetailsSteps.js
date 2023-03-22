@@ -167,3 +167,11 @@ When(/^I change the contractor "(.*)" job status from "(.*)" to "(.*)"$/, functi
         action.clickElement(confirmYes);
     }
 })
+
+Then(/^this will show 1 contractor that was connected to the call$/, function () {
+    let jobContractorLink = $(jobDetailsPage.jobAllocationDynamicValueLinkLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "1"));
+    let jobContractorDisplayStatus = action.isVisibleWait(jobContractorLink, 10000);
+    chai.expect(jobContractorDisplayStatus).to.be.true;
+    let jobAllocationTableRowsCount = jobDetailsPage.jobAllocationTableBodyRowsCount;
+    chai.expect(jobAllocationTableRowsCount).to.equal(1);
+})
