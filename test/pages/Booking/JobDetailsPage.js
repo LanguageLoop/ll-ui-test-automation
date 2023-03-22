@@ -151,6 +151,14 @@ module.exports = {
     get acceptMetroServiceCheckBox()
     {
         return $('//*[text()="Accept Metro Service"]/..//input')
-    }
+    },
+
+    get jobAllocationTableBodyRowsCount() {
+        return $$('//div[@class="JobAllocationContainer"]/table/tbody/tr').length;
+    },
+
+    get jobAllocationDynamicValueLinkLocator() {
+        return '//div[@class="JobAllocationContainer"]/table/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]/a'
+    },
 
 }
