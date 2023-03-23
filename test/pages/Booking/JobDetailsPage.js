@@ -158,7 +158,19 @@ module.exports = {
     },
 
     get jobAllocationDynamicValueLinkLocator() {
-        return '//div[@class="JobAllocationContainer"]/table/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]/a'
+        return '//div[@class="JobAllocationContainer"]/table/tbody/tr[<dynamicRowNumber>]/td[<dynamicColumnNumber>]/a';
+    },
+
+    get campusPinHyperlink() {
+        return $('//div[contains(@id,"CampusPinLink")]/a');
+    },
+
+    get contractNameHyperlink() {
+        return $('//span[text()="Contract Name"]/parent::div//a');
+    },
+
+    get jobAllocationSection() {
+        return $('//div[@class="JobAllocationContainer"]');
     },
 
 }
