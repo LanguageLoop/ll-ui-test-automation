@@ -196,3 +196,10 @@ Then(/^I verify duplicate contract is created "(.*)"$/, function(title){
     chai.expect(contractManagementPage.contractHeadingText.getText().toString() == title+(parseInt(res)+1)).to.be.true
 })
 
+Then(/^they will be navigated to the Contract page$/, function () {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(contractManagementPage.contractHeadingText,10000);
+    let pageTitleActual = action.getPageTitle().trim();
+    chai.expect(pageTitleActual).to.equal("Contract Details");
+})
+

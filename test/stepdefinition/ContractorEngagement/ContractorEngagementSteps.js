@@ -846,3 +846,10 @@ When(/^a error text message is displayed below the ABN filed No details found fo
     let errorMessageDisplayStatus = action.isVisibleWait(contractorEngagementPage.thumpsDownIcon, 10000);
     chai.expect(errorMessageDisplayStatus).to.be.true;
 })
+
+Then(/^they will be navigated to the Contractor’s profile$/, function () {
+    action.navigateToLatestWindow();
+    action.isVisibleWait(contractorEngagementPage.interpreterDetailsHeader,10000);
+    let pageTitleActual = action.getPageTitle().trim();
+    chai.expect(pageTitleActual).to.equal("PreviewContractorProfile");
+})
