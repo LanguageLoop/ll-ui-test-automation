@@ -259,3 +259,52 @@ Feature: ODTI Jobs CSO features
     Examples:
       | username cso   | password cso | job detail page url        |
       | zenq@cso10.com | Test1        | OnDemandTI/JobDetails.aspx |
+
+
+    #LL-659 Scenario 3 - Campus PIN Hyperlink
+  @LL-659 @CSCampusPINHyperlink
+  Scenario Outline: Campus PIN Hyperlink
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And the user is viewing the Job Details page
+    Then they will see the Campus PIN hyperlinked
+    And they click the Campus PIN
+    And they will be navigated to the Campus page
+
+    Examples:
+      | username cso   | password cso |
+      | zenq@cso10.com | Test1        |
+
+    #LL-659 Scenario 4 - Contract Name Hyperlink
+  @LL-659 @CSContractNameHyperlink
+  Scenario Outline: Contract Name Hyperlink
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And the user is viewing the Job Details page
+    Then they will see the Contract Name hyperlinked
+    And they click the Contract Name
+    And they will be navigated to the Contract page
+
+    Examples:
+      | username cso   | password cso |
+      | zenq@cso10.com | Test1        |
+
+    #LL-659 Scenario 6 - Contractor Name hyperlinked
+  @LL-659 @CSContractorNameHyperlink
+  Scenario Outline: Contractor Name hyperlinked
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And the user is viewing the Job Details page
+    And the user is viewing the allocated interpreter section
+    And  they click on the Contractor Name
+    Then they will be navigated to the Contractor’s profile
+
+    Examples:
+      | username cso   | password cso |
+      | zenq@cso10.com | Test1        |
