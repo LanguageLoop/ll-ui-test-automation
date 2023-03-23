@@ -577,4 +577,8 @@ module.exports = {
     get thumpsDownToolTipForNoABN() {
         return $('//span[text()="No details found for ABN "]');
     },
+
+    get interpreterDetailsHeader() {
+        return $('//div[contains(@id,"Title") and @class="Heading1 Title PH OSInline"]');
+    }
 }

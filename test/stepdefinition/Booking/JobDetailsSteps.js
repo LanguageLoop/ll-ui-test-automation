@@ -175,3 +175,32 @@ Then(/^this will show 1 contractor that was connected to the call$/, function ()
     let jobAllocationTableRowsCount = jobDetailsPage.jobAllocationTableBodyRowsCount;
     chai.expect(jobAllocationTableRowsCount).to.equal(1);
 })
+
+Then(/^they will see the Campus PIN hyperlinked$/, function () {
+    let campusPinHyperlinkDisplayStatus = action.isVisibleWait(jobDetailsPage.campusPinHyperlink,10000);
+    chai.expect(campusPinHyperlinkDisplayStatus).to.be.true;
+})
+
+Then(/^they click the Campus PIN$/, function () {
+    action.clickElement(jobDetailsPage.campusPinHyperlink);
+})
+
+Then(/^they will see the Contract Name hyperlinked$/, function () {
+    let contractNameHyperlinkDisplayStatus = action.isVisibleWait(jobDetailsPage.contractNameHyperlink,10000);
+    chai.expect(contractNameHyperlinkDisplayStatus).to.be.true;
+})
+
+Then(/^they click the Contract Name$/, function () {
+    action.clickElement(jobDetailsPage.contractNameHyperlink);
+})
+
+When(/^the user is viewing the allocated interpreter section$/, function () {
+    let jobAllocationSectionDisplayStatus = action.isVisibleWait(jobDetailsPage.jobAllocationSection,10000);
+    chai.expect(jobAllocationSectionDisplayStatus).to.be.true;
+})
+
+Then(/^they click on the Contractor Name$/, function () {
+    let contractNameHyperLink = $(jobDetailsPage.jobAllocationDynamicValueLinkLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "1"));
+    action.isVisibleWait(contractNameHyperLink,10000);
+    action.clickElement(contractNameHyperLink);
+})
