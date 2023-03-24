@@ -173,4 +173,16 @@ module.exports = {
         return $('//div[@class="JobAllocationContainer"]');
     },
 
+    get jobInfoSectionLabelsDynamicLocator() {
+        return '//span[text()="<dynamicSectionName>"]/parent::div//child::span[text()="<dynamicLabel>"]';
+    },
+
+    get jobAllocationSectionUnderJobInfoSection() {
+        return $('//div[contains(@id,"DetailsContainer")]//div[@class="JobAllocationContainer"]');
+    },
+
+    get jobAllocationTableHeaders() {
+        return $('//table[contains(@id,"ODTIServiceChargeTable")]/thead/tr');
+    }
+
 }
