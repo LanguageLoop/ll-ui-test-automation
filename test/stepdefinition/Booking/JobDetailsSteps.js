@@ -204,3 +204,46 @@ Then(/^they click on the Contractor Name$/, function () {
     action.isVisibleWait(contractNameHyperLink,10000);
     action.clickElement(contractNameHyperLink);
 })
+
+Then(/^they will see a heading with the Job ID number and the Campus Name as per existing functionality$/, function () {
+    let jobIDAndCampusNameValueInJobDetails = action.getElementText(jobDetailsPage.jobIdLabel);
+    chai.expect(jobIDAndCampusNameValueInJobDetails).to.includes(GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE);
+    chai.expect(jobIDAndCampusNameValueInJobDetails).to.includes(GlobalData.ODTI_CAMPUS_NAME);
+})
+
+Then(/^they will see the following details and information in the Job Info section: "(.*)", "(.*)"$/, function (sectionName, labels) {
+    let labelsList = labels.split(",");
+    for (let index = 0; index < labelsList.length; index++) {
+        let jobInfoSectionLabelElement = $(jobDetailsPage.jobInfoSectionLabelsDynamicLocator.replace("<dynamicSectionName>", sectionName).replace("<dynamicLabel>", labelsList[index]));
+        let jobInfoLabelDisplayStatus = action.isVisibleWait(jobInfoSectionLabelElement, 10000);
+        chai.expect(jobInfoLabelDisplayStatus).to.be.true;
+    }
+})
+Then(/^they will see the Allocated Interpreter section under the Job Info section as per existing functionality for Job Bookings$/, function () {
+    let jobAllocationSectionUnderJobInfoDisplayStatus = action.isVisibleWait(jobDetailsPage.jobAllocationSectionUnderJobInfoSection,10000);
+    chai.expect(jobAllocationSectionUnderJobInfoDisplayStatus).to.be.true;
+})
+
+Then(/^the job allocation table will show the following: "(.*)"$/, function (expectedHeaders) {
+    let expectedHeadersList = expectedHeaders.split(",")
+    action.isVisibleWait(jobDetailsPage.jobAllocationTableHeaders, 10000);
+    let jobAllocationTableHeadersActual = action.getElementText(jobDetailsPage.jobAllocationTableHeaders);
+    for (let index = 0; index < expectedHeadersList.length; index++) {
+        chai.expect(jobAllocationTableHeadersActual).to.includes(expectedHeadersList[index]);
+    }
+})
+
+Then(/^the job allocation table will not show the following: "(.*)"$/, function (expectedHeaders) {
+    let expectedHeadersList = expectedHeaders.split(",")
+    action.isVisibleWait(jobDetailsPage.jobAllocationTableHeaders, 10000);
+    let jobAllocationTableHeadersActual = action.getElementText(jobDetailsPage.jobAllocationTableHeaders);
+    for (let index = 0; index < expectedHeadersList.length; index++) {
+        chai.expect(jobAllocationTableHeadersActual).to.not.includes(expectedHeadersList[index]);
+    }
+})
+
+Then(/^the Contractor’s name will be hyperlinked$/, function () {
+    let contractNameHyperLink = $(jobDetailsPage.jobAllocationDynamicValueLinkLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "1"));
+    let contractNameHyperLinkDisplayStatus = action.isVisibleWait(contractNameHyperLink,10000);
+    chai.expect(contractNameHyperLinkDisplayStatus).to.be.true;
+})

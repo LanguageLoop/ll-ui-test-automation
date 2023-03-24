@@ -302,9 +302,45 @@ Feature: ODTI Jobs CSO features
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     And the user is viewing the allocated interpreter section
-    And  they click on the Contractor Name
+    And they click on the Contractor Name
     Then they will be navigated to the Contractor’s profile
 
     Examples:
       | username cso   | password cso |
       | zenq@cso10.com | Test1        |
+
+    #LL-659 Scenario 2 - CS / Finance user sees Job Info section
+  @LL-659 @CSUserSeesJobInfoSection
+  Scenario Outline: CS / Finance user sees Job Info section
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I get Campus Name value under Campus Name column
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And the user is viewing the Job Details page
+    Then they will see a heading with the Job ID number and the Campus Name as per existing functionality
+    And they will see the following details and information in the Job Info section: "<JobInfoSectionName>", "<JobInfoSectionLabels>"
+    And they will see the following details and information in the Job Info section: "<additionalInfoSectionName>", "<additionalInfoSectionLabels>"
+    And they will see the following details and information in the Job Info section: "<customFieldsSectionName>", "<customFieldsSectionLabels>"
+
+    Examples:
+      | username cso   | password cso | JobInfoSectionName | JobInfoSectionLabels                                                                                                                                                                           | additionalInfoSectionName | additionalInfoSectionLabels                                                                                                                                                        | customFieldsSectionName | customFieldsSectionLabels |
+      | zenq@cso10.com | Test1        | Job Information    | DID,Job Reference Number,Service Type,Campus PIN,Client Call ID,Contractor ID,Gender Preference,Language,Call Start Date/Time,Interpreter Connect Date/Time,Interpreter End Date/Time,Duration | Additional Information    | Job Status,DID Timezone,Client AH / BH,Public holiday,CX1 Contact ID,Operator called,MIL Phone Number,UI capture screen used,Is 5 min rule,Contract Name,NES Details,Record Status | Custom Fields           | [EX1] Reference number    |
+
+    #LL-659 Scenario 5 - CS / Finance user sees Allocated Interpreter section
+  @LL-659 @CSSeesAllocatedInterpreterSection
+  Scenario Outline: CS / Finance user sees Allocated Interpreter section
+    When I login with "<username cso>" and "<password cso>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And the user is viewing the Job Details page
+    Then they will see the Allocated Interpreter section under the Job Info section as per existing functionality for Job Bookings
+    And this will show 1 contractor that was connected to the call
+    And the job allocation table will show the following: "<labelsDisplayed>"
+    And the job allocation table will not show the following: "<labelsNotDisplayed>"
+    And  the Contractor’s name will be hyperlinked
+
+    Examples:
+      | username cso   | password cso | labelsDisplayed                                                   | labelsNotDisplayed                 |
+      | zenq@cso10.com | Test1        | CONTRACTOR,PHONE,NAATI LEVEL,TIMES CONNECTED,DURATION,AFTER HOURS | DISTANCE,GENDER,PROBABILITY,STATUS |
