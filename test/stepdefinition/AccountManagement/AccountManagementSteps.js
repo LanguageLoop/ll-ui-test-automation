@@ -245,3 +245,9 @@ Then(/^a message ‘Email and confirm email do not match.’ appears$/, function
     let emailsDoNotMatchMessageDisplayStatus = action.isVisibleWait(adminPage.emailAndConfirmEmailDoNotMatch, 10000);
     chai.expect(emailsDoNotMatchMessageDisplayStatus).to.be.true;
 })
+
+When(/^I click the contract link "(.*)" from search results$/,function(contractLinkResult){
+    let contractResultLinkElement = $(accountManagementPage.contractResultLocator.replace("<dynamic>",contractLinkResult));
+    action.isVisibleWait(contractResultLinkElement,10000);
+    action.clickElement(contractResultLinkElement);
+})
