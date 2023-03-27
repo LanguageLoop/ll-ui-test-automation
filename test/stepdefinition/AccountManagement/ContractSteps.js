@@ -72,8 +72,8 @@ When(/^I click add minimum naati level$/, function(){
 })
 
 When(/^I click add contract rates$/, function(){
-    browser.pause(2000)
-    action.clickElement(contractManagementPage.addContractRateButton)
+    action.isVisibleWait(contractManagementPage.addContractRateButton,10000);
+    action.clickElement(contractManagementPage.addContractRateButton);
 })
 
 When(/^I enter contract rate details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, function(name,businesshour,language,contractminperiod,contractminrate,contractongoing,contractorminperiod,contractorminrate,contractorongoing){
@@ -203,3 +203,69 @@ Then(/^they will be navigated to the Contract page$/, function () {
     chai.expect(pageTitleActual).to.equal("Contract Details");
 })
 
+Given(/^the Manage Rate popup appears$/, function () {
+    let manageRatePopupDisplayStatus = action.isVisibleWait(contractManagementPage.manageRatePopup, 10000);
+    chai.expect(manageRatePopupDisplayStatus).to.be.true;
+})
+
+When(/^they select "(.*)" from Service Language dropdown$/, function (serviceLanguage) {
+    action.isVisibleWait(contractManagementPage.manageRateServiceLanguageDropdownLink, 10000);
+    action.enterValueAndPressReturn(contractManagementPage.manageRateServiceLanguageDropdownLink, serviceLanguage);
+})
+
+Then(/^the new ODTI fields will display using the existing layout under the Contract Rates "(.*)" and Contractor Rates "(.*)" sections$/, function (contractRatesFields, contractorRatesFields) {
+    let contractRatesFieldsList = contractRatesFields.split(",");
+    for (let contractIndex = 0; contractIndex < contractRatesFieldsList.length; contractIndex++) {
+        let contractRatesFieldElement = $(contractManagementPage.contractRatesDynamicFieldLocator.replace("<dynamicFieldName>", contractRatesFieldsList[contractIndex]));
+        let contractRatesFieldDisplayStatus = action.isVisibleWait(contractRatesFieldElement, 10000);
+        chai.expect(contractRatesFieldDisplayStatus).to.be.true;
+    }
+    let contractorRatesFieldsList = contractorRatesFields.split(",");
+    for (let contractorIndex = 0; contractorIndex < contractorRatesFieldsList.length; contractorIndex++) {
+        let contractorRatesFieldElement = $(contractManagementPage.contractorRatesDynamicFieldLocator.replace("<dynamicFieldName>", contractorRatesFieldsList[contractorIndex]));
+        let contractorRatesFieldDisplayStatus = action.isVisibleWait(contractorRatesFieldElement, 10000);
+        chai.expect(contractorRatesFieldDisplayStatus).to.be.true;
+    }
+})
+
+Then(/^the following fields are hidden "(.*)"$/, function (fieldLabels) {
+    let fieldLabelsList = fieldLabels.split(",");
+    for (let index = 0; index < fieldLabelsList.length; index++) {
+        let fieldElement = $(contractManagementPage.fieldNameCommonLocator.replace("<dynamicFieldName>", fieldLabelsList[index]));
+        let fieldDisplayStatus = action.isVisibleWait(fieldElement, 1000);
+        chai.expect(fieldDisplayStatus).to.be.false;
+    }
+})
+
+Then(/^the Schedule Segment section is hidden$/, function () {
+    let scheduleSegmentSectionDisplayStatus = action.isVisibleWait(contractManagementPage.scheduleSegmentSection, 1000);
+    chai.expect(scheduleSegmentSectionDisplayStatus).to.be.false;
+})
+
+Then(/^the user can add rates "(.*)" for Client contract rates "(.*)"$/, function (contractRatesValues, contractRatesFields) {
+    let contractRatesFieldsList = contractRatesFields.split(",");
+    let contractRatesValuesList = contractRatesValues.split(",");
+    for (let contractIndex = 0; contractIndex < contractRatesFieldsList.length; contractIndex++) {
+        let contractRatesFieldElement = $(contractManagementPage.contractRatesDynamicFieldLocator.replace("<dynamicFieldName>", contractRatesFieldsList[contractIndex]));
+        action.enterValue(contractRatesFieldElement, contractRatesValuesList[contractIndex]);
+    }
+})
+
+Then(/^the user can add rates "(.*)" for Client contractor rates "(.*)"$/, function (contractorRatesValues, contractorRatesFields) {
+    let contractorRatesFieldsList = contractorRatesFields.split(",");
+    let contractorRatesValuesList = contractorRatesValues.split(",");
+    for (let contractorIndex = 0; contractorIndex < contractorRatesFieldsList.length; contractorIndex++) {
+        let contractorRatesFieldElement = $(contractManagementPage.contractorRatesDynamicFieldLocator.replace("<dynamicFieldName>", contractorRatesFieldsList[contractorIndex]));
+        action.enterValue(contractorRatesFieldElement, contractorRatesValuesList[contractorIndex]);
+    }
+})
+
+Then(/^the user can add NAATI Accreditation Level "(.*)"$/, function (NAATILevel) {
+    action.isVisibleWait(contractManagementPage.manageRateNAATILevelDropdown,10000);
+    action.selectTextFromDropdown(contractManagementPage.manageRateNAATILevelDropdown,NAATILevel);
+})
+
+Then(/^the user can add Hour Type "(.*)"$/, function (hourType) {
+    action.isVisibleWait(contractManagementPage.manageRateHourTypeDropdown,10000);
+    action.selectTextFromDropdown(contractManagementPage.manageRateHourTypeDropdown,hourType);
+})
