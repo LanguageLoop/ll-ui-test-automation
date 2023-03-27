@@ -132,8 +132,42 @@ module.exports = {
 
     get disableLink(){
         return $$('//*[text()="Assignment Types"]/../../..//div[@class="dotButton OSInline"]')
-    }
+    },
 
+    get manageRatePopup() {
+        return $('//span[text()="Manage Rate" and (contains(@id,"ContractRateModal"))]');
+    },
 
+    get manageRateServiceLanguageDropdownLink() {
+        return $('//label[text()="Service Language"]/parent::div//span[text()="ACHOLI - On Site"]');
+    },
+
+    get manageRateNAATILevelDropdown() {
+        return $('//select[contains(@id,"NaatiLevel")]');
+    },
+
+    get manageRateNameTextBox() {
+        return $('//input[contains(@name,"DisplayName")]');
+    },
+
+    get manageRateHourTypeDropdown() {
+        return $('//select[contains(@id,"HourType")]');
+    },
+
+    get contractRatesDynamicFieldLocator() {
+        return '//span[text()="Contract Rates"]/parent::div//label[text()="<dynamicFieldName>"]/parent::div/input';
+    },
+
+    get contractorRatesDynamicFieldLocator() {
+        return '//span[text()="Contractor Rates"]/parent::div//label[text()="<dynamicFieldName>"]/parent::div/input';
+    },
+
+    get fieldNameCommonLocator() {
+        return '//label[text()="<dynamicFieldName>"]';
+    },
+
+    get scheduleSegmentSection() {
+        return $('//span[text()="Schedule Segment"]');
+    },
 
 }

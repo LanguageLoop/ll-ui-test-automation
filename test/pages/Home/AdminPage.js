@@ -283,5 +283,9 @@ module.exports = {
 
     get emailAndConfirmEmailDoNotMatch() {
         return $('//span[text()="Email and confirm email do not match"]');
-    }
+    },
+
+    get roleToggleStatusLocator(){
+        return '//span[text()="<dynamic>"]/parent::div/following-sibling::div//child::div';
+    },
 }

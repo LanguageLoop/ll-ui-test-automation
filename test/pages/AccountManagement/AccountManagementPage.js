@@ -223,4 +223,8 @@ module.exports ={
     get accountProfilePageTitleHeader() {
         return $('//div[text()="Account Profile" and contains(@id,"Title")]');
     },
+
+    get contractResultLocator() {
+        return '//a[contains(@id,"ContractTable") and text()="<dynamic>"]';
+    }
 }

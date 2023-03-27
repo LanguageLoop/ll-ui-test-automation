@@ -478,6 +478,15 @@ When(/^select multiple roles "(.*)"$/, function (roles) {
       action.isVisibleWait(roleToggleElement, 10000);
       action.isClickableWait(roleToggleElement, 10000);
       action.clickElement(roleToggleElement);
+      browser.pause(1000);
+      let roleToggleStatusElement = $(adminPage.roleToggleStatusLocator.replace("<dynamic>", rolesList[index]));
+      let toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement,"class");
+      let counter = 0;
+      while (toggleElementClassActual.includes("changed") === false && counter < 3) {
+         action.clickElement(roleToggleElement);
+         toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement);
+         counter++;
+      }
    }
 })
 
