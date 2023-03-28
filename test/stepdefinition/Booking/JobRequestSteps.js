@@ -1,6 +1,7 @@
 When(/^I select "(.*)" from the requester name dropdown$/,   function(listitem){
   action.isVisibleWait(jobRequestPage.requesterNameDropdown,20000);
   action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,listitem);
+  browser.pause(5000)
 })
 
 When(/^I select language "(.*)"$/,   function(listitem){

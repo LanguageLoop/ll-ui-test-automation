@@ -170,4 +170,11 @@ module.exports = {
         return $('//span[text()="Schedule Segment"]');
     },
 
+    get savedServiceLanguageAccordionDynamicLocator() {
+        return '//div[contains(@id,"ServiceLanguageAccordion") and (contains(@id,"Title"))]/div[text()="<dynamicServiceLanguageAccordion>"]';
+    },
+
+    get savedContractRateInTableDynamicLocator() {
+        return '//table[contains(@id,"ContractServiceRatesTable")]/tbody//a[text()="<dynamicContractRateName>"]';
+    },
 }
