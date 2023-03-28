@@ -642,6 +642,7 @@ Then(/^on Contractor Details History page, the NAATI accreditation "(.*)" will h
             timeoutMsg: 'expected no items message to disappear in 20s'
         }
     );
+    browser.pause(5000)
     let actualAuditHistoryBody = action.getElementText(contractorEngagementPage.auditHistoryTableBody);
     chai.expect(actualAuditHistoryBody).to.includes(expectedNaatiAccreditation);
 })
