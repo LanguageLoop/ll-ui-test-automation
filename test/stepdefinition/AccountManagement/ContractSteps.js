@@ -17,7 +17,7 @@ When(/^I click add contract link$/, function(){
 
 When(/^I enter contract title "(.*)"$/, function(name){
     //make the contract title unique by appending a random number
-    name = name + (Math.floor(Math.random() * 100000) + 1).toString()
+    name = name + (Math.floor(Math.random() * 1000000) + 1).toString()
     GlobalData.CONTRACT_TITLE= name
     action.isVisibleWait(contractManagementPage.contractTitleInput,10000);
     action.enterValue(contractManagementPage.contractTitleInput, name)
@@ -268,4 +268,36 @@ Then(/^the user can add NAATI Accreditation Level "(.*)"$/, function (NAATILevel
 Then(/^the user can add Hour Type "(.*)"$/, function (hourType) {
     action.isVisibleWait(contractManagementPage.manageRateHourTypeDropdown,10000);
     action.selectTextFromDropdown(contractManagementPage.manageRateHourTypeDropdown,hourType);
+})
+
+When(/^the user can add Name "(.*)"$/, function (name) {
+    action.isVisibleWait(contractManagementPage.manageRateNameTextBox, 10000);
+    name = name + (Math.floor(Math.random() * 100000) + 1).toString()
+    GlobalData.CONTRACT_RATE_NAME = name;
+    action.enterValue(contractManagementPage.manageRateNameTextBox, name);
+})
+
+When(/^they click the Save Rate button$/, function () {
+    action.isVisibleWait(contractManagementPage.saveContractRateButton,10000);
+    action.clickElement(contractManagementPage.saveContractRateButton);
+})
+
+Then(/^the contract rate data will save$/, function () {
+    action.isNotVisibleWait(contractManagementPage.manageRatePopup, 10000);
+    let manageRatePopupDisplayStatus = action.isVisibleWait(contractManagementPage.manageRatePopup, 10000);
+    chai.expect(manageRatePopupDisplayStatus).to.be.false;
+})
+
+Then(/^they will return to the Contract Details page$/, function () {
+    let pageTitleActual = action.getPageTitle();
+    chai.expect(pageTitleActual).to.includes("Contract Details");
+})
+
+Then(/^the saved ODTI Contract Rates will be displayed in the Contract Rates Schedule table "(.*)"$/, function (serviceLanguageAccordion) {
+    let serviceLanguageAccordionElement = $(contractManagementPage.savedServiceLanguageAccordionDynamicLocator.replace("<dynamicServiceLanguageAccordion>",serviceLanguageAccordion));
+    action.isVisibleWait(serviceLanguageAccordionElement,10000);
+    action.clickElement(serviceLanguageAccordionElement);
+    let savedContractRateElement = $(contractManagementPage.savedContractRateInTableDynamicLocator.replace("<dynamicContractRateName>",GlobalData.CONTRACT_RATE_NAME));
+    let savedContractRateDisplayStatus = action.isVisibleWait(savedContractRateElement,10000);
+    chai.expect(savedContractRateDisplayStatus).to.be.true;
 })
