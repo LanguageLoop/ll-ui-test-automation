@@ -177,4 +177,12 @@ module.exports = {
     get savedContractRateInTableDynamicLocator() {
         return '//table[contains(@id,"ContractServiceRatesTable")]/tbody//a[text()="<dynamicContractRateName>"]';
     },
+
+    get requiredFieldErrorMessageUnderNameField() {
+        return $('//span[contains(@id,"DisplayName") and text()="Required field!"]');
+    },
+
+    get wholeMinutesWithNoDecimalsErrorMessage() {
+        return $('//span[text()="Please enter whole minutes with no decimals."]');
+    }
 }

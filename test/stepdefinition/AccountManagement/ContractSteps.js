@@ -301,3 +301,18 @@ Then(/^the saved ODTI Contract Rates will be displayed in the Contract Rates Sch
     let savedContractRateDisplayStatus = action.isVisibleWait(savedContractRateElement,10000);
     chai.expect(savedContractRateDisplayStatus).to.be.true;
 })
+
+Then(/^the inline error message will be displayed at the field: eg Required field!$/, function () {
+    let nameRequiredFieldErrorDisplayStatus = action.isVisibleWait(contractManagementPage.requiredFieldErrorMessageUnderNameField,10000);
+    chai.expect(nameRequiredFieldErrorDisplayStatus).to.be.true;
+})
+
+Then(/^the user will remain on the Manage Rate popup$/, function () {
+    let manageRatePopupDisplayStatus = action.isVisibleWait(contractManagementPage.manageRatePopup, 10000);
+    chai.expect(manageRatePopupDisplayStatus).to.be.true;
+})
+
+Then(/^the inline error message will be displayed at the field: eg Please enter whole minutes with no decimals.$/, function () {
+    let wholeMinNoDecimalsErrorDisplayStatus = action.isVisibleWait(contractManagementPage.wholeMinutesWithNoDecimalsErrorMessage,10000);
+    chai.expect(wholeMinNoDecimalsErrorDisplayStatus).to.be.true;
+})
