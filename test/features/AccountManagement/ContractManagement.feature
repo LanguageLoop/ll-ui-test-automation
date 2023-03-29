@@ -164,3 +164,46 @@ Feature: Contract Management features
   Examples:
    | username          | password  | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion |
    | LLAdmin@looped.in | Octopus@6 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        |
+
+  #LL-282 Scenario 3a - Invalid required fields
+ @LL-282 @InvalidRequiredFields
+ Scenario Outline: Invalid required fields
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And I click add contract rates
+  And the Manage Rate popup appears
+  And they select "<service language>" from Service Language dropdown
+  And the user can add NAATI Accreditation Level "<NAATI Level>"
+  And the user can add Hour Type "<hour type>"
+  And they click the Save Rate button
+  Then the inline error message will be displayed at the field: eg Required field!
+  And the user will remain on the Manage Rate popup
+
+  Examples:
+   | username          | password  | contract title      | service language               | NAATI Level    | hour type     |
+   | LLAdmin@looped.in | Octopus@6 | Automation Contract | zz-Zenq2 - On Demand Telephone | Non-Accredited | After Hours A |
+
+  #LL-282 Scenario 3b - Invalid values in time-period fields
+ @LL-282 @InvalidValuesTimePeriod
+ Scenario Outline: Invalid values in time-period fields
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And I click add contract rates
+  And the Manage Rate popup appears
+  And they select "<service language>" from Service Language dropdown
+  And the user can add rates "<contract rates values>" for Client contract rates "<contract rates fields>"
+  And the user can add rates "<contractor rates values>" for Client contractor rates "<contractor rates fields>"
+  And the user can add NAATI Accreditation Level "<NAATI Level>"
+  And the user can add Hour Type "<hour type>"
+  And the user can add Name "<rate name>"
+  And they click the Save Rate button
+  Then the inline error message will be displayed at the field: eg Please enter whole minutes with no decimals.
+  And the user will remain on the Manage Rate popup
+
+  Examples:
+   | username          | password  | contract title      | service language                          | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values               | contractor rates values     | NAATI Level | hour type     | rate name       |
+   | LLAdmin@looped.in | Octopus@6 | Automation Contract | On-Demand Telephone - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1.23,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Conference  | After Hours B | Automation Rate |
