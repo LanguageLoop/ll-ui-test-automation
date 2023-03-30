@@ -68,3 +68,8 @@ Then(/^it will appear between the Interpreting and Translation menu items$/,   f
    let ODTIMenuItemBetweenInterpretingAndTranslation = action.isVisibleWait(homePage.ODTIMenuItemBetweenInterpretingAndTranslations,10000)
    chai.expect(ODTIMenuItemBetweenInterpretingAndTranslation).to.be.true;
 })
+
+Then(/^it will appear between the Interpreting and Account Management menu items$/,   function(){
+   let ODTIMenuItemBetweenInterpretingAndAccountManagement = action.isVisibleWait(homePage.ODTIMenuItemBetweenInterpretingAndAccountManagement,10000)
+   chai.expect(ODTIMenuItemBetweenInterpretingAndAccountManagement).to.be.true;
+})
