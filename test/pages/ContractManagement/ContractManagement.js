@@ -184,5 +184,9 @@ module.exports = {
 
     get wholeMinutesWithNoDecimalsErrorMessage() {
         return $('//span[text()="Please enter whole minutes with no decimals."]');
-    }
+    },
+
+    get minPeriodValueInTable() {
+        return $('//table[contains(@id,"ContractServiceRatesTable")]/tbody/tr[1]/td[2]');
+    },
 }

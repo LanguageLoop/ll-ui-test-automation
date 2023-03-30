@@ -18,7 +18,7 @@ Feature: ODTI Interpreters CSO features
 
     #LL-447 Scenario 2 - CS user clicks ODTI menu item
   @LL-447 @CSUserClicksODTIMenu
-  Scenario Outline: CS user sees ODTI menu item
+  Scenario Outline: CS user clicks ODTI menu item
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     Then they are navigated to the ODTI page
@@ -76,7 +76,7 @@ Feature: ODTI Interpreters CSO features
 
     #LL-447 Scenario 5a - CS user selects language
   @LL-447 @CSUserSelectsLanguage
-  Scenario Outline: CS user views Language search
+  Scenario Outline: CS user selects language
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And they are navigated to the ODTI page

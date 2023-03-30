@@ -207,3 +207,35 @@ Feature: Contract Management features
   Examples:
    | username          | password  | contract title      | service language                          | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values               | contractor rates values     | NAATI Level | hour type     | rate name       |
    | LLAdmin@looped.in | Octopus@6 | Automation Contract | On-Demand Telephone - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1.23,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Conference  | After Hours B | Automation Rate |
+
+  #LL-282 Scenario 4 - Contract Rates Display
+ @LL-282 @ContractRatesDisplay
+ Scenario Outline: Contract Rates Display
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I click add contract link
+  And I enter contract title "<contract title>"
+  And I enter contract number "<contract number>"
+  And I enter contract commencement date "<commencement date>"
+  And I enter contract completion date "<completion date>"
+  And I upload contract file
+  And I click save contract button
+  And I verify contract is created
+  And I click add contract rates
+  And the Manage Rate popup appears
+  And they select "<service language>" from Service Language dropdown
+  And the user can add rates "<contract rates values>" for Client contract rates "<contract rates fields>"
+  And the user can add rates "<contractor rates values>" for Client contractor rates "<contractor rates fields>"
+  And the user can add NAATI Accreditation Level "<NAATI Level>"
+  And the user can add Hour Type "<hour type>"
+  And the user can add Name "<rate name>"
+  And they click the Save Rate button
+  And the contract rate data will save
+  And they will return to the Contract Details page
+  And has expanded Service Language Accordion "<service language accordion>"
+  Then the MIN PERIOD column under the Contract Rates Schedule table should display the corresponding Minimum Period 1 mins value "<min period 1 value>" from Contract Rate
+  And display the minutes value as for example 10 mins no decimal places
+
+  Examples:
+   | username          | password  | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values             | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion | min period 1 value  |
+   | LLAdmin@looped.in | Octopus@6 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 10,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        | 10                  |
