@@ -41,5 +41,9 @@ module.exports = {
 
     get ODTIMenuItemBetweenInterpretingAndTranslations() {
         return $('//a[text()="Interpreting"]/following::a[text()="ODTI"]/following::a[text()="Translations"]');
+    },
+
+    get ODTIMenuItemBetweenInterpretingAndAccountManagement() {
+        return $('//a[text()="Interpreting"]/following::a[text()="ODTI"]/following::a[text()="Account Management"]');
     }
 }
