@@ -316,3 +316,29 @@ Then(/^the inline error message will be displayed at the field: eg Please enter 
     let wholeMinNoDecimalsErrorDisplayStatus = action.isVisibleWait(contractManagementPage.wholeMinutesWithNoDecimalsErrorMessage,10000);
     chai.expect(wholeMinNoDecimalsErrorDisplayStatus).to.be.true;
 })
+
+When(/^has expanded Service Language Accordion "(.*)"$/, function (serviceLanguageAccordion) {
+    let serviceLanguageAccordionElement = $(contractManagementPage.savedServiceLanguageAccordionDynamicLocator.replace("<dynamicServiceLanguageAccordion>",serviceLanguageAccordion));
+    action.isVisibleWait(serviceLanguageAccordionElement,10000);
+    action.clickElement(serviceLanguageAccordionElement);
+})
+
+Then(/^the MIN PERIOD column under the Contract Rates Schedule table should display the corresponding Minimum Period 1 mins value "(.*)" from Contract Rate$/, function (minPeriod1ValueExpected) {
+    action.isVisibleWait(contractManagementPage.minPeriodValueInTable,10000);
+    browser.waitUntil(
+        () => action.getElementText(contractManagementPage.minPeriodValueInTable) !== "",
+        {
+            timeout: 20000,
+            timeoutMsg: 'Expected Contract Rates Schedule table should display the corresponding Minimum Period 1 value',
+            interval: 1000
+        }
+    );
+    let minPeriod1ValueActual = action.getElementText(contractManagementPage.minPeriodValueInTable);
+    chai.expect(minPeriod1ValueActual).to.equal(minPeriod1ValueExpected);
+})
+
+Then(/^display the minutes value as for example 10 mins no decimal places$/, function () {
+    action.isVisibleWait(contractManagementPage.minPeriodValueInTable,10000);
+    let minPeriod1ValueActual = action.getElementText(contractManagementPage.minPeriodValueInTable);
+    chai.expect(minPeriod1ValueActual).to.not.includes(".")
+})
