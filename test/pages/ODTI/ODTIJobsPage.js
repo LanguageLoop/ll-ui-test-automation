@@ -168,4 +168,8 @@ module.exports = {
     get filterCloseXIcon() {
         return $('//span[@class="fa fa-fw fa-close"]/parent::a');
     },
+
+    get searchByContractorLanguageAndContactIDSearchField(){
+        return $('//input[@placeholder="Search by contractor, language and contact ID"]');
+    }
 }
