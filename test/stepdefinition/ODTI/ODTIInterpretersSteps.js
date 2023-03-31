@@ -267,3 +267,17 @@ Then(/^they are navigated to the ODTI Job Details page and this will open in a n
     let jobIDInAllocationPage = action.getElementText(ODTIInterpretersPage.jobIDTextInODTIJobAllocationPage);
     chai.expect(jobIDInAllocationPage).to.includes(GlobalData.ODTI_JOB_CONTRACT_ID);
 })
+
+Then(/^they will see the ODTI Jobs option in the page dropdown$/, function () {
+    action.isVisibleWait(ODTIInterpretersPage.ODTIJobsSwitchDropdown,10000);
+    let dropdownOptionsActual = action.getElementText(ODTIInterpretersPage.ODTIJobsSwitchDropdown);
+    chai.expect(dropdownOptionsActual).to.includes("ODTI Jobs");
+})
+
+Then(/^they can swap to the ODTI Jobs page$/, function () {
+    action.isVisibleWait(ODTIInterpretersPage.ODTIJobsSwitchDropdown,10000);
+    action.selectTextFromDropdown(ODTIInterpretersPage.ODTIJobsSwitchDropdown,"ODTI Jobs");
+    let ODTIJobsPageOption = $(ODTIInterpretersPage.ODTIJobsSwitchDropdownOptionLocator.replace("<dynamic>", "ODTI Jobs"));
+    let ODTIJobsPageSelectedStatus = action.isSelectedWait(ODTIJobsPageOption, 10000);
+    chai.expect(ODTIJobsPageSelectedStatus).to.be.true;
+})
