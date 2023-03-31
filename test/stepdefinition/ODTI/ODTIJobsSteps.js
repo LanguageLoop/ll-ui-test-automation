@@ -453,3 +453,19 @@ When(/^I get Campus Name value under Campus Name column$/, function () {
     action.isVisibleWait(firstCampusNameElement, 10000);
     GlobalData.ODTI_CAMPUS_NAME = action.getElementText(firstCampusNameElement);
 })
+
+Then(/^they will see the following fields by default in the Search section: Search by contractor, language and contact ID, RecordStatus$/, function () {
+    let searchByContractorLanguageAndContactIDSearchFieldDisplayStatus = action.isVisibleWait(ODTIJobsPage.searchByContractorLanguageAndContactIDSearchField,20000);
+    chai.expect(searchByContractorLanguageAndContactIDSearchFieldDisplayStatus).to.be.true;
+    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 60000);
+    chai.expect(recordStatusExistStatus).to.be.true;
+})
+
+Then(/^the following filters can be added from Advanced Search as per the Jobs Management page: "(.*)"$/, function (advancedSearchFilterOptions) {
+    let advancedSearchOptionsList = advancedSearchFilterOptions.split(",");
+    let filterFieldElement = $(ODTIJobsPage.filterFieldDropdownLocator.replace("<dynamic>", "1"));
+    for (let index = 0; index < advancedSearchOptionsList.length; index++) {
+        let advancedSearchFilterOptionsActual = action.getElementText(filterFieldElement);
+        chai.expect(advancedSearchFilterOptionsActual).to.includes(advancedSearchOptionsList[index]);
+    }
+})
