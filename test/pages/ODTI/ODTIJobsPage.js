@@ -171,5 +171,13 @@ module.exports = {
 
     get searchByContractorLanguageAndContactIDSearchField(){
         return $('//input[@placeholder="Search by contractor, language and contact ID"]');
+    },
+
+    get resultsTableBodyData() {
+        return $('//div[@class="TableRecords_Wrapper"]/table/tbody');
+    },
+
+    get odtiTableResultsHyperlinkDataElementLocator() {
+        return '//tbody/child::tr[1]/child::td[<dynamicColumnIndex>]//child::a'
     }
 }

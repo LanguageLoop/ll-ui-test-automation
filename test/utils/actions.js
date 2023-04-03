@@ -222,20 +222,38 @@ module.exports={
         browser.pause(2000)
     },
 
+    /**
+     * Send a sequence of keystrokes to the active element. You can also use characters like "Left arrow" or "Back space". WebdriverIO will take care of translating them into unicode characters. You’ll find all supported characters here (https://w3c.github.io/webdriver/#keyboard-actions). To do that, the value has to correspond to a key from the table.
+     * Modifier like Ctrl, Shift, Alt and Meta will stay pressed, so you need to trigger them again to release them.
+     * @param keys
+     */
     pressKeys(keys){
         browser.keys(keys)
     },
 
+    /**
+     * Get the value of a <textarea>, <select> or text <input> found by given selector. If multiple elements are found via the given selector, an array of values is returned instead
+     * @param elt
+     * @returns {*}
+     */
     getElementValue(elt){
         let elementValue = elt.getValue()
         return elementValue;
     },
 
+    /**
+     * Get tag name of a DOM-element.
+     * @param elt
+     * @returns {Promise<string> | string}
+     */
     getElementTagName(elt){
         let elementTagName = elt.getTagName()
         return elementTagName;
     },
 
+    /**
+     * Waits until the loading ajax wait icon disappears
+     */
     waitUntilLoadingIconDisappears() {
         let loadingIconAjaxWait = $('//div[@class="Feedback_AjaxWait" and (contains(@style,"opacity"))]');
         browser.pause(2000);
@@ -253,12 +271,19 @@ module.exports={
         })
     },
 
+    /**
+     * The Get Current URL command returns the URL of the current top-level browsing context.
+     * @returns {string}
+     */
     getPageUrl() {
         let pageURL = browser.getUrl();
         console.log("Page URL is: "+pageURL);
         return pageURL;
     },
 
+    /**
+     * Switches focus to the latest available window
+     */
     navigateToLatestWindow() {
         browser.pause(2000);
         let windowHandles = browser.getWindowHandles();
@@ -268,7 +293,7 @@ module.exports={
     },
 
     /**
-     * Waits until the element is NOT visible with in wait time
+     * Waits until the element is NOT visible with in wait time and returns true or false if the selected DOM-element is displayed.
      * @param elt
      * @param waitTime
      * @returns {boolean}
@@ -297,6 +322,12 @@ module.exports={
         elt.moveTo();
     },
 
+    /**
+     * Waits until the specified element is enabled and returns true or false if the selected DOM-element is enabled.
+     * @param elt
+     * @param waitTime
+     * @returns {boolean}
+     */
     isEnabledWait(elt,waitTime){
         let isEnabled = false;
         let i = 0;
@@ -312,20 +343,47 @@ module.exports={
         return isEnabled;
     },
 
+    /**
+     * Get an attribute from a DOM-element based on the attribute name.
+     * @param elt
+     * @param attributeName
+     * @returns {*}
+     */
     getElementAttribute(elt,attributeName){
         let elementAttributeValue = elt.getAttribute(attributeName)
         return elementAttributeValue;
     },
 
+    /**
+     * Get page title of the current focused window
+     * @returns {string}
+     */
     getPageTitle() {
         let pageTitle = browser.getTitle();
         console.log("Page Title is: "+pageTitle);
         return pageTitle;
     },
 
+    /**
+     * Get source code of specified DOM element by selector.
+     * @param elt
+     * @returns {Promise<string> | string}
+     */
     getElementHTML(elt){
         let elementHTML = elt.getHTML()
         return elementHTML;
+    },
+
+    /**
+     * The Get Window Handle command returns the window handle for the current top-level browsing context.
+     * It can be used as an argument to Switch To Window.
+     * @returns {string}
+     */
+    getWindowHandle() {
+        browser.pause(2000);
+        let windowHandle = browser.getWindowHandle();
+        console.log("Fetched window handle: "+windowHandle);
+        return windowHandle;
     },
 }
 

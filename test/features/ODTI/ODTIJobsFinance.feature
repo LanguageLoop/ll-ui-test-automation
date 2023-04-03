@@ -42,3 +42,38 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password | advanced search filter options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
       | testauto@finance1.com | Test1    | ServiceChargeID,OperatorFlag,Campus PIN,Campus Name,ContractorID,Contractor Name,DID Number,Language,Job Date,Exported (INVP),Exported (PAYP),VITSAHFlag,ContractorAHFlag,InterpreterDuration (In Sec),Bill To Code,Contract name,ClientChargeTotalExGST,InterpreterPaymentTotalExGST,NESPhone,NESConnectionFee,Custom Fields,FiveMinuteRule,RecordStatus,Budget Code - Dimension List,Client Type - Dimension List,PRP dim - Dimension List,Region - Dimension List,Reporting - Dimension List,Service Type - Dimension List,Shortcode - Dimension List,ShortcodeNew - Dimension List |
+
+    #LL-627 Scenario 5a - CS user views ODTI Jobs table
+  @LL-627 @CSUserViewsODTIJobsTable
+  Scenario Outline: CS user views ODTI Jobs table
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And this will only display jobs that have been Completed Billing & Merging processes done
+    Then The columns available for ODTI Jobs for the user are "<column headers>"
+    And the relevant information will be shown under each column
+    And ODTI Service Charge ID, Campus Name and Interpreter Name will all be hyperlinked and in bold font weight
+    And the number of records will be displayed at the bottom of the table as per existing functionality
+    And the user will not see the "<column header not displayed>" column
+
+    Examples:
+      | username       | password | column headers                                                                                                         | column header not displayed     |
+      | zenq@cso10.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL | INTERPRETER CHARGE TOTAL EX GST |
+
+    #LL-627 Scenario 5b - Finance user views ODTI Jobs table
+  @LL-627 @FinanceUserViewsODTIJobsTable
+  Scenario Outline: Finance user views ODTI Jobs table
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And this will only display jobs that have been Completed Billing & Merging processes done
+    Then The columns available for ODTI Jobs for the user are "<column headers>"
+    And the relevant information will be shown under each column
+    And ODTI Service Charge ID, Campus Name and Interpreter Name will all be hyperlinked and in bold font weight
+    And the number of records will be displayed at the bottom of the table as per existing functionality
+
+    Examples:
+      | username              | password | column headers                                                                                                                                         |
+      | testauto@finance1.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL,INTERPRETER CHARGE TOTAL EX GST |

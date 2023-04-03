@@ -469,3 +469,46 @@ Then(/^the following filters can be added from Advanced Search as per the Jobs M
         chai.expect(advancedSearchFilterOptionsActual).to.includes(advancedSearchOptionsList[index]);
     }
 })
+
+When(/^they will see a table$/, function () {
+    let availableJobsDisplayStatus = action.isVisibleWait(ODTIJobsPage.availableJobRecordsTable, 60000);
+    GlobalData.ODTI_JOBS_PAGE_WINDOW_HANDLE = action.getWindowHandle();
+    chai.expect(availableJobsDisplayStatus).to.be.true;
+})
+
+When(/^this will only display jobs that have been Completed Billing & Merging processes done$/, function () {
+    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 60000);
+    chai.expect(recordStatusExistStatus).to.be.true;
+})
+
+When(/^the relevant information will be shown under each column$/, function () {
+    let tableDataDisplayStatus = action.isVisibleWait(ODTIJobsPage.resultsTableBodyData, 10000);
+    chai.expect(tableDataDisplayStatus).to.be.true;
+})
+
+When(/^ODTI Service Charge ID, Campus Name and Interpreter Name will all be hyperlinked and in bold font weight$/, function () {
+    let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
+    let serviceChargeIDHyperlinkDisplayStatus = action.isVisibleWait(serviceChargeID1TextElement, 10000);
+    chai.expect(serviceChargeIDHyperlinkDisplayStatus).to.be.true;
+    let campusName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "4"));
+    let campusNameHyperlinkDisplayStatus = action.isVisibleWait(campusName1TextElement, 10000);
+    chai.expect(campusNameHyperlinkDisplayStatus).to.be.true;
+    let interpreterName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "6"));
+    let interpreterNameHyperlinkDisplayStatus = action.isVisibleWait(interpreterName1TextElement, 10000);
+    chai.expect(interpreterNameHyperlinkDisplayStatus).to.be.true;
+})
+
+When(/^the number of records will be displayed at the bottom of the table as per existing functionality$/, function () {
+    let recordsCountDisplayStatus = action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000);
+    chai.expect(recordsCountDisplayStatus).to.be.true;
+})
+
+Then(/^the user will not see the "(.*)" column$/, function (expectedHeaders) {
+    action.isVisibleWait(ODTIJobsPage.exportToExcelLink, 30000);
+    action.isVisibleWait(ODTIJobsPage.odtiJobTableColumnHeaders, 10000);
+    let odtiColumnHeadersActual = action.getElementText(ODTIJobsPage.odtiJobTableColumnHeaders);
+    let headerListExpected = expectedHeaders.split(",");
+    for (let headerIndex = 0; headerIndex < headerListExpected.length; headerIndex++) {
+        chai.expect(odtiColumnHeadersActual).to.not.includes(headerListExpected[headerIndex]);
+    }
+})
