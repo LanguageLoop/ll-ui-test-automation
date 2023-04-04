@@ -385,5 +385,23 @@ module.exports={
         console.log("Fetched window handle: "+windowHandle);
         return windowHandle;
     },
+
+    /**
+     * The Switch To Window command is used to select the current top-level browsing context for the current session, i.e. the one that will be used for processing commands.
+     * @param windowHandle
+     */
+    navigateToWindowHandle(windowHandle) {
+        browser.pause(2000);
+        browser.switchToWindow(windowHandle);
+        console.log("Switched to window: "+windowHandle);
+    },
+
+    /**
+     * Protocol binding to load the URL of the browser. If a baseUrl is specified in the config, it will be prepended to the url parameter using node's url.resolve() method.
+     * @returns {string}
+     */
+    launchURL(URL) {
+        browser.url(URL);
+    },
 }
 
