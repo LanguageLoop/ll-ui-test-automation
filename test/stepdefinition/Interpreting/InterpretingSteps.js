@@ -151,3 +151,17 @@ console.log("Scenario name :"+scenarioName)
     // success case, the file was saved
 });
 })
+
+When(/^a user has accessed the Bookings "(.*)" screen$/, function (listItem) {
+  action.isVisibleWait(interpretingPage.filterDropdown, 20000);
+  action.selectTextFromDropdown(interpretingPage.filterDropdown, listItem);
+})
+
+When(/^the URL contains the CampusPIN parameter "(.*)"$/, function (campusPin) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/Bookings.aspx?CampusPIN=" + campusPin);
+})
+
+Then(/^the Bookings Allocations screen will display$/, function () {
+  let pageTitleActual = action.getPageTitle();
+  chai.expect(pageTitleActual).to.includes("Bookings");
+})
