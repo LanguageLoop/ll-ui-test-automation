@@ -77,3 +77,21 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password | column headers                                                                                                                                         |
       | testauto@finance1.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL,INTERPRETER CHARGE TOTAL EX GST |
+
+    #LL-627 Scenario 6 - CS / Finance user clicks a hyperlink
+  @LL-627 @FinanceClicksHyperlink
+  Scenario Outline: CS / Finance user clicks a hyperlink
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    Then they are navigated to the Job Details page in a new tab
+    And they click the Campus Name hyperlink
+    And they are navigated to the Campus Details page in a new tab
+    And they click the Interpreter Name
+    And they are navigated to the Interpreter’s Profile page in a new tab
+
+    Examples:
+      | username              | password |
+      | testauto@finance1.com | Test1    |
