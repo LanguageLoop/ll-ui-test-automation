@@ -90,6 +90,22 @@ module.exports={
     get messageForInterpreterOKButton()
     {
         return $('//*[contains(text(),"Message for Interpreters")]/../..//input[@type="submit"]')
+    },
+
+    get jobFilterFieldDropdownOptionLocator() {
+        return '(//select[contains(@id,"Field")])[<dynamicIndex>]/child::option[text()="<dynamicOption>"]';
+    },
+
+    get jobFilterValueTextBoxLocator() {
+        return '(//input[contains(@id,"ListAdvanceSearchRule")])[<dynamicIndex>]';
+    },
+
+    get jobTableRowsCount() {
+        return $$('//div[contains(@id,"JobTable")]/table[contains(@id,"JobTable")]/tbody/tr').length;
+    },
+
+    get jobTableDynamicTextValueLocator() {
+        return '//div[contains(@id,"JobTable")]/table[contains(@id,"JobTable")]/tbody/tr[<dynamicRowIndex>]/td[<dynamicColumnIndex>]'
     }
 
 }
