@@ -512,3 +512,41 @@ Then(/^the user will not see the "(.*)" column$/, function (expectedHeaders) {
         chai.expect(odtiColumnHeadersActual).to.not.includes(headerListExpected[headerIndex]);
     }
 })
+
+When(/^they click the ODTI Service Charge ID hyperlink$/, function () {
+    let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
+    action.isVisibleWait(serviceChargeID1TextElement, 10000);
+    action.clickElement(serviceChargeID1TextElement);
+})
+
+When(/^they are navigated to the Job Details page in a new tab$/, function () {
+    action.navigateToLatestWindow();
+    let currentPageUrlActual = action.getPageUrl();
+    chai.expect(currentPageUrlActual).to.includes("JobDetails.aspx");
+})
+
+When(/^they click the Campus Name hyperlink$/, function () {
+    action.navigateToWindowHandle(GlobalData.ODTI_JOBS_PAGE_WINDOW_HANDLE)
+    let campusName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "4"));
+    action.isVisibleWait(campusName1TextElement, 10000);
+    action.clickElement(campusName1TextElement);
+})
+
+When(/^they are navigated to the Campus Details page in a new tab$/, function () {
+    action.navigateToLatestWindow();
+    let currentPageUrlActual = action.getPageUrl();
+    chai.expect(currentPageUrlActual).to.includes("CampusDetails.aspx");
+})
+
+When(/^they click the Interpreter Name$/, function () {
+    action.navigateToWindowHandle(GlobalData.ODTI_JOBS_PAGE_WINDOW_HANDLE)
+    let interpreterName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "6"));
+    action.isVisibleWait(interpreterName1TextElement, 10000);
+    action.clickElement(interpreterName1TextElement);
+})
+
+When(/^they are navigated to the Interpreter’s Profile page in a new tab$/, function () {
+    action.navigateToLatestWindow();
+    let currentPageUrlActual = action.getPageUrl();
+    chai.expect(currentPageUrlActual).to.includes("PreviewContractorProfile.aspx");
+})
