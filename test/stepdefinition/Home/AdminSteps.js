@@ -218,6 +218,15 @@ When(/^Selects any role "(.*)"$/, function (role) {
    action.isVisibleWait(roleToggleElement, 10000);
    action.isClickableWait(roleToggleElement, 10000);
    action.clickElement(roleToggleElement);
+   browser.pause(1000);
+   let roleToggleStatusElement = $(adminPage.roleToggleStatusLocator.replace("<dynamic>", role));
+   let toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement,"class");
+   let counter = 0;
+   while (toggleElementClassActual.includes("changed") === false && counter < 3) {
+      action.clickElement(roleToggleElement);
+      toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement);
+      counter++;
+   }
 })
 
 Given(/^Fills out all the required details "(.*)", email, "(.*) in Admin Page"$/, function (firstName, landLineNumber) {
