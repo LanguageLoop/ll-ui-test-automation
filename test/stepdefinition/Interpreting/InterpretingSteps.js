@@ -165,3 +165,45 @@ Then(/^the Bookings Allocations screen will display$/, function () {
   let pageTitleActual = action.getPageTitle();
   chai.expect(pageTitleActual).to.includes("Bookings");
 })
+
+Then(/^a CampusPIN filter should be pre-filled with the given CampusPIN "(.*)"$/, function (campusPin) {
+  let campusPinElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>","1").replace("<dynamicOption>","Campus PIN"));
+  let campusPinFilterSelectedStatus = action.isSelectedWait(campusPinElement,20000);
+  chai.expect(campusPinFilterSelectedStatus).to.be.true;
+  let campusPinValuePreFilledElement = $(interpretingPage.jobFilterValueTextBoxLocator.replace("<dynamicIndex>","1"));
+  let campusPinValuePreFilled = action.getElementValue(campusPinValuePreFilledElement);
+  chai.expect(campusPinValuePreFilled).to.equal(campusPin);
+})
+
+Then(/the rest of the form should display as if the user has filtered by Campus PIN "(.*)"$/, function (campusName) {
+  browser.pause(5000);
+  let jobRowsCount = interpretingPage.jobTableRowsCount;
+  for (let rowIndex = 1; rowIndex <= jobRowsCount; rowIndex++) {
+    let campusNameTextElement = $(interpretingPage.jobTableDynamicTextValueLocator.replace("<dynamicRowIndex>",rowIndex.toString()).replace("<dynamicColumnIndex>","6"));
+    let actualCampusNameText = action.getElementText(campusNameTextElement);
+    chai.expect(actualCampusNameText).to.equal(campusName);
+  }
+})
+
+When(/^the URL contains the ContractorID parameter "(.*)"$/, function (contractorID) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/Bookings.aspx?ContractorId=" + contractorID);
+})
+
+Then(/^a ContractorID filter should be pre-filled with the given ContractorID "(.*)"$/, function (contractorID) {
+  let contractorIDElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>","1").replace("<dynamicOption>","Contractor ID"));
+  let contractorIDFilterSelectedStatus = action.isSelectedWait(contractorIDElement,20000);
+  chai.expect(contractorIDFilterSelectedStatus).to.be.true;
+  let contractorIDValuePreFilledElement = $(interpretingPage.jobFilterValueTextBoxLocator.replace("<dynamicIndex>","1"));
+  let contractorIDValuePreFilled = action.getElementValue(contractorIDValuePreFilledElement);
+  chai.expect(contractorIDValuePreFilled).to.equal(contractorID);
+})
+
+Then(/the rest of the form should display as if the user has filtered by ContractorID "(.*)"$/, function (interpreterName) {
+  browser.pause(5000);
+  let jobRowsCount = interpretingPage.jobTableRowsCount;
+  for (let rowIndex = 1; rowIndex <= jobRowsCount; rowIndex++) {
+    let interpreterNameTextElement = $(interpretingPage.jobTableDynamicTextValueLocator.replace("<dynamicRowIndex>",rowIndex.toString()).replace("<dynamicColumnIndex>","9"));
+    let actualInterpreterNameText = action.getElementText(interpreterNameTextElement);
+    chai.expect(actualInterpreterNameText).to.equal(interpreterName);
+  }
+})
