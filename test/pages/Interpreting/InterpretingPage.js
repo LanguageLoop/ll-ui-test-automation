@@ -106,6 +106,10 @@ module.exports={
 
     get jobTableDynamicTextValueLocator() {
         return '//div[contains(@id,"JobTable")]/table[contains(@id,"JobTable")]/tbody/tr[<dynamicRowIndex>]/td[<dynamicColumnIndex>]'
+    },
+
+    get jobTableNoJobsToShowMessage() {
+        return $('//div[contains(@id,"JobTable")]/table[contains(@id,"JobTable")]/tbody/tr/td[text()="No jobs to show..."]');
     }
 
 }
