@@ -207,3 +207,8 @@ Then(/the rest of the form should display as if the user has filtered by Contrac
     chai.expect(actualInterpreterNameText).to.equal(interpreterName);
   }
 })
+
+Then(/^the results should not be displayed as there are no jobs to show$/, function () {
+  let noJobsToShowMessageDisplayStatus = action.isVisibleWait(interpretingPage.jobTableNoJobsToShowMessage, 20000);
+  chai.expect(noJobsToShowMessageDisplayStatus).to.be.true
+})
