@@ -34,3 +34,48 @@ Feature: Bookings Allocations Features
     Examples:
       | username        | password  | allocations | contractorID | interpreterName |
       | zenq2@ll.com.au | Reset@312 | Allocations | 6155         | Adel ODISH      |
+
+    #LL-636 Scenario 3: Entering Inactive Campus pin in the URL
+  @LL-636 @InactiveCampusPINInURL
+  Scenario Outline: Entering Inactive Campus pin in the URL
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<allocations>" screen
+    And the URL contains the CampusPIN parameter "<campusPIN>"
+    Then the Bookings Allocations screen will display
+    And a CampusPIN filter should be pre-filled with the given CampusPIN "<campusPIN>"
+    And the rest of the form should display as if the user has filtered by Campus PIN "<campusName>"
+
+    Examples:
+      | username        | password  | allocations | campusPIN | campusName                                       |
+      | zenq2@ll.com.au | Reset@312 | Allocations | 31690     | Albury Wodonga Health - DH Community Health Test |
+
+    #LL-636 Scenario 4: Entering Campus pin in the URL that does not exists
+  @LL-636 @CampusPINInURLThatDoesNotExist
+  Scenario Outline: Entering Campus pin in the URL that does not exists
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<allocations>" screen
+    And the URL contains the CampusPIN parameter "<campusPIN>"
+    Then the Bookings Allocations screen will display
+    And a CampusPIN filter should be pre-filled with the given CampusPIN "<campusPIN>"
+    And the results should not be displayed as there are no jobs to show
+
+    Examples:
+      | username        | password  | allocations | campusPIN |
+      | zenq2@ll.com.au | Reset@312 | Allocations | 29        |
+
+    #LL-636 Scenario 5: Entering Contractor ID that is not Active in the URL
+  @LL-636 @InActiveContractorIDInURL
+  Scenario Outline: Entering Contractor ID that is not Active in the URL
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<allocations>" screen
+    And the URL contains the ContractorID parameter "<contractorID>"
+    Then the Bookings Allocations screen will display
+    And a ContractorID filter should be pre-filled with the given ContractorID "<contractorID>"
+    And the results should not be displayed as there are no jobs to show
+
+    Examples:
+      | username        | password  | allocations | contractorID |
+      | zenq2@ll.com.au | Reset@312 | Allocations | 5667         |
