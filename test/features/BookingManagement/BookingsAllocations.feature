@@ -79,3 +79,44 @@ Feature: Bookings Allocations Features
     Examples:
       | username        | password  | allocations | contractorID |
       | zenq2@ll.com.au | Reset@312 | Allocations | 5667         |
+
+    #LL-636  Scenario 6: Entering Contractor ID in the URL that does not exists
+  @LL-636 @ContractorIDInURLThatDoesNotExist @LL-6361
+  Scenario Outline: Entering Contractor ID in the URL that does not exists
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<allocations>" screen
+    And the URL contains the ContractorID parameter "<contractorID>"
+    Then the Bookings Allocations screen will display
+    And a ContractorID filter should be pre-filled with the given ContractorID "<contractorID>"
+    And the results should not be displayed as there are no jobs to show
+
+    Examples:
+      | username        | password  | allocations | contractorID |
+      | zenq2@ll.com.au | Reset@312 | Allocations | 5            |
+
+    #LL-636 Scenario 7: As Client - Campus PIN filter should not be added on entering Campus pin in the URL
+  @LL-636 @AsClientCampusPINInURL @LL-6361
+  Scenario Outline: Campus PIN in URL
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click Interpreting header link
+    And enter the Campus pin "<campusPIN>" that is Active in the URL
+    Then the Bookings Allocations screen will display
+    And a CampusPIN filter should not be displayed and pre filled with the given Campus PIN "<campusPIN>"
+
+    Examples:
+      | username cbo   | password cbo | campusPIN |
+      | zenq@cbo11.com | Test1        | 29449     |
+
+    #LL-636 Scenario 8: As Client - Contractor ID filter should not be added on entering Contractor ID in the URL
+  @LL-636 @AsClientContractorIDInURL @LL-6361
+  Scenario Outline: Contractor ID in URL
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click Interpreting header link
+    And enter the ContractorID "<contractorID>" that is Active in the URL
+    Then the Bookings Allocations screen will display
+    And a Contractor ID filter should not be displayed and pre filled with the given Contractor ID "<contractorID>"
+
+    Examples:
+      | username cbo   | password cbo | contractorID |
+      | zenq@cbo11.com | Test1        | 6155         |
