@@ -224,7 +224,7 @@ When(/^Selects any role "(.*)"$/, function (role) {
    let counter = 0;
    while (toggleElementClassActual.includes("changed") === false && counter < 3) {
       action.clickElement(roleToggleElement);
-      toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement);
+      toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement, "class");
       counter++;
    }
 })
@@ -493,7 +493,7 @@ When(/^select multiple roles "(.*)"$/, function (roles) {
       let counter = 0;
       while (toggleElementClassActual.includes("changed") === false && counter < 3) {
          action.clickElement(roleToggleElement);
-         toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement);
+         toggleElementClassActual = action.getElementAttribute(roleToggleStatusElement,"class");
          counter++;
       }
    }
