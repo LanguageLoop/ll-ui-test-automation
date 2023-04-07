@@ -212,3 +212,39 @@ Then(/^the results should not be displayed as there are no jobs to show$/, funct
   let noJobsToShowMessageDisplayStatus = action.isVisibleWait(interpretingPage.jobTableNoJobsToShowMessage, 20000);
   chai.expect(noJobsToShowMessageDisplayStatus).to.be.true
 })
+
+When(/^enter the Campus pin "(.*)" that is Active in the URL$/, function (campusPin) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClientBookings.aspx?CampusPIN=" + campusPin);
+})
+
+Then(/^a CampusPIN filter should not be displayed and pre filled with the given Campus PIN "(.*)"$/, function (campusPin) {
+  let campusPinElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>", "1").replace("<dynamicOption>", "Campus PIN"));
+  let campusPinFilterSelectedStatus = action.isSelectedWait(campusPinElement, 1000);
+  chai.expect(campusPinFilterSelectedStatus).to.be.false;
+  let campusPinValuePreFilledElement = $(interpretingPage.jobFilterValueTextBoxLocator.replace("<dynamicIndex>", "1"));
+  let campusPinValuePreFilledDisplayStatus = action.isVisibleWait(campusPinValuePreFilledElement, 1000);
+  if (campusPinValuePreFilledDisplayStatus === true) {
+    let campusPinValuePreFilled = action.getElementValue(campusPinValuePreFilledElement);
+    chai.expect(campusPinValuePreFilled).to.not.equal(campusPin);
+  } else {
+    chai.expect(campusPinValuePreFilledDisplayStatus).to.be.false;
+  }
+})
+
+When(/^enter the ContractorID "(.*)" that is Active in the URL$/, function (contractorID) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClientBookings.aspx?ContractorId=" + contractorID);
+})
+
+Then(/^a Contractor ID filter should not be displayed and pre filled with the given Contractor ID "(.*)"$/, function (contractorID) {
+  let contractorIDElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>", "1").replace("<dynamicOption>", "Contractor ID"));
+  let contractorIDFilterSelectedStatus = action.isSelectedWait(contractorIDElement, 1000);
+  chai.expect(contractorIDFilterSelectedStatus).to.be.false;
+  let contractorIDValuePreFilledElement = $(interpretingPage.jobFilterValueTextBoxLocator.replace("<dynamicIndex>", "1"));
+  let contractorIDValuePreFilledDisplayStatus = action.isVisibleWait(contractorIDValuePreFilledElement, 1000);
+  if (contractorIDValuePreFilledDisplayStatus === true) {
+    let contractorIDValuePreFilled = action.getElementValue(contractorIDValuePreFilledElement);
+    chai.expect(contractorIDValuePreFilled).to.not.equal(contractorID);
+  } else {
+    chai.expect(contractorIDValuePreFilledDisplayStatus).to.be.false;
+  }
+})
