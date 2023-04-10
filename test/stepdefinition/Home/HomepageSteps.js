@@ -17,6 +17,7 @@ When(/^I click account management link$/, function(){
 })
 
 When(/^I click logout button$/, function(){
+   action.isVisibleWait(homePage.logoutButton,20000)
    action.clickElement(homePage.logoutButton)
 })
 

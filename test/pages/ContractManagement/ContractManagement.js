@@ -189,4 +189,36 @@ module.exports = {
     get minPeriodValueInTable() {
         return $('//table[contains(@id,"ContractServiceRatesTable")]/tbody/tr[1]/td[2]');
     },
+
+    get contractAddPreferenceLink() {
+        return $('//a[contains(text(),"Add preference")]');
+    },
+
+    get contractPreferenceTypeDropdown() {
+        return $('//select[contains(@id,"PreferenceTypeId")]');
+    },
+
+    get contractPreferenceTypeDropdownOptionLocator() {
+        return '//select[contains(@id,"PreferenceTypeId")]/option[text()="<dynamicOption>"]';
+    },
+
+    get contractPreferenceTypeDropdownOptionSiblingLocator() {
+        return '//select[contains(@id,"PreferenceTypeId")]/option[text()="<dynamicOption1>"]/following-sibling::option[text()="<dynamicOption2>"]';
+    },
+
+    get contractPreferenceDropdown() {
+        return $('//label[text()="Preference"]/parent::div/span/select');
+    },
+
+    get contractPreferenceTypeRemoveIconLocator() {
+        return '//span[text()="<dynamicOption>"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-trash-o"]'
+    },
+
+    get contractAddPreferencePopupCloseButton() {
+        return $('//span[text()="Add Preference"]/parent::div//span[@class="fa fa-fw fa-remove"]');
+    },
+
+    get saveContractPreferenceButton() {
+        return $('//input[contains(@id,"btnSavePreference")]');
+    }
 }
