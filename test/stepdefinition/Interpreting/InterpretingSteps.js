@@ -47,6 +47,7 @@ When(/^I click on job id from interpreting job search results$/, function(){
 When(/^I click on first job id from interpreting job list$/, function(){
   browser.pause(2000)
   GlobalData.CURRENT_JOB_ID = interpretingPage.jobIdColumnFromSearchResult.getText()
+  action.isVisibleWait(interpretingPage.jobIdLinkFromSearchResult,20000);
   action.clickElement(interpretingPage.jobIdLinkFromSearchResult)
   browser.pause(5000)
 })
@@ -77,6 +78,7 @@ When(/^I search for created job request$/, function(){
 })
 
 When(/^I search for selected job request$/, function(){
+  action.isVisibleWait(interpretingPage.searchJobInput,20000);
   action.clickElement(interpretingPage.searchJobInput)
   action.clearValue(interpretingPage.searchJobInput)
   action.enterValueAndPressReturn(interpretingPage.searchJobInput,GlobalData.CURRENT_JOB_ID.toString())
@@ -104,6 +106,7 @@ When(/^I click on the show regional jobs checkbox$/, function(){
 })
 
 When(/^I click accept job button$/, function(){
+  action.isVisibleWait(interpretingPage.acceptJobButton,20000);
   action.clickElement(interpretingPage.acceptJobButton)
 })
 
@@ -112,11 +115,15 @@ When(/^I click reject job button$/, function(){
 })
 
 When(/^I click unavailable job button$/, function(){
+  action.isVisibleWait(interpretingPage.unavailableJobButton,10000);
   action.clickElement(interpretingPage.unavailableJobButton)
+  action.isNotVisibleWait(interpretingPage.unavailableJobButton,10000);
 })
 
 When(/^I click return job button$/, function(){
+  action.isVisibleWait(interpretingPage.returnJobButton,10000);
   action.clickElement(interpretingPage.returnJobButton)
+  action.isNotVisibleWait(interpretingPage.returnJobButton,10000);
 })
 
 When(/^I click "(.*)" user link$/, function(user){
