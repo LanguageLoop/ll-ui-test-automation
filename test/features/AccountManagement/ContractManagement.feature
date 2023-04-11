@@ -239,3 +239,30 @@ Feature: Contract Management features
   Examples:
    | username          | password  | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values             | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion | min period 1 value  |
    | LLAdmin@looped.in | Octopus@6 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 10,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        | 10                  |
+
+  #LL-324 Scenario 1a: Admin sees ODTI gender preference option on Contract
+ @LL-324 @ODTIGenderPreferenceOnContract
+ Scenario Outline: Admin sees ODTI gender preference option on Contract
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And they click Add preference button in Contract Details
+  And click the Preference Type dropdown in Contract Details
+  Then they will see an ODTI gender preference option with the label "<preference type option>" in Contract Details
+  And this option "<preference type option>" will appear under the Gender option in Contract Details
+  And they can select this option "<preference type option>" in Contract Details
+  And they select preference option "<preference>" in Contract Details
+  And they click save Contract Preference button in Contract Details
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And this preference "<preference>" is inherited by the Campus
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And they remove added preference type option "<preference type option>" in Contract Details
+
+  Examples:
+   | username          | password  | contract title                                   | preference type option | campus id | preference |
+   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     |
