@@ -365,7 +365,9 @@ module.exports ={
 
     get campusPinBillToCodeLinkLocator() {
         return '//a[text()="<dynamic>"]';
-    }
+    },
 
-
+    get campusPreferenceSelectedOptionLocator() {
+        return '//span[text()="Gender (On-demand TI)"]//ancestor::span[contains(@id,"ListPreferences")]//select[contains(@id,"GenderPreference")]/option[text()="<dynamic>"]';
+    },
 }
