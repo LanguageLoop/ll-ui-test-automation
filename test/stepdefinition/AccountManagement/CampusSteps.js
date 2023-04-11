@@ -790,3 +790,55 @@ Then(/^they will be navigated to the Campus page$/, function () {
     let pageTitleActual = action.getPageTitle().trim();
     chai.expect(pageTitleActual).to.equal("CampusDetails");
 })
+
+Then(/^this preference "(.*)" is inherited by the Campus$/, function (preference) {
+    let campusOptionElement = $(campusDetailsPage.campusPreferenceSelectedOptionLocator.replace("<dynamic>",preference));
+    let campusOptionSelectedStatus = action.isSelectedWait(campusOptionElement,10000);
+    chai.expect(campusOptionSelectedStatus).to.be.true;
+})
+
+When(/^they click Add preference button in Campus Details$/, function (preference) {
+    action.isVisibleWait(campusDetailsPage.campusAddPreferenceLink, 10000);
+    action.clickElement(campusDetailsPage.campusAddPreferenceLink);
+})
+
+When(/^click the Preference Type dropdown in Campus Details$/, function () {
+    action.isVisibleWait(campusDetailsPage.campusPreferenceTypeDropdown, 10000);
+    action.clickElement(campusDetailsPage.campusPreferenceTypeDropdown);
+})
+
+Then(/^they will see an ODTI gender preference option with the label "(.*)" in Campus Details$/, function (optionLabel) {
+    let preferenceTypeDropdownOptionElement = $(campusDetailsPage.campusPreferenceTypeDropdownOptionLocator.replace("<dynamicOption>", optionLabel));
+    let ODTIGenderPreferenceOptionDisplayStatus = action.isVisibleWait(preferenceTypeDropdownOptionElement, 10000);
+    chai.expect(ODTIGenderPreferenceOptionDisplayStatus).to.be.true;
+})
+
+Then(/^this option "(.*)" will appear under the Gender option in Campus Details$/, function (optionLabel) {
+    let preferenceTypeDropdownOptionSiblingElement = $(campusDetailsPage.campusPreferenceTypeDropdownOptionSiblingLocator.replace("<dynamicOption1>", "Gender").replace("<dynamicOption2>", optionLabel));
+    let optionUnderGenderOptionExistStatus = action.isExistingWait(preferenceTypeDropdownOptionSiblingElement, 10000);
+    chai.expect(optionUnderGenderOptionExistStatus).to.be.true;
+})
+
+Then(/^they can select this option "(.*)" in Campus Details$/, function (optionLabel) {
+    action.selectTextFromDropdown(campusDetailsPage.campusPreferenceTypeDropdown, optionLabel);
+    let preferenceTypeDropdownOptionElement = $(campusDetailsPage.campusPreferenceTypeDropdown.replace("<dynamicOption>", optionLabel));
+    let optionSelectedStatus = action.isSelectedWait(preferenceTypeDropdownOptionElement, 10000);
+    chai.expect(optionSelectedStatus).to.be.true;
+})
+
+When(/^they select preference option "(.*)" in Campus Details$/, function (option) {
+    action.isVisibleWait(campusDetailsPage.campusPreferenceDropdown,20000);
+    action.selectTextFromDropdown(campusDetailsPage.campusPreferenceDropdown, option);
+})
+
+When(/^they remove added preference type option "(.*)" in Campus Details$/, function (optionLabel) {
+    let preferenceTypeRemoveIconElement = $(campusDetailsPage.campusPreferenceTypeRemoveIconLocator.replace("<dynamicOption>", optionLabel));
+    action.isVisibleWait(preferenceTypeRemoveIconElement,20000);
+    action.clickElement(preferenceTypeRemoveIconElement);
+    action.isNotVisibleWait(preferenceTypeRemoveIconElement,20000);
+})
+
+When(/^they click save Contract Preference button in Campus Details/, function () {
+    action.isVisibleWait(campusDetailsPage.saveCampusPreferenceButton, 10000);
+    action.clickElement(campusDetailsPage.saveCampusPreferenceButton);
+})

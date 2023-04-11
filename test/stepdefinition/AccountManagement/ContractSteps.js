@@ -343,53 +343,53 @@ Then(/^display the minutes value as for example 10 mins no decimal places$/, fun
     chai.expect(minPeriod1ValueActual).to.not.includes(".")
 })
 
-When(/^they click Add preference button$/, function () {
+When(/^they click Add preference button in Contract Details$/, function () {
     action.isVisibleWait(contractManagementPage.contractAddPreferenceLink, 10000);
     action.clickElement(contractManagementPage.contractAddPreferenceLink);
 })
 
-When(/^click the Preference Type dropdown$/, function () {
+When(/^click the Preference Type dropdown in Contract Details$/, function () {
     action.isVisibleWait(contractManagementPage.contractPreferenceTypeDropdown, 10000);
     action.clickElement(contractManagementPage.contractPreferenceTypeDropdown);
 })
 
-Then(/^they will see an ODTI gender preference option with the label "(.*)"$/, function (optionLabel) {
+Then(/^they will see an ODTI gender preference option with the label "(.*)" in Contract Details$/, function (optionLabel) {
     let preferenceTypeDropdownOptionElement = $(contractManagementPage.contractPreferenceTypeDropdownOptionLocator.replace("<dynamicOption>", optionLabel));
     let ODTIGenderPreferenceOptionDisplayStatus = action.isVisibleWait(preferenceTypeDropdownOptionElement, 10000);
     chai.expect(ODTIGenderPreferenceOptionDisplayStatus).to.be.true;
 })
 
-Then(/^this option "(.*)" will appear under the Gender option$/, function (optionLabel) {
+Then(/^this option "(.*)" will appear under the Gender option in Contract Details$/, function (optionLabel) {
     let preferenceTypeDropdownOptionSiblingElement = $(contractManagementPage.contractPreferenceTypeDropdownOptionSiblingLocator.replace("<dynamicOption1>", "Gender").replace("<dynamicOption2>", optionLabel));
     let optionUnderGenderOptionExistStatus = action.isExistingWait(preferenceTypeDropdownOptionSiblingElement, 10000);
     chai.expect(optionUnderGenderOptionExistStatus).to.be.true;
 })
 
-Then(/^they can select this option "(.*)"$/, function (optionLabel) {
+Then(/^they can select this option "(.*)" in Contract Details$/, function (optionLabel) {
     action.selectTextFromDropdown(contractManagementPage.contractPreferenceTypeDropdown, optionLabel);
     let preferenceTypeDropdownOptionElement = $(contractManagementPage.contractPreferenceTypeDropdownOptionLocator.replace("<dynamicOption>", optionLabel));
     let optionSelectedStatus = action.isSelectedWait(preferenceTypeDropdownOptionElement, 10000);
     chai.expect(optionSelectedStatus).to.be.true;
 })
 
-When(/^they select preference option "(.*)"$/, function (option) {
+When(/^they select preference option "(.*)" in Contract Details$/, function (option) {
     action.isVisibleWait(contractManagementPage.contractPreferenceDropdown,20000);
     action.selectTextFromDropdown(contractManagementPage.contractPreferenceDropdown, option);
 })
 
-When(/^they remove added preference type option "(.*)"$/, function (optionLabel) {
+When(/^they remove added preference type option "(.*)" in Contract Details$/, function (optionLabel) {
     let preferenceTypeRemoveIconElement = $(contractManagementPage.contractPreferenceTypeRemoveIconLocator.replace("<dynamicOption>", optionLabel));
     action.isVisibleWait(preferenceTypeRemoveIconElement,20000);
     action.clickElement(preferenceTypeRemoveIconElement);
     action.isNotVisibleWait(preferenceTypeRemoveIconElement,20000);
 })
 
-When(/^they close the Add Preference popup$/, function () {
+When(/^they close the Add Preference popup in Contract Details$/, function () {
     action.isVisibleWait(contractManagementPage.contractAddPreferencePopupCloseButton, 10000);
     action.clickElement(contractManagementPage.contractAddPreferencePopupCloseButton);
 })
 
-When(/^they click save Contract Preference button/, function () {
+When(/^they click save Contract Preference button in Contract Details/, function () {
     action.isVisibleWait(contractManagementPage.saveContractPreferenceButton, 10000);
     action.clickElement(contractManagementPage.saveContractPreferenceButton);
 })

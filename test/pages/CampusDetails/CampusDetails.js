@@ -365,7 +365,37 @@ module.exports ={
 
     get campusPinBillToCodeLinkLocator() {
         return '//a[text()="<dynamic>"]';
+    },
+
+    get campusPreferenceSelectedOptionLocator() {
+        return '//span[text()="Gender (On-demand TI)"]//ancestor::span[contains(@id,"ListPreferences")]//select[contains(@id,"GenderPreference")]/option[text()="<dynamic>"]';
+    },
+
+    get campusAddPreferenceLink() {
+        return $('//a[contains(text(),"Add preference")]');
+    },
+
+    get campusPreferenceTypeDropdown() {
+        return $('//select[contains(@id,"PreferenceTypeId")]');
+    },
+
+    get campusPreferenceTypeDropdownOptionLocator() {
+        return '//select[contains(@id,"PreferenceTypeId")]/option[text()="<dynamicOption>"]';
+    },
+
+    get campusPreferenceTypeDropdownOptionSiblingLocator() {
+        return '//select[contains(@id,"PreferenceTypeId")]/option[text()="<dynamicOption1>"]/following-sibling::option[text()="<dynamicOption2>"]';
+    },
+
+    get campusPreferenceDropdown() {
+        return $('//label[text()="Preference"]/parent::div/span/select');
+    },
+
+    get campusPreferenceTypeRemoveIconLocator() {
+        return '//span[text()="<dynamicOption>"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-trash-o"]'
+    },
+
+    get saveCampusPreferenceButton() {
+        return $('//input[contains(@id,"btnSavePreference")]');
     }
-
-
 }
