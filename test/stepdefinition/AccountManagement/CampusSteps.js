@@ -790,3 +790,9 @@ Then(/^they will be navigated to the Campus page$/, function () {
     let pageTitleActual = action.getPageTitle().trim();
     chai.expect(pageTitleActual).to.equal("CampusDetails");
 })
+
+Then(/^this preference "(.*)" is inherited by the Campus$/, function (preference) {
+    let campusOptionElement = $(campusDetailsPage.campusPreferenceSelectedOptionLocator.replace("<dynamic>",preference));
+    let campusOptionSelectedStatus = action.isSelectedWait(campusOptionElement,10000);
+    chai.expect(campusOptionSelectedStatus).to.be.true;
+})
