@@ -797,7 +797,7 @@ Then(/^this preference "(.*)" is inherited by the Campus$/, function (preference
     chai.expect(campusOptionSelectedStatus).to.be.true;
 })
 
-When(/^they click Add preference button in Campus Details$/, function (preference) {
+When(/^they click Add preference button in Campus Details$/, function () {
     action.isVisibleWait(campusDetailsPage.campusAddPreferenceLink, 10000);
     action.clickElement(campusDetailsPage.campusAddPreferenceLink);
 })
@@ -821,7 +821,7 @@ Then(/^this option "(.*)" will appear under the Gender option in Campus Details$
 
 Then(/^they can select this option "(.*)" in Campus Details$/, function (optionLabel) {
     action.selectTextFromDropdown(campusDetailsPage.campusPreferenceTypeDropdown, optionLabel);
-    let preferenceTypeDropdownOptionElement = $(campusDetailsPage.campusPreferenceTypeDropdown.replace("<dynamicOption>", optionLabel));
+    let preferenceTypeDropdownOptionElement = $(campusDetailsPage.campusPreferenceTypeDropdownOptionLocator.replace("<dynamicOption>", optionLabel));
     let optionSelectedStatus = action.isSelectedWait(preferenceTypeDropdownOptionElement, 10000);
     chai.expect(optionSelectedStatus).to.be.true;
 })
@@ -841,4 +841,12 @@ When(/^they remove added preference type option "(.*)" in Campus Details$/, func
 When(/^they click save Contract Preference button in Campus Details/, function () {
     action.isVisibleWait(campusDetailsPage.saveCampusPreferenceButton, 10000);
     action.clickElement(campusDetailsPage.saveCampusPreferenceButton);
+})
+
+When(/^preference inherited from the Contract can be overridden "(.*)" on the Campus level$/, function (option) {
+    action.isVisibleWait(campusDetailsPage.campusGenderODTIDropdown,20000);
+    action.selectTextFromDropdown(campusDetailsPage.campusGenderODTIDropdown, option);
+    let campusGenderODTIDropdownOptionLocatorElement = $(campusDetailsPage.campusGenderODTIDropdownOptionLocator.replace("<dynamicOption>", option));
+    let optionSelectedStatus = action.isSelectedWait(campusGenderODTIDropdownOptionLocatorElement, 10000);
+    chai.expect(optionSelectedStatus).to.be.true;
 })
