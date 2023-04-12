@@ -393,3 +393,8 @@ When(/^they click save Contract Preference button in Contract Details/, function
     action.isVisibleWait(contractManagementPage.saveContractPreferenceButton, 10000);
     action.clickElement(contractManagementPage.saveContractPreferenceButton);
 })
+
+When(/^related contract do not have Gender On-Demand TI preference added$/, function () {
+    let genderODTIPreferenceAddedDisplayStatus = action.isVisibleWait(contractManagementPage.contractGenderODTIPreferenceAdded, 1000);
+    chai.expect(genderODTIPreferenceAddedDisplayStatus).to.be.false;
+})

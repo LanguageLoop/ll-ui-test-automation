@@ -258,11 +258,12 @@ Feature: Contract Management features
   And I search for campus "<campus id>"
   And I click the first campus link from search results
   And this preference "<preference>" is inherited by the Campus
+  And preference inherited from the Contract can be overridden "<override preference>" on the Campus level
   And I click account management link
   And I search for contract title "<contract title>"
   And I click the contract link "<contract title>" from search results
   And they remove added preference type option "<preference type option>" in Contract Details
 
   Examples:
-   | username          | password  | contract title                                   | preference type option | campus id | preference |
-   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     |
+   | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
+   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |

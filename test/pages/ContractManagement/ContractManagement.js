@@ -220,5 +220,9 @@ module.exports = {
 
     get saveContractPreferenceButton() {
         return $('//input[contains(@id,"btnSavePreference")]');
+    },
+
+    get contractGenderODTIPreferenceAdded() {
+        return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]');
     }
 }
