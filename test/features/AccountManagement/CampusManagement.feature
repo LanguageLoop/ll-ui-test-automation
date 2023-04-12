@@ -473,3 +473,23 @@ Feature: Campus Management features
   Examples:
    | username          | password    | campus id | budget code option | budget code value |
    | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |
+
+  #LL-324 Scenario 1b: Admin sees ODTI gender preference option on Campus
+ @LL-324 @ODTIGenderPreferenceOnCampus
+ Scenario Outline: Admin sees ODTI gender preference option on Campus
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click Add preference button in Campus Details
+  And click the Preference Type dropdown in Campus Details
+  Then they will see an ODTI gender preference option with the label "<preference type option>" in Campus Details
+  And this option "<preference type option>" will appear under the Gender option in Campus Details
+  And they can select this option "<preference type option>" in Campus Details
+  And they select preference option "<preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And they remove added preference type option "<preference type option>" in Campus Details
+
+  Examples:
+   | username          | password    | campus id | preference type option | preference |
+   | LLAdmin@looped.in |  Octopus@6  | 33124     | Gender (On-demand TI)  | Female     |
