@@ -392,10 +392,18 @@ module.exports ={
     },
 
     get campusPreferenceTypeRemoveIconLocator() {
-        return '//span[text()="<dynamicOption>"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-trash-o"]'
+        return '//span[text()="<dynamicOption>"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-trash-o"]';
     },
 
     get saveCampusPreferenceButton() {
         return $('//input[contains(@id,"btnSavePreference")]');
+    },
+
+    get campusGenderODTIDropdown() {
+        return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//select[contains(@id,"GenderPreference")]');
+    },
+
+    get campusGenderODTIDropdownOptionLocator() {
+        return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//select[contains(@id,"GenderPreference")]/option[text()="<dynamicOption>"]';
     }
 }
