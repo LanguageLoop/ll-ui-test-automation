@@ -405,5 +405,17 @@ module.exports ={
 
     get campusGenderODTIDropdownOptionLocator() {
         return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//select[contains(@id,"GenderPreference")]/option[text()="<dynamicOption>"]';
-    }
+    },
+
+    get campusGenderODTIPreferenceAdded() {
+        return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]');
+    },
+
+    get campusODTIPreferenceTypeResetIconLocator() {
+        return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-repeat"]';
+    },
+
+    get campusODTIPreferenceTypeCustomisedTextLocator() {
+        return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[text()="CUSTOMISED"]';
+    },
 }
