@@ -411,11 +411,11 @@ module.exports ={
         return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]');
     },
 
-    get campusODTIPreferenceTypeResetIconLocator() {
-        return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-repeat"]';
+    get campusODTIPreferenceTypeResetIcon() {
+        return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-repeat"]');
     },
 
-    get campusODTIPreferenceTypeCustomisedTextLocator() {
-        return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[text()="CUSTOMISED"]';
+    get campusODTIPreferenceTypeCustomisedText() {
+        return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//span[text()="CUSTOMISED"]');
     },
 }

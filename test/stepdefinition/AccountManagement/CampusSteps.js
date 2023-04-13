@@ -862,11 +862,9 @@ When(/^this preference "(.*)" will have delete icon as this created by campus$/,
     chai.expect(preferenceTypeRemoveIconDisplayStatus).to.be.true;
 })
 
-Then(/^we see the reset option on the right corner and the text Customized appears$/, function (optionLabel) {
-    let preferenceTypeResetIconElement = $(campusDetailsPage.campusODTIPreferenceTypeResetIconLocator);
-    let preferenceTypeResetIconDisplayStatus = action.isVisibleWait(preferenceTypeResetIconElement,20000);
+Then(/^we see the reset option on the right corner and the text Customized appears$/, function () {
+    let preferenceTypeResetIconDisplayStatus = action.isVisibleWait(campusDetailsPage.campusODTIPreferenceTypeResetIcon,20000);
     chai.expect(preferenceTypeResetIconDisplayStatus).to.be.true;
-    let preferenceTypeCustomisedTextElement = $(campusDetailsPage.campusODTIPreferenceTypeCustomisedTextLocator);
-    let preferenceTypeCustomisedTextDisplayStatus = action.isVisibleWait(preferenceTypeCustomisedTextElement,20000);
+    let preferenceTypeCustomisedTextDisplayStatus = action.isVisibleWait(campusDetailsPage.campusODTIPreferenceTypeCustomisedText,20000);
     chai.expect(preferenceTypeCustomisedTextDisplayStatus).to.be.true;
 })
