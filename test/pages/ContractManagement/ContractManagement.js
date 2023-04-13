@@ -224,5 +224,9 @@ module.exports = {
 
     get contractGenderODTIPreferenceAdded() {
         return $('//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]');
-    }
+    },
+
+    get contractGenderODTIDropdownOptionLocator() {
+        return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//select[contains(@id,"Preference")]/option[text()="<dynamicOption>"]';
+    },
 }

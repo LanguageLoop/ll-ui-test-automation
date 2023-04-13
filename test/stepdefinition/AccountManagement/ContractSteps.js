@@ -398,3 +398,9 @@ When(/^related contract do not have Gender On-Demand TI preference added$/, func
     let genderODTIPreferenceAddedDisplayStatus = action.isVisibleWait(contractManagementPage.contractGenderODTIPreferenceAdded, 1000);
     chai.expect(genderODTIPreferenceAddedDisplayStatus).to.be.false;
 })
+
+Then(/^in contract page, the actual preference set "(.*)" still stays the same$/, function (option) {
+    let contractGenderODTIDropdownOptionLocatorElement = $(contractManagementPage.contractGenderODTIDropdownOptionLocator.replace("<dynamicOption>", option));
+    let optionSelectedStatus = action.isSelectedWait(contractGenderODTIDropdownOptionLocatorElement, 10000);
+    chai.expect(optionSelectedStatus).to.be.true;
+})

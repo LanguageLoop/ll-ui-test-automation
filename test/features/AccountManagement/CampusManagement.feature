@@ -493,3 +493,60 @@ Feature: Campus Management features
   Examples:
    | username          | password    | campus id | preference type option | preference |
    | LLAdmin@looped.in |  Octopus@6  | 33124     | Gender (On-demand TI)  | Female     |
+
+  #LL-324 Scenario 2: Campus can still add their own Gender (On-Demand TI) even when Contract does not have any
+ @LL-324 @CampusAddOwnODTIGenderPreference
+ Scenario Outline: Campus can still add their own Gender (On-Demand TI) even when Contract does not have any
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And related contract do not have Gender On-Demand TI preference added
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click Add preference button in Campus Details
+  And click the Preference Type dropdown in Campus Details
+  Then they will see an ODTI gender preference option with the label "<preference type option>" in Campus Details
+  And this option "<preference type option>" will appear under the Gender option in Campus Details
+  And they can select this option "<preference type option>" in Campus Details
+  And they select preference option "<preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And the preference is added for the Campus
+  And this preference "<preference type option>" will have delete icon as this created by campus
+  And they remove added preference type option "<preference type option>" in Campus Details
+
+  Examples:
+   | username          | password    | contract title                                   | campus id | preference type option | preference |
+   | LLAdmin@looped.in |  Octopus@6  | Department of Health and Human Services - Health | 33124     | Gender (On-demand TI)  | Female     |
+
+  #LL-324 Scenario 3: Updating the preference option on Campus level will not change the actual preference set on Contract
+ @LL-324 @UpdatePreferenceOnCampusDoesNotChangeOnContract
+ Scenario Outline: Updating the preference option on Campus level will not change the actual preference set on Contract
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And they click Add preference button in Contract Details
+  And they can select this option "<preference type option>" in Contract Details
+  And they select preference option "<preference>" in Contract Details
+  And they click save Contract Preference button in Contract Details
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And this preference "<preference>" is inherited by the Campus
+  And preference inherited from the Contract can be overridden "<override preference>" on the Campus level
+  And we see the reset option on the right corner and the text Customized appears
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  Then in contract page, the actual preference set "<preference>" still stays the same
+  And they remove added preference type option "<preference type option>" in Contract Details
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<preference type option>" in Campus Details
+
+  Examples:
+   | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
+   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
