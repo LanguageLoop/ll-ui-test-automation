@@ -550,3 +550,28 @@ Feature: Campus Management features
   Examples:
    | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
    | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
+
+  #LL-324 Scenario 4: User cannot delete the preference on Campus level when added on contact page
+ @LL-324 @CannotDeleteCampusPreferenceAddedOnContract
+ Scenario Outline: User cannot delete the preference on Campus level when added on contact page
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And they click Add preference button in Contract Details
+  And they can select this option "<preference type option>" in Contract Details
+  And they select preference option "<preference>" in Contract Details
+  And they click save Contract Preference button in Contract Details
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And this preference "<preference>" is inherited by the Campus
+  Then no delete button exists for the "<preference type option>" block in Campus Details
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And they remove added preference type option "<preference type option>" in Contract Details
+
+  Examples:
+   | username          | password  | contract title                                   | preference type option | campus id | preference |
+   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     |
