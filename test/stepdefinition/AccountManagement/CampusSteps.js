@@ -868,3 +868,9 @@ Then(/^we see the reset option on the right corner and the text Customized appea
     let preferenceTypeCustomisedTextDisplayStatus = action.isVisibleWait(campusDetailsPage.campusODTIPreferenceTypeCustomisedText,20000);
     chai.expect(preferenceTypeCustomisedTextDisplayStatus).to.be.true;
 })
+
+When(/^no delete button exists for the "(.*)" block in Campus Details$/, function (optionLabel) {
+    let preferenceTypeRemoveIconElement = $(campusDetailsPage.campusPreferenceTypeRemoveIconLocator.replace("<dynamicOption>", optionLabel));
+    let ODTIGenderDeleteButtonDisplayStatus = action.isVisibleWait(preferenceTypeRemoveIconElement,2000);
+    chai.expect(ODTIGenderDeleteButtonDisplayStatus).to.be.false;
+})
