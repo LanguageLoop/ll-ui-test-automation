@@ -430,6 +430,14 @@ When(/^click on Job Type option "(.*)" in Job Requester Details$/,function(reque
   let requestJobTypeOption = $(jobRequestPage.jobTypeOptionLocator.replace("<dynamic>",requestJobType));
   action.isVisibleWait(requestJobTypeOption,10000);
   action.clickElement(requestJobTypeOption);
+  let requestJobTypeOptionElementClass = action.getElementAttribute(requestJobTypeOption, "class");
+  let counter = 0;
+  while (requestJobTypeOptionElementClass.includes("active") === false && counter < 3) {
+    action.clickElement(requestJobTypeOption);
+    browser.pause(3000);
+    requestJobTypeOptionElementClass = action.getElementAttribute(requestJobTypeOption, "class");
+    counter++
+  }
 })
 
 When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameOrID){
