@@ -874,3 +874,32 @@ When(/^no delete button exists for the "(.*)" block in Campus Details$/, functio
     let ODTIGenderDeleteButtonDisplayStatus = action.isVisibleWait(preferenceTypeRemoveIconElement,2000);
     chai.expect(ODTIGenderDeleteButtonDisplayStatus).to.be.false;
 })
+
+When(/^they add a block on a contractor or interpreter "(.*)"$/, function (contractorNameId) {
+    action.isVisibleWait(campusDetailsPage.addABlockLink, 10000);
+    action.clickElement(campusDetailsPage.addABlockLink);
+    action.isVisibleWait(campusDetailsPage.searchByContractorNameAndIdTextBox, 10000);
+    action.enterValue(campusDetailsPage.searchByContractorNameAndIdTextBox,contractorNameId);
+    let contractorResultCheckboxElement = $(campusDetailsPage.contractorResultCheckboxLocator.replace("<dynamic>",contractorNameId));
+    action.isVisibleWait(contractorResultCheckboxElement,10000);
+    action.clickElement(contractorResultCheckboxElement);
+    action.selectTextFromDropdown(campusDetailsPage.contractorSeverityDropdown, "Level");
+    action.enterValue(campusDetailsPage.startDateContractor, "16-04-2023");
+    action.enterValue(campusDetailsPage.endDateContractor, datetime.getRandomFutureDate());
+    action.pressKeys("Tab");
+    action.isVisibleWait(campusDetailsPage.addBlockButton, 10000);
+    action.clickElement(campusDetailsPage.addBlockButton);
+    action.isNotVisibleWait(campusDetailsPage.addBlockButton, 10000);
+})
+
+Then(/^the admin clicks on Remove on campus blocker$/, function () {
+    let rule = 0;
+    while (action.isVisibleWait(campusDetailsPage.newBlockRuleLinksToggleIcon, 1000) === true) {
+        action.isVisibleWait(campusDetailsPage.newBlockRuleLinksToggleIcon, 10000);
+        action.clickElement(campusDetailsPage.newBlockRuleLinksToggleIcon);
+        action.isVisibleWait(campusDetailsPage.newBlockRuleLinksRemove, 10000);
+        action.clickElement(campusDetailsPage.newBlockRuleLinksRemove);
+        browser.pause(3000);
+        rule++
+    }
+})
