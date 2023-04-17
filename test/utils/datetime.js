@@ -176,7 +176,8 @@ module.exports={
     getConfirmationTime()
     {
         temp_date=new Date()
-        temp_date.setHours(temp_date.getHours())
+        //Changing time (from AEDT) to AEST format
+        temp_date.setHours(temp_date.getHours() - 1)
         temp_time=temp_date.getHours()+":"+temp_date.getMinutes()
         return temp_time
     },
