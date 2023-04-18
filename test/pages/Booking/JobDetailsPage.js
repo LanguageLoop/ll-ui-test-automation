@@ -183,6 +183,14 @@ module.exports = {
 
     get jobAllocationTableHeaders() {
         return $('//table[contains(@id,"ODTIServiceChargeTable")]/thead/tr');
-    }
+    },
+
+    get contractorJobStatusLinkLocator() {
+        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//a[contains(@id,"JobStatus")]';
+    },
+
+    get organisationCampusBlocksContractorText() {
+        return $('//span[text()="1. Organisation/Campus blocks Contractor"]');
+    },
 
 }

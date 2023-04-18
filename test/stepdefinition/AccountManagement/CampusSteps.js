@@ -903,3 +903,8 @@ Then(/^the admin clicks on Remove on campus blocker$/, function () {
         rule++
     }
 })
+
+When(/^the user is on the Organisation page$/, function () {
+    action.isVisibleWait(campusDetailsPage.campusOrganizationLink,10000);
+    action.clickElement(campusDetailsPage.campusOrganizationLink);
+})

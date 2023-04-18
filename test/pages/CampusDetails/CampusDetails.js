@@ -454,4 +454,8 @@ module.exports ={
     get newBlockRuleLinksRemove() {
         return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[(text()="Remove")]');
     },
+
+    get campusOrganizationLink() {
+        return $('//span[contains(@id,"contManageOrgs")]/a');
+    }
 }
