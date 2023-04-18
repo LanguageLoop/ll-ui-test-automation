@@ -247,3 +247,18 @@ Then(/^the Contractor’s name will be hyperlinked$/, function () {
     let contractNameHyperLinkDisplayStatus = action.isVisibleWait(contractNameHyperLink,10000);
     chai.expect(contractNameHyperLinkDisplayStatus).to.be.true;
 })
+
+Then(/^the contractor or interpreter "(.*)" is unable to view or accept any job for that campus or Organisation$/, function (contractorName) {
+    let contractorJobStatusLink = $(jobDetailsPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+    action.isVisibleWait(contractorJobStatusLink, 10000);
+    browser.execute((el) => {
+        const hoverEvent = new MouseEvent('mouseover', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        el.dispatchEvent(hoverEvent);
+    }, contractorJobStatusLink);
+    let contractorBlockedTextExistStatus = action.isExistingWait(jobDetailsPage.organisationCampusBlocksContractorText, 3000);
+    chai.expect(contractorBlockedTextExistStatus).to.be.true;
+})
