@@ -89,8 +89,9 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/features/**/*.feature'
+        // './test/features/**/*.feature'
         //'./test/features/**/Claims.feature'
+        './test/features/ODTI/ODTIInterpretersCSO.feature'
     ],
     // Patterns to exclude.
     exclude: [
