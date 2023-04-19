@@ -626,3 +626,59 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
    | LLAdmin@looped.in | Octopus@6 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+
+  #LL-334 Scenario 2: Block at Organisation level
+ @LL-334 @ContractorBlockOnOrganisation
+ Scenario Outline: Scenario 2: Block at Organisation level
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor>"
+  And Add Naati Accreditation "<service>","<from>","<to>","<level>" if not available
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And the user is on the Organisation page
+  And the admin clicks on Remove on Organisation blocker
+  And I click Interpreting header link
+  And I select "<dropdownfilter>" from the filter dropdown
+  And I click on new job request button
+  And I enter campus pin "<campus pin>"
+  And click on Job Type option "<request job type>" in Job Requester Details
+  And I select "<Requester Name>" from the requester name dropdown
+  And I click next button
+  And I select language "<language>"
+  And I select assignment type "<assignment type>"
+  And I enter schedule "<date>" and "<time>"
+  And I enter PO number "<PO Number>"
+  And I enter CF_OnSite "<CF_OnSite>"
+  And I enter "<email>" email address
+  And I click save and proceed to summary button
+  And I handle duplicate job warning window
+  And I click submit button
+  And the job created success message should appear
+  And I search for created job request
+  And I verify the job is listed in search results
+  And I click on first job id from interpreting job list
+  And I switch to the job allocation window
+  And the contractor above "<contractor>" status will be "<eligible status>" for the Job
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And the user is on the Organisation page
+  And they add a block on a contractor or interpreter "<contractor>" on the Organisation page
+  And I click Interpreting header link
+  And I select "<dropdownfilter>" from the filter dropdown
+  And I search for created job request
+  And I verify the job is listed in search results
+  And I click on first job id from interpreting job list
+  And I switch to the job allocation window
+  Then the contractor or interpreter "<contractor>" is unable to view or accept any job for that campus or Organisation
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And the user is on the Organisation page
+  And the admin clicks on Remove on Organisation blocker
+
+  Examples:
+   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type   | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
+   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Halfday         | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
