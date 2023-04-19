@@ -695,3 +695,8 @@ When(/^I click continue on Job continue confirmation popup$/, function () {
     }
   }
 })
+
+When(/^I enter CF_OnSite "(.*)"$/, function(CF_OnSite){
+  action.isVisibleWait(jobRequestPage.cfOnSiteTextBox,10000)
+  action.enterValue(jobRequestPage.cfOnSiteTextBox,CF_OnSite)
+})
