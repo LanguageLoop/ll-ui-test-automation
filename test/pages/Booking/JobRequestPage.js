@@ -400,4 +400,8 @@ module.exports={
     get continueButtonElements() {
         return $$('//input[@value="Continue"]');
     },
+
+    get cfOnSiteTextBox(){
+        return $('//*[text()="CF_OnSite"]/../../..//input[contains(@id,"txtInputStd")]')
+    },
 }
