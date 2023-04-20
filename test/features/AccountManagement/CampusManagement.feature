@@ -680,5 +680,5 @@ Feature: Campus Management features
   And the admin clicks on Remove on Organisation blocker
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type   | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Halfday         | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
+   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
+   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
