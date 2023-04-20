@@ -457,5 +457,17 @@ module.exports ={
 
     get campusOrganizationLink() {
         return $('//span[contains(@id,"contManageOrgs")]/a');
-    }
+    },
+
+    get activeBlockerLinkLocator() {
+        return '//a[contains(@id,"Blockings") and contains(text(),"<dynamic>")]';
+    },
+
+    get saveButtonOnBlockingPopup() {
+        return $('//input[contains(@id,"blockingDialog") and (@value="Save")]')
+    },
+
+    get showExpiredBlocksToggleCheck() {
+        return $('//label[contains(@id,"wt25_block_wtCheckbox")]');
+    },
 }

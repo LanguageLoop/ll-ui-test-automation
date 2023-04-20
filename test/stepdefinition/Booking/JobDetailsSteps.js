@@ -262,3 +262,18 @@ Then(/^the contractor or interpreter "(.*)" is unable to view or accept any job 
     let contractorBlockedTextExistStatus = action.isExistingWait(jobDetailsPage.organisationCampusBlocksContractorText, 3000);
     chai.expect(contractorBlockedTextExistStatus).to.be.true;
 })
+
+Then(/^on refreshing the Job page, the contractor "(.*)" will be eligible for the job$/, function (contractorName) {
+    let contractorJobStatusLink = $(jobDetailsPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+    action.isVisibleWait(contractorJobStatusLink, 10000);
+    browser.execute((el) => {
+        const hoverEvent = new MouseEvent('mouseover', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        el.dispatchEvent(hoverEvent);
+    }, contractorJobStatusLink);
+    let contractorBlockedTextExistStatus = action.isExistingWait(jobDetailsPage.organisationCampusBlocksContractorText, 3000);
+    chai.expect(contractorBlockedTextExistStatus).to.be.false;
+})
