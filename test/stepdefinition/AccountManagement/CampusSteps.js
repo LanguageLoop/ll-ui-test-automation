@@ -908,3 +908,19 @@ When(/^the user is on the Organisation page$/, function () {
     action.isVisibleWait(campusDetailsPage.campusOrganizationLink,10000);
     action.clickElement(campusDetailsPage.campusOrganizationLink);
 })
+
+When(/^user makes the block "(.*)" as expired by adding past date to Date Finished field on Campus page or the Contractor page$/, function (blockName) {
+    let activeBlockerLinkElement = $(campusDetailsPage.activeBlockerLinkLocator.replace("<dynamic>", blockName));
+    action.isVisibleWait(activeBlockerLinkElement, 10000);
+    action.clickElement(activeBlockerLinkElement);
+    action.enterValue(campusDetailsPage.endDateContractor, "17-04-2023");
+    action.pressKeys("Tab");
+    action.isVisibleWait(campusDetailsPage.saveButtonOnBlockingPopup, 10000);
+    action.clickElement(campusDetailsPage.saveButtonOnBlockingPopup);
+    action.isNotVisibleWait(campusDetailsPage.saveButtonOnBlockingPopup, 10000);
+})
+
+When(/^I click on Show Expired toggle in campus page$/, function () {
+    action.isVisibleWait(campusDetailsPage.showExpiredBlocksToggleCheck, 10000);
+    action.clickElement(campusDetailsPage.showExpiredBlocksToggleCheck);
+})
