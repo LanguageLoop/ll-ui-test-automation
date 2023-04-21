@@ -179,6 +179,7 @@ Feature: ODTI Interpreters CSO features
     And they are navigated to the ODTI page
     And they will see the ODTI Interpreters page by default
     And the table will appear
+    And user cancels the already existing ongoing jobs for the language "<language>" and interpreter "<contractor>" on behalf of "<Requester Name>"
     And the user will be able to search for a language "<language>"
     And the user will be able to select status for the selected language using options "<logon status option>"
     Then the table will show the current ongoing job for the interpreter "<contractor>"
@@ -246,6 +247,7 @@ Feature: ODTI Interpreters CSO features
     And they are navigated to the ODTI page
     And they will see the ODTI Interpreters page by default
     And the table will appear
+    And user cancels the already existing ongoing jobs for the language "<language>" and interpreter "<contractor>" on behalf of "<Requester Name>"
     And the user will be able to search for a language "<language>"
     And the user will be able to select status for the selected language using options "<logon status option>"
     Then the table will also show the next pre-booked job for the interpreter "<contractor>"
@@ -374,6 +376,7 @@ Feature: ODTI Interpreters CSO features
     And they are navigated to the ODTI page
     And they will see the ODTI Interpreters page by default
     And the table will appear
+    And user cancels the already existing ongoing jobs for the language "<language>" and interpreter "<contractor>" on behalf of "<Requester Name>"
     And the user will be able to search for a language "<language>"
     And the user will be able to select status for the selected language using options "<logon status option>"
     And they click on the hyperlinked Job ID "<contractor>"
