@@ -40,7 +40,8 @@ Then(/^the label will be: Language$/, function () {
 })
 
 Then(/^the user will be able to search for a language "(.*)"$/, function (language) {
-    if (action.isVisibleWait(ODTIInterpretersPage.languageDropdownSearchBox, 10000) === false) {
+    browser.refresh();
+    if (action.isVisibleWait(ODTIInterpretersPage.languageDropdownSearchBox, 5000) === false) {
         action.clickElement(ODTIInterpretersPage.ODTILanguageSwitchDropdown);
     }
     action.enterValueAndPressReturn(ODTIInterpretersPage.languageDropdownSearchBox, language);
@@ -289,4 +290,42 @@ Then(/^they can swap to the ODTI Jobs page$/, function () {
     let ODTIJobsPageOption = $(ODTIInterpretersPage.ODTIJobsSwitchDropdownOptionLocator.replace("<dynamic>", "ODTI Jobs"));
     let ODTIJobsPageSelectedStatus = action.isSelectedWait(ODTIJobsPageOption, 10000);
     chai.expect(ODTIJobsPageSelectedStatus).to.be.true;
+})
+
+When(/^user cancels the already existing ongoing jobs for the language "(.*)" and interpreter "(.*)" on behalf of "(.*)"$/, function (language, interpreter, requesterName) {
+    let ODTIJobsPageWindowHandle = action.getWindowHandle();
+    if (action.isVisibleWait(ODTIInterpretersPage.languageDropdownSearchBox, 5000) === false) {
+        action.clickElement(ODTIInterpretersPage.ODTILanguageSwitchDropdown);
+    }
+    action.enterValueAndPressReturn(ODTIInterpretersPage.languageDropdownSearchBox, language);
+    browser.pause(5000);
+    let jobIDLinkElement = $(ODTIInterpretersPage.interpreterResultsLinkTextLinkLocator.replace("<dynamicRowLinkText>", interpreter).replace("<dynamicColumnNumber>", "10"));
+    let counter = 0;
+    while (GlobalData.CURRENT_JOB_ID.toString() !== action.getElementText(jobIDLinkElement) && action.isVisibleWait(jobIDLinkElement, 10000) === true && counter <= 6) {
+        console.log("Cancelling the already existing ongoing jobs for the language and interpreter")
+        action.clickElement(jobIDLinkElement);
+        action.navigateToLatestWindow();
+        action.isVisibleWait(ODTIInterpretersPage.jobIDTextInODTIJobAllocationPage, 10000);
+        action.isVisibleWait(jobRequestPage.jobStatusLink, 10000);
+        action.clickElement(jobRequestPage.jobStatusLink);
+        action.isVisibleWait(jobRequestPage.jobStatusDropdown, 10000);
+        action.selectTextFromDropdown(jobRequestPage.jobStatusDropdown, "Cancel");
+        action.isVisibleWait(jobRequestPage.jobCancelConfirmationPopupText, 10000);
+        action.isVisibleWait(jobRequestPage.cancelConfirmationYesButton, 10000);
+        action.clickElement(jobRequestPage.cancelConfirmationYesButton);
+        action.isVisibleWait(jobRequestPage.cancelReasonDropdown, 10000);
+        action.selectTextFromDropdown(jobRequestPage.cancelReasonDropdown, "Job request error (Date,Time, Duration, etc..)");
+        action.isVisibleWait(jobRequestPage.cancelOnBehalfDropdown, 10000);
+        action.selectTextFromDropdown(jobRequestPage.cancelOnBehalfDropdown, requesterName);
+        action.isVisibleWait(jobRequestPage.submitButtonConfirmationPopup, 10000);
+        action.clickElement(jobRequestPage.submitButtonConfirmationPopup);
+        action.isVisibleWait(jobRequestPage.searchByJobIdTextBox, 10000);
+        action.navigateToWindowHandle(ODTIJobsPageWindowHandle);
+        browser.refresh();
+        if (action.isVisibleWait(ODTIInterpretersPage.languageDropdownSearchBox, 5000) === false) {
+            action.clickElement(ODTIInterpretersPage.ODTILanguageSwitchDropdown);
+        }
+        action.isVisibleWait(ODTIInterpretersPage.languageDropdownSearchBox, 5000);
+        action.enterValueAndPressReturn(ODTIInterpretersPage.languageDropdownSearchBox, language);
+    }
 })

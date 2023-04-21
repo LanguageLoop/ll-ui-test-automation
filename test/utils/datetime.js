@@ -248,7 +248,7 @@ module.exports={
         //Changing time (from AEDT) to AEST format
         temp_date.setHours(temp_date.getHours() - 1);
         temp_date.setMinutes(temp_date.getMinutes() + 10);
-        temp_time = temp_date.getHours() + ":" + `${temp_date.getMinutes()}`.padStart(2, "0");
+        temp_time = `${temp_date.getHours()}`.padStart(2, "0") + ":" + `${temp_date.getMinutes()}`.padStart(2, "0");
         return temp_time;
     },
 
