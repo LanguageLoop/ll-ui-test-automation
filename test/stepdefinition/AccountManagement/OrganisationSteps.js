@@ -27,3 +27,19 @@ Then(/^the admin clicks on Remove on Organisation blocker$/, function () {
         rule++
     }
 })
+
+When(/^user makes the block "(.*)" as expired by adding past date to Date Finished field on Organization$/, function (blockName) {
+    let activeBlockerLinkElement = $(organisationPage.activeBlockerLinkLocator.replace("<dynamic>", blockName));
+    action.isVisibleWait(activeBlockerLinkElement, 10000);
+    action.clickElement(activeBlockerLinkElement);
+    action.enterValue(organisationPage.endDateContractor, "17-04-2023");
+    action.pressKeys("Tab");
+    action.isVisibleWait(organisationPage.saveButtonOnBlockingPopup, 10000);
+    action.clickElement(organisationPage.saveButtonOnBlockingPopup);
+    action.isNotVisibleWait(organisationPage.saveButtonOnBlockingPopup, 10000);
+})
+
+When(/^I click on Show Expired toggle in organisation page$/, function () {
+    action.isVisibleWait(organisationPage.showExpiredBlocksToggleCheck, 10000);
+    action.clickElement(organisationPage.showExpiredBlocksToggleCheck);
+})

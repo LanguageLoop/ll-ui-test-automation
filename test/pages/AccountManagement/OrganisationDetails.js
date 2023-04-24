@@ -36,4 +36,16 @@ module.exports ={
     get newBlockRuleLinksRemove() {
         return $('//table[contains(@id,"Blockings")]/child::tbody/child::tr//child::a[(text()="Remove")]');
     },
+
+    get activeBlockerLinkLocator() {
+        return '//a[contains(@id,"Blockings") and contains(text(),"<dynamic>")]';
+    },
+
+    get saveButtonOnBlockingPopup() {
+        return $('//input[contains(@id,"blockingDialog") and (@value="Save")]')
+    },
+
+    get showExpiredBlocksToggleCheck() {
+        return $('//label[contains(@id,"wt25_block_wtCheckbox")]');
+    },
 }
