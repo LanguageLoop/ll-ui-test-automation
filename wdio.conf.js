@@ -30,6 +30,8 @@ var adminPage = require('./test/pages/Home/AdminPage.js')
 var ODTIJobsPage = require('./test/pages/ODTI/ODTIJobsPage.js')
 var ODTIInterpretersPage = require('./test/pages/ODTI/ODTIInterpretersPage.js')
 var organisationPage = require('./test/pages/AccountManagement/OrganisationDetails.js')
+var DIDConfigurationsPage = require('./test/pages/ODTI_UI/DIDConfigurations.js')
+var newCampusConfigurationPage = require('./test/pages/ODTI_UI/NewCampusConfiguration.js')
 
 var chai= require('chai')
 var action=require('./test/utils/actions')
@@ -343,6 +345,8 @@ exports.config = {
         global.ODTIJobsPage = ODTIJobsPage
         global.ODTIInterpretersPage = ODTIInterpretersPage
         global.organisationPage = organisationPage
+        global.DIDConfigurationsPage = DIDConfigurationsPage
+        global.newCampusConfigurationPage = newCampusConfigurationPage
         //global.translationsPage=translationsPage
         //global.xtmPage = xtmPage
         
