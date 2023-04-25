@@ -67,3 +67,7 @@ Then(/^they will be able to login$/, function () {
     let loginButtonDisplayStatus = action.isVisibleWait(Login.loginButton, 1000);
     chai.expect(loginButtonDisplayStatus).to.be.false;
 })
+
+Given(/^the ODTI DID Configurations page is opened$/, function () {
+    browser.url(GlobalData.ODTI_DID_URL);
+})

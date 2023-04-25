@@ -1,0 +1,20 @@
+@ODTIJobsCBO
+Feature: ODTI_UI Campus Configuration features
+
+  Background: Load the ODTI DID Configurations page
+    Given the looped in login page is opened
+
+ #LL-489: Scenario 1a - Campus ODTI Configuration (New)
+  @LL-489 @CampusODTIConfigurationNew
+  Scenario Outline: Campus ODTI Configuration (New)
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Campus Configuration screen
+    And the new Campus Configuration Page is displayed
+    And the Service Type is displayed with General TI type by default and not changeable
+    And the Campus PIN input and configuration section are displayed
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
