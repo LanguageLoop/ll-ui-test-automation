@@ -34,4 +34,5 @@ module.exports={
     ACTUAL_ACCOUNT_CREATION_DATE:"",
     ODTI_JOB_CONTRACT_ID:"",
     ODTI_JOBS_PAGE_WINDOW_HANDLE:"",
+    ODTI_DID_URL:"",
 }
