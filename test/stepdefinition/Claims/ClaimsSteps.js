@@ -367,6 +367,7 @@ Then(/^I verify the campus fee$/, function(){
 
 Then(/^I verify the job status is "(.*)"$/, function(jobstatus){
     let expectedJobIdResultLoc = '//*[@data-columnname="JobId"][text()="<dynamic>"]'.replace("<dynamic>",GlobalData.CURRENT_JOB_ID.toString())
+    action.isVisibleWait($(expectedJobIdResultLoc),90000);
     action.elementExists($(expectedJobIdResultLoc))
     chai.expect(claimsPage.jobStatusColumn.getText()==jobstatus).to.be.true
 })
