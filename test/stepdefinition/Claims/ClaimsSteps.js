@@ -304,7 +304,7 @@ When(/^I click bulk process claim button$/, function(){
 
 When(/^I confirm bulk claim process dialog$/, function(){
     browser.pause(2000)
-    action.isVisibleWait(claimsPage.bulkClaimConfirmOkButton)
+    action.isVisibleWait(claimsPage.bulkClaimConfirmOkButton,60000)
     action.clickElement(claimsPage.bulkClaimConfirmOkButton)
 })
 
@@ -336,6 +336,7 @@ Then(/^I verify rsc fee is not changed$/, function(){
 
 Then(/^I confirm the bulk claim process success message appears$/, function(){
     browser.pause(2000)
+    action.isExistingWait(claimsPage.bulkClaimProcessConfirmMessage,60000)
     chai.expect(action.elementExists(claimsPage.bulkClaimProcessConfirmMessage)).to.be.true
 })
 
