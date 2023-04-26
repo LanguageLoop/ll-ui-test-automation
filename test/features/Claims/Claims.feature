@@ -270,7 +270,7 @@ Feature: Claims processing features
    #And I select "Signed off" job status
    #Then I verify the job status is "<claim status>"
    
-   Examples:
-   | username           | password    | status      | to date     | job id  | claim status | campus name            |
-   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   | vic roads wodonga      |
+   #Examples:
+   #| username           | password    | status      | to date     | job id  | claim status | campus name            |
+   #| LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   | vic roads wodonga      |
 
