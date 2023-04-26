@@ -18,3 +18,18 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  |
       | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-489: Scenario 1b - Campus ODTI Configuration (Edit)
+  @LL-489 @CampusODTIConfigurationEdit
+  Scenario Outline: Campus ODTI Configuration (Edit)
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Edit Campus Configuration screen of Campus "<campus>"
+    And the Edit Campus Configuration Page is displayed
+    Then the Campus PIN input and Service Type Dropdown are displayed
+    And the saved configuration is displayed
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
