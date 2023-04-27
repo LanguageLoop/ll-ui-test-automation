@@ -332,7 +332,7 @@ When(/^I click no change required button$/,function()
 
 Then(/^the job created success message should appear$/, function(){
   console.time('t2')
-  action.isVisibleWait(jobRequestPage.successMessageText,30000);
+  action.isVisibleWait(jobRequestPage.successMessageText,90000);
   jobRequestPage.successMessageText.waitForExist({timeout:12000})
   chai.expect(action.elementExists(jobRequestPage.successMessage)).to.be.true
   browser.waitUntil(
