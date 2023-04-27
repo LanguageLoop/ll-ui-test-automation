@@ -20,3 +20,15 @@ When(/^the Admin is on the Edit Campus Configuration screen of Campus "(.*)"$/, 
     }
 })
 
+When(/^the Admin is on the Duplicate Campus Configuration screen of Campus "(.*)"$/, function (campusPin) {
+    let editCampusConfigurationLinksCount = $$(DIDConfigurationsPage.duplicateCampusConfigurationLinksLocator.replace("<dynamicCampusPin>", campusPin)).length;
+    for (let index = 1; index <= editCampusConfigurationLinksCount; index++) {
+        let editCampusConfigurationLink = $(DIDConfigurationsPage.duplicateCampusConfigurationLinkLocator.replace("<dynamicCampusPin>", campusPin).replace("<dynamicIndex>", index.toString()));
+        let editLinkVisible = action.isVisibleWait(editCampusConfigurationLink, 1000);
+        if (editLinkVisible) {
+            action.clickElement(editCampusConfigurationLink);
+            break;
+        }
+    }
+})
+
