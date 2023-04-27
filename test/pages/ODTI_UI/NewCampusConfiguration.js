@@ -11,6 +11,10 @@ module.exports = {
 
     get configurationSection() {
         return $('//div[text()="Configuration"]/parent::div[contains(@class,"card-sectioned-top")]');
+    },
+
+    get savedConfiguration() {
+        return $('//div[contains(@id,"DIDConfigurationForm")]');
     }
 
 }

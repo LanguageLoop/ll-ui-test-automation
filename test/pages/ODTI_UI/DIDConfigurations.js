@@ -15,5 +15,13 @@ module.exports = {
 
     get editCampusConfigurationLinksLocator() {
         return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Edit"]';
+    },
+
+    get duplicateCampusConfigurationLinkLocator() {
+        return '(//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Duplicate"])[<dynamicIndex>]';
+    },
+
+    get duplicateCampusConfigurationLinksLocator() {
+        return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Duplicate"]';
     }
 }
