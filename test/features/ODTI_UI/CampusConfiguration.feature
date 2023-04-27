@@ -33,3 +33,19 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-489: Scenario 1c - Campus ODTI Configuration (Duplicate)
+  @LL-489 @CampusODTIConfigurationDuplicate
+  Scenario Outline: Campus ODTI Configuration (Duplicate)
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Duplicate Campus Configuration screen of Campus "<campus>"
+    And the new Campus Configuration Page is displayed
+    Then the Campus PIN input and Service Type Dropdown are displayed upon clicking duplicate
+    And the saved configuration is displayed upon clicking duplicate
+    And the Campus PIN is blank upon clicking duplicate
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
