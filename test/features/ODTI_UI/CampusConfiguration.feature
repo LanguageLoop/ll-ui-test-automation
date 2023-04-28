@@ -49,3 +49,18 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-489: Scenario 2 - Entering a Campus PIN
+  @LL-489 @EnteringCampusPIN
+  Scenario Outline: Entering a Campus PIN
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Campus Configuration screen
+    And has typed in a Campus PIN "<campus pin>"
+    Then the PIN is searched
+    And the Campus name "<campus name>" is displayed below the input box
+
+    Examples:
+      | username          | password  | campus pin | campus name     |
+      | LLAdmin@looped.in | Octopus@6 | 29449      | Contoso Pty LTD |
