@@ -31,3 +31,18 @@ Then(/^the Campus PIN is blank upon clicking duplicate$/, function () {
     let campusPinInputElementHTML = action.getElementHTML(newCampusConfigurationPage.campusPinInputTextBox);
     chai.expect(campusPinInputElementHTML).to.not.includes("value");
 })
+
+When(/^has typed in a Campus PIN "(.*)"$/, function (campusPin) {
+    action.isVisibleWait(newCampusConfigurationPage.campusPinInputTextBox, 10000);
+    action.enterValue(newCampusConfigurationPage.campusPinInputTextBox,campusPin);
+})
+
+Then(/^the PIN is searched$/, function () {
+    let searchedCampusResultDisplayStatus = action.isVisibleWait(newCampusConfigurationPage.campusNameBelowInputTextBox, 10000);
+    chai.expect(searchedCampusResultDisplayStatus).to.be.true;
+})
+
+Then(/^the Campus name "(.*)" is displayed below the input box$/, function (campusName) {
+    let campusNameTextBelowInputBox = action.getElementText(newCampusConfigurationPage.campusNameBelowInputTextBox);
+    chai.expect(campusNameTextBelowInputBox).to.equal(campusName);
+})
