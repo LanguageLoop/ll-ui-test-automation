@@ -15,6 +15,10 @@ module.exports = {
 
     get savedConfiguration() {
         return $('//div[contains(@id,"DIDConfigurationForm")]');
+    },
+
+    get campusNameBelowInputTextBox() {
+        return $('//span[contains(@id,"IsWithCampus")]/a');
     }
 
 }
