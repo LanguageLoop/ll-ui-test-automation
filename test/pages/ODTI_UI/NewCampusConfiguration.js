@@ -19,6 +19,14 @@ module.exports = {
 
     get campusNameBelowInputTextBox() {
         return $('//span[contains(@id,"IsWithCampus")]/a');
+    },
+
+    get configurationToggleCheckboxLocator() {
+        return '//label[text()="<dynamic>"]/parent::div//input';
+    },
+
+    get cancelButton(){
+        return $('//input[@value="Cancel"]')
     }
 
 }
