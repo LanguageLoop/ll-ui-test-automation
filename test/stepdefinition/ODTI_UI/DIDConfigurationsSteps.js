@@ -32,3 +32,7 @@ When(/^the Admin is on the Duplicate Campus Configuration screen of Campus "(.*)
     }
 })
 
+Then(/^the admin is navigated back to the configuration list screen$/, function () {
+    let pageTitleActual = action.getPageTitle();
+    chai.expect(pageTitleActual).to.includes("DID Configurations");
+})

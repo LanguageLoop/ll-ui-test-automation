@@ -46,3 +46,22 @@ Then(/^the Campus name "(.*)" is displayed below the input box$/, function (camp
     let campusNameTextBelowInputBox = action.getElementText(newCampusConfigurationPage.campusNameBelowInputTextBox);
     chai.expect(campusNameTextBelowInputBox).to.equal(campusName);
 })
+
+When(/^the user has filled in all the required data configuration toggles "(.*)"$/, function (configurationToggles) {
+    let configurationTogglesList = configurationToggles.split(",")
+    for (let index=0; index<configurationTogglesList.length; index++){
+        let configurationToggleElement = $(newCampusConfigurationPage.configurationToggleCheckboxLocator.replace("<dynamic>",configurationTogglesList[index]));
+        action.isExistingWait(configurationToggleElement,10000);
+        action.clickWithOutWait(configurationToggleElement);
+    }
+})
+
+When(/^the user has clicked the CANCEL button$/, function () {
+    action.isVisibleWait(newCampusConfigurationPage.cancelButton,10000);
+    action.clickElement(newCampusConfigurationPage.cancelButton);
+})
+
+Then(/^the data entered is not saved$/, function () {
+    let pageTitleActual = action.getPageTitle();
+    chai.expect(pageTitleActual).to.not.includes("New Campus Configuration");
+})
