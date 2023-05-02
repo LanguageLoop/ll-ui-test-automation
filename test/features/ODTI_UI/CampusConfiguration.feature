@@ -64,3 +64,21 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus pin | campus name     |
       | LLAdmin@looped.in | Octopus@6 | 29449      | Contoso Pty LTD |
+
+    #LL-489: Scenario 5 - Cancel
+  @LL-489 @CampusODTIConfigurationCancel
+  Scenario Outline: Campus ODTI Configuration Cancel
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Campus Configuration screen
+    And has typed in a Campus PIN "<campus pin>"
+    And the PIN is searched
+    And the user has filled in all the required data configuration toggles "<configuration toggles>"
+    And the user has clicked the CANCEL button
+    Then the data entered is not saved
+    And the admin is navigated back to the configuration list screen
+
+    Examples:
+      | username          | password  | configuration toggles                                                                                      | campus pin |
+      | LLAdmin@looped.in | Octopus@6 | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | 33124      |
