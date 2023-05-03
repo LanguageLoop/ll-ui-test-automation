@@ -924,3 +924,17 @@ When(/^I click on Show Expired toggle in campus page$/, function () {
     action.isVisibleWait(campusDetailsPage.showExpiredBlocksToggleCheck, 10000);
     action.clickElement(campusDetailsPage.showExpiredBlocksToggleCheck);
 })
+
+Then(/^the Customised field will be inherited by the Campus$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,10000);
+    chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.true;
+})
+
+Then(/^the Customised field can be overridden on the Campus page$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    action.clickElement(customisedFieldOverrideLink);
+    let overrideCampusDataButtonOnManageCustomisedFieldDisplayStatus = action.isVisibleWait(campusDetailsPage.overrideCampusDataButtonOnManageCustomisedField,10000);
+    chai.expect(overrideCampusDataButtonOnManageCustomisedFieldDisplayStatus).to.be.true;
+    action.clickElement(campusDetailsPage.overrideCampusDataButtonOnManageCustomisedField);
+})
