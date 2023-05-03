@@ -404,3 +404,26 @@ Then(/^in contract page, the actual preference set "(.*)" still stays the same$/
     let optionSelectedStatus = action.isSelectedWait(contractGenderODTIDropdownOptionLocatorElement, 10000);
     chai.expect(optionSelectedStatus).to.be.true;
 })
+
+When(/^the Admin adds a Customised ODTI Field "(.*)","(.*)","(.*)"$/, function (fieldName, maxLength, audioLabel) {
+    action.isVisibleWait(contractManagementPage.addCustomizedFieldLink, 10000);
+    action.clickElement(contractManagementPage.addCustomizedFieldLink);
+    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+    action.enterValue(contractManagementPage.fieldNameTextBoxOnEditOptions,GlobalData.CUSTOMISED_FIELD_NAME);
+    action.clickElement(contractManagementPage.freeTextRadioButton);
+    action.clickElement(contractManagementPage.audibleInODTICheckboxOnEditOptions);
+    action.isVisibleWait(contractManagementPage.maxLengthTextBoxOnEditOptions,10000);
+    action.enterValue(contractManagementPage.maxLengthTextBoxOnEditOptions,maxLength);
+    action.enterValue(contractManagementPage.audioLabelTextBoxOnEditOptions,audioLabel);
+    action.clickElement(contractManagementPage.addButtonOnEditOptions);
+})
+
+Then(/^the Customised ODTI Field is removed$/, function () {
+    let customisedFieldToggle = $(contractManagementPage.customisedFieldToggleDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
+    action.isVisibleWait(customisedFieldToggle, 10000);
+    action.clickElement(customisedFieldToggle);
+    let customisedFieldRemoveLink = $(contractManagementPage.customisedFieldRemoveLinkDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
+    action.isVisibleWait(customisedFieldRemoveLink, 10000);
+    action.clickElement(customisedFieldRemoveLink);
+    action.isNotVisibleWait(customisedFieldToggle, 10000);
+})
