@@ -888,3 +888,25 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   | active block name |
    | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification | VITS LANGUAGELINK |
+
+  #LL-514 Scenario 1: Campus inherits Contract customised ODTI fields
+ @LL-514 @CampusInheritsContractCustomizedFields
+ Scenario Outline: Campus inherits Contract customised ODTI fields
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And the Admin adds a Customised ODTI Field "<customised field name>","<max length>","<audio label>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  Then the Customised field will be inherited by the Campus
+  And the Customised field can be overridden on the Campus page
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And the Customised ODTI Field is removed
+
+  Examples:
+   | username          | password  | contract title                                   | customised field name | max length | audio label      | campus id |
+   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | AutomationField       | 50         | automation label | 33124     |
