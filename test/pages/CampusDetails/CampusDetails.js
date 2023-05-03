@@ -470,4 +470,12 @@ module.exports ={
     get showExpiredBlocksToggleCheck() {
         return $('//label[contains(@id,"wt25_block_wtCheckbox")]');
     },
+
+    get customisedFieldsOverrideLinkLocator() {
+        return '//table[contains(@id,"CustFieldOverride")]/tbody//a[text()="<dynamic>"]';
+    },
+
+    get overrideCampusDataButtonOnManageCustomisedField() {
+        return $('//input[@value="Override Contract Data"]')
+    },
 }

@@ -35,4 +35,5 @@ module.exports={
     ODTI_JOB_CONTRACT_ID:"",
     ODTI_JOBS_PAGE_WINDOW_HANDLE:"",
     ODTI_DID_URL:"",
+    CUSTOMISED_FIELD_NAME:""
 }
