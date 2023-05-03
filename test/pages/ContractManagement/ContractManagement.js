@@ -229,4 +229,40 @@ module.exports = {
     get contractGenderODTIDropdownOptionLocator() {
         return '//span[text()="Gender (On-demand TI)"]/ancestor::div[@class="PreferenceInfoBlock Card"]//select[contains(@id,"Preference")]/option[text()="<dynamicOption>"]';
     },
+
+    get addCustomizedFieldLink() {
+        return $('//div[contains(text(),"Add customized field")]/parent::a');
+    },
+
+    get fieldNameTextBoxOnEditOptions() {
+        return $('//label[text()="Field Name"]/following-sibling::input');
+    },
+
+    get freeTextRadioButton() {
+        return $('//label[text()="Free text"]/parent::div/parent::div//input[@type="radio"]');
+    },
+
+    get audibleInODTICheckboxOnEditOptions() {
+        return $('//label[text()="Audible in ODTI"]/preceding-sibling::input');
+    },
+
+    get addButtonOnEditOptions() {
+        return $('//input[contains(@id,"SaveModal") and @value="Add"]');
+    },
+
+    get maxLengthTextBoxOnEditOptions() {
+        return $('//input[contains(@id,"CustomizedFields_ODTIInputMaxlength")]');
+    },
+
+    get audioLabelTextBoxOnEditOptions() {
+        return $('//input[contains(@id,"CustomizedFields_ODTIAudioName")]');
+    },
+
+    get customisedFieldToggleDynamicLocator() {
+        return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]'
+    },
+
+    get customisedFieldRemoveLinkDynamicLocator() {
+        return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]/following::a[text()="Remove"]'
+    }
 }
