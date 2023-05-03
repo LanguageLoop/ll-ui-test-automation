@@ -403,5 +403,14 @@ module.exports={
     launchURL(URL) {
         browser.url(URL);
     },
+
+    /**
+     * Clicks on the element without explicitly waiting for the element
+     * @param elt
+     */
+    clickWithOutWait(elt)
+    {
+        elt.click()
+    },
 }
 
