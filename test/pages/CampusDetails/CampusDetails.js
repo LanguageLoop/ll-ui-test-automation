@@ -478,4 +478,24 @@ module.exports ={
     get overrideCampusDataButtonOnManageCustomisedField() {
         return $('//input[@value="Override Contract Data"]')
     },
+
+    get addCustomizedFieldLink() {
+        return $('//a[contains(text(),"Add customized field")]');
+    },
+
+    get manageCustomizedFieldModal() {
+        return $('//span[text()="Manage Customized Field"]/parent::div//parent::div[contains(@id,"DialogContainer")]');
+    },
+
+    get audibleInODTICheckboxOnManageCustomizedFiled() {
+        return $('//div[contains(text(),"Audible in")]/preceding-sibling::input');
+    },
+
+    get audibleInODTICheckboxODTIHyperlink() {
+        return $('//div[contains(text(),"Audible in")]/span[text()="ODTI"]');
+    },
+
+    get onDemandTelephoneInterpretingTextOnTooltip() {
+        return $('//span[text()="On Demand Telephone Interpreting"]');
+    }
 }
