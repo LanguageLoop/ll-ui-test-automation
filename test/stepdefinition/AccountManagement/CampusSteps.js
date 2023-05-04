@@ -938,3 +938,40 @@ Then(/^the Customised field can be overridden on the Campus page$/, function () 
     chai.expect(overrideCampusDataButtonOnManageCustomisedFieldDisplayStatus).to.be.true;
     action.clickElement(campusDetailsPage.overrideCampusDataButtonOnManageCustomisedField);
 })
+
+When(/^they click add Customised Field$/, function () {
+    action.isVisibleWait(campusDetailsPage.addCustomizedFieldLink, 10000);
+    action.clickElement(campusDetailsPage.addCustomizedFieldLink);
+})
+
+When(/^the Manage Customised Field modal is displayed$/, function () {
+    let manageCustomizedFieldModalDisplayStatus = action.isVisibleWait(campusDetailsPage.manageCustomizedFieldModal, 10000);
+    chai.expect(manageCustomizedFieldModalDisplayStatus).to.be.true;
+})
+
+Then(/^they will see the ‘Audible in ODTI’ checkbox$/, function () {
+    let audibleInODTICheckboxDisplayStatus = action.isVisibleWait(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField, 10000);
+    chai.expect(audibleInODTICheckboxDisplayStatus).to.be.true;
+})
+
+When(/^the letters ‘ODTI’ will be a hyperlink$/, function () {
+    let audibleInODTICheckboxODTIHyperlinkClass = action.getElementAttribute(campusDetailsPage.audibleInODTICheckboxODTIHyperlink, "class");
+    chai.expect(audibleInODTICheckboxODTIHyperlinkClass).to.includes("Link")
+})
+
+When(/^they hover over the text ‘ODTI’$/, function () {
+    action.isVisibleWait(campusDetailsPage.audibleInODTICheckboxODTIHyperlink, 10000);
+    browser.execute((el) => {
+        const hoverEvent = new MouseEvent('mouseover', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        el.dispatchEvent(hoverEvent);
+    }, campusDetailsPage.audibleInODTICheckboxODTIHyperlink);
+})
+
+Then(/^a tooltip will display with the following text: On Demand Telephone Interpreting$/, function () {
+    let onDemandTelephoneInterpretingTextOnTooltipExistStatus = action.isExistingWait(campusDetailsPage.onDemandTelephoneInterpretingTextOnTooltip, 3000);
+    chai.expect(onDemandTelephoneInterpretingTextOnTooltipExistStatus).to.be.true;
+})

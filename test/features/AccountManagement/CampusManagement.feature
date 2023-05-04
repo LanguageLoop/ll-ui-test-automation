@@ -910,3 +910,36 @@ Feature: Campus Management features
   Examples:
    | username          | password  | contract title                                   | customised field name | max length | audio label      | campus id |
    | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | AutomationField       | 50         | automation label | 33124     |
+
+  #LL-514 Scenario 2a: Admin views customised ODTI field
+ @LL-514 @ViewsCustomizedODTIFields
+ Scenario Outline: Admin views customised ODTI field
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And the Manage Customised Field modal is displayed
+  Then they will see the ‘Audible in ODTI’ checkbox
+  And the letters ‘ODTI’ will be a hyperlink
+
+  Examples:
+   | username          | password  | campus id |
+   | LLAdmin@looped.in | Octopus@6 | 33124     |
+
+  #LL-514 Scenario 2b: Admin views customised ODTI field tooltip
+ @LL-514 @ViewsCustomizedODTIFieldTooltip
+ Scenario Outline: Admin views customised ODTI field tooltip
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And the Manage Customised Field modal is displayed
+  And they will see the ‘Audible in ODTI’ checkbox
+  And they hover over the text ‘ODTI’
+  Then a tooltip will display with the following text: On Demand Telephone Interpreting
+
+  Examples:
+   | username          | password  | campus id |
+   | LLAdmin@looped.in | Octopus@6 | 33124     |
