@@ -950,7 +950,7 @@ When(/^the Manage Customised Field modal is displayed$/, function () {
 })
 
 Then(/^they will see the ‘Audible in ODTI’ checkbox$/, function () {
-    let audibleInODTICheckboxDisplayStatus = action.isVisibleWait(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedFiled, 10000);
+    let audibleInODTICheckboxDisplayStatus = action.isVisibleWait(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField, 10000);
     chai.expect(audibleInODTICheckboxDisplayStatus).to.be.true;
 })
 

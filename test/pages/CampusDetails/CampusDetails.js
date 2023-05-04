@@ -487,7 +487,7 @@ module.exports ={
         return $('//span[text()="Manage Customized Field"]/parent::div//parent::div[contains(@id,"DialogContainer")]');
     },
 
-    get audibleInODTICheckboxOnManageCustomizedFiled() {
+    get audibleInODTICheckboxOnManageCustomizedField() {
         return $('//div[contains(text(),"Audible in")]/preceding-sibling::input');
     },
 
