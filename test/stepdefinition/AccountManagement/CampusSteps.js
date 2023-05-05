@@ -988,7 +988,7 @@ Then(/^the Max Length and Audio-label fields will display$/, function () {
     chai.expect(audioLabelTextBoxDisplayStatus).to.be.true;
 })
 
-Then(/^these fields will be mandatory$/, function () {
+Then(/^the Max Length and Audio-label fields will be mandatory$/, function () {
     let maxLengthFieldLabelClass = action.getElementAttribute(campusDetailsPage.maxLengthFieldLabelOnManageCustomizedField,"class");
     chai.expect(maxLengthFieldLabelClass).to.includes("MandatoryLabel");
     let audioLabelFieldLabelClass = action.getElementAttribute(campusDetailsPage.audioLabelFieldLabelOnManageCustomizedField,"class");
