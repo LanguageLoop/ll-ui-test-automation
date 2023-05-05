@@ -943,3 +943,39 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id |
    | LLAdmin@looped.in | Octopus@6 | 33124     |
+
+  #LL-514 Scenario 3: Admin selects ‘Audible in ODTI’
+ @LL-514 @AdminSelectsAudibleInODTI
+ Scenario Outline: Admin selects ‘Audible in ODTI’
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And they select ‘Audible in ODTI’ checkbox
+  And the Max Length and Audio-label fields will display
+  And the Max Length and Audio-label fields will be mandatory
+
+  Examples:
+   | username          | password  | campus id |
+   | LLAdmin@looped.in | Octopus@6 | 33124     |
+
+  #LL-514 Scenario 4: Admin fills out ODTI fields
+ @LL-514 @AdminFillsODTIFields
+ Scenario Outline: Admin fills out ODTI fields
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And they select ‘Audible in ODTI’ checkbox
+  And the Max Length and Audio-label fields will display
+  And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
+  And the Admin clicks the ‘Add’ button On Manage Customized Field
+  Then the customised field will be created
+  And there is a checkbox checked for the above custom field under the column Audible in ODTI
+  And the Customised ODTI Field is deleted in Campus
+
+  Examples:
+   | username          | password  | campus id | customised field name | max length | audio label      |
+   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label |
