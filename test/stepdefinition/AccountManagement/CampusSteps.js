@@ -975,3 +975,57 @@ Then(/^a tooltip will display with the following text: On Demand Telephone Inter
     let onDemandTelephoneInterpretingTextOnTooltipExistStatus = action.isExistingWait(campusDetailsPage.onDemandTelephoneInterpretingTextOnTooltip, 3000);
     chai.expect(onDemandTelephoneInterpretingTextOnTooltipExistStatus).to.be.true;
 })
+
+When(/^they select ‘Audible in ODTI’ checkbox$/, function () {
+    action.isVisibleWait(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField, 10000);
+    action.clickElement(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField);
+})
+
+Then(/^the Max Length and Audio-label fields will display$/, function () {
+    let maxLengthTextBoxDisplayStatus = action.isVisibleWait(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField, 10000);
+    chai.expect(maxLengthTextBoxDisplayStatus).to.be.true;
+    let audioLabelTextBoxDisplayStatus = action.isVisibleWait(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField, 10000);
+    chai.expect(audioLabelTextBoxDisplayStatus).to.be.true;
+})
+
+Then(/^these fields will be mandatory$/, function () {
+    let maxLengthFieldLabelClass = action.getElementAttribute(campusDetailsPage.maxLengthFieldLabelOnManageCustomizedField,"class");
+    chai.expect(maxLengthFieldLabelClass).to.includes("MandatoryLabel");
+    let audioLabelFieldLabelClass = action.getElementAttribute(campusDetailsPage.audioLabelFieldLabelOnManageCustomizedField,"class");
+    chai.expect(audioLabelFieldLabelClass).to.includes("MandatoryLabel");
+})
+
+When(/^the Admin enters Customised ODTI Field data "(.*)","(.*)","(.*)" in campus$/, function (fieldName, maxLength, audioLabel) {
+    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+    action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,GlobalData.CUSTOMISED_FIELD_NAME);
+    action.clickElement(campusDetailsPage.freeTextRadioButtonOnManageCustomizedField);
+    action.isVisibleWait(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,20000);
+    action.enterValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,maxLength);
+    action.enterValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField,audioLabel);
+})
+
+When(/^the Admin clicks the ‘Add’ button On Manage Customized Field$/, function () {
+    action.isVisibleWait(campusDetailsPage.addButtonOnManageCustomizedField,10000);
+    action.clickElement(campusDetailsPage.addButtonOnManageCustomizedField);
+})
+
+Then(/^the customised field will be created$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,10000);
+    chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.true;
+})
+
+Then(/^there is a checkbox checked for the above custom field under the column Audible in ODTI$/, function () {
+    let customisedFieldsOverrideAudibleInODTICheckbox = $(campusDetailsPage.customisedFieldsOverrideAudibleInODTICheckboxLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    let customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus = action.isSelectedWait(customisedFieldsOverrideAudibleInODTICheckbox,10000);
+    chai.expect(customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus).to.be.true;
+})
+
+Then(/^the Customised ODTI Field is deleted in Campus$/, function () {
+    let customisedFieldDeleteIcon = $(campusDetailsPage.customisedFieldDeleteIconDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
+    action.isVisibleWait(customisedFieldDeleteIcon, 10000);
+    action.clickElement(customisedFieldDeleteIcon);
+    action.getAlertText();
+    action.acceptAlert();
+    action.isNotVisibleWait(customisedFieldDeleteIcon, 10000);
+})
