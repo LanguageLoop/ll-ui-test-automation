@@ -412,5 +412,24 @@ module.exports={
     {
         elt.click()
     },
+
+    /**
+     * Fetches and Returns The text of the currently displayed alert.
+     * @returns {string}
+     */
+    getAlertText()
+    {
+        let alertText = browser.getAlertText();
+        console.log("Alert Text is: "+alertText);
+        return alertText
+    },
+
+    /**
+     * Clicks OK on currently displayed alert and accepts the alert.
+     */
+    acceptAlert()
+    {
+        return browser.acceptAlert();
+    },
 }
 

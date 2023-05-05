@@ -497,5 +497,41 @@ module.exports ={
 
     get onDemandTelephoneInterpretingTextOnTooltip() {
         return $('//span[text()="On Demand Telephone Interpreting"]');
-    }
+    },
+
+    get maxLengthTextBoxOnManageCustomizedField() {
+        return $('//input[contains(@id,"CustomizedFields_ODTIInputMaxlength")]');
+    },
+
+    get audioLabelTextBoxOnManageCustomizedField() {
+        return $('//input[contains(@id,"CustomizedFields_ODTIAudioName")]');
+    },
+
+    get maxLengthFieldLabelOnManageCustomizedField() {
+        return $('//label[contains(@for,"CustomizedFields_ODTIInputMaxlength")]');
+    },
+
+    get audioLabelFieldLabelOnManageCustomizedField() {
+        return $('//label[contains(@for,"CustomizedFields_ODTIAudioName")]');
+    },
+
+    get fieldNameTextBoxOnManageCustomizedField() {
+        return $('//label[text()="Field Name"]/following-sibling::input');
+    },
+
+    get freeTextRadioButtonOnManageCustomizedField() {
+        return $('//div[text()="Free text"]/parent::div/parent::div//input[@type="radio"]');
+    },
+
+    get addButtonOnManageCustomizedField() {
+        return $('//input[@value="Add" and (not(contains(@id,"AddModal2")))]');
+    },
+
+    get customisedFieldsOverrideAudibleInODTICheckboxLocator() {
+        return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]';
+    },
+
+    get customisedFieldDeleteIconDynamicLocator() {
+        return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[9]//a[@class="LinkDelete"]';
+    },
 }
