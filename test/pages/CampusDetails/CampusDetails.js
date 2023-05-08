@@ -534,4 +534,16 @@ module.exports ={
     get customisedFieldDeleteIconDynamicLocator() {
         return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[9]//a[@class="LinkDelete"]';
     },
+
+    get maxLengthRequiredFieldMessageOnManageCustomizedField() {
+        return $('//input[contains(@id,"CustomizedFields_ODTIInputMaxlength")]/following-sibling::span[text()="Required field!"]');
+    },
+
+    get audioLabelRequiredFieldMessageOnManageCustomizedField() {
+        return $('//input[contains(@id,"CustomizedFields_ODTIAudioName")]/following-sibling::span[text()="Required field!"]');
+    },
+
+    get saveButtonOnManageCustomizedField() {
+        return $('//input[@value="Save" and (contains(@id,"AddModal"))]');
+    },
 }
