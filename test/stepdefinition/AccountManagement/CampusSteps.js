@@ -1029,3 +1029,51 @@ Then(/^I click on delete icon on Customised ODTI Field in Campus$/, function () 
     action.acceptAlert();
     action.isNotVisibleWait(customisedFieldDeleteIcon, 10000);
 })
+
+Then(/^there is no data in the Max Length and Audio-label fields$/, function () {
+    let maxLengthFieldLabelClass = action.getElementValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField);
+    chai.expect(maxLengthFieldLabelClass).to.includes("0");
+    let audioLabelFieldLabelClass = action.getElementValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField);
+    chai.expect(audioLabelFieldLabelClass).to.includes("");
+})
+
+When(/^the Admin enters Customised field name "(.*)" in campus$/, function (fieldName) {
+    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+    action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,GlobalData.CUSTOMISED_FIELD_NAME);
+})
+
+Then(/^the following inline error message will display: Required field!$/, function () {
+    let maxLengthRequiredFieldMessageDisplayStatus = action.isVisibleWait(campusDetailsPage.maxLengthRequiredFieldMessageOnManageCustomizedField, 10000);
+    chai.expect(maxLengthRequiredFieldMessageDisplayStatus).to.be.true;
+    let audioLabelRequiredFieldMessageDisplayStatus = action.isVisibleWait(campusDetailsPage.audioLabelRequiredFieldMessageOnManageCustomizedField, 10000);
+    chai.expect(audioLabelRequiredFieldMessageDisplayStatus).to.be.true;
+})
+
+When(/^they select Customised field in the Campus page$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    action.clickElement(customisedFieldOverrideLink);
+})
+
+When(/^Manage Customized Field popup appears$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    action.clickElement(customisedFieldOverrideLink);
+})
+
+When(/^I edit any data under Audible in ODTI "(.*)","(.*)" in campus$/, function (maxLength, audioLabel) {
+    action.clickElement(campusDetailsPage.freeTextRadioButtonOnManageCustomizedField);
+    action.isVisibleWait(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,20000);
+    action.enterValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,maxLength);
+    action.enterValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField,audioLabel);
+})
+
+When(/^the Admin clicks the ‘Save’ button On Manage Customized Field$/, function () {
+    action.isVisibleWait(campusDetailsPage.saveButtonOnManageCustomizedField,10000);
+    action.clickElement(campusDetailsPage.saveButtonOnManageCustomizedField);
+})
+
+Then(/^the custom field is updated with latest values "(.*)","(.*)"$/, function (maxLength, audioLabel) {
+    let maxLengthFieldLabelClass = action.getElementValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField);
+    chai.expect(maxLengthFieldLabelClass).to.includes(maxLength);
+    let audioLabelFieldLabelClass = action.getElementValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField);
+    chai.expect(audioLabelFieldLabelClass).to.includes(audioLabel);
+})
