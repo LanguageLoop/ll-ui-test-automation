@@ -906,6 +906,10 @@ Feature: Campus Management features
   And I search for contract title "<contract title>"
   And I click the contract link "<contract title>" from search results
   And the Customised ODTI Field is removed
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And I click on delete icon on Customised ODTI Field in Campus
 
   Examples:
    | username          | password  | contract title                                   | customised field name | max length | audio label      | campus id |
@@ -974,7 +978,7 @@ Feature: Campus Management features
   And the Admin clicks the ‘Add’ button On Manage Customized Field
   Then the customised field will be created
   And there is a checkbox checked for the above custom field under the column Audible in ODTI
-  And the Customised ODTI Field is deleted in Campus
+  And I click on delete icon on Customised ODTI Field in Campus
 
   Examples:
    | username          | password  | campus id | customised field name | max length | audio label      |

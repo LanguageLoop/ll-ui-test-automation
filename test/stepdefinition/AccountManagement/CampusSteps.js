@@ -1021,7 +1021,7 @@ Then(/^there is a checkbox checked for the above custom field under the column A
     chai.expect(customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus).to.be.true;
 })
 
-Then(/^the Customised ODTI Field is deleted in Campus$/, function () {
+Then(/^I click on delete icon on Customised ODTI Field in Campus$/, function () {
     let customisedFieldDeleteIcon = $(campusDetailsPage.customisedFieldDeleteIconDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
     action.isVisibleWait(customisedFieldDeleteIcon, 10000);
     action.clickElement(customisedFieldDeleteIcon);
