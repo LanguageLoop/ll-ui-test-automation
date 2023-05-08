@@ -983,3 +983,47 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id | customised field name | max length | audio label      |
    | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label |
+
+  #LL-514 Scenario 5: Required fields not filled out
+ @LL-514 @CustomisedRequiredFieldsNotFilled
+ Scenario Outline: Required fields not filled out
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And they select ‘Audible in ODTI’ checkbox
+  And the Max Length and Audio-label fields will display
+  And there is no data in the Max Length and Audio-label fields
+  And the Admin enters Customised field name "<customised field name>" in campus
+  And the Admin clicks the ‘Add’ button On Manage Customized Field
+  Then the following inline error message will display: Required field!
+
+  Examples:
+   | username          | password  | campus id | customised field name |
+   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       |
+
+  #LL-514 Scenario 6: Editing the added custom field ‘Audible in ODTI’
+ @LL-514 @EditAddedCustomFieldODTI
+ Scenario Outline: Editing the added custom field ‘Audible in ODTI’
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And they select ‘Audible in ODTI’ checkbox
+  And the Max Length and Audio-label fields will display
+  And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
+  And the Admin clicks the ‘Add’ button On Manage Customized Field
+  And the customised field will be created
+  And they select Customised field in the Campus page
+  And the Manage Customised Field modal is displayed
+  And I edit any data under Audible in ODTI "<max length edit>","<audio label edit>" in campus
+  And the Admin clicks the ‘Save’ button On Manage Customized Field
+  And they select Customised field in the Campus page
+  Then the custom field is updated with latest values "<max length edit>","<audio label edit>"
+  And I click on delete icon on Customised ODTI Field in Campus
+
+  Examples:
+   | username          | password  | campus id | customised field name | max length | audio label      | max length edit | audio label edit  |
+   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label | 60              | automation label2 |
