@@ -1027,3 +1027,23 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id | customised field name | max length | audio label      | max length edit | audio label edit  |
    | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label | 60              | automation label2 |
+
+  #LL-514 Scenario 7: Deleting the added custom field Audible in ODTI
+ @LL-514 @DeleteCustomField
+ Scenario Outline: Deleting the added custom field Audible in ODTI
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they click add Customised Field
+  And they select ‘Audible in ODTI’ checkbox
+  And the Max Length and Audio-label fields will display
+  And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
+  And the Admin clicks the ‘Add’ button On Manage Customized Field
+  And the customised field will be created
+  And I click on delete icon on Customised ODTI Field in Campus
+  Then the custom field is deleted in campus
+
+  Examples:
+   | username          | password  | campus id | customised field name | max length | audio label      |
+   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label |
