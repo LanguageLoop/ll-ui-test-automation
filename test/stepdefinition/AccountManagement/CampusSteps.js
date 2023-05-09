@@ -1077,3 +1077,9 @@ Then(/^the custom field is updated with latest values "(.*)","(.*)"$/, function 
     let audioLabelFieldLabelClass = action.getElementValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField);
     chai.expect(audioLabelFieldLabelClass).to.includes(audioLabel);
 })
+
+Then(/^the custom field is deleted in campus$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,1000);
+    chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.false;
+})
