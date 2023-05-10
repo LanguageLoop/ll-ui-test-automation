@@ -1,4 +1,4 @@
-@ODTIJobsCBO
+@ODTIInterpretersCSO
 Feature: ODTI Interpreters CSO features
 
   Background: Load the Loopedin login page

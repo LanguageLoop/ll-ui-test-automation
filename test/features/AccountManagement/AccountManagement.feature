@@ -1,4 +1,4 @@
-@Admin
+@AccountManagement
 Feature: Account Management features
 
   Background: Load the Loopedin login page

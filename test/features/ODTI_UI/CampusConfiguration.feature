@@ -1,4 +1,4 @@
-@ODTIJobsCBO
+@CampusConfiguration
 Feature: ODTI_UI Campus Configuration features
 
   Background: Load the ODTI DID Configurations page
