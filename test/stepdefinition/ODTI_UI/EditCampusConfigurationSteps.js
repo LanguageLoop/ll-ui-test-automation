@@ -28,3 +28,34 @@ Then(/^user cannot update the Service Type and Campus pin fields values$/, funct
     let campusPinInputReadOnlyClickableStatus = action.isClickableWait(editCampusConfigurationPage.campusPinInputTextBoxReadOnly, 1000);
     chai.expect(campusPinInputReadOnlyClickableStatus).to.be.false;
 })
+
+When(/^make Configuration Is Active to Active or Inactive$/, function () {
+    action.isExistingWait(editCampusConfigurationPage.configurationActiveToggle, 10000);
+    action.clickWithOutWait(editCampusConfigurationPage.configurationActiveToggle);
+})
+
+When(/^update the options settings under Configuration section "(.*)"$/, function (configurationToggles) {
+    let configurationTogglesList = configurationToggles.split(",")
+    for (let index = 0; index < configurationTogglesList.length; index++) {
+        let configurationToggleElement = $(editCampusConfigurationPage.configurationToggleCheckboxLocator.replace("<dynamic>", configurationTogglesList[index]));
+        action.isNotVisibleWait(configurationToggleElement, 2000);
+        action.isExistingWait(configurationToggleElement, 10000);
+        action.clickWithOutWait(configurationToggleElement);
+    }
+})
+
+When(/^clicks on Save button in Edit Campus Configuration$/, function () {
+    action.isNotVisibleWait(editCampusConfigurationPage.saveButton, 2000);
+    action.isVisibleWait(editCampusConfigurationPage.saveButton, 10000);
+    action.clickElement(editCampusConfigurationPage.saveButton);
+    action.isNotVisibleWait(editCampusConfigurationPage.saveButton, 2000);
+})
+
+Then(/^the campus details "(.*)" are updated$/, function (configurationToggles) {
+    let configurationTogglesList = configurationToggles.split(",")
+    for (let index = 0; index < configurationTogglesList.length; index++) {
+        let configurationToggleElement = $(editCampusConfigurationPage.configurationToggleCheckboxLocator.replace("<dynamic>", configurationTogglesList[index]));
+        let toggleOriginalValue = action.getElementAttribute(configurationToggleElement,"origvalue");
+        chai.expect(toggleOriginalValue).to.equal("false");
+    }
+})
