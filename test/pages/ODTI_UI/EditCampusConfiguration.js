@@ -21,4 +21,15 @@ module.exports = {
         return $('//input[contains(@id,"DIDConfiguration_CampusBillToId") and @readonly]');
     },
 
+    get configurationActiveToggle() {
+        return $('//label[text()="Configuration Is Active"]/parent::div//input');
+    },
+
+    get configurationToggleCheckboxLocator() {
+        return '//label[text()="<dynamic>"]/parent::div//input';
+    },
+
+    get saveButton() {
+        return $('//input[@value="Save"]');
+    }
 }
