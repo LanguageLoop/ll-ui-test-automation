@@ -11,6 +11,14 @@ module.exports = {
 
     get savedConfiguration() {
         return $('//div[contains(@id,"DIDConfigurationForm")]');
-    }
+    },
+
+    get TIServiceTypeDropdownDisabled() {
+        return $('//select[contains(@id,"TIServiceType") and @disabled]');
+    },
+
+    get campusPinInputTextBoxReadOnly() {
+        return $('//input[contains(@id,"DIDConfiguration_CampusBillToId") and @readonly]');
+    },
 
 }

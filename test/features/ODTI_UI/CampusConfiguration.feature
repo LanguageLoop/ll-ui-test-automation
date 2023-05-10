@@ -82,3 +82,18 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | configuration toggles                                                                                      | campus pin |
       | LLAdmin@looped.in | Octopus@6 | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | 33124      |
+
+    #LL-489: Scenario 6: User is unable to edit the Campus pin and Service type in the Edit Campus Configuration
+  @LL-489 @UnableToEditCampusPinServiceType
+  Scenario Outline: User is unable to edit the Campus pin and Service type in the Edit Campus Configuration
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Edit Campus Configuration screen of Campus "<campus>"
+    And the Edit Campus Configuration Page is displayed
+    Then the Service Type and Campus pin fields are read only
+    And user cannot update the Service Type and Campus pin fields values
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
