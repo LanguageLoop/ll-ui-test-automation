@@ -37,3 +37,23 @@ Then(/^the admin is navigated back to the configuration list screen$/, function 
     let pageTitleActual = action.getPageTitle();
     chai.expect(pageTitleActual).to.includes("DID Configurations");
 })
+
+When(/^user searches for Campus name or DID "(.*)" by entering valid data in the search field$/, function (DIDOrCampusName) {
+    action.isVisibleWait(DIDConfigurationsPage.searchByDIDOrCampusNameTextBox, 10000);
+    action.enterValue(DIDConfigurationsPage.searchByDIDOrCampusNameTextBox, DIDOrCampusName);
+})
+
+When(/^clicks on Search button in DID Campus configuration$/, function () {
+    action.isVisibleWait(DIDConfigurationsPage.searchButton, 10000);
+    action.clickElement(DIDConfigurationsPage.searchButton);
+    action.isNotVisibleWait(DIDConfigurationsPage.searchButton, 2000);
+})
+
+Then(/^the correct search results campus "(.*)" are displayed$/, function (expectedCampus) {
+    let tableRowsCount = DIDConfigurationsPage.tableRowsCount;
+    for (let row = 1; row <= tableRowsCount; row++) {
+        let campusValueElement = $(DIDConfigurationsPage.campusValueInTable.replace("<dynamicRowNumber>", row.toString()));
+        let campusValueActual = action.getElementText(campusValueElement);
+        chai.expect(campusValueActual).to.equal(expectedCampus);
+    }
+})
