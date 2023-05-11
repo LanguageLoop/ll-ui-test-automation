@@ -119,3 +119,17 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus                  | configuration toggles                                                                                      | configuration toggles updated                                                                                                      |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | Configuration Is Active,Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
+
+    #LL-489: Scenario 8: User can perform search using DID or Campus Pin
+  @LL-489 @SearchUsingDIDOrCampusPin
+  Scenario Outline: User can perform search using DID or Campus Pin
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And user searches for Campus name or DID "<campus name>" by entering valid data in the search field
+    And clicks on Search button in DID Campus configuration
+    Then the correct search results campus "<campus>" are displayed
+
+    Examples:
+      | username          | password  | campus                  | campus name     |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Contoso Pty LTD |
