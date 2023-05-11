@@ -23,5 +23,21 @@ module.exports = {
 
     get duplicateCampusConfigurationLinksLocator() {
         return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Duplicate"]';
-    }
+    },
+
+    get searchByDIDOrCampusNameTextBox() {
+        return $('//input[contains(@id,"SearchInput2")]');
+    },
+
+    get searchButton() {
+        return $('//input[contains(@id,"SearchInput2")]/following-sibling::input[@value="Search"]')
+    },
+
+    get tableRowsCount() {
+        return $$('//input[contains(@id,"SearchInput2")]/parent::div/parent::div//tbody//tr').length;
+    },
+
+    get campusValueInTable() {
+        return '//input[contains(@id,"SearchInput2")]/parent::div/parent::div//tbody//tr[<dynamicRowNumber>]/td[1]';
+    },
 }
