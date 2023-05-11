@@ -1,4 +1,4 @@
-@ODTIJobsCBO
+@ODTIJobsFinance
 Feature: ODTI Jobs Finance features
 
   Background: Load the Loopedin login page
