@@ -40,4 +40,20 @@ module.exports = {
     get campusValueInTable() {
         return '//input[contains(@id,"SearchInput2")]/parent::div/parent::div//tbody//tr[<dynamicRowNumber>]/td[1]';
     },
+
+    get serviceTypeDropdown() {
+        return $('//input[contains(@id,"SearchInput2")]/following-sibling::select');
+    },
+
+    get serviceTypeValueInTable() {
+        return '//input[contains(@id,"SearchInput2")]/parent::div/parent::div//tbody//tr[<dynamicRowNumber>]/td[2]';
+    },
+
+    get didConfigurationTab() {
+        return $('//div[@role="tab" and text()="DID Configuration"]');
+    },
+
+    get didConfigurationTable() {
+        return $('//table[contains(@id,"DIDConfigurationTable")]')
+    },
 }
