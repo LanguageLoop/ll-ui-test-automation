@@ -57,3 +57,27 @@ Then(/^the correct search results campus "(.*)" are displayed$/, function (expec
         chai.expect(campusValueActual).to.equal(expectedCampus);
     }
 })
+
+When(/^user selects any Service Type "(.*)" from the dropdown$/, function (serviceType) {
+    action.isVisibleWait(DIDConfigurationsPage.serviceTypeDropdown, 10000);
+    action.selectTextFromDropdown(DIDConfigurationsPage.serviceTypeDropdown, serviceType);
+})
+
+Then(/^the correct search results service type "(.*)" are displayed$/, function (expectedServiceType) {
+    let tableRowsCount = DIDConfigurationsPage.tableRowsCount;
+    for (let row = 1; row <= tableRowsCount; row++) {
+        let serviceTypeElement = $(DIDConfigurationsPage.serviceTypeValueInTable.replace("<dynamicRowNumber>", row.toString()));
+        let serviceTypeActual = action.getElementText(serviceTypeElement);
+        chai.expect(serviceTypeActual).to.equal(expectedServiceType);
+    }
+})
+
+When(/^the Admin is on the DID Configurations Tab$/, function () {
+    action.isVisibleWait(DIDConfigurationsPage.didConfigurationTab, 10000);
+    action.clickElement(DIDConfigurationsPage.didConfigurationTab);
+})
+
+When(/^the user sees a table that lists all the DID configurations defined$/, function () {
+    let didConfigurationTableDisplayStatus = action.isVisibleWait(DIDConfigurationsPage.didConfigurationTable, 10000);
+    chai.expect(didConfigurationTableDisplayStatus).to.be.true;
+})
