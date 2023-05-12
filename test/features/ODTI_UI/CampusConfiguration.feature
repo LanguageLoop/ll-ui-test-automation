@@ -133,3 +133,17 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus                  | campus name     |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Contoso Pty LTD |
+
+    #LL-489: Scenario 9: User can perform search using Service Type
+  @LL-489 @SearchUsingServiceType
+  Scenario Outline: User can perform search using Service Type
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And user selects any Service Type "<service type>" from the dropdown
+    And clicks on Search button in DID Campus configuration
+    Then the correct search results service type "<service type>" are displayed
+
+    Examples:
+      | username          | password  | service type |
+      | LLAdmin@looped.in | Octopus@6 | General TI   |
