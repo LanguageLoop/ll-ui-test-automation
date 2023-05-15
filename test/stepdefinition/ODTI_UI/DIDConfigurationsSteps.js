@@ -77,7 +77,48 @@ When(/^the Admin is on the DID Configurations Tab$/, function () {
     action.clickElement(DIDConfigurationsPage.didConfigurationTab);
 })
 
-When(/^the user sees a table that lists all the DID configurations defined$/, function () {
+Then(/^the user sees a table that lists all the DID configurations defined$/, function () {
     let didConfigurationTableDisplayStatus = action.isVisibleWait(DIDConfigurationsPage.didConfigurationTable, 10000);
     chai.expect(didConfigurationTableDisplayStatus).to.be.true;
+})
+
+Then(/^each row shows the "(.*)" and "(.*)" links under DID Configuration tab$/, function (expectedHeaders,expectedLinks) {
+    let didConfigurationTableHeaderRowText = action.getElementText(DIDConfigurationsPage.didConfigurationTableHeaderRow, 10000);
+    let expectedHeadersList = expectedHeaders.split(",")
+    for (let i=0; i<expectedHeadersList.length;i++) {
+        chai.expect(didConfigurationTableHeaderRowText).to.includes(expectedHeadersList[i]);
+    }
+    let didConfigurationTableEditAndDuplicateLinks = action.getElementText(DIDConfigurationsPage.didConfigurationTableEditAndDuplicateLinks, 10000);
+    let expectedLinksList = expectedLinks.split(",")
+    for (let i=0; i<expectedLinksList.length;i++) {
+        chai.expect(didConfigurationTableEditAndDuplicateLinks).to.includes(expectedLinksList[i]);
+    }
+})
+
+Then(/^the user sees a New Configuration button under DID Configuration tab$/, function () {
+    let newConfigurationButtonDisplayStatus = action.isVisibleWait(DIDConfigurationsPage.newConfigurationButtonUnderDIDConfiguration, 10000);
+    chai.expect(newConfigurationButtonDisplayStatus).to.be.true;
+})
+
+Then(/^the user sees a table that lists all the Campus configurations defined$/, function () {
+    let campusConfigurationTableDisplayStatus = action.isVisibleWait(DIDConfigurationsPage.campusConfigurationTable, 10000);
+    chai.expect(campusConfigurationTableDisplayStatus).to.be.true;
+})
+
+Then(/^each row shows the "(.*)" and "(.*)" links under Campus Configuration tab$/, function (expectedHeaders,expectedLinks) {
+    let campusConfigurationTableHeaderRowText = action.getElementText(DIDConfigurationsPage.campusConfigurationTableHeaderRow, 10000);
+    let expectedHeadersList = expectedHeaders.split(",")
+    for (let i=0; i<expectedHeadersList.length;i++) {
+        chai.expect(campusConfigurationTableHeaderRowText).to.includes(expectedHeadersList[i]);
+    }
+    let campusConfigurationTableEditAndDuplicateLinks = action.getElementText(DIDConfigurationsPage.campusConfigurationTableEditAndDuplicateLinks, 10000);
+    let expectedLinksList = expectedLinks.split(",")
+    for (let i=0; i<expectedLinksList.length;i++) {
+        chai.expect(campusConfigurationTableEditAndDuplicateLinks).to.includes(expectedLinksList[i]);
+    }
+})
+
+Then(/^the user sees a New Configuration button under Campus Configuration tab$/, function () {
+    let newConfigurationButtonDisplayStatus = action.isVisibleWait(DIDConfigurationsPage.newConfigurationButtonUnderCampusConfiguration, 10000);
+    chai.expect(newConfigurationButtonDisplayStatus).to.be.true;
 })
