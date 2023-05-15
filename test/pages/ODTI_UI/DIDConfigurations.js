@@ -56,4 +56,28 @@ module.exports = {
     get didConfigurationTable() {
         return $('//table[contains(@id,"DIDConfigurationTable")]')
     },
+
+    get didConfigurationTableHeaderRow() {
+        return $('//table[contains(@id,"DIDConfigurationTable")]/thead/tr')
+    },
+
+    get didConfigurationTableEditAndDuplicateLinks() {
+        return $('//table[contains(@id,"DIDConfigurationTable")]/tbody/tr[1]//a[not(contains(text(),"-"))]/parent::td');
+    },
+
+    get newConfigurationButtonUnderDIDConfiguration() {
+        return $('//input[@value="New Configuration" and contains(@onclick,"DIDConfiguration")]');
+    },
+
+    get campusConfigurationTable() {
+        return $('//table[contains(@id,"CampusConfigurationTable")]')
+    },
+
+    get campusConfigurationTableHeaderRow() {
+        return $('//table[contains(@id,"CampusConfigurationTable")]/thead/tr')
+    },
+
+    get campusConfigurationTableEditAndDuplicateLinks() {
+        return $('//table[contains(@id,"CampusConfigurationTable")]/tbody/tr[1]//a[not(contains(text(),"-"))]/parent::td');
+    },
 }
