@@ -122,3 +122,13 @@ Then(/^the user sees a New Configuration button under Campus Configuration tab$/
     let newConfigurationButtonDisplayStatus = action.isVisibleWait(DIDConfigurationsPage.newConfigurationButtonUnderCampusConfiguration, 10000);
     chai.expect(newConfigurationButtonDisplayStatus).to.be.true;
 })
+
+When(/^the user has clicked on the New Configuration button under DID Configuration tab$/, function () {
+    action.isVisibleWait(DIDConfigurationsPage.newConfigurationButtonUnderDIDConfiguration, 10000);
+    action.clickElement(DIDConfigurationsPage.newConfigurationButtonUnderDIDConfiguration);
+})
+
+When(/^the user has clicked on the New Configuration button under Campus Configuration tab$/, function () {
+    action.isVisibleWait(DIDConfigurationsPage.newConfigurationButtonUnderCampusConfiguration, 10000);
+    action.clickElement(DIDConfigurationsPage.newConfigurationButtonUnderCampusConfiguration);
+})
