@@ -65,3 +65,9 @@ Then(/^the data entered is not saved$/, function () {
     let pageTitleActual = action.getPageTitle();
     chai.expect(pageTitleActual).to.not.includes("New Campus Configuration");
 })
+
+Then(/^a blank form is shown in New Campus Configuration$/, function () {
+    action.isVisibleWait(newCampusConfigurationPage.campusPinInputTextBox, 10000);
+    let campusPinOrigValue = action.getElementAttribute(newCampusConfigurationPage.campusPinInputTextBox,"origvalue");
+    chai.expect(campusPinOrigValue).to.equal("");
+})
