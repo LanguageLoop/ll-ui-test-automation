@@ -175,3 +175,31 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | table headers                     | table row links |
       | LLAdmin@looped.in | Octopus@6 | Campus,Service Type,DID,Is Active | Edit,Duplicate  |
+
+    #LL-515: Scenario 2a - Clicking “New Configuration”
+  @LL-515 @ClickDIDNewConfiguration
+  Scenario Outline: Clicking DID New Configuration
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    Then the user is navigated to the DID Configuration Details screen
+    And a blank form is shown in New DID Configuration
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-515: Scenario 2b - Clicking “New Configuration”
+  @LL-515 @ClickCampusNewConfiguration
+  Scenario Outline: Clicking Campus New Configuration
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the user has clicked on the New Configuration button under Campus Configuration tab
+    Then the new Campus Configuration Page is displayed
+    And a blank form is shown in New Campus Configuration
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
