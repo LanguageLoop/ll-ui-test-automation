@@ -132,3 +132,16 @@ When(/^the user has clicked on the New Configuration button under Campus Configu
     action.isVisibleWait(DIDConfigurationsPage.newConfigurationButtonUnderCampusConfiguration, 10000);
     action.clickElement(DIDConfigurationsPage.newConfigurationButtonUnderCampusConfiguration);
 })
+
+When(/^the Admin is on the Edit DID Configuration screen of Campus "(.*)"$/, function (campusPin) {
+    let editDIDConfigurationLinksCount = $$(DIDConfigurationsPage.editDIDConfigurationLinksLocator.replace("<dynamicCampusPin>", campusPin)).length;
+    for (let index = 1; index <= editDIDConfigurationLinksCount; index++) {
+        let editDIDConfigurationLink = $(DIDConfigurationsPage.editDIDConfigurationLinkLocator.replace("<dynamicCampusPin>", campusPin).replace("<dynamicIndex>", index.toString()));
+        action.isNotVisibleWait(editDIDConfigurationLink, 2000);
+        let editLinkVisible = action.isVisibleWait(editDIDConfigurationLink, 1000);
+        if (editLinkVisible) {
+            action.clickElement(editDIDConfigurationLink);
+            break;
+        }
+    }
+})
