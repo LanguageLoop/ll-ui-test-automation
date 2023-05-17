@@ -203,3 +203,31 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  |
       | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-515: Scenario 3a - Clicking existing configuration Edit link
+  @LL-515 @DIDConfigurationEditLink
+  Scenario Outline: Clicking existing DID configuration Edit link
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    Then the user is navigated to the Edit DID Configuration screen
+    And the existing configuration is shown
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-515: Scenario 3b - Clicking existing configuration Edit link
+  @LL-489 @CampusConfigurationEditLink
+  Scenario Outline: Clicking existing Campus configuration Edit link
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Edit Campus Configuration screen of Campus "<campus>"
+    Then the Edit Campus Configuration Page is displayed
+    And the saved configuration is displayed
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
