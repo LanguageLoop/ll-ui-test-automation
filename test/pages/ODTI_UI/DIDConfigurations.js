@@ -80,4 +80,12 @@ module.exports = {
     get campusConfigurationTableEditAndDuplicateLinks() {
         return $('//table[contains(@id,"CampusConfigurationTable")]/tbody/tr[1]//a[not(contains(text(),"-"))]/parent::td');
     },
+
+    get editDIDConfigurationLinkLocator() {
+        return '(//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Edit"])[<dynamicIndex>]';
+    },
+
+    get editDIDConfigurationLinksLocator() {
+        return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Edit"]';
+    },
 }
