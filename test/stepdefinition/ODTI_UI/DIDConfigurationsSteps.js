@@ -145,3 +145,15 @@ When(/^the Admin is on the Edit DID Configuration screen of Campus "(.*)"$/, fun
         }
     }
 })
+
+When(/^the Admin is on the Duplicate DID Configuration screen of Campus "(.*)"$/, function (campusPin) {
+    let editDIDConfigurationLinksCount = $$(DIDConfigurationsPage.duplicateDIDConfigurationLinksLocator.replace("<dynamicCampusPin>", campusPin)).length;
+    for (let index = 1; index <= editDIDConfigurationLinksCount; index++) {
+        let editDIDConfigurationLink = $(DIDConfigurationsPage.duplicateDIDConfigurationLinkLocator.replace("<dynamicCampusPin>", campusPin).replace("<dynamicIndex>", index.toString()));
+        let editLinkVisible = action.isVisibleWait(editDIDConfigurationLink, 1000);
+        if (editLinkVisible) {
+            action.clickElement(editDIDConfigurationLink);
+            break;
+        }
+    }
+})
