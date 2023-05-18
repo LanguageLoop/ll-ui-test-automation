@@ -231,3 +231,33 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-515: Scenario 4a - Clicking existing configuration Duplicate link
+  @LL-515 @DIDConfigurationDuplicateLink
+  Scenario Outline: Clicking existing DID configuration Duplicate link
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Duplicate DID Configuration screen of Campus "<campus>"
+    Then the user is navigated to the DID Configuration Details screen
+    And a copy of the existing DID configuration is shown upon clicking duplicate
+    And the DID is blank in existing DID configuration upon clicking duplicate
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-515: Scenario 4b - Clicking existing configuration Duplicate link
+  @LL-515 @CampusConfigurationDuplicateLink
+  Scenario Outline: Clicking existing Campus configuration Duplicate link
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin is on the Duplicate Campus Configuration screen of Campus "<campus>"
+    Then the new Campus Configuration Page is displayed
+    And the saved configuration is displayed upon clicking duplicate
+    And the Campus PIN is blank upon clicking duplicate
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
