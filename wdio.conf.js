@@ -34,6 +34,7 @@ var DIDConfigurationsPage = require('./test/pages/ODTI_UI/DIDConfigurations.js')
 var newCampusConfigurationPage = require('./test/pages/ODTI_UI/NewCampusConfiguration.js')
 var editCampusConfigurationPage = require('./test/pages/ODTI_UI/EditCampusConfiguration.js')
 var newDIDConfigurationPage = require('./test/pages/ODTI_UI/NewDIDConfiguration.js')
+var editDIDConfigurationPage = require('./test/pages/ODTI_UI/EditDIDConfiguration.js')
 
 var chai= require('chai')
 var action=require('./test/utils/actions')
@@ -351,6 +352,7 @@ exports.config = {
         global.newCampusConfigurationPage = newCampusConfigurationPage
         global.editCampusConfigurationPage = editCampusConfigurationPage
         global.newDIDConfigurationPage = newDIDConfigurationPage
+        global.editDIDConfigurationPage = editDIDConfigurationPage
         //global.translationsPage=translationsPage
         //global.xtmPage = xtmPage
         
