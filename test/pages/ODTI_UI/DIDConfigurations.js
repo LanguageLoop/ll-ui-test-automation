@@ -88,4 +88,12 @@ module.exports = {
     get editDIDConfigurationLinksLocator() {
         return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Edit"]';
     },
+
+    get duplicateDIDConfigurationLinkLocator() {
+        return '(//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Duplicate"])[<dynamicIndex>]';
+    },
+
+    get duplicateDIDConfigurationLinksLocator() {
+        return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Duplicate"]';
+    },
 }
