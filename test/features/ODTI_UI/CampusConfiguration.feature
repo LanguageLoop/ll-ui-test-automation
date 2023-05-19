@@ -261,3 +261,36 @@ Feature: ODTI_UI Campus Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-515: Scenario 5 - Clicking on a Campus name
+  @LL-515 @ClickCampusNameConfiguration
+  Scenario Outline: Clicking on a Campus name
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And the Admin has clicked on the Campus Name "<campus>" in the campus configuration table
+    Then they will be navigated to the Campus page
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin has clicked on the Campus Name "<campus>" in the DID configuration table
+    And they will be navigated to the Campus page
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-515: Scenario 6 - Filter
+  @LL-515 @FilterCampusConfiguration
+  Scenario Outline: Filter Campus Configuration
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin clicks on Campus Configuration tab
+    And user searches for Campus name or DID "<campus name>" by entering valid data in the search field
+    And user selects any Service Type "<service type>" from the dropdown
+    And clicks on Search button in DID Campus configuration
+    Then the correct search results campus "<campus>" are displayed
+    Then the correct search results service type "<service type>" are displayed
+
+    Examples:
+      | username          | password  | campus                  | campus name     | service type |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Contoso Pty LTD | General TI   |
