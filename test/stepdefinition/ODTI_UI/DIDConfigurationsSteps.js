@@ -46,7 +46,7 @@ When(/^user searches for Campus name or DID "(.*)" by entering valid data in the
 When(/^clicks on Search button in DID Campus configuration$/, function () {
     action.isVisibleWait(DIDConfigurationsPage.searchButton, 10000);
     action.clickElement(DIDConfigurationsPage.searchButton);
-    action.isNotVisibleWait(DIDConfigurationsPage.searchButton, 2000);
+    action.isNotVisibleWait(DIDConfigurationsPage.searchButton, 5000);
 })
 
 Then(/^the correct search results campus "(.*)" are displayed$/, function (expectedCampus) {
@@ -153,6 +153,30 @@ When(/^the Admin is on the Duplicate DID Configuration screen of Campus "(.*)"$/
         let editLinkVisible = action.isVisibleWait(editDIDConfigurationLink, 1000);
         if (editLinkVisible) {
             action.clickElement(editDIDConfigurationLink);
+            break;
+        }
+    }
+})
+
+When(/^the Admin has clicked on the Campus Name "(.*)" in the campus configuration table$/, function (campusPin) {
+    let campusNameLinksCount = $$(DIDConfigurationsPage.campusNameLinksCampusConfigurationLocator.replace("<dynamicCampusPin>", campusPin)).length;
+    for (let index = 1; index <= campusNameLinksCount; index++) {
+        let campusNameLink = $(DIDConfigurationsPage.campusNameLinkCampusConfigurationLocator.replace("<dynamicCampusPin>", campusPin).replace("<dynamicIndex>", index.toString()));
+        let campusNameLinkVisible = action.isVisibleWait(campusNameLink, 1000);
+        if (campusNameLinkVisible) {
+            action.clickElement(campusNameLink);
+            break;
+        }
+    }
+})
+
+When(/^the Admin has clicked on the Campus Name "(.*)" in the DID configuration table$/, function (campusPin) {
+    let campusNameLinksCount = $$(DIDConfigurationsPage.campusNameLinksDIDConfigurationLocator.replace("<dynamicCampusPin>", campusPin)).length;
+    for (let index = 1; index <= campusNameLinksCount; index++) {
+        let campusNameLink = $(DIDConfigurationsPage.campusNameLinkDIDConfigurationLocator.replace("<dynamicCampusPin>", campusPin).replace("<dynamicIndex>", index.toString()));
+        let campusNameLinkVisible = action.isVisibleWait(campusNameLink, 1000);
+        if (campusNameLinkVisible) {
+            action.clickElement(campusNameLink);
             break;
         }
     }
