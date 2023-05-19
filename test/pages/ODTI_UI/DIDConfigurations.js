@@ -96,4 +96,20 @@ module.exports = {
     get duplicateDIDConfigurationLinksLocator() {
         return '//a[text()="<dynamicCampusPin>"]/parent::td/following-sibling::td/a[text()="Duplicate"]';
     },
+
+    get campusNameLinkCampusConfigurationLocator() {
+        return '(//a[text()="<dynamicCampusPin>"])[<dynamicIndex>]';
+    },
+
+    get campusNameLinksCampusConfigurationLocator() {
+        return '//a[text()="<dynamicCampusPin>"]';
+    },
+
+    get campusNameLinkDIDConfigurationLocator() {
+        return '(//a[text()="<dynamicCampusPin>"])[<dynamicIndex>]';
+    },
+
+    get campusNameLinksDIDConfigurationLocator() {
+        return '//a[text()="<dynamicCampusPin>"]';
+    },
 }
