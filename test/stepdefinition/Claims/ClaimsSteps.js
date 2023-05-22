@@ -13,7 +13,9 @@ When(/^I close all special search criteria$/, function(){
     var closebuttons= claimsPage.searchCriteriaCloseButtons
     for(var i=0;i<closebuttons.length;i++){
         browser.pause(2000)
+        action.isVisibleWait(closebuttons[i],20000);
         action.clickElement(closebuttons[i])
+        action.isNotVisibleWait(closebuttons[i],10000);
         browser.pause(2000)
 
     }
@@ -288,6 +290,7 @@ When(/^I click the first campus centre from search results$/, function(){
 
 When(/^I select "(.*)" jobs from search results$/, function(count){
     browser.pause(4000)
+    action.isExistingWait(claimsPage.jobResultsCheckbox,90000);
     var boxes= claimsPage.selectJobsCheckboxes
     for(var i=0;i<count;i++)
     {
@@ -304,7 +307,7 @@ When(/^I click bulk process claim button$/, function(){
 
 When(/^I confirm bulk claim process dialog$/, function(){
     browser.pause(2000)
-    action.isVisibleWait(claimsPage.bulkClaimConfirmOkButton,60000)
+    action.isVisibleWait(claimsPage.bulkClaimConfirmOkButton,90000)
     action.clickElement(claimsPage.bulkClaimConfirmOkButton)
 })
 

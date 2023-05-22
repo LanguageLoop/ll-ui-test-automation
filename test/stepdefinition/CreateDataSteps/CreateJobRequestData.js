@@ -25,11 +25,12 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   
   action.clickElement(homePage.InterpretingLink)
   action.selectTextFromDropdown(interpretingPage.filterDropdown,"Management")
-  action.isClickableWait(interpretingPage.newJobRequestButton,10000)
+  action.isVisibleWait(interpretingPage.newJobRequestButton,30000)
   interpretingPage.newJobRequestButton.waitForClickable({timeout:5000},{interval:500})
   action.clickElement(interpretingPage.newJobRequestButton)
   action.isClickableWait(jobRequestPage.campusPinInput,30000)
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
+  action.isVisibleWait(jobRequestPage.requesterNameDropdown,30000)
   jobRequestPage.requesterNameDropdown.waitForExist({timeout:5000},{interval:500})
   action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,requester)
   browser.pause(2000)
