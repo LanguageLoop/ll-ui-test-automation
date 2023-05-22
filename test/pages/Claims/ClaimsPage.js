@@ -133,4 +133,7 @@ module.exports ={
         return $$('//select[contains(@name,"AdvanceSearchRule")]')[1]
     },
 
+    get jobResultsCheckbox(){
+        return $('//*[@data-columnname="Selected"]')
+    },
 }
