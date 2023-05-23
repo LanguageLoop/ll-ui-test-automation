@@ -19,3 +19,33 @@ When(/^the DID is blank in existing DID configuration upon clicking duplicate$/,
     let didNumberOrigValue = action.getElementAttribute(newDIDConfigurationPage.didNumberInputTextBox,"origvalue");
     chai.expect(didNumberOrigValue).to.equal("");
 })
+
+When(/^has selected the TI Service Type "(.*)" in DID configuration$/, function (serviceType) {
+    action.isVisibleWait(newDIDConfigurationPage.tiServiceTypeDropdown);
+    action.selectTextFromDropdown(newDIDConfigurationPage.tiServiceTypeDropdown,serviceType);
+})
+
+When(/^has typed in a Campus PIN "(.*)" in DID configuration$/, function (campusPin) {
+    action.isVisibleWait(newDIDConfigurationPage.campusPinInputTextBox, 10000);
+    action.enterValue(newDIDConfigurationPage.campusPinInputTextBox,campusPin);
+})
+
+Then(/^the PIN is searched in DID configuration$/, function () {
+    let searchedCampusResultDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.campusNameBelowInputTextBox, 10000);
+    chai.expect(searchedCampusResultDisplayStatus).to.be.true;
+})
+
+Then(/^the Campus name "(.*)" is displayed below the input box in DID configuration$/, function (campusName) {
+    let campusNameTextBelowInputBox = action.getElementText(newDIDConfigurationPage.campusNameBelowInputTextBox);
+    chai.expect(campusNameTextBelowInputBox).to.equal(campusName);
+})
+
+Then(/^the MILS configuration section is hidden$/, function () {
+    let milsConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.milsConfigurationSection, 10000);
+    chai.expect(milsConfigurationSectionDisplayStatus).to.be.false;
+})
+
+Then(/^the TIXP configuration section is displayed$/, function () {
+    let tixpConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.tixpConfigurationSection, 10000);
+    chai.expect(tixpConfigurationSectionDisplayStatus).to.be.true;
+})
