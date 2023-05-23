@@ -43,3 +43,35 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+
+    #LL-577: Scenario 2 - Entering a Campus PIN
+  @LL-577 @DIDODTIConfigurationCampusPin
+  Scenario Outline: Entering a Campus PIN
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    And has typed in a Campus PIN "<campus pin>" in DID configuration
+    Then the PIN is searched in DID configuration
+    And the Campus name "<campus name>" is displayed below the input box in DID configuration
+
+    Examples:
+      | username          | password  | campus pin | TI Service Type | campus name     |
+      | LLAdmin@looped.in | Octopus@6 | 29449      | NES Initiated   | Contoso Pty LTD |
+
+    #LL-577: Scenario 3a - Selecting a Service Type
+  @LL-577 @SelectServiceTypeClientTIXP
+  Scenario Outline: Selecting a Service Type Client TIXP
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    Then the MILS configuration section is hidden
+    And the TIXP configuration section is displayed
+
+    Examples:
+      | username          | password  | TI Service Type |
+      | LLAdmin@looped.in | Octopus@6 | Client TIXP     |
