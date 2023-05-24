@@ -55,7 +55,7 @@ Then(/^the MILS configuration section is displayed$/, function () {
     chai.expect(milsConfigurationSectionDisplayStatus).to.be.true;
 })
 
-Then(/^the TIXP configuration section is hidden/, function () {
+Then(/^the TIXP configuration section is hidden$/, function () {
     let tixpConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.tixpConfigurationSection, 10000);
     chai.expect(tixpConfigurationSectionDisplayStatus).to.be.false;
 })
