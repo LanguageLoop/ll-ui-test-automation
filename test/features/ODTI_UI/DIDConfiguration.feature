@@ -104,3 +104,36 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | TI Service Type |
       | LLAdmin@looped.in | Octopus@6 | General TI      |
+
+    #LL-577: Scenario 5 - Cancel
+  @LL-577 @DIDODTIConfigurationCancel
+  Scenario Outline: Cancel in DID Configuration
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    And has typed in a Campus PIN "<campus pin>" in DID configuration
+    And the user has clicked the CANCEL button in DID configuration
+    Then the data entered is not saved in DID configuration
+    And the admin is navigated back to the configuration list screen
+
+    Examples:
+      | username          | password  | campus pin | TI Service Type |
+      | LLAdmin@looped.in | Octopus@6 | 29449      | NES Initiated   |
+
+    #LL-577: Scenario 7a - Adding business hours
+  @LL-577 @AddingBusinessHours
+  Scenario Outline: Adding business hours
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Add More icon under the day-schedule
+    Then a schedule time modal window appears in DID configuration
+    And the modal contains drop-down boxes for the start time and end time, and Save & Cancel buttons
+    And the drop downs contain a list of times in 15minute increments from 00:00 to 23:59
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
