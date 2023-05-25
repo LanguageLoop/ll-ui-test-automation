@@ -66,3 +66,59 @@ Then(/^the MILS and TIXP configuration sections are not shown/, function () {
     let tixpConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.tixpConfigurationSection, 10000);
     chai.expect(tixpConfigurationSectionDisplayStatus).to.be.false;
 })
+
+When(/^the user has clicked the CANCEL button in DID configuration$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.cancelButton,10000);
+    action.clickElement(newDIDConfigurationPage.cancelButton);
+})
+
+Then(/^the data entered is not saved in DID configuration$/, function () {
+    let pageTitleActual = action.getPageTitle();
+    chai.expect(pageTitleActual).to.not.includes("New DID Configuration");
+})
+
+When(/^the admin has clicked the Add More icon under the day-schedule$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.addMoreButtonUnderSchedule,10000);
+    action.clickElement(newDIDConfigurationPage.addMoreButtonUnderSchedule);
+})
+
+Then(/^a schedule time modal window appears in DID configuration$/, function () {
+    let scheduleTimePickerModalWindowDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.scheduleTimePickerModal, 10000);
+    chai.expect(scheduleTimePickerModalWindowDisplayStatus).to.be.true;
+})
+
+Then(/^the modal contains drop-down boxes for the start time and end time, and Save & Cancel buttons$/, function () {
+    let startTimeDropdownDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.scheduleStartTimeDropdown, 10000);
+    chai.expect(startTimeDropdownDisplayStatus).to.be.true;
+    let endTimeDropdownDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.scheduleEndTimeDropdown, 10000);
+    chai.expect(endTimeDropdownDisplayStatus).to.be.true;
+    let saveButtonOnModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.saveButtonOnScheduleTimePickerModal, 10000);
+    chai.expect(saveButtonOnModalDisplayStatus).to.be.true;
+    let cancelButtonOnModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.cancelButtonOnScheduleTimePickerModal, 10000);
+    chai.expect(cancelButtonOnModalDisplayStatus).to.be.true;
+})
+
+Then(/^the drop downs contain a list of times in 15minute increments from 00:00 to 23:59$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.scheduleStartTimeDropdown, 10000);
+    let startTimeDropdownTimeValues = action.getElementText(newDIDConfigurationPage.scheduleStartTimeDropdown);
+    let endTimeDropdownTimeValues = action.getElementText(newDIDConfigurationPage.scheduleEndTimeDropdown);
+    let timeArray = [];
+    let startTime = "00:15:00";
+    let endTime = "23:59:00";
+    // Convert start and end time to Date objects
+    let startDate = new Date("2000-01-01 " + startTime);
+    let endDate = new Date("2000-01-01 " + endTime);
+    // Time difference
+    let delta = 15 * 60 * 1000; // 15 minutes in milliseconds
+    // Generate time values
+    let currentTime = startDate;
+    while (currentTime <= endDate) {
+        timeArray.push(currentTime.toTimeString().slice(0, 8));
+        currentTime = new Date(currentTime.getTime() + delta);
+    }
+    let numberOfTimeValues = timeArray.length;
+    for (let i = 0; i < numberOfTimeValues; i++) {
+        chai.expect(startTimeDropdownTimeValues).to.includes(timeArray[i]);
+        chai.expect(endTimeDropdownTimeValues).to.includes(timeArray[i]);
+    }
+})
