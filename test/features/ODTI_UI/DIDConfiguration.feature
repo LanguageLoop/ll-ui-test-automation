@@ -47,7 +47,7 @@ Feature: ODTI_UI DID Configuration features
 
     #LL-577: Scenario 2 - Entering a Campus PIN
   @LL-577 @DIDODTIConfigurationCampusPin
-  Scenario Outline: Entering a Campus PIN
+  Scenario Outline: Entering a Campus PIN in DID Configuration
     When I login with "<username>" and "<password>"
     And the ODTI DID Configurations page is opened
     And the Admin is on the DID Configurations Tab
@@ -75,3 +75,32 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | TI Service Type |
       | LLAdmin@looped.in | Octopus@6 | Client TIXP     |
+
+    #LL-577: Scenario 3b - Selecting a Service Type
+  @LL-577 @SelectServiceTypeNESInitiated
+  Scenario Outline: Selecting a Service Type NES Initiated
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    Then the MILS configuration section is displayed
+    And the TIXP configuration section is hidden
+
+    Examples:
+      | username          | password  | TI Service Type |
+      | LLAdmin@looped.in | Octopus@6 | NES Initiated   |
+
+    #LL-577: Scenario 3c - Selecting a Service Type
+  @LL-577 @SelectServiceTypeGeneralTI
+  Scenario Outline: Selecting a Service Type Prebooked TI or General TI
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    Then the MILS and TIXP configuration sections are not shown
+
+    Examples:
+      | username          | password  | TI Service Type |
+      | LLAdmin@looped.in | Octopus@6 | General TI      |

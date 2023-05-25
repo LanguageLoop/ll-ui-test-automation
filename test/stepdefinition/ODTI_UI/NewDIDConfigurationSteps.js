@@ -49,3 +49,20 @@ Then(/^the TIXP configuration section is displayed$/, function () {
     let tixpConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.tixpConfigurationSection, 10000);
     chai.expect(tixpConfigurationSectionDisplayStatus).to.be.true;
 })
+
+Then(/^the MILS configuration section is displayed$/, function () {
+    let milsConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.milsConfigurationSection, 10000);
+    chai.expect(milsConfigurationSectionDisplayStatus).to.be.true;
+})
+
+Then(/^the TIXP configuration section is hidden$/, function () {
+    let tixpConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.tixpConfigurationSection, 10000);
+    chai.expect(tixpConfigurationSectionDisplayStatus).to.be.false;
+})
+
+Then(/^the MILS and TIXP configuration sections are not shown/, function () {
+    let milsConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.milsConfigurationSection, 10000);
+    chai.expect(milsConfigurationSectionDisplayStatus).to.be.false;
+    let tixpConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.tixpConfigurationSection, 10000);
+    chai.expect(tixpConfigurationSectionDisplayStatus).to.be.false;
+})
