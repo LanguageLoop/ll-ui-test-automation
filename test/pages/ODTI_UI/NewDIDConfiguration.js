@@ -28,4 +28,32 @@ module.exports = {
     get tixpConfigurationSection() {
         return $('//div[contains(text(),"TIXP") and (contains(text(),"Configuration"))]/parent::div');
     },
+
+    get cancelButton(){
+        return $('//input[@value="Cancel"]')
+    },
+
+    get addMoreButtonUnderSchedule() {
+        return $('//a[text()="Add More"]');
+    },
+
+    get scheduleTimePickerModal() {
+        return $('//div[contains(@aria-labelledby,"TimePickerModal")]');
+    },
+
+    get scheduleStartTimeDropdown() {
+        return $('//select[contains(@id,"ModalStartTimeInput")]');
+    },
+
+    get scheduleEndTimeDropdown() {
+        return $('//select[contains(@id,"ModalEndTimeInput")]');
+    },
+
+    get saveButtonOnScheduleTimePickerModal() {
+        return $('//input[contains(@id,"TimePickerModal") and @value="Save"]');
+    },
+
+    get cancelButtonOnScheduleTimePickerModal() {
+        return $('//input[contains(@id,"TimePickerModal") and @value="Cancel"]');
+    },
 }
