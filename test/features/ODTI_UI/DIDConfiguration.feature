@@ -137,3 +137,39 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  |
       | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-577: Scenario 7b - Saving the business hours
+  @LL-577 @SavingBusinessHours
+  Scenario Outline: Saving the business hours
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
+    And has clicked the SAVE button on schedule time modal
+    Then the schedule time modal window closes in DID configuration
+    And the selected start time "<start Time>" and end time "<end Time>" is reflected in the table for that day
+
+    Examples:
+      | username          | password  | start Time | end Time |
+      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+
+    #LL-577: Scenario 7c - Cancelling the schedule-edit modal
+  @LL-577 @CancellingBusinessHours
+  Scenario Outline: Cancelling the schedule-edit modal
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
+    And has clicked the CANCEL button on schedule time modal
+    Then the schedule time modal window closes in DID configuration
+    And the schedule for that day remains unchanged
+
+    Examples:
+      | username          | password  | start Time | end Time |
+      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
