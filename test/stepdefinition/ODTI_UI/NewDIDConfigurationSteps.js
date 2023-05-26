@@ -122,3 +122,37 @@ Then(/^the drop downs contain a list of times in 15minute increments from 00:00 
         chai.expect(endTimeDropdownTimeValues).to.includes(timeArray[i]);
     }
 })
+
+When(/^has selected start time "(.*)" and end time "(.*)" on the schedule-edit modal$/, function (startTime,endTime) {
+    action.isVisibleWait(newDIDConfigurationPage.saveButtonOnScheduleTimePickerModal, 10000);
+    action.selectTextFromDropdown(newDIDConfigurationPage.scheduleStartTimeDropdown,startTime);
+    action.selectTextFromDropdown(newDIDConfigurationPage.scheduleEndTimeDropdown,endTime);
+})
+
+When(/^has clicked the SAVE button on schedule time modal$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.saveButtonOnScheduleTimePickerModal, 10000);
+    action.clickElement(newDIDConfigurationPage.saveButtonOnScheduleTimePickerModal);
+})
+
+Then(/^the schedule time modal window closes in DID configuration$/, function () {
+    let scheduleTimePickerModalWindowDisplayStatus = action.isNotVisibleWait(newDIDConfigurationPage.scheduleTimePickerModal, 2000);
+    chai.expect(scheduleTimePickerModalWindowDisplayStatus).to.be.false;
+})
+
+Then(/^the selected start time "(.*)" and end time "(.*)" is reflected in the table for that day$/, function (startTime,endTime) {
+    action.isVisibleWait(newDIDConfigurationPage.startEndTimeValueInScheduleTable,10000);
+    let startEndTimeValuesInTable = action.getElementText(newDIDConfigurationPage.startEndTimeValueInScheduleTable);
+    let startEndTimeExpected = startTime.slice(0,5) + " - " + endTime.slice(0,5);
+    chai.expect(startEndTimeValuesInTable).to.equal(startEndTimeExpected);
+})
+
+When(/^has clicked the CANCEL button on schedule time modal$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.cancelButtonOnScheduleTimePickerModal, 10000);
+    action.clickElement(newDIDConfigurationPage.cancelButtonOnScheduleTimePickerModal);
+})
+
+Then(/^the schedule for that day remains unchanged$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.startEndTimeValueInScheduleTable,10000);
+    let startEndTimeValuesInTable = action.getElementText(newDIDConfigurationPage.startEndTimeValueInScheduleTable);
+    chai.expect(startEndTimeValuesInTable).to.equal("No schedules set...");
+})
