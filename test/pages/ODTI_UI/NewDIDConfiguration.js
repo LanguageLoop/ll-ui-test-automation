@@ -56,4 +56,8 @@ module.exports = {
     get cancelButtonOnScheduleTimePickerModal() {
         return $('//input[contains(@id,"TimePickerModal") and @value="Cancel"]');
     },
+
+    get startEndTimeValueInScheduleTable() {
+        return $('//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr[1]/td[1]');
+    }
 }
