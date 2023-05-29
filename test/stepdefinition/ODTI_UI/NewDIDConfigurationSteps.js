@@ -156,3 +156,45 @@ Then(/^the schedule for that day remains unchanged$/, function () {
     let startEndTimeValuesInTable = action.getElementText(newDIDConfigurationPage.startEndTimeValueInScheduleTable);
     chai.expect(startEndTimeValuesInTable).to.equal("No schedules set...");
 })
+
+When(/^there is an x icon displayed next to each Time Block row$/, function () {
+    let xIconInScheduleTableDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.xIconInScheduleTable, 10000);
+    chai.expect(xIconInScheduleTableDisplayStatus).to.be.true;
+})
+
+When(/^the admin clicks on the x icon in the schedule table$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.xIconInScheduleTable, 10000);
+    action.clickElement(newDIDConfigurationPage.xIconInScheduleTable);
+})
+
+Then(/^the Time Block is removed from the table$/, function () {
+    let noSchedulesSetMessageDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.noSchedulesSetMessage, 10000);
+    chai.expect(noSchedulesSetMessageDisplayStatus).to.be.true;
+})
+
+Then(/^a feedback message is displayed: Time block deleted$/, function () {
+    let timeBlockDeletedMessageDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.timeBlockDeletedFeedbackMessage, 10000);
+    chai.expect(timeBlockDeletedMessageDisplayStatus).to.be.true;
+})
+
+When(/^the admin has clicked the Edit icon beside a language option$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.editIconBesideLanguageOption, 10000);
+    action.clickElement(newDIDConfigurationPage.editIconBesideLanguageOption);
+})
+
+Then(/^from out of nowhere, a modal window for Edit Language magically appears!$/, function () {
+    let editLanguageModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.editLanguageModalPopup, 10000);
+    chai.expect(editLanguageModalDisplayStatus).to.be.true;
+})
+
+Then(/^the Edit Language modal contains a drop-down with a list of languages$/, function () {
+    let languageDropdownDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.languageDropdownOnEditLanguageModal, 10000);
+    chai.expect(languageDropdownDisplayStatus).to.be.true;
+})
+
+Then(/^the Edit Language modal contains Save & Cancel buttons$/, function () {
+    let saveButtonOnEditLanguageModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.saveButtonOnEditLanguageModal, 10000);
+    chai.expect(saveButtonOnEditLanguageModalDisplayStatus).to.be.true;
+    let cancelButtonOnEditLanguageModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.cancelButtonOnEditLanguageModal, 10000);
+    chai.expect(cancelButtonOnEditLanguageModalDisplayStatus).to.be.true;
+})

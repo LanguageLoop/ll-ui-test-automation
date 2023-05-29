@@ -59,5 +59,37 @@ module.exports = {
 
     get startEndTimeValueInScheduleTable() {
         return $('//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr[1]/td[1]');
-    }
+    },
+
+    get noSchedulesSetMessage() {
+        return $('//td[text()="No schedules set..."]');
+    },
+
+    get xIconInScheduleTable() {
+        return $('//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr[1]/td[4]//span');
+    },
+
+    get timeBlockDeletedFeedbackMessage() {
+        return $('//span[@class="Feedback_Message_Text" and text()="Time block deleted"]');
+    },
+
+    get editIconBesideLanguageOption() {
+        return $('//table[contains(@id,"TableLanguage")]/tbody/tr[1]/td[3]//span');
+    },
+
+    get editLanguageModalPopup() {
+        return $('//div[contains(@aria-labelledby,"LanguageModal")]');
+    },
+
+    get languageDropdownOnEditLanguageModal() {
+        return $('//select[contains(@id,"NewLanguageInput")]');
+    },
+
+    get saveButtonOnEditLanguageModal() {
+        return $('//input[contains(@name,"LanguageModal") and @value="Save"]');
+    },
+
+    get cancelButtonOnEditLanguageModal() {
+        return $('//input[contains(@name,"LanguageModal") and @value="Cancel"]');
+    },
 }

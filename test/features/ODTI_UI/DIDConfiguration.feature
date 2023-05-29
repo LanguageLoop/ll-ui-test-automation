@@ -173,3 +173,41 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | start Time | end Time |
       | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+
+#LL-577: Scenario 7d - Removing business hours
+  @LL-577 @RemovingBusinessHours
+  Scenario Outline: Removing business hours
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
+    And has clicked the SAVE button on schedule time modal
+    And the schedule time modal window closes in DID configuration
+    And the selected start time "<start Time>" and end time "<end Time>" is reflected in the table for that day
+    And there is an x icon displayed next to each Time Block row
+    And the admin clicks on the x icon in the schedule table
+    Then the Time Block is removed from the table
+    And a feedback message is displayed: Time block deleted
+
+    Examples:
+      | username          | password  | start Time | end Time |
+      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+
+    #LL-577: Scenario 8a - Editing a language option
+  @LL-577 @EditingLanguageOption
+  Scenario Outline: Editing a language option
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Edit icon beside a language option
+    And from out of nowhere, a modal window for Edit Language magically appears!
+    And the Edit Language modal contains a drop-down with a list of languages
+    And the Edit Language modal contains Save & Cancel buttons
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
