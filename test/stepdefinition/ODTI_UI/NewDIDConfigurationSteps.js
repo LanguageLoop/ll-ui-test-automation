@@ -198,3 +198,35 @@ Then(/^the Edit Language modal contains Save & Cancel buttons$/, function () {
     let cancelButtonOnEditLanguageModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.cancelButtonOnEditLanguageModal, 10000);
     chai.expect(cancelButtonOnEditLanguageModalDisplayStatus).to.be.true;
 })
+
+When(/^has selected a language "(.*)" form Language Name drop-down in Edit Language modal$/, function (languageName) {
+    action.isVisibleWait(newDIDConfigurationPage.languageDropdownOnEditLanguageModal, 10000);
+    action.selectTextFromDropdown(newDIDConfigurationPage.languageDropdownOnEditLanguageModal, languageName);
+})
+
+When(/^has clicked the SAVE button in Edit Language modal$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.saveButtonOnEditLanguageModal, 10000);
+    action.clickElement(newDIDConfigurationPage.saveButtonOnEditLanguageModal);
+})
+
+Then(/^the modal window for Edit Language closes$/, function () {
+    let editLanguageModalDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.editLanguageModalPopup, 10000);
+    chai.expect(editLanguageModalDisplayStatus).to.be.true;
+})
+
+Then(/^the table now reflects the selected language "(.*)" for the keypad option$/, function (languageName) {
+    action.isVisibleWait(newDIDConfigurationPage.languageSelectedTextInLanguageOptionsTable, 10000);
+    let languageSelectedTextActual = action.getElementText(newDIDConfigurationPage.languageSelectedTextInLanguageOptionsTable, 10000);
+    chai.expect(languageSelectedTextActual).to.equal(languageName);
+})
+
+When(/^has clicked the CANCEL button in Edit Language modal$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.cancelButtonOnEditLanguageModal, 10000);
+    action.clickElement(newDIDConfigurationPage.cancelButtonOnEditLanguageModal);
+})
+
+Then(/^the keypad option remains unchanged$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.languageSelectedTextInLanguageOptionsTable, 10000);
+    let languageSelectedTextActual = action.getElementText(newDIDConfigurationPage.languageSelectedTextInLanguageOptionsTable, 10000);
+    chai.expect(languageSelectedTextActual).to.equal("");
+})
