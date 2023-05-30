@@ -92,4 +92,8 @@ module.exports = {
     get cancelButtonOnEditLanguageModal() {
         return $('//input[contains(@name,"LanguageModal") and @value="Cancel"]');
     },
+
+    get languageSelectedTextInLanguageOptionsTable() {
+        return $('//table[contains(@id,"TableLanguage")]/tbody/tr[1]/td[2]/div');
+    },
 }
