@@ -211,3 +211,39 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  |
       | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-577: Scenario 8b - Saving the Language option
+  @LL-577 @SavingLanguageOption
+  Scenario Outline: Saving the Language option
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Edit icon beside a language option
+    And from out of nowhere, a modal window for Edit Language magically appears!
+    And has selected a language "<language Name>" form Language Name drop-down in Edit Language modal
+    And has clicked the SAVE button in Edit Language modal
+    Then the modal window for Edit Language closes
+    And the table now reflects the selected language "<language Name>" for the keypad option
+
+    Examples:
+      | username          | password  | language Name |
+      | LLAdmin@looped.in | Octopus@6 | ARABIC        |
+
+    #LL-577: Scenario 8c - Cancelling the modal
+  @LL-577 @CancellingLanguageOptionModal
+  Scenario Outline: Cancelling the Language option modal
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Edit icon beside a language option
+    And from out of nowhere, a modal window for Edit Language magically appears!
+    And has selected a language "<language Name>" form Language Name drop-down in Edit Language modal
+    And has clicked the CANCEL button in Edit Language modal
+    Then the modal window for Edit Language closes
+    And the keypad option remains unchanged
+
+    Examples:
+      | username          | password  | language Name |
+      | LLAdmin@looped.in | Octopus@6 | ARABIC        |
