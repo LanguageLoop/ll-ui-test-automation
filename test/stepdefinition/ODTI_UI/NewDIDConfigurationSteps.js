@@ -230,3 +230,40 @@ Then(/^the keypad option remains unchanged$/, function () {
     let languageSelectedTextActual = action.getElementText(newDIDConfigurationPage.languageSelectedTextInLanguageOptionsTable, 10000);
     chai.expect(languageSelectedTextActual).to.equal("");
 })
+
+When(/^the user enters the same DID number "(.*)" that already exists$/, function (DIDNumber) {
+    action.isVisibleWait(newDIDConfigurationPage.didNumberInputTextBox, 10000);
+    action.enterValue(newDIDConfigurationPage.didNumberInputTextBox, DIDNumber);
+})
+
+When(/^the user has filled in all the required data "(.*)", "(.*)", "(.*)", "(.*)" in New DID Configuration$/, function (welcomeAudioFileName, closedAudioFileName, languageAudioFile, timezone) {
+    action.isVisibleWait(newDIDConfigurationPage.welcomeAudioFileNameTextBox, 10000);
+    action.enterValue(newDIDConfigurationPage.welcomeAudioFileNameTextBox, welcomeAudioFileName);
+    action.enterValue(newDIDConfigurationPage.closedAudioFileNameTextBox, closedAudioFileName);
+    action.enterValue(newDIDConfigurationPage.languageAudioFileNameTextBox, languageAudioFile);
+    action.selectTextFromDropdown(newDIDConfigurationPage.timezoneDropdown, timezone);
+})
+
+When(/^has clicked the SAVE button in New DID Configuration page$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.saveButtonOnNewDIDConfiguration, 10000);
+    action.clickElement(newDIDConfigurationPage.saveButtonOnNewDIDConfiguration);
+})
+
+Then(/^the error text message Duplicate phone number exists! is displayed$/, function () {
+    let duplicateNumberErrorMessageDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.duplicatePhoneNumberExistsErrorMessage, 10000);
+    chai.expect(duplicateNumberErrorMessageDisplayStatus).to.be.true;
+})
+
+When(/^the user enters the same time block with weekdays "(.*)" that comes in the same time block and same days which already exists$/, function (weekdays) {
+    let weekdaysList = weekdays.split(",");
+    for (let i = 0; i < weekdaysList.length; weekdaysList++) {
+        let weekdayCheckbox = $(newDIDConfigurationPage.weekdaysCheckboxOnTimePickerModalDynamicLocator.replace("<dynamic>", weekdaysList[i]));
+        action.isVisibleWait(weekdayCheckbox, 10000);
+        action.clickElement(weekdayCheckbox);
+    }
+})
+
+Then(/^the error text message Time block overlaps with another time block is displayed$/, function () {
+    let blockOverlapsErrorFeedbackMessageDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.blockOverlapsErrorFeedbackMessage, 10000);
+    chai.expect(blockOverlapsErrorFeedbackMessageDisplayStatus).to.be.true;
+})
