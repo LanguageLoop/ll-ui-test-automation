@@ -96,4 +96,36 @@ module.exports = {
     get languageSelectedTextInLanguageOptionsTable() {
         return $('//table[contains(@id,"TableLanguage")]/tbody/tr[1]/td[2]/div');
     },
+
+    get welcomeAudioFileNameTextBox() {
+        return $('//input[contains(@id,"DIDConfiguration_WelcomeAudioFilename")]');
+    },
+
+    get closedAudioFileNameTextBox() {
+        return $('//input[contains(@id,"DIDConfiguration_CloseAudioFilename")]');
+    },
+
+    get languageAudioFileNameTextBox() {
+        return $('//input[contains(@id,"DIDConfiguration_LanguageAudioFilename")]');
+    },
+
+    get timezoneDropdown() {
+        return $('//select[contains(@id,"Timezone")]');
+    },
+
+    get saveButtonOnNewDIDConfiguration() {
+        return $('//input[@value="Save" and (contains(@id,"Actions")) and not(contains(@id,"Modal"))]');
+    },
+
+    get duplicatePhoneNumberExistsErrorMessage() {
+        return $('//span[@class="ValidationMessage" and text()="Duplicate phone number exists!"]');
+    },
+
+    get weekdaysCheckboxOnTimePickerModalDynamicLocator() {
+        return '//input[@type="checkbox" and (contains(@id,"<dynamic>"))]';
+    },
+
+    get blockOverlapsErrorFeedbackMessage() {
+        return $('//span[@class="Feedback_Message_Text" and text()="Time block overlaps with another time block"]');
+    }
 }
