@@ -247,3 +247,41 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | language Name |
       | LLAdmin@looped.in | Octopus@6 | ARABIC        |
+
+    #LL-577: Scenario 9: Entering the same DID number that already exists
+  @LL-577 @EnteringDIDNumberAlreadyExists
+  Scenario Outline: Cancel in DID Configuration
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    And has typed in a Campus PIN "<campus pin>" in DID configuration
+    And the user enters the same DID number "<DID number>" that already exists
+    And the user has filled in all the required data "<welcome Audio File Name>", "<closed Audio File Name>", "<language Audio File>", "<timezone>" in New DID Configuration
+    And has clicked the SAVE button in New DID Configuration page
+    Then the error text message Duplicate phone number exists! is displayed
+
+    Examples:
+      | username          | password  | campus pin | TI Service Type | DID number    | welcome Audio File Name | closed Audio File Name | language Audio File | timezone             |
+      | LLAdmin@looped.in | Octopus@6 | 29449      | Client TIXP     | 6173 0821 466 | test1.wmv               | test2.wmv              | test3.wmv           | (UTC+10:00) Brisbane |
+
+    #LL-577: Scenario 10: Adding the time blocks that exists between the existing time blocks
+  @LL-577 @AddingTimeBlocksBetweenExisting
+  Scenario Outline: Adding the time blocks that exists between the existing time blocks
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
+    And has clicked the SAVE button on schedule time modal
+    And the user enters the same time block with weekdays "<weekdays>" that comes in the same time block and same days which already exists
+    And has clicked the SAVE button on schedule time modal
+    Then the error text message Time block overlaps with another time block is displayed
+
+    Examples:
+      | username          | password  | campus                  | start Time | end Time | weekdays |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 01:00:00   | 03:00:00 | Sat,Sun  |
