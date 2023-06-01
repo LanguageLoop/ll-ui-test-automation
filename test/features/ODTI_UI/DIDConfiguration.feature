@@ -277,7 +277,6 @@ Feature: ODTI_UI DID Configuration features
     And the admin has clicked the Add More icon under the day-schedule
     And a schedule time modal window appears in DID configuration
     And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
-    And has clicked the SAVE button on schedule time modal
     And the user enters the same time block with weekdays "<weekdays>" that comes in the same time block and same days which already exists
     And has clicked the SAVE button on schedule time modal
     Then the error text message Time block overlaps with another time block is displayed
