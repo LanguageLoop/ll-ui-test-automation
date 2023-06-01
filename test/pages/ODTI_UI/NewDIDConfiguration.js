@@ -127,5 +127,9 @@ module.exports = {
 
     get blockOverlapsErrorFeedbackMessage() {
         return $('//span[@class="Feedback_Message_Text" and text()="Time block overlaps with another time block"]');
+    },
+
+    get scheduleTableHeader() {
+        return $('//table[contains(@id,"DIDAdvScheduleTable")]/thead');
     }
 }
