@@ -284,3 +284,33 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | campus                  | start Time | end Time | weekdays |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 01:00:00   | 03:00:00 | Sat,Sun  |
+
+    #LL-605: Scenario 1: New Table Schedule
+  @LL-605 @NewTableSchedule
+  Scenario Outline: Closed Message
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then they see the new schedule table "<table headers>" instead of the old one
+    And an Add More button is shown under the schedule table
+
+    Examples:
+      | username          | password  | campus                  | table headers                                      |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Start - End Time,Is Business Hours,Weekdays,Delete |
+
+    #LL-605: Scenario 2a: Clicking Add More button
+  @LL-605 @ClickingAddMoreButton
+  Scenario Outline: Clicking Add More button
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And the admin has clicked the Add More icon under the day-schedule
+    Then a schedule time modal window appears in DID configuration
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
