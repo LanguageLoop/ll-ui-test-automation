@@ -267,3 +267,17 @@ Then(/^the error text message Time block overlaps with another time block is dis
     let blockOverlapsErrorFeedbackMessageDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.blockOverlapsErrorFeedbackMessage, 10000);
     chai.expect(blockOverlapsErrorFeedbackMessageDisplayStatus).to.be.true;
 })
+
+Then(/^they see the new schedule table "(.*)" instead of the old one$/, function (tableHeaders) {
+    let newTableHeadersList = tableHeaders.split(",");
+    action.isVisibleWait(newDIDConfigurationPage.scheduleTableHeader, 10000);
+    let scheduleTableHeaderTextActual = action.getElementText(newDIDConfigurationPage.scheduleTableHeader);
+    newTableHeadersList.forEach(function (header) {
+        chai.expect(scheduleTableHeaderTextActual).to.includes(header);
+    });
+})
+
+Then(/^an Add More button is shown under the schedule table$/, function () {
+    let addMoreButtonDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.addMoreButtonUnderSchedule,10000);
+    chai.expect(addMoreButtonDisplayStatus).to.be.true;
+})
