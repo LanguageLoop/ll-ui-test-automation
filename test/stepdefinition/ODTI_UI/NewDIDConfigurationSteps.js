@@ -256,7 +256,7 @@ Then(/^the error text message Duplicate phone number exists! is displayed$/, fun
 
 When(/^the user enters the same time block with weekdays "(.*)" that comes in the same time block and same days which already exists$/, function (weekdays) {
     let weekdaysList = weekdays.split(",");
-    for (let i = 0; i < weekdaysList.length; weekdaysList++) {
+    for (let i = 0; i < weekdaysList.length; i++) {
         let weekdayCheckbox = $(newDIDConfigurationPage.weekdaysCheckboxOnTimePickerModalDynamicLocator.replace("<dynamic>", weekdaysList[i]));
         action.isVisibleWait(weekdayCheckbox, 10000);
         action.clickElement(weekdayCheckbox);
@@ -280,4 +280,44 @@ Then(/^they see the new schedule table "(.*)" instead of the old one$/, function
 Then(/^an Add More button is shown under the schedule table$/, function () {
     let addMoreButtonDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.addMoreButtonUnderSchedule,10000);
     chai.expect(addMoreButtonDisplayStatus).to.be.true;
+})
+
+Then(/^the times are displayed in 24hr format in schedule time modal$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.scheduleStartTimeDropdown, 10000);
+    let startTimeDropdownTimeValues = action.getElementText(newDIDConfigurationPage.scheduleStartTimeDropdown);
+    let endTimeDropdownTimeValues = action.getElementText(newDIDConfigurationPage.scheduleEndTimeDropdown);
+    chai.expect(startTimeDropdownTimeValues).to.includes("23:59:00");
+    chai.expect(endTimeDropdownTimeValues).to.includes("23:59:00")
+})
+
+When(/^a time block can apply to 1 or more week days "(.*)"$/, function (weekdays) {
+    let weekdaysList = weekdays.split(",");
+    for (let i = 0; i < weekdaysList.length; i++) {
+        let weekdayCheckbox = $(newDIDConfigurationPage.weekdaysCheckboxOnTimePickerModalDynamicLocator.replace("<dynamic>", weekdaysList[i]));
+        action.isVisibleWait(weekdayCheckbox, 10000);
+        action.clickElement(weekdayCheckbox);
+    }
+})
+
+Then(/^a time block must be 30 min plus duration$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.saveButtonOnScheduleTimePickerModal, 10000);
+    action.clickElement(newDIDConfigurationPage.saveButtonOnScheduleTimePickerModal);
+    let thirtyMinMinimumTimeBlockErrorDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.thirtyMinMinimumTimeBlockError,10000);
+    chai.expect(thirtyMinMinimumTimeBlockErrorDisplayStatus).to.be.true;
+})
+
+Then(/^a time block can be set to BH or AH$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.businessHoursCheckbox, 10000);
+    action.clickElement(newDIDConfigurationPage.businessHoursCheckbox);
+})
+
+Then(/^fetches the schedule table text$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.scheduleTableBody,10000);
+    GlobalData.DID_SCHEDULE_TABLE_TEXT = action.getElementText(newDIDConfigurationPage.scheduleTableBody);
+})
+
+Then(/^no changes are saved in the schedule$/, function () {
+    action.isVisibleWait(newDIDConfigurationPage.scheduleTableBody,10000);
+    let didScheduleTableTextAfterCancel = action.getElementText(newDIDConfigurationPage.scheduleTableBody);
+    chai.expect(GlobalData.DID_SCHEDULE_TABLE_TEXT).to.equal(didScheduleTableTextAfterCancel);
 })

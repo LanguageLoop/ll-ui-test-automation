@@ -131,5 +131,17 @@ module.exports = {
 
     get scheduleTableHeader() {
         return $('//table[contains(@id,"DIDAdvScheduleTable")]/thead');
-    }
+    },
+
+    get thirtyMinMinimumTimeBlockError() {
+        return $('//span[@class="ValidationMessage" and text()="30min Minimum time block"]');
+    },
+
+    get businessHoursCheckbox() {
+        return $('//span[text()="Business hours"]/preceding-sibling::input[@type="checkbox"]');
+    },
+
+    get scheduleTableBody() {
+        return $('//table[contains(@id,"DIDAdvScheduleTable")]/tbody');
+    },
 }

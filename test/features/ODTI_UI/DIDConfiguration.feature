@@ -314,3 +314,45 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-605: Scenario 2b: Adding Time Block
+  @LL-605 @AddingTimeBlock
+  Scenario Outline: Clicking Add More button
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    Then has selected start time "<start Time1>" and end time "<end Time1>" on the schedule-edit modal
+    And the times are displayed in 24hr format in schedule time modal
+    And a time block must be 30 min plus duration
+    And a time block can apply to 1 or more week days "<weekdays>"
+    And a time block can be set to BH or AH
+    And has selected start time "<start Time2>" and end time "<end Time2>" on the schedule-edit modal
+    And has clicked the SAVE button on schedule time modal
+    And the error text message Time block overlaps with another time block is displayed
+
+    Examples:
+      | username          | password  | campus                  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 01:00:00    | 01:15:00  | 02:00:00    | 05:00:00  | Sat,Sun  |
+
+    #LL-605: Scenario 2c: Click Cancel
+  @LL-605 @ClickCancelOnSchedule
+  Scenario Outline: Click Cancel
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And fetches the schedule table text
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
+    And has clicked the CANCEL button on schedule time modal
+    Then the schedule time modal window closes in DID configuration
+    And no changes are saved in the schedule
+
+    Examples:
+      | username          | password  | start Time | end Time |
+      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
