@@ -45,7 +45,7 @@ When(/^I click on first job id from claims job list$/, function(){
   })
 
 When(/^I get the campus fee for first job$/, function(){
-    browser.pause(2000)
+    browser.pause(10000)
     GlobalData.CAMPUS_FEE= claimsPage.campusFeeCell.getText().replace('$','')
 })
 
