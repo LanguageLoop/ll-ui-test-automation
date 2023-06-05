@@ -1,4 +1,3 @@
-const GlobalData = require("../../data/GlobalData");
 Then(/^the user is navigated to the DID Configuration Details screen$/, function () {
     let pageTitleActual = action.getPageTitle();
     chai.expect(pageTitleActual).to.equal("New DID Configuration");
