@@ -321,3 +321,40 @@ Then(/^no changes are saved in the schedule$/, function () {
     let didScheduleTableTextAfterCancel = action.getElementText(newDIDConfigurationPage.scheduleTableBody);
     chai.expect(GlobalData.DID_SCHEDULE_TABLE_TEXT).to.equal(didScheduleTableTextAfterCancel);
 })
+
+Then(/^the new time block "(.*)","(.*)" is added to the table$/, function (startTime,endTime) {
+    let startEndTimeExpected = startTime.slice(0,5) + " - " + endTime.slice(0,5);
+    browser.waitUntil(() =>
+        action.getElementText(newDIDConfigurationPage.scheduleTableBody).includes(startEndTimeExpected),{
+        timeout: 10000,
+        timeoutMsg: 'expected text to include expected time after 10s',
+        interval: 1000
+    })
+    let didScheduleTableBody = action.getElementText(newDIDConfigurationPage.scheduleTableBody);
+    chai.expect(didScheduleTableBody).to.includes(startEndTimeExpected);
+})
+
+Then(/^Is Business Hours is displayed with a tick$/, function () {
+    let rowsCount = newDIDConfigurationPage.scheduleTableBodyRowsCount;
+    for (let row = 1; row <= rowsCount; row++) {
+        let isBusinessHoursCheckBox = $(newDIDConfigurationPage.isBusinessHoursCheckedDynamicLocator.replace("<dynamic>",row.toString()));
+        let isBusinessHoursCheckedDisplayStatus = action.isVisibleWait(isBusinessHoursCheckBox,10000);
+        chai.expect(isBusinessHoursCheckedDisplayStatus).to.be.true;
+    }
+})
+
+Then(/^the table is sorted by Start time earliest time at the top$/, function () {
+    let rowsCount = newDIDConfigurationPage.scheduleTableBodyRowsCount;
+    let startTimeListSorted = [];
+    for (let row = 1; row <= rowsCount; row++) {
+        let startEndTimeElement = $(newDIDConfigurationPage.startEndTimeDynamicLocator.replace("<dynamic>",row.toString()));
+        let startEndTimeText = action.getElementText(startEndTimeElement);
+        let startTimeValue  = startEndTimeText.split(" - ")[0].replace(":","");
+        startTimeListSorted.push(startTimeValue);
+    }
+    let startTimeListActual = [...startTimeListSorted];
+    startTimeListSorted.sort(function (a, b) {
+        return a - b
+    });
+    chai.expect(startTimeListActual).to.have.ordered.members(startTimeListSorted);
+})
