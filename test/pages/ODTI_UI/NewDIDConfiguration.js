@@ -144,4 +144,16 @@ module.exports = {
     get scheduleTableBody() {
         return $('//table[contains(@id,"DIDAdvScheduleTable")]/tbody');
     },
+
+    get scheduleTableBodyRowsCount() {
+        return $$('//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr').length;
+    },
+
+    get isBusinessHoursCheckedDynamicLocator() {
+        return '//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr[<dynamic>]/td[2]//input[@checked="checked"]';
+    },
+
+    get startEndTimeDynamicLocator() {
+        return '//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr[<dynamic>]/td[1]';
+    }
 }
