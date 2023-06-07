@@ -165,6 +165,7 @@ When(/^there is an x icon displayed next to each Time Block row$/, function () {
 When(/^the admin clicks on the x icon in the schedule table$/, function () {
     action.isVisibleWait(newDIDConfigurationPage.xIconInScheduleTable, 10000);
     action.clickElement(newDIDConfigurationPage.xIconInScheduleTable);
+    action.isNotVisibleWait(newDIDConfigurationPage.xIconInScheduleTable, 10000);
 })
 
 Then(/^the Time Block is removed from the table$/, function () {
@@ -357,4 +358,16 @@ Then(/^the table is sorted by Start time earliest time at the top$/, function ()
         return a - b
     });
     chai.expect(startTimeListActual).to.have.ordered.members(startTimeListSorted);
+})
+
+Then(/^the user will remain on the Schedule Time Picker popup$/, function () {
+    let scheduleTimePickerModalWindowDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.scheduleTimePickerModal, 10000);
+    chai.expect(scheduleTimePickerModalWindowDisplayStatus).to.be.true;
+})
+
+Then(/^that time block "(.*)","(.*)" is deleted$/, function (startTime,endTime) {
+    let startEndTimeExpected = startTime.slice(0,5) + " - " + endTime.slice(0,5);
+    action.isVisibleWait(newDIDConfigurationPage.scheduleTableBody,10000);
+    let didScheduleTableTextAfterDelete = action.getElementText(newDIDConfigurationPage.scheduleTableBody);
+    chai.expect(didScheduleTableTextAfterDelete).to.not.includes(startEndTimeExpected);
 })
