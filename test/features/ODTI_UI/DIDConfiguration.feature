@@ -385,3 +385,48 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
       | LLAdmin@looped.in | Octopus@6 | 01:00:00    | 02:00:00  | 02:00:00    | 05:00:00  | Sat,Sun  |
+
+    #LL-605: Scenario 2e: Overlapping time block validation
+  @LL-605 @OverlappingTimeBlockValidation
+  Scenario Outline: Overlapping time block validation
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time1>" and end time "<end Time1>" on the schedule-edit modal
+    And a time block can apply to 1 or more week days "<weekdays>"
+    And has clicked the SAVE button on schedule time modal
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time2>" and end time "<end Time2>" on the schedule-edit modal
+    And a time block can apply to 1 or more week days "<weekdays>"
+    And has clicked the SAVE button on schedule time modal
+    Then the error text message Time block overlaps with another time block is displayed
+    And the user will remain on the Schedule Time Picker popup
+
+    Examples:
+      | username          | password  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
+      | LLAdmin@looped.in | Octopus@6 | 01:00:00    | 04:00:00  | 02:00:00    | 03:00:00  | Sun,Mon  |
+
+    #LL-605: Scenario 3: Clicking Delete
+  @LL-605 @ClickingDeleteTimeBlock
+  Scenario Outline: Clicking Delete time block
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And the admin has clicked the Add More icon under the day-schedule
+    And a schedule time modal window appears in DID configuration
+    And has selected start time "<start Time>" and end time "<end Time>" on the schedule-edit modal
+    And a time block can apply to 1 or more week days "<weekdays>"
+    And has clicked the SAVE button on schedule time modal
+    And the admin clicks on the x icon in the schedule table
+    Then that time block "<start Time>","<end Time>" is deleted
+    And the Time Block is removed from the table
+    And a feedback message is displayed: Time block deleted
+
+    Examples:
+      | username          | password  | start Time | end Time | weekdays |
+      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 04:00:00 | Sun,Mon  |
