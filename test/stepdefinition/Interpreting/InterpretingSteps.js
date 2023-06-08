@@ -255,3 +255,11 @@ Then(/^a Contractor ID filter should not be displayed and pre filled with the gi
     chai.expect(contractorIDValuePreFilledDisplayStatus).to.be.false;
   }
 })
+
+When(/^an internal user has accessed the Booking Request screen from URL$/, function () {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/BookingRequest.aspx");
+})
+
+When(/^the Booking Request URL contains the CampusPIN parameter "(.*)"$/, function (campusPin) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/BookingRequest.aspx?CampusPIN=" + campusPin);
+})
