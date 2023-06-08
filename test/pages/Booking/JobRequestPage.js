@@ -404,4 +404,16 @@ module.exports={
     get cfOnSiteTextBox(){
         return $('//*[text()="CF_OnSite"]/../../..//input[contains(@id,"txtInputStd")]')
     },
+
+    get requesterModePhoneActive() {
+        return $('//label[contains(@class,"active") and text()="Phone"]');
+    },
+
+    get jobRequesterDetailsForm() {
+        return $('//div[text()="Job Requester Details"]/parent::div');
+    },
+
+    get noCampusPinFoundMessage() {
+        return $('//span[@class="Feedback_Message_Text" and text()="No Campus PIN found"]');
+    }
 }

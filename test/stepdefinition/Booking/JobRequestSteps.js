@@ -700,3 +700,32 @@ When(/^I enter CF_OnSite "(.*)"$/, function(CF_OnSite){
   action.isVisibleWait(jobRequestPage.cfOnSiteTextBox,10000)
   action.enterValue(jobRequestPage.cfOnSiteTextBox,CF_OnSite)
 })
+
+Then(/^the Job Request screen will display$/, function () {
+  let pageTitleActual = action.getPageTitle();
+  chai.expect(pageTitleActual).to.includes("Booking Request");
+})
+
+Then(/^the CampusPIN "(.*)" should be prefilled in the input box$/, function (campusPin) {
+  action.isVisibleWait(jobRequestPage.campusPinInput, 20000);
+  let campusPinPrefilledValueActual = action.getElementValue(jobRequestPage.campusPinInput);
+  chai.expect(campusPinPrefilledValueActual).to.equal(campusPin);
+})
+
+Then(/^RequesterMode should be set to Phone$/, function () {
+  let requesterModePhoneActiveDisplayStatus = action.isVisibleWait(jobRequestPage.requesterModePhoneActive, 20000);
+  chai.expect(requesterModePhoneActiveDisplayStatus).to.be.true;
+})
+
+Then(/^the rest of the form should display as if the user has typed a Campus PIN and pressed enter "(.*)"$/, function (jobRequesterDetails) {
+  let jobRequesterDetailsList = jobRequesterDetails.split(",");
+  let jobRequesterDetailsPageHtml = action.getElementHTML(jobRequestPage.jobRequesterDetailsForm);
+  for (let i = 0; i < jobRequesterDetailsList.length; i++) {
+    chai.expect(jobRequesterDetailsPageHtml).to.includes(jobRequesterDetailsList[i]);
+  }
+})
+
+Then(/^the error message No Campus PIN found is displayed$/, function () {
+  let noCampusPinFoundMessageDisplayStatus = action.isVisibleWait(jobRequestPage.noCampusPinFoundMessage, 20000);
+  chai.expect(noCampusPinFoundMessageDisplayStatus).to.be.true;
+})

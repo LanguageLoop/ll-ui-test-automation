@@ -120,3 +120,35 @@ Feature: Bookings Allocations Features
     Examples:
       | username cbo   | password cbo | contractorID |
       | zenq@cbo11.com | Test1        | 6155         |
+
+    #LL-635 Scenario 1: Campus PIN in URL (internal)
+  @LL-635 @CampusPINInURLBookingRequest
+  Scenario Outline: Campus PIN in URL (internal) Booking Request
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And an internal user has accessed the Booking Request screen from URL
+    And the Booking Request URL contains the CampusPIN parameter "<campusPIN>"
+    Then the Job Request screen will display
+    And the CampusPIN "<campusPIN>" should be prefilled in the input box
+    And RequesterMode should be set to Phone
+    And the rest of the form should display as if the user has typed a Campus PIN and pressed enter "<job requester details>"
+
+    Examples:
+      | username        | password  | campusPIN | job requester details |
+      | zenq2@ll.com.au | Reset@312 | 29449     | 29449,Contoso Pty LTD |
+
+    #LL-635 Scenario 2: Invalid Campus PIN in URL (internal)
+  @LL-635 @InvalidCampusPINInURLBookingRequest
+  Scenario Outline: Invalid Campus PIN in URL (internal)
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And an internal user has accessed the Booking Request screen from URL
+    And the Booking Request URL contains the CampusPIN parameter "<invalid campusPIN>"
+    Then the Job Request screen will display
+    And the CampusPIN "<invalid campusPIN>" should be prefilled in the input box
+    And the error message No Campus PIN found is displayed
+    And the rest of the form should display as if the user has typed a Campus PIN and pressed enter "<job requester details>"
+
+    Examples:
+      | username        | password  | invalid campusPIN | job requester details |
+      | zenq2@ll.com.au | Reset@312 | 2944909           | 2944909               |
