@@ -415,5 +415,17 @@ module.exports={
 
     get noCampusPinFoundMessage() {
         return $('//span[@class="Feedback_Message_Text" and text()="No Campus PIN found"]');
+    },
+
+    get campusInactiveMessage() {
+        return $('//span[@class="Feedback_Message_Text" and text()="The Campus is Inactive"]');
+    },
+
+    get campusPinDropDownOption() {
+        return '//select[contains(@id,"PINSingle")]/option[contains(text(),"<dynamic>")]';
+    },
+
+    get locationAddressValueField() {
+        return $('//input[contains(@id,"wtInput_wttxtAddress") and @value]');
     }
 }

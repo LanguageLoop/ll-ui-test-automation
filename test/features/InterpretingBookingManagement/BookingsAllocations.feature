@@ -152,3 +152,34 @@ Feature: Bookings Allocations Features
     Examples:
       | username        | password  | invalid campusPIN | job requester details |
       | zenq2@ll.com.au | Reset@312 | 2944909           | 2944909               |
+
+    #LL-635 Scenario 3: Inactive Campus PIN in URL (internal)
+  @LL-635 @InactiveCampusPINInURLBookingRequest
+  Scenario Outline: Inactive Campus PIN in URL (internal)
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And an internal user has accessed the Booking Request screen from URL
+    And the Booking Request URL contains the CampusPIN parameter "<inactive campusPIN>"
+    Then the Job Request screen will display
+    And the CampusPIN "<inactive campusPIN>" should be prefilled in the input box
+    And the error message The Campus is Inactive is displayed
+    And the rest of the form should display as if the user has typed a Campus PIN and pressed enter "<job requester details>"
+
+    Examples:
+      | username        | password  | inactive campusPIN | job requester details |
+      | zenq2@ll.com.au | Reset@312 | 28063              | 28063                 |
+
+    #LL-635 Scenario 4: Campus PIN in URL (CBO User with multiple campuses)
+  @LL-635 @CampusPINInURLCBOMultiple
+  Scenario Outline: Campus PIN in URL (CBO User with multiple campuses)
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click Interpreting header link
+    And an CBO user has accessed the Booking Request screen from URL
+    And user enters Campus PIN "<campusPIN option>" in the URL
+    Then the Job Request screen will display
+    And the CampusPIN "<campusPIN option>" should not be prefilled in the input box for CBO
+    And the page still stays as if no campus is selected for CBO
+
+    Examples:
+      | username cbo   | password cbo | campusPIN option |
+      | zenq@cbo11.com | Test1        | 29449            |
