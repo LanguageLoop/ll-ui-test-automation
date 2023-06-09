@@ -263,3 +263,11 @@ When(/^an internal user has accessed the Booking Request screen from URL$/, func
 When(/^the Booking Request URL contains the CampusPIN parameter "(.*)"$/, function (campusPin) {
   action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/BookingRequest.aspx?CampusPIN=" + campusPin);
 })
+
+When(/^an CBO user has accessed the Booking Request screen from URL$/, function () {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClientBookingRequest.aspx");
+})
+
+When(/^user enters Campus PIN "(.*)" in the URL$/, function (campusPin) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClientBookingRequest.aspx?CampusPIN=" + campusPin);
+})
