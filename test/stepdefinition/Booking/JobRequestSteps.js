@@ -729,3 +729,19 @@ Then(/^the error message No Campus PIN found is displayed$/, function () {
   let noCampusPinFoundMessageDisplayStatus = action.isVisibleWait(jobRequestPage.noCampusPinFoundMessage, 20000);
   chai.expect(noCampusPinFoundMessageDisplayStatus).to.be.true;
 })
+
+Then(/^the error message The Campus is Inactive is displayed$/, function () {
+  let campusInactiveMessageDisplayStatus = action.isVisibleWait(jobRequestPage.campusInactiveMessage, 20000);
+  chai.expect(campusInactiveMessageDisplayStatus).to.be.true;
+})
+
+Then(/^the CampusPIN "(.*)" should not be prefilled in the input box for CBO$/, function (campusPin) {
+  let campusPinDropdownOption = $(jobRequestPage.campusPinDropDownOption.replace("<dynamic>",campusPin));
+  let campusPinDropdownOptionSelectedStatus = action.isSelectedWait(campusPinDropdownOption, 1000);
+  chai.expect(campusPinDropdownOptionSelectedStatus).to.be.false;
+})
+
+Then(/^the page still stays as if no campus is selected for CBO$/, function () {
+  let selectedCampusLocationValueExistStatus = action.isExistingWait(jobRequestPage.locationAddressValueField, 1000);
+  chai.expect(selectedCampusLocationValueExistStatus).to.be.false;
+})
