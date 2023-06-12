@@ -745,3 +745,9 @@ Then(/^the page still stays as if no campus is selected for CBO$/, function () {
   let selectedCampusLocationValueExistStatus = action.isExistingWait(jobRequestPage.locationAddressValueField, 1000);
   chai.expect(selectedCampusLocationValueExistStatus).to.be.false;
 })
+
+Then(/^the CampusPIN "(.*)" is prefilled in the input box as it has only 1 campus pin for CBO$/, function (campusPin) {
+  let campusPinDropdownOption = $(jobRequestPage.campusPinDropDownOption.replace("<dynamic>",campusPin));
+  let campusPinDropdownOptionSelectedStatus = action.isSelectedWait(campusPinDropdownOption, 1000);
+  chai.expect(campusPinDropdownOptionSelectedStatus).to.be.true;
+})
