@@ -183,3 +183,17 @@ Feature: Bookings Allocations Features
     Examples:
       | username cbo   | password cbo | campusPIN option |
       | zenq@cbo11.com | Test1        | 29449            |
+
+    #LL-635 Scenario 5: Campus PIN in URL (CBO User with single campus)
+  @LL-635 @CampusPINInURLCBOSingle
+  Scenario Outline: Campus PIN in URL (CBO User with single campus)
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click Interpreting header link
+    And an CBO user has accessed the Booking Request screen from URL
+    And user enters Campus PIN "<campusPIN option>" in the URL
+    Then the Job Request screen will display
+    And the CampusPIN "<campusPIN option>" is prefilled in the input box as it has only 1 campus pin for CBO
+
+    Examples:
+      | username cbo   | password cbo | campusPIN option |
+      | zenq@cbo10.com | Test1        | 29449            |
