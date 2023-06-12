@@ -430,3 +430,18 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | start Time | end Time | weekdays |
       | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 04:00:00 | Sun,Mon  |
+
+    #LL-646: Scenario 1a: There should be a Delete icon beside the Pencil icon
+  @LL-646 @DeleteIconBesidePencilIcon
+  Scenario Outline: There should be a Delete icon beside the Pencil icon
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then there should be an X icon on each of the language options that has a language set
+    And options with no Language set do not have an X icon
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
