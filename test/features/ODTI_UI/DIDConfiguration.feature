@@ -445,3 +445,19 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-646: Scenario 1b: Clicking the Delete icon, removes the Language assigned to the numeric option
+  @LL-646 @ClickDeleteRemoveLanguageAssigned
+  Scenario Outline: Clicking the Delete icon, removes the Language assigned to the numeric option
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And the Admin clicks the X icon in Language Options table
+    Then the language option is cleared in Language Options table
+    And the X icon disappears in Language Options table
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
