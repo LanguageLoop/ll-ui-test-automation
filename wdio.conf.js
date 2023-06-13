@@ -42,6 +42,7 @@ var datetime=require('./test/utils/datetime')
 var fs = require('fs')
 var JOB_ID_FILENAME="jobid.txt"
 var scenarioName=""
+const log4js = require("log4js");
 exports.config = {
   
     //
@@ -286,6 +287,7 @@ exports.config = {
     reportAggregator.clean() ;
 
     global.reportAggregator = reportAggregator;
+        fs.rmdirSync('reports/logs', { recursive: true });
      },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -388,11 +390,23 @@ exports.config = {
      * Runs before a Cucumber scenario
      */
      beforeScenario: function (uri, feature, scenario, sourceLocation) {
+        console.log("---------------------------------------------------------------------------------------------");
+        console.log("Scenario: "+scenario.name);
          GlobalData.EDIT_BOOKING_SEARCH_JOB_ID=""
          GlobalData.ACCEPT_BOOKING_JOB_ID=""
          GlobalData.CURRENT_JOB_ID=""
          //GlobalData.CURRENT_PROJECT_ID=""
          global.scenarioName=scenario.name
+
+        log4js.configure({
+            appenders: {
+                [scenario.name]: {type: "file", filename: 'reports/logs/testExecution.log'},
+                console: {type: 'console'}
+            },
+            categories: {default: {appenders: [scenario.name, 'console'], level: "info"}}
+        });
+        const logger = log4js.getLogger('LL');
+        global.logger = logger
      },
     /**
      * Runs before a Cucumber step
@@ -418,7 +432,11 @@ exports.config = {
      * Runs after a Cucumber scenario
      */
     afterScenario: function (uri, feature, scenario, result, sourceLocation) {
-       
+        if (result.status === "passed") {
+            console.log("\t\t***************PASSED***************")
+        } else {
+            console.log("\t\t###############FAILED###############")
+        }
       /*  fs.appendFile(JOB_ID_FILENAME, "Job id : "+GlobalData.CURRENT_JOB_ID +" Test : "+scenario.name + "\n", (err) => {
             // throws an error, you could also catch it here
             if (err) throw err;
