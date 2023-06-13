@@ -1,7 +1,7 @@
 var path=require('path')
 module.exports={
 
-    enterValue(elt, value)
+    enterValue(elt, value, eltFriendlyName)
     {
 
         elt.waitForDisplayed()
@@ -13,9 +13,12 @@ module.exports={
         browser.pause(1000)
         elt.setValue(value)
         browser.pause(1000)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered " + value + " in " + eltFriendlyName);
+        }
     },
 
-    clearValue(elt)
+    clearValue(elt, eltFriendlyName)
     {
         browser.pause(1000)
         elt.waitForDisplayed()
@@ -23,9 +26,12 @@ module.exports={
         elt.waitForClickable()
         elt.click()
         elt.clearValue()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Cleared value in " + eltFriendlyName);
+        }
     },
 
-    enterValueAndPressReturn(elt, value)
+    enterValueAndPressReturn(elt, value, eltFriendlyName)
     {
         elt.waitForExist({timeout: 20000})
         elt.waitForDisplayed()
@@ -37,38 +43,53 @@ module.exports={
         browser.pause(2000)
         browser.keys('Enter')
         browser.pause(1000)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered " + value + " in " + eltFriendlyName);
+        }
     },
 
-    clickElement(elt)
+    clickElement(elt, eltFriendlyName)
     {
         elt.waitForExist({timeout: 20000})
         elt.waitForDisplayed({timeout:10000})
         elt.waitForClickable()
-        elt.click() 
+        elt.click()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Clicked on " + eltFriendlyName);
+        }
     },
 
-    doubleClickElement(elt)
+    doubleClickElement(elt, eltFriendlyName)
     {
         elt.waitForDisplayed({timeout:5000})
         elt.waitForClickable()
-        elt.doubleClick() 
+        elt.doubleClick()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Double clicked on " + eltFriendlyName);
+        }
     },
 
-    selectTextFromDropdown(elt,text)
+    selectTextFromDropdown(elt,text, eltFriendlyName)
     {
         browser.pause(1000)
         elt.waitForDisplayed()
         elt.waitForEnabled()
         elt.waitForClickable()
-        elt.selectByVisibleText(text) 
+        elt.selectByVisibleText(text)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Selected " + text + " in " + eltFriendlyName);
+        }
     },
 
-    elementExists(elt)
+    elementExists(elt, eltFriendlyName)
     {
+        if (eltFriendlyName !== undefined) {
+            logger.info("Waiting for " + eltFriendlyName + " to exist");
+        }
        return elt.waitForDisplayed({timeout:25000})
     },
 
-    uploadFile(elt,filepath)
+    uploadFile(elt,filepath, eltFriendlyName)
     {
         
         var abs_path=path.resolve(filepath)
@@ -76,9 +97,12 @@ module.exports={
         const remoteFilePath = browser.uploadFile(abs_path);
         elt.addValue(remoteFilePath)
        // elt.click()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Uploaded file " + filepath + " in "+eltFriendlyName);
+        }
     },
 
-    enterDateAndTime(dateField,timeField,dateValue,timeValue)
+    enterDateAndTime(dateField,timeField,dateValue,timeValue, eltFriendlyName)
     {
         browser.pause(1000)
         this.clickElement(dateField)
@@ -89,20 +113,26 @@ module.exports={
         this.clickElement(timeField)
         browser.pause(1000)
         this.enterValue(timeField,timeValue)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered Date " + dateValue + " and Time " + timeValue + " in " + eltFriendlyName);
+        }
     },
 
-    enterDate(dateField,dateValue)
+    enterDate(dateField,dateValue, eltFriendlyName)
     {
         browser.pause(1000)
         this.clickElement(dateField)
         this.clearValue(dateField)
         this.enterValueAndPressReturn(dateField,dateValue.toString())  
         browser.pause(1000)
-        browser.keys("Tab")        
+        browser.keys("Tab")
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered Date " + dateValue + " in " + eltFriendlyName);
+        }
     },
 
 
-    enterLocation(locationField,location)
+    enterLocation(locationField,location, eltFriendlyName)
     {
        
         browser.pause(1000)
@@ -114,8 +144,11 @@ module.exports={
       //  browser.keys("ArrowDown")
        // browser.keys("Enter")
         browser.pause(2000)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered Location " + location + " in " + eltFriendlyName);
+        }
     },
-    enterStartDate(dateField,dateValue)
+    enterStartDate(dateField,dateValue, eltFriendlyName)
     {
         browser.pause(1000)
         this.clickElement(dateField)
@@ -123,7 +156,10 @@ module.exports={
         dateValue = "" + dateValue
         this.enterValueAndPressReturn(dateField,dateValue)  
         browser.pause(1000)
-        browser.keys("Tab")        
+        browser.keys("Tab")
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered Date " + dateValue + " in " + eltFriendlyName);
+        }
     },
 
     domStatusComplete() {
@@ -138,11 +174,14 @@ module.exports={
         });
     },
 
-    waitForElementClickable(elt){
+    waitForElementClickable(elt, eltFriendlyName){
+        if (eltFriendlyName !== undefined) {
+            logger.info("Waiting for " + eltFriendlyName + " to be clickable");
+        }
         elt.waitForClickable({timeout: 60000})
     },
 
-    isClickableWait(elt,waitTime){
+    isClickableWait(elt,waitTime, eltFriendlyName){
         let isClickable = false;
         let i = 0;
         while (i <= waitTime) {
@@ -154,10 +193,13 @@ module.exports={
                 i = i + 500;
             }
         }
+        if (eltFriendlyName !== undefined) {
+            logger.info(eltFriendlyName + " is clickable status after waiting is "+isClickable);
+        }
         return isClickable;
     },
 
-    isVisibleWait(elt,waitTime){
+    isVisibleWait(elt,waitTime, eltFriendlyName){
         let isVisible = false;
         let i = 0;
         while (i <= waitTime) {
@@ -169,19 +211,28 @@ module.exports={
                 i = i + 500;
             }
         }
+        if (eltFriendlyName !== undefined) {
+            logger.info(eltFriendlyName + " is Visible status after waiting is "+isVisible);
+        }
         return isVisible;
     },
 
-    getElementText(elt){
+    getElementText(elt, eltFriendlyName){
         let elementText = elt.getText()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Fetched text of "+eltFriendlyName+" as "+elementText);
+        }
         return elementText;
     },
 
-    waitForElementExist(elt,timeoutValue,reverseAction,timeoutMessage,intervalValue){
+    waitForElementExist(elt,timeoutValue,reverseAction,timeoutMessage,intervalValue, eltFriendlyName){
+        if (eltFriendlyName !== undefined) {
+            logger.info("Waiting for " + eltFriendlyName + " to exist");
+        }
         elt.waitForExist({ timeout:timeoutValue, reverse:reverseAction, timeoutMsg:timeoutMessage, interval:intervalValue })
     },
 
-    isExistingWait(elt,waitTime){
+    isExistingWait(elt,waitTime, eltFriendlyName){
         let isExisting = false;
         let i = 0;
         while (i <= waitTime) {
@@ -193,10 +244,13 @@ module.exports={
                 i = i + 500;
             }
         }
+        if (eltFriendlyName !== undefined) {
+            logger.info(eltFriendlyName + " is Existing status after waiting is "+isExisting);
+        }
         return isExisting;
     },
 
-    isSelectedWait(elt,waitTime){
+    isSelectedWait(elt,waitTime, eltFriendlyName){
         let isSelected = false;
         let i = 0;
         while (i <= waitTime) {
@@ -208,10 +262,13 @@ module.exports={
                 i = i + 500;
             }
         }
+        if (eltFriendlyName !== undefined) {
+            logger.info(eltFriendlyName + " is Selected status after waiting is "+isSelected);
+        }
         return isSelected;
     },
 
-    addValueAndPressReturnTab(elt, value)
+    addValueAndPressReturnTab(elt, value, eltFriendlyName)
     {
         this.isClickableWait(elt,20000)
         elt.clearValue()
@@ -220,6 +277,9 @@ module.exports={
         browser.keys('Enter')
         browser.keys("Tab")
         browser.pause(2000)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Entered " + value + " in " + eltFriendlyName + " and pressed RETURN and TAB keys");
+        }
     },
 
     /**
@@ -229,6 +289,9 @@ module.exports={
      */
     pressKeys(keys){
         browser.keys(keys)
+        if (keys !== undefined) {
+            logger.info("Pressed keyboard keys " + keys);
+        }
     },
 
     /**
@@ -236,8 +299,11 @@ module.exports={
      * @param elt
      * @returns {*}
      */
-    getElementValue(elt){
+    getElementValue(elt, eltFriendlyName){
         let elementValue = elt.getValue()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Fetched Value of "+eltFriendlyName+" as "+elementValue);
+        }
         return elementValue;
     },
 
@@ -246,8 +312,11 @@ module.exports={
      * @param elt
      * @returns {Promise<string> | string}
      */
-    getElementTagName(elt){
+    getElementTagName(elt, eltFriendlyName){
         let elementTagName = elt.getTagName()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Fetched Tag Name of "+eltFriendlyName+" as "+elementTagName);
+        }
         return elementTagName;
     },
 
@@ -277,7 +346,7 @@ module.exports={
      */
     getPageUrl() {
         let pageURL = browser.getUrl();
-        console.log("Page URL is: "+pageURL);
+        logger.info("Fetched Page URL as "+pageURL);
         return pageURL;
     },
 
@@ -289,7 +358,7 @@ module.exports={
         let windowHandles = browser.getWindowHandles();
         let newWindowHandle = windowHandles[windowHandles.length - 1];
         browser.switchToWindow(newWindowHandle);
-        console.log("Switched to window: "+newWindowHandle);
+        logger.info("Switched to latest window "+newWindowHandle);
     },
 
     /**
@@ -298,7 +367,7 @@ module.exports={
      * @param waitTime
      * @returns {boolean}
      */
-    isNotVisibleWait(elt, waitTime) {
+    isNotVisibleWait(elt, waitTime, eltFriendlyName) {
         let isVisible = true;
         let i = 0;
         while (i <= waitTime) {
@@ -310,6 +379,9 @@ module.exports={
                 break;
             }
         }
+        if (eltFriendlyName !== undefined) {
+            logger.info(eltFriendlyName + " is visible status after waiting is "+isVisible);
+        }
         return isVisible;
     },
 
@@ -317,9 +389,12 @@ module.exports={
      * Moves the mouse to the center of the element
      * @param elt
      */
-    moveToElement(elt) {
+    moveToElement(elt, eltFriendlyName) {
         this.isVisibleWait(elt, 20000);
         elt.moveTo();
+        if (eltFriendlyName !== undefined) {
+            logger.info("Moved mouse over "+eltFriendlyName);
+        }
     },
 
     /**
@@ -328,7 +403,7 @@ module.exports={
      * @param waitTime
      * @returns {boolean}
      */
-    isEnabledWait(elt,waitTime){
+    isEnabledWait(elt,waitTime, eltFriendlyName){
         let isEnabled = false;
         let i = 0;
         while (i <= waitTime) {
@@ -340,6 +415,9 @@ module.exports={
                 i = i + 500;
             }
         }
+        if (eltFriendlyName !== undefined) {
+            logger.info(eltFriendlyName + " is enabled status after waiting is "+isEnabled);
+        }
         return isEnabled;
     },
 
@@ -349,8 +427,11 @@ module.exports={
      * @param attributeName
      * @returns {*}
      */
-    getElementAttribute(elt,attributeName){
+    getElementAttribute(elt,attributeName, eltFriendlyName){
         let elementAttributeValue = elt.getAttribute(attributeName)
+        if (eltFriendlyName !== undefined) {
+            logger.info("Fetched Attribute " + attributeName + "  value of " + eltFriendlyName + " as " + elementAttributeValue);
+        }
         return elementAttributeValue;
     },
 
@@ -360,7 +441,7 @@ module.exports={
      */
     getPageTitle() {
         let pageTitle = browser.getTitle();
-        console.log("Page Title is: "+pageTitle);
+        logger.info("Fetched Page Title as "+pageTitle);
         return pageTitle;
     },
 
@@ -369,8 +450,11 @@ module.exports={
      * @param elt
      * @returns {Promise<string> | string}
      */
-    getElementHTML(elt){
+    getElementHTML(elt, eltFriendlyName){
         let elementHTML = elt.getHTML()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Fetched Element HTML of " + eltFriendlyName);
+        }
         return elementHTML;
     },
 
@@ -382,7 +466,7 @@ module.exports={
     getWindowHandle() {
         browser.pause(2000);
         let windowHandle = browser.getWindowHandle();
-        console.log("Fetched window handle: "+windowHandle);
+        logger.info("Fetched windowHandle as "+windowHandle);
         return windowHandle;
     },
 
@@ -393,7 +477,7 @@ module.exports={
     navigateToWindowHandle(windowHandle) {
         browser.pause(2000);
         browser.switchToWindow(windowHandle);
-        console.log("Switched to window: "+windowHandle);
+        logger.info("Switched to window "+windowHandle);
     },
 
     /**
@@ -402,15 +486,19 @@ module.exports={
      */
     launchURL(URL) {
         browser.url(URL);
+        logger.info("Launched URL "+URL);
     },
 
     /**
      * Clicks on the element without explicitly waiting for the element
      * @param elt
      */
-    clickWithOutWait(elt)
+    clickWithOutWait(elt, eltFriendlyName)
     {
         elt.click()
+        if (eltFriendlyName !== undefined) {
+            logger.info("Clicked without wait on " + eltFriendlyName);
+        }
     },
 
     /**
@@ -420,7 +508,7 @@ module.exports={
     getAlertText()
     {
         let alertText = browser.getAlertText();
-        console.log("Alert Text is: "+alertText);
+        logger.info("Fetched Alert text as "+alertText);
         return alertText
     },
 
@@ -429,7 +517,13 @@ module.exports={
      */
     acceptAlert()
     {
+        logger.info("Accepting the Alert");
         return browser.acceptAlert();
+    },
+
+    reloadSession() {
+        browser.reloadSession()
+        logger.info("Reloaded Session");
     },
 }
 
