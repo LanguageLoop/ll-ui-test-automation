@@ -34,3 +34,21 @@ Then(/^options with no Language set do not have an X icon$/, function () {
         }
     }
 })
+
+When(/^the Admin clicks the X icon in Language Options table$/, function () {
+    let xIconBesideLanguage = $(editDIDConfigurationPage.xIconBesideAssignedToNumericOptionDynamicLocator.replace("<dynamic>", "1"));
+    action.clickElement(xIconBesideLanguage)
+    action.isNotVisibleWait(xIconBesideLanguage,10000)
+})
+
+Then(/^the language option is cleared in Language Options table$/, function () {
+    let languageTextElement = $(editDIDConfigurationPage.languageTextAssignedToNumericOptionDynamicLocator.replace("<dynamic>", "1"));
+    let languageTextElementValue = action.getElementText(languageTextElement);
+    chai.expect(languageTextElementValue).to.equal("");
+})
+
+Then(/^the X icon disappears in Language Options table$/, function () {
+    let xIconBesideLanguage = $(editDIDConfigurationPage.xIconBesideAssignedToNumericOptionDynamicLocator.replace("<dynamic>", "1"));
+    let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 1000);
+    chai.expect(xIconBesideLanguageDisplayStatus).to.be.false;
+})
