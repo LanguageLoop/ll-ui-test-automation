@@ -194,7 +194,7 @@ module.exports={
             }
         }
         if (eltFriendlyName !== undefined) {
-            logger.info(eltFriendlyName + " is clickable status after waiting is "+isClickable);
+            logger.info(eltFriendlyName + " is clickable status = "+isClickable);
         }
         return isClickable;
     },
@@ -212,7 +212,7 @@ module.exports={
             }
         }
         if (eltFriendlyName !== undefined) {
-            logger.info(eltFriendlyName + " is Visible status after waiting is "+isVisible);
+            logger.info(eltFriendlyName + " is Visible status = "+isVisible);
         }
         return isVisible;
     },
@@ -245,7 +245,7 @@ module.exports={
             }
         }
         if (eltFriendlyName !== undefined) {
-            logger.info(eltFriendlyName + " is Existing status after waiting is "+isExisting);
+            logger.info(eltFriendlyName + " is Existing status = "+isExisting);
         }
         return isExisting;
     },
@@ -263,7 +263,7 @@ module.exports={
             }
         }
         if (eltFriendlyName !== undefined) {
-            logger.info(eltFriendlyName + " is Selected status after waiting is "+isSelected);
+            logger.info(eltFriendlyName + " is Selected status = "+isSelected);
         }
         return isSelected;
     },
@@ -290,7 +290,7 @@ module.exports={
     pressKeys(keys){
         browser.keys(keys)
         if (keys !== undefined) {
-            logger.info("Pressed keyboard keys " + keys);
+            logger.info("Pressed keyboard key - " + keys);
         }
     },
 
@@ -380,7 +380,7 @@ module.exports={
             }
         }
         if (eltFriendlyName !== undefined) {
-            logger.info(eltFriendlyName + " is visible status after waiting is "+isVisible);
+            logger.info(eltFriendlyName + " is visible status = "+isVisible);
         }
         return isVisible;
     },
@@ -416,7 +416,7 @@ module.exports={
             }
         }
         if (eltFriendlyName !== undefined) {
-            logger.info(eltFriendlyName + " is enabled status after waiting is "+isEnabled);
+            logger.info(eltFriendlyName + " is enabled status = "+isEnabled);
         }
         return isEnabled;
     },
@@ -430,7 +430,7 @@ module.exports={
     getElementAttribute(elt,attributeName, eltFriendlyName){
         let elementAttributeValue = elt.getAttribute(attributeName)
         if (eltFriendlyName !== undefined) {
-            logger.info("Fetched Attribute " + attributeName + "  value of " + eltFriendlyName + " as " + elementAttributeValue);
+            logger.info("Fetched Attribute " + attributeName + " value of " + eltFriendlyName + " as " + elementAttributeValue);
         }
         return elementAttributeValue;
     },
