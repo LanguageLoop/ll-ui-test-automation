@@ -112,4 +112,12 @@ module.exports = {
     get campusNameLinksDIDConfigurationLocator() {
         return '//a[text()="<dynamicCampusPin>"]';
     },
+
+    get editGeneralTiDIDConfigurationLinksLocator() {
+        return '//td[contains(text(),"General TI")]/parent::tr/td/a[text()="Edit"]';
+    },
+
+    get editGeneralTiDIDConfigurationLinkLocator() {
+        return '(//td[contains(text(),"General TI")]/parent::tr/td/a[text()="Edit"])[<dynamicIndex>]';
+    },
 }
