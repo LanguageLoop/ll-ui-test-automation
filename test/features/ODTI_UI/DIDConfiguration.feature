@@ -461,3 +461,34 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | campus                  |
       | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-655: Scenario 4a: UI for the DID Configuration
+  @LL-655 @DIDAllFourOptionsEnabled
+  Scenario Outline: UI for the DID Configuration - all four options should be enabled
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the user has clicked on the New Configuration button under DID Configuration tab
+    And has selected the TI Service Type "<TI Service Type>" in DID configuration
+    Then the Default Configuration Panel should display
+    And all four options "<configuration toggles>" should be enabled in Default Configuration
+
+    Examples:
+      | username          | password  | TI Service Type | configuration toggles                                                                                      |
+      | LLAdmin@looped.in | Octopus@6 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
+
+    #LL-655: Scenario 4b: UI for the DID Configuration
+  @LL-655 @FourOptionsShouldDisplaySavedValues
+  Scenario Outline: UI for the DID Configuration - the four options should display the saved values
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin clicks on Edit for an existing DID Configuration with General TI
+    And the user is navigated to the Edit DID Configuration screen
+    And the selected ServiceType in Edit DID configuration is "<TI Service Type>"
+    Then the Default Configuration Panel should display
+    And the four options "<configuration toggles>" should display the saved values
+
+    Examples:
+      | username          | password  | TI Service Type | configuration toggles                                                                                      |
+      | LLAdmin@looped.in | Octopus@6 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
