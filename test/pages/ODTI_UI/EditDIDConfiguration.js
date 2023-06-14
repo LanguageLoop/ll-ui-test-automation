@@ -24,4 +24,12 @@ module.exports = {
     get languageTextAssignedToNumericOptionDynamicLocator() {
         return '//table[contains(@id,"TableLanguage")]/tbody/tr//div[text()="<dynamic>"]/parent::td/following-sibling::td[1]/div'; //dynamic option number
     },
+
+    get tiServiceTypeDropdownOptionDynamicLocator() {
+        return '//select[contains(@id,"DIDConfiguration_TIServiceType")]/option[text()="<dynamic>"]'; //dynamic TI Service Type
+    },
+
+    get configurationToggleCheckboxLocator() {
+        return '//label[text()="<dynamic>"]/parent::div//input';
+    },
 }

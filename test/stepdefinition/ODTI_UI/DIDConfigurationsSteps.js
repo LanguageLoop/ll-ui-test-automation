@@ -181,3 +181,16 @@ When(/^the Admin has clicked on the Campus Name "(.*)" in the DID configuration 
         }
     }
 })
+
+When(/^the Admin clicks on Edit for an existing DID Configuration with General TI$/, function () {
+    let editDIDConfigurationLinksCount = $$(DIDConfigurationsPage.editGeneralTiDIDConfigurationLinksLocator).length;
+    for (let index = 1; index <= editDIDConfigurationLinksCount; index++) {
+        let editDIDConfigurationLink = $(DIDConfigurationsPage.editGeneralTiDIDConfigurationLinkLocator.replace("<dynamicIndex>", index.toString()));
+        action.isNotVisibleWait(editDIDConfigurationLink, 2000,"Edit DID configuration link in DID configuration page");
+        let editLinkVisible = action.isVisibleWait(editDIDConfigurationLink, 1000,"Edit DID configuration link in DID configuration page");
+        if (editLinkVisible) {
+            action.clickElement(editDIDConfigurationLink,"Edit DID configuration link in DID configuration page");
+            break;
+        }
+    }
+})
