@@ -155,5 +155,13 @@ module.exports = {
 
     get startEndTimeDynamicLocator() {
         return '//table[contains(@id,"DIDAdvScheduleTable")]/tbody/tr[<dynamic>]/td[1]';
-    }
+    },
+
+    get defaultConfigurationSection() {
+        return $('//div[contains(text(),"Default") and (contains(text(),"Configuration"))]/parent::div');
+    },
+
+    get configurationToggleCheckboxLocator() {
+        return '//label[text()="<dynamic>"]/parent::div//input';
+    },
 }
