@@ -371,3 +371,17 @@ Then(/^that time block "(.*)","(.*)" is deleted$/, function (startTime,endTime) 
     let didScheduleTableTextAfterDelete = action.getElementText(newDIDConfigurationPage.scheduleTableBody);
     chai.expect(didScheduleTableTextAfterDelete).to.not.includes(startEndTimeExpected);
 })
+
+Then(/^the Default Configuration Panel should display$/, function () {
+    let defaultConfigurationSectionDisplayStatus = action.isVisibleWait(newDIDConfigurationPage.defaultConfigurationSection, 10000, "Default Configuration Panel in New DID Configuration page");
+    chai.expect(defaultConfigurationSectionDisplayStatus).to.be.true;
+})
+
+Then(/^all four options "(.*)" should be enabled in Default Configuration$/, function (configurationToggles) {
+    let configurationTogglesList = configurationToggles.split(",")
+    for (let index = 0; index < configurationTogglesList.length; index++) {
+        let configurationToggleElement = $(newDIDConfigurationPage.configurationToggleCheckboxLocator.replace("<dynamic>", configurationTogglesList[index]));
+        let toggleOriginalValue = action.getElementAttribute(configurationToggleElement, "origvalue", "Toggle option " + configurationTogglesList[index] + " in New DID Configuration page");
+        chai.expect(toggleOriginalValue).to.equal("true");
+    }
+})
