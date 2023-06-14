@@ -52,3 +52,19 @@ Then(/^the X icon disappears in Language Options table$/, function () {
     let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 1000);
     chai.expect(xIconBesideLanguageDisplayStatus).to.be.false;
 })
+
+Then(/^the selected ServiceType in Edit DID configuration is "(.*)"$/, function (tiServiceTypeOption) {
+    let tiServiceTypeDropdownOption = $(editDIDConfigurationPage.tiServiceTypeDropdownOptionDynamicLocator.replace("<dynamic>", tiServiceTypeOption));
+    let tiServiceTypeDropdownOptionSelectedStatus = action.isSelectedWait(tiServiceTypeDropdownOption, 10000,"TI Service Type Dropdown Option in Edit DID Configuration page");
+    chai.expect(tiServiceTypeDropdownOptionSelectedStatus).to.be.true;
+})
+
+Then(/^the four options "(.*)" should display the saved values$/, function (configurationToggles) {
+    let configurationTogglesList = configurationToggles.split(",")
+    for (let index = 0; index < configurationTogglesList.length; index++) {
+        let configurationToggleElement = $(editDIDConfigurationPage.configurationToggleCheckboxLocator.replace("<dynamic>", configurationTogglesList[index]));
+        let toggleOriginalValue = action.getElementAttribute(configurationToggleElement, "origvalue", "Toggle option " + configurationTogglesList[index] + " in Edit DID Configuration page");
+        let toggleHasSavedValues = toggleOriginalValue === "true" || toggleOriginalValue === "false";
+        chai.expect(toggleHasSavedValues).to.be.true;
+    }
+})
