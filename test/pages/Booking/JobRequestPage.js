@@ -431,5 +431,9 @@ module.exports={
 
     get hoursConfirmationContinueButton() {
         return $('//input[@value="Continue" and contains(@id,"HoursConfirmation")]');
+    },
+
+    get pastDateConfirmationContinueButton() {
+        return $('//input[@value="Continue" and contains(@id,"PastDateConfirmation")]');
     }
 }

@@ -188,6 +188,11 @@ When(/^I handle duplicate job warning window$/,function(){
       action.isClickableWait(jobRequestPage.hoursConfirmationContinueButton,10000);
       action.clickElement(jobRequestPage.hoursConfirmationContinueButton);
     }
+    let pastDateConfirmationContinueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.pastDateConfirmationContinueButton,5000);
+    if(pastDateConfirmationContinueButtonVisibleStatus) {
+      action.isClickableWait(jobRequestPage.pastDateConfirmationContinueButton,10000);
+      action.clickElement(jobRequestPage.pastDateConfirmationContinueButton);
+    }
     let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
     if(continueButtonVisibleStatus) {
       jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
