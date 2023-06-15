@@ -183,6 +183,11 @@ When(/^I click add interpreters button$/,function(){
 When(/^I handle duplicate job warning window$/,function(){
   
   try{
+    let hoursConfirmationContinueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.hoursConfirmationContinueButton,5000);
+    if(hoursConfirmationContinueButtonVisibleStatus) {
+      action.isClickableWait(jobRequestPage.hoursConfirmationContinueButton,10000);
+      action.clickElement(jobRequestPage.hoursConfirmationContinueButton);
+    }
     let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
     if(continueButtonVisibleStatus) {
       jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})

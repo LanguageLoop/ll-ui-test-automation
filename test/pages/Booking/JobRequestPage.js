@@ -427,5 +427,9 @@ module.exports={
 
     get locationAddressValueField() {
         return $('//input[contains(@id,"wtInput_wttxtAddress") and @value]');
+    },
+
+    get hoursConfirmationContinueButton() {
+        return $('//input[@value="Continue" and contains(@id,"HoursConfirmation")]');
     }
 }
