@@ -734,3 +734,35 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id | customised field name | max length | audio label      |
    | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label |
+
+  #LL-664 Scenario 1 : The Campus belongs to a contract with missing rates
+ @LL-664 @CampusContractMissingRates
+ Scenario Outline: The Campus belongs to a contract with missing rates
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they will be navigated to the Campus page
+  And the user clicks on Edit pencil icon, under Service Used By Campus
+  Then the On Demand Telephone check box is disabled in Bill To Popup
+  And a message is displayed below On Demand Telephone This contract does not have complete Rates for On Demand Telephone
+
+  Examples:
+   | username          | password  | campus id |
+   | LLAdmin@looped.in | Octopus@6 | 33124     |
+
+  #LL-664 Scenario 2 : The Campus belongs to a contract with complete rates
+ @LL-664 @CampusContractCompleteRates
+ Scenario Outline: The Campus belongs to a contract with complete rates
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they will be navigated to the Campus page
+  And the user clicks on Edit pencil icon, under Service Used By Campus
+  Then the On Demand Telephone check box is enabled in Bill To Popup
+  And the user can check the box, and click Assign in Bill To Popup
+
+  Examples:
+   | username          | password  | campus id |
+   | LLAdmin@looped.in | Octopus@6 | 29449     |

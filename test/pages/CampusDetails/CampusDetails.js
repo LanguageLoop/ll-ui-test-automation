@@ -546,4 +546,28 @@ module.exports ={
     get saveButtonOnManageCustomizedField() {
         return $('//input[@value="Save" and (contains(@id,"AddModal"))]');
     },
+
+    get editPencilIconUnderServiceUsedByCampusFirstBillTo() {
+        return $('//tr[1]//a[contains(@id,"CampusBillToTable")]/span[@class="fa fa-fw fa-pencil"]');
+    },
+
+    get onDemandTelephoneCheckboxDisabled() {
+        return $('//div[text()="On Demand Telephone"]/parent::div/input[@type="checkbox" and @disabled="disabled"]');
+    },
+
+    get noCompleteRatesForODTIMessage() {
+        return $('//span[text()="*This contract does not have complete Rates for On Demand Telephone*"]');
+    },
+
+    get onDemandTelephoneCheckboxEnabled() {
+        return $('//div[text()="On Demand Telephone"]/parent::div/input[@type="checkbox" and @checked="checked"]');
+    },
+
+    get onDemandTelephoneCheckbox() {
+        return $('//div[text()="On Demand Telephone"]/parent::div/input[@type="checkbox"]');
+    },
+
+    get assignButtonOnManageBillToPopup() {
+        return $('//input[@value="Assign" and contains(@id,"AssignBillToDialog")]');
+    },
 }

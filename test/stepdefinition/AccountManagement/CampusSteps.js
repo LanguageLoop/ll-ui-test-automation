@@ -1083,3 +1083,31 @@ Then(/^the custom field is deleted in campus$/, function () {
     let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,1000);
     chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.false;
 })
+
+When(/^the user clicks on Edit pencil icon, under Service Used By Campus$/, function () {
+    action.isVisibleWait(campusDetailsPage.editPencilIconUnderServiceUsedByCampusFirstBillTo,10000,"Edit pencil icon under Service Used By Campus in Campus Details page");
+    action.clickElement(campusDetailsPage.editPencilIconUnderServiceUsedByCampusFirstBillTo,"Edit pencil icon under Service Used By Campus in Campus Details page");
+})
+
+Then(/^the On Demand Telephone check box is disabled in Bill To Popup$/, function () {
+    let onDemandTelephoneCheckboxDisabledDisplayStatus = action.isVisibleWait(campusDetailsPage.onDemandTelephoneCheckboxDisabled,10000,"On Demand Telephone checkbox disabled in Manage Bill-To Popup in Campus Details page");
+    chai.expect(onDemandTelephoneCheckboxDisabledDisplayStatus).to.be.true;
+})
+
+Then(/^a message is displayed below On Demand Telephone This contract does not have complete Rates for On Demand Telephone$/, function () {
+    let noCompleteRatesForODTIMessageDisplayStatus = action.isVisibleWait(campusDetailsPage.noCompleteRatesForODTIMessage,10000,"This contract does not have complete Rates for On Demand Telephone message in Manage Bill-To Popup in Campus Details page");
+    chai.expect(noCompleteRatesForODTIMessageDisplayStatus).to.be.true;
+})
+
+Then(/^the On Demand Telephone check box is enabled in Bill To Popup$/, function () {
+    let onDemandTelephoneCheckboxEnabledDisplayStatus = action.isVisibleWait(campusDetailsPage.onDemandTelephoneCheckboxEnabled,10000,"On Demand Telephone checkbox enabled in Manage Bill-To Popup in Campus Details page");
+    chai.expect(onDemandTelephoneCheckboxEnabledDisplayStatus).to.be.true;
+})
+
+Then(/^the user can check the box, and click Assign in Bill To Popup$/, function () {
+    let onDemandTelephoneCheckboxSelectedStatus = action.isSelectedWait(campusDetailsPage.onDemandTelephoneCheckbox,10000,"On Demand Telephone checkbox in Manage Bill-To Popup in Campus Details page");
+    if (onDemandTelephoneCheckboxSelectedStatus === false) {
+        action.clickElement(campusDetailsPage.onDemandTelephoneCheckbox,"On Demand Telephone checkbox in Manage Bill-To Popup in Campus Details page");
+        action.clickElement(campusDetailsPage.assignButtonOnManageBillToPopup,"Assign Button in Manage Bill-To Popup in Campus Details page");
+    }
+})

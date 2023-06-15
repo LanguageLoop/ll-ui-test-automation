@@ -55,6 +55,11 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   browser.pause(2000)
 
   try{
+    let hoursConfirmationContinueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.hoursConfirmationContinueButton,5000);
+    if(hoursConfirmationContinueButtonVisibleStatus) {
+      action.isClickableWait(jobRequestPage.hoursConfirmationContinueButton,10000);
+      action.clickElement(jobRequestPage.hoursConfirmationContinueButton);
+    }
     action.isClickableWait(jobRequestPage.continueButton,30000)
     jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
     browser.execute("arguments[0].click();", jobRequestPage.continueButton)
@@ -135,6 +140,11 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   browser.pause(2000)
 
   try{
+    let hoursConfirmationContinueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.hoursConfirmationContinueButton,5000);
+    if(hoursConfirmationContinueButtonVisibleStatus) {
+      action.isClickableWait(jobRequestPage.hoursConfirmationContinueButton,10000);
+      action.clickElement(jobRequestPage.hoursConfirmationContinueButton);
+    }
     action.isClickableWait(jobRequestPage.continueButton,30000)
     jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
     browser.execute("arguments[0].click();", jobRequestPage.continueButton)
