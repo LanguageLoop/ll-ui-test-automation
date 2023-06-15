@@ -60,10 +60,17 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
       action.isClickableWait(jobRequestPage.hoursConfirmationContinueButton,10000);
       action.clickElement(jobRequestPage.hoursConfirmationContinueButton);
     }
-    action.isClickableWait(jobRequestPage.continueButton,30000)
-    jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
-    browser.execute("arguments[0].click();", jobRequestPage.continueButton)
-    //action.clickElement(jobRequestPage.continueButton)
+    let pastDateConfirmationContinueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.pastDateConfirmationContinueButton,5000);
+    if(pastDateConfirmationContinueButtonVisibleStatus) {
+      action.isClickableWait(jobRequestPage.pastDateConfirmationContinueButton,10000);
+      action.clickElement(jobRequestPage.pastDateConfirmationContinueButton);
+    }
+    let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
+    if(continueButtonVisibleStatus) {
+      jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
+      browser.execute("arguments[0].click();", jobRequestPage.continueButton)
+      //action.clickElement(jobRequestPage.continueButton)
+    }
   }
   catch(Err)
   {
@@ -145,10 +152,17 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
       action.isClickableWait(jobRequestPage.hoursConfirmationContinueButton,10000);
       action.clickElement(jobRequestPage.hoursConfirmationContinueButton);
     }
-    action.isClickableWait(jobRequestPage.continueButton,30000)
-    jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
-    browser.execute("arguments[0].click();", jobRequestPage.continueButton)
-    //action.clickElement(jobRequestPage.continueButton)
+    let pastDateConfirmationContinueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.pastDateConfirmationContinueButton,5000);
+    if(pastDateConfirmationContinueButtonVisibleStatus) {
+      action.isClickableWait(jobRequestPage.pastDateConfirmationContinueButton,10000);
+      action.clickElement(jobRequestPage.pastDateConfirmationContinueButton);
+    }
+    let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
+    if(continueButtonVisibleStatus) {
+      jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
+      browser.execute("arguments[0].click();", jobRequestPage.continueButton)
+      //action.clickElement(jobRequestPage.continueButton)
+    }
   }
   catch(Err)
   {
