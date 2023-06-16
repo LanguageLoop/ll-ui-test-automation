@@ -761,3 +761,23 @@ Then(/^the CampusPIN "(.*)" is prefilled in the input box as it has only 1 campu
   let campusPinDropdownOptionSelectedStatus = action.isSelectedWait(campusPinDropdownOption, 1000);
   chai.expect(campusPinDropdownOptionSelectedStatus).to.be.true;
 })
+
+When(/^the Additional information section is shown$/, function () {
+  let additionalInformationSectionDisplayStatus = action.isVisibleWait(jobRequestPage.additionalInformationSection, 10000,"Additional Information Section in Job Request Page");
+  chai.expect(additionalInformationSectionDisplayStatus).to.be.true;
+})
+
+When(/^any Audible in ODTI custom fields are not shown$/, function () {
+  let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 1000,"Audible in ODTI custom field "+GlobalData.CUSTOMISED_FIELD_NAME+" in Job Request Page");
+  chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.false;
+})
+
+When(/^other custom fields "(.*)" are still visible or editable$/, function (customFields) {
+  let customFieldsList = customFields.split(",");
+  for (let i = 0; i < customFieldsList.length; i++) {
+    let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>", customFieldsList[i]));
+    let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 10000,"Custom field "+customFieldsList[i]+" in Job Request Page");
+    chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.true;
+  }
+})
