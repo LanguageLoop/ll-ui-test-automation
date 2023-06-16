@@ -435,5 +435,13 @@ module.exports={
 
     get pastDateConfirmationContinueButton() {
         return $('//input[@value="Continue" and contains(@id,"PastDateConfirmation")]');
+    },
+
+    get additionalInformationSection() {
+        return $('//div[text()="Additional Information"]//ancestor::div[contains(@id,"JobCustField")]');
+    },
+
+    get customFieldDynamicLabel() {
+        return '//div[contains(@id,"CustFields")]//span[text()="<dynamic>"]';
     }
 }
