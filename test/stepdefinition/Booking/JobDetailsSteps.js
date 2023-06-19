@@ -277,3 +277,8 @@ Then(/^on refreshing the Job page, the contractor "(.*)" will be eligible for th
     let contractorBlockedTextExistStatus = action.isExistingWait(jobDetailsPage.organisationCampusBlocksContractorText, 3000);
     chai.expect(contractorBlockedTextExistStatus).to.be.false;
 })
+
+When(/^user clicks on Edit button in Job Allocation$/, function () {
+    action.isVisibleWait(jobDetailsPage.editButton,20000,"Edit button in Job Allocation page");
+    action.clickElement(jobDetailsPage.editButton,"Edit button in Job Allocation page")
+})

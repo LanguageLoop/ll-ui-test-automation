@@ -781,3 +781,9 @@ When(/^other custom fields "(.*)" are still visible or editable$/, function (cus
     chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.true;
   }
 })
+
+When(/^the custom field for which the option is Audible in ODTI is unselected is displayed$/, function () {
+  let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 1000,"Audible in ODTI custom field "+GlobalData.CUSTOMISED_FIELD_NAME+" in Job Request Page");
+  chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.true;
+})

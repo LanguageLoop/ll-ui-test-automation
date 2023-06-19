@@ -1111,3 +1111,10 @@ Then(/^the user can check the box, and click Assign in Bill To Popup$/, function
         action.clickElement(campusDetailsPage.assignButtonOnManageBillToPopup,"Assign Button in Manage Bill-To Popup in Campus Details page");
     }
 })
+
+When(/^user deselects the option AUDIBLE IN ODTI for the existing custom field$/, function () {
+    let audibleInODTICheckboxSelectedStatus = action.isSelectedWait(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField, 10000, "Audible in ODTI checkbox on manage customized field in campus page");
+    if (audibleInODTICheckboxSelectedStatus === true) {
+        action.clickElement(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField, "Audible in ODTI checkbox on manage customized field in campus page");
+    }
+})
