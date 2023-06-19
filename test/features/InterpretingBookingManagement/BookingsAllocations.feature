@@ -230,3 +230,49 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
       | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
+
+    #LL-665 Scenario 2: On editing the existing Pre booked Job, the Job Request screen does not show “Audible in ODTI” custom fields
+  @LL-665 @EditJobRequestDoesNotShowCustomODTI
+  Scenario Outline: Job Request screen does not show Audible in ODTI custom fields
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus pin>"
+    And I click the first campus link from search results
+    And they click add Customised Field
+    And they select ‘Audible in ODTI’ checkbox
+    And the Max Length and Audio-label fields will display
+    And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
+    And the Admin clicks the ‘Add’ button On Manage Customized Field
+    And the customised field will be created
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And I select language "<language>"
+    And I select assignment type "<assignment type>"
+    And I enter schedule "<date>" and "<time>"
+    And I enter "<email>" email address
+    And I click save and proceed to summary button
+    And I handle duplicate job warning window
+    And I click submit button
+    And the job created success message should appear
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And user clicks on Edit button in Job Allocation
+    And the Additional information section is shown
+    Then any Audible in ODTI custom fields are not shown
+    And other custom fields "<Custom Fields>" are still visible or editable
+    And I click account management link
+    And I search for campus "<campus pin>"
+    And I click the first campus link from search results
+    And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
+
+    Examples:
+      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | language   | assignment type   | date         | time  | email        | Custom Fields                       |
+      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | PO Number,Your Reference,Department |
