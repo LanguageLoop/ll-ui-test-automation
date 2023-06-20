@@ -1118,3 +1118,14 @@ When(/^user deselects the option AUDIBLE IN ODTI for the existing custom field$/
         action.clickElement(campusDetailsPage.audibleInODTICheckboxOnManageCustomizedField, "Audible in ODTI checkbox on manage customized field in campus page");
     }
 })
+
+When(/^the Admin enters Customised ODTI Field Name "(.*)" in campus$/, function (fieldName) {
+    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+    action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,GlobalData.CUSTOMISED_FIELD_NAME,"Field name text box on manage customized field in campus page");
+})
+
+When(/^the Admin enters Customised ODTI Field Max length "(.*)" and Audio-label "(.*)" in campus$/, function (maxLength, audioLabel) {
+    action.isVisibleWait(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,20000,"Max length text box on manage customized field in campus page");
+    action.enterValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,maxLength,"Max length text box on manage customized field in campus page");
+    action.enterValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField,audioLabel,"Audio label text box on manage customized field in campus page");
+})
