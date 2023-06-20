@@ -233,7 +233,7 @@ Feature: Bookings Allocations Features
 
     #LL-665 Scenario 2: On editing the existing Pre booked Job, the Job Request screen does not show “Audible in ODTI” custom fields
   @LL-665 @EditJobRequestDoesNotShowCustomODTI
-  Scenario Outline: Job Request screen does not show Audible in ODTI custom fields
+  Scenario Outline: On editing the existing Pre booked Job, the Job Request screen does not show “Audible in ODTI” custom fields
     When I login with "<username>" and "<password>"
     And I click account management link
     And I search for campus "<campus pin>"
@@ -276,3 +276,76 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | language   | assignment type   | date         | time  | email        | Custom Fields                       |
       | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | PO Number,Your Reference,Department |
+
+    #LL-665 Scenario 3: Unselecting the AUDIBLE IN ODTI option for few of the custom fields for which option is already enabled
+  @LL-665 @UnselectJobRequestShowsCustomODTI
+  Scenario Outline: Unselecting the AUDIBLE IN ODTI option for few of the custom fields for which option is already enabled
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus pin>"
+    And I click the first campus link from search results
+    And they click add Customised Field
+    And they select ‘Audible in ODTI’ checkbox
+    And the Max Length and Audio-label fields will display
+    And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
+    And the Admin clicks the ‘Add’ button On Manage Customized Field
+    And the customised field will be created
+    And they select Customised field in the Campus page
+    And the Manage Customised Field modal is displayed
+    And user deselects the option AUDIBLE IN ODTI for the existing custom field
+    And the Admin clicks the ‘Save’ button On Manage Customized Field
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And the Additional information section is shown
+    Then the custom field for which the option is Audible in ODTI is unselected is displayed
+    And other custom fields "<Custom Fields>" are still visible or editable
+    And I click account management link
+    And I search for campus "<campus pin>"
+    And I click the first campus link from search results
+    And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
+
+    Examples:
+      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
+      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
+
+    #LL-665 Scenario 4: Selecting the AUDIBLE IN ODTI option for few of the custom fields for which option is not enabled earlier
+  @LL-665 @SelectJobRequestDoesNotShowCustomODTI
+  Scenario Outline: Selecting the AUDIBLE IN ODTI option for few of the custom fields for which option is not enabled earlier
+    When I login with "<username>" and "<password>"
+    And I click account management link
+    And I search for campus "<campus pin>"
+    And I click the first campus link from search results
+    And they click add Customised Field
+    And the Admin enters Customised ODTI Field Name "<customised field name>" in campus
+    And the Admin clicks the ‘Add’ button On Manage Customized Field
+    And the customised field will be created
+    And they select Customised field in the Campus page
+    And the Manage Customised Field modal is displayed
+    And they select ‘Audible in ODTI’ checkbox
+    And the Admin enters Customised ODTI Field Max length "<max length>" and Audio-label "<audio label>" in campus
+    And the Admin clicks the ‘Save’ button On Manage Customized Field
+    And I click Interpreting header link
+    And I select "<dropdownfilter>" from the filter dropdown
+    And I click on new job request button
+    And I enter campus pin "<campus pin>"
+    And click on Job Type option "<request job type>" in Job Requester Details
+    And I select "<Requester Name>" from the requester name dropdown
+    And I click next button
+    And the Additional information section is shown
+    Then any Audible in ODTI custom fields are not shown
+    And other custom fields "<Custom Fields>" are still visible or editable
+    And I click account management link
+    And I search for campus "<campus pin>"
+    And I click the first campus link from search results
+    And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
+
+    Examples:
+      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
+      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
