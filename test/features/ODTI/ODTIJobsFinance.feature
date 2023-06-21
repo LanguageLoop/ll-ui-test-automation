@@ -95,3 +95,20 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password |
       | testauto@finance1.com | Test1    |
+
+    #LL-676 Scenario 1a: Must select valid campus pin
+  @LL-676 @MustSelectValidCampusPin
+  Scenario Outline: Must select valid campus pin
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    And I click on Migrate & Recalculate Job Fee without selecting a new campus pin
+    Then an inline message in red will appear New PIN must be selected and valid
+
+    Examples:
+      | username              | password |
+      | testauto@finance1.com | Test1    |
