@@ -525,5 +525,21 @@ module.exports={
         browser.reloadSession()
         logger.info("Reloaded Session");
     },
+
+    isAlertOpenWait(waitTime) {
+        let isAlertOpen = false;
+        let i = 0;
+        while (i <= waitTime) {
+            isAlertOpen = browser.isAlertOpen();
+            if (isAlertOpen) {
+                break;
+            } else {
+                browser.pause(500);
+                i = i + 500;
+            }
+        }
+        logger.info("Alert open status = " + isAlertOpen);
+        return isAlertOpen;
+    },
 }
 
