@@ -112,3 +112,39 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password |
       | testauto@finance1.com | Test1    |
+
+    #LL-676 Scenario 1b: New campus pin is for a different contract
+  @LL-676 @NewCampusPinDifferentContract
+  Scenario Outline: New campus pin is for a different contract
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    And I select the new campus pin "<new campus pin>" which is for a different contract
+    Then a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed
+
+    Examples:
+      | username              | password | new campus pin |
+      | testauto@finance1.com | Test1    | 33124          |
+
+    #LL-676 Scenario 1c: The rate schedule is available for both campus contracts e.g. PH rate, BH hours
+  @LL-676 @RateScheduleAvailableCampusContracts
+  Scenario Outline: The rate schedule is available for both campus contracts e.g. PH rate, BH hours
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    And I select the new campus pin "<new campus pin>" which is for a different contract
+    And I click OK on alert popups after selecting the a new campus pin
+    And I click on Migrate & Recalculate Job Fee after selecting a new campus pin
+    Then an following error message will appear The Job PIN could not be migrated No contract rate found for Contract ID: XX’ and will not allow the user to proceed with that PIN
+
+    Examples:
+      | username              | password | new campus pin |
+      | testauto@finance1.com | Test1    | 32548          |

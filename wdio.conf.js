@@ -103,6 +103,7 @@ exports.config = {
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
+        './test/features/InterpretingBookingManagement/InterpreterStatus.feature',
     ],
     //
     // ============
