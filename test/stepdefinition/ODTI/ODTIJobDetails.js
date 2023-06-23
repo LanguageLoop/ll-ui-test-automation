@@ -24,8 +24,16 @@ When(/^I select the new campus pin "(.*)" which is for a different contract$/, f
 })
 
 Then(/^a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed$/, function () {
+    browser.waitUntil(function () {
+        return (action.isAlertOpenWait(5000)) === true
+    }, {
+        timeout: 5000,
+        timeoutMsg: 'expected alert to be displayed within 5s',
+        interval: 500
+    })
     let newPinProceedAlertPopupMessage = action.getAlertText();
     chai.expect(newPinProceedAlertPopupMessage).to.equal("The new campus pin is for a different contract, are you sure you want to proceed?")
+    action.acceptAlert();
 })
 
 When(/^I click OK on alert popups after selecting the a new campus pin$/, function () {
@@ -57,4 +65,21 @@ When(/^I click on Migrate & Recalculate Job Fee after selecting a new campus pin
 Then(/^an following error message will appear The Job PIN could not be migrated No contract rate found for Contract ID: XX’ and will not allow the user to proceed with that PIN$/, function () {
     let noContractRateFoundErrorMessageDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.noContractRateFoundErrorMessage, 10000,"The Job PIN could not be migrated. No contract rate found for Contract ID:xx and will not allow the user to proceed with that PIN. Error message in ODTI job details page");
     chai.expect(noContractRateFoundErrorMessageDisplayStatus).to.be.true;
+})
+
+Then(/^a message will appear Service Type is not enabled, do you want to proceed$/, function () {
+    browser.waitUntil(function () {
+        return (action.isAlertOpenWait(5000)) === true
+    }, {
+        timeout: 5000,
+        timeoutMsg: 'expected alert to be displayed within 5s',
+        interval: 500
+    })
+    let serviceTypeNotEnabledAlertPopupMessage = action.getAlertText();
+    chai.expect(serviceTypeNotEnabledAlertPopupMessage).to.equal("Service Type is not enabled, do you want to proceed?")
+})
+
+Then(/^an inline message in red will appear Please ensure that all mandatory custom fields are completed$/, function () {
+    let ensureAllMandatoryFieldsCompletedErrorMessageDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.ensureAllMandatoryFieldsCompletedErrorMessage, 10000,"Please ensure that all mandatory custom fields are completed Error message in ODTI job details page");
+    chai.expect(ensureAllMandatoryFieldsCompletedErrorMessageDisplayStatus).to.be.true;
 })

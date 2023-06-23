@@ -27,5 +27,9 @@ module.exports = {
 
     get noContractRateFoundErrorMessage() {
         return $('//div[text()="The Job PIN could not be migrated. No contract rate found for Contract ID:1136 and will not allow the user to proceed with that PIN."]');
+    },
+
+    get ensureAllMandatoryFieldsCompletedErrorMessage() {
+        return $('//div[text()="Please ensure that all mandatory custom fields are completed"]');
     }
 }
