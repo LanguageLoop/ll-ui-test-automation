@@ -148,3 +148,40 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password | new campus pin |
       | testauto@finance1.com | Test1    | 32548          |
+
+    #LL-676 Scenario 1d: Validation for Service Type
+  @LL-676 @ValidationServiceType
+  Scenario Outline: Validation for Service Type
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    And I select the new campus pin "<new campus pin>" which is for a different contract
+    And a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed
+    Then a message will appear Service Type is not enabled, do you want to proceed
+
+    Examples:
+      | username              | password | new campus pin |
+      | testauto@finance1.com | Test1    | 33124          |
+
+    #LL-676 Scenario 1e: All mandatory custom field must completed
+  @LL-676 @MandatoryCustomFieldsMustCompleted
+  Scenario Outline: All mandatory custom field must completed
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    And I select the new campus pin "<new campus pin>" which is for a different contract
+    And a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed
+    And I click on Migrate & Recalculate Job Fee after selecting a new campus pin
+    Then an inline message in red will appear Please ensure that all mandatory custom fields are completed
+
+    Examples:
+      | username              | password | new campus pin |
+      | testauto@finance1.com | Test1    | 30889          |
