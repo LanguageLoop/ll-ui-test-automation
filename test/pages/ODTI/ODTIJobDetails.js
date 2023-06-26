@@ -31,5 +31,17 @@ module.exports = {
 
     get ensureAllMandatoryFieldsCompletedErrorMessage() {
         return $('//div[text()="Please ensure that all mandatory custom fields are completed"]');
+    },
+
+    get disabledPinSearchResultTextDynamicLocator() {
+        return '//span[contains(@id,"ChangeJobPINModal") and text()="<dynamic>"]';
+    },
+
+    get campusIsDisabledHoverMessage() {
+        return $('//span[text()="Campus is disabled"]');
+    },
+
+    get noCampusPinToShowText() {
+        return $('//td[text()="No campus PIN to show..."]');
     }
 }
