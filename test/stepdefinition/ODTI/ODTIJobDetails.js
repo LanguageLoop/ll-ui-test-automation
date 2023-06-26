@@ -83,3 +83,28 @@ Then(/^an inline message in red will appear Please ensure that all mandatory cus
     let ensureAllMandatoryFieldsCompletedErrorMessageDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.ensureAllMandatoryFieldsCompletedErrorMessage, 10000,"Please ensure that all mandatory custom fields are completed Error message in ODTI job details page");
     chai.expect(ensureAllMandatoryFieldsCompletedErrorMessageDisplayStatus).to.be.true;
 })
+
+Then(/^a pop up will display the campus pin "(.*)" in the results, and on hovering over message Campus is disabled$/, function (campusPin) {
+    action.isVisibleWait(ODTIJobDetailsPage.selectPinLink, 10000, "Select Pin link in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.selectPinLink, "Select Pin link in ODTI job details page");
+    action.isVisibleWait(ODTIJobDetailsPage.pinTextBoxUnderFilterBy, 10000, "PIN text box under filter by in ODTI job details page");
+    action.enterValue(ODTIJobDetailsPage.pinTextBoxUnderFilterBy, campusPin, "PIN text box under filter by in ODTI job details page");
+    let disabledPinSearchResultText = $(ODTIJobDetailsPage.disabledPinSearchResultTextDynamicLocator.replace("<dynamic>",campusPin));
+    let disabledPinSearchResultTextDisplayStatus = action.isVisibleWait(disabledPinSearchResultText, 10000, "Disabled Pin search result text in ODTI job details page");
+    chai.expect(disabledPinSearchResultTextDisplayStatus).to.be.true;
+    action.moveToElement(disabledPinSearchResultText,"Disabled Pin search result text in ODTI job details page");
+    let campusIsDisableHoverMessageDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.campusIsDisabledHoverMessage, 10000, "Campus is disabled hover message in ODTI job details page");
+    chai.expect(campusIsDisableHoverMessageDisplayStatus).to.be.true;
+})
+
+When(/^I enter the campus pin "(.*)" which does not exist$/, function (campusPin) {
+    action.isVisibleWait(ODTIJobDetailsPage.selectPinLink, 10000, "Select Pin link in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.selectPinLink, "Select Pin link in ODTI job details page");
+    action.isVisibleWait(ODTIJobDetailsPage.pinTextBoxUnderFilterBy, 10000, "PIN text box under filter by in ODTI job details page");
+    action.enterValue(ODTIJobDetailsPage.pinTextBoxUnderFilterBy, campusPin, "PIN text box under filter by in ODTI job details page");
+})
+
+Then(/^a pop up will display a message No campus PIN to show…$/, function () {
+    let noCampusPinToShowTextDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.noCampusPinToShowText, 10000,"No campus PIN to show... text in ODTI job details page");
+    chai.expect(noCampusPinToShowTextDisplayStatus).to.be.true;
+})

@@ -185,3 +185,37 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password | new campus pin |
       | testauto@finance1.com | Test1    | 30889          |
+
+    #LL-676 Scenario 3: Trying to select Inactive campus pin from Find Campus PIN popup
+  @LL-676 @TrySelectInactiveCampusPin
+  Scenario Outline: Trying to select Inactive campus pin from Find Campus PIN popup
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    Then a pop up will display the campus pin "<new campus pin>" in the results, and on hovering over message Campus is disabled
+
+    Examples:
+      | username              | password | new campus pin |
+      | testauto@finance1.com | Test1    | 28063          |
+
+
+    #LL-676 Scenario 4: Entering the campus pin that does not exists in Find Campus PIN popup
+  @LL-676 @EnterCampusPinThatDoesNotExist
+  Scenario Outline: Entering the campus pin that does not exists in Find Campus PIN popup
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I want to change the campus pin by clicking on the Edit icon
+    And I enter the campus pin "<new campus pin>" which does not exist
+    Then a pop up will display a message No campus PIN to show…
+
+    Examples:
+      | username              | password | new campus pin |
+      | testauto@finance1.com | Test1    | 999999         |
