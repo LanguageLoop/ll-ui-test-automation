@@ -219,3 +219,33 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password | new campus pin |
       | testauto@finance1.com | Test1    | 999999         |
+
+    #LL-676 Scenario 2: Successfully changing the campus pin
+  @LL-676 @SuccessfullyChangeCampusPin
+  Scenario Outline: Successfully changing the campus pin
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And I enter the search value "<contractor>" in the search field
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And I get the existing campus Total rate value
+    And I want to change the campus pin by clicking on the Edit icon
+    And I select the new campus pin "<new campus pin>" which is for a different contract
+    And a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed
+    And I have completed all mandatory fields "<mandatory field names>","<mandatory field values>" and submit the change
+    And I click on Migrate & Recalculate Job Fee after selecting a new campus pin
+    Then the new campus pin "<new campus pin>" will be saved against the job
+    And the new rates will be applied on the campus
+    And I want to change the campus pin by clicking on the Edit icon
+    And I select the new campus pin "<old campus pin>" which is for a different contract
+    And a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed
+    And I have completed all mandatory fields "<mandatory field names2>","<mandatory field values2>" and submit the change
+    And I click on Migrate & Recalculate Job Fee after selecting a new campus pin
+
+    Examples:
+      | username              | password | new campus pin | old campus pin | contractor | filter option 1        | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | mandatory field names   | mandatory field values | mandatory field names2      | mandatory field values2 |
+      | testauto@finance1.com | Test1    | 30889          | 29449          | Yousef     | ClientChargeTotalExGST | 2                     | Is not              | 2                         | 0.00           | 1                    | [EX1] Test1,[EX2] Test2 | test1,test2            | [EX1] Reference number,test | test1,test2             |
