@@ -109,7 +109,7 @@ Then(/^a pop up will display a message No campus PIN to show…$/, function () {
     chai.expect(noCampusPinToShowTextDisplayStatus).to.be.true;
 })
 
-Then(/^I have completed all mandatory fields "(.*)","(.*)" and submit the change$/, function (mandatoryFields, mandatoryFieldValues) {
+When(/^I have completed all mandatory fields "(.*)","(.*)" and submit the change$/, function (mandatoryFields, mandatoryFieldValues) {
     let mandatoryFieldList = mandatoryFields.split(",");
     let mandatoryFieldValuesList = mandatoryFieldValues.split(",");
     for (let i = 0; i < mandatoryFieldList.length; i++) {
@@ -126,7 +126,7 @@ Then(/^the new campus pin "(.*)" will be saved against the job$/, function (expe
     chai.expect(campusPinLinkText).to.equal(expectedCampusPin);
 })
 
-Then(/^I get the existing campus Total rate value$/, function () {
+When(/^I get the existing campus Total rate value$/, function () {
     action.isVisibleWait(ODTIJobDetailsPage.campusTotalRateTextBox, 10000, "Campus Total rate text box in ODTI job details page");
     GlobalData.ODTI_CAMPUS_RATE_TOTAL = action.getElementValue(ODTIJobDetailsPage.campusTotalRateTextBox, "Campus Total rate text box in ODTI job details page");
 })
