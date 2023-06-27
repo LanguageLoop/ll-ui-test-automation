@@ -43,5 +43,17 @@ module.exports = {
 
     get noCampusPinToShowText() {
         return $('//td[text()="No campus PIN to show..."]');
+    },
+
+    get mandatoryFieldTextBoxDynamicLocator() {
+        return '//span[text()="<dynamic>"]/parent::div/following-sibling::div[1]/input';
+    },
+
+    get campusPinLink() {
+        return $('//div[contains(@id,"CampusPinLink")]');
+    },
+
+    get campusTotalRateTextBox() {
+        return $('//input[contains(@id,"InputClientTotal")]');
     }
 }
