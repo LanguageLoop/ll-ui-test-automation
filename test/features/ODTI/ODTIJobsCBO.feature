@@ -31,7 +31,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 01-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 02-01-2023 | 18-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 01-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 |
 
     #Scenario 2 - CBO user has multiple campuses - Do not select any campus from the dropdown and select the desired Start Date and End date filters
   @Regression @RegressionS2 @CBOMultipleCampusNoCampusSelected
@@ -92,7 +92,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 01-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 02-01-2023 | 18-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 01-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 |
 
     #Scenario 4 - CBO user has one campus - Do not select any campus from the dropdown and select the desired Start Date and End date filters
   @Regression @RegressionS4 @CBOOneCampusNoCampusSelected
@@ -161,7 +161,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 16-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 17-01-2023 | 18-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 16-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 17-01-2023 | 18-01-2023 |
 
     #Scenario 7 - Verify the Job IDs, InterpreterName and CampusName are not clickable
   @Regression @RegressionS7 @CBOResultsReadOnly
@@ -175,7 +175,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 17-01-2023 | 18-01-2023 |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 17-01-2023 | 18-01-2023 |
 
     #Scenario 8 - Selecting the Start Date and End Date filters which doesn't have any records to display
   @Regression @RegressionS8 @CBONoRecords
@@ -203,7 +203,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 |
 
     #Scenario 9 - Export to excel: CBO user can either have one campus or multiple campuses
     #Selecting the Start Date and End Date filters which doesn't have any records to display and clicking on Export to excel link
@@ -234,7 +234,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 |
 
     #Scenario 10 - Export to excel: CBO user has only one campus:
     #Select the campus from the dropdown and select the desired Start Date and End date filters that has records to display
@@ -250,7 +250,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 02-01-2023 | 18-01-2023 |
+      | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 |
 
     #Scenario 11 - Export to excel: CBO user has multiple campuses
     #Selecting the Start Date and End Date filters which doesnot have any records to display and clicking on Export to excel link
@@ -267,7 +267,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 15-01-2023 | 15-01-2023 |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 |
 
     #Scenario 12 - Verifying the records exported to excel when the records are more than 500 for the selected filters
   @Regression @RegressionS12 @CBOMoreThan500RecordsExportExcel
@@ -284,7 +284,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | records count |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-03-2022 | 10-03-2023 | 500           |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 01-03-2022 | 10-03-2023 | 500           |
 
     #Scenario 13 - Verifying the records exported to excel when the records are less than 500 for the selected filters
   @Regression @RegressionS13 @CBOLessThan500RecordsExportExcel
@@ -301,7 +301,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | records count |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 16-01-2023 | 20-01-2023 | 500           |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 16-01-2023 | 20-01-2023 | 500           |
 
     #Scenario 14 - User should be able to perform sorting on each column
   @Regression @RegressionS14 @CBOTableColumnsSort
@@ -315,7 +315,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | column headers                                                                                  |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 18-01-2023 | 20-01-2023 | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 18-01-2023 | 20-01-2023 | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type |
 
     #Scenario 15 - User should be able to view different pages using pagination when they are more number of records
   @Regression @RegressionS15 @Pagination
@@ -334,7 +334,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username cbo   | password cbo | campus id                                                      | start date | end date   | page number | next page number  | previous page number |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD LYSTERFIELD DRIVE ROXBURGH PARK VIC 3064 | 01-10-2022 | 20-01-2023 | 2           | 3                 | 2                    |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 01-10-2022 | 20-01-2023 | 2           | 3                 | 2                    |
 
     #Scenario 16 - Verify the CLIENT CHARGE SUBTOTAL is displayed when CBO user on admin side has the checkbox 'Show $ amounts on On Demand TI Dashboard' checked
   @Regression @RegressionS16 @CBOViewsClientChargeSubtotal
