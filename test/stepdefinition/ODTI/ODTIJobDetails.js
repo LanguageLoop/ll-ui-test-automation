@@ -108,3 +108,31 @@ Then(/^a pop up will display a message No campus PIN to show…$/, function () {
     let noCampusPinToShowTextDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.noCampusPinToShowText, 10000,"No campus PIN to show... text in ODTI job details page");
     chai.expect(noCampusPinToShowTextDisplayStatus).to.be.true;
 })
+
+Then(/^I have completed all mandatory fields "(.*)","(.*)" and submit the change$/, function (mandatoryFields, mandatoryFieldValues) {
+    let mandatoryFieldList = mandatoryFields.split(",");
+    let mandatoryFieldValuesList = mandatoryFieldValues.split(",");
+    for (let i = 0; i < mandatoryFieldList.length; i++) {
+        let mandatoryField = $(ODTIJobDetailsPage.mandatoryFieldTextBoxDynamicLocator.replace("<dynamic>", mandatoryFieldList[i]));
+        action.isVisibleWait(mandatoryField, 10000, "Mandatory field " + mandatoryFieldList[i] + " in ODTI job details page");
+        action.enterValue(mandatoryField, mandatoryFieldValuesList[i], "Mandatory field " + mandatoryFieldList[i] + " in ODTI job details page")
+    }
+})
+
+Then(/^the new campus pin "(.*)" will be saved against the job$/, function (expectedCampusPin) {
+    action.isNotVisibleWait(ODTIJobDetailsPage.migrateAndRecalculateJobFeeButton, 3000,"Migrate And Recalculate Job Fee Button in ODTI job details page");
+    action.isVisibleWait(ODTIJobDetailsPage.campusPinLink, 10000, "Saved Campus Pin link in ODTI job details page");
+    let campusPinLinkText = action.getElementText(ODTIJobDetailsPage.campusPinLink,"Saved Campus Pin link in ODTI job details page");
+    chai.expect(campusPinLinkText).to.equal(expectedCampusPin);
+})
+
+Then(/^I get the existing campus Total rate value$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.campusTotalRateTextBox, 10000, "Campus Total rate text box in ODTI job details page");
+    GlobalData.ODTI_CAMPUS_RATE_TOTAL = action.getElementValue(ODTIJobDetailsPage.campusTotalRateTextBox, "Campus Total rate text box in ODTI job details page");
+})
+
+Then(/^the new rates will be applied on the campus$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.campusTotalRateTextBox, 10000, "Campus Total rate text box in ODTI job details page");
+    let campusRateAfterCampusPinMigrate = action.getElementValue(ODTIJobDetailsPage.campusTotalRateTextBox, "Campus Total rate text box in ODTI job details page");
+    chai.expect(campusRateAfterCampusPinMigrate).to.not.equal(GlobalData.ODTI_CAMPUS_RATE_TOTAL)
+})
