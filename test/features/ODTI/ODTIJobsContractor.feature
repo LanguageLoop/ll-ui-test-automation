@@ -172,4 +172,32 @@ Feature: ODTI Jobs Contractor features
       | username contractor      | password contractor | start date | end date   | page number | next page number  | previous page number |
       | luciacheung192@gmail.com | Test1               | 01-07-2022 | 31-01-2023 | 2           | 3                 | 2                    |
 
-    #Scenario 8 - User should be able to perform sorting on each column - ON HOLD due to Interpreting Fee Sort issue
+    #LL-679 Scenario 1: Create Note / new popup
+  @LL-679 @CreateNoteNewPopup
+  Scenario Outline: Create Note new popup
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the user clicks on Add Job Task or Note link
+    Then the Job Task popup displays similar to popup from Prebooked jobs
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-679 Scenario 2: Popup contents
+  @LL-679 @JobTaskNotePopupContents
+  Scenario Outline: Job Task or Note popup contents
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the user clicks on Add Job Task or Note link
+    Then the user can see the items in the popup, as per table
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |

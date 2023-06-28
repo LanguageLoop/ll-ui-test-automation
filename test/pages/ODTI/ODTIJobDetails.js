@@ -55,5 +55,29 @@ module.exports = {
 
     get campusTotalRateTextBox() {
         return $('//input[contains(@id,"InputClientTotal")]');
-    }
+    },
+
+    get addAJobTaskOrNoteLink() {
+        return $('//a[contains(@id,"AddJobTaskOrNote")]');
+    },
+
+    get jobTaskPopup() {
+        return $('//span[text()="View Job Task"]/parent::div/parent::div');
+    },
+
+    get jobTaskDropdown() {
+        return $('//div[text()="Task"]/select');
+    },
+
+    get messageTextarea() {
+        return $('//textarea[contains(@id,"txtTaskNoteMessage")]');
+    },
+
+    get saveButtonOnJobTaskPopup() {
+        return $('//input[@value="Save" and (contains(@id,"TaskNoteDialog_block"))]');
+    },
+
+    get xButtonOnJobTaskPopup() {
+        return $('//a[contains(@id,"TaskNoteDialog_block")]/span[@class="fa fa-fw fa-remove"]');
+    },
 }
