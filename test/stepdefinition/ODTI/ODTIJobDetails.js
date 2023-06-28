@@ -136,3 +136,24 @@ Then(/^the new rates will be applied on the campus$/, function () {
     let campusRateAfterCampusPinMigrate = action.getElementValue(ODTIJobDetailsPage.campusTotalRateTextBox, "Campus Total rate text box in ODTI job details page");
     chai.expect(campusRateAfterCampusPinMigrate).to.not.equal(GlobalData.ODTI_CAMPUS_RATE_TOTAL)
 })
+
+When(/^the user clicks on Add Job Task or Note link$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.addAJobTaskOrNoteLink, 10000, "Add a job task or note link in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.addAJobTaskOrNoteLink, "Add a job task or note link in ODTI job details page");
+})
+
+When(/^the Job Task popup displays similar to popup from Prebooked jobs$/, function () {
+    let jobTaskPopupDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskPopup, 10000, "Job Task popup in ODTI job details page");
+    chai.expect(jobTaskPopupDisplayStatus).to.be.true;
+})
+
+When(/^the user can see the items in the popup, as per table$/, function () {
+    let jobTaskDropdownDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskDropdown, 10000, "Task dropdown on Job Task popup in ODTI job details page");
+    chai.expect(jobTaskDropdownDisplayStatus).to.be.true;
+    let jobTaskMessageTextareaDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.messageTextarea, 10000, "Job Task message textarea on Job Task popup in ODTI job details page");
+    chai.expect(jobTaskMessageTextareaDisplayStatus).to.be.true;
+    let jobTaskSaveButtonDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, 10000, "Save Button on Job Task popup in ODTI job details page");
+    chai.expect(jobTaskSaveButtonDisplayStatus).to.be.true;
+    let jobTaskXButtonDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.xButtonOnJobTaskPopup, 10000, "X button on Job Task popup in ODTI job details page");
+    chai.expect(jobTaskXButtonDisplayStatus).to.be.true;
+})
