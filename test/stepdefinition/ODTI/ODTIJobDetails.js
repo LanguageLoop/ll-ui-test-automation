@@ -142,12 +142,12 @@ When(/^the user clicks on Add Job Task or Note link$/, function () {
     action.clickElement(ODTIJobDetailsPage.addAJobTaskOrNoteLink, "Add a job task or note link in ODTI job details page");
 })
 
-When(/^the Job Task popup displays similar to popup from Prebooked jobs$/, function () {
+Then(/^the Job Task popup displays similar to popup from Prebooked jobs$/, function () {
     let jobTaskPopupDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskPopup, 10000, "Job Task popup in ODTI job details page");
     chai.expect(jobTaskPopupDisplayStatus).to.be.true;
 })
 
-When(/^the user can see the items in the popup, as per table$/, function () {
+Then(/^the user can see the items in the popup, as per table$/, function () {
     let jobTaskDropdownDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskDropdown, 10000, "Task dropdown on Job Task popup in ODTI job details page");
     chai.expect(jobTaskDropdownDisplayStatus).to.be.true;
     let jobTaskMessageTextareaDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.messageTextarea, 10000, "Job Task message textarea on Job Task popup in ODTI job details page");
