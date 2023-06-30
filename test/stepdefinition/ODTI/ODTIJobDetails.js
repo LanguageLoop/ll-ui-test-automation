@@ -157,3 +157,36 @@ Then(/^the user can see the items in the popup, as per table$/, function () {
     let jobTaskXButtonDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.xButtonOnJobTaskPopup, 10000, "X button on Job Task popup in ODTI job details page");
     chai.expect(jobTaskXButtonDisplayStatus).to.be.true;
 })
+
+When(/^the user has selected Task "(.*)" and added message "(.*)"$/, function (task,message) {
+    action.isVisibleWait(ODTIJobDetailsPage.jobTaskDropdown, 10000, "Task dropdown on Job Task popup in ODTI job details page");
+    action.selectTextFromDropdown(ODTIJobDetailsPage.jobTaskDropdown,task, "Task dropdown on Job Task popup in ODTI job details page");
+    action.isVisibleWait(ODTIJobDetailsPage.messageTextarea, 10000, "message textarea on Job Task popup in ODTI job details page");
+    message = message + (Math.floor(Math.random() * 1000000) + 1).toString()
+    GlobalData.JOB_TASK_MESSAGE = message
+    action.enterValue(ODTIJobDetailsPage.messageTextarea,message, "message textarea on Job Task popup in ODTI job details page");
+})
+
+When(/^the user has clicked the Save button$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, 10000, "Save Button on Job Task popup in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, "Save Button on Job Task popup in ODTI job details page");
+    action.isNotVisibleWait(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, 3000, "Save Button on Job Task popup in ODTI job details page");
+})
+
+Then(/^the job task note is saved$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.jobNotesSavedList, 10000, "Job Notes saved list in ODTI job details page");
+    browser.waitUntil(function () {
+        return (action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page").includes(GlobalData.JOB_TASK_MESSAGE)) === true
+    }, {
+        timeout: 5000,
+        timeoutMsg: 'expected Job notes saved text to display within 5s',
+        interval: 500
+    })
+    let savedNoteListTextActual = action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page");
+    chai.expect(savedNoteListTextActual).to.includes(GlobalData.JOB_TASK_MESSAGE);
+})
+
+Then(/^the Job Task popup is closed$/, function () {
+    let jobTaskPopupDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskPopup, 1000, "Job Task popup in ODTI job details page");
+    chai.expect(jobTaskPopupDisplayStatus).to.be.false;
+})

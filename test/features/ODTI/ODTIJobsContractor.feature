@@ -201,3 +201,21 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  |
       | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-679 Scenario 3: Save
+  @LL-679 @SaveJobTaskNotePopup
+  Scenario Outline: Save Job Task or Note popup
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the user clicks on Add Job Task or Note link
+    And the user has selected Task "<note>" and added message "<message>"
+    And the user has clicked the Save button
+    Then the job task note is saved
+    And the Job Task popup is closed
+
+    Examples:
+      | username          | password  | note       | message                 |
+      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test message |
