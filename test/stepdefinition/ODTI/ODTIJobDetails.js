@@ -173,7 +173,7 @@ When(/^the user has clicked the Save button$/, function () {
     action.isNotVisibleWait(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, 3000, "Save Button on Job Task popup in ODTI job details page");
 })
 
-When(/^the job task note is saved$/, function () {
+Then(/^the job task note is saved$/, function () {
     action.isVisibleWait(ODTIJobDetailsPage.jobNotesSavedList, 10000, "Job Notes saved list in ODTI job details page");
     browser.waitUntil(function () {
         return (action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page").includes(GlobalData.JOB_TASK_MESSAGE)) === true
@@ -186,7 +186,7 @@ When(/^the job task note is saved$/, function () {
     chai.expect(savedNoteListTextActual).to.includes(GlobalData.JOB_TASK_MESSAGE);
 })
 
-When(/^the Job Task popup is closed$/, function () {
+Then(/^the Job Task popup is closed$/, function () {
     let jobTaskPopupDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskPopup, 1000, "Job Task popup in ODTI job details page");
     chai.expect(jobTaskPopupDisplayStatus).to.be.false;
 })
