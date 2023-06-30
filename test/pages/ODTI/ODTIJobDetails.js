@@ -80,4 +80,8 @@ module.exports = {
     get xButtonOnJobTaskPopup() {
         return $('//a[contains(@id,"TaskNoteDialog_block")]/span[@class="fa fa-fw fa-remove"]');
     },
+
+    get jobNotesSavedList() {
+        return $('//div[contains(@id,"JobTaskNoteList")]');
+    },
 }
