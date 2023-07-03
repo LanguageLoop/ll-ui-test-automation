@@ -219,3 +219,24 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | note       | message                 |
       | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test message |
+
+    #LL-679 Scenario 4: Re-opening an existing comment
+  @LL-679 @ReopenCommentJobTaskNotePopup
+  Scenario Outline: Re-opening an existing comment in Job Task or Note popup
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the user clicks on Add Job Task or Note link
+    And the user has selected Task "<note>" and added message "<message>"
+    And the user has clicked the Save button
+    And the user has added messages "<additional messages>" to existing note
+    And the user clicks on an existing note
+    Then the Job Task popup displays similar to popup from Prebooked jobs
+    And displays the previous comments under the Discussion section if any
+    And the previous comments are sorted by newest-first order
+
+    Examples:
+      | username          | password  | note       | message                  | additional messages                                |
+      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message, automation test3 message |
