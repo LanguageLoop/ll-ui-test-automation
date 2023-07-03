@@ -190,3 +190,48 @@ Then(/^the Job Task popup is closed$/, function () {
     let jobTaskPopupDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.jobTaskPopup, 1000, "Job Task popup in ODTI job details page");
     chai.expect(jobTaskPopupDisplayStatus).to.be.false;
 })
+
+When(/^the user has added messages "(.*)" to existing note$/, function (messages) {
+    GlobalData.JOB_TASK_COMMENTS = [];
+    GlobalData.JOB_TASK_COMMENTS.push(GlobalData.JOB_TASK_MESSAGE);
+    let messagesList = messages.split(",");
+    for (let i = 0; i < messagesList.length; i++) {
+        let jobTaskExistingMessage = $(ODTIJobDetailsPage.jobNotesExistingMessageDynamicLocator.replace("<dynamic>", GlobalData.JOB_TASK_MESSAGE));
+        action.isVisibleWait(jobTaskExistingMessage, 10000, "Existing Message " + GlobalData.JOB_TASK_MESSAGE + " on Job Task popup in ODTI job details page");
+        action.clickElement(jobTaskExistingMessage, "Existing Message " + GlobalData.JOB_TASK_MESSAGE + " on Job Task popup in ODTI job details page");
+        action.isVisibleWait(ODTIJobDetailsPage.messageTextarea, 10000, "message textarea on Job Task popup in ODTI job details page");
+        messagesList[i] = messagesList[i] + (Math.floor(Math.random() * 1000000) + 1).toString();
+        action.enterValue(ODTIJobDetailsPage.messageTextarea, messagesList[i], "message textarea on Job Task popup in ODTI job details page");
+        GlobalData.JOB_TASK_MESSAGE = messagesList[i];
+        GlobalData.JOB_TASK_COMMENTS.push(GlobalData.JOB_TASK_MESSAGE);
+        action.clickElement(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, "Save Button on Job Task popup in ODTI job details page");
+        action.isNotVisibleWait(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, 3000, "Save Button on Job Task popup in ODTI job details page");
+    }
+})
+
+When(/^the user clicks on an existing note$/, function () {
+    let jobTaskExistingMessage = $(ODTIJobDetailsPage.jobNotesExistingMessageDynamicLocator.replace("<dynamic>", GlobalData.JOB_TASK_MESSAGE));
+    action.isVisibleWait(jobTaskExistingMessage, 10000, "Existing Message " + GlobalData.JOB_TASK_MESSAGE + " on Job Task popup in ODTI job details page");
+    action.clickElement(jobTaskExistingMessage, "Existing Message " + GlobalData.JOB_TASK_MESSAGE + " on Job Task popup in ODTI job details page");
+})
+
+Then(/^displays the previous comments under the Discussion section if any$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.discussionSectionCommentsList, 10000, "Discussion Section Comments List in ODTI job details page");
+    let discussionSectionCommentsListTextActual = action.getElementText(ODTIJobDetailsPage.discussionSectionCommentsList, "Discussion Section Comments List in ODTI job details page");
+    for (let i = 0; i < GlobalData.JOB_TASK_COMMENTS.length; i++) {
+        chai.expect(discussionSectionCommentsListTextActual).to.includes(GlobalData.JOB_TASK_COMMENTS[i]);
+    }
+})
+
+Then(/^the previous comments are sorted by newest-first order$/, function () {
+    let discussionListCommentMessageList = [];
+    for (let i = 0; i < ODTIJobDetailsPage.discussionListCommentMessageCount; i++) {
+        let discussionListCommentMessage = $(ODTIJobDetailsPage.discussionListCommentMessageDynamicLocator.replace("<dynamic>", (i + 1).toString()));
+        let discussionListCommentMessageText = action.getElementText(discussionListCommentMessage, "Discussion list comment message in ODTI job details page");
+        discussionListCommentMessageList.push(discussionListCommentMessageText);
+    }
+    GlobalData.JOB_TASK_COMMENTS.reverse();
+    for (let k = 0; k < discussionListCommentMessageList.length; k++) {
+        chai.expect(discussionListCommentMessageList[k].trim()).to.equal(GlobalData.JOB_TASK_COMMENTS[k].trim());
+    }
+})
