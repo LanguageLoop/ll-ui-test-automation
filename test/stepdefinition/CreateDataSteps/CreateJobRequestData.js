@@ -87,7 +87,7 @@ browser.waitUntil(
   );
   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
   GlobalData.CURRENT_JOB_ID=jobNumber
-
+  logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
 
 }
 
@@ -179,6 +179,7 @@ browser.waitUntil(
   );
   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
   GlobalData.CURRENT_JOB_ID=jobNumber
+  logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
 
 
 }
