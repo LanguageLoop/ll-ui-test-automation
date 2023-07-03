@@ -84,4 +84,20 @@ module.exports = {
     get jobNotesSavedList() {
         return $('//div[contains(@id,"JobTaskNoteList")]');
     },
+
+    get jobNotesExistingMessageDynamicLocator() {
+        return '//div[contains(@id,"JobTaskNoteList")]//div[contains(text(),"<dynamic>")]';
+    },
+
+    get discussionSectionCommentsList() {
+        return $('//span[text()="Discussion"]/parent::div[contains(@id,"DiscussionList")]');
+    },
+
+    get discussionListCommentMessageCount() {
+        return $$('//div[@class="DiscussionListRecord"]/div[contains(@class,"CommentMessage")]').length;
+    },
+
+    get discussionListCommentMessageDynamicLocator() {
+        return '(//div[@class="DiscussionListRecord"]/div[contains(@class,"CommentMessage")])[<dynamic>]';
+    }
 }
