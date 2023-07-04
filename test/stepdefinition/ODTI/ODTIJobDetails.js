@@ -235,3 +235,16 @@ Then(/^the previous comments are sorted by newest-first order$/, function () {
         chai.expect(discussionListCommentMessageList[k].trim()).to.equal(GlobalData.JOB_TASK_COMMENTS[k].trim());
     }
 })
+
+Then(/^the latest added message for the existing note is displayed$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.jobNotesSavedList, 10000, "Job Notes saved list in ODTI job details page");
+    browser.waitUntil(function () {
+        return (action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page").includes(GlobalData.JOB_TASK_COMMENTS[GlobalData.JOB_TASK_COMMENTS.length - 1])) === true
+    }, {
+        timeout: 5000,
+        timeoutMsg: 'expected Job notes saved text to display within 5s',
+        interval: 500
+    })
+    let savedNoteListTextActual = action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page");
+    chai.expect(savedNoteListTextActual).to.includes(GlobalData.JOB_TASK_COMMENTS[GlobalData.JOB_TASK_COMMENTS.length - 1]);
+})

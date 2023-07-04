@@ -238,5 +238,24 @@ Feature: ODTI Jobs Contractor features
     And the previous comments are sorted by newest-first order
 
     Examples:
-      | username          | password  | note       | message                  | additional messages                                |
-      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message, automation test3 message |
+      | username          | password  | note       | message                  | additional messages                               |
+      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message,automation test3 message |
+
+    #LL-679 Scenario 5: Job Notes section will show the newly added message for the existing Notes
+  @LL-679 @JobNotesSectionDisplayNewMessage
+  Scenario Outline: Job Notes section will show the newly added message for the existing Notes
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the user clicks on Add Job Task or Note link
+    And the user has selected Task "<note>" and added message "<message>"
+    And the user has clicked the Save button
+    And the user has added messages "<additional messages>" to existing note
+    And the Job Task popup is closed
+    Then the latest added message for the existing note is displayed
+
+    Examples:
+      | username          | password  | note       | message                  | additional messages                               |
+      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message,automation test3 message |
