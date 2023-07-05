@@ -99,5 +99,13 @@ module.exports = {
 
     get discussionListCommentMessageDynamicLocator() {
         return '(//div[@class="DiscussionListRecord"]/div[contains(@class,"CommentMessage")])[<dynamic>]';
+    },
+
+    get moreLinkUnderJobNotes() {
+        return $('//div[contains(@id,"JobHistToggle")]/a[text()="more"]');
+    },
+
+    get jobNotesRowMessageDynamicLocator() {
+        return '//div[contains(@id,"JobTaskNoteList")]//div[@class="JobTaskNoteListRecord"][<dynamic>]//div[contains(@class,"MarginGutter")][1]';
     }
 }
