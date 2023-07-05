@@ -248,3 +248,48 @@ Then(/^the latest added message for the existing note is displayed$/, function (
     let savedNoteListTextActual = action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page");
     chai.expect(savedNoteListTextActual).to.includes(GlobalData.JOB_TASK_COMMENTS[GlobalData.JOB_TASK_COMMENTS.length - 1]);
 })
+
+When(/^adds multiple notes with Task "(.*)" and message "(.*)"$/, function (task, message) {
+    let messageList = message.split(",");
+    GlobalData.JOB_TASK_MULTIPLE_MESSAGES = [];
+    for (let i = 0; i < messageList.length; i++) {
+        action.isVisibleWait(ODTIJobDetailsPage.addAJobTaskOrNoteLink, 10000, "Add a job task or note link in ODTI job details page");
+        action.clickElement(ODTIJobDetailsPage.addAJobTaskOrNoteLink, "Add a job task or note link in ODTI job details page");
+        action.isVisibleWait(ODTIJobDetailsPage.jobTaskPopup, 10000, "Job Task popup in ODTI job details page");
+        action.isVisibleWait(ODTIJobDetailsPage.jobTaskDropdown, 10000, "Task dropdown on Job Task popup in ODTI job details page");
+        action.selectTextFromDropdown(ODTIJobDetailsPage.jobTaskDropdown, task, "Task dropdown on Job Task popup in ODTI job details page");
+        action.isVisibleWait(ODTIJobDetailsPage.messageTextarea, 10000, "message textarea on Job Task popup in ODTI job details page");
+        messageList[i] = messageList[i] + (Math.floor(Math.random() * 1000000) + 1).toString();
+        GlobalData.JOB_TASK_MULTIPLE_MESSAGES.push(messageList[i]);
+        action.enterValue(ODTIJobDetailsPage.messageTextarea, messageList[i], "message textarea on Job Task popup in ODTI job details page");
+        action.clickElement(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, "Save Button on Job Task popup in ODTI job details page");
+        action.isNotVisibleWait(ODTIJobDetailsPage.saveButtonOnJobTaskPopup, 3000, "Save Button on Job Task popup in ODTI job details page");
+    }
+})
+
+Then(/^the notes that are added latest are sorted by newest-first order$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.moreLinkUnderJobNotes, 10000, "More link under Job Notes in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.moreLinkUnderJobNotes, "More link under Job Notes in ODTI job details page");
+    let jobNotesMessageList = [];
+    for (let i = 0; i < GlobalData.JOB_TASK_MULTIPLE_MESSAGES.length; i++) {
+        let jobNotesMessage = $(ODTIJobDetailsPage.jobNotesRowMessageDynamicLocator.replace("<dynamic>", (i + 1).toString()));
+        let jobNotesMessageText = action.getElementText(jobNotesMessage, "Job task message in ODTI job details page");
+        jobNotesMessageList.push(jobNotesMessageText);
+    }
+    GlobalData.JOB_TASK_MULTIPLE_MESSAGES.reverse();
+    for (let k = 0; k < GlobalData.JOB_TASK_MULTIPLE_MESSAGES.length; k++) {
+        chai.expect(jobNotesMessageList[k].trim()).to.equal(GlobalData.JOB_TASK_MULTIPLE_MESSAGES[k].trim());
+    }
+})
+
+When(/^the user has clicked the close icon$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.xButtonOnJobTaskPopup, 10000, "x Button on Job Task popup in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.xButtonOnJobTaskPopup, "x Button on Job Task popup in ODTI job details page");
+    action.isNotVisibleWait(ODTIJobDetailsPage.xButtonOnJobTaskPopup, 3000, "x Button on Job Task popup in ODTI job details page");
+})
+
+Then(/^no notes are added under Job Notes section$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.jobNotesSavedList, 10000, "Job Notes saved list in ODTI job details page");
+    let savedNoteListTextActual = action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page");
+    chai.expect(savedNoteListTextActual).to.not.include(GlobalData.JOB_TASK_MESSAGE);
+})
