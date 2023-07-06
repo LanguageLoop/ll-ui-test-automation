@@ -550,3 +550,23 @@ When(/^they are navigated to the Interpreter’s Profile page in a new tab$/, fu
     let currentPageUrlActual = action.getPageUrl();
     chai.expect(currentPageUrlActual).to.includes("PreviewContractorProfile.aspx");
 })
+
+When(/^the user has not set a RecordStatus filter, or has set it to show "(.*)"$/, function (filterValue) {
+    let filterValueDropdownElement = $(ODTIJobsPage.filterValueDropdownLocator.replace("<dynamic>", "1"));
+    action.isVisibleWait(filterValueDropdownElement, 20000, "Filter value dropdown in ODTI Jobs page");
+    action.selectTextFromDropdown(filterValueDropdownElement, filterValue, "Filter value dropdown in ODTI Jobs page");
+})
+
+When(/^the rows which contain a Do Not Export record will have a Gray font-color$/, function () {
+    let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
+    action.isVisibleWait(serviceChargeID1TextElement, 10000, "Service charge ID row in ODTI Jobs page");
+    browser.waitUntil(
+        () => action.getElementAttribute(serviceChargeID1TextElement, "style", "Service charge ID row in ODTI Jobs page") === "color: #AAAAAA;",
+        {
+            timeout: 20000,
+            timeoutMsg: 'expected ODTI Job result attribute to change within 20s'
+        }
+    );
+    let styleColourOfRowElement = action.getElementAttribute(serviceChargeID1TextElement, "style", "Service charge ID row in ODTI Jobs page");
+    chai.expect(styleColourOfRowElement).to.equal("color: #AAAAAA;");
+})
