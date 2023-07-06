@@ -193,4 +193,15 @@ module.exports = {
         return $('//span[text()="1. Organisation/Campus blocks Contractor"]');
     },
 
+    get returnThisJobPopup() {
+        return $('//span[contains(text(),"Return this Job")]');
+    },
+
+    get returnReasonDropdown() {
+        return $('//select[contains(@id,"JobReturnDialog")]');
+    },
+
+    get returnJobPopupConfirmButton() {
+        return $('//input[contains(@id,"JobReturnDialog") and @value="Confirm Return"]')
+    }
 }
