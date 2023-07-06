@@ -124,6 +124,10 @@ When(/^I click return job button$/, function(){
   action.isVisibleWait(interpretingPage.returnJobButton,10000);
   action.clickElement(interpretingPage.returnJobButton)
   action.isNotVisibleWait(interpretingPage.returnJobButton,10000);
+  action.isVisibleWait(jobDetailsPage.returnThisJobPopup, 10000, "Return this job popup in Job Details page");
+  action.selectTextFromDropdown(jobDetailsPage.returnReasonDropdown, "Accepted in Error", "Return reason dropdown on Return this job popup in Job Details page");
+  action.clickElement(jobDetailsPage.returnJobPopupConfirmButton, "Confirm button on Return this job popup in Job Details page");
+  action.isNotVisibleWait(jobDetailsPage.returnJobPopupConfirmButton, 10000,"Confirm button on Return this job popup in Job Details page");
 })
 
 When(/^I click "(.*)" user link$/, function(user){
