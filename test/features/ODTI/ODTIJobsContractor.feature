@@ -260,9 +260,9 @@ Feature: ODTI Jobs Contractor features
       | username          | password  | note       | message                  | additional messages                               |
       | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message,automation test3 message |
 
-    #LL-679 Scenario 6: Adding Mutiple Notes
+    #LL-679 Scenario 6: Adding Multiple Notes
   @LL-679 @AddingMultipleNotes
-  Scenario Outline: Adding Mutiple Notes
+  Scenario Outline: Adding Multiple Notes
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
@@ -292,3 +292,28 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | note       | message                 |
       | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test message |
+
+    #LL-687 Sc1 - by default, a filter on record status should be shown
+  @LL-687 @RecordStatusFilterShownByDefault
+  Scenario Outline: by default, a filter on record status should be shown
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    Then The RecordStatus Is Export
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
+
+    #LL-687 Sc1b - Display the non-exported records in a different style
+  @LL-687 @NonExportedRecordDifferentStyle
+  Scenario Outline: Display the non-exported records in a different style
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And the user has not set a RecordStatus filter, or has set it to show "<export value>"
+    Then the rows which contain a Do Not Export record will have a Gray font-color
+
+    Examples:
+      | username          | password  | export value  |
+      | LLAdmin@looped.in | Octopus@6 | Do not export |
