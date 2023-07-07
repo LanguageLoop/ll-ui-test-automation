@@ -26,12 +26,10 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   action.clickElement(homePage.InterpretingLink)
   action.selectTextFromDropdown(interpretingPage.filterDropdown,"Management")
   action.isVisibleWait(interpretingPage.newJobRequestButton,30000)
-  interpretingPage.newJobRequestButton.waitForClickable({timeout:5000},{interval:500})
   action.clickElement(interpretingPage.newJobRequestButton)
   action.isClickableWait(jobRequestPage.campusPinInput,30000)
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin)
   action.isVisibleWait(jobRequestPage.requesterNameDropdown,30000)
-  jobRequestPage.requesterNameDropdown.waitForExist({timeout:5000},{interval:500})
   action.enterValueAndPressReturn(jobRequestPage.requesterNameDropdown,requester)
   browser.pause(2000)
   action.clickElement(jobRequestPage.nextButton)
@@ -67,19 +65,14 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
     }
     let continueButtonVisibleStatus = action.isVisibleWait(jobRequestPage.continueButton,5000);
     if(continueButtonVisibleStatus) {
-      jobRequestPage.continueButton.waitForClickable({timeout:10000,timeoutMsg:'continue button not clickable in 10s',inteval:500})
       browser.execute("arguments[0].click();", jobRequestPage.continueButton)
-      //action.clickElement(jobRequestPage.continueButton)
     }
   }
   catch(Err)
   {
   }
   browser.pause(4000)
-  //jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})
-  //action.clickElement(jobRequestPage.submitButton)
   action.isClickableWait(jobRequestPage.submitButton,30000)
-  jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
  jobRequestPage.successMessageText.waitForExist({timeout:30000},{interval:500})
 browser.waitUntil(
