@@ -317,3 +317,34 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | export value  |
       | LLAdmin@looped.in | Octopus@6 | Do not export |
+
+    #LL-687 Sc2 - display the record status field
+  @LL-687 @DisplayRecordStatusField
+  Scenario Outline: display the record status field
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
+    Then the field "<record status field>" is displayed in job details
+
+    Examples:
+      | username          | password  | job detail page url        | record status field |
+      | LLAdmin@looped.in | Octopus@6 | OnDemandTI/JobDetails.aspx | Record Status       |
+
+    #LL-687 Sc3 - the CallId should be a link
+  @LL-687 @CallIdShouldBeLink
+  Scenario Outline: the CallId should be a link
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
+    Then the Client call Id in job details is a link
+    And when clicked, it goes back to the ODTI Jobs list with a URL parameter for the ClientCallId
+    And searches by Client Call Id by default in ODTI jobs
+    And does not have the RecordStatus filter
+
+    Examples:
+      | username          | password  | job detail page url        |
+      | LLAdmin@looped.in | Octopus@6 | OnDemandTI/JobDetails.aspx |
