@@ -574,3 +574,14 @@ When(/^the rows which contain a Do Not Export record will have a Gray font-color
         chai.expect(styleColourOfRowElement).to.equal("color: #AAAAAA;");
     }
 })
+
+When(/^searches by Client Call Id by default in ODTI jobs$/, function () {
+    action.isVisibleWait(ODTIJobsPage.searchByTextBox,10000,"Search By text box in ODTI Jobs page");
+    let searchByValueActual = action.getElementValue(ODTIJobsPage.searchByTextBox,"Search By text box in ODTI Jobs page");
+    chai.expect(searchByValueActual).to.equal(GlobalData.CLIENT_CALL_ID);
+})
+
+When(/^does not have the RecordStatus filter$/, function () {
+    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 1000);
+    chai.expect(recordStatusExistStatus).to.be.false;
+})
