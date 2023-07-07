@@ -293,3 +293,21 @@ Then(/^no notes are added under Job Notes section$/, function () {
     let savedNoteListTextActual = action.getElementText(ODTIJobDetailsPage.jobNotesSavedList, "Job Notes saved list in ODTI job details page");
     chai.expect(savedNoteListTextActual).to.not.include(GlobalData.JOB_TASK_MESSAGE);
 })
+
+Then(/^the field "(.*)" is displayed in job details$/, function (fieldName) {
+    let fieldNameElement = $(ODTIJobDetailsPage.jobDynamicFieldNameLocator.replace("<dynamic>", fieldName));
+    let fieldNameDisplayStatus = action.isVisibleWait(fieldNameElement, 10000, fieldName + " field in ODTI job details page");
+    chai.expect(fieldNameDisplayStatus).to.be.true;
+})
+
+Then(/^the Client call Id in job details is a link$/, function () {
+    let clientCallIdLinkDisplayStatus = action.isVisibleWait(ODTIJobDetailsPage.clientCallIdLink, 10000, "Client call ID link in ODTI job details page");
+    chai.expect(clientCallIdLinkDisplayStatus).to.be.true;
+})
+
+Then(/^when clicked, it goes back to the ODTI Jobs list with a URL parameter for the ClientCallId$/, function () {
+    GlobalData.CLIENT_CALL_ID = action.getElementText(ODTIJobDetailsPage.clientCallIdLink, 10000, "Client call ID link in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.clientCallIdLink, "Client call ID link in ODTI job details page");
+    let currentPageUrlActual = action.getPageUrl();
+    chai.expect(currentPageUrlActual).to.includes(GlobalData.CLIENT_CALL_ID);
+})

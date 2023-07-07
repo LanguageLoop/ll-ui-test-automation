@@ -98,7 +98,7 @@ module.exports ={
     },
 
     get selectJobsCheckboxes(){
-        return $$('//*[@data-columnname="Selected"]')
+        return $$('//*[@data-columnname="Selected"]/input')
     },
 
     get bulkClaimProcessButton(){
@@ -134,6 +134,6 @@ module.exports ={
     },
 
     get jobResultsCheckbox(){
-        return $('//*[@data-columnname="Selected"]')
+        return $('//*[@data-columnname="Selected"]/input')
     },
 }

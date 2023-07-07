@@ -75,6 +75,9 @@ When(/^I search for created job request$/, function(){
   action.clearValue(interpretingPage.searchJobInput)
   action.enterValueAndPressReturn(interpretingPage.searchJobInput,GlobalData.CURRENT_JOB_ID.toString())
   console.log("JOB ID: "+GlobalData.CURRENT_JOB_ID.toString());
+  action.pressKeys("Tab");
+  let expectedJobIdResultLoc = '//*[text()="<dynamic>"]'.replace("<dynamic>", GlobalData.CURRENT_JOB_ID.toString())
+  action.isVisibleWait($(expectedJobIdResultLoc), 90000, "Expected Job Id Result "+GlobalData.CURRENT_JOB_ID);
 })
 
 When(/^I search for selected job request$/, function(){

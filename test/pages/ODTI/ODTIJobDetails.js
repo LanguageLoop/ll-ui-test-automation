@@ -107,5 +107,13 @@ module.exports = {
 
     get jobNotesRowMessageDynamicLocator() {
         return '//div[contains(@id,"JobTaskNoteList")]//div[@class="JobTaskNoteListRecord"][<dynamic>]//div[contains(@class,"MarginGutter")][1]';
+    },
+
+    get jobDynamicFieldNameLocator() {
+        return '//div[contains(@id,"JobDetails")]//span[text()="<dynamic>"]';
+    },
+
+    get clientCallIdLink() {
+        return $('//span[text()="Client Call ID"]/parent::div//a');
     }
 }

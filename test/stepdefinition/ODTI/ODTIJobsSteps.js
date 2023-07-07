@@ -561,12 +561,27 @@ When(/^the rows which contain a Do Not Export record will have a Gray font-color
     let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
     action.isVisibleWait(serviceChargeID1TextElement, 10000, "Service charge ID row in ODTI Jobs page");
     browser.waitUntil(
-        () => action.getElementAttribute(serviceChargeID1TextElement, "style", "Service charge ID row in ODTI Jobs page") === "color: #AAAAAA;",
+        () => action.getElementAttribute(serviceChargeID1TextElement, "style", "Service charge ID row in ODTI Jobs page") === "color: rgb(170, 170, 170);" || action.getElementAttribute(serviceChargeID1TextElement, "style", "Service charge ID row in ODTI Jobs page") === "color: #AAAAAA;",
         {
             timeout: 20000,
             timeoutMsg: 'expected ODTI Job result attribute to change within 20s'
         }
     );
     let styleColourOfRowElement = action.getElementAttribute(serviceChargeID1TextElement, "style", "Service charge ID row in ODTI Jobs page");
-    chai.expect(styleColourOfRowElement).to.equal("color: #AAAAAA;");
+    if (styleColourOfRowElement.includes("color: rgb(170, 170, 170);")) {
+        chai.expect(styleColourOfRowElement).to.equal("color: rgb(170, 170, 170);");
+    } else {
+        chai.expect(styleColourOfRowElement).to.equal("color: #AAAAAA;");
+    }
+})
+
+When(/^searches by Client Call Id by default in ODTI jobs$/, function () {
+    action.isVisibleWait(ODTIJobsPage.searchByTextBox,10000,"Search By text box in ODTI Jobs page");
+    let searchByValueActual = action.getElementValue(ODTIJobsPage.searchByTextBox,"Search By text box in ODTI Jobs page");
+    chai.expect(searchByValueActual).to.equal(GlobalData.CLIENT_CALL_ID);
+})
+
+When(/^does not have the RecordStatus filter$/, function () {
+    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 1000);
+    chai.expect(recordStatusExistStatus).to.be.false;
 })
