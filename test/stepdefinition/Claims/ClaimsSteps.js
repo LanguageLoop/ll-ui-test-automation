@@ -298,8 +298,9 @@ When(/^I select "(.*)" jobs from search results$/, function (count) {
     action.isExistingWait(claimsPage.jobResultsCheckbox, 90000, "Job Results Checkbox in claims page");
     var boxes = claimsPage.selectJobsCheckboxes
     for (var i = 0; i < count; i++) {
-        action.clickElement(boxes[i], "Select job check boxes in claims page")
+        action.clickElement(boxes[i], "Select job check boxes "+i+" in claims page")
         browser.pause(2000)
+        action.isSelectedWait(boxes[i],90000, "Select job check boxes "+i+" in claims page")
     }
 })
 
