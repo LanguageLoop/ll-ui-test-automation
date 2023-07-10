@@ -42,4 +42,9 @@ module.exports={
     JOB_TASK_COMMENTS:"",
     JOB_TASK_MULTIPLE_MESSAGES:"",
     CLIENT_CALL_ID:"",
+    CLIENT_CHARGE_EXCL_GST:"",
+    NES_CONNECTION_FEE:"",
+    CAMPUS_SUBTOTAL:"",
+    CAMPUS_GST:"",
+    CAMPUS_TOTAL:"",
 }
