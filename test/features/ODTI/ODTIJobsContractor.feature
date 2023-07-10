@@ -348,3 +348,18 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | job detail page url        |
       | LLAdmin@looped.in | Octopus@6 | OnDemandTI/JobDetails.aspx |
+
+    #LL-687 Sc4 - the reprocessing buttons should be hidden for Export=false
+  @LL-687 @ReprocessingButtonsHiddenExportFalse
+  Scenario Outline: the reprocessing buttons should be hidden for Export=false
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And the user has not set a RecordStatus filter, or has set it to show "<export value>"
+    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
+    Then the 3 Reprocess buttons are not displayed
+
+    Examples:
+      | username          | password  | export value  | job detail page url        |
+      | LLAdmin@looped.in | Octopus@6 | Do not export | OnDemandTI/JobDetails.aspx |
