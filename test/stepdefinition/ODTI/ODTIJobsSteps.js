@@ -514,6 +514,7 @@ Then(/^the user will not see the "(.*)" column$/, function (expectedHeaders) {
 })
 
 When(/^they click the ODTI Service Charge ID hyperlink$/, function () {
+    action.waitUntilLoadingIconDisappears();
     let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
     action.isVisibleWait(serviceChargeID1TextElement, 10000);
     action.clickElement(serviceChargeID1TextElement);
@@ -582,6 +583,21 @@ When(/^searches by Client Call Id by default in ODTI jobs$/, function () {
 })
 
 When(/^does not have the RecordStatus filter$/, function () {
-    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 1000);
+    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 1000,"Record status selected option in ODTI Jobs page");
     chai.expect(recordStatusExistStatus).to.be.false;
+})
+
+When(/^sorts the Call Duration column to get jobs less than 60 seconds$/, function () {
+    let callDurationHeaderElement = $(ODTIJobsPage.columnHeaderLocator.replace("<dynamic>", "Call Duration"));
+    action.isVisibleWait(callDurationHeaderElement, 10000, "CALL DURATION column header in ODTI Jobs page");
+    action.clickElement(callDurationHeaderElement, "CALL DURATION column header in ODTI Jobs page");
+    action.waitUntilLoadingIconDisappears();
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[0] === "0",
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs less than 60s displayed within 90s'
+        }
+    );
 })
