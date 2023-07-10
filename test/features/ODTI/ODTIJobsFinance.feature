@@ -249,3 +249,24 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password | new campus pin | old campus pin | contractor | filter option 1        | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | mandatory field names   | mandatory field values | mandatory field names2      | mandatory field values2 |
       | testauto@finance1.com | Test1    | 30889          | 29449          | Yousef     | ClientChargeTotalExGST | 2                     | Is not              | 2                         | 0.00           | 1                    | [EX1] Test1,[EX2] Test2 | test1,test2            | [EX1] Reference number,test | test1,test2             |
+
+    #LL-695 Scenario 1a: Job less than or equal to 60 sec duration
+  @LL-695 @JobLessThan60SecTotals
+  Scenario Outline: Job less than or equal to 60 sec duration
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And sorts the Call Duration column to get jobs less than 60 seconds
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the job is equal or less than 60 seconds
+    Then the Client Charge excl GST should display 0.00
+    And the NES Connection Fee should display 0
+    And the Subtotal should display the sum of Client Charge excl GST and the NES Connection Fee
+    And the GST should be 10% of the Subtotal
+    And the Total should be the sum of Subtotal and GST
+
+    Examples:
+      | username              | password |
+      | testauto@finance1.com | Test1    |
