@@ -1,6 +1,4 @@
 
-const GlobalData = require("../../data/GlobalData")
-
 When(/^I create a new campus$/,{timeout:3600000}, function(){
    //data
    address1="1 St Kilda Rd, St Kilda VIC 3182"
@@ -22,66 +20,66 @@ When(/^I create a new campus$/,{timeout:3600000}, function(){
 
 
         browser.pause(2000)
-        action.clickElement(accountManagementPage.createCampusLink)
+        action.clickElement(accountManagementPage.createCampusLink,"Create Campus link in Account Management page")
         browser.pause(2000)
-        
-        action.clickElement(accountManagementPage.metroRadioButton)
 
-    
+        action.clickElement(accountManagementPage.metroRadioButton,"Metro radio button in Account Management page")
+
+
         $('//span[@class="fa fa-fw fa-pencil-square-o"]').click()
         browser.pause(2000)
-        action.enterLocation(accountManagementPage.campusAddressInput,address1)
-        action.enterValue(accountManagementPage.address2Input,address2)
-    
-        action.enterValue(accountManagementPage.campusPostName1Input,name1)
+        action.enterLocation(accountManagementPage.campusAddressInput,address1,"Campus address text box in Account Management page")
+        action.enterValue(accountManagementPage.address2Input,address2,"Campus address 2 text box in Account Management page")
+
+        action.enterValue(accountManagementPage.campusPostName1Input,name1,"Campus Post Name 1 text box in Account Management page")
         browser.pause(1000)
-        action.enterValue(accountManagementPage.campusPostName2Input,name2)
-    
+        action.enterValue(accountManagementPage.campusPostName2Input,name2,"Campus Post Name 2 text box in Account Management page")
+
         $$('//span[@class="fa fa-fw fa-pencil-square-o"]')[1].click()
         browser.pause(2000)
-        action.enterLocation(accountManagementPage.postalAddressInput,address1)
-        action.enterValue(accountManagementPage.postalAddress2Input,address2)
-    
-        action.enterValue(accountManagementPage.campusNameInput,campusname)
-    
+        action.enterLocation(accountManagementPage.postalAddressInput,address1,"Postal Address text box in Account Management page")
+        action.enterValue(accountManagementPage.postalAddress2Input,address2,"Postal Address 2 text box in Account Management page")
+
+        action.enterValue(accountManagementPage.campusNameInput,campusname,"Campus Name text box in Account Management page")
+
        // action.selectTextFromDropdown(accountManagementPage.entityTypeDropdown,entitytype)
-    
-    
-        action.selectTextFromDropdown(accountManagementPage.overrideInvoiceFrequencyDropdown,frequency)
-    
-    
-        action.enterValue(accountManagementPage.campusABNInput,abn)
+
+
+        action.selectTextFromDropdown(accountManagementPage.overrideInvoiceFrequencyDropdown,frequency,"Override invoice frequency dropdown in Account Management page")
+
+
+        action.enterValue(accountManagementPage.campusABNInput,abn,"Campus ABN text box in Account Management page")
         browser.pause(2000)
-        action.clickElement(accountManagementPage.abnCheckButton)
-        browser.pause(2000)
-    
-        action.clickElement(accountManagementPage.chargeGSTCheckbox)
-    
-        action.clearValue(accountManagementPage.companyNameInput)
-        
-        action.enterValue(accountManagementPage.companyNameInput,companyname)
-        
-        action.enterValue(accountManagementPage.tradingNameInput,tradingname)
-        action.enterValue(accountManagementPage.PONumberInput,ponumber)
-        accountManagementPage.selectBillToLink.waitForDisplayed({timeout:5000,timeoutMsg:'select bill to link not displayed',interval:500})
-        action.clickElement(accountManagementPage.selectBillToLink)
-        
-        browser.pause(5000)
-        action.enterValue(accountManagementPage.searchBillToInput,billto)
-    
-        browser.pause(2000)
-        action.clickElement(accountManagementPage.firstBillToTitle)
-        browser.pause(2000)
-        action.clickElement(accountManagementPage.assignButton)
+        action.clickElement(accountManagementPage.abnCheckButton,"ABN check button in Account Management page")
         browser.pause(2000)
 
-        action.enterValue(accountManagementPage.videoLoopPinInput,pin)
-    
-    
-       
-    
-        action.clickElement(accountManagementPage.saveButton)
+        action.clickElement(accountManagementPage.chargeGSTCheckbox,"Charge GST  checkbox in Account Management page")
+
+        action.clearValue(accountManagementPage.companyNameInput,"Company Name text box in Account Management page")
+
+        action.enterValue(accountManagementPage.companyNameInput,companyname,"Company Name text box in Account Management page")
+
+        action.enterValue(accountManagementPage.tradingNameInput,tradingname,"Trading Name text box in Account Management page")
+        action.enterValue(accountManagementPage.PONumberInput,ponumber,"PO Number text box in Account Management page")
+        accountManagementPage.selectBillToLink.waitForDisplayed({timeout:5000,timeoutMsg:'select bill to link not displayed',interval:500})
+        action.clickElement(accountManagementPage.selectBillToLink,"Select Bill To link in Account Management page")
+
+        browser.pause(5000)
+        action.enterValue(accountManagementPage.searchBillToInput,billto,"Search Bill To text box in Account Management page")
+
+        browser.pause(2000)
+        action.clickElement(accountManagementPage.firstBillToTitle,"First Bill To Title in Account Management page")
+        browser.pause(2000)
+        action.clickElement(accountManagementPage.assignButton,"Assign Button in Account Management page")
+        browser.pause(2000)
+
+        action.enterValue(accountManagementPage.videoLoopPinInput,pin,"Video Loop Pin text box in Account Management page")
+
+
+
+
+        action.clickElement(accountManagementPage.saveButton,"Save button in Account Management page")
         browser.pause(3000)
-        action.clickElement(homePage.accountManagementLink)
+        action.clickElement(homePage.accountManagementLink,"Account Management link in Account Management page")
         browser.pause(2000)
 })

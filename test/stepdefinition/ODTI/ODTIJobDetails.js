@@ -311,3 +311,64 @@ Then(/^when clicked, it goes back to the ODTI Jobs list with a URL parameter for
     let currentPageUrlActual = action.getPageUrl();
     chai.expect(currentPageUrlActual).to.includes(GlobalData.CLIENT_CALL_ID);
 })
+
+Then(/^the 3 Reprocess buttons are not displayed$/, function () {
+    let reprocessCampusButtonDisplayStatus = action.isVisibleWait(claimsPage.reprocessCampusButton,0,"Reprocess Campus button in ODTI job details page");
+    chai.expect(reprocessCampusButtonDisplayStatus).to.be.false;
+    let reprocessContractorButtonDisplayStatus = action.isVisibleWait(claimsPage.reprocessContractorButton,0,"Reprocess Contractor button in ODTI job details page");
+    chai.expect(reprocessContractorButtonDisplayStatus).to.be.false;
+    let reprocessCampusAndContractorButtonDisplayStatus = action.isVisibleWait(claimsPage.reprocessCampusAndContractorButton,0,"Reprocess Campus and Contractor button in ODTI job details page");
+    chai.expect(reprocessCampusAndContractorButtonDisplayStatus).to.be.false;
+})
+
+Then(/^the job is equal or less than 60 seconds$/, function () {
+    let fieldNameElement = $(ODTIJobDetailsPage.jobDynamicFieldValueTextLocator.replace("<dynamic>", "Duration"));
+    action.isVisibleWait(fieldNameElement, 10000, "Duration field value in ODTI job details page");
+    let durationTextActual = action.getElementText(fieldNameElement, "Duration field value in ODTI job details page");
+    let jobDurationSeconds = durationTextActual.split(":")[1];
+    let jobDurationLessThan60Seconds = parseInt(jobDurationSeconds) < 60;
+    chai.expect(jobDurationLessThan60Seconds).to.be.true;
+})
+
+Then(/^the Client Charge excl GST should display 0.00$/, function () {
+    let campusDynamicFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "Client Charge excl GST"));
+    action.isVisibleWait(campusDynamicFieldValueElement, 10000, "Client Charge excl GST field under Campus in ODTI job details page");
+    let clientChargeExclGstValue = action.getElementValue(campusDynamicFieldValueElement, "origvalue", "Client Charge excl GST field under Campus in ODTI job details page");
+    GlobalData.CLIENT_CHARGE_EXCL_GST = parseInt(clientChargeExclGstValue.replace("$ ",""));
+    chai.expect(GlobalData.CLIENT_CHARGE_EXCL_GST).to.equal(0.00);
+})
+
+Then(/^the NES Connection Fee should display 0$/, function () {
+    let campusDynamicFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "NES Connection Fee"));
+    action.isVisibleWait(campusDynamicFieldValueElement, 10000, "NES Connection Fee field under Campus in ODTI job details page");
+    let nesConnectionFeeValue = action.getElementValue(campusDynamicFieldValueElement, "origvalue", "NES Connection Fee field under Campus in ODTI job details page");
+    GlobalData.NES_CONNECTION_FEE = parseInt(nesConnectionFeeValue.replace("$ ",""));
+    chai.expect(GlobalData.NES_CONNECTION_FEE).to.equal(0.00);
+})
+
+Then(/^the Subtotal should display the sum of Client Charge excl GST and the NES Connection Fee$/, function () {
+    let campusDynamicFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "Subtotal"));
+    action.isVisibleWait(campusDynamicFieldValueElement, 10000, "Subtotal field under Campus in ODTI job details page");
+    let subtotalValue = action.getElementValue(campusDynamicFieldValueElement, "origvalue", "Subtotal field under Campus in ODTI job details page");
+    GlobalData.CAMPUS_SUBTOTAL = parseInt(subtotalValue.replace("$ ",""));
+    let sumOfClientChargeExclGstAndNesConnectionFee = GlobalData.CLIENT_CHARGE_EXCL_GST + GlobalData.NES_CONNECTION_FEE;
+    chai.expect(GlobalData.CAMPUS_SUBTOTAL).to.equal(sumOfClientChargeExclGstAndNesConnectionFee);
+})
+
+Then(/^the GST should be 10% of the Subtotal$/, function () {
+    let campusDynamicFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "GST"));
+    action.isVisibleWait(campusDynamicFieldValueElement, 10000, "GST field under Campus in ODTI job details page");
+    let gstValue = action.getElementValue(campusDynamicFieldValueElement,  "GST field under Campus in ODTI job details page");
+    GlobalData.CAMPUS_GST = parseInt(gstValue.replace("$ ",""));
+    let tenPercentOfSubtotal = GlobalData.CAMPUS_SUBTOTAL * 0.1;
+    chai.expect(GlobalData.CAMPUS_GST).to.equal(tenPercentOfSubtotal);
+})
+
+Then(/^the Total should be the sum of Subtotal and GST$/, function () {
+    let campusDynamicFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "Total"));
+    action.isVisibleWait(campusDynamicFieldValueElement, 10000, "Total field under Campus in ODTI job details page");
+    let totalValue = action.getElementValue(campusDynamicFieldValueElement, "Total field under Campus in ODTI job details page");
+    GlobalData.CAMPUS_TOTAL = parseInt(totalValue.replace("$ ",""));
+    let sumOfSubtotalAndGst = GlobalData.CAMPUS_SUBTOTAL + GlobalData.CAMPUS_GST;
+    chai.expect(GlobalData.CAMPUS_TOTAL).to.equal(sumOfSubtotalAndGst);
+})
