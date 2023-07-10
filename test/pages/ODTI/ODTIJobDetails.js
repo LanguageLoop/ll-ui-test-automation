@@ -115,5 +115,13 @@ module.exports = {
 
     get clientCallIdLink() {
         return $('//span[text()="Client Call ID"]/parent::div//a');
-    }
+    },
+
+    get campusDynamicFieldInputValueLocator() {
+        return '//label[text()="<dynamic>"]/parent::div/following-sibling::div//input';
+    },
+
+    get jobDynamicFieldValueTextLocator() {
+        return '//div[contains(@id,"JobDetails")]//span[text()="<dynamic>"]/following-sibling::div';
+    },
 }
