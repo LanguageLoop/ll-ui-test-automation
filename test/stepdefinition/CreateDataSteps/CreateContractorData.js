@@ -11,7 +11,7 @@ When(/^I create 50 contractors$/,{timeout:3600000}, function(){
     for(var cc=1;cc<3;cc++)
     {
        var mob = "0"+(400000000+(Math.floor(Math.random() * 100000000) + 1)).toString()
-        action.clickElement(homePage.contractorEngagementLink)
+        action.clickElement(homePage.contractorEngagementLink,"Contractor Engagement link in Create Contractor page")
         browser.pause(2000)
 
     var first_name = jsonfile.Sheet1[cc]["First Name"]
@@ -70,30 +70,30 @@ When(/^I create 50 contractors$/,{timeout:3600000}, function(){
       
     
     
-    action.clickElement(contractorEngagementPage.addContractorLink)
+    action.clickElement(contractorEngagementPage.addContractorLink,"Add Contractor link in Create Contractor page")
 browser.pause(2000)
 
 
 if(gender=="Male")
 {
-    action.selectTextFromDropdown(contractorEngagementPage.salutationDropdown,"Mr")
-    action.clickElement(contractorEngagementPage.maleRadioButton)
+    action.selectTextFromDropdown(contractorEngagementPage.salutationDropdown,"Mr","Salutation dropdown in Create Contractor page")
+    action.clickElement(contractorEngagementPage.maleRadioButton,"Male Radio button in Create Contractor page")
 
 }
 else
 {
-    action.selectTextFromDropdown(contractorEngagementPage.salutationDropdown,"Miss")
-    action.clickElement(contractorEngagementPage.femaleRadioButton)
+    action.selectTextFromDropdown(contractorEngagementPage.salutationDropdown,"Miss","Salutation dropdown in Create Contractor page")
+    action.clickElement(contractorEngagementPage.femaleRadioButton,"Female Radio button in Create Contractor page")
 }
 
-action.enterValue(contractorEngagementPage.telephonePinInput,telphone_pin)
-action.enterValue(contractorEngagementPage.firstNameInput,first_name)
-action.enterValue(contractorEngagementPage.lastNameInput, last_name)
-action.enterValue(contractorEngagementPage.mobileInput,mobile)
-action.enterValue(contractorEngagementPage.telephoneInput,telephone)
+action.enterValue(contractorEngagementPage.telephonePinInput,telphone_pin,"Telephone pin text box in Create Contractor page")
+action.enterValue(contractorEngagementPage.firstNameInput,first_name,"First name text box in Create Contractor page")
+action.enterValue(contractorEngagementPage.lastNameInput, last_name,"Last name text box in Create Contractor page")
+action.enterValue(contractorEngagementPage.mobileInput,mobile,"Mobile text box in Create Contractor page")
+action.enterValue(contractorEngagementPage.telephoneInput,telephone,"Telephone text box in Create Contractor page")
 if(country!=="N/A")
 {
-action.selectTextFromDropdown(contractorEngagementPage.countryOfBirthDropdown,country)}
+action.selectTextFromDropdown(contractorEngagementPage.countryOfBirthDropdown,country,"Country of birth dropdown in Create Contractor page")}
 dob = dob.replace('12:00AM',"")
 //console.log("PANT :::::: "+dob)
 var temp_dob= new Date(dob)
@@ -102,24 +102,24 @@ var day= temp_dob.getDate()
 var year= temp_dob.getFullYear()
 dob= day+'-'+month+'-'+year
 //console.log("SAHA "+dob)
-action.enterValueAndPressReturn(contractorEngagementPage.dateOfBirthDropdown,dob)
+action.enterValueAndPressReturn(contractorEngagementPage.dateOfBirthDropdown,dob,"Date of birth dropdown in Create Contractor page")
 
 
 
-action.enterValue(contractorEngagementPage.emailInput,email)
-action.enterLocation(contractorEngagementPage.addressInput,address)
+action.enterValue(contractorEngagementPage.emailInput,email,"Email text box in Create Contractor page")
+action.enterLocation(contractorEngagementPage.addressInput,address,"Address text box in Create Contractor page")
 browser.pause(2000)
 browser.keys("Enter")
 
 if(email_pref==1)
 {
-action.clickElement(contractorEngagementPage.emailPreferenceCheckbox)
+action.clickElement(contractorEngagementPage.emailPreferenceCheckbox,"Email preference check box in Create Contractor page")
 }
 if(sms_pref==1)
 {
-    action.clickElement(contractorEngagementPage.smsPreferenceCheckbox)
+    action.clickElement(contractorEngagementPage.smsPreferenceCheckbox,"SMS preference check box in Create Contractor page")
 }
-action.uploadFile(contractorEngagementPage.workContractFileControl,"./test/data/ContractDocument.docx")
+action.uploadFile(contractorEngagementPage.workContractFileControl,"./test/data/ContractDocument.docx","Work contract file control in Create Contractor page")
 
 activation_date=activation_date.replace('PM',"")
 activation_date=activation_date.replace('AM',"")
@@ -130,7 +130,7 @@ activation_date ="21-07-2020"
 //browser.pause(3000)
 //$('//td[@class="day selected today"]').click()
 //browser.pause(1000)
-action.enterValueAndPressReturn(contractorEngagementPage.activationDateInput,activation_date)
+action.enterValueAndPressReturn(contractorEngagementPage.activationDateInput,activation_date,"Activation date text box in Create Contractor page")
 //action.enterValueAndPressReturn(contractorEngagementPage.activationDateInput," ")
 //action.enterValueAndPressReturn(contractorEngagementPage.activationDateInput,"14:30:00")
 
@@ -139,54 +139,54 @@ action.enterValueAndPressReturn(contractorEngagementPage.activationDateInput,act
 
 if(gst_registered=="TRUE")
 {
-    action.clickElement(contractorEngagementPage.gstRegisteredCheckbox)
+    action.clickElement(contractorEngagementPage.gstRegisteredCheckbox,"GST registered check box in Create Contractor page")
 }
 
 if(regional==1)
 {
-    action.clickElement(contractorEngagementPage.regionalCheckbox)
+    action.clickElement(contractorEngagementPage.regionalCheckbox,"Regional check box in Create Contractor page")
 }
 
-action.enterValue(contractorEngagementPage.contractorABNInput,abn)
+action.enterValue(contractorEngagementPage.contractorABNInput,abn,"Contractor ABN text box in Create Contractor page")
 browser.pause(2000)
-action.clickElement(contractorEngagementPage.abnCheckButton)
+action.clickElement(contractorEngagementPage.abnCheckButton,"ABN check button in Create Contractor page")
 browser.pause(2000)
 
-action.clickElement(contractorEngagementPage.saveContractorButton)
+action.clickElement(contractorEngagementPage.saveContractorButton,"Save contractor button in Create Contractor page")
 browser.pause(4000)
 
 // add clearances
 
 if(police_clearance_date!=="N/A")
     {
-        action.clickElement(contractorEngagementPage.addClearanceLink)
+        action.clickElement(contractorEngagementPage.addClearanceLink,"Add clearance link in Create Contractor page")
 
         browser.pause(2000)
-        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx")
-        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Police Check")
-        action.enterValueAndPressReturn(contractorEngagementPage.policeDateInput,removeTime(police_clearance_date))
+        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx","Clearance file control in Create Contractor page")
+        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Police Check","Clearance type dropdown in Create Contractor page")
+        action.enterValueAndPressReturn(contractorEngagementPage.policeDateInput,removeTime(police_clearance_date),"Police date text box in Create Contractor page")
         browser.pause(2000)
-        action.clickElement(contractorEngagementPage.saveClearanceButton)
+        action.clickElement(contractorEngagementPage.saveClearanceButton,"Save clearance button in Create Contractor page")
         browser.pause(2000)
     }
 
     if(children_number!=="N/A")
     {
-        action.clickElement(contractorEngagementPage.addClearanceLink)
+        action.clickElement(contractorEngagementPage.addClearanceLink,"Add clearance link in Create Contractor page")
 
         browser.pause(2000)
-        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx")
-        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Working With Children")
-        action.selectTextFromDropdown(contractorEngagementPage.childrenCardTypeDropdown,children_card_type)
-        action.enterValue(contractorEngagementPage.cardNumberInput,children_number)
+        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx","Clearance file control in Create Contractor page")
+        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Working With Children","Clearance type dropdown in Create Contractor page")
+        action.selectTextFromDropdown(contractorEngagementPage.childrenCardTypeDropdown,children_card_type,"Children card type dropdown in Create Contractor page")
+        action.enterValue(contractorEngagementPage.cardNumberInput,children_number,"Card number text box in Create Contractor page")
         children_state=getState(children_state)
-        action.selectTextFromDropdown(contractorEngagementPage.stateDropdown,children_state)
-        action.enterValueAndPressReturn(contractorEngagementPage.documentReceivedDate,children_received_date)
-        action.enterValueAndPressReturn(contractorEngagementPage.documentExpiryDate,removeTime(children_date))
+        action.selectTextFromDropdown(contractorEngagementPage.stateDropdown,children_state,"State dropdown in Create Contractor page")
+        action.enterValueAndPressReturn(contractorEngagementPage.documentReceivedDate,children_received_date,"Document received date text box in Create Contractor page")
+        action.enterValueAndPressReturn(contractorEngagementPage.documentExpiryDate,removeTime(children_date),"Document expiry date text box in Create Contractor page")
         browser.pause(1000)
         browser.keys('Tab')
         browser.pause(2000)
-        action.clickElement(contractorEngagementPage.saveClearanceButton)
+        action.clickElement(contractorEngagementPage.saveClearanceButton,"Save clearance button in Create Contractor page")
         browser.pause(3000)
         
     }
@@ -202,33 +202,33 @@ if(police_clearance_date!=="N/A")
    
         console.log('I VALUE : '+i+"LANGUAGE : "+from_language[i])
 
-    action.clickElement(contractorEngagementPage.addAccreditationLink)
+    action.clickElement(contractorEngagementPage.addAccreditationLink,"Add accreditation link in Create Contractor page")
     
     browser.pause(2000)
-    action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown,"Interpreter")
-    action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown,from_language[i])
-    action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown,naati_level[i])
+    action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown,"Interpreter","Service dropdown in Create Contractor page")
+    action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown,from_language[i],"From language dropdown in Create Contractor page")
+    action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown,naati_level[i],"NAATI accreditation dropdown in Create Contractor page")
     if(naati_number!=="N/A")
     {
-    action.enterValue(contractorEngagementPage.naatiNumberInput,naati_number)
-    action.clickElement(contractorEngagementPage.checkNAATIButton)
+    action.enterValue(contractorEngagementPage.naatiNumberInput,naati_number,"NAATI number text box in Create Contractor page")
+    action.clickElement(contractorEngagementPage.checkNAATIButton,"check NAATI button in Create Contractor page")
     browser.pause(2000)
     }
 
-    action.enterValueAndPressReturn(contractorEngagementPage.dateIssuedInput,"01-01-2018")
+    action.enterValueAndPressReturn(contractorEngagementPage.dateIssuedInput,"01-01-2018","Date issued text box in Create Contractor page")
 
     if(expiry_date[i]=="N/A")
     {
-        action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput,"01-01-2023")
+        action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput,"01-01-2023","Date of expiry text box in Create Contractor page")
 
     }
     else{
-    action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput, removeTime(expiry_date[i]))
+    action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput, removeTime(expiry_date[i]),"Date of expiry text box in Create Contractor page")
     }
     browser.pause(2000)
     browser.keys('Tab')
     browser.pause(2000)
-    action.clickElement(contractorEngagementPage.saveAndCloseButton)
+    action.clickElement(contractorEngagementPage.saveAndCloseButton,"Save and close button in Create Contractor page")
 
     browser.pause(2000)
     }
@@ -263,7 +263,7 @@ When(/^I add clearances$/,function(){
       naati_level[3] = jsonfile.Sheet1[0]["I NAATI 4"]
       expiry_date[3] = jsonfile.Sheet1[0]["I Revalidation Date 4"]
 
-    action.enterValueAndPressReturn(contractorEngagementPage.searchContractorInput, "Automation")
+    action.enterValueAndPressReturn(contractorEngagementPage.searchContractorInput, "Automation","Search contractor text box in Create Contractor page")
     browser.pause(2000)
     $$('//table[contains(@id,"Contractor")]//td')[1].click()
     browser.pause(2000)
@@ -277,29 +277,29 @@ When(/^I add clearances$/,function(){
    
         console.log('I VALUE : '+i+"LANGUAGE : "+from_language[i])
 
-    action.clickElement(contractorEngagementPage.addAccreditationLink)
+    action.clickElement(contractorEngagementPage.addAccreditationLink,"Add accreditation link in Create Contractor page")
     
     browser.pause(2000)
-    action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown,"Interpreter")
-    action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown,from_language[i])
-    action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown,naati_level[i])
-    action.enterValue(contractorEngagementPage.naatiNumberInput,naati_number)
-    action.clickElement(contractorEngagementPage.checkNAATIButton)
+    action.selectTextFromDropdown(contractorEngagementPage.serviceDropdown,"Interpreter","Service dropdown in Create Contractor page")
+    action.enterValueAndPressReturn(contractorEngagementPage.fromLanguageDropdown,from_language[i],"From language in Create Contractor page")
+    action.selectTextFromDropdown(contractorEngagementPage.naatiAccreditationDropdown,naati_level[i],"NAATI accreditation dropdown in Create Contractor page")
+    action.enterValue(contractorEngagementPage.naatiNumberInput,naati_number,"NAATI number text box in Create Contractor page")
+    action.clickElement(contractorEngagementPage.checkNAATIButton,"check NAATI button in Create Contractor page")
 
-    action.enterValueAndPressReturn(contractorEngagementPage.dateIssuedInput,"01-01-2018")
+    action.enterValueAndPressReturn(contractorEngagementPage.dateIssuedInput,"01-01-2018","Date issued text box in Create Contractor page")
 
     if(expiry_date[i]=="N/A")
     {
-        action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput,"01-01-2023")
+        action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput,"01-01-2023","Date of expiry text box in Create Contractor page")
 
     }
     else{
-    action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput, removeTime(expiry_date[i]))
+    action.enterValueAndPressReturn(contractorEngagementPage.dateOfExpiryInput, removeTime(expiry_date[i]),"Date of expiry text box in Create Contractor page")
     }
     browser.pause(2000)
     browser.keys('Tab')
     browser.pause(2000)
-    action.clickElement(contractorEngagementPage.saveAndCloseButton)
+    action.clickElement(contractorEngagementPage.saveAndCloseButton,"Save and close button in Create Contractor page")
 
     browser.pause(2000)
     }
@@ -319,40 +319,40 @@ When(/^I add police check$/,function(){
     var children_state = jsonfile.Sheet1[0]["wwc State"]
     var children_received_date = "01-07-2015"
 
-    action.enterValueAndPressReturn(contractorEngagementPage.searchContractorInput, "Automation")
+    action.enterValueAndPressReturn(contractorEngagementPage.searchContractorInput, "Automation","Search contractor button in Create Contractor page")
     browser.pause(2000)
     $$('//table[contains(@id,"Contractor")]//td')[1].click()
     browser.pause(2000)
 
     if(police_clearance_date!=="N/A")
     {
-        action.clickElement(contractorEngagementPage.addClearanceLink)
+        action.clickElement(contractorEngagementPage.addClearanceLink,"Add clearance link in Create Contractor page")
 
         browser.pause(2000)
-        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx")
-        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Police Check")
-        action.enterValueAndPressReturn(contractorEngagementPage.policeDateInput,removeTime(police_clearance_date))
+        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx","Clearance file control in Create Contractor page")
+        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Police Check","Clearance type dropdown in Create Contractor page")
+        action.enterValueAndPressReturn(contractorEngagementPage.policeDateInput,removeTime(police_clearance_date),"Police date text box in Create Contractor page")
         browser.pause(2000)
-        action.clickElement(contractorEngagementPage.saveClearanceButton)
+        action.clickElement(contractorEngagementPage.saveClearanceButton,"Save clearance button in Create Contractor page")
     }
 
     if(children_number!=="N/A")
     {
-        action.clickElement(contractorEngagementPage.addClearanceLink)
+        action.clickElement(contractorEngagementPage.addClearanceLink,"Add clearance link in Create Contractor page")
 
         browser.pause(2000)
-        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx")
-        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Working With Children")
-        action.selectTextFromDropdown(contractorEngagementPage.childrenCardTypeDropdown,children_card_type)
-        action.enterValue(contractorEngagementPage.cardNumberInput,children_number)
+        action.uploadFile(contractorEngagementPage.clearanceFileControl,"./test/data/ContractDocument.docx","Clearance file control in Create Contractor page")
+        action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown,"Working With Children","Clearance type dropdown in Create Contractor page")
+        action.selectTextFromDropdown(contractorEngagementPage.childrenCardTypeDropdown,children_card_type,"Children card type dropdown in Create Contractor page")
+        action.enterValue(contractorEngagementPage.cardNumberInput,children_number,"Card number text box in Create Contractor page")
         children_state=getState(children_state)
-        action.selectTextFromDropdown(contractorEngagementPage.stateDropdown,children_state)
-        action.enterValueAndPressReturn(contractorEngagementPage.documentReceivedDate,children_received_date)
-        action.enterValueAndPressReturn(contractorEngagementPage.documentExpiryDate,removeTime(children_date))
+        action.selectTextFromDropdown(contractorEngagementPage.stateDropdown,children_state,"State dropdown in Create Contractor page")
+        action.enterValueAndPressReturn(contractorEngagementPage.documentReceivedDate,children_received_date,"Document received date in Create Contractor page")
+        action.enterValueAndPressReturn(contractorEngagementPage.documentExpiryDate,removeTime(children_date),"Document expiry date text box in Create Contractor page")
         browser.pause(1000)
         browser.keys('Tab')
         browser.pause(2000)
-        action.clickElement(contractorEngagementPage.saveClearanceButton)
+        action.clickElement(contractorEngagementPage.saveClearanceButton,"Save clearance button in Create Contractor page")
         
     }
 })
