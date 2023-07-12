@@ -291,3 +291,16 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password |
       | testauto@finance1.com | Test1    |
+
+    #LL-695 Scenario 2: Job List rename column heading
+  @LL-695 @JobListRenameColumnHeading
+  Scenario Outline: Job List rename column heading
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    Then the column heading Client Charge Total Ex GST should read Client Charge Subtotal
+
+    Examples:
+      | username              | password |
+      | testauto@finance1.com | Test1    |
