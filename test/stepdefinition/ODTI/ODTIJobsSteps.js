@@ -618,3 +618,16 @@ When(/^sorts the Call Duration column to get jobs greater than 60 seconds$/, fun
         }
     );
 })
+
+Then(/^the column heading Client Charge Total Ex GST should read Client Charge Subtotal$/, function () {
+    let callDurationHeaderElement = $(ODTIJobsPage.columnHeaderLocator.replace("<dynamic>", "Client Charge Subtotal"));
+    let clientChargeSubtotalHeaderDisplayStatus = action.isVisibleWait(callDurationHeaderElement, 10000, "Client Charge Subtotal column header in ODTI Jobs page");
+    chai.expect(clientChargeSubtotalHeaderDisplayStatus).to.be.true;
+})
+
+When(/^they click the ODTI Service Charge ID hyperlink in row "(.*)"$/, function (row) {
+    action.waitUntilLoadingIconDisappears();
+    let serviceChargeID1TextElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "1"));
+    action.isVisibleWait(serviceChargeID1TextElement, 10000);
+    action.clickElement(serviceChargeID1TextElement);
+})
