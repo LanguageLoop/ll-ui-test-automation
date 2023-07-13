@@ -349,3 +349,18 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
       | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
+
+    #LL-722 Scenario 1: Campus PIN in URL
+  @LL-722 @ManagementCampusPINInURL
+  Scenario Outline: Campus PIN in URL Booking management
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<My Jobs>" screen
+    And the URL contains the CampusPIN parameter "<campusPIN>"
+    Then the Bookings Management screen will display
+    And a CampusPIN filter should be pre-filled with the given CampusPIN "<campusPIN>"
+    And the rest of the form should display as if the user has filtered by Campus PIN "<campusName>"
+
+    Examples:
+      | username          | password  | My Jobs | campusPIN | campusName      |
+      | LLAdmin@looped.in | Octopus@6 | My Jobs | 29449     | Contoso Pty LTD |

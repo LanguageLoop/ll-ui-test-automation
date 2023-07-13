@@ -124,4 +124,20 @@ module.exports = {
     get jobDynamicFieldValueTextLocator() {
         return '//div[contains(@id,"JobDetails")]//span[text()="<dynamic>"]/following-sibling::div';
     },
+
+    get processCampusButton(){
+        return $('//input[@value="Process Campus"]')
+    },
+
+    get reprocessCampusButton(){
+        return $('//input[@value="Reprocess Campus"]')
+    },
+
+    get reprocessCampusToBeReexportedConfirmation() {
+        return $('//div[text()="Reprocess campus to be re-exported?"]');
+    },
+
+    get yesButtonOnReprocessDialog() {
+        return $('//div[contains(@id,"ReprocessDialog")]//input[@value="Yes"]');
+    }
 }

@@ -13,7 +13,7 @@ When(/^I set the job to "(.*)"$/, function(status){
 
 function searchByJobId(jobid)
 {
-   action.enterValue(devPage.jobIdInput,jobid)
+   action.enterValue(devPage.jobIdInput,jobid,"Job ID input in Dev page")
 }
 
 function setJobStatus(status)
@@ -22,7 +22,7 @@ function setJobStatus(status)
     {
 
     case "Complete":
-        action.clickElement(devPage.completeJobButton)
+        action.clickElement(devPage.completeJobButton,"Complete job button in Dev page")
         break
     }
 

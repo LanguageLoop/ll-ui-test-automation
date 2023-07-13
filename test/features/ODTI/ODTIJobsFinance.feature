@@ -304,3 +304,25 @@ Feature: ODTI Jobs Finance features
     Examples:
       | username              | password |
       | testauto@finance1.com | Test1    |
+
+    #LL-695 Scenario 3: Editing fields
+  @LL-695 @EditingFieldsJobTotals
+  Scenario Outline: Editing fields client charge, NES connection fee
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And they will see a table
+    And sorts the Call Duration column to get jobs greater than 60 seconds
+    And they click the ODTI Service Charge ID hyperlink in row "<job row>"
+    And they are navigated to the Job Details page in a new tab
+    And the user is editing the fields client charge, NES connection fee
+    Then the client charge, NES connection fee values should be saved
+    And the Client Charge excl GST should display the appropriate amount excluding the NES Connection fee
+    And the NES Connection Fee should display the appropriate amount
+    And the Subtotal should display the sum of Client Charge excl GST and the NES Connection Fee
+    And the GST should be 10% of the Subtotal
+    And the Total should be the sum of Subtotal and GST
+
+    Examples:
+      | username              | password | job row |
+      | testauto@finance1.com | Test1    | 2       |

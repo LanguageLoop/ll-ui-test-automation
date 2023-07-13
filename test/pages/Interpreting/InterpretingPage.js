@@ -110,6 +110,11 @@ module.exports={
 
     get jobTableNoJobsToShowMessage() {
         return $('//div[contains(@id,"JobTable")]/table[contains(@id,"JobTable")]/tbody/tr/td[text()="No jobs to show..."]');
-    }
+    },
+
+    get filterDropdownOption()
+    {
+        return '//select[@class="BorderlessShadowlessDropdown"]/option[text()="<dynamic>"]';
+    },
 
 }
