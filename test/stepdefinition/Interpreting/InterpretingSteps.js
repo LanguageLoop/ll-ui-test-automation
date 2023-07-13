@@ -278,3 +278,11 @@ When(/^an CBO user has accessed the Booking Request screen from URL$/, function 
 When(/^user enters Campus PIN "(.*)" in the URL$/, function (campusPin) {
   action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClientBookingRequest.aspx?CampusPIN=" + campusPin);
 })
+
+Then(/^the Bookings Management screen will display$/, function () {
+  let pageTitleActual = action.getPageTitle();
+  chai.expect(pageTitleActual).to.includes("Bookings");
+  let filterDropdownManagementOption = $(interpretingPage.filterDropdownOption.replace("<dynamic>","Management"));
+  let managementScreenSelected = action.isSelectedWait(filterDropdownManagementOption,10000,"Management option in filter dropdown in interpreting page");
+  chai.expect(managementScreenSelected).to.be.true;
+})
