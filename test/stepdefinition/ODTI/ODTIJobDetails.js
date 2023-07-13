@@ -400,3 +400,26 @@ Then(/^the NES Connection Fee should display the appropriate amount$/, function 
     let nesConnectionFeeAmountIsAppropriate = GlobalData.NES_CONNECTION_FEE >= 0;
     chai.expect(nesConnectionFeeAmountIsAppropriate).to.be.true;
 })
+
+Then(/^the user is editing the fields client charge, NES connection fee$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.reprocessCampusButton, 10000, "Reprocess Campus button in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.reprocessCampusButton, "Reprocess Campus button in ODTI job details page");
+    let reprocessCampusToBeReexportedDisplayed = action.isVisibleWait(ODTIJobDetailsPage.reprocessCampusToBeReexportedConfirmation, 10000, "Reprocess campus to be re-exported? popup message in ODTI job details page");
+    if (reprocessCampusToBeReexportedDisplayed) {
+        action.clickElement(ODTIJobDetailsPage.yesButtonOnReprocessDialog, "Yes button on reprocess confirmation dialog in ODTI job details page");
+    }
+    let clientChargeFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "Client Charge excl GST"));
+    action.isVisibleWait(clientChargeFieldValueElement, 10000, "Client Charge excl GST field under Campus in ODTI job details page");
+    let randomClientCharge = Math.floor(Math.random() * 900) + 100;
+    action.enterValue(clientChargeFieldValueElement, randomClientCharge, "Client Charge excl GST field under Campus in ODTI job details page");
+    let nesFeeFieldValueElement = $(ODTIJobDetailsPage.campusDynamicFieldInputValueLocator.replace("<dynamic>", "NES Connection Fee"));
+    let randomNesFeeFieldValueElement = Math.floor(Math.random() * 90) + 10;
+    action.isVisibleWait(nesFeeFieldValueElement, 10000, "NES Connection Fee field under Campus in ODTI job details page");
+    action.enterValue(nesFeeFieldValueElement, randomNesFeeFieldValueElement, "NES Connection Fee field under Campus in ODTI job details page");
+})
+
+Then(/^the client charge, NES connection fee values should be saved$/, function () {
+    action.isVisibleWait(ODTIJobDetailsPage.processCampusButton, 10000, "Process Campus button in ODTI job details page");
+    action.clickElement(ODTIJobDetailsPage.processCampusButton, "Process Campus button in ODTI job details page");
+    action.isVisibleWait(ODTIJobDetailsPage.reprocessCampusButton, 10000, "Reprocess Campus button in ODTI job details page");
+})
