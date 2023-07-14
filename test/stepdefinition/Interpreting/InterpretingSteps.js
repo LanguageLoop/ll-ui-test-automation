@@ -65,6 +65,7 @@ When(/^I switch to the job allocation window$/, function(){
 
 When(/^I click on bulk upload button$/, function(){
   browser.pause(2000)
+  action.isVisibleWait(interpretingPage.bulkUploadButton,20000,"Bulk upload button in Interpreting steps")
   action.clickElement(interpretingPage.bulkUploadButton)
   browser.pause(2000)
 })
@@ -88,6 +89,7 @@ When(/^I search for selected job request$/, function(){
 })
 
 When(/^I search for job request "(.*)"$/, function(jobid){
+  action.isVisibleWait(interpretingPage.searchJobInput,20000)
   action.clickElement(interpretingPage.searchJobInput)
   action.clearValue(interpretingPage.searchJobInput)
   action.enterValueAndPressReturn(interpretingPage.searchJobInput,jobid)
@@ -95,16 +97,19 @@ When(/^I search for job request "(.*)"$/, function(jobid){
 })
 
 When(/^I enter from date "(.*)"$/, function(fromdate){
+  action.isVisibleWait(interpretingPage.fromDateInput,20000)
   action.clickElement(interpretingPage.fromDateInput)
   action.enterValueAndPressReturn(interpretingPage.fromDateInput,fromdate)
 })
 
 When(/^I enter to date "(.*)"$/, function(todate){
+  action.isVisibleWait(interpretingPage.toDateInput,20000)
   action.clickElement(interpretingPage.toDateInput)
   action.enterValueAndPressReturn(interpretingPage.toDateInput,todate)
 })
 
 When(/^I click on the show regional jobs checkbox$/, function(){
+  action.isVisibleWait(interpretingPage.regionalJobsCheckbox,20000)
   action.clickElement(interpretingPage.regionalJobsCheckbox)
 })
 
@@ -114,6 +119,7 @@ When(/^I click accept job button$/, function(){
 })
 
 When(/^I click reject job button$/, function(){
+  action.isVisibleWait(interpretingPage.rejectJobButton,20000)
   action.clickElement(interpretingPage.rejectJobButton)
 })
 
@@ -135,6 +141,7 @@ When(/^I click return job button$/, function(){
 
 When(/^I click "(.*)" user link$/, function(user){
   const  usernameElt = $('//*[text()="<dynamic>"]'.replace("<dynamic>",user));
+  action.isVisibleWait(usernameElt,20000);
   action.clickElement(usernameElt);
 })
 
@@ -285,4 +292,22 @@ Then(/^the Bookings Management screen will display$/, function () {
   let filterDropdownManagementOption = $(interpretingPage.filterDropdownOption.replace("<dynamic>","Management"));
   let managementScreenSelected = action.isSelectedWait(filterDropdownManagementOption,10000,"Management option in filter dropdown in interpreting page");
   chai.expect(managementScreenSelected).to.be.true;
+})
+
+When(/^the URL contains the JobId parameter "(.*)"$/, function (jobId) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/Bookings.aspx?JobId=" + jobId);
+})
+
+Then(/^the search field should be pre-filled with the given JobID "(.*)"$/, function (jobId) {
+  action.isVisibleWait(interpretingPage.searchJobInput, 30000, "Search by field in interpreting page");
+  let actualJobIDInSearchField = action.getElementValue(interpretingPage.searchJobInput, "Search by field in interpreting page");
+  chai.expect(actualJobIDInSearchField).to.equal(jobId)
+})
+
+Then(/the rest of the form should display as if the user has filtered or searched by JobID "(.*)"$/, function (jobId) {
+  browser.pause(5000);
+  action.waitUntilLoadingIconDisappears();
+  let interpreterNameTextElement = $(interpretingPage.jobTableDynamicTextValueLocator.replace("<dynamicRowIndex>", "1").replace("<dynamicColumnIndex>", "4"));
+  let actualInterpreterNameText = action.getElementText(interpreterNameTextElement);
+  chai.expect(actualInterpreterNameText).to.equal(jobId);
 })
