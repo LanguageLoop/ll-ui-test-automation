@@ -351,8 +351,8 @@ Feature: Bookings Allocations Features
       | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
 
     #LL-722 Scenario 1: Campus PIN in URL
-  @LL-722 @ManagementCampusPINInURL
-  Scenario Outline: Campus PIN in URL Booking management
+  @LL-722 @MyJobsCampusPINInURL
+  Scenario Outline: Campus PIN in URL Booking My Jobs
     When I login with "<username>" and "<password>"
     And I click Interpreting header link
     And a user has accessed the Bookings "<My Jobs>" screen
@@ -364,3 +364,33 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | My Jobs | campusPIN | campusName      |
       | LLAdmin@looped.in | Octopus@6 | My Jobs | 29449     | Contoso Pty LTD |
+
+    #LL-722 Scenario 2: Contractor ID in URL
+  @LL-722 @MyJobsContractorIDInURL
+  Scenario Outline: Contractor ID in URL Booking My Jobs
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<My Jobs>" screen
+    And the URL contains the ContractorID parameter "<contractorID>"
+    Then the Bookings Management screen will display
+    And a ContractorID filter should be pre-filled with the given ContractorID "<contractorID>"
+    And the rest of the form should display as if the user has filtered by ContractorID "<interpreterName>"
+
+    Examples:
+      | username          | password  | My Jobs | contractorID | interpreterName |
+      | LLAdmin@looped.in | Octopus@6 | My Jobs | 6155         | Adel ODISH      |
+
+    #LL-722 Scenario 3: Job ID in URL
+  @LL-722 @MyJobsJobIDInURL
+  Scenario Outline: Job ID in URL Booking My Jobs
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<My Jobs>" screen
+    And the URL contains the JobId parameter "<JobID>"
+    Then the Bookings Management screen will display
+    And the search field should be pre-filled with the given JobID "<JobID>"
+    And the rest of the form should display as if the user has filtered or searched by JobID "<JobID>"
+
+    Examples:
+      | username          | password  | My Jobs | JobID   |
+      | LLAdmin@looped.in | Octopus@6 | My Jobs | 0084483 |
