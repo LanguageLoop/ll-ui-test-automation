@@ -394,3 +394,22 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | My Jobs | JobID   |
       | LLAdmin@looped.in | Octopus@6 | My Jobs | 0084483 |
+
+    #LL-722 Scenario 4: User can perform search using all 3 types of filters in the URL
+  @LL-722 @PerformSearch3TypesFilters
+  Scenario Outline: User can perform search using all 3 types of filters in the URL
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And a user has accessed the Bookings "<My Jobs>" screen
+    And the URL contains the JobId parameter "<JobID>",Campus PIN "<campusPIN>" and ContractorID "<contractorID>" at once, sepearted by & symbol
+    Then the Bookings Management screen will display
+    And the search field should be pre-filled with the given JobID "<JobID>"
+    And the rest of the form should display as if the user has filtered or searched by JobID "<JobID>"
+    And a CampusPIN filter should be pre-filled with the given CampusPIN "<campusPIN>"
+    And the rest of the form should display as if the user has filtered by Campus PIN "<campusName>"
+    And a ContractorID filter in row "<row2>" should be pre-filled with the given ContractorID "<contractorID>"
+    And the rest of the form should display as if the user has filtered by ContractorID "<interpreterName>"
+
+    Examples:
+      | username          | password  | My Jobs | JobID   | campusPIN | campusName      | contractorID | interpreterName | row2 |
+      | LLAdmin@looped.in | Octopus@6 | My Jobs | 1614563 | 29449     | Contoso Pty LTD | 1453         | Ivanka JURIC    | 2    |
