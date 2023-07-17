@@ -311,3 +311,16 @@ Then(/the rest of the form should display as if the user has filtered or searche
   let actualInterpreterNameText = action.getElementText(interpreterNameTextElement);
   chai.expect(actualInterpreterNameText).to.equal(jobId);
 })
+
+When(/^the URL contains the JobId parameter "(.*)",Campus PIN "(.*)" and ContractorID "(.*)" at once, sepearted by & symbol$/, function (jobId,campusPin,contractorID) {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/Bookings.aspx?JobId=" + jobId + "&" + "CampusPIN=" + campusPin + "&" + "ContractorId=" + contractorID);
+})
+
+Then(/^a ContractorID filter in row "(.*)" should be pre-filled with the given ContractorID "(.*)"$/, function (row,contractorID) {
+  let contractorIDElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>",row.toString()).replace("<dynamicOption>","Contractor ID"));
+  let contractorIDFilterSelectedStatus = action.isSelectedWait(contractorIDElement,20000);
+  chai.expect(contractorIDFilterSelectedStatus).to.be.true;
+  let contractorIDValuePreFilledElement = $(interpretingPage.jobFilterValueTextBoxLocator.replace("<dynamicIndex>",row.toString()));
+  let contractorIDValuePreFilled = action.getElementValue(contractorIDValuePreFilledElement);
+  chai.expect(contractorIDValuePreFilled).to.equal(contractorID);
+})
