@@ -633,3 +633,21 @@ When(/^they click the ODTI Service Charge ID hyperlink in row "(.*)"$/, function
     action.isVisibleWait(serviceChargeID1TextElement, 10000);
     action.clickElement(serviceChargeID1TextElement);
 })
+
+Then(/^I should see the expected Job ID "(.*)" value under ODTI SERVICE CHARGE ID column$/, function (jobId) {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let jobIdFirstValueElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "1"));
+    action.isVisibleWait(jobIdFirstValueElement, 10000);
+    let ODTIServiceChargeJobIdActual = action.getElementText(jobIdFirstValueElement);
+    chai.expect(ODTIServiceChargeJobIdActual).to.equal(jobId);
+})
+
+Then(/^I should see the expected Campus Name "(.*)" value under CAMPUS NAME column$/, function (campusName) {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let campusName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "4"));
+    action.isVisibleWait(campusName1TextElement, 10000);
+    let campusNameTextActual = action.getElementText(campusName1TextElement);
+    chai.expect(campusNameTextActual).to.equal(campusName);
+})
