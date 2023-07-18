@@ -147,7 +147,6 @@ Feature: ODTI Jobs Contractor features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I enter Start Date "<start date>" and End Date "<end date>"
-    And I click on actual count arrow button
     Then The actual count of records is greater than expected records "<records count>"
 
     Examples:

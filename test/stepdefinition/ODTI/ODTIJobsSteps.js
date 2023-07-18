@@ -194,17 +194,19 @@ When(/^I click on actual count arrow button$/, function () {
 })
 
 Then(/^The actual count of records is greater than expected records "(.*)"$/, function (expectedCount) {
-    action.isVisibleWait(ODTIJobsPage.actualCountRecordsValueText, 10000);
-    let actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000);
+    let actualCountOfRecords = action.getElementText(ODTIJobsPage.recordsCountText);
+    actualCountOfRecords = actualCountOfRecords.split(" ")[4];
     let counter = 0;
-    while (parseInt(actualCountOfRecords) <= 500 && counter < 5) {
+    while (parseInt(actualCountOfRecords) < 500 && counter < 5) {
         browser.pause(3000);
-        action.clickElement(ODTIJobsPage.actualCountArrowButton);
-        actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
+        actualCountOfRecords = action.getElementText(ODTIJobsPage.recordsCountText);
+        actualCountOfRecords = actualCountOfRecords.split(" ")[4];
         counter++;
     }
-    actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
-    chai.expect(parseInt(actualCountOfRecords)).to.be.greaterThan(parseInt(expectedCount));
+    actualCountOfRecords = action.getElementText(ODTIJobsPage.recordsCountText);
+    actualCountOfRecords = actualCountOfRecords.split(" ")[4];
+    chai.expect(parseInt(actualCountOfRecords)).to.equal(parseInt(expectedCount));
 })
 
 Then(/^The records count in records counter is less than expected records "(.*)"$/, function (expectedCount) {
