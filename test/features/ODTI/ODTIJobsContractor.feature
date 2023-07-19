@@ -147,7 +147,6 @@ Feature: ODTI Jobs Contractor features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I enter Start Date "<start date>" and End Date "<end date>"
-    And I click on actual count arrow button
     Then The actual count of records is greater than expected records "<records count>"
 
     Examples:
@@ -363,3 +362,31 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | export value  | job detail page url        |
       | LLAdmin@looped.in | Octopus@6 | Do not export | OnDemandTI/JobDetails.aspx |
+
+    #LL-724 Scenario 1 - GL Code renamed to BillTo Code
+  @LL-724 @GLCodeRenamedToBillToCode
+  Scenario Outline: GL Code renamed to BillTo Code
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I should see the expected Job ID "<job ID>" value under ODTI SERVICE CHARGE ID column
+
+    Examples:
+      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | job ID       |
+      | LLAdmin@looped.in | Octopus@6 | Bill To Code    | 1                     | Is                  | 1                         | DET01          | 1                    | 100000019010 |
+
+    #LL-724 Scenario 2 - Service Description renamed to “DID Number”
+  @LL-724 @ServiceDescriptionRenamedToDIDNumber
+  Scenario Outline: Service Description renamed to DID Number
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    Then I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I should see the expected Campus Name "<campus name>" value under CAMPUS NAME column
+
+    Examples:
+      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | campus name     |
+      | LLAdmin@looped.in | Octopus@6 | DID Number      | 1                     | Is                  | 1                         | 61370349780    | 1                    | Contoso Pty LTD |

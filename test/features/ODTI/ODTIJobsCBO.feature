@@ -277,7 +277,6 @@ Feature: ODTI Jobs CBO features
     And I view the ODTI > ODTI Jobs page
     And I select campus "<campus id>" from the Campus dropdown
     And I enter Start Date "<start date>" and End Date "<end date>"
-    And I click on actual count arrow button
     And The actual count of records is greater than expected records "<records count>"
     And I click on Export to Excel link
     Then The Excel file is downloaded
@@ -294,7 +293,6 @@ Feature: ODTI Jobs CBO features
     And I view the ODTI > ODTI Jobs page
     And I select campus "<campus id>" from the Campus dropdown
     And I enter Start Date "<start date>" and End Date "<end date>"
-    And I click on actual count arrow button
     And The records count in records counter is less than expected records "<records count>"
     And I click on Export to Excel link
     Then The Excel file is downloaded

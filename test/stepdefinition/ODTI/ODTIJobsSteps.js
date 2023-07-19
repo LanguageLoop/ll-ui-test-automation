@@ -194,17 +194,19 @@ When(/^I click on actual count arrow button$/, function () {
 })
 
 Then(/^The actual count of records is greater than expected records "(.*)"$/, function (expectedCount) {
-    action.isVisibleWait(ODTIJobsPage.actualCountRecordsValueText, 10000);
-    let actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
+    action.isVisibleWait(ODTIJobsPage.recordsCountText, 10000);
+    let actualCountOfRecords = action.getElementText(ODTIJobsPage.recordsCountText);
+    actualCountOfRecords = actualCountOfRecords.split(" ")[4];
     let counter = 0;
-    while (parseInt(actualCountOfRecords) <= 500 && counter < 5) {
+    while (parseInt(actualCountOfRecords) < 500 && counter < 5) {
         browser.pause(3000);
-        action.clickElement(ODTIJobsPage.actualCountArrowButton);
-        actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
+        actualCountOfRecords = action.getElementText(ODTIJobsPage.recordsCountText);
+        actualCountOfRecords = actualCountOfRecords.split(" ")[4];
         counter++;
     }
-    actualCountOfRecords = action.getElementText(ODTIJobsPage.actualCountRecordsValueText);
-    chai.expect(parseInt(actualCountOfRecords)).to.be.greaterThan(parseInt(expectedCount));
+    actualCountOfRecords = action.getElementText(ODTIJobsPage.recordsCountText);
+    actualCountOfRecords = actualCountOfRecords.split(" ")[4];
+    chai.expect(parseInt(actualCountOfRecords)).to.equal(parseInt(expectedCount));
 })
 
 Then(/^The records count in records counter is less than expected records "(.*)"$/, function (expectedCount) {
@@ -630,4 +632,22 @@ When(/^they click the ODTI Service Charge ID hyperlink in row "(.*)"$/, function
     let serviceChargeID1TextElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "1"));
     action.isVisibleWait(serviceChargeID1TextElement, 10000);
     action.clickElement(serviceChargeID1TextElement);
+})
+
+Then(/^I should see the expected Job ID "(.*)" value under ODTI SERVICE CHARGE ID column$/, function (jobId) {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let jobIdFirstValueElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "1"));
+    action.isVisibleWait(jobIdFirstValueElement, 10000);
+    let ODTIServiceChargeJobIdActual = action.getElementText(jobIdFirstValueElement);
+    chai.expect(ODTIServiceChargeJobIdActual).to.equal(jobId);
+})
+
+Then(/^I should see the expected Campus Name "(.*)" value under CAMPUS NAME column$/, function (campusName) {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let campusName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "4"));
+    action.isVisibleWait(campusName1TextElement, 10000);
+    let campusNameTextActual = action.getElementText(campusName1TextElement);
+    chai.expect(campusNameTextActual).to.equal(campusName);
 })
