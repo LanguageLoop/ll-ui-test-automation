@@ -651,3 +651,12 @@ Then(/^I should see the expected Campus Name "(.*)" value under CAMPUS NAME colu
     let campusNameTextActual = action.getElementText(campusName1TextElement);
     chai.expect(campusNameTextActual).to.equal(campusName);
 })
+
+Then(/^I should see the expected Interpreter Name "(.*)" value under INTERPRETER NAME column$/, function (interpreterName) {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let interpreterName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "6"));
+    action.isVisibleWait(interpreterName1TextElement, 10000);
+    let interpreterNameTextActual = action.getElementText(interpreterName1TextElement);
+    chai.expect(interpreterNameTextActual).to.equal(interpreterName);
+})
