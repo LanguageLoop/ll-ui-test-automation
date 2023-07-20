@@ -418,3 +418,35 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1                                      | filter value index 1 | campus name                                                      |
       | LLAdmin@looped.in | Octopus@6 | Contract name   | 1                     | Is                  | 1                         | Department of Health and Human Services - Health    | 1                    | Access Health and Community - DH Community Care North West Metro |
+
+    #LL-724 Scenario 5 - VITSAHFlag
+  @LL-724 @VITSAHFlag
+  Scenario Outline: VITSAHFlag should be a drop-down
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And they will see a table
+    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 2>" "<filter value index 1>"
+    And they will see a table
+
+    Examples:
+      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 |
+      | LLAdmin@looped.in | Octopus@6 | VITSAHFlag      | 1                     | Is                  | 1                         | True           | 1                    | False          |
+
+    #LL-724 Scenario 6 - ContractorAHFlag
+  @LL-724 @ContractorAHFlag
+  Scenario Outline: ContractorAHFlag should be a drop-down
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And they will see a table
+    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 2>" "<filter value index 1>"
+    And they will see a table
+
+    Examples:
+      | username          | password  | filter option 1  | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 |
+      | LLAdmin@looped.in | Octopus@6 | ContractorAHFlag | 1                     | Is                  | 1                         | True           | 1                    | False          |
