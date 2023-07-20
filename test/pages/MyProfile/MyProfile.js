@@ -204,6 +204,8 @@ module.exports ={
         return $('//*[text()="Proof of PR / Visa"]/../..//input[@type="file"]')
     },
 
-    
+    get saveButtonOnProofOfClearancePopup(){
+        return $('//span[text()="Proof of Clearance"]/parent::div/parent::div//input[@value="Save"]');
+    },
 
 }
