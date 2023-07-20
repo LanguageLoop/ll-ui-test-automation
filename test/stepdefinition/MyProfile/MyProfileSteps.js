@@ -1,183 +1,189 @@
 
 When(/^I click reset password button$/,  function(){
    action.domStatusComplete();
-   action.isExistingWait(myProfilePage.editDetailsLink,30000);
-   action.waitForElementClickable(myProfilePage.editDetailsLink)
-   action.isVisibleWait(myProfilePage.resetPasswordButton,30000);
-   action.elementExists(myProfilePage.resetPasswordButton)
-   action.clickElement(myProfilePage.resetPasswordButton)
+   action.isExistingWait(myProfilePage.editDetailsLink,30000,"Edit details link in My profile page");
+   action.waitForElementClickable(myProfilePage.editDetailsLink,"Edit details link in My profile page")
+   action.isVisibleWait(myProfilePage.resetPasswordButton,30000,"Reset password button in My profile page");
+   action.elementExists(myProfilePage.resetPasswordButton,"Reset password button in My profile page")
+   action.clickElement(myProfilePage.resetPasswordButton,"Reset password button in My profile page")
  })
 
  When(/^I click edit profile details link$/, function(){
      browser.pause(4000)
-     action.isClickableWait(myProfilePage.editDetailsLink,30000)
-     action.waitForElementClickable(myProfilePage.editDetailsLink)
-     action.clickElement(myProfilePage.editDetailsLink)
+     action.isClickableWait(myProfilePage.editDetailsLink,30000,"Edit details link in My profile page")
+     action.waitForElementClickable(myProfilePage.editDetailsLink,"Edit details link in My profile page")
+     action.clickElement(myProfilePage.editDetailsLink,"Edit details link in My profile page")
      let contractorDetailsModal=$("//span[text()[contains(.,'My Details')]]")
      contractorDetailsModal.waitForDisplayed({timeout:10000, timeoutMsg:'modal not displayed within 10s', interval:1000})
  })
 
  When(/^I enter preferred name "(.*)"$/, function(preferredname){
-     action.enterValue(myProfilePage.preferredNameInput,preferredname)
+     action.enterValue(myProfilePage.preferredNameInput,preferredname,"Preferred name text box in My profile page")
  })
 
  When(/^I enter abn "(.*)"$/, function(abn){
-     action.enterValue(myProfilePage.abnInput,abn)
+     action.enterValue(myProfilePage.abnInput,abn,"ABN text box in My profile page")
  })
 
  When(/^I click check abn button$/, function(){
-     action.clickElement(myProfilePage.abnCheckButton)
+     action.clickElement(myProfilePage.abnCheckButton,"ABN Check button in My profile page")
  })
 
  When(/^I enter company name "(.*)"$/, function(companyname){
-     action.enterValue(myProfilePage.companyNameInput,companyname)
+     action.enterValue(myProfilePage.companyNameInput,companyname,"Company name text box in My profile page")
  })
 
  When(/^I click save button in my details$/, function(){
-     action.clickElement(myProfilePage.saveButton)
+     action.clickElement(myProfilePage.saveButton,"Save button in My profile page")
      browser.waitUntil(()=>browser.getTitle()==="PreviewContractorProfile" ,{timeout:10000, timeoutMsg:'save not happened within 10s', interval:1000 })
  })
 
  When(/^I click on emergency contact link$/, function(){
      browser.pause(2000)
-     action.elementExists(myProfilePage.emergencyContactLink)
-     action.clickElement(myProfilePage.emergencyContactLink)
+     action.elementExists(myProfilePage.emergencyContactLink,"Emergency contact link in My profile page")
+     action.clickElement(myProfilePage.emergencyContactLink,"Emergency contact link in My profile page")
  })
 
  When(/^I click on manage emergency contact link$/, function(){
-     action.clickElement(myProfilePage.manageEmergencyContactLink)
+     action.clickElement(myProfilePage.manageEmergencyContactLink,"Manage Emergency contact link in My profile page")
      browser.pause(2000)
  })
 
  When(/^I enter emergency contact firstname "(.*)"$/, function(firstname){
-     action.enterValue(myProfilePage.emergencyFirstNameInput,firstname)
+     action.enterValue(myProfilePage.emergencyFirstNameInput,firstname,"Emergency first name text box in My profile page")
  })
 
  When(/^I enter emergency contact lastname "(.*)"$/, function(lastname){
-    action.enterValue(myProfilePage.emergencyLastNameInput,lastname)
+    action.enterValue(myProfilePage.emergencyLastNameInput,lastname,"Emergency last name text box in My profile page")
 })
 
 When(/^I enter emergency contact phonenumber "(.*)"$/, function(phonenumber){
-    action.enterValue(myProfilePage.emergencyPhoneNumberInput,phonenumber)
+    action.enterValue(myProfilePage.emergencyPhoneNumberInput,phonenumber,"Emergency phone number text box in My profile page")
 })
 
 When(/^I enter emergency contact address "(.*)"$/, function(address){
-    action.enterValue(myProfilePage.emergencyAddressInput,address)
+    action.enterValue(myProfilePage.emergencyAddressInput,address,"Emergency Address text box in My profile page")
 })
 
 When(/^I enter emergency contact email "(.*)"$/, function(email){
-    action.enterValue(myProfilePage.emergencyEmailInput,email)
+    action.enterValue(myProfilePage.emergencyEmailInput,email,"Emergency Email text box in My profile page")
 })
 
 When(/^I select emergency contact relationship "(.*)"$/, function(relationship){
-    action.selectTextFromDropdown(myProfilePage.emergencyRelationshipDropdown,relationship)
+    action.selectTextFromDropdown(myProfilePage.emergencyRelationshipDropdown,relationship,"Emergency relationship dropdown in My profile page")
 })
 
 When(/^I select emergency contact country "(.*)"$/, function(country){
-    action.selectTextFromDropdown(myProfilePage.emergencyCountryDropdown,country)
+    action.selectTextFromDropdown(myProfilePage.emergencyCountryDropdown,country,"Emergency country dropdown in My profile page")
 })
 
 When(/^I click save button in emergency contact details$/, function(){
-    action.clickElement(myProfilePage.saveEmergencyContactButton)
+    action.clickElement(myProfilePage.saveEmergencyContactButton,"Save Emergency contact button in My profile page")
     browser.pause(2000)
 })
 
 When(/^I click add leave link$/, function(){
-    action.clickElement(myProfilePage.addLeaveLink)
+    action.clickElement(myProfilePage.addLeaveLink,"Add leave link in My profile page")
 })
 
 When(/^I enter leave start date "(.*)"$/, function(startdate){
-    action.enterValueAndPressReturn(myProfilePage.leaveStartDateInput,startdate)
+    action.enterValueAndPressReturn(myProfilePage.leaveStartDateInput,startdate,"Leave start date text box in My profile page")
 })
 
 When(/^I enter leave end date "(.*)"$/, function(enddate){
-    action.enterValueAndPressReturn(myProfilePage.leaveEndDateInput,enddate)
+    action.enterValueAndPressReturn(myProfilePage.leaveEndDateInput,enddate,"Leave end date text box in My profile page")
 })
 
 When(/^I click onsite checkbox$/, function(){
-    action.clickElement(myProfilePage.onSiteCheckbox)
+    action.clickElement(myProfilePage.onSiteCheckbox,"Onsite checkbox in My profile page")
 })
 
 When(/^I click add leave button$/, function(){
-    action.clickElement(myProfilePage.addLeaveButton)
+    action.clickElement(myProfilePage.addLeaveButton,"Add leave button in My profile page")
     browser.pause(2000)
 })
 
 When(/^I delete leave$/, function(){
-    action.clickElement(myProfilePage.leaveToggleButton)
+    action.clickElement(myProfilePage.leaveToggleButton,"Leave toggle button in My profile page")
     browser.pause(2000)
-    action.clickElement(myProfilePage.deleteLeaveLink)
+    action.clickElement(myProfilePage.deleteLeaveLink,"Delete leave link in My profile page")
 })
 
 When(/^I click expired language toggle$/, function(){
-    action.clickElement(myProfilePage.languageShowExpiredToggle)
+    action.clickElement(myProfilePage.languageShowExpiredToggle,"Language show expired toggle in My profile page")
 })
 
 When(/^I upload statutory declaration document$/, function(){
-    action.clickElement(myProfilePage.statutoryDeclarationToggleButton)
+    action.clickElement(myProfilePage.statutoryDeclarationToggleButton,"Statutory declaration toggle button in My profile page")
     browser.pause(2000)
-    action.clickElement(myProfilePage.statutoryDeclarationUploadFileLink)
+    action.clickElement(myProfilePage.statutoryDeclarationUploadFileLink,"Statutory declaration Upload file link in My profile page")
     browser.pause(2000)
-    action.uploadFile(myProfilePage.clearanceDocumentUploadControl,"./test/data/Statutory Declaration.docx")
+    action.uploadFile(myProfilePage.clearanceDocumentUploadControl,"./test/data/Statutory Declaration.docx","Clearance document Upload file control in My profile page")
     browser.pause(2000)
-    $$('//*[contains(@id,"wtcontContractorUploadAction")]//input[@value="Save"]')[1].click()
+    action.isClickableWait(myProfilePage.saveButtonOnProofOfClearancePopup,20000,"Save button Working with children popup in My profile page");
+    action.clickElement(myProfilePage.saveButtonOnProofOfClearancePopup,"Save button Working with children popup in My profile page");
     browser.pause(2000)
 })
 
 When(/^I upload work eligibility document$/, function(){
-    action.clickElement(myProfilePage.workEligibilityUploadLink)
+    action.clickElement(myProfilePage.workEligibilityUploadLink,"Work eligibility upload link in My profile page")
     browser.pause(2000)
-    action.uploadFile(myProfilePage.workEligibilityDocumentUploadControl,"./test/data/Working rights.docx")
+    action.uploadFile(myProfilePage.workEligibilityDocumentUploadControl,"./test/data/Working rights.docx","Work eligibility document upload control in My profile page")
     browser.pause(2000)
-    $$('//*[contains(@id,"wtcontContractorUploadAction")]//input[@value="Save"]')[0].click()
+    action.isClickableWait(myProfilePage.saveButtonOnProofOfClearancePopup,20000,"Save button Working with children popup in My profile page");
+    action.clickElement(myProfilePage.saveButtonOnProofOfClearancePopup,"Save button Working with children popup in My profile page");
     browser.pause(2000)
 })
 
 When(/^I upload hepatitis document$/, function(){
-    action.clickElement(myProfilePage.hepatitisToggleButton)
+    action.clickElement(myProfilePage.hepatitisToggleButton,"Hepatitis toggle button in My profile page")
     browser.pause(2000)
-    action.clickElement(myProfilePage.hepatitisUploadFileLink)
+    action.clickElement(myProfilePage.hepatitisUploadFileLink,"Hepatitis upload file link in My profile page")
     browser.pause(2000)
-    action.uploadFile(myProfilePage.clearanceDocumentUploadControl,"./test/data/Hepatitis.docx")
+    action.uploadFile(myProfilePage.clearanceDocumentUploadControl,"./test/data/Hepatitis.docx","Clearance document upload control in My profile page")
     browser.pause(2000)
-    $$('//*[contains(@id,"wtcontContractorUploadAction")]//input[@value="Save"]')[1].click()
+    action.isClickableWait(myProfilePage.saveButtonOnProofOfClearancePopup,20000,"Save button Working with children popup in My profile page");
+    action.clickElement(myProfilePage.saveButtonOnProofOfClearancePopup,"Save button Working with children popup in My profile page");
     browser.pause(2000)
 })
 
 When(/^I upload working with children document$/, function(){
-    action.clickElement(myProfilePage.workingWithChildrenToggleButton)
+    action.isVisibleWait(myProfilePage.workingWithChildrenToggleButton,20000,"Working with children toggle button in My profile page")
+    action.clickElement(myProfilePage.workingWithChildrenToggleButton,"Working with children toggle button in My profile page")
     browser.pause(2000)
-    action.clickElement(myProfilePage.workingWithChildrenUploadFileLink)
+    action.isVisibleWait(myProfilePage.workingWithChildrenUploadFileLink,20000,"Working with children upload file link in My profile page")
+    action.clickElement(myProfilePage.workingWithChildrenUploadFileLink,"Working with children upload file link in My profile page")
     browser.pause(2000)
-    action.uploadFile(myProfilePage.clearanceDocumentUploadControl,"./test/data/Working With Children.docx")
+    action.uploadFile(myProfilePage.clearanceDocumentUploadControl,"./test/data/Working With Children.docx","Clearance document upload control in My profile page")
     browser.pause(2000)
-    $$('//*[contains(@id,"wtcontContractorUploadAction")]//input[@value="Save"]')[1].click()
+    action.isClickableWait(myProfilePage.saveButtonOnProofOfClearancePopup,20000,"Save button Working with children popup in My profile page");
+    action.clickElement(myProfilePage.saveButtonOnProofOfClearancePopup,"Save button Working with children popup in My profile page");
     browser.pause(2000)
 })
 
 Then(/^I verify the statutory declaration document is uploaded$/, function(){
     browser.pause(2000)
-    chai.expect(action.elementExists(myProfilePage.statutoryDocumentLink)).to.be.true
+    chai.expect(action.elementExists(myProfilePage.statutoryDocumentLink,"Statutory document link in My profile page")).to.be.true
 })
 
 Then(/^I verify the work eligibility document is uploaded$/, function(){
-    chai.expect(action.elementExists(myProfilePage.workEligibilityDocumentLink)).to.be.true
+    chai.expect(action.elementExists(myProfilePage.workEligibilityDocumentLink,"Work eligibility document link in My profile page")).to.be.true
 })
 
 Then(/^I verify the hepatitis document is uploaded$/, function(){
-    chai.expect(action.elementExists(myProfilePage.hepatitisDocumentLink)).to.be.true
+    chai.expect(action.elementExists(myProfilePage.hepatitisDocumentLink,"Hepatitis document link in My profile page")).to.be.true
 })
 
 Then(/^I verify the working with children document is uploaded$/, function(){
-    chai.expect(action.elementExists(myProfilePage.workingWithChildrenUploadFileLink)).to.be.true
+    chai.expect(action.elementExists(myProfilePage.workingWithChildrenUploadFileLink,"Working with children document link in My profile page")).to.be.true
 })
 
 Then(/^I verify naati table is present$/, function(){
-    chai.expect(action.elementExists(myProfilePage.naatiTable)).to.be.true
+    chai.expect(action.elementExists(myProfilePage.naatiTable,"Naati table in My profile page")).to.be.true
 })
 
  Then(/^I verify the reset password email confirmation message$/, function(){
-    chai.expect(action.elementExists(myProfilePage.resetEmailConfirmationMessage)).to.be.true
+    chai.expect(action.elementExists(myProfilePage.resetEmailConfirmationMessage,"Reset email configuration message in My profile page")).to.be.true
  })
 
  Then(/^I verify the profile details are updated "(.*)","(.*)","(.*)"$/,function(preferredname,abn,companyname){
