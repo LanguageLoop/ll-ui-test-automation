@@ -450,3 +450,17 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username          | password  | filter option 1  | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 |
       | LLAdmin@looped.in | Octopus@6 | ContractorAHFlag | 1                     | Is                  | 1                         | True           | 1                    | False          |
+
+    #LL-724 Scenario 7 - Custom Fields search all ODTI custom fields for the value
+  @LL-724 @CustomFieldsSearchAllODTICustomFields
+  Scenario Outline: Custom Fields search all ODTI custom fields for the value
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    Then I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And they will see a table
+
+    Examples:
+      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 |
+      | LLAdmin@looped.in | Octopus@6 | Custom Fields   | 1                     | Contains            | 1                         | Test           | 1                    |
