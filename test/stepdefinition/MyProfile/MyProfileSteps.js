@@ -211,3 +211,16 @@ Then(/^I verify naati table is present$/, function(){
      chai.expect(startdate==actual_startdate).to.be.true
      chai.expect(enddate==actual_enddate).to.be.true
  })
+
+When(/^the contractor is viewing their profile$/, function () {
+    action.isVisibleWait(myProfilePage.myProfilePageHeader,30000,"My Profile page header");
+    let pageTitleActual = action.getPageTitle();
+    chai.expect(pageTitleActual).to.equal("PreviewContractorProfile");
+})
+
+Then(/^they will see the On-demand Telephone Interpreting Availability block above Work Availability$/, function () {
+    let ODTIAvailabilityBlockDisplayStatus = action.isVisibleWait(myProfilePage.ODTIAvailabilityBlock, 20000, "On-demand Telephone Interpreting Availability block in My profile page");
+    chai.expect(ODTIAvailabilityBlockDisplayStatus).to.be.true;
+    let ODTIAvailabilityBlockAboveWorkAvailabilityDisplayStatus = action.isVisibleWait(myProfilePage.ODTIAvailabilityBlockAboveWorkAvailability, 20000, "On-demand Telephone Interpreting Availability block above Work Availability in My profile page");
+    chai.expect(ODTIAvailabilityBlockAboveWorkAvailabilityDisplayStatus).to.be.true;
+})
