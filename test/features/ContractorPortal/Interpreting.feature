@@ -60,12 +60,19 @@ Feature: Interpreter features
     And I select "Allocated Jobs" from the filter dropdown
     And I search for selected job request
     Then I verify the job is listed in search results
-    And I click on first job id from accepted job list
-    And I click return job button
-   
-    Examples:
-   | contractor username  | contractor password | dropdownfilter      | to date     | admin username    | admin password |
-   | jabmon1@hotmail.com  | Test1               | Available Jobs      |  13-05-2022 | LLAdmin@looped.in | Octopus@6        |
+    And I click logout button
+    And I login with "<admin username>" and "<admin password>"
+    And I click Interpreting header link
+    And I select "<management filter>" from the filter dropdown
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And the booking is cancelled on behalf of "<Requester Name>"
+
+  Examples:
+   | contractor username | contractor password | dropdownfilter | to date    | admin username    | admin password | management filter | Requester Name    |
+   | jabmon1@hotmail.com | Test1               | Available Jobs | 13-05-2022 | LLAdmin@looped.in | Octopus@6      | Management        | Automation Tester |
   
  
  @UnavailableJobs 
