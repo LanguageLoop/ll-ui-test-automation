@@ -208,4 +208,16 @@ module.exports ={
         return $('//span[text()="Proof of Clearance"]/parent::div/parent::div//input[@value="Save"]');
     },
 
+    get ODTIAvailabilityBlock() {
+        return $('//div[text()="On-demand Telephone Interpreting Availability"]/ancestor::div[contains(@id,"block_wtODTI")]');
+    },
+
+    get ODTIAvailabilityBlockAboveWorkAvailability() {
+        return $('//div[contains(@id,"contContractorWorkAvailability")]/preceding::div[contains(@id,"contODTIContractorAvailability")]');
+    },
+
+    get myProfilePageHeader() {
+        return $('//div[text()="My Profile"]');
+    }
+
 }

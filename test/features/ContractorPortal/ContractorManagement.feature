@@ -136,3 +136,15 @@ Feature: Contractor Management features
   #Examples:
    # | username                | password   |  contractor name  |
     #| suzanehanna@hotmail.com | Test1      |  Suzane HANNA     |
+
+ #LL-225 Scenario 1 - View On Demand TI
+ @LL-225 @ViewODTIAvailabilityBlock
+ Scenario Outline: View On Demand TI
+  When I login with "<username>" and "<password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  Then they will see the On-demand Telephone Interpreting Availability block above Work Availability
+
+  Examples:
+   | username                 | password   |  contractor name    |
+   | luciacheung192@gmail.com | Test1      |  Lucia Yee Fong ... |
