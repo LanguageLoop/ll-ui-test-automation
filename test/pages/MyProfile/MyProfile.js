@@ -218,6 +218,14 @@ module.exports ={
 
     get myProfilePageHeader() {
         return $('//div[text()="My Profile"]');
+    },
+
+    get contractorLoginStatusAndPreferredPhone() {
+        return $('//div[contains(@id,"ODTI_Container")]');
+    },
+
+    get notActivatedText() {
+        return $('//div[text()="Not Activated"]');
     }
 
 }
