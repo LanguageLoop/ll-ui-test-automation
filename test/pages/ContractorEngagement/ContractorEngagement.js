@@ -580,5 +580,13 @@ module.exports = {
 
     get interpreterDetailsHeader() {
         return $('//div[contains(@id,"Title") and @class="Heading1 Title PH OSInline"]');
+    },
+
+    get ODTIAvailabilityActivateToggleInput() {
+        return $('//div[text()="Activate"]/parent::div//div[contains(@class,"ToggleButton")]//input');
+    },
+
+    get ODTIAvailabilityActivateToggleLabel() {
+        return $('//div[text()="Activate"]/parent::div//div[contains(@class,"ToggleButton")]/label');
     }
 }

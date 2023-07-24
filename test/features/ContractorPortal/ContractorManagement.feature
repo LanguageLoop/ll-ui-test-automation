@@ -148,3 +148,39 @@ Feature: Contractor Management features
   Examples:
    | username                 | password   |  contractor name    |
    | luciacheung192@gmail.com | Test1      |  Lucia Yee Fong ... |
+
+  #LL-225 Scenario 2 - Changing the state
+ @LL-225 @ODTIChangingTheState
+ Scenario Outline: Changing the state
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the contractor is Activated for ODTI
+  And I click logout button
+  And I login with "<contractor username>" and "<contractor password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  Then the contractor’s login status and preferred phone is displayed
+
+  Examples:
+   | username          | password  | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-225 Scenario 3: Toggling off the Active button
+ @LL-225 @ODTIToggleOffActiveButton
+ Scenario Outline: Toggling off the Active button
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And I click logout button
+  And I login with "<contractor username>" and "<contractor password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  Then the section is closed and text Not Activated is displayed
+
+  Examples:
+   | username          | password  | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |

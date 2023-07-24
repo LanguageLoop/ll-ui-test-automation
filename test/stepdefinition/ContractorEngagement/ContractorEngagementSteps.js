@@ -854,3 +854,25 @@ Then(/^they will be navigated to the Contractor’s profile$/, function () {
     let pageTitleActual = action.getPageTitle().trim();
     chai.expect(pageTitleActual).to.equal("PreviewContractorProfile");
 })
+
+Then(/^the contractor is Activated for ODTI$/, function () {
+    let contractorActivatedStatus = action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,3000,"ODTI Availability Activate toggle input in Contractor Engagement page");
+    if (contractorActivatedStatus === false) {
+        action.clickElement(contractorEngagementPage.ODTIAvailabilityActivateToggleLabel,"ODTI Availability Activate toggle label in Contractor Engagement page");
+        browser.waitUntil(() => action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,0,"ODTI Availability Activate toggle input in Contractor Engagement page") === true, {
+            timeout: 5000,
+            timeoutMsg: 'contractor toggle not activated in 5s',
+        })
+    }
+})
+
+Then(/^the Activate toggle is off for ODTI$/, function () {
+    let contractorActivatedStatus = action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,3000,"ODTI Availability Activate toggle input in Contractor Engagement page");
+    if (contractorActivatedStatus === true) {
+        action.clickElement(contractorEngagementPage.ODTIAvailabilityActivateToggleLabel,"ODTI Availability Activate toggle label in Contractor Engagement page");
+        browser.waitUntil(() => action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,0,"ODTI Availability Activate toggle input in Contractor Engagement page") === false, {
+            timeout: 5000,
+            timeoutMsg: 'contractor toggle not activated in 5s',
+        })
+    }
+})
