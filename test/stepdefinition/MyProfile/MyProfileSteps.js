@@ -224,3 +224,13 @@ Then(/^they will see the On-demand Telephone Interpreting Availability block abo
     let ODTIAvailabilityBlockAboveWorkAvailabilityDisplayStatus = action.isVisibleWait(myProfilePage.ODTIAvailabilityBlockAboveWorkAvailability, 20000, "On-demand Telephone Interpreting Availability block above Work Availability in My profile page");
     chai.expect(ODTIAvailabilityBlockAboveWorkAvailabilityDisplayStatus).to.be.true;
 })
+
+Then(/^the contractor’s login status and preferred phone is displayed$/, function () {
+    let contractorLoginStatusAndPreferredPhoneDisplayStatus = action.isVisibleWait(myProfilePage.contractorLoginStatusAndPreferredPhone, 20000, "Contractor login status and preferred phone block in My profile page");
+    chai.expect(contractorLoginStatusAndPreferredPhoneDisplayStatus).to.be.true;
+})
+
+Then(/^the section is closed and text Not Activated is displayed$/, function () {
+    let notActivatedTextDisplayStatus = action.isVisibleWait(myProfilePage.notActivatedText, 20000, "Not Activated Text in My profile page");
+    chai.expect(notActivatedTextDisplayStatus).to.be.true;
+})
