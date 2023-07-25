@@ -234,3 +234,35 @@ Then(/^the section is closed and text Not Activated is displayed$/, function () 
     let notActivatedTextDisplayStatus = action.isVisibleWait(myProfilePage.notActivatedText, 20000, "Not Activated Text in My profile page");
     chai.expect(notActivatedTextDisplayStatus).to.be.true;
 })
+
+Then(/^the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers$/, function () {
+    let contractorLogonLogoffStatusTextDisplayStatus = action.isVisibleWait(myProfilePage.contractorLogonLogoffStatusText, 20000, "Contractor Logon Logoff Status Text in My profile page");
+    chai.expect(contractorLogonLogoffStatusTextDisplayStatus).to.be.true;
+    let mobileRadioOptionWithPhoneNumberDisplayStatus = action.isVisibleWait(myProfilePage.mobileRadioOptionWithPhoneNumber, 20000, "Mobile radio option with corresponding phone number in My profile page");
+    chai.expect(mobileRadioOptionWithPhoneNumberDisplayStatus).to.be.true;
+    let homeRadioOptionWithPhoneNumberDisplayStatus = action.isVisibleWait(myProfilePage.homeRadioOptionWithPhoneNumber, 20000, "Home radio option with corresponding phone number in My profile page");
+    chai.expect(homeRadioOptionWithPhoneNumberDisplayStatus).to.be.true;
+})
+
+When(/^home phone number option is selected$/, function () {
+    action.clickElement(myProfilePage.homeRadioOptionWithPhoneNumber, "Home radio option with corresponding phone number in My profile page");
+    let homeRadioOptionWithPhoneNumberSelectedStatus = action.isSelectedWait(myProfilePage.homeRadioOptionWithPhoneNumber, 20000, "Home radio option with corresponding phone number in My profile page");
+    chai.expect(homeRadioOptionWithPhoneNumberSelectedStatus).to.be.true;
+})
+
+When(/^click on Log on button$/, function () {
+    action.isVisibleWait(myProfilePage.logonButton,10000, "Log On button in My profile page");
+    action.clickElement(myProfilePage.logonButton, "Log On button in My profile page");
+})
+
+Then(/^the contractor’s login available status text is displayed with selected phone numbers "(.*)"$/, function (phoneOption) {
+    action.isVisibleWait(myProfilePage.loginAvailableStatusText,10000, "Log On available status text in My profile page");
+    let selectedPhoneNumberOption = $(myProfilePage.selectedPhoneNumberOptionDynamicLocator.replace("<dynamic>",phoneOption));
+    let selectedPhoneNumberOptionDisplayStatus = action.isVisibleWait(selectedPhoneNumberOption, 20000, "Selected phone number option " + phoneOption + " in My profile page");
+    chai.expect(selectedPhoneNumberOptionDisplayStatus).to.be.true;
+})
+
+Then(/^the button Logoff button is displayed$/, function () {
+    let logoffButtonDisplayStatus = action.isVisibleWait(myProfilePage.logoffButton, 20000, "Log off button in My profile page");
+    chai.expect(logoffButtonDisplayStatus).to.be.true;
+})
