@@ -226,6 +226,38 @@ module.exports ={
 
     get notActivatedText() {
         return $('//div[text()="Not Activated"]');
-    }
+    },
+
+    get contractorLogonLogoffStatusText() {
+        return $('//div[contains(@id,"ODTI_Container")]/div[1]');
+    },
+
+    get contractorLogonLogoffStatusText() {
+        return $('//div[contains(@id,"ODTI_Container")]/div[1]');
+    },
+
+    get mobileRadioOptionWithPhoneNumber() {
+        return $('//div[contains(text(),"Mobile:")]/parent::div//input[@type="radio"]');
+    },
+
+    get homeRadioOptionWithPhoneNumber() {
+        return $('//div[contains(text(),"Home:")]/parent::div//input[@type="radio"]');
+    },
+
+    get logonButton() {
+        return $('//input[@value="Log on"]');
+    },
+
+    get loginAvailableStatusText() {
+        return $('//div[text()="You are available and your current contact number is:"]');
+    },
+
+    get selectedPhoneNumberOptionDynamicLocator() {
+        return '//div[contains(text(),"<dynamic>:")]';
+    },
+
+    get logoffButton() {
+        return $('//input[@value="Log off"]');
+    },
 
 }
