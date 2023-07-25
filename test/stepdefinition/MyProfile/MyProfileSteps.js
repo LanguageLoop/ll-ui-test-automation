@@ -244,12 +244,6 @@ Then(/^the contractor’s log out status text is displayed with options Mobile a
     chai.expect(homeRadioOptionWithPhoneNumberDisplayStatus).to.be.true;
 })
 
-When(/^any phone number option is selected$/, function () {
-    action.clickElement(myProfilePage.mobileRadioOptionWithPhoneNumber, "Mobile radio option with corresponding phone number in My profile page");
-    let mobileRadioOptionWithPhoneNumberSelectedStatus = action.isSelectedWait(myProfilePage.mobileRadioOptionWithPhoneNumber, 20000, "Mobile radio option with corresponding phone number in My profile page");
-    chai.expect(mobileRadioOptionWithPhoneNumberSelectedStatus).to.be.true;
-})
-
 When(/^home phone number option is selected$/, function () {
     action.clickElement(myProfilePage.homeRadioOptionWithPhoneNumber, "Home radio option with corresponding phone number in My profile page");
     let homeRadioOptionWithPhoneNumberSelectedStatus = action.isSelectedWait(myProfilePage.homeRadioOptionWithPhoneNumber, 20000, "Home radio option with corresponding phone number in My profile page");
