@@ -184,3 +184,44 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | contractor username  | contractor password | contractor name |
    | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-225 Scenario 4: UI when Active button is toggled on and no option is selected
+ @LL-225 @ActiveOnAndNoOptionSelected
+ Scenario Outline: UI when Active button is toggled on and no option is selected
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And I click logout button
+  And I login with "<contractor username>" and "<contractor password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
+
+  Examples:
+   | username          | password  | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-225 Scenario 5: UI when Active button is toggled on and any phone number option is selected and clicking on Logon button
+ @LL-225 @ActiveOnAndPhoneSelected
+ Scenario Outline: UI when Active button is toggled on and any phone number option is selected and clicking on Logon button
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And I click logout button
+  And I login with "<contractor username>" and "<contractor password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  And home phone number option is selected
+  And click on Log on button
+  Then the contractor’s login available status text is displayed with selected phone numbers "<phone option>"
+  And the button Logoff button is displayed
+
+  Examples:
+   | username          | password  | contractor username  | contractor password | contractor name | phone option |
+   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA | Home         |
