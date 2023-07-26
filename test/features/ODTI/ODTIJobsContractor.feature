@@ -151,7 +151,7 @@ Feature: ODTI Jobs Contractor features
 
     Examples:
       | username contractor      | password contractor | start date | end date   | records count |
-      | csaramella@yahoo.com.au  | Test1               | 01-01-2022 | 01-01-2023 | 500           |
+      | ljan25@hotmail.com       | Test1               | 01-01-2022 | 01-07-2023 | 500           |
 
     #Scenario 9 - User should be able to view different pages using pagination when they are more number if records
   @Regression @RegressionS25 @ContractorPagination
