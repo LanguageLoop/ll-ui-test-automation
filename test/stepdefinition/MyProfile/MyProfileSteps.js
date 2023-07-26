@@ -266,3 +266,13 @@ Then(/^the button Logoff button is displayed$/, function () {
     let logoffButtonDisplayStatus = action.isVisibleWait(myProfilePage.logoffButton, 20000, "Log off button in My profile page");
     chai.expect(logoffButtonDisplayStatus).to.be.true;
 })
+
+When(/^click on Log off button$/, function () {
+    action.isVisibleWait(myProfilePage.logoffButton,10000, "Log Off button in My profile page");
+    action.clickElement(myProfilePage.logoffButton, "Log Off button in My profile page");
+})
+
+Then(/^the button Logon button is displayed$/, function () {
+    let logonButtonDisplayStatus = action.isVisibleWait(myProfilePage.logonButton, 20000, "Log on button in My profile page");
+    chai.expect(logonButtonDisplayStatus).to.be.true;
+})
