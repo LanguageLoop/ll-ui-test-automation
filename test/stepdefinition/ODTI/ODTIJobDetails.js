@@ -423,3 +423,17 @@ Then(/^the client charge, NES connection fee values should be saved$/, function 
     action.clickElement(ODTIJobDetailsPage.processCampusButton, "Process Campus button in ODTI job details page");
     action.isVisibleWait(ODTIJobDetailsPage.reprocessCampusButton, 10000, "Reprocess Campus button in ODTI job details page");
 })
+
+Then(/^the results displayed belongs to the entered DID number "(.*)"$/, function (didNumber) {
+    let didFieldNameElement = $(ODTIJobDetailsPage.jobDynamicFieldValueTextLocator.replace("<dynamic>", "DID"));
+    action.isVisibleWait(didFieldNameElement, 10000, "DID field value in ODTI job details page");
+    let didNumberTextActual = action.getElementText(didFieldNameElement, "DID field value in ODTI job details page");
+    chai.expect(didNumberTextActual).to.equal(didNumber);
+})
+
+Then(/^the results displayed does not belong to the entered DID number "(.*)"$/, function (didNumber) {
+    let didFieldNameElement = $(ODTIJobDetailsPage.jobDynamicFieldValueTextLocator.replace("<dynamic>", "DID"));
+    action.isVisibleWait(didFieldNameElement, 10000, "DID field value in ODTI job details page");
+    let didNumberTextActual = action.getElementText(didFieldNameElement, "DID field value in ODTI job details page");
+    chai.expect(didNumberTextActual).to.not.equal(didNumber);
+})
