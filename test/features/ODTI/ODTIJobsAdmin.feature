@@ -307,6 +307,7 @@ Feature: ODTI Jobs Admin features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And The RecordStatus Is Export
+    And I click Advanced search link in Admin
     Then I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And they click the ODTI Service Charge ID hyperlink
     And they are navigated to the Job Details page in a new tab
@@ -314,7 +315,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 |
-      | LLAdmin@looped.in | Octopus@6 | DID Number      | 1                     | Is                  | 1                         | 61370349780    | 1                    |
+      | LLAdmin@looped.in | Octopus@6 | DID Number      | 2                     | Is                  | 2                         | 61370349780    | 1                    |
 
     #LL-761 Scenario 2: Verifying the results for filter DID Number using Is not condition
   @LL-761 @FilterDIDNumberISNotCondition
@@ -323,6 +324,7 @@ Feature: ODTI Jobs Admin features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And The RecordStatus Is Export
+    And I click Advanced search link in Admin
     Then I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And they click the ODTI Service Charge ID hyperlink
     And they are navigated to the Job Details page in a new tab
@@ -330,4 +332,29 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 |
-      | LLAdmin@looped.in | Octopus@6 | DID Number      | 1                     | Is not              | 1                         | 61370349780    | 1                    |
+      | LLAdmin@looped.in | Octopus@6 | DID Number      | 2                     | Is not              | 2                         | 61370349780    | 1                    |
+
+    #LL-761 Scenario 3: Verifying the results for filter VITSAHFlag with IS condition
+  @LL-761 @FilterVITSAHFlagISCondition
+  Scenario Outline: Verifying the results for filter VITSAHFlag with IS condition
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click Advanced search link in Admin
+    Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the results displays the After Hours jobs when VITSAHFlag True
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click Advanced search link in Admin
+    Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 2>" "<filter value index 2>"
+    And they click the ODTI Service Charge ID hyperlink
+    And they are navigated to the Job Details page in a new tab
+    And the results displays the Business Hours jobs when VITSAHFlag False
+
+    Examples:
+      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter value index 2 |
+      | LLAdmin@looped.in | Octopus@6 | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 2                    | False          | 2                    |
