@@ -437,3 +437,17 @@ Then(/^the results displayed does not belong to the entered DID number "(.*)"$/,
     let didNumberTextActual = action.getElementText(didFieldNameElement, "DID field value in ODTI job details page");
     chai.expect(didNumberTextActual).to.not.equal(didNumber);
 })
+
+Then(/^the results displays the After Hours jobs when VITSAHFlag True$/, function () {
+    let clientAhBhFieldNameElement = $(ODTIJobDetailsPage.jobDynamicFieldValueTextLocator.replace("<dynamic>", "Client AH / BH"));
+    action.isVisibleWait(clientAhBhFieldNameElement, 10000, "Client AH / BH field value in ODTI job details page");
+    let clientAhBhTextActual = action.getElementText(clientAhBhFieldNameElement, "Client AH / BH field value in ODTI job details page");
+    chai.expect(clientAhBhTextActual).to.equal("After Hours");
+})
+
+Then(/^the results displays the Business Hours jobs when VITSAHFlag False$/, function () {
+    let clientAhBhFieldNameElement = $(ODTIJobDetailsPage.jobDynamicFieldValueTextLocator.replace("<dynamic>", "Client AH / BH"));
+    action.isVisibleWait(clientAhBhFieldNameElement, 10000, "Client AH / BH field value in ODTI job details page");
+    let clientAhBhTextActual = action.getElementText(clientAhBhFieldNameElement, "Client AH / BH field value in ODTI job details page");
+    chai.expect(clientAhBhTextActual).to.equal("Business Hours");
+})
