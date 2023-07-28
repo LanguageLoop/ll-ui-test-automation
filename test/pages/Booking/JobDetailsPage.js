@@ -203,5 +203,9 @@ module.exports = {
 
     get returnJobPopupConfirmButton() {
         return $('//input[contains(@id,"JobReturnDialog") and @value="Confirm Return"]')
-    }
+    },
+
+    get customFieldsSection() {
+        return $('//span[text()="Custom Fields"]/parent::div');
+    },
 }
