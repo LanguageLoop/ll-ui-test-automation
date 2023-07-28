@@ -4,7 +4,7 @@ Then(/^the user is navigated to the Edit DID Configuration screen$/, function ()
 })
 
 Then(/^the existing configuration is shown$/, function () {
-    let existingConfigurationDisplayStatus = action.isVisibleWait(editDIDConfigurationPage.existingConfiguration, 10000);
+    let existingConfigurationDisplayStatus = action.isVisibleWait(editDIDConfigurationPage.existingConfiguration, 10000, "Existing Configuration in Edit DID Configuration page");
     chai.expect(existingConfigurationDisplayStatus).to.be.true;
 })
 
@@ -13,10 +13,10 @@ Then(/^there should be an X icon on each of the language options that has a lang
     let rowsCount = editDIDConfigurationPage.languageTableBodyRowsCount;
     for (let row = 1; row <= rowsCount; row++) {
         let languageTextElement = $(editDIDConfigurationPage.languageTextDynamicLocator.replace("<dynamic>", row.toString()));
-        let languageTextElementValue = action.getElementText(languageTextElement);
+        let languageTextElementValue = action.getElementText(languageTextElement, "Language Text Element in Edit DID Configuration page");
         let xIconBesideLanguage = $(editDIDConfigurationPage.xIconBesideLanguageOptionDynamicLocator.replace("<dynamic>", row.toString()));
         if (languageTextElementValue !== "") {
-            let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 10000);
+            let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 10000, "X icon beside language in Edit DID Configuration page");
             chai.expect(xIconBesideLanguageDisplayStatus).to.be.true;
         }
     }
@@ -26,10 +26,10 @@ Then(/^options with no Language set do not have an X icon$/, function () {
     let rowsCount = editDIDConfigurationPage.languageTableBodyRowsCount;
     for (let row = 1; row <= rowsCount; row++) {
         let languageTextElement = $(editDIDConfigurationPage.languageTextDynamicLocator.replace("<dynamic>", row.toString()));
-        let languageTextElementValue = action.getElementText(languageTextElement);
+        let languageTextElementValue = action.getElementText(languageTextElement, "Language Text element in Edit DID Configuration page");
         let xIconBesideLanguage = $(editDIDConfigurationPage.xIconBesideLanguageOptionDynamicLocator.replace("<dynamic>", row.toString()));
         if (languageTextElementValue === "") {
-            let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 10000);
+            let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 10000, "X icon beside language in Edit DID Configuration page");
             chai.expect(xIconBesideLanguageDisplayStatus).to.be.false;
         }
     }
@@ -37,19 +37,19 @@ Then(/^options with no Language set do not have an X icon$/, function () {
 
 When(/^the Admin clicks the X icon in Language Options table$/, function () {
     let xIconBesideLanguage = $(editDIDConfigurationPage.xIconBesideAssignedToNumericOptionDynamicLocator.replace("<dynamic>", "1"));
-    action.clickElement(xIconBesideLanguage)
-    action.isNotVisibleWait(xIconBesideLanguage,10000)
+    action.clickElement(xIconBesideLanguage, "X icon beside language in Edit DID Configuration page")
+    action.isNotVisibleWait(xIconBesideLanguage,10000, "X icon beside language in Edit DID Configuration page")
 })
 
 Then(/^the language option is cleared in Language Options table$/, function () {
     let languageTextElement = $(editDIDConfigurationPage.languageTextAssignedToNumericOptionDynamicLocator.replace("<dynamic>", "1"));
-    let languageTextElementValue = action.getElementText(languageTextElement);
+    let languageTextElementValue = action.getElementText(languageTextElement, "Language Text Element in Edit DID Configuration page");
     chai.expect(languageTextElementValue).to.equal("");
 })
 
 Then(/^the X icon disappears in Language Options table$/, function () {
     let xIconBesideLanguage = $(editDIDConfigurationPage.xIconBesideAssignedToNumericOptionDynamicLocator.replace("<dynamic>", "1"));
-    let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 1000);
+    let xIconBesideLanguageDisplayStatus = action.isVisibleWait(xIconBesideLanguage, 1000, "X icon beside language in Edit DID Configuration page");
     chai.expect(xIconBesideLanguageDisplayStatus).to.be.false;
 })
 
