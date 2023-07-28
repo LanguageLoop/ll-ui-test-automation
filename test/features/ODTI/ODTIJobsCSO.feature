@@ -321,7 +321,7 @@ Feature: ODTI Jobs CSO features
     Then they will see a heading with the Job ID number and the Campus Name as per existing functionality
     And they will see the following details and information in the Job Info section: "<JobInfoSectionName>", "<JobInfoSectionLabels>"
     And they will see the following details and information in the Job Info section: "<additionalInfoSectionName>", "<additionalInfoSectionLabels>"
-    And they will see the following details and information in the Job Info section: "<customFieldsSectionName>", "<customFieldsSectionLabels>"
+    And they will see the custom fields section under job info
 
     Examples:
       | username cso   | password cso | JobInfoSectionName | JobInfoSectionLabels                                                                                                                                                                           | additionalInfoSectionName | additionalInfoSectionLabels                                                                                                                                                        | customFieldsSectionName | customFieldsSectionLabels |

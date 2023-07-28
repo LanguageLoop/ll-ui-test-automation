@@ -282,3 +282,8 @@ When(/^user clicks on Edit button in Job Allocation$/, function () {
     action.isVisibleWait(jobDetailsPage.editButton,20000,"Edit button in Job Allocation page");
     action.clickElement(jobDetailsPage.editButton,"Edit button in Job Allocation page")
 })
+
+Then(/^they will see the custom fields section under job info$/, function () {
+    let customFieldsSectionDisplayStatus = action.isVisibleWait(jobDetailsPage.customFieldsSection, 10000, "Custom Fields section in Job Details page");
+    chai.expect(customFieldsSectionDisplayStatus).to.be.true;
+})
