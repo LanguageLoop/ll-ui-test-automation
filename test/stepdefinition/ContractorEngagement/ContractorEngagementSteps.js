@@ -650,6 +650,7 @@ When(/^I search and select contractor "(.*)"$/, function (contractor) {
     action.isVisibleWait(contractorEngagementPage.searchContractorInput,10000, "Search Contract Input on Contractor Engagement page");
     action.enterValue(contractorEngagementPage.searchContractorInput, contractor, "Search Contract Input on Contractor Engagement page");
     action.pressKeys("Tab");
+    action.waitUntilLoadingIconDisappears();
     let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>", contractor));
     action.isVisibleWait(contractorSearchResultElement, 20000, "Contractor Search Result Elements on Contractor Engagement page");
     action.clickElement(contractorSearchResultElement, "Contractor Search Result Elements on Contractor Engagement page");
