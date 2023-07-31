@@ -660,3 +660,88 @@ Then(/^I should see the expected Interpreter Name "(.*)" value under INTERPRETER
     let interpreterNameTextActual = action.getElementText(interpreterName1TextElement);
     chai.expect(interpreterNameTextActual).to.equal(interpreterName);
 })
+
+Then(/^the results display correct jobs which has the duration less than the duration set in filters "(.*)"$/, function (expectedDuration) {
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => Number(action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[1]) < Number(expectedDuration),
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs less than expected duration displayed within 90s'
+        }
+    );
+    let actualDuration = action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page");
+    let actualDurationLessThanExpectedDuration = Number(actualDuration.split(":")[1]) < Number(expectedDuration);
+    chai.expect(actualDurationLessThanExpectedDuration).to.be.true;
+})
+
+Then(/^the results display correct jobs which has the duration less than or equal to the duration set in filters "(.*)"$/, function (expectedDuration) {
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => Number(action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[1]) <= Number(expectedDuration),
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs less than or equal to expected duration displayed within 90s'
+        }
+    );
+    let actualDuration = action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page");
+    let actualDurationLessThanOrEqualToExpectedDuration = Number(actualDuration.split(":")[1]) <= Number(expectedDuration);
+    chai.expect(actualDurationLessThanOrEqualToExpectedDuration).to.be.true;
+})
+
+Then(/^the results display correct jobs which has the duration equal to the duration set in filters "(.*)"$/, function (expectedDuration) {
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => Number(action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[1]) === Number(expectedDuration),
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs equal to expected duration displayed within 90s'
+        }
+    );
+    let actualDuration = action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page");
+    let actualDurationEqualToExpectedDuration = Number(actualDuration.split(":")[1]) === Number(expectedDuration);
+    chai.expect(actualDurationEqualToExpectedDuration).to.be.true;
+})
+
+Then(/^the results display correct jobs which has the duration not equal to the duration set in filters "(.*)"$/, function (expectedDuration) {
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => Number(action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[1]) !== Number(expectedDuration),
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs not equal to expected duration displayed within 90s'
+        }
+    );
+    let actualDuration = action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page");
+    let actualDurationNotEqualToExpectedDuration = Number(actualDuration.split(":")[1]) !== Number(expectedDuration);
+    chai.expect(actualDurationNotEqualToExpectedDuration).to.be.true;
+})
+
+
+Then(/^the results display correct jobs which has the duration greater than the duration set in filters "(.*)"$/, function (expectedDuration) {
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => Number(action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[0]) > Number(expectedDuration),
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs greater than expected duration displayed within 90s'
+        }
+    );
+    let actualDuration = action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page");
+    let actualDurationGreaterThanExpectedDuration = Number(actualDuration.split(":")[0]) > Number(expectedDuration);
+    chai.expect(actualDurationGreaterThanExpectedDuration).to.be.true;
+})
+
+Then(/^the results display correct jobs which has the duration greater than or equal to the duration set in filters "(.*)"$/, function (expectedDuration) {
+    let callDurationFirstRowElement = $(ODTIJobsPage.columnValueTextLocator.replace("<dynamic1>", "1").replace("<dynamic2>", "3"));
+    browser.waitUntil(
+        () => Number(action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page").split(":")[0]) >= Number(expectedDuration),
+        {
+            timeout: 90000,
+            timeoutMsg: 'expected jobs greater than or equal to expected duration displayed within 90s'
+        }
+    );
+    let actualDuration = action.getElementText(callDurationFirstRowElement, "Call Duration of first row job in ODTI Jobs page");
+    let actualDurationGreaterThanOrEqualToExpectedDuration = Number(actualDuration.split(":")[0]) >= Number(expectedDuration);
+    chai.expect(actualDurationGreaterThanOrEqualToExpectedDuration).to.be.true;
+})
