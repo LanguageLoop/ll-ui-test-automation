@@ -74,3 +74,8 @@ Then(/^it will appear between the Interpreting and Account Management menu items
    let ODTIMenuItemBetweenInterpretingAndAccountManagement = action.isVisibleWait(homePage.ODTIMenuItemBetweenInterpretingAndAccountManagement,10000,"ODTI Menu item between Interpreting and Account Management in Home page")
    chai.expect(ODTIMenuItemBetweenInterpretingAndAccountManagement).to.be.true;
 })
+
+When(/^I click LoopedIn header logo$/,   function(){
+   action.isClickableWait(homePage.loopedInHeaderLogo,10000,"LoopedIn header link in Home page");
+   action.clickElement(homePage.loopedInHeaderLogo,"LoopedIn header link in Home page");
+})
