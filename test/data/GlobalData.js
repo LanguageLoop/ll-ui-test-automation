@@ -47,4 +47,5 @@ module.exports={
     CAMPUS_SUBTOTAL:"",
     CAMPUS_GST:"",
     CAMPUS_TOTAL:"",
+    ADMIN_TOOLS_URL:"",
 }

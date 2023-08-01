@@ -276,3 +276,8 @@ Then(/^the button Logon button is displayed$/, function () {
     let logonButtonDisplayStatus = action.isVisibleWait(myProfilePage.logonButton, 20000, "Log on button in My profile page");
     chai.expect(logonButtonDisplayStatus).to.be.true;
 })
+
+Then(/^the user is logged in with default phone number selected under ‘On-demand Telephone Interpreting Availability’ section$/, function () {
+    let contractorLoggedInWithDefaultPhoneSelectedDisplayStatus = action.isVisibleWait(myProfilePage.contractorLoggedInWithDefaultPhoneSelected, 20000, "Contractor logged in with default phone number selected under Text in My profile page");
+    chai.expect(contractorLoggedInWithDefaultPhoneSelectedDisplayStatus).to.be.true;
+})

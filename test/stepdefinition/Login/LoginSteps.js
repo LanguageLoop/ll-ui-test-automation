@@ -67,3 +67,7 @@ Then(/^they will be able to login$/, function () {
 Given(/^the ODTI DID Configurations page is opened$/, function () {
     browser.url(GlobalData.ODTI_DID_URL);
 })
+
+Given(/^user is on Admin Tools$/, function () {
+    browser.url(GlobalData.ADMIN_TOOLS_URL);
+})

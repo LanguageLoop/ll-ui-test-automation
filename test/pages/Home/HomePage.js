@@ -45,5 +45,9 @@ module.exports = {
 
     get ODTIMenuItemBetweenInterpretingAndAccountManagement() {
         return $('//a[text()="Interpreting"]/following::a[text()="ODTI"]/following::a[text()="Account Management"]');
+    },
+
+    get loopedInHeaderLogo() {
+        return $('//a[contains(@id,"Header_LoopedIn")]/img')
     }
 }
