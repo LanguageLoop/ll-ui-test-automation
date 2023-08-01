@@ -260,4 +260,8 @@ module.exports ={
         return $('//input[@value="Log off"]');
     },
 
+    get contractorLoggedInWithDefaultPhoneSelected() {
+        return $('//div[text()="Contractor available and current contact number is:"]/following-sibling::div[contains(text(),"Home:")]');
+    }
+
 }
