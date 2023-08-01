@@ -249,3 +249,27 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | contractor username  | contractor password | contractor name |
    | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-763 Scenario 1: Toggling ON the ‘IS LOGGED ON’ status for a interpreter
+ @LL-763 @ToggleOnIsLoggedOn
+ Scenario Outline: Toggling ON the ‘IS LOGGED ON’ status for a interpreter
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And the button Logon button is displayed
+  And user is on Admin Tools
+  And I click ODTI Contractors header link
+  And the Show Logged in Contractors Only toggle is off
+  And user search for the contractor "<contractor name>" and toggle on IS LOGGED ON
+  And I click LoopedIn header logo
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  Then the user is logged in with default phone number selected under ‘On-demand Telephone Interpreting Availability’ section
+
+  Examples:
+   | username          | password  | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
