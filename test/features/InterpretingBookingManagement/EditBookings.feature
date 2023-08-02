@@ -77,6 +77,7 @@ Feature: Edit existing booking
    And I switch to the job allocation window
    Then I verify the assignment type "<assignment type>" is updated
    And The job id is added to the file
+   And the booking is cancelled on behalf of "<Requester Name>"
 
    Examples:
   | original job status  |contractor job status| job notice length | username           | password    | dropdownfilter | campus pin | Requester Name      | language | assignment type  | date            | time  | duration | email        | job status  | contractor job status | confirmation phone number |
@@ -116,6 +117,7 @@ Feature: Edit existing booking
    And I switch to the job allocation window
    Then I verify the NAATI "<NAATI>" is updated
    And The job id is added to the file
+   And the booking is cancelled on behalf of "<Requester Name>"
 
    Examples:
    | job notice length | username           | password    | dropdownfilter | campus pin | Requester Name      | language    | assignment type      | date            | time  | duration   | email        | job status  | contractor job status | NAATI          | gender preference | job detail           | new time  |  instruction  |  report location | report name     | address                                | confirmation phone number |

@@ -24,4 +24,12 @@ module.exports = {
     get isLoggedOnToggleLabel() {
         return '//a[contains(text(),"<dynamic>")]/parent::td/parent::tr/child::td[3]//div[contains(@class,"ToggleButton")]/label';
     },
+
+    get serviceTiActiveToggleInput() {
+        return '//a[contains(text(),"<dynamic>")]/parent::td/parent::tr/child::td[2]//div[contains(@class,"ToggleButton")]//input';
+    },
+
+    get serviceTiActiveToggleLabel() {
+        return '//a[contains(text(),"<dynamic>")]/parent::td/parent::tr/child::td[2]//div[contains(@class,"ToggleButton")]/label';
+    },
 }
