@@ -273,3 +273,53 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | contractor name |
    | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+
+  #LL-763 Scenario 2: Toggling OFF the ‘IS LOGGED ON’ status for a interpreter
+ @LL-763 @ToggleOffIsLoggedOn
+ Scenario Outline: Toggling OFF the ‘IS LOGGED ON’ status for a interpreter
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And home phone number option is selected
+  And click on Log on button
+  And the contractor’s login available status text is displayed with selected phone numbers "<phone option>"
+  And user is on Admin Tools
+  And I click ODTI Contractors header link
+  And the Show Logged in Contractors Only toggle is on
+  And user search for the contractor "<contractor name>" and toggle off IS LOGGED ON
+  And I click LoopedIn header logo
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
+
+  Examples:
+   | username          | password  | contractor name | phone option |
+   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA | Home         |
+
+  #LL-763 Scenario 3: Toggling OFF the ‘SERVICE TI ACTIVE’ status for a interpreter
+ @LL-763 @ToggleOffServiceTiActive
+ Scenario Outline: Toggling OFF the ‘SERVICE TI ACTIVE’ status for a interpreter
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And the button Logon button is displayed
+  And user is on Admin Tools
+  And I click ODTI Contractors header link
+  And the Show Logged in Contractors Only toggle is off
+  And user search for the contractor "<contractor name>" and toggle off SERVICE TI ACTIVE
+  And I click LoopedIn header logo
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  Then the section is closed and text Not Activated is displayed
+
+  Examples:
+   | username          | password  | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
