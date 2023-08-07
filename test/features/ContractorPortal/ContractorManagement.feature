@@ -323,3 +323,42 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | contractor name |
    | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+
+  #LL-763 Scenario 4: Toggling ON the ‘SERVICE TI ACTIVE’ status for a interpreter
+ @LL-763 @ToggleOnServiceTiActive
+ Scenario Outline: Toggling ON the ‘SERVICE TI ACTIVE’ status for a interpreter
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the section is closed and text Not Activated is displayed
+  And user is on Admin Tools
+  And I click ODTI Contractors header link
+  And the Show Logged in Contractors Only toggle is off
+  And user search for the contractor "<contractor name>" and toggle on SERVICE TI ACTIVE
+  And I click LoopedIn header logo
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
+  And the button Logon button is displayed
+
+  Examples:
+   | username          | password  | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+
+  #LL-224 Scenario 1: View or check current status from web contractor portal
+ @LL-224 @InternalUserCheckODTILoginStatus
+ Scenario Outline: UI when Active button is toggled on and no option is selected
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
+
+  Examples:
+   | username          | password  | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
