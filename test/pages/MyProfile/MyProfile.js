@@ -262,6 +262,17 @@ module.exports ={
 
     get contractorLoggedInWithDefaultPhoneSelected() {
         return $('//div[text()="Contractor available and current contact number is:"]/following-sibling::div[contains(text(),"Home:")]');
-    }
+    },
 
+    get workAvailabilityListOptionDynamicLocator() {
+        return '//div[text()="Work Availability"]/parent::div/div[2]//div[text()="<dynamic>"]';
+    },
+
+    get workAvailabilityListOptionExpandedLinks() {
+        return $$('//a[contains(@id,"ContractorAvailabilityTable")]');
+    },
+
+    get workAvailabilityNotActivatedODTIText() {
+        return $('//div[text()="You are not activated for On Demand Telephone Interpreting"]');
+    }
 }
