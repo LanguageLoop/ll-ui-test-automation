@@ -281,3 +281,26 @@ Then(/^the user is logged in with default phone number selected under ‘On-dema
     let contractorLoggedInWithDefaultPhoneSelectedDisplayStatus = action.isVisibleWait(myProfilePage.contractorLoggedInWithDefaultPhoneSelected, 20000, "Contractor logged in with default phone number selected under Text in My profile page");
     chai.expect(contractorLoggedInWithDefaultPhoneSelectedDisplayStatus).to.be.true;
 })
+
+Then(/^the contractor’s current login status is NOT displayed$/, function () {
+    let contractorLoginStatusDisplayStatus = action.isVisibleWait(myProfilePage.contractorLoginStatusAndPreferredPhone, 0, "Contractor login status and preferred phone block in My profile page");
+    chai.expect(contractorLoginStatusDisplayStatus).to.be.false;
+})
+
+Then(/^I click on Work Availability for ODTI$/, function () {
+    let workAvailabilityListOnDemandTelephoneOption = $(myProfilePage.workAvailabilityListOptionDynamicLocator.replace("<dynamic>", "On Demand Telephone"));
+    action.isVisibleWait(workAvailabilityListOnDemandTelephoneOption, 10000, "Work availability option - On Demand Telephone in My profile page");
+    action.clickElement(workAvailabilityListOnDemandTelephoneOption, "Work availability option - On Demand Telephone in My profile page");
+    let workAvailabilityListOptionExpandedLinks = myProfilePage.workAvailabilityListOptionExpandedLinks;
+    for (let linkIndex = 0; linkIndex < workAvailabilityListOptionExpandedLinks.length; linkIndex++) {
+        if (action.isClickableWait(workAvailabilityListOptionExpandedLinks[linkIndex], 100, "Work Availability List Option Expanded Link " + linkIndex + " in My profile page") === true) {
+            action.clickElement(workAvailabilityListOptionExpandedLinks[linkIndex], "Work Availability List Option Expanded Link " + linkIndex + " in My profile page");
+            break;
+        }
+    }
+})
+
+Then(/^the text ‘You are not activated for On Demand Telephone Interpreting’ is displayed$/, function () {
+    let notActivatedODTITextDisplayStatus = action.isVisibleWait(myProfilePage.workAvailabilityNotActivatedODTIText, 0, "You are not activated for On Demand Telephone Interpreting text under work availability in My profile page");
+    chai.expect(notActivatedODTITextDisplayStatus).to.be.false;
+})
