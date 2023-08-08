@@ -443,5 +443,13 @@ module.exports={
 
     get customFieldDynamicLabel() {
         return '//div[contains(@id,"CustFields")]//span[text()="<dynamic>"]';
+    },
+
+    get findContractorPopup() {
+        return $('//span[text()="Find Contractor"]/parent::div/parent::div[contains(@id,"DialogContainer")]');
+    },
+
+    get findContractorTableNameHeader() {
+        return $('//table[contains(@id,"ContractorTable")]//th[text()="Name"]');
     }
 }
