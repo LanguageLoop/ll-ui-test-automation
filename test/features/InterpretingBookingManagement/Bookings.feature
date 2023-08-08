@@ -1013,3 +1013,22 @@ Feature: Create new booking for Interpreters
     Examples:
       | username       | password | campusPin               | language | time  | new time |
       | zenq@cbo11.com | Test1    | 29449 - Contoso Pty LTD | zz-Zenq2 | 00:45 | 01:00    |
+
+    #LL-730 Scenario 1: Find Contractor popup appears
+  @LL-730 @FindContractorPopup
+  Scenario Outline: Find Contractor popup appears
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I click on new job request button
+    And I select campus pin "<campusPin>" from Campus PIN dropdown
+    And I select language "<language>"
+    And I enter long notice schedule date
+    And they have selected a Time "<time>" from the time picker
+    And I select assignment type "<assignment type>"
+    And I click add preferred interpreter button
+    Then the Find Contractor popup appears
+    And the names of the available contractors are still hidden
+
+    Examples:
+      | username          | password | campusPin                       | language | time  | assignment type |
+      | atester@ll.com.au | Test1    | 33124 - BOLTON CLARKE - DH RDNS | ARABIC   | 10:00 | DH05-HalfDay    |
