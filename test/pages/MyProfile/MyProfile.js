@@ -274,5 +274,9 @@ module.exports ={
 
     get workAvailabilityNotActivatedODTIText() {
         return $('//div[text()="You are not activated for On Demand Telephone Interpreting"]');
+    },
+
+    get workAvailabilityActivatedODTIText() {
+        return $('//div[text()="You are activated for On Demand Telephone Interpreting"]');
     }
 }
