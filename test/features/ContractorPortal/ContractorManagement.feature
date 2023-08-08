@@ -379,7 +379,7 @@ Feature: Contractor Management features
    | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
 
   #LL-224 Scenario 5: Verify the Work Availability for ODTI for contractor when ODTI Availability is De Activated
- @LL-225 @WorkAvailabilityODTIDeactivated
+ @LL-224 @WorkAvailabilityODTIDeactivated
  Scenario Outline: Verify the Work Availability for ODTI for contractor when ODTI Availability is De Activated
   When I login with "<username>" and "<password>"
   And I click contractor engagement link
@@ -392,6 +392,26 @@ Feature: Contractor Management features
   And the contractor is viewing their profile
   And I click on Work Availability for ODTI
   Then the text ‘You are not activated for On Demand Telephone Interpreting’ is displayed
+
+  Examples:
+   | username          | password  | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-224 Scenario 6: Verify the Work Availability for ODTI for contractor when ODTI Availability is Activated
+ @LL-224 @WorkAvailabilityODTIActivated
+ Scenario Outline: Verify the Work Availability for ODTI for contractor when ODTI Availability is Activated
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And I click logout button
+  And I login with "<contractor username>" and "<contractor password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  And I click on Work Availability for ODTI
+  Then the text ‘You are activated for On Demand Telephone Interpreting’ is displayed
 
   Examples:
    | username          | password  | contractor username  | contractor password | contractor name |

@@ -788,3 +788,13 @@ When(/^the custom field for which the option is Audible in ODTI is unselected is
   let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 1000,"Audible in ODTI custom field "+GlobalData.CUSTOMISED_FIELD_NAME+" in Job Request Page");
   chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.true;
 })
+
+Then(/^the Find Contractor popup appears$/, function () {
+  let findContractorPopupDisplayStatus = action.isVisibleWait(jobRequestPage.findContractorPopup,10000,"Find Contractor Popup in Job Request Page");
+  chai.expect(findContractorPopupDisplayStatus).to.be.true;
+})
+
+Then(/^the names of the available contractors are still hidden$/, function () {
+  let findContractorTableNameHeaderDisplayStatus = action.isVisibleWait(jobRequestPage.findContractorTableNameHeader,0,"Find Contractor Table Name header in Job Request Page");
+  chai.expect(findContractorTableNameHeaderDisplayStatus).to.be.false;
+})
