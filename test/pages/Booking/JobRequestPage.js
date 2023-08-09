@@ -451,5 +451,21 @@ module.exports={
 
     get findContractorTableNameHeader() {
         return $('//table[contains(@id,"ContractorTable")]//th[text()="Name"]');
-    }
+    },
+
+    get searchByInterpreterIdNamePreferredNameTextBox() {
+        return $('//input[@placeholder="Search by Interpreter ID, Name, Preferred Name"]')
+    },
+
+    get findContractorSearchResultAvailableCheckboxDynamicLocator() {
+        return '//td[text()="<dynamic>"]/preceding-sibling::td[2]/input';
+    },
+
+    get findContractorSearchResultIneligibleTooltipDynamicLocator() {
+        return '//td[text()="<dynamic>"]/preceding-sibling::td[2]/div[contains(@class,"InfoTooltip")]/span/span';
+    },
+
+    get distanceNotEligibleRejectionReasonText() {
+        return $('//span[contains(text(),"Distance is not eligible.")]');
+    },
 }
