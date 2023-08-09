@@ -1032,3 +1032,26 @@ Feature: Create new booking for Interpreters
     Examples:
       | username          | password | campusPin                       | language | time  | assignment type |
       | atester@ll.com.au | Test1    | 33124 - BOLTON CLARKE - DH RDNS | ARABIC   | 10:00 | DH05-HalfDay    |
+
+    #LL-730 Scenario 2: Find Contractor popup shows available and ineligible contractors
+  @LL-730 @FindContractorPopupShowsContractors
+  Scenario Outline: Find Contractor popup shows available and ineligible contractors
+    When I login with "<username>" and "<password>"
+    And I click Interpreting header link
+    And I click on new job request button
+    And I select campus pin "<campusPin>" from Campus PIN dropdown
+    And I select language "<language>"
+    And I enter long notice schedule date
+    And they have selected a Time "<time>" from the time picker
+    And I select assignment type "<assignment type>"
+    And I click add preferred interpreter button
+    And the Find Contractor popup appears
+    And they search for a name or contractor id "<available contractor>"
+    Then it should show contractors "<available contractor>" that have completed jobs on the same campus in the last 365 days
+    And they search for a name or contractor id "<ineligible contractor>"
+    And should show both available and ineligible contractors "<ineligible contractor>" matching the name, same matching rules
+    And a tooltip should be shown for ineligible contractors "<ineligible contractor>" showing the rejection reasons
+
+    Examples:
+      | username          | password | campusPin                       | language | time  | assignment type | available contractor | ineligible contractor |
+      | atester@ll.com.au | Test1    | 33124 - BOLTON CLARKE - DH RDNS | ARABIC   | 10:00 | DH05-HalfDay    | Yousef ODICHO        | Ivanka JURIC          |

@@ -798,3 +798,35 @@ Then(/^the names of the available contractors are still hidden$/, function () {
   let findContractorTableNameHeaderDisplayStatus = action.isVisibleWait(jobRequestPage.findContractorTableNameHeader,0,"Find Contractor Table Name header in Job Request Page");
   chai.expect(findContractorTableNameHeaderDisplayStatus).to.be.false;
 })
+
+When(/^they search for a name or contractor id "(.*)"$/, function (contractorIdOrName) {
+  action.isVisibleWait(jobRequestPage.searchByInterpreterIdNamePreferredNameTextBox,10000,"Search by Interpreter ID, Name, Preferred Name in Job Request Page");
+  action.enterValue(jobRequestPage.searchByInterpreterIdNamePreferredNameTextBox,contractorIdOrName,"Search by Interpreter ID, Name, Preferred Name in Job Request Page");
+});
+
+Then(/^it should show contractors "(.*)" that have completed jobs on the same campus in the last 365 days$/, function (contractorName) {
+  let findContractorSearchResultAvailableCheckbox = $(jobRequestPage.findContractorSearchResultAvailableCheckboxDynamicLocator.replace("<dynamic>",contractorName));
+  let findContractorSearchResultAvailableCheckboxDisplayStatus = action.isVisibleWait(findContractorSearchResultAvailableCheckbox,10000,"Contractor "+contractorName+" search result checkbox in Job Request Page");
+  chai.expect(findContractorSearchResultAvailableCheckboxDisplayStatus).to.be.true;
+});
+
+Then(/^should show both available and ineligible contractors "(.*)" matching the name, same matching rules$/, function (contractorName) {
+  let findContractorSearchResultIneligibleTooltip = $(jobRequestPage.findContractorSearchResultIneligibleTooltipDynamicLocator.replace("<dynamic>",contractorName));
+  let findContractorSearchResultIneligibleTooltipDisplayStatus = action.isVisibleWait(findContractorSearchResultIneligibleTooltip,10000,"Contractor "+contractorName+" ineligible search result tooltip in Job Request Page");
+  chai.expect(findContractorSearchResultIneligibleTooltipDisplayStatus).to.be.true;
+});
+
+Then(/^a tooltip should be shown for ineligible contractors "(.*)" showing the rejection reasons$/, function (contractorName) {
+  let findContractorSearchResultIneligibleTooltip = $(jobRequestPage.findContractorSearchResultIneligibleTooltipDynamicLocator.replace("<dynamic>",contractorName));
+  browser.execute((el) => {
+    const hoverEvent = new MouseEvent('mouseover', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    el.dispatchEvent(hoverEvent);
+  }, findContractorSearchResultIneligibleTooltip);
+  logger.info("Hovered mouse over ineligible search result tooltip in Job Request Page");
+  let distanceNotEligibleRejectionReasonTextExistStatus = action.isExistingWait(jobRequestPage.distanceNotEligibleRejectionReasonText,10000,"Distance is not eligible rejection reason text in Job Request Page");
+  chai.expect(distanceNotEligibleRejectionReasonTextExistStatus).to.be.true;
+});
