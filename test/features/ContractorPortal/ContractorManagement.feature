@@ -416,3 +416,48 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | contractor username  | contractor password | contractor name |
    | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-768 Scenario 1a: Activation toggle switch (as admin / contractor engagement officer)
+ @LL-768 @ActivationToggleSwitchAdminCEO
+ Scenario Outline: Activation toggle switch (as admin / contractor engagement officer)
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  Then a toggle switch should be displayed on the top-right corner of the On-demand Telephone Interpreting Availability section
+
+  Examples:
+   | username        | password  | contractor name |
+   | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA |
+
+  #LL-768 Scenario 1b: Activation toggle switch (logged in as contractor)
+ @LL-768 @ActivationToggleSwitchContractor
+ Scenario Outline: Activation toggle switch (logged in as contractor)
+  And I login with "<contractor username>" and "<contractor password>"
+  And I click "<contractor name>" user link
+  And the contractor is viewing their profile
+  Then a toggle switch should NOT be displayed on the top-right corner of the On-demand Telephone Interpreting Availability section
+
+  Examples:
+   | contractor username  | contractor password | contractor name |
+   | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+
+  #LL-768 Scenario 1c: Activation toggle switch-OFF (as admin / contractor engagement officer)
+ @LL-768 @ActivationToggleOffAdminCEO
+ Scenario Outline: Activation toggle switch-OFF (as admin / contractor engagement officer)
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the section is closed and text Not Activated is displayed
+  And user is on Admin Tools
+  And I click ODTI Contractors header link
+  And the Show Logged in Contractors Only toggle is off
+  And user search for the contractor "<contractor name>" in admin tools
+  Then state of the Contractors "<contractor name>" ODTI Activation ServiceTIActive flag is set to False
+  And the Contractors "<contractor name>" ODTI Logged On State is set to False
+
+  Examples:
+   | username        | password  | contractor name |
+   | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA |
