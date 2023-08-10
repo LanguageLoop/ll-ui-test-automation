@@ -876,3 +876,13 @@ Then(/^the Activate toggle is off for ODTI$/, function () {
         })
     }
 })
+
+Then(/^a toggle switch should be displayed on the top-right corner of the On-demand Telephone Interpreting Availability section$/, function () {
+    let contractorActivateToggleSwitchDisplayStatus = action.isVisibleWait(contractorEngagementPage.ODTIAvailabilityActivateToggleLabel,10000,"ODTI Availability Activate toggle in Contractor Engagement page");
+    chai.expect(contractorActivateToggleSwitchDisplayStatus).to.be.true;
+})
+
+Then(/^a toggle switch should NOT be displayed on the top-right corner of the On-demand Telephone Interpreting Availability section$/, function () {
+    let contractorActivateToggleSwitchDisplayStatus = action.isVisibleWait(contractorEngagementPage.ODTIAvailabilityActivateToggleLabel,10000,"ODTI Availability Activate toggle in Contractor Engagement page");
+    chai.expect(contractorActivateToggleSwitchDisplayStatus).to.be.false;
+})
