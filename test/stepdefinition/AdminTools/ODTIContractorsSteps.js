@@ -88,3 +88,22 @@ Then(/^user search for the contractor "(.*)" and toggle on SERVICE TI ACTIVE$/, 
         })
     }
 })
+
+When(/^user search for the contractor "(.*)" in admin tools$/, function (contractor) {
+    action.isVisibleWait(ODTIContractorsPage.searchByIdAndNameTextBox, 10000, "Search by Id and Name text box in ODTI Contractors page");
+    action.enterValue(ODTIContractorsPage.searchByIdAndNameTextBox, contractor, "Search by Id and Name text box in ODTI Contractors page");
+    action.clickElement(ODTIContractorsPage.searchButton, "Search button in ODTI Contractors page");
+    action.waitUntilLoadingIconDisappears();
+})
+
+Then(/^state of the Contractors "(.*)" ODTI Activation ServiceTIActive flag is set to False$/, function (contractor) {
+    let serviceTiActiveToggleInput = $(ODTIContractorsPage.serviceTiActiveToggleInput.replace("<dynamic>", contractor));
+    let serviceTiActiveActivatedStatus = action.isSelectedWait(serviceTiActiveToggleInput, 0, "SERVICE TI ACTIVE contractors toggle input in ODTI Contractors page");
+    chai.expect(serviceTiActiveActivatedStatus).to.be.false;
+})
+
+Then(/^the Contractors "(.*)" ODTI Logged On State is set to False$/, function (contractor) {
+    let isLoggedOnToggleInput = $(ODTIContractorsPage.isLoggedOnToggleInput.replace("<dynamic>", contractor));
+    let isLoggedOnActivatedStatus = action.isSelectedWait(isLoggedOnToggleInput, 0, "Is logged on contractors toggle input in ODTI Contractors page");
+    chai.expect(isLoggedOnActivatedStatus).to.be.false;
+})
