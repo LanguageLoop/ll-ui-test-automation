@@ -309,3 +309,9 @@ Then(/^the text ‘You are activated for On Demand Telephone Interpreting’ is 
     let activatedODTITextDisplayStatus = action.isVisibleWait(myProfilePage.workAvailabilityActivatedODTIText, 0, "You are activated for On Demand Telephone Interpreting text under work availability in My profile page");
     chai.expect(activatedODTITextDisplayStatus).to.be.false;
 })
+
+When(/^mobile phone number option is selected$/, function () {
+    action.clickElement(myProfilePage.mobileRadioOptionWithPhoneNumber, "Mobile radio option with corresponding phone number in My profile page");
+    let mobileRadioOptionWithPhoneNumberSelectedStatus = action.isSelectedWait(myProfilePage.mobileRadioOptionWithPhoneNumber, 20000, "Mobile radio option with corresponding phone number in My profile page");
+    chai.expect(mobileRadioOptionWithPhoneNumberSelectedStatus).to.be.true;
+})
