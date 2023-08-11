@@ -278,5 +278,9 @@ module.exports ={
 
     get workAvailabilityActivatedODTIText() {
         return $('//div[text()="You are activated for On Demand Telephone Interpreting"]');
-    }
+    },
+
+    get mobileRadioOptionWithPhoneNumber() {
+        return $('//div[contains(text(),"Mobile:")]/parent::div//input[@type="radio"]');
+    },
 }
