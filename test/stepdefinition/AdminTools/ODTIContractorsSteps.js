@@ -107,3 +107,9 @@ Then(/^the Contractors "(.*)" ODTI Logged On State is set to False$/, function (
     let isLoggedOnActivatedStatus = action.isSelectedWait(isLoggedOnToggleInput, 0, "Is logged on contractors toggle input in ODTI Contractors page");
     chai.expect(isLoggedOnActivatedStatus).to.be.false;
 })
+
+Then(/^state of the Contractors "(.*)" ODTI Activation ServiceTIActive flag is set to True$/, function (contractor) {
+    let serviceTiActiveToggleInput = $(ODTIContractorsPage.serviceTiActiveToggleInput.replace("<dynamic>", contractor));
+    let serviceTiActiveActivatedStatus = action.isSelectedWait(serviceTiActiveToggleInput, 0, "SERVICE TI ACTIVE contractors toggle input in ODTI Contractors page");
+    chai.expect(serviceTiActiveActivatedStatus).to.be.true;
+})
