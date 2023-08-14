@@ -506,3 +506,36 @@ Feature: Contractor Management features
   Examples:
    | username        | password  | contractor name | home phone option | mobile phone option |
    | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA | Home              | Mobile              |
+
+  #LL-768 Scenario 3a: Work availability popup
+ @LL-768 @ActivateOnScheduleOnsiteAreasHidden
+ Scenario Outline: Activate toggle on work availability popup Schedule and OnSite Areas section are hidden
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And the contractor is Activated for ODTI
+  And I click on Work Availability for ODTI
+  Then the Schedule and OnSite Areas section are hidden
+  And the text ‘You are activated for On Demand Telephone Interpreting’ is displayed
+
+  Examples:
+   | username        | password  | contractor name |
+   | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA |
+
+  #LL-768 Scenario 3b: Work availability popup
+ @LL-768 @ActivateOffScheduleOnsiteAreasHidden
+ Scenario Outline: Activate toggle off work availability popup Schedule and OnSite Areas section are hidden
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the Activate toggle is off for ODTI
+  And I click on Work Availability for ODTI
+  Then the Schedule and OnSite Areas section are hidden
+  And the text ‘You are not activated for On Demand Telephone Interpreting’ is displayed
+
+  Examples:
+   | username        | password  | contractor name |
+   | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA   |
