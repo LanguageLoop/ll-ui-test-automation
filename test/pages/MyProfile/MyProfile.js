@@ -283,4 +283,12 @@ module.exports ={
     get mobileRadioOptionWithPhoneNumber() {
         return $('//div[contains(text(),"Mobile:")]/parent::div//input[@type="radio"]');
     },
+
+    get scheduleCalendarAreaOnWorkAvailability() {
+        return $('//div[contains(@id,"Calendar") and @class]');
+    },
+
+    get onsiteAreasOnWorkAvailability() {
+        return $('//span[text()="Onsite Areas"]/parent::div');
+    }
 }

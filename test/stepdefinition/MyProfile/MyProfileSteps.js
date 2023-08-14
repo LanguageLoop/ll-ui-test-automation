@@ -315,3 +315,10 @@ When(/^mobile phone number option is selected$/, function () {
     let mobileRadioOptionWithPhoneNumberSelectedStatus = action.isSelectedWait(myProfilePage.mobileRadioOptionWithPhoneNumber, 20000, "Mobile radio option with corresponding phone number in My profile page");
     chai.expect(mobileRadioOptionWithPhoneNumberSelectedStatus).to.be.true;
 })
+
+Then(/^the Schedule and OnSite Areas section are hidden$/, function () {
+    let scheduleAreaDisplayStatus = action.isVisibleWait(myProfilePage.scheduleCalendarAreaOnWorkAvailability,0,"Schedule calendar area on work availability popup in My profile page");
+    chai.expect(scheduleAreaDisplayStatus).to.be.false;
+    let onsiteAreasOnWorkAvailabilityDisplayStatus = action.isVisibleWait(myProfilePage.onsiteAreasOnWorkAvailability,0,"On site areas on work availability popup in My profile page");
+    chai.expect(onsiteAreasOnWorkAvailabilityDisplayStatus).to.be.false;
+})
