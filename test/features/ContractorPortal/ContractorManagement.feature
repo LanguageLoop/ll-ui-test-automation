@@ -538,4 +538,4 @@ Feature: Contractor Management features
 
   Examples:
    | username        | password  | contractor name |
-   | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA   |
+   | zenq1@ll.com.au | Reset@312 | Aabida SUNASARA |
