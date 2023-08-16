@@ -766,3 +766,35 @@ Feature: Campus Management features
   Examples:
    | username          | password  | campus id |
    | LLAdmin@looped.in | Octopus@6 | 29449     |
+
+  #LL-809 Scenario 1: Campus has only Gender ODTI preference set - User created a new Onsite Job
+ @LL-809 @CampusODTIGenderPreferenceOnsiteJob
+ Scenario Outline: Campus has only Gender ODTI preference set - User created a new Onsite Job
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<preference type option>" in Campus Details
+  And they click Add preference button in Campus Details
+  And click the Preference Type dropdown in Campus Details
+  And they will see an ODTI gender preference option with the label "<preference type option>" in Campus Details
+  And this option "<preference type option>" will appear under the Gender option in Campus Details
+  And they can select this option "<preference type option>" in Campus Details
+  And they select preference option "<preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And I click Interpreting header link
+  And I select "<dropdownfilter>" from the filter dropdown
+  And I click on new job request button
+  And I enter campus pin "<campus pin>"
+  And I select "<Requester Name>" from the requester name dropdown
+  And I click next button
+  Then the Gender under Service Preferences section shows as "<expected preference option>" under Gender field
+  And no Gender ODTI preference should be displayed
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<preference type option>" in Campus Details
+
+  Examples:
+   | username          | password    | campus id | preference type option | preference | dropdownfilter | campus pin | Requester Name    | expected preference option |
+   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)  | Female     | Management     | 33124      | Automation Tester | No Preference              |
