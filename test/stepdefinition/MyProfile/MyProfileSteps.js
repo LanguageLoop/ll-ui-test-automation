@@ -301,13 +301,13 @@ Then(/^I click on Work Availability for ODTI$/, function () {
 })
 
 Then(/^the text ‘You are not activated for On Demand Telephone Interpreting’ is displayed$/, function () {
-    let notActivatedODTITextDisplayStatus = action.isVisibleWait(myProfilePage.workAvailabilityNotActivatedODTIText, 0, "You are not activated for On Demand Telephone Interpreting text under work availability in My profile page");
-    chai.expect(notActivatedODTITextDisplayStatus).to.be.false;
+    let notActivatedODTITextDisplayStatus = action.isVisibleWait(myProfilePage.workAvailabilityNotActivatedODTIText, 10000, "You are not activated for On Demand Telephone Interpreting text under work availability in My profile page");
+    chai.expect(notActivatedODTITextDisplayStatus).to.be.true;
 })
 
 Then(/^the text ‘You are activated for On Demand Telephone Interpreting’ is displayed$/, function () {
-    let activatedODTITextDisplayStatus = action.isVisibleWait(myProfilePage.workAvailabilityActivatedODTIText, 0, "You are activated for On Demand Telephone Interpreting text under work availability in My profile page");
-    chai.expect(activatedODTITextDisplayStatus).to.be.false;
+    let activatedODTITextDisplayStatus = action.isVisibleWait(myProfilePage.workAvailabilityActivatedODTIText, 10000, "You are activated for On Demand Telephone Interpreting text under work availability in My profile page");
+    chai.expect(activatedODTITextDisplayStatus).to.be.true;
 })
 
 When(/^mobile phone number option is selected$/, function () {
