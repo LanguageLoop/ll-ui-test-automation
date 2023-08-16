@@ -468,4 +468,12 @@ module.exports={
     get distanceNotEligibleRejectionReasonText() {
         return $('//span[contains(text(),"Distance is not eligible.")]');
     },
+
+    get genderPreferenceDropdownOptionDynamicLocator() {
+        return '//select[contains(@name,"Gender")]/option[text()="<dynamic>"]';
+    },
+
+    get genderODTIPreferenceLabel() {
+        return $('//label[text()="Gender (On-demand TI)"]');
+    }
 }

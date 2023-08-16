@@ -570,4 +570,8 @@ module.exports ={
     get assignButtonOnManageBillToPopup() {
         return $('//input[@value="Assign" and contains(@id,"AssignBillToDialog")]');
     },
+
+    get campusPreferenceDropdownOptionDynamicLocator() {
+        return '//label[text()="Preference"]/parent::div/span/select/option[text()="Female"]';
+    },
 }

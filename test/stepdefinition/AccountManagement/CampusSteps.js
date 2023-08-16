@@ -820,6 +820,7 @@ Then(/^this option "(.*)" will appear under the Gender option in Campus Details$
 })
 
 Then(/^they can select this option "(.*)" in Campus Details$/, function (optionLabel) {
+    action.isVisibleWait(campusDetailsPage.campusPreferenceTypeDropdown, 10000,"Campus preference type dropdown in campus page");
     action.selectTextFromDropdown(campusDetailsPage.campusPreferenceTypeDropdown, optionLabel,"Campus preference type dropdown in campus page");
     let preferenceTypeDropdownOptionElement = $(campusDetailsPage.campusPreferenceTypeDropdownOptionLocator.replace("<dynamicOption>", optionLabel));
     let optionSelectedStatus = action.isSelectedWait(preferenceTypeDropdownOptionElement, 10000,"Campus preference type dropdown option " + optionLabel + " in campus page");
@@ -828,14 +829,17 @@ Then(/^they can select this option "(.*)" in Campus Details$/, function (optionL
 
 When(/^they select preference option "(.*)" in Campus Details$/, function (option) {
     action.isVisibleWait(campusDetailsPage.campusPreferenceDropdown,20000,"Campus preference dropdown in campus page");
-    action.selectTextFromDropdown(campusDetailsPage.campusPreferenceDropdown, option,"Campus preference dropdown option " + option + " in campus page");
+    let campusPreferenceDropdownOption = $(campusDetailsPage.campusPreferenceDropdownOptionDynamicLocator.replace("<dynamic>",option));
+    action.isExistingWait(campusPreferenceDropdownOption,10000,"Campus preference dropdown option " + option + " in campus page")
+    action.selectTextFromDropdown(campusDetailsPage.campusPreferenceDropdown, option,"Campus preference dropdown option in campus page");
 })
 
 When(/^they remove added preference type option "(.*)" in Campus Details$/, function (optionLabel) {
     let preferenceTypeRemoveIconElement = $(campusDetailsPage.campusPreferenceTypeRemoveIconLocator.replace("<dynamicOption>", optionLabel));
-    action.isVisibleWait(preferenceTypeRemoveIconElement,20000,"Preference type remove icon in campus page");
-    action.clickElement(preferenceTypeRemoveIconElement,"Preference type remove icon in campus page");
-    action.isNotVisibleWait(preferenceTypeRemoveIconElement,20000,"Preference type remove icon in campus page");
+    if (action.isVisibleWait(preferenceTypeRemoveIconElement,20000,"Preference type remove icon in campus page") === true) {
+        action.clickElement(preferenceTypeRemoveIconElement,"Preference type remove icon in campus page");
+        action.isNotVisibleWait(preferenceTypeRemoveIconElement,20000,"Preference type remove icon in campus page");
+    }
 })
 
 When(/^they click save Contract Preference button in Campus Details/, function () {

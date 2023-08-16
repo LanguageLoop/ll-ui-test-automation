@@ -36,7 +36,9 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
     action.enterLocation(contractorEngagementPage.postalAddressInput, address, "Postal address input field on Contractor Engagement page")
     browser.pause(2000)
     browser.keys("Enter")
-    action.clickElement(contractorEngagementPage.emailPreferenceCheckbox, "Email Preference Checkbox on Contractor Engagement page")
+    if (action.isClickableWait(contractorEngagementPage.emailPreferenceCheckbox, 1000, "Email Preference Checkbox on Contractor Engagement page") === true) {
+        action.clickElement(contractorEngagementPage.emailPreferenceCheckbox, "Email Preference Checkbox on Contractor Engagement page")
+    }
     action.uploadFile(contractorEngagementPage.workContractFileControl, "./test/data/ContractDocument.docx","Work Contract file field on Contractor Engagement page")
     const uploadedFile = $("//div[text()[contains(.,'ContractDocument.docx')]]")
     browser.waitUntil(() => uploadedFile.getText() === 'ContractDocument.docx', {

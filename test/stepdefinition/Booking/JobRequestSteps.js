@@ -830,3 +830,14 @@ Then(/^a tooltip should be shown for ineligible contractors "(.*)" showing the r
   let distanceNotEligibleRejectionReasonTextExistStatus = action.isExistingWait(jobRequestPage.distanceNotEligibleRejectionReasonText,10000,"Distance is not eligible rejection reason text in Job Request Page");
   chai.expect(distanceNotEligibleRejectionReasonTextExistStatus).to.be.true;
 });
+
+Then(/^the Gender under Service Preferences section shows as "(.*)" under Gender field$/, function (genderPreferenceOption) {
+  let genderPreferenceDropdownOption = $(jobRequestPage.genderPreferenceDropdownOptionDynamicLocator.replace("<dynamic>", genderPreferenceOption));
+  let genderPreferenceDropdownOptionSelectedStatus = action.isSelectedWait(genderPreferenceDropdownOption, 10000, "Gender preference option - " + genderPreferenceOption + " in Job Request Page");
+  chai.expect(genderPreferenceDropdownOptionSelectedStatus).to.be.true;
+});
+
+Then(/^no Gender ODTI preference should be displayed$/, function () {
+  let genderODTIPreferenceDisplayStatus = action.isVisibleWait(jobRequestPage.genderODTIPreferenceLabel, 0, "Gender (On-demand TI) preference label in Job Request Page");
+  chai.expect(genderODTIPreferenceDisplayStatus).to.be.false;
+});
