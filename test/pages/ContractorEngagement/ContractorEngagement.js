@@ -588,5 +588,25 @@ module.exports = {
 
     get ODTIAvailabilityActivateToggleLabel() {
         return $('//div[text()="Activate"]/parent::div//div[contains(@class,"ToggleButton")]/label');
+    },
+
+    get clearanceStateOfIssueDropdown() {
+        return $('//select[contains(@id,"ClearanceStateOfIssue")]');
+    },
+
+    get uploadedFileDocumentExtensionText() {
+        return $('//div[contains(text(),".docx")]');
+    },
+
+    get ndisScreeningToggle() {
+        return $('//span[text()="NDIS Screening"]/parent::div/parent::div//label[contains(@id,"Toggle")]');
+    },
+
+    get ndisScreeningRemoveLink() {
+        return $('//span[text()="NDIS Screening"]/parent::div/parent::div//a[text()="Remove"]');
+    },
+
+    get ndisScreeningClearanceLabel() {
+        return $('//span[text()="NDIS Screening"]')
     }
 }
