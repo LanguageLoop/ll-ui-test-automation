@@ -888,3 +888,51 @@ Then(/^a toggle switch should NOT be displayed on the top-right corner of the On
     let contractorActivateToggleSwitchDisplayStatus = action.isVisibleWait(contractorEngagementPage.ODTIAvailabilityActivateToggleLabel,10000,"ODTI Availability Activate toggle in Contractor Engagement page");
     chai.expect(contractorActivateToggleSwitchDisplayStatus).to.be.false;
 })
+
+When(/^I select clearance type "(.*)"$/, function (clearanceType) {
+    action.isVisibleWait(contractorEngagementPage.clearanceTypeDropdown, 10000, "Clearance Type dropdown on Contractor Engagement page");
+    action.selectTextFromDropdown(contractorEngagementPage.clearanceTypeDropdown, clearanceType, "Clearance Type dropdown on Contractor Engagement page");
+})
+
+When(/^I enter clearance card number "(.*)"$/, function (cardNumber) {
+    action.isVisibleWait(contractorEngagementPage.cardNumberInput, 10000, "Card number text box in Contractor Engagement page");
+    action.enterValue(contractorEngagementPage.cardNumberInput, cardNumber, "Card number text box in Contractor Engagement page");
+})
+
+When(/^I select clearance state of issue "(.*)"$/, function (stateOfIssue) {
+    action.isVisibleWait(contractorEngagementPage.clearanceStateOfIssueDropdown, 10000, "Clearance State of issue dropdown on Contractor Engagement page");
+    action.selectTextFromDropdown(contractorEngagementPage.clearanceStateOfIssueDropdown, stateOfIssue, "Clearance State of issue dropdown on Contractor Engagement page");
+})
+
+When(/^I enter clearance Document Received Date and Date of expiry$/, function () {
+    action.enterValue(contractorEngagementPage.documentReceivedDate, datetime.getCurrentDate(), "Document received date text box in Create Contractor page");
+    action.enterValue(contractorEngagementPage.documentExpiryDate, datetime.getRandomFutureDate(), "Document expiry date text box in Create Contractor page");
+    action.pressKeys("Tab");
+})
+
+When(/^I upload proof of clearance file$/, function () {
+    action.uploadFile(contractorEngagementPage.clearanceFileControl, "./test/data/ContractDocument.docx", "Proof of Clearance File Control on Contractor Engagement page");
+    action.isVisibleWait(contractorEngagementPage.uploadedFileDocumentExtensionText, 20000, "Proof of Clearance File document extension text on Contractor Engagement page");
+})
+
+When(/^I click save clearance button$/, function () {
+    action.isClickableWait(contractorEngagementPage.saveClearanceButton, 20000, "Save Clearance Button on Contractor Engagement page");
+    action.clickElement(contractorEngagementPage.saveClearanceButton, "Save Clearance Button on Contractor Engagement page");
+    action.isNotVisibleWait(contractorEngagementPage.saveClearanceButton, 10000, "Save Clearance Button on Contractor Engagement page");
+});
+
+Then(/^I verify NDIS Screening clearance is added$/, function () {
+    let ndisScreeningClearanceLabelDisplayStatus = action.isVisibleWait(contractorEngagementPage.ndisScreeningClearanceLabel, 10000, "NDIS Screening clearance on Contractor Engagement page");
+    chai.expect(ndisScreeningClearanceLabelDisplayStatus).to.be.true;
+});
+
+When(/^I remove NDIS Screening clearance$/, function () {
+    action.waitUntilLoadingIconDisappears();
+    let ndisScreeningToggleDisplayStatus = action.isVisibleWait(contractorEngagementPage.ndisScreeningToggle, 10000, "NDIS Screening toggle on Contractor Engagement page");
+    if (ndisScreeningToggleDisplayStatus === true) {
+        action.clickElement(contractorEngagementPage.ndisScreeningToggle, "NDIS Screening toggle on Contractor Engagement page");
+        action.isVisibleWait(contractorEngagementPage.ndisScreeningRemoveLink, 10000, "NDIS Screening remove link on Contractor Engagement page");
+        action.clickElement(contractorEngagementPage.ndisScreeningRemoveLink, "NDIS Screening remove link on Contractor Engagement page");
+        action.isNotVisibleWait(contractorEngagementPage.ndisScreeningRemoveLink, 10000, "NDIS Screening remove link on Contractor Engagement page");
+    }
+});
