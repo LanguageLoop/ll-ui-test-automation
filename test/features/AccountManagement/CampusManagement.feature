@@ -866,5 +866,43 @@ Feature: Campus Management features
   And they remove added preference type option "<gender preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    | expected preference option |
-   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Female            | Management     | 33124      | Automation Tester | No Preference              |
+   | username          | password    | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    |
+   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Female            | Management     | 33124      | Automation Tester |
+
+  #LL-809 Scenario 4: Campus has Gender ODTI preference set to any preference (say: Male) and Onsite Gender to ANY
+ @LL-809 @CampusODTIGenderOnsiteGenderPreferenceAny
+ Scenario Outline: Campus has Gender ODTI preference set to any preference (say: Male) and Onsite Gender to ANY
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<gender odti preference type option>" in Campus Details
+  And they remove added preference type option "<gender preference type option>" in Campus Details
+  And they click Add preference button in Campus Details
+  And click the Preference Type dropdown in Campus Details
+  And they will see an ODTI gender preference option with the label "<gender odti preference type option>" in Campus Details
+  And this option "<gender odti preference type option>" will appear under the Gender option in Campus Details
+  And they can select this option "<gender odti preference type option>" in Campus Details
+  And they select preference option "<gender odti preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And they click Add preference button in Campus Details
+  And they can select this option "<gender preference type option>" in Campus Details
+  And they select preference option "<gender preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And I click Interpreting header link
+  And I select "<dropdownfilter>" from the filter dropdown
+  And I click on new job request button
+  And I enter campus pin "<campus pin>"
+  And I select "<Requester Name>" from the requester name dropdown
+  And I click next button
+  Then the Gender under Service Preferences section shows as "<gender preference>" under Gender field
+  And no Gender ODTI preference should be displayed
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<gender odti preference type option>" in Campus Details
+  And they remove added preference type option "<gender preference type option>" in Campus Details
+
+  Examples:
+   | username          | password    | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    |
+   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Male              | Management     | 33124      | Automation Tester |
