@@ -841,3 +841,32 @@ Then(/^no Gender ODTI preference should be displayed$/, function () {
   let genderODTIPreferenceDisplayStatus = action.isVisibleWait(jobRequestPage.genderODTIPreferenceLabel, 0, "Gender (On-demand TI) preference label in Job Request Page");
   chai.expect(genderODTIPreferenceDisplayStatus).to.be.false;
 });
+
+Then(/^the contractor "(.*)" in the Job gets eligible "(.*)" if they have the NDIS clearance added$/, function (contractorName, expectedContractorStatus) {
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000, "Contractor Job status link in Job request page");
+  let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink, "Contractor Job status link in Job request page");
+  if (contractorJobStatusTextActual.includes(expectedContractorStatus)) {
+    chai.expect(contractorJobStatusTextActual).to.equal(expectedContractorStatus);
+  } else {
+    chai.expect(contractorJobStatusTextActual).to.equal("- No status -");
+  }
+})
+
+When(/^the contractor "(.*)" on hovering over will give the message as ‘Insufficient Preferences’$/, function (contractorName) {
+  let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
+  action.isVisibleWait(contractorJobStatusLink, 10000,"Contractor job status link in Job request page");
+  browser.execute((el) => {
+    const hoverEvent = new MouseEvent('mouseover', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    el.dispatchEvent(hoverEvent);
+  }, contractorJobStatusLink);
+  logger.info("Moved mouse to Contractor job status link in Job request page")
+  let distanceNotEligibleRejectionReasonTextExistStatus = action.isExistingWait(jobRequestPage.distanceNotEligibleRejectionReasonText,10000,"Distance is not eligible rejection reason text in Job Request Page");
+  chai.expect(distanceNotEligibleRejectionReasonTextExistStatus).to.be.true;
+  let contractorIneligibleHtmlText = action.getElementHTML(jobRequestPage.distanceNotEligibleRejectionReasonText,"Ineligible contractor hover text in Job request page");
+  chai.expect(contractorIneligibleHtmlText).to.includes("Insufficient Preferences");
+})
