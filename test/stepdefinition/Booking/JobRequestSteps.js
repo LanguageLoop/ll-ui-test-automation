@@ -853,7 +853,7 @@ Then(/^the contractor "(.*)" in the Job gets eligible "(.*)" if they have the ND
   }
 })
 
-When(/^the contractor "(.*)" on hovering over will give the message as ‘Insufficient Preferences’$/, function (contractorName) {
+Then(/^the contractor "(.*)" on hovering over will give the message as ‘Insufficient Preferences’$/, function (contractorName) {
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>", contractorName));
   action.isVisibleWait(contractorJobStatusLink, 10000,"Contractor job status link in Job request page");
   browser.execute((el) => {
