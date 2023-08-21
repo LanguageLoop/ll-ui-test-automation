@@ -916,6 +916,7 @@ When(/^I upload proof of clearance file$/, function () {
 })
 
 When(/^I click save clearance button$/, function () {
+    action.isVisibleWait(contractorEngagementPage.saveClearanceButton, 20000, "Save Clearance Button on Contractor Engagement page");
     action.isClickableWait(contractorEngagementPage.saveClearanceButton, 20000, "Save Clearance Button on Contractor Engagement page");
     action.clickElement(contractorEngagementPage.saveClearanceButton, "Save Clearance Button on Contractor Engagement page");
     action.isNotVisibleWait(contractorEngagementPage.saveClearanceButton, 10000, "Save Clearance Button on Contractor Engagement page");
