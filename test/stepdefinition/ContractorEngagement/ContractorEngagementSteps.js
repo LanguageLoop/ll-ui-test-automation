@@ -938,7 +938,7 @@ When(/^I remove NDIS Screening clearance$/, function () {
     }
 });
 
-When(/^the user just can view the clearances on Contract Profile page as expected$/, function () {
+Then(/^the user just can view the clearances on Contract Profile page as expected$/, function () {
     let clearanceSectionDisplayStatus = action.isVisibleWait(contractorEngagementPage.clearanceSection, 10000, "Add Clearance Link on Contractor Engagement page");
     chai.expect(clearanceSectionDisplayStatus).to.be.true;
     let addClearanceLinkDisplayStatus = action.isVisibleWait(contractorEngagementPage.addClearanceLink, 0, "Add Clearance Link on Contractor Engagement page");
