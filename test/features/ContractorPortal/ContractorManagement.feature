@@ -607,3 +607,56 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | job notice length | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue | job contractor status | ineligible contractor name |
    | LLAdmin@looped.in | Octopus@6 | short notice      | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       | Auto Notification     | Rola MIZIAN                |
+
+  #LL-797 Scenario 3a: "NDIS Check" clearance Only users with below roles can make the changes: Account Manager
+ @LL-797 @NDISMakeChangesAsAccountManager
+ Scenario Outline: NDIS Check clearance Only users with below roles can make the changes: Account Manager
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<preference type option>" in Campus Details
+  And they click Add preference button in Campus Details
+  Then they can select this option "<preference type option>" in Campus Details
+  And they select preference option "<preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And they remove added preference type option "<preference type option>" in Campus Details
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And the user just can view the clearances on Contract Profile page as expected
+
+  Examples:
+   | username          | password | campus id | preference type option | preference | contractor name |
+   | TestA@gmail.com   | Test1    | 33124     | NDIS Screening         | Must       | Suzane HANNA    |
+
+  #LL-797 Scenario 3b: "NDIS Check" clearance Only users with below roles can make the changes: Administrator
+ @LL-797 @NDISMakeChangesAsAdministrator
+ Scenario Outline: NDIS Check clearance Only users with below roles can make the changes: Administrator
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<preference type option>" in Campus Details
+  And they click Add preference button in Campus Details
+  Then they can select this option "<preference type option>" in Campus Details
+  And they select preference option "<preference>" in Campus Details
+  And they click save Contract Preference button in Campus Details
+  And they remove added preference type option "<preference type option>" in Campus Details
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And I remove NDIS Screening clearance
+  And I click add clearance link
+  And I select clearance type "<clearance type>"
+  And I enter clearance card number "<card number>"
+  And I select clearance state of issue "<state of issue>"
+  And I enter clearance Document Received Date and Date of expiry
+  And I upload proof of clearance file
+  And I click save clearance button
+  And I verify NDIS Screening clearance is added
+  And I remove NDIS Screening clearance
+
+  Examples:
+   | username          | password  | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | Octopus@6 | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
