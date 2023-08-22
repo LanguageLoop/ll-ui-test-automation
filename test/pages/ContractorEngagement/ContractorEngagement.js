@@ -608,5 +608,9 @@ module.exports = {
 
     get ndisScreeningClearanceLabel() {
         return $('//span[text()="NDIS Screening"]')
-    }
+    },
+
+    get clearanceSection() {
+        return $('//div[contains(@id,"contClearences")]');
+    },
 }
