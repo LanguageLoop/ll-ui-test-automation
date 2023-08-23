@@ -660,3 +660,46 @@ Feature: Contractor Management features
   Examples:
    | username          | password  | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue |
    | LLAdmin@looped.in | Octopus@6 | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+
+  #LL-797 Scenario 3c: "NDIS Check" clearance Only users with below roles can make the changes: Contractor Engagement Officer
+ @LL-797 @NDISMakeChangesAsContractorEngagementOfficer
+ Scenario Outline: NDIS Check clearance Only users with below roles can make the changes: Contractor Engagement Officer
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And I remove NDIS Screening clearance
+  And I click add clearance link
+  And I select clearance type "<clearance type>"
+  And I enter clearance card number "<card number>"
+  And I select clearance state of issue "<state of issue>"
+  And I enter clearance Document Received Date and Date of expiry
+  And I upload proof of clearance file
+  And I click save clearance button
+  Then I verify NDIS Screening clearance is added
+  And I remove NDIS Screening clearance
+
+  Examples:
+   | username          | password  | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+
+  #LL-797 Scenario 4: Document Received Date and Date of expiry are mandatory fields
+ @LL-797 @DocumentReceivedDateAndExpiryAreMandatory
+ Scenario Outline: Document Received Date and Date of expiry are mandatory fields
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And I remove NDIS Screening clearance
+  And I click add clearance link
+  And I select clearance type "<clearance type>"
+  And I enter clearance card number "<card number>"
+  And I select clearance state of issue "<state of issue>"
+  And I leave clearance Document Received Date and Date of expiry as empty
+  And I upload proof of clearance file
+  And I click save clearance button
+  Then error message ‘Required filed!’ is displayed under Document Received Date and Date of expiry fields
+
+  Examples:
+   | username          | password  | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |

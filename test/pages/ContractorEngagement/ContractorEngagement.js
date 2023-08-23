@@ -613,4 +613,12 @@ module.exports = {
     get clearanceSection() {
         return $('//div[contains(@id,"contClearences")]');
     },
+
+    get documentReceivedDateRequiredFieldText() {
+        return $('//*[text()="Add clearance"]/../..//*[text()="Document Received Date"]/..//input/following-sibling::span[text()="Required field!"]');
+    },
+
+    get documentExpiryDateRequiredFieldText() {
+        return $('//*[text()="Add clearance"]/../..//*[text()="Date of expiry"]/..//input/following-sibling::span[text()="Required field!"]');
+    },
 }

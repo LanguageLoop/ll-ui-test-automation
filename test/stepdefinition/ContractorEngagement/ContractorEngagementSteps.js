@@ -944,3 +944,16 @@ Then(/^the user just can view the clearances on Contract Profile page as expecte
     let addClearanceLinkDisplayStatus = action.isVisibleWait(contractorEngagementPage.addClearanceLink, 0, "Add Clearance Link on Contractor Engagement page");
     chai.expect(addClearanceLinkDisplayStatus).to.be.false;
 })
+
+Then(/^error message ‘Required filed!’ is displayed under Document Received Date and Date of expiry fields$/, function () {
+    let documentReceivedDateRequiredFieldTextDisplayStatus = action.isVisibleWait(contractorEngagementPage.documentReceivedDateRequiredFieldText, 0, "Document received date Required field! text in Create Contractor page");
+    chai.expect(documentReceivedDateRequiredFieldTextDisplayStatus).to.be.true;
+    let documentExpiryDateRequiredFieldTextDisplayStatus = action.isVisibleWait(contractorEngagementPage.documentExpiryDateRequiredFieldText, 0, "Document expiry date Required field! text in Create Contractor page");
+    chai.expect(documentExpiryDateRequiredFieldTextDisplayStatus).to.be.true;
+})
+
+When(/^I leave clearance Document Received Date and Date of expiry as empty$/, function () {
+    action.enterValue(contractorEngagementPage.documentReceivedDate,"", "Document received date text box in Create Contractor page");
+    action.enterValue(contractorEngagementPage.documentExpiryDate,"", "Document expiry date text box in Create Contractor page");
+    action.pressKeys("Tab");
+})
