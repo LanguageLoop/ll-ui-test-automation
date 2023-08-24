@@ -905,8 +905,10 @@ When(/^I select clearance state of issue "(.*)"$/, function (stateOfIssue) {
 })
 
 When(/^I enter clearance Document Received Date and Date of expiry$/, function () {
-    action.enterValue(contractorEngagementPage.documentReceivedDate, datetime.getCurrentDate(), "Document received date text box in Create Contractor page");
-    action.enterValue(contractorEngagementPage.documentExpiryDate, datetime.getRandomFutureDate(), "Document expiry date text box in Create Contractor page");
+    GlobalData.DOCUMENT_RECEIVED_DATE = datetime.getCurrentDate();
+    action.enterValue(contractorEngagementPage.documentReceivedDate, GlobalData.DOCUMENT_RECEIVED_DATE, "Document received date text box in Create Contractor page");
+    GlobalData.DOCUMENT_EXPIRY_DATE = datetime.getRandomFutureDate();
+    action.enterValue(contractorEngagementPage.documentExpiryDate, GlobalData.DOCUMENT_EXPIRY_DATE, "Document expiry date text box in Create Contractor page");
     action.pressKeys("Tab");
 })
 
@@ -957,3 +959,25 @@ When(/^I leave clearance Document Received Date and Date of expiry as empty$/, f
     action.enterValue(contractorEngagementPage.documentExpiryDate,"", "Document expiry date text box in Create Contractor page");
     action.pressKeys("Tab");
 })
+
+Then(/^Issued date is same as Document Received Date and Expires date is same as Date of expiry, and uploaded file is displayed$/, function () {
+    let issuedDateTextAddedOnNdisScreening = action.getElementText(contractorEngagementPage.issuedDateTextAddedOnNdisScreening, "Issued date text added on NDIS Screening Clearance in Create Contractor page");
+    chai.expect(issuedDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_RECEIVED_DATE.split("/"))[0]);
+    chai.expect(issuedDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_RECEIVED_DATE.split("/"))[1]);
+    chai.expect(issuedDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_RECEIVED_DATE.split("/"))[2]);
+    let expiresDateTextAddedOnNdisScreening = action.getElementText(contractorEngagementPage.expiresDateTextAddedOnNdisScreening, "Expires date text added on NDIS Screening Clearance in Create Contractor page");
+    chai.expect(expiresDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_EXPIRY_DATE.split("-"))[0]);
+    chai.expect(expiresDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_EXPIRY_DATE.split("-"))[1]);
+    chai.expect(expiresDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_EXPIRY_DATE.split("-"))[2]);
+    let clearanceDocumentUploadedFileAttachmentText = action.getElementText(contractorEngagementPage.clearanceDocumentUploadedFileAttachmentText, "Document Uploaded file attachment text on NDIS Screening Clearance in Create Contractor page");
+    chai.expect(clearanceDocumentUploadedFileAttachmentText).to.includes("ContractDocument.docx");
+})
+
+When(/^I click on 3 dots icon, and select Edit option$/, function () {
+    action.waitUntilLoadingIconDisappears();
+    action.isVisibleWait(contractorEngagementPage.ndisScreeningToggle, 10000, "NDIS Screening toggle on Contractor Engagement page");
+    action.clickElement(contractorEngagementPage.ndisScreeningToggle, "NDIS Screening toggle on Contractor Engagement page");
+    action.isVisibleWait(contractorEngagementPage.ndisScreeningEditLink, 10000, "NDIS Screening edit link on Contractor Engagement page");
+    action.clickElement(contractorEngagementPage.ndisScreeningEditLink, "NDIS Screening edit link on Contractor Engagement page");
+    action.waitUntilLoadingIconDisappears();
+});
