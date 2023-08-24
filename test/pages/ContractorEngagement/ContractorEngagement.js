@@ -621,4 +621,20 @@ module.exports = {
     get documentExpiryDateRequiredFieldText() {
         return $('//*[text()="Add clearance"]/../..//*[text()="Date of expiry"]/..//input/following-sibling::span[text()="Required field!"]');
     },
+
+    get issuedDateTextAddedOnNdisScreening() {
+        return $('//span[text()="NDIS Screening"]/parent::div/parent::div//div[contains(text(),"Issued")]');
+    },
+
+    get expiresDateTextAddedOnNdisScreening() {
+        return $('//span[text()="NDIS Screening"]/parent::div/parent::div//div[contains(text(),"Expires")]');
+    },
+
+    get clearanceDocumentUploadedFileAttachmentText() {
+        return $('//span[text()="NDIS Screening"]/parent::div/parent::div//div[@class="ClearanceAttachment OSInline"]');
+    },
+
+    get ndisScreeningEditLink() {
+        return $('//span[text()="NDIS Screening"]/parent::div/parent::div//a[text()="Edit"]');
+    },
 }
