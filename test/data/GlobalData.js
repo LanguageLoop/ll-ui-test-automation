@@ -48,4 +48,6 @@ module.exports={
     CAMPUS_GST:"",
     CAMPUS_TOTAL:"",
     ADMIN_TOOLS_URL:"",
+    DOCUMENT_RECEIVED_DATE: "",
+    DOCUMENT_EXPIRY_DATE: "",
 }
