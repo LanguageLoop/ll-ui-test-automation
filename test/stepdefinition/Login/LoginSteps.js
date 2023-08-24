@@ -39,7 +39,7 @@ Given(/^the looped in login page is opened$/,  function(){
     action.enterValue(Login.passwordInput,password,"Password text box in Login page")
     action.clickElement(Login.loginButton,"Login Button in Login page")
    }
-    browser.waitUntil(()=>browser.getTitle()==="HomePage" || browser.getTitle()==="Bookings" || browser.getTitle()==="Account Management" ,{timeout:20000, timeoutMsg:'login not happened within 20s', interval:500 })
+    browser.waitUntil(()=>browser.getTitle()==="HomePage" || browser.getTitle()==="Bookings" || browser.getTitle()==="Account Management" || browser.getTitle().trim()==="Contractors" ,{timeout:20000, timeoutMsg:'login not happened within 20s', interval:500 })
     
 })
 

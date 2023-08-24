@@ -680,8 +680,8 @@ Feature: Contractor Management features
   And I remove NDIS Screening clearance
 
   Examples:
-   | username          | password  | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password | contractor name | clearance type | card number | state of issue |
+   | TestCon@gmail.com | Test1    | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 4: Document Received Date and Date of expiry are mandatory fields
  @LL-797 @DocumentReceivedDateAndExpiryAreMandatory
@@ -699,6 +699,56 @@ Feature: Contractor Management features
   And I upload proof of clearance file
   And I click save clearance button
   Then error message ‘Required filed!’ is displayed under Document Received Date and Date of expiry fields
+
+  Examples:
+   | username          | password  | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+
+  #LL-797 Scenario 5: Verifying NDIS Screening tile is showing correct details after saving
+ @LL-797 @NDISScreeeningCorrectAfterSave
+ Scenario Outline: Verifying NDIS Screening tile is showing correct details after saving
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And I remove NDIS Screening clearance
+  And I click add clearance link
+  And I select clearance type "<clearance type>"
+  And I enter clearance card number "<card number>"
+  And I select clearance state of issue "<state of issue>"
+  And I enter clearance Document Received Date and Date of expiry
+  And I upload proof of clearance file
+  And I click save clearance button
+  And I verify NDIS Screening clearance is added
+  Then Issued date is same as Document Received Date and Expires date is same as Date of expiry, and uploaded file is displayed
+  And I remove NDIS Screening clearance
+
+  Examples:
+   | username          | password  | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+
+  #LL-797 Scenario 6: User Edits the existing NDIS Screening clearance
+ @LL-797 @UserEditsExistingNDISClearance
+ Scenario Outline: User Edits the existing NDIS Screening clearance
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And I remove NDIS Screening clearance
+  And I click add clearance link
+  And I select clearance type "<clearance type>"
+  And I enter clearance card number "<card number>"
+  And I select clearance state of issue "<state of issue>"
+  And I enter clearance Document Received Date and Date of expiry
+  And I upload proof of clearance file
+  And I click save clearance button
+  And I verify NDIS Screening clearance is added
+  And I click on 3 dots icon, and select Edit option
+  And I enter clearance Document Received Date and Date of expiry
+  And I click save clearance button
+  And I verify NDIS Screening clearance is added
+  Then Issued date is same as Document Received Date and Expires date is same as Date of expiry, and uploaded file is displayed
+  And I remove NDIS Screening clearance
 
   Examples:
    | username          | password  | contractor name | clearance type | card number | state of issue |
