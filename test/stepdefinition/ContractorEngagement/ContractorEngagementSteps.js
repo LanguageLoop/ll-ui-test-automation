@@ -156,6 +156,7 @@ When(/^I enter work eligibility details "(.*)","(.*)","(.*)"$/, function (rights
 
 When(/^I click add clearance link$/, function () {
     browser.pause(2000)
+    action.waitUntilLoadingIconDisappears();
     action.clickElement(contractorEngagementPage.addClearanceLink, "Add Clearance Link on Contractor Engagement page")
 })
 
