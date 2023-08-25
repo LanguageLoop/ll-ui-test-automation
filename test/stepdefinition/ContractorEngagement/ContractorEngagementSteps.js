@@ -982,3 +982,8 @@ When(/^I click on 3 dots icon, and select Edit option$/, function () {
     action.clickElement(contractorEngagementPage.ndisScreeningEditLink, "NDIS Screening edit link on Contractor Engagement page");
     action.waitUntilLoadingIconDisappears();
 });
+
+Then(/^the NDIS Screening is removed from clearance section$/, function () {
+    let ndisScreeningClearanceLabelDisplayStatus = action.isVisibleWait(contractorEngagementPage.ndisScreeningClearanceLabel, 0, "NDIS Screening clearance on Contractor Engagement page");
+    chai.expect(ndisScreeningClearanceLabelDisplayStatus).to.be.false;
+});
