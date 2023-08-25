@@ -3,7 +3,7 @@ module.exports ={
     
     get translationsLink()
     {
-        return $('//a[contains(@id,"block_wtMenuItem_wt17")]')
+        return $('//a[text()="Translations"]')
     },
 
     get startNewProject()
@@ -74,5 +74,9 @@ module.exports ={
     {
         return $('input[value="Save & Proceed"]')
     },
+
+    get startANewQuoteButton() {
+        return $('//input[@value="Start a new Quote"]');
+    }
     
 }
