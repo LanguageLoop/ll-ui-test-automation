@@ -23,7 +23,7 @@ var campusDetailsPage=require('./test/pages/CampusDetails/CampusDetails')
 var accountManagementPage=require('./test/pages/AccountManagement/AccountManagementPage')
 var contractManagementPage= require('./test/pages/ContractManagement/ContractManagement')
 var contractorEngagementPage= require('./test/pages/ContractorEngagement/ContractorEngagement')
-//var translationsPage= require('./test/pages/Translations/TranslationsPage')
+var translationsPage= require('./test/pages/Translations/TranslationsPage')
 //var xtmPage = require('./test/pages/Translations/XTMPage')
 var myProfilePage= require('./test/pages/MyProfile/MyProfile')
 var adminPage = require('./test/pages/Home/AdminPage.js')
@@ -362,7 +362,7 @@ exports.config = {
         global.ODTIJobDetailsPage = ODTIJobDetailsPage
         global.adminToolsHomePage = adminToolsHomePage
         global.ODTIContractorsPage = ODTIContractorsPage
-        //global.translationsPage=translationsPage
+        global.translationsPage=translationsPage
         //global.xtmPage = xtmPage
         
      },
