@@ -705,7 +705,7 @@ Feature: Contractor Management features
    | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 5: Verifying NDIS Screening tile is showing correct details after saving
- @LL-797 @NDISScreeeningCorrectAfterSave
+ @LL-797 @NDISScreeningCorrectAfterSave
  Scenario Outline: Verifying NDIS Screening tile is showing correct details after saving
   When I login with "<username>" and "<password>"
   And I click contractor engagement link
@@ -749,6 +749,29 @@ Feature: Contractor Management features
   And I verify NDIS Screening clearance is added
   Then Issued date is same as Document Received Date and Expires date is same as Date of expiry, and uploaded file is displayed
   And I remove NDIS Screening clearance
+
+  Examples:
+   | username          | password  | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+
+  #LL-797 Scenario 7: User removes the NDIS Screening clearance
+ @LL-797 @UserRemovesNDISClearance
+ Scenario Outline: User removes the NDIS Screening clearance
+  When I login with "<username>" and "<password>"
+  And I click contractor engagement link
+  And I search and select contractor "<contractor name>"
+  And they will be navigated to the Contractor’s profile
+  And I remove NDIS Screening clearance
+  And I click add clearance link
+  And I select clearance type "<clearance type>"
+  And I enter clearance card number "<card number>"
+  And I select clearance state of issue "<state of issue>"
+  And I enter clearance Document Received Date and Date of expiry
+  And I upload proof of clearance file
+  And I click save clearance button
+  And I verify NDIS Screening clearance is added
+  And I remove NDIS Screening clearance
+  Then the NDIS Screening is removed from clearance section
 
   Examples:
    | username          | password  | contractor name | clearance type | card number | state of issue |
