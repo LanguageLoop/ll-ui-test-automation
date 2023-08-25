@@ -78,3 +78,8 @@ When(/^I click on Save & Proceed button$/, function()  {
 When(/^I click on Submit$/, () => {
 	return true;
 });
+
+Then(/^there should not be Start a new Quote button displayed beside the ‘Start New Project Request’ button$/, () => {
+	let startANewQuoteButtonDisplayStatus = action.isVisibleWait(translationsPage.startANewQuoteButton,0,"Start a new Quote button in translations page");
+	chai.expect(startANewQuoteButtonDisplayStatus).to.be.false;
+});
