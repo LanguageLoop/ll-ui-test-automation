@@ -317,3 +317,37 @@ Feature: Campus Bookings Feature
   Examples:
    | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   | active block name |
    | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification | VITS LANGUAGELINK |
+
+  #LL-897 Scenario #1: User enters the valid address and select the address from the suggestions dropdown
+ @LL-897 @UserValidAddressSuggestionDropdown
+ Scenario Outline: User enters the valid address and select the address from the suggestions dropdown
+  When I login with "<username cbo>" and "<password cbo>"
+  And I click Interpreting header link
+  And I click on new job request button
+  And I select campus pin "<campusPin>" from Campus PIN dropdown
+  And I enter location "<service address>"
+  Then the selected address "<service address>" is displayed under the Service Address field
+
+  Examples:
+   | username cbo   | password cbo | campusPin               | service address                                   |
+   | zenq@cbo11.com | Test1        | 29449 - Contoso Pty LTD | Lysterfield Dr, Roxburgh Park VIC 3064, Australia |
+
+  #LL-897 Scenario #2: User enters the address which is not available in the Google suggestions dropdown
+ @LL-897 @UserEntersAddressNotAvailable
+ Scenario Outline: User enters the valid address and select the address from the suggestions dropdown
+  When I login with "<username cbo>" and "<password cbo>"
+  And I click Interpreting header link
+  And I click on new job request button
+  And I select campus pin "<campusPin>" from Campus PIN dropdown
+  And I enter location "<service address>"
+  And I select language "<language>"
+  And I enter long notice schedule date
+  And they have selected a Time "<time>" from the time picker
+  And I select assignment type "<assignment type>"
+  And I enter "<email>" email address
+  And I click next button
+  Then the error message Please click the map or select the address from suggestion list address is displayed
+
+  Examples:
+   | username cbo   | password cbo | campusPin               | service address  | time  | assignment type      | email        | language |
+   | zenq@cbo11.com | Test1        | 29449 - Contoso Pty LTD | jbcsjkwjscjknscj | 10:00 | CEO01-Interview-Home | hh@bb.com.au | ARABIC   |

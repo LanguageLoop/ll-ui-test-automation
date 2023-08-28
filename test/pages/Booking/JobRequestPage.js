@@ -475,5 +475,13 @@ module.exports={
 
     get genderODTIPreferenceLabel() {
         return $('//label[text()="Gender (On-demand TI)"]');
+    },
+
+    get addressTextUnderServiceAddressField() {
+        return $('//textarea[contains(@id,"addressvalue")]');
+    },
+
+    get clickMapOrSelectAddressErrorMessage() {
+        return $('//span[text()="Please click the map or select the address from suggestion list address."]');
     }
 }

@@ -870,3 +870,14 @@ Then(/^the contractor "(.*)" on hovering over will give the message as ‘Insuff
   let contractorIneligibleHtmlText = action.getElementHTML(jobRequestPage.distanceNotEligibleRejectionReasonText,"Ineligible contractor hover text in Job request page");
   chai.expect(contractorIneligibleHtmlText).to.includes("Insufficient Preferences");
 })
+
+Then(/^the selected address "(.*)" is displayed under the Service Address field$/, function (expectedAddress) {
+  action.isVisibleWait(jobRequestPage.addressTextUnderServiceAddressField,10000,"Address Under Service Address Field in Job request page");
+  let addressTextUnderServiceAddressFieldActual = action.getElementText(jobRequestPage.addressTextUnderServiceAddressField,"Address Under Service Address Field in Job request page");
+  chai.expect(addressTextUnderServiceAddressFieldActual).to.equal(expectedAddress)
+});
+
+Then(/^the error message Please click the map or select the address from suggestion list address is displayed$/, function () {
+  let clickMapOrSelectAddressErrorMessageDisplayStatus = action.isVisibleWait(jobRequestPage.clickMapOrSelectAddressErrorMessage, 10000, "Please click the map or select the address from suggestion list address in Job Request Page");
+  chai.expect(clickMapOrSelectAddressErrorMessageDisplayStatus).to.be.true;
+});
