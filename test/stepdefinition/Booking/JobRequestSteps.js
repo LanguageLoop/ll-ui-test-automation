@@ -872,9 +872,14 @@ Then(/^the contractor "(.*)" on hovering over will give the message as ‘Insuff
 })
 
 Then(/^the selected address "(.*)" is displayed under the Service Address field$/, function (expectedAddress) {
-  action.isVisibleWait(jobRequestPage.addressTextUnderServiceAddressField,10000,"Address Under Service Address Field in Job request page");
-  let addressTextUnderServiceAddressFieldActual = action.getElementText(jobRequestPage.addressTextUnderServiceAddressField,"Address Under Service Address Field in Job request page");
-  chai.expect(addressTextUnderServiceAddressFieldActual).to.equal(expectedAddress)
+  action.isVisibleWait(jobRequestPage.addressTextUnderServiceAddressField, 10000, "Address Under Service Address Field in Job request page");
+  browser.waitUntil(() => action.getElementText(jobRequestPage.addressTextUnderServiceAddressField, "Address Under Service Address Field in Job request page").includes(expectedAddress) === true, {
+    timeout: 10000,
+    timeoutMsg: 'address is not displayed after 10sec',
+    interval: 500
+  })
+  let addressTextUnderServiceAddressFieldActual = action.getElementText(jobRequestPage.addressTextUnderServiceAddressField, "Address Under Service Address Field in Job request page");
+  chai.expect(addressTextUnderServiceAddressFieldActual).to.equal(expectedAddress);
 });
 
 Then(/^the error message Please click the map or select the address from suggestion list address is displayed$/, function () {
