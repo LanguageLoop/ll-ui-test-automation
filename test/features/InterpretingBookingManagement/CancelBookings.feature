@@ -103,3 +103,22 @@ Feature: Cancel existing booking
    | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
    | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
    | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+
+#LL-899 Scenario #1: Verifying the new cancellation reasons exists in the dropdown
+ @LL-899 @VerifyNewCancellationReasons
+ Scenario Outline: Verifying the new cancellation reasons exists in the dropdown
+  When I login with "<username>" and "<password>"
+  And I create a new job request with minimal fields "<job notice length>"
+  And I click Interpreting header link
+  And I search for created job request
+  And I click on job id from interpreting job search results
+  And I switch to the job allocation window
+  And I refresh the page
+  And I set the contractor job status from "Auto Notification" to "<contractor job status>"
+  And I click on Cancel button
+  And I confirm yes to cancellation fee
+  Then the new cancellation reasons "<cancellation reason new options>" should be displayed
+
+  Examples:
+   | job notice length | username          | password  | cancellation reason new options                               | contractor job status |
+   | short notice      | LLAdmin@looped.in | Octopus@6 | NAATI credential issue,Language/dialect issue,Technical issue | Allocated             |
