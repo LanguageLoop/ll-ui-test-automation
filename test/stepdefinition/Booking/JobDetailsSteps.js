@@ -287,3 +287,13 @@ Then(/^they will see the custom fields section under job info$/, function () {
     let customFieldsSectionDisplayStatus = action.isVisibleWait(jobDetailsPage.customFieldsSection, 10000, "Custom Fields section in Job Details page");
     chai.expect(customFieldsSectionDisplayStatus).to.be.true;
 })
+
+Then(/^the new cancellation reasons "(.*)" should be displayed$/, function (cancellationReasons) {
+    let cancellationReasonsList = cancellationReasons.split(",");
+    action.isVisibleWait(jobDetailsPage.cancelReasonDropdown, 10000, "Cancel reason dropdown in Job Details page");
+    for (let optionIndex = 0; optionIndex < cancellationReasonsList.length; optionIndex++) {
+        let cancelReasonDropdownOptionElement = $(jobDetailsPage.cancelReasonDropdownOptionDynamicLocator.replace("<dynamic>", cancellationReasonsList[optionIndex]));
+        let cancelReasonDropdownOptionExistStatus = action.isExistingWait(cancelReasonDropdownOptionElement, 10000, "Cancellation Reason option-" + cancellationReasonsList[optionIndex] + " in Job Details page");
+        chai.expect(cancelReasonDropdownOptionExistStatus).to.be.true;
+    }
+})
