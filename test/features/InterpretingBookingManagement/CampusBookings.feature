@@ -351,3 +351,16 @@ Feature: Campus Bookings Feature
   Examples:
    | username cbo   | password cbo | campusPin               | service address  | time  | assignment type      | email        | language |
    | zenq@cbo11.com | Test1        | 29449 - Contoso Pty LTD | jbcsjkwjscjknscj | 10:00 | CEO01-Interview-Home | hh@bb.com.au | ARABIC   |
+
+  #LL-897 Scenario #3: Verify that when a Campus is selected the address of the campus displays below the Service Address field also
+ @LL-897 @CampusSelectedAddressDisplayed
+ Scenario Outline: Verify that when a Campus is selected the address of the campus displays below the Service Address field also
+  When I login with "<username cbo>" and "<password cbo>"
+  And I click Interpreting header link
+  And I click on new job request button
+  And I select campus pin "<campusPin>" from Campus PIN dropdown
+  Then the selected address "<service address>" is displayed under the Service Address field
+
+  Examples:
+   | username cbo   | password cbo | campusPin               | service address                                   |
+   | zenq@cbo11.com | Test1        | 29449 - Contoso Pty LTD | Lysterfield Dr, Roxburgh Park VIC 3064, Australia |

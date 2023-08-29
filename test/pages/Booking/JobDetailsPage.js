@@ -208,4 +208,8 @@ module.exports = {
     get customFieldsSection() {
         return $('//span[text()="Custom Fields"]/parent::div');
     },
+
+    get cancelReasonDropdownOptionDynamicLocator() {
+        return '//*[text()="Reason"]/../..//select/option[text()="<dynamic>"]';
+    },
 }
