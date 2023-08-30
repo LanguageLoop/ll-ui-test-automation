@@ -170,3 +170,16 @@ Feature: ODTI Jobs Contractor features
     Examples:
       | username contractor      | password contractor | start date | end date   | page number | next page number  | previous page number |
       | luciacheung192@gmail.com | Test1               | 01-07-2022 | 31-01-2023 | 2           | 3                 | 2                    |
+
+    #LL-853 Scenario 2 - Arrow button is not displayed for Contractor user
+  @LL-853 @ContractorArrowButtonNotDisplayed
+  Scenario Outline: Contractor user selects the Start Date and End date filters that has more than 500 records
+    When I login with "<username contractor>" and "<password contractor>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    Then the double arrow button or Actual Arrow button is not displayed
+
+    Examples:
+      | username contractor      | password contractor | start date | end date   |
+      | ljan25@hotmail.com       | Test1               | 01-01-2022 | 01-07-2023 |
