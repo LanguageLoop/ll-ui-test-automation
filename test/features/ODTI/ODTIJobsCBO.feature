@@ -378,3 +378,17 @@ Feature: ODTI Jobs CBO features
     Examples:
       | username          | password  | username cbo   | password cbo | column headers         |
       | LLAdmin@looped.in | Octopus@6 | zenq@cbo11.com | Test1        | CLIENT CHARGE SUBTOTAL |
+
+    #LL-853 Scenario 3 - Arrow button is not displayed for CBO user
+  @LL-853 @CBOArrowButtonNotDisplayed
+  Scenario Outline: CBO user records exported to excel when the records are more than 500 for the selected filters
+    When I login with "<username cbo>" and "<password cbo>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And I select campus "<campus id>" from the Campus dropdown
+    And I enter Start Date "<start date>" and End Date "<end date>"
+    Then the double arrow button or Actual Arrow button is not displayed
+
+    Examples:
+      | username cbo   | password cbo | campus id                                                               | start date | end date   |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 01-03-2022 | 25-07-2023 |

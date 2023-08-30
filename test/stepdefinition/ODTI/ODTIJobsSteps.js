@@ -745,3 +745,9 @@ Then(/^the results display correct jobs which has the duration greater than or e
     let actualDurationGreaterThanOrEqualToExpectedDuration = Number(actualDuration.split(":")[0]) >= Number(expectedDuration);
     chai.expect(actualDurationGreaterThanOrEqualToExpectedDuration).to.be.true;
 })
+
+Then(/^the double arrow button or Actual Arrow button is not displayed$/, function () {
+    action.waitUntilLoadingIconDisappears();
+    let actualCountArrowButtonDisplayStatus = action.isVisibleWait(ODTIJobsPage.actualCountArrowButton, 1000,"Actual count arrow button in ODTI Jobs page");
+    chai.expect(actualCountArrowButtonDisplayStatus).to.be.false;
+})
