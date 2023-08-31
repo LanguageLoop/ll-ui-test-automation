@@ -427,3 +427,39 @@ Then(/^the Customised ODTI Field is removed$/, function () {
     action.clickElement(customisedFieldRemoveLink,"Customized field remove link in Contract page");
     action.isNotVisibleWait(customisedFieldToggle, 10000,"Customized field toggle in Contract page");
 })
+
+When(/^in the popup I select Use Minimum Rate 2 option$/, function () {
+    action.isVisibleWait(contractManagementPage.useMinimumRate2Checkbox, 10000, "Use Minimum Rate 2 checkbox in Add Assignment type popup in Contract page");
+    action.clickElement(contractManagementPage.useMinimumRate2Checkbox, "Use Minimum Rate 2 checkbox in Add Assignment type popup in Contract page");
+})
+
+When(/^fill the mandatory fields "(.*)","(.*)","(.*)" in Add Assignment type popup$/, function (minPeriodHours, ongoingPeriodHours, serviceUsedByContract) {
+    action.isVisibleWait(contractManagementPage.minimumPeriodHoursAssignmentTypeTextBox, 10000, "Minimum period hours text box in Add Assignment type popup in Contract page");
+    action.enterValue(contractManagementPage.minimumPeriodHoursAssignmentTypeTextBox, minPeriodHours, "Minimum period hours text box  in Add Assignment type popup in Contract page");
+    action.isVisibleWait(contractManagementPage.ongoingMinimumPeriodHoursAssignmentTypeTextBox, 10000, "Ongoing Minimum period hours text box in Add Assignment type popup in Contract page");
+    action.enterValue(contractManagementPage.ongoingMinimumPeriodHoursAssignmentTypeTextBox, ongoingPeriodHours, "Ongoing Minimum period hours text box  in Add Assignment type popup in Contract page");
+    let serviceUsedByContractOptionCheckbox = $(contractManagementPage.serviceUsedByContractOptionCheckboxDynamicLocator.replace("<dynamic>", serviceUsedByContract));
+    action.isVisibleWait(serviceUsedByContractOptionCheckbox, 10000, "Service UsedBy Contract Option " + serviceUsedByContract + " Checkbox in Add Assignment type popup in Contract page");
+    action.clickElement(serviceUsedByContractOptionCheckbox, "Service UsedBy Contract Option " + serviceUsedByContract + " Checkbox in Add Assignment type popup in Contract page");
+})
+
+Then(/^the assignment type should be Saved without any error$/, function () {
+    let counter = 0;
+    while (action.isVisibleWait(contractManagementPage.assignmentTypesPaginationNextLink, 3000, "Assignment types Pagination next link in Contract page") === true && counter < 10) {
+        action.clickElement(contractManagementPage.assignmentTypesPaginationNextLink, "Assignment types Pagination next link in Contract page");
+        action.isNotVisibleWait(contractManagementPage.assignmentTypesPaginationNextLink, 1000, "Assignment types Pagination next link in Contract page");
+    }
+    counter++
+    let assignmentTypesAddedInTableTextActual = action.getElementText(contractManagementPage.assignmentTypesAddedInTableText, "Assignment types added in table in Contract page");
+    chai.expect(assignmentTypesAddedInTableTextActual).to.includes(GlobalData.ASSIGNMENT_LABEL);
+})
+
+When(/^I disable the added assignment type in contract$/, function () {
+    let toggleForAddedAssignmentTypeInTable = $(contractManagementPage.toggleForAddedAssignmentTypeInTableDynamicLocator.replace("<dynamic>",GlobalData.ASSIGNMENT_LABEL));
+    action.isVisibleWait(toggleForAddedAssignmentTypeInTable, 10000, "Toggle for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
+    action.clickElement(toggleForAddedAssignmentTypeInTable, "Toggle for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
+    let disableLinkForAddedAssignmentTypeInTable = $(contractManagementPage.disableLinkForAddedAssignmentTypeInTableDynamicLocator.replace("<dynamic>",GlobalData.ASSIGNMENT_LABEL));
+    action.isVisibleWait(disableLinkForAddedAssignmentTypeInTable, 10000, "Disable link for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
+    action.clickElement(disableLinkForAddedAssignmentTypeInTable, "Disable link for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
+    action.isNotVisibleWait(disableLinkForAddedAssignmentTypeInTable, 10000, "Disable link for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
+})
