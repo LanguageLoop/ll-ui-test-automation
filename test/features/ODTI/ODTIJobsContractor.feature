@@ -171,7 +171,7 @@ Feature: ODTI Jobs Contractor features
       | username contractor      | password contractor | start date | end date   | page number | next page number  | previous page number |
       | luciacheung192@gmail.com | Test1               | 01-07-2022 | 31-01-2023 | 2           | 3                 | 2                    |
 
-    #LL-853 Scenario 2 - Arrow button is not displayed for Contractor user
+    #LL-853 Scenario 2: Arrow button is not displayed for Contractor user
   @LL-853 @ContractorArrowButtonNotDisplayed
   Scenario Outline: Contractor user selects the Start Date and End date filters that has more than 500 records
     When I login with "<username contractor>" and "<password contractor>"
