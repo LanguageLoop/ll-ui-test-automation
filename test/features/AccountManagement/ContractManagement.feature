@@ -267,3 +267,22 @@ Feature: Contract Management features
   Examples:
    | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
    | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
+
+  #LL-914 Scenario 1 - Contract that has ODTI Service eligible and has Contract Rates - All the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
+ @LL-914 @ContractODTIMinRateDefinedUseMinRate2
+ Scenario Outline: Contract that has ODTI Service eligible and has Contract Rates - All the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And I click add assignment type
+  And I enter assignment type label "<assignment label>"
+  And in the popup I select Use Minimum Rate 2 option
+  And fill the mandatory fields "<Minimum Period hours>","<Ongoing Minimum Period hours>","<Service Used By Contract>" in Add Assignment type popup
+  And I click add assignment button
+  Then the assignment type should be Saved without any error
+  And I disable the added assignment type in contract
+
+  Examples:
+   | username          | password  | contract title                                   | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Automation Assignment | 4                    | 1                            | On Site                  |

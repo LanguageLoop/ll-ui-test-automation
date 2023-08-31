@@ -379,7 +379,7 @@ Feature: ODTI Jobs CBO features
       | username          | password  | username cbo   | password cbo | column headers         |
       | LLAdmin@looped.in | Octopus@6 | zenq@cbo11.com | Test1        | CLIENT CHARGE SUBTOTAL |
 
-    #LL-853 Scenario 3 - Arrow button is not displayed for CBO user
+    #LL-853 Scenario 1: Arrow button is not displayed for CBO user
   @LL-853 @CBOArrowButtonNotDisplayed
   Scenario Outline: CBO user records exported to excel when the records are more than 500 for the selected filters
     When I login with "<username cbo>" and "<password cbo>"

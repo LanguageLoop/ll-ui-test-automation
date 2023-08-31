@@ -264,5 +264,37 @@ module.exports = {
 
     get customisedFieldRemoveLinkDynamicLocator() {
         return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]/following::a[text()="Remove"]'
+    },
+
+    get useMinimumRate2Checkbox() {
+        return $('//input[contains(@id,"UseMinimumRate2") and (@type="checkbox")]');
+    },
+
+    get minimumPeriodHoursAssignmentTypeTextBox() {
+        return $('//input[contains(@id,"AssignmentTypes_MinimumPeriod")]');
+    },
+
+    get ongoingMinimumPeriodHoursAssignmentTypeTextBox() {
+        return $('//input[contains(@id,"AssignmentTypes_OngoingMinimumPeriod")]');
+    },
+
+    get serviceUsedByContractOptionCheckboxDynamicLocator() {
+        return '//div[text()="<dynamic>"]/input[@type="checkbox"]';
+    },
+
+    get assignmentTypesPaginationNextLink() {
+        return $('//span[text()="Assignment Types"]/parent::div/parent::div/parent::div//nav/a[text()="next"]');
+    },
+
+    get assignmentTypesAddedInTableText() {
+        return $('//table[contains(@id,"ContractAssignTypeTable") and (not(contains(@class,"Empty")))]/tbody');
+    },
+
+    get toggleForAddedAssignmentTypeInTableDynamicLocator() {
+        return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//label[contains(@id,"lblToggle")]';
+    },
+
+    get disableLinkForAddedAssignmentTypeInTableDynamicLocator() {
+        return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//a[text()="Disable"]';
     }
 }
