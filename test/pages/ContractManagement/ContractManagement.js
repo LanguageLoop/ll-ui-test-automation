@@ -296,5 +296,9 @@ module.exports = {
 
     get disableLinkForAddedAssignmentTypeInTableDynamicLocator() {
         return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//a[text()="Disable"]';
+    },
+
+    get useMinRate2TickedProvideNonZeroRatesErrorText() {
+        return $('//span[text()="Use 2nd Minimum Rate is ticked on. Please provide a non-zero value for 2nd Minimum Rate and Period for these rate(s)"]');
     }
 }
