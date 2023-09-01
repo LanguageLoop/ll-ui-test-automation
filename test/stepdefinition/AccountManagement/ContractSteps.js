@@ -463,3 +463,8 @@ When(/^I disable the added assignment type in contract$/, function () {
     action.clickElement(disableLinkForAddedAssignmentTypeInTable, "Disable link for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
     action.isNotVisibleWait(disableLinkForAddedAssignmentTypeInTable, 10000, "Disable link for assignment type option-"+GlobalData.ASSIGNMENT_LABEL+" in Contract page");
 })
+
+Then(/^a error message appears that provides the list of contract rates that does not have Minimum rate values defined$/, function () {
+    let useMinRate2TickedProvideNonZeroRatesErrorTextDisplayStatus = action.isVisibleWait(contractManagementPage.useMinRate2TickedProvideNonZeroRatesErrorText, 10000, "Use 2nd Minimum Rate is ticked on. Please provide a non-zero value for 2nd Minimum Rate and Period for these rate(s) in Contract page");
+    chai.expect(useMinRate2TickedProvideNonZeroRatesErrorTextDisplayStatus).to.be.true;
+})
