@@ -287,6 +287,24 @@ Feature: Contract Management features
    | username          | password  | contract title                                   | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
    | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Automation Assignment | 4                    | 1                            | On Site                  |
 
+  #LL-914 Scenario 2 - Contract that has ODTI Service eligible and has Contract Rates - Only few of the available Contract Rates have Minimum Rate defined including ODTI Contract Rate - and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
+ @LL-914 @ContractODTIFewMinRateDefinedODTIUseMinRate2
+ Scenario Outline: Contract that has ODTI Service eligible and has Contract Rates - Only few of the available Contract Rates have Minimum Rate defined including ODTI Contract Rate - and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And I click add assignment type
+  And I enter assignment type label "<assignment label>"
+  And in the popup I select Use Minimum Rate 2 option
+  And fill the mandatory fields "<Minimum Period hours>","<Ongoing Minimum Period hours>","<Service Used By Contract>" in Add Assignment type popup
+  And I click add assignment button
+  Then a error message appears that provides the list of contract rates that does not have Minimum rate values defined
+
+  Examples:
+   | username          | password  | contract title                  | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | Octopus@6 | Queensland Government - Bill To | Automation Assignment | 4                    | 1                            | On Site                  |
+
   #LL-914 Scenario 3 - Contract that has ODTI Service eligible and has Contract Rates - Only few of the available Contract Rates have Minimum Rate defined (this excludes ODTI Contract Rate)- and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractODTIMinRateDefinedExcludeODTIUseMinRate2
  Scenario Outline: Contract that has ODTI Service eligible and has Contract Rates - Only few of the available Contract Rates have Minimum Rate defined (this excludes ODTI Contract Rate)- and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
@@ -323,3 +341,21 @@ Feature: Contract Management features
   Examples:
    | username          | password  | contract title             | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
    | LLAdmin@looped.in | Octopus@6 | Catholic Education Office1 | Automation Assignment | 4                    | 1                            | On Site                  |
+
+  #LL-914 Scenario 5 - Contract that is not eligible for ODTI Service - Only few of the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
+ @LL-914 @ContractNotODTIFewMinRateDefinedUseMinRate2
+ Scenario Outline: Contract that is not eligible for ODTI Service - Only few of the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for contract title "<contract title>"
+  And I click the contract link "<contract title>" from search results
+  And I click add assignment type
+  And I enter assignment type label "<assignment label>"
+  And in the popup I select Use Minimum Rate 2 option
+  And fill the mandatory fields "<Minimum Period hours>","<Ongoing Minimum Period hours>","<Service Used By Contract>" in Add Assignment type popup
+  And I click add assignment button
+  Then a error message appears that provides the list of contract rates that does not have Minimum rate values defined
+
+  Examples:
+   | username          | password  | contract title     | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | Octopus@6 | VicRoads - Bill To | Automation Assignment | 4                    | 1                            | On Site                  |
