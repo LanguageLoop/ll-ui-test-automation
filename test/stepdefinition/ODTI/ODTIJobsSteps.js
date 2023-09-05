@@ -751,3 +751,11 @@ Then(/^the double arrow button or Actual Arrow button is not displayed$/, functi
     let actualCountArrowButtonDisplayStatus = action.isVisibleWait(ODTIJobsPage.actualCountArrowButton, 1000,"Actual count arrow button in ODTI Jobs page");
     chai.expect(actualCountArrowButtonDisplayStatus).to.be.false;
 })
+
+When(/^user navigates to ODTI Dashboard$/, function () {
+    action.isVisibleWait(ODTIJobsPage.titleDropdown, 10000,"Title dropdown in ODTI Jobs page");
+    action.selectTextFromDropdown(ODTIJobsPage.titleDropdown, "ODTI Dashboard","Title dropdown in ODTI Jobs page");
+    let ODTIJobsOptionInTitleDropdown = $(ODTIJobsPage.titleDropdownOption.replace("<dynamic>", "ODTI Dashboard"));
+    let optionSelectedStatus = action.isSelectedWait(ODTIJobsOptionInTitleDropdown, 10000,"ODTI Dashboard dropdown in Title dropdown in ODTI Jobs page");
+    chai.expect(optionSelectedStatus).to.be.true;
+})

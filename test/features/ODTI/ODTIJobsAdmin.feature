@@ -403,3 +403,24 @@ Feature: ODTI Jobs Admin features
     Examples:
       | username          | password  | filter option 1              | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter comparator 2 | filter value 2 | filter comparator 3 | filter value 3 | filter comparator 4 | filter value 4 | filter comparator 5 | filter value 5 | expected value 5 | filter comparator 6 | filter value 6 | expected value 6 |
       | LLAdmin@looped.in | Octopus@6 | InterpreterDuration (In Sec) | 2                     | <                   | 2                         | 59             | 1                    | <=                  | 59             | Is                  | 59             | Is not              | 59             | >                   | 60             | 0                | >=                  | 60             | 1                |
+
+    #LL-881 Scenario 1: Call count in Summary value should match the actual jobs under ODTI Jobs page
+  @LL-881 @CallCountSummaryMatchJobsInODTIJobs
+  Scenario Outline: Call count in Summary value should match the actual jobs under ODTI Jobs page
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I click Advanced search link in Admin
+    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    And I get the records count in records counter in Admin
+    And user navigates to ODTI Dashboard
+    And selects the same Start date "<start date dashboard>" and End date "<end date dashboard>" as in ODTI Jobs page
+    And click on Apply button in ODTI dashboard page
+    Then the value displayed for Calls under Summary section should match with the ODTI Jobs page
+
+    Examples:
+      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | start date dashboard | end date dashboard |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         |
