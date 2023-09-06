@@ -759,3 +759,12 @@ When(/^user navigates to ODTI Dashboard$/, function () {
     let optionSelectedStatus = action.isSelectedWait(ODTIJobsOptionInTitleDropdown, 10000,"ODTI Dashboard dropdown in Title dropdown in ODTI Jobs page");
     chai.expect(optionSelectedStatus).to.be.true;
 })
+
+When(/^user is on ODTI > Language Serviceability$/, function () {
+    action.isVisibleWait(ODTIJobsPage.titleDropdown, 10000,"Title dropdown in ODTI Jobs page");
+    action.selectTextFromDropdown(ODTIJobsPage.titleDropdown, "Language Serviceability","Title dropdown in ODTI Jobs page");
+    let ODTIJobsOptionInTitleDropdown = $(ODTIJobsPage.titleDropdownOption.replace("<dynamic>", "Language Serviceability"));
+    let optionSelectedStatus = action.isSelectedWait(ODTIJobsOptionInTitleDropdown, 10000,"Language Serviceability dropdown in Title dropdown in ODTI Jobs page");
+    chai.expect(optionSelectedStatus).to.be.true;
+    action.waitUntilLoadingIconDisappears();
+})

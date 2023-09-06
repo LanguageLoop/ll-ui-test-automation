@@ -424,3 +424,20 @@ Feature: ODTI Jobs Admin features
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | start date dashboard | end date dashboard |
       | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         |
+
+    #LL-901 Scenario 1: Verifying the explanation text for the Total/Connected count
+  @LL-901 @VerifyExplanationTextTotalConnectedCount
+  Scenario Outline: Verifying the explanation text for the Total/Connected count
+    When I login with "<username>" and "<password>"
+    And I click ODTI header link
+    And user is on ODTI > Language Serviceability
+    And user hover over TOTAL CALLS field in Language Serviceability
+    Then Total calls received for all languages, including unanswered calls text is displayed
+    And user hover over TOTAL CALLS CONNECTED field in Language Serviceability
+    And Total calls where atleast one interpreter was connected to the call, even for less than 60seconds text is displayed
+    And user hover over SERVICEABILITY % field in Language Serviceability
+    And Total calls connected by Total calls text is displayed
+
+    Examples:
+      | username          | password  |
+      | LLAdmin@looped.in | Octopus@6 |
