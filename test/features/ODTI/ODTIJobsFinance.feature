@@ -279,7 +279,7 @@ Feature: ODTI Jobs Finance features
     And I view the ODTI > ODTI Jobs page
     And they will see a table
     And sorts the Call Duration column to get jobs greater than 60 seconds
-    And they click the ODTI Service Charge ID hyperlink
+    And they click on any of the ODTI Service Charge ID hyperlink
     And they are navigated to the Job Details page in a new tab
     And the job is greater than 60 seconds
     Then the Client Charge excl GST should display the appropriate amount excluding the NES Connection fee

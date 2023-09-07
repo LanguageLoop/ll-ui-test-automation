@@ -179,5 +179,9 @@ module.exports = {
 
     get odtiTableResultsHyperlinkDataElementLocator() {
         return '//tbody/child::tr[1]/child::td[<dynamicColumnIndex>]//child::a'
+    },
+
+    get odtiTableResultsHyperlinkDataDynamicRowElementLocator() {
+        return '//tbody/child::tr[<dynamicRowIndex>]/child::td[<dynamicColumnIndex>]//child::a'
     }
 }

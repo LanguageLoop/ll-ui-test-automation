@@ -768,3 +768,10 @@ When(/^user is on ODTI > Language Serviceability$/, function () {
     chai.expect(optionSelectedStatus).to.be.true;
     action.waitUntilLoadingIconDisappears();
 })
+
+When(/^they click on any of the ODTI Service Charge ID hyperlink$/, function () {
+    action.waitUntilLoadingIconDisappears();
+    let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataDynamicRowElementLocator.replace("<dynamicRowIndex>", "3").replace("<dynamicColumnIndex>", "1"));
+    action.isVisibleWait(serviceChargeID1TextElement, 10000,"Service charge ID in ODTI Jobs page");
+    action.clickElement(serviceChargeID1TextElement,"Service charge ID in ODTI Jobs page");
+})
