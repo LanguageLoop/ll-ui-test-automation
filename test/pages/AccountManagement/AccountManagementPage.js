@@ -226,5 +226,18 @@ module.exports ={
 
     get contractResultLocator() {
         return '//a[contains(@id,"ContractTable") and text()="<dynamic>"]';
+    },
+
+    get campusSearchResultDynamicLinkLocator()
+    {
+        return '//table[contains(@id,"CampusTable")]//td//a[contains(text(),"<dynamic>")]';
+    },
+
+    get covidBoosterVaccinationBlock() {
+        return $('//div[contains(@id,"VaccinationList")]//span[text()="Covid Booster"][1]');
+    },
+
+    get covidBoosterVaccinationBlockDeleteIcon() {
+        return $('//span[text()="Covid Booster"][1]/parent::div/parent::div/parent::div[@class="PreferenceInfoBlock Card"]//span[@class="fa fa-fw fa-trash-o"]');
     }
 }

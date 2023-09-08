@@ -108,6 +108,7 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
         './test/features/InterpretingBookingManagement/InterpreterStatus.feature',
+        './test/features/AccountManagement/ProdCampusManagement.feature',
     ],
     //
     // ============

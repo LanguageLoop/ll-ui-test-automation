@@ -42,8 +42,10 @@
     "webdriverio": "^6.0.13"
   },
   "dependencies": {
+    "jsonpath": "^1.1.1",
     "log4js": "^6.2.0",
     "npm-pack-all": "^1.11.1",
+    "simple-excel-to-json": "^2.3.0",
     "source-map-support": "^0.5.16"
   }
 }
