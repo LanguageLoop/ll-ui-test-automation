@@ -251,3 +251,32 @@ When(/^I click the contract link "(.*)" from search results$/,function(contractL
     action.isVisibleWait(contractResultLinkElement,10000,"Contract search result link in Account Management page");
     action.clickElement(contractResultLinkElement,"Contract search result link in Account Management page");
 })
+
+When(/^I search and select campus and delete covid booster if displayed$/, function () {
+    // This step is created to meet the requirements of a specific scenario
+    // Import the excel to json converter package to convert excel data of campuses to json array
+    let parser = new (require('simple-excel-to-json').XlsParser)();
+    let doc = parser.parseXls2Json("./test/data/CovidBoosterCampusesData.xlsx");
+    // Import the json path package to query and get the campus pins from Json array
+    let jp = require('jsonpath');
+    console.log("Excel doc to JSON converted data: " + JSON.stringify(doc[0]));
+    // Iterate over all the listed campus pins and delete the covid booster if it is displayed
+    for (let i = 0; i < doc[0].length; i++) {
+        let campusPin = jp.query(doc[0], "$[" + i + "].CampusPin");
+        campusPin = campusPin.toString();
+        console.log("Iteration-" + i + "CampusPin: " + campusPin);
+        action.isVisibleWait(homePage.accountManagementLink, 20000, "Account Management link in Home page");
+        action.clickElement(homePage.accountManagementLink, "Account Management link in Home page");
+        action.enterValueAndPressReturn(accountManagementPage.searchCampusInput, campusPin, "Search Campus text box in Account Management page");
+        let campusSearchResultDynamicLink = $(accountManagementPage.campusSearchResultDynamicLinkLocator.replace("<dynamic>", campusPin));
+        action.isVisibleWait(campusSearchResultDynamicLink, 20000, "Campus search result-" + campusPin + " link in Account Management page");
+        action.clickElement(campusSearchResultDynamicLink, "Campus search result-" + campusPin + " link in Account Management page");
+        action.waitUntilLoadingIconDisappears();
+        if (action.isVisibleWait(accountManagementPage.covidBoosterVaccinationBlock, 5000, "Covid vaccination booster block in Account Management campus page")) {
+            action.isVisibleWait(accountManagementPage.covidBoosterVaccinationBlockDeleteIcon, 20000, "Delete icon on Covid vaccination booster block in Account Management campus page");
+            action.clickElement(accountManagementPage.covidBoosterVaccinationBlockDeleteIcon, "Delete icon on Covid vaccination booster block in Account Management campus page");
+            action.waitUntilLoadingIconDisappears();
+            action.isNotVisibleWait(accountManagementPage.covidBoosterVaccinationBlockDeleteIcon, 3000, "Delete icon on Covid vaccination booster block in Account Management campus page");
+        }
+    }
+})
