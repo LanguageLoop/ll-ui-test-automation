@@ -75,5 +75,5 @@ Given(/^user is on Admin Tools$/, function () {
 Given(/^the looped in prod login page is opened$/,  function(){
     action.reloadSession()
     //replace the uat url with prod url as per need - https://loopedin.languageloop.com.au/
-    action.launchURL("https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx");
+    action.launchURL("https://loopedin.languageloop.com.au/LoopedIn_th/Login.aspx");
 })
