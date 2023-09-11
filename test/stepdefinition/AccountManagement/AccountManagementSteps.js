@@ -272,7 +272,7 @@ When(/^I search and select campus and delete covid booster if displayed$/, funct
         action.isVisibleWait(campusSearchResultDynamicLink, 20000, "Campus search result-" + campusPin + " link in Account Management page");
         action.clickElement(campusSearchResultDynamicLink, "Campus search result-" + campusPin + " link in Account Management page");
         action.waitUntilLoadingIconDisappears();
-        if (action.isVisibleWait(accountManagementPage.covidBoosterVaccinationBlock, 5000, "Covid vaccination booster block in Account Management campus page")) {
+        if (action.isVisibleWait(accountManagementPage.covidBoosterVaccinationBlock, 2000, "Covid vaccination booster block in Account Management campus page")) {
             action.isVisibleWait(accountManagementPage.covidBoosterVaccinationBlockDeleteIcon, 20000, "Delete icon on Covid vaccination booster block in Account Management campus page");
             action.clickElement(accountManagementPage.covidBoosterVaccinationBlockDeleteIcon, "Delete icon on Covid vaccination booster block in Account Management campus page");
             action.waitUntilLoadingIconDisappears();
