@@ -574,4 +574,12 @@ module.exports ={
     get campusPreferenceDropdownOptionDynamicLocator() {
         return '//label[text()="Preference"]/parent::div/span/select/option[text()="Female"]';
     },
+
+    get chargeGstCheckbox() {
+        return $('//input[contains(@id,"chkIsRegional")]');
+    },
+
+    get saveButtonOnCampusPopup() {
+        return $('//input[contains(@id,"CampusForm_block_wtActions_wtbtnSave")]');
+    }
 }
