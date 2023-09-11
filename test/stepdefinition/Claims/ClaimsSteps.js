@@ -380,3 +380,9 @@ Then(/^I verify the job status is "(.*)"$/, function (jobstatus) {
     action.elementExists($(expectedJobIdResultLoc), "Expected JobId ResultLoc on claims page")
     chai.expect(claimsPage.jobStatusColumn.getText() == jobstatus).to.be.true
 })
+
+Then(/^the GST field under Campus side has value with 0$/, function () {
+    action.isVisibleWait(claimsPage.gstTextBoxUnderCampus, 60000, "GST text box under campus in Claims page");
+    let gstTextBoxUnderCampusActualValue = action.getElementValue(claimsPage.gstTextBoxUnderCampus, "GST text box under campus in Claims page");
+    chai.expect(Number(gstTextBoxUnderCampusActualValue.replace("$ ", ""))).to.equal(0.00);
+})

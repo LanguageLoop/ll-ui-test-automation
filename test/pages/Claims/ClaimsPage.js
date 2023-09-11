@@ -136,4 +136,8 @@ module.exports ={
     get jobResultsCheckbox(){
         return $('//*[@data-columnname="Selected"]/input')
     },
+
+    get gstTextBoxUnderCampus() {
+        return $('(//label[text()="GST"]/following-sibling::input)[1]');
+    }
 }

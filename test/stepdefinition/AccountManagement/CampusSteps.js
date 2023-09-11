@@ -1133,3 +1133,11 @@ When(/^the Admin enters Customised ODTI Field Max length "(.*)" and Audio-label 
     action.enterValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,maxLength,"Max length text box on manage customized field in campus page");
     action.enterValue(campusDetailsPage.audioLabelTextBoxOnManageCustomizedField,audioLabel,"Audio label text box on manage customized field in campus page");
 })
+
+When(/^a campus used to create job has ‘Charge GST’ disabled$/, function () {
+    action.isVisibleWait(campusDetailsPage.chargeGstCheckbox, 10000, "Charge GST checkbox on Campus popup in campus page");
+    if (action.isSelectedWait(campusDetailsPage.chargeGstCheckbox, 1000, "Charge GST checkbox on Campus popup in campus page") === true) {
+        action.clickElement(campusDetailsPage.chargeGstCheckbox, "Charge GST checkbox on Campus popup in campus page");
+    }
+    action.clickElement(campusDetailsPage.saveButtonOnCampusPopup, "Save button on Campus popup in campus page");
+})
