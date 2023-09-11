@@ -324,3 +324,7 @@ Then(/^a ContractorID filter in row "(.*)" should be pre-filled with the given C
   let contractorIDValuePreFilled = action.getElementValue(contractorIDValuePreFilledElement,"Contractor ID in Interpreting steps");
   chai.expect(contractorIDValuePreFilled).to.equal(contractorID);
 })
+
+When(/^open the above created Job Request in claims page$/, function () {
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClaimDetails.aspx?JobId=" + GlobalData.CURRENT_JOB_ID.toString());
+})
