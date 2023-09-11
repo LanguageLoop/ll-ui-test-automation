@@ -12,5 +12,4 @@ Feature: Prod Campus Management features
 
     Examples:
       | username                        | password  |
-      | LLAdmin@looped.in               | Octopus@6 |
-#     | accountmanager@languageloop.com | Prod1     |
+      | accountmanager@languageloop.com | Prod1     |
