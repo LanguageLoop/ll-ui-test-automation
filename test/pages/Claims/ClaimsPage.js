@@ -139,5 +139,9 @@ module.exports ={
 
     get gstTextBoxUnderCampus() {
         return $('(//label[text()="GST"]/following-sibling::input)[1]');
+    },
+
+    get jobFeeTextBoxUnderCampus() {
+        return $('(//label[text()="Job Fee"]/following-sibling::input)[1]');
     }
 }
