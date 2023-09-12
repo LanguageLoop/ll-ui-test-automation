@@ -382,3 +382,21 @@ Feature: Campus Bookings Feature
   Examples:
    | username          | password  | campus id | job notice length |
    | LLAdmin@looped.in | Octopus@6 | 33124     | short notice      |
+
+  #LL-912 Scenario 2: GST value should get added when ‘Charge GST’ is enabled for Campus
+ @LL-912 @GSTValueAddedChargeGSTDisabledCampus
+ Scenario Outline: GST value should get added when ‘Charge GST’ is enabled for Campus
+  When I login with "<username>" and "<password>"
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And I click manage campus click
+  And a campus used to create job has ‘Charge GST’ enabled
+  And I create a new job request with minimal fields "<job notice length>"
+  And I click Claims header link
+  And open the above created Job Request in claims page
+  Then the GST field under Campus side should be 10% value of Job Fee
+
+  Examples:
+   | username          | password  | campus id | job notice length |
+   | LLAdmin@looped.in | Octopus@6 | 33124     | short notice      |

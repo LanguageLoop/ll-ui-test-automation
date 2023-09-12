@@ -386,3 +386,11 @@ Then(/^the GST field under Campus side has value with 0$/, function () {
     let gstTextBoxUnderCampusActualValue = action.getElementValue(claimsPage.gstTextBoxUnderCampus, "GST text box under campus in Claims page");
     chai.expect(Number(gstTextBoxUnderCampusActualValue.replace("$ ", ""))).to.equal(0.00);
 })
+
+Then(/^the GST field under Campus side should be 10% value of Job Fee$/, function () {
+    action.isVisibleWait(claimsPage.gstTextBoxUnderCampus, 60000, "GST text box under campus in Claims page");
+    let gstTextBoxUnderCampusActualValue = action.getElementValue(claimsPage.gstTextBoxUnderCampus, "GST text box under campus in Claims page");
+    let jobFeeTextBoxUnderCampusActualValue = action.getElementValue(claimsPage.jobFeeTextBoxUnderCampus, "Job Fee text box under campus in Claims page");
+    let tenPercentOfJobFee = jobFeeTextBoxUnderCampusActualValue.replace("$ ", "").replace(",", "") * 0.1;
+    chai.expect(Number(gstTextBoxUnderCampusActualValue.replace("$ ", ""))).to.equal(Number(tenPercentOfJobFee.toFixed(2)));
+})

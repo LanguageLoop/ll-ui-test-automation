@@ -1141,3 +1141,11 @@ When(/^a campus used to create job has ‘Charge GST’ disabled$/, function () 
     }
     action.clickElement(campusDetailsPage.saveButtonOnCampusPopup, "Save button on Campus popup in campus page");
 })
+
+When(/^a campus used to create job has ‘Charge GST’ enabled$/, function () {
+    action.isVisibleWait(campusDetailsPage.chargeGstCheckbox, 10000, "Charge GST checkbox on Campus popup in campus page");
+    if (action.isSelectedWait(campusDetailsPage.chargeGstCheckbox, 1000, "Charge GST checkbox on Campus popup in campus page") === false) {
+        action.clickElement(campusDetailsPage.chargeGstCheckbox, "Charge GST checkbox on Campus popup in campus page");
+    }
+    action.clickElement(campusDetailsPage.saveButtonOnCampusPopup, "Save button on Campus popup in campus page");
+})
