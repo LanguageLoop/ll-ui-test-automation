@@ -212,4 +212,8 @@ module.exports = {
     get cancelReasonDropdownOptionDynamicLocator() {
         return '//*[text()="Reason"]/../..//select/option[text()="<dynamic>"]';
     },
+
+    get whyWeAskTextOnReturnThisJobPopup() {
+        return $('//div[contains(text(),"we ask")]');
+    },
 }
