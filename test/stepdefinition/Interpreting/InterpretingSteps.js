@@ -328,3 +328,20 @@ Then(/^a ContractorID filter in row "(.*)" should be pre-filled with the given C
 When(/^open the above created Job Request in claims page$/, function () {
   action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/ClaimDetails.aspx?JobId=" + GlobalData.CURRENT_JOB_ID.toString());
 })
+
+When(/^they clicked on the Return Job button$/, function () {
+  action.isVisibleWait(interpretingPage.returnJobButton, 10000, "Return job button in Interpreting steps");
+  action.clickElement(interpretingPage.returnJobButton, "Return job button in Interpreting steps")
+})
+
+Then(/^a popup is shown, with title Job Return Reason$/, function () {
+  let returnThisJobPopupDisplayStatus = action.isVisibleWait(jobDetailsPage.returnThisJobPopup, 10000, "Return this job popup in Job Details page");
+  chai.expect(returnThisJobPopupDisplayStatus).to.be.true;
+  let returnReasonDropdownDisplayStatus = action.isVisibleWait(jobDetailsPage.returnReasonDropdown, 10000, "Return reason dropdown on Return this job popup in Job Details page");
+  chai.expect(returnReasonDropdownDisplayStatus).to.be.true;
+})
+
+Then(/^the popup contains some text on why we ask$/, function () {
+  let whyWeAskTextOnReturnThisJobPopupDisplayStatus = action.isVisibleWait(jobDetailsPage.whyWeAskTextOnReturnThisJobPopup, 10000, "Why we ask text on Return this job popup in Job Details page");
+  chai.expect(whyWeAskTextOnReturnThisJobPopupDisplayStatus).to.be.true;
+})
