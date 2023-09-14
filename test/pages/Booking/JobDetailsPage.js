@@ -216,4 +216,12 @@ module.exports = {
     get whyWeAskTextOnReturnThisJobPopup() {
         return $('//div[contains(text(),"we ask")]');
     },
+
+    get returnReasonDropdownOptionDynamicLocator() {
+        return '//select[contains(@id,"JobReturnDialog")]/option[text()="<dynamic>"]';
+    },
+
+    get returnJobPopupCancelButton() {
+        return $('//input[contains(@id,"JobReturnDialog") and @value="Cancel"]')
+    },
 }
