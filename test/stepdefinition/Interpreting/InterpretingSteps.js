@@ -345,3 +345,26 @@ Then(/^the popup contains some text on why we ask$/, function () {
   let whyWeAskTextOnReturnThisJobPopupDisplayStatus = action.isVisibleWait(jobDetailsPage.whyWeAskTextOnReturnThisJobPopup, 10000, "Why we ask text on Return this job popup in Job Details page");
   chai.expect(whyWeAskTextOnReturnThisJobPopupDisplayStatus).to.be.true;
 })
+
+Then(/^the popup contains a dropdown with the options "(.*)"$/, function (options) {
+  let optionsList = options.split(",");
+  for (let i = 0; i < optionsList.length; i++) {
+    let returnReasonDropdownOption = $(jobDetailsPage.returnReasonDropdownOptionDynamicLocator.replace("<dynamic>", optionsList[i]));
+    let returnReasonDropdownOptionExistStatus = action.isExistingWait(returnReasonDropdownOption, 10000, "Return Reason dropdown option-" + optionsList[i] + " in Job Details page");
+    chai.expect(returnReasonDropdownOptionExistStatus).to.be.true;
+  }
+})
+
+Then(/^the popup has 2 buttons to Cancel and Confirm Return$/, function () {
+  let returnJobPopupConfirmButtonDisplayStatus = action.isVisibleWait(jobDetailsPage.returnJobPopupConfirmButton, 10000, "Return this job popup confirm button in Job Details page");
+  chai.expect(returnJobPopupConfirmButtonDisplayStatus).to.be.true;
+  let returnJobPopupCancelButtonDisplayStatus = action.isVisibleWait(jobDetailsPage.returnJobPopupCancelButton, 10000, "Return this job popup cancel button in Job Details page");
+  chai.expect(returnJobPopupCancelButtonDisplayStatus).to.be.true;
+})
+
+Then(/^they clicked the Confirm Return button$/, function () {
+  action.isVisibleWait(jobDetailsPage.returnThisJobPopup, 10000, "Return this job popup in Job Details page");
+  action.selectTextFromDropdown(jobDetailsPage.returnReasonDropdown, "Accepted in Error", "Return reason dropdown on Return this job popup in Job Details page");
+  action.clickElement(jobDetailsPage.returnJobPopupConfirmButton, "Confirm button on Return this job popup in Job Details page");
+  action.isNotVisibleWait(jobDetailsPage.returnJobPopupConfirmButton, 10000,"Confirm button on Return this job popup in Job Details page");
+})
