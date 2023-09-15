@@ -368,3 +368,19 @@ Then(/^they clicked the Confirm Return button$/, function () {
   action.clickElement(jobDetailsPage.returnJobPopupConfirmButton, "Confirm button on Return this job popup in Job Details page");
   action.isNotVisibleWait(jobDetailsPage.returnJobPopupConfirmButton, 10000,"Confirm button on Return this job popup in Job Details page");
 })
+
+Then(/^they clicked the Cancel button on return job popup$/, function () {
+  action.isVisibleWait(jobDetailsPage.returnJobPopupCancelButton, 10000, "Return this job popup cancel button in Job Details page");
+  action.clickElement(jobDetailsPage.returnJobPopupCancelButton, 10000, "Return this job popup cancel button in Job Details page");
+  action.isNotVisibleWait(jobDetailsPage.returnJobPopupCancelButton, 5000, "Return this job popup cancel button in Job Details page");
+})
+
+Then(/^the Job Return Reason popup is closed$/, function () {
+  let returnThisJobPopupDisplayStatus = action.isVisibleWait(jobDetailsPage.returnThisJobPopup, 3000, "Return this job popup in Job Details page");
+  chai.expect(returnThisJobPopupDisplayStatus).to.be.false;
+})
+
+Then(/^the job is not returned and no changes are saved$/, function () {
+  let returnJobButtonDisplayStatus = action.isVisibleWait(interpretingPage.returnJobButton, 10000, "Return job button in Interpreting steps");
+  chai.expect(returnJobButtonDisplayStatus).to.be.true;
+})

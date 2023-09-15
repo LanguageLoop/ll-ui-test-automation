@@ -443,3 +443,33 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option | return reason options                                                                                                                                                                  |
       | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        | Accepted in Error,Conflict of Interest,Pay Rates,Illness / Medical Appointment,Transport Issues,Personal Emergency,Accepted another job elsewhere,Accepted another job at LanguageLoop |
+
+    #LL-925 Scenario 2 : Canceled
+  @LL-925 @ContractorReturnJobCanceled
+  Scenario Outline: Return Job is Canceled
+    When I login with "<username>" and "<password>"
+    And I create a new job request with minimal fields "<job notice length>"
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    And I confirm the job status "<new status>"
+    And the looped in login page is opened
+    And I login with "<contractor username>" and "<contractor password>"
+    And I select "<allocated jobs option>" from the filter dropdown
+    And I search for selected job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And they clicked on the Return Job button
+    And a popup is shown, with title Job Return Reason
+    And they clicked the Cancel button on return job popup
+    Then the Job Return Reason popup is closed
+    And the job is not returned and no changes are saved
+    And I click return job button
+
+    Examples:
+      | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
+      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
