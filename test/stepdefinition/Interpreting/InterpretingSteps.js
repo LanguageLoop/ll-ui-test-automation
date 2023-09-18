@@ -384,3 +384,8 @@ Then(/^the job is not returned and no changes are saved$/, function () {
   let returnJobButtonDisplayStatus = action.isVisibleWait(interpretingPage.returnJobButton, 10000, "Return job button in Interpreting steps");
   chai.expect(returnJobButtonDisplayStatus).to.be.true;
 })
+
+Then(/^I verify the job is not listed in search results$/, function () {
+  let jobIdLinkFromSearchResultIsExisting = action.isExistingWait(interpretingPage.jobIdLinkFromSearchResult,1000, "Job ID " + GlobalData.CURRENT_JOB_ID + " link from search result in Interpreting steps");
+  chai.expect(jobIdLinkFromSearchResultIsExisting).to.be.false
+})

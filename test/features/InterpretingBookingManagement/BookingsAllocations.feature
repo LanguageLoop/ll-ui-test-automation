@@ -473,3 +473,33 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
       | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
+
+    #LL-925 Scenario 3: Confirmed Return before Job Handback Exclusion Zone
+  @LL-925 @ContractorConfirmedReturnBeforeHEZ
+  Scenario Outline: Confirmed Return before Job Handback Exclusion Zone
+    When I login with "<username>" and "<password>"
+    And I create a new job request with minimal fields "<job notice length>"
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+    And I confirm the job status "<new status>"
+    And the looped in login page is opened
+    And I login with "<contractor username>" and "<contractor password>"
+    And I select "<allocated jobs option>" from the filter dropdown
+    And I search for selected job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And they clicked on the Return Job button
+    And a popup is shown, with title Job Return Reason
+    And the popup has 2 buttons to Cancel and Confirm Return
+    And they clicked the Confirm Return button
+    Then the Job Return Reason popup is closed
+    And I verify the job is not listed in search results
+
+    Examples:
+      | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
+      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
