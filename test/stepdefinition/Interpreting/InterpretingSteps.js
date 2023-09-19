@@ -389,3 +389,8 @@ Then(/^I verify the job is not listed in search results$/, function () {
   let jobIdLinkFromSearchResultIsExisting = action.isExistingWait(interpretingPage.jobIdLinkFromSearchResult,1000, "Job ID " + GlobalData.CURRENT_JOB_ID + " link from search result in Interpreting steps");
   chai.expect(jobIdLinkFromSearchResultIsExisting).to.be.false
 })
+
+Then(/^a error message Please note you can’t return this job on the portal You will need to call us to return your job is displayed$/, function () {
+  let cantReturnJobCallUsErrorMessageTextIsDisplayed = action.isVisibleWait(interpretingPage.cantReturnJobCallUsErrorMessageText,10000, "Please note you can’t return this job on the portal. You will need to call us to return your job. error message in Interpreting steps");
+  chai.expect(cantReturnJobCallUsErrorMessageTextIsDisplayed).to.be.true
+})
