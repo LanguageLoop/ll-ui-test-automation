@@ -263,6 +263,10 @@ Feature: Contract Management features
   And I search for contract title "<contract title>"
   And I click the contract link "<contract title>" from search results
   And they remove added preference type option "<preference type option>" in Contract Details
+  And I click account management link
+  And I search for campus "<campus id>"
+  And I click the first campus link from search results
+  And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
    | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
