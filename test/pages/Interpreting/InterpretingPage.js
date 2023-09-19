@@ -117,4 +117,8 @@ module.exports={
         return '//select[@class="BorderlessShadowlessDropdown"]/option[text()="<dynamic>"]';
     },
 
+    get cantReturnJobCallUsErrorMessageText() {
+        return $('//span[text()="Please note you can’t return this job on the portal. You will need to call us to return your job."]');
+    },
+
 }
