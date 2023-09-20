@@ -541,7 +541,7 @@ Feature: Bookings Allocations Features
       | LLAdmin@looped.in | Octopus@6 | short notice      | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        | Management        | Automation Tester |
 
     #LL-926 Scenario 1 : Internal Staff Return Job is clicked
-  @LL-925 @InternalStaffReturnJobIsClicked
+  @LL-926 @InternalStaffReturnJobIsClicked
   Scenario Outline: Internal Staff Return Job is clicked
     When I login with "<username>" and "<password>"
     And I create a new job request with minimal fields "<job notice length>"
