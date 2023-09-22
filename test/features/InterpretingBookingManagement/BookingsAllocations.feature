@@ -617,3 +617,29 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status |
       | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
+
+    #LL-926 Scenario 4: Confirmed Return AFTER Job Handback Exclusion Zone
+  @LL-926 @InternalStaffConfirmedReturnAfterHEZ
+  Scenario Outline: Internal Staff Confirmed Return AFTER Job Handback Exclusion Zone
+    When I login with "<username>" and "<password>"
+    And I create a new job request with minimal fields "<job notice length>"
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+    And I confirm the job status "<allocated status>"
+    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
+    And a popup is shown, with title Job Return Reason
+    And the popup has 2 buttons to Cancel and Confirm Return
+    And they clicked the Confirm Return button
+    Then the Job Return Reason popup is closed
+    And search for contractor "<contractor>" in Job Allocation
+    And I confirm the job status "<returned status>"
+
+    Examples:
+      | username          | password  | job notice length  | contractor   | original status                 | allocated status | returned status |
+      | LLAdmin@looped.in | Octopus@6 | short notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
