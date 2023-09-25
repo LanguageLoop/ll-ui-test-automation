@@ -334,7 +334,7 @@ Feature: Campus Bookings Feature
 
   #LL-897 Scenario #2: User enters the address which is not available in the Google suggestions dropdown
  @LL-897 @UserEntersAddressNotAvailable
- Scenario Outline: User enters the valid address and select the address from the suggestions dropdown
+ Scenario Outline: User enters the address which is not available in the Google suggestions dropdown
   When I login with "<username cbo>" and "<password cbo>"
   And I click Interpreting header link
   And I click on new job request button
