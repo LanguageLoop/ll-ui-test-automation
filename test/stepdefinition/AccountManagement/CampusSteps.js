@@ -211,19 +211,23 @@ When(/^I click save note button$/, function(){
 
 When(/^I click add naati override button$/,function(){
     browser.pause(2000)
+    action.isVisibleWait(campusDetailsPage.addNAATIOverrideLevelLink,20000,"Add NAATI override level link in campus page")
     action.clickElement(campusDetailsPage.addNAATIOverrideLevelLink,"Add NAATI override level link in campus page")
     browser.pause(2000)
 })
 
 When(/^I select service language "(.*)"$/, function(language){
+    action.isVisibleWait(campusDetailsPage.serviceLanguageDropdown,10000,"Service language dropdown in campus page")
     action.enterValueAndPressReturn(campusDetailsPage.serviceLanguageDropdown,language,"Service language dropdown in campus page")
 })
 
 When(/^I select service naati level "(.*)"$/, function(level){
+    action.isVisibleWait(campusDetailsPage.naatiLevelDropdown,10000,"NAATI level dropdown in campus page")
     action.selectTextFromDropdown(campusDetailsPage.naatiLevelDropdown,level,"NAATI level dropdown in campus page")
 })
 
 When(/^I click save naati button$/, function(){
+    action.isVisibleWait(campusDetailsPage.saveNAATIOverrideButton,10000,"Save NAATI override button in campus page")
     action.clickElement(campusDetailsPage.saveNAATIOverrideButton,"Save NAATI override button in campus page")
     browser.pause(2000)
 })
