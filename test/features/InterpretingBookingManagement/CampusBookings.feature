@@ -110,7 +110,7 @@ Feature: Campus Bookings Feature
 
   Examples:
    | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
+   | LLAdmin@looped.in | Octopus@6 | 31333     | Nabila ALIYE  | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
 
   #LL-334 Scenario 4: User deletes the added Block at Campus / Contractor level
  @LL-334 @DeleteContractorBlockOnCampus
@@ -262,7 +262,7 @@ Feature: Campus Bookings Feature
 
   Examples:
    | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
+   | LLAdmin@looped.in | Octopus@6 | 31333     | Nabila ALIYE  | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
 
   #LL-334 Scenario 7: User edits the block and add the Date Finished to the past date at Organization level
  @LL-334 @ContractorExpireBlockOnOrganization
@@ -316,7 +316,7 @@ Feature: Campus Bookings Feature
 
   Examples:
    | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   | active block name |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification | VITS LANGUAGELINK |
+   | LLAdmin@looped.in | Octopus@6 | 31333     | Nabila ALIYE  | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification | VITS LANGUAGELINK |
 
   #LL-897 Scenario #1: User enters the valid address and select the address from the suggestions dropdown
  @LL-897 @UserValidAddressSuggestionDropdown
@@ -334,7 +334,7 @@ Feature: Campus Bookings Feature
 
   #LL-897 Scenario #2: User enters the address which is not available in the Google suggestions dropdown
  @LL-897 @UserEntersAddressNotAvailable
- Scenario Outline: User enters the valid address and select the address from the suggestions dropdown
+ Scenario Outline: User enters the address which is not available in the Google suggestions dropdown
   When I login with "<username cbo>" and "<password cbo>"
   And I click Interpreting header link
   And I click on new job request button
