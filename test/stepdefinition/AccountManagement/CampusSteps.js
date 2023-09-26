@@ -1,6 +1,7 @@
 
 When(/^I click add campus link$/, function(){
     browser.pause(2000)
+    action.isVisibleWait(accountManagementPage.createCampusLink,20000,"Create Campus Link in campus page")
     action.clickElement(accountManagementPage.createCampusLink,"Create Campus Link in campus page")
     browser.pause(2000)
 
@@ -11,9 +12,11 @@ When(/^I select campus type "(.*)"$/, function(campustype)
     switch(campustype)
     {
         case "Metro":
+            action.isVisibleWait(accountManagementPage.metroRadioButton,20000,"Metro radio button in campus page")
             action.clickElement(accountManagementPage.metroRadioButton,"Metro radio button in campus page")
             break
         case "Regional":
+            action.isVisibleWait(accountManagementPage.regionalRadioButton,20000,"Regional radio button in campus page")
             action.clickElement(accountManagementPage.regionalRadioButton,"Regional radio button in campus page")
             break
         default:
