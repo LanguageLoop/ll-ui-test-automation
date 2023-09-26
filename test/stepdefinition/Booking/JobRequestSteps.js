@@ -420,11 +420,13 @@ Given(/^Fill out all the required details "(.*)", email, "(.*)"$/, function(firs
 When(/^They click the Save button$/, function(){
   action.isClickableWait(jobRequestPage.saveButtonBookingOfficer,10000,"Save button booking officer in Job request page");
   action.clickElement(jobRequestPage.saveButtonBookingOfficer,"Save button booking officer in Job request page");
+  action.isNotVisibleWait(jobRequestPage.saveButtonBookingOfficer,20000,"Save button booking officer in Job request page");
 })
 
 Then(/^The user is created in job request$/,function(){
+  action.waitUntilLoadingIconDisappears()
   let requesterNameTextActual = $(jobRequestPage.requesterNameTextValueLocator.replace("<dynamic>",GlobalData.BOOKING_OFFICER_FIRSTNAME))
-  let requesterNameDisplayStatus = action.isVisibleWait(requesterNameTextActual,10000,"Requester name text in Job request page");
+  let requesterNameDisplayStatus = action.isVisibleWait(requesterNameTextActual,30000,"Requester name text in Job request page");
   chai.expect(requesterNameDisplayStatus).to.be.true;
 })
 
