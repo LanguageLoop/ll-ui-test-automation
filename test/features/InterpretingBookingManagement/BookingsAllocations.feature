@@ -643,3 +643,25 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | job notice length  | contractor   | original status                 | allocated status | returned status |
       | LLAdmin@looped.in | Octopus@6 | short notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
+
+    #LL-936 Scenario 1 : Job has not been returned
+  @LL-936 @JobHasNotBeenReturned
+  Scenario Outline: Job has not been returned
+    When I login with "<username>" and "<password>"
+    And I create a new job request with minimal fields "<job notice length>"
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+    And I confirm the job status "<allocated status>"
+    And the user is on the Job Detail page
+    Then the Late Job Return checkbox and label are displayed
+    And the Job Return checkbox is unchecked and is read-only
+    And the Job Return checkbox label is "<Late Job Return label>"
+
+    Examples:
+      | username          | password  | job notice length | contractor   | original status                 | allocated status | Late Job Return label |
+      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Late Job Return       |
