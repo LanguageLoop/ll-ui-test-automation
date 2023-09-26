@@ -297,3 +297,29 @@ Then(/^the new cancellation reasons "(.*)" should be displayed$/, function (canc
         chai.expect(cancelReasonDropdownOptionExistStatus).to.be.true;
     }
 })
+
+When(/^the user is on the Job Detail page$/, function () {
+    browser.refresh()
+    action.isVisibleWait(ODTIInterpretersPage.jobIDTextInODTIJobAllocationPage, 10000,"Job Id in Job details page");
+    let currentInterpreterPageUrl = action.getPageUrl();
+    chai.expect(currentInterpreterPageUrl).to.includes("BookingJobAllocation.aspx");
+})
+
+Then(/^the Late Job Return checkbox and label are displayed$/, function () {
+    let lateJobReturnCheckboxIsDisplayed = action.isVisibleWait(jobDetailsPage.lateJobReturnCheckbox, 10000,"Late Job Return checkbox in Job details page");
+    chai.expect(lateJobReturnCheckboxIsDisplayed).to.be.true;
+    let lateJobReturnCheckboxLabelTextIsDisplayed = action.isVisibleWait(jobDetailsPage.lateJobReturnCheckboxLabelText, 10000,"Late Job Return checkbox label text in Job details page");
+    chai.expect(lateJobReturnCheckboxLabelTextIsDisplayed).to.be.true;
+})
+
+Then(/^the Job Return checkbox is unchecked and is read-only$/, function () {
+    let lateJobReturnCheckboxIsSelected = action.isSelectedWait(jobDetailsPage.lateJobReturnCheckbox, 1000,"Late Job Return checkbox in Job details page");
+    chai.expect(lateJobReturnCheckboxIsSelected).to.be.false;
+    let lateJobReturnCheckboxIsClickable = action.isClickableWait(jobDetailsPage.lateJobReturnCheckbox, 1000,"Late Job Return checkbox in Job details page");
+    chai.expect(lateJobReturnCheckboxIsClickable).to.be.false;
+})
+
+Then(/^the Job Return checkbox label is "(.*)"$/, function (checkboxLabel) {
+    let lateJobReturnCheckboxLabelActual = action.getElementText(jobDetailsPage.lateJobReturnCheckboxLabel,"Late Job Return checkbox label in Job details page");
+    chai.expect(lateJobReturnCheckboxLabelActual).to.equal(checkboxLabel);
+})
