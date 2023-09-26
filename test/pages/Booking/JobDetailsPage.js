@@ -224,4 +224,16 @@ module.exports = {
     get returnJobPopupCancelButton() {
         return $('//input[contains(@id,"JobReturnDialog") and @value="Cancel"]')
     },
+
+    get lateJobReturnCheckbox() {
+        return $('//input[contains(@id,"LateChekcbox2")]');
+    },
+
+    get lateJobReturnCheckboxLabelText() {
+        return $('//span[text()="Late Job Return"]');
+    },
+
+    get lateJobReturnCheckboxLabel() {
+        return $('//input[contains(@id,"LateChekcbox2")]/parent::div/following-sibling::div/span');
+    },
 }
