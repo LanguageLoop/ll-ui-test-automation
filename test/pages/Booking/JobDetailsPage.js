@@ -236,4 +236,8 @@ module.exports = {
     get lateJobReturnCheckboxLabel() {
         return $('//input[contains(@id,"LateChekcbox2")]/parent::div/following-sibling::div/span');
     },
+
+    get lateJobReturnByCheckboxLabelText() {
+        return $('//span[contains(text(),"Late Job Return by")]');
+    },
 }
