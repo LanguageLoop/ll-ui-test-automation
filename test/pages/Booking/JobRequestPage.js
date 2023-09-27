@@ -483,5 +483,9 @@ module.exports={
 
     get clickMapOrSelectAddressErrorMessage() {
         return $('//span[text()="Please click the map or select the address from suggestion list address."]');
-    }
+    },
+
+    get notEligibleWorkAvailabilityRejectionReasonText() {
+        return $('//span[contains(text(),"Not available based on contractor work availability.")]');
+    },
 }

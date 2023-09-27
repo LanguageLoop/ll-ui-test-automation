@@ -888,3 +888,18 @@ Then(/^the error message Please click the map or select the address from suggest
   let clickMapOrSelectAddressErrorMessageDisplayStatus = action.isVisibleWait(jobRequestPage.clickMapOrSelectAddressErrorMessage, 10000, "Please click the map or select the address from suggestion list address in Job Request Page");
   chai.expect(clickMapOrSelectAddressErrorMessageDisplayStatus).to.be.true;
 });
+
+Then(/^a tooltip should be shown for ineligible contractors "(.*)" showing the work availability rejection reasons$/, function (contractorName) {
+  let findContractorSearchResultIneligibleTooltip = $(jobRequestPage.findContractorSearchResultIneligibleTooltipDynamicLocator.replace("<dynamic>",contractorName));
+  browser.execute((el) => {
+    const hoverEvent = new MouseEvent('mouseover', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    el.dispatchEvent(hoverEvent);
+  }, findContractorSearchResultIneligibleTooltip);
+  logger.info("Hovered mouse over ineligible search result tooltip in Job Request Page");
+  let notEligibleWorkAvailabilityRejectionReasonTextExistStatus = action.isExistingWait(jobRequestPage.notEligibleWorkAvailabilityRejectionReasonText,10000,"Not available based on contractor work availability rejection reason text in Job Request Page");
+  chai.expect(notEligibleWorkAvailabilityRejectionReasonTextExistStatus).to.be.true;
+});
