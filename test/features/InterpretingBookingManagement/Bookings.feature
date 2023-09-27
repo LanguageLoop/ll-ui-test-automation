@@ -1050,8 +1050,8 @@ Feature: Create new booking for Interpreters
     Then it should show contractors "<available contractor>" that have completed jobs on the same campus in the last 365 days
     And they search for a name or contractor id "<ineligible contractor>"
     And should show both available and ineligible contractors "<ineligible contractor>" matching the name, same matching rules
-    And a tooltip should be shown for ineligible contractors "<ineligible contractor>" showing the rejection reasons
+    And a tooltip should be shown for ineligible contractors "<ineligible contractor>" showing the work availability rejection reasons
 
     Examples:
       | username          | password | campusPin                       | language | time  | assignment type | available contractor | ineligible contractor |
-      | atester@ll.com.au | Test1    | 33124 - BOLTON CLARKE - DH RDNS | ARABIC   | 10:00 | DH05-HalfDay    | Yousef ODICHO        | Ivanka JURIC          |
+      | atester@ll.com.au | Test1    | 33124 - BOLTON CLARKE - DH RDNS | ARABIC   | 10:00 | DH05-HalfDay    | Yousef ODICHO        | Deeb SHAHEEN          |
