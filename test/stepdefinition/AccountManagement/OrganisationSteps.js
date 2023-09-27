@@ -18,6 +18,7 @@ When(/^they add a block on a contractor or interpreter "(.*)" on the Organisatio
 
 Then(/^the admin clicks on Remove on Organisation blocker$/, function () {
     let rule = 0;
+    action.waitUntilLoadingIconDisappears();
     while (action.isVisibleWait(organisationPage.newBlockRuleLinksToggleIcon, 1000,"New block rule links toggle icon in Organisation page") === true) {
         action.isVisibleWait(organisationPage.newBlockRuleLinksToggleIcon, 10000,"New block rule links toggle icon in Organisation page");
         action.clickElement(organisationPage.newBlockRuleLinksToggleIcon,"New block rule links toggle icon in Organisation page");
@@ -42,4 +43,5 @@ When(/^user makes the block "(.*)" as expired by adding past date to Date Finish
 When(/^I click on Show Expired toggle in organisation page$/, function () {
     action.isVisibleWait(organisationPage.showExpiredBlocksToggleCheck, 10000,"Show expired blocks toggle check in Organisation page");
     action.clickElement(organisationPage.showExpiredBlocksToggleCheck,"Show expired blocks toggle check in Organisation page");
+    action.waitUntilLoadingIconDisappears();
 })
