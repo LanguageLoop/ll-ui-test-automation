@@ -323,3 +323,16 @@ Then(/^the Job Return checkbox label is "(.*)"$/, function (checkboxLabel) {
     let lateJobReturnCheckboxLabelActual = action.getElementText(jobDetailsPage.lateJobReturnCheckboxLabel,"Late Job Return checkbox label in Job details page");
     chai.expect(lateJobReturnCheckboxLabelActual).to.equal(checkboxLabel);
 })
+
+Then(/^the Late Job Return by checkbox and label are displayed$/, function () {
+    let lateJobReturnCheckboxIsDisplayed = action.isVisibleWait(jobDetailsPage.lateJobReturnCheckbox, 10000, "Late Job Return checkbox in Job details page");
+    chai.expect(lateJobReturnCheckboxIsDisplayed).to.be.true;
+    let lateJobReturnByCheckboxLabelTextIsDisplayed = action.isVisibleWait(jobDetailsPage.lateJobReturnByCheckboxLabelText, 10000, "Late Job Return by checkbox label text in Job details page");
+    chai.expect(lateJobReturnByCheckboxLabelTextIsDisplayed).to.be.true;
+})
+
+Then(/^the Job Return by checkbox label is "(.*)""(.*)"$/, function (checkboxLabel, contractor) {
+    let lateJobReturnCheckboxLabelActual = action.getElementText(jobDetailsPage.lateJobReturnCheckboxLabel, "Late Job Return checkbox label in Job details page");
+    let lateJobReturnCheckboxLabelExpected = checkboxLabel + " " + contractor;
+    chai.expect(lateJobReturnCheckboxLabelActual).to.equal(lateJobReturnCheckboxLabelExpected);
+})
