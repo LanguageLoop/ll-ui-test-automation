@@ -694,3 +694,32 @@ Feature: Bookings Allocations Features
     Examples:
       | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status | Late Job Return by label |
       | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Late Job Return by       |
+
+    #LL-936 Scenario 2b : CSO Job has been returned, with no IsLateJobReturn
+  @LL-936 @CSOJobReturnedWithNoIsLateJobReturn
+  Scenario Outline: CSO Job has been returned, with no IsLateJobReturn
+    When I login with "<username cso>" and "<password cso>"
+    And I create a new job request with minimal fields "<job notice length>"
+    And I search for created job request
+    And I verify the job is listed in search results
+    And I click on first job id from interpreting job list
+    And I switch to the job allocation window
+    And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+    And I confirm the job status "<allocated status>"
+    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
+    And a popup is shown, with title Job Return Reason
+    And the popup has 2 buttons to Cancel and Confirm Return
+    And they clicked the Confirm Return button
+    And the Job Return Reason popup is closed
+    And I confirm the job status "<returned status>"
+    And the user is on the Job Detail page
+    Then the Late Job Return by checkbox and label are displayed
+    And the Job Return checkbox is unchecked and is read-only
+    And the Job Return by checkbox label is "<Late Job Return by label>""<contractor>"
+
+    Examples:
+      | username cso   | password cso | job notice length | contractor   | original status                 | allocated status | returned status | Late Job Return by label |
+      | zenq@cso10.com | Test1        | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Late Job Return by       |
