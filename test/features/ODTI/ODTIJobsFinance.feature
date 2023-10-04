@@ -53,7 +53,7 @@ Feature: ODTI Jobs Finance features
     And this will only display jobs that have been Completed Billing & Merging processes done
     Then The columns available for ODTI Jobs for the user are "<column headers>"
     And the relevant information will be shown under each column
-    And ODTI Service Charge ID, Campus Name and Interpreter Name will all be hyperlinked and in bold font weight
+    And ODTI Service Charge ID, non empty Campus Name and Interpreter Name will all be hyperlinked and in bold font weight
     And the number of records will be displayed at the bottom of the table as per existing functionality
     And the user will not see the "<column header not displayed>" column
 
@@ -71,7 +71,7 @@ Feature: ODTI Jobs Finance features
     And this will only display jobs that have been Completed Billing & Merging processes done
     Then The columns available for ODTI Jobs for the user are "<column headers>"
     And the relevant information will be shown under each column
-    And ODTI Service Charge ID, Campus Name and Interpreter Name will all be hyperlinked and in bold font weight
+    And ODTI Service Charge ID, non empty Campus Name and Interpreter Name will all be hyperlinked and in bold font weight
     And the number of records will be displayed at the bottom of the table as per existing functionality
 
     Examples:
@@ -85,9 +85,9 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     Then they are navigated to the Job Details page in a new tab
-    And they click the Campus Name hyperlink
+    And they click the non empty Campus Name hyperlink
     And they are navigated to the Campus Details page in a new tab
     And they click the Interpreter Name
     And they are navigated to the Interpreter’s Profile page in a new tab
@@ -103,7 +103,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     And I click on Migrate & Recalculate Job Fee without selecting a new campus pin
@@ -120,7 +120,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     And I select the new campus pin "<new campus pin>" which is for a different contract
@@ -137,7 +137,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     And I select the new campus pin "<new campus pin>" which is for a different contract
@@ -156,7 +156,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     And I select the new campus pin "<new campus pin>" which is for a different contract
@@ -174,7 +174,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     And I select the new campus pin "<new campus pin>" which is for a different contract
@@ -193,7 +193,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     Then a pop up will display the campus pin "<new campus pin>" in the results, and on hovering over message Campus is disabled
@@ -210,7 +210,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And they will see a table
-    And they click the ODTI Service Charge ID hyperlink
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
     And I want to change the campus pin by clicking on the Edit icon
     And I enter the campus pin "<new campus pin>" which does not exist
