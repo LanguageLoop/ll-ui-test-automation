@@ -775,3 +775,71 @@ When(/^they click on any of the ODTI Service Charge ID hyperlink$/, function () 
     action.isVisibleWait(serviceChargeID1TextElement, 10000,"Service charge ID in ODTI Jobs page");
     action.clickElement(serviceChargeID1TextElement,"Service charge ID in ODTI Jobs page");
 })
+
+When(/^I click on a non empty Campus Name value under Campus Name column$/, function () {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let totalRowsCount = ODTIJobsPage.totalRowCount;
+    let firstCampusNameElement;
+    for (let row = 1; row <= totalRowsCount; row++) {
+        firstCampusNameElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "4"));
+        if (action.getElementText(firstCampusNameElement, "First campus name in ODTI Job details page") !== "") {
+            break;
+        }
+    }
+    action.isVisibleWait(firstCampusNameElement, 10000);
+    GlobalData.ODTI_CAMPUS_NAME = action.getElementText(firstCampusNameElement, "First campus name in ODTI Job details page");
+    action.clickElement(firstCampusNameElement, "First campus name in ODTI Job details page");
+})
+
+When(/^I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column$/, function () {
+    browser.pause(5000);
+    action.waitUntilLoadingIconDisappears();
+    let totalRowsCount = ODTIJobsPage.totalRowCount;
+    let firstCampusNameElement;
+    let row;
+    for (row = 1; row <= totalRowsCount; row++) {
+        firstCampusNameElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "4"));
+        if (action.getElementText(firstCampusNameElement, "First campus name in ODTI Job details page") !== "") {
+            break;
+        }
+    }
+    let jobIdFirstValueElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "1"));
+    action.isVisibleWait(jobIdFirstValueElement, 10000);
+    GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE = action.getElementText(jobIdFirstValueElement, "Job Id first value in ODTI Jobs page");
+    action.clickElement(jobIdFirstValueElement, "Job Id first value in ODTI Jobs page");
+})
+
+When(/^ODTI Service Charge ID, non empty Campus Name and Interpreter Name will all be hyperlinked and in bold font weight$/, function () {
+    let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
+    let serviceChargeIDHyperlinkDisplayStatus = action.isVisibleWait(serviceChargeID1TextElement, 10000,"Service charge ID in ODTI Jobs page");
+    chai.expect(serviceChargeIDHyperlinkDisplayStatus).to.be.true;
+    let totalRowsCount = ODTIJobsPage.totalRowCount;
+    let firstCampusNameElement;
+    let row;
+    for (row = 1; row <= totalRowsCount; row++) {
+        firstCampusNameElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "4"));
+        if (action.getElementText(firstCampusNameElement, "First campus name in ODTI Job details page") !== "") {
+            break;
+        }
+    }
+    let campusNameHyperlinkDisplayStatus = action.isVisibleWait(firstCampusNameElement, 10000,"Campus name in ODTI Jobs page");
+    chai.expect(campusNameHyperlinkDisplayStatus).to.be.true;
+    let interpreterName1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "6"));
+    let interpreterNameHyperlinkDisplayStatus = action.isVisibleWait(interpreterName1TextElement, 10000,"Interpreter name in ODTI Jobs page");
+    chai.expect(interpreterNameHyperlinkDisplayStatus).to.be.true;
+})
+
+When(/^they click the non empty Campus Name hyperlink$/, function () {
+    action.navigateToWindowHandle(GlobalData.ODTI_JOBS_PAGE_WINDOW_HANDLE)
+    let totalRowsCount = ODTIJobsPage.totalRowCount;
+    let firstCampusNameElement;
+    for (let row = 1; row <= totalRowsCount; row++) {
+        firstCampusNameElement = $(ODTIJobsPage.columnValueLinkLocator.replace("<dynamic1>", row.toString()).replace("<dynamic2>", "4"));
+        if (action.getElementText(firstCampusNameElement, "First campus name in ODTI Job details page") !== "") {
+            break;
+        }
+    }
+    action.isVisibleWait(firstCampusNameElement, 10000,"Campus name in ODTI Jobs page");
+    action.clickElement(firstCampusNameElement,"Campus name in ODTI Jobs page");
+})
