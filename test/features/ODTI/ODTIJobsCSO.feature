@@ -169,7 +169,7 @@ Feature: ODTI Jobs CSO features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And The RecordStatus Is Export
-    And I click on a Campus Name value under Campus Name column
+    And I click on a non empty Campus Name value under Campus Name column
     Then I should be navigated to the Campus detail page "<Campus detail page url>" of the respective Campus that is clicked
 
     Examples:
@@ -267,7 +267,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     Then they will see the Campus PIN hyperlinked
     And they click the Campus PIN
@@ -283,7 +283,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And I click on a Job ID value under ODTI SERVICE CHARGE ID column
+    And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     Then they will see the Contract Name hyperlinked
     And they click the Contract Name
