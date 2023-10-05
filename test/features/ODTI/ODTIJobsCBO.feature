@@ -331,8 +331,8 @@ Feature: ODTI Jobs CBO features
     And I should be navigated to page "<previous page number>"
 
     Examples:
-      | username cbo   | password cbo | campus id                                                      | start date | end date   | page number | next page number  | previous page number |
-      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 01-10-2022 | 20-01-2023 | 2           | 3                 | 2                    |
+      | username cbo   | password cbo | campus id                                                               | start date | end date   | page number | next page number | previous page number |
+      | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 01-10-2022 | 04-10-2023 | 2           | 3                | 2                    |
 
     #Scenario 16 - Verify the CLIENT CHARGE SUBTOTAL is displayed when CBO user on admin side has the checkbox 'Show $ amounts on On Demand TI Dashboard' checked
   @Regression @RegressionS16 @CBOViewsClientChargeSubtotal
