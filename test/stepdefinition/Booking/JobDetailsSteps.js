@@ -336,3 +336,10 @@ Then(/^the Job Return by checkbox label is "(.*)""(.*)"$/, function (checkboxLab
     let lateJobReturnCheckboxLabelExpected = checkboxLabel + " " + contractor;
     chai.expect(lateJobReturnCheckboxLabelActual).to.equal(lateJobReturnCheckboxLabelExpected);
 })
+
+Then(/^the Job Return checkbox is checked and is read-only$/, function () {
+    let lateJobReturnCheckboxIsSelected = action.isSelectedWait(jobDetailsPage.lateJobReturnCheckbox, 1000,"Late Job Return checkbox in Job details page");
+    chai.expect(lateJobReturnCheckboxIsSelected).to.be.true;
+    let lateJobReturnCheckboxIsClickable = action.isClickableWait(jobDetailsPage.lateJobReturnCheckbox, 1000,"Late Job Return checkbox in Job details page");
+    chai.expect(lateJobReturnCheckboxIsClickable).to.be.false;
+})
