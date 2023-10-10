@@ -110,6 +110,7 @@ exports.config = {
         // 'path/to/excluded/files'
         './test/features/InterpretingBookingManagement/InterpreterStatus.feature',
         './test/features/AccountManagement/ProdCampusManagement.feature',
+        './test/features/ContractorEngagement/ProdContractorEngagement.feature',
     ],
     //
     // ============
