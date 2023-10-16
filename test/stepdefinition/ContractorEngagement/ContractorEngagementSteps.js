@@ -987,3 +987,78 @@ Then(/^the NDIS Screening is removed from clearance section$/, function () {
     let ndisScreeningClearanceLabelDisplayStatus = action.isVisibleWait(contractorEngagementPage.ndisScreeningClearanceLabel, 0, "NDIS Screening clearance on Contractor Engagement page");
     chai.expect(ndisScreeningClearanceLabelDisplayStatus).to.be.false;
 });
+
+Then(/^I search contractor to add a block with campus details$/, function () {
+    // This step is created to meet the requirements of a specific scenario
+    // Import the excel to json converter package to convert excel data of campuses to json array
+    let parser = new (require('simple-excel-to-json').XlsParser)();
+    let doc = parser.parseXls2Json("./test/data/ContractorBlocksWithCampusData.xlsx");
+    // Import the json path package to query and get the required fields from Json array
+    let jp = require('jsonpath');
+    console.log("Excel doc to JSON converted data: " + JSON.stringify(doc[0]));
+    console.log("doc[0].length---" + doc[0].length);
+    // Iterate over all the listed contractors and add blocks
+    for (let i = 0; i < doc[0].length; i++) {
+        let contractorId = jp.query(doc[0], "$[" + i + "].ContractorId");
+        contractorId = contractorId.toString();
+        console.log("Iteration-" + i + "ContractorId: " + contractorId);
+
+        //Click on Contractor Engagement
+        action.isVisibleWait(homePage.contractorEngagementLink, 20000, "Contractor Engagement link in Home page");
+        action.clickElement(homePage.contractorEngagementLink, "Contractor Engagement link in Home page");
+
+        //Search for the contractor and select matching result
+        action.isVisibleWait(contractorEngagementPage.searchContractorInput, 10000, "Search Contract Input on Contractor Engagement page");
+        action.enterValue(contractorEngagementPage.searchContractorInput, contractorId, "Search Contract Input on Contractor Engagement page");
+        action.pressKeys("Tab");
+        action.waitUntilLoadingIconDisappears();
+        let contractorSearchResultElement = $(contractorEngagementPage.contractorSearchResultLocator.replace("<dynamic>", contractorId));
+        action.isVisibleWait(contractorSearchResultElement, 20000, "Contractor Search Result Elements on Contractor Engagement page");
+        action.clickElement(contractorSearchResultElement, "Contractor Search Result Elements on Contractor Engagement page");
+
+        //check if blocker for campus pin already exists
+        let campusPin = jp.query(doc[0], "$[" + i + "].CampusPin");
+        campusPin = campusPin.toString();
+        let activeBlockerLinkElement = $(contractorEngagementPage.activeBlockerLinkLocator.replace("<dynamic>", campusPin));
+        let blockDisplayStatus = action.isVisibleWait(activeBlockerLinkElement, 3000, "Active Blocker link on Contractor Engagement page");
+
+        //proceed to add the block for campus if blocker for given campus pin does not exist
+        if (blockDisplayStatus === false) {
+            action.isVisibleWait(contractorEngagementPage.addABlockLink, 10000, "Add A Block Link on Contractor Engagement page");
+            action.clickElement(contractorEngagementPage.addABlockLink, "Add A Block Link on Contractor Engagement page");
+
+            action.isVisibleWait(contractorEngagementPage.campusTabOnContractorBlockingPopup, 20000, "Campus Tab on Contractor Blocking popup on Contractor Engagement page");
+            action.clickElement(contractorEngagementPage.campusTabOnContractorBlockingPopup, "Campus Tab on Contractor Blocking popup on Contractor Engagement page");
+
+            action.isVisibleWait(contractorEngagementPage.searchByCampusNameOrPinOnContractorBlockingPopup, 20000, "Search by Campus name or pin on Campus Tab on Contractor Blocking popup");
+            action.enterValue(contractorEngagementPage.searchByCampusNameOrPinOnContractorBlockingPopup, campusPin, "Search by Campus name or pin on Campus Tab on Contractor Blocking popup");
+            let campusPinResultCheckbox = $(contractorEngagementPage.campusNameOrPinResultCheckboxDynamicLocator.replace("<dynamic>", campusPin));
+            action.isVisibleWait(campusPinResultCheckbox, 20000, "Campus Pin result checkbox on Campus Tab on Contractor Blocking popup");
+            action.clickElement(campusPinResultCheckbox, "Campus Pin result checkbox on Campus Tab on Contractor Blocking popup");
+
+            let severity = jp.query(doc[0], "$[" + i + "].Severity");
+            severity = severity.toString();
+            action.isVisibleWait(contractorEngagementPage.campusSeverityDropdown, 20000, "Campus Severity Dropdown on Campus Tab on Contractor Blocking popup");
+            action.selectTextFromDropdown(contractorEngagementPage.campusSeverityDropdown, severity, "Campus Severity Dropdown on Campus Tab on Contractor Blocking popup");
+
+            let dateStarted = jp.query(doc[0], "$[" + i + "].DateStarted");
+            dateStarted = dateStarted.toString();
+            action.isVisibleWait(contractorEngagementPage.startDateCampusBlock, 20000, "Date Started on Campus Tab on Contractor Blocking popup");
+            action.enterValue(contractorEngagementPage.startDateCampusBlock, dateStarted, "Date Started on Campus Tab on Contractor Blocking popup");
+
+            let dateFinished = jp.query(doc[0], "$[" + i + "].DateFinished");
+            dateFinished = dateFinished.toString();
+            action.isVisibleWait(contractorEngagementPage.endDateCampusBlock, 20000, "Date Finished on Campus Tab on Contractor Blocking popup");
+            action.enterValue(contractorEngagementPage.endDateCampusBlock, dateFinished, "Date Finished on Campus Tab on Contractor Blocking popup");
+
+            let reason = jp.query(doc[0], "$[" + i + "].Reason");
+            reason = reason.toString();
+            action.isVisibleWait(contractorEngagementPage.reasonCampusBlock, 20000, "Reason Campus on Campus Tab on Contractor Blocking popup");
+            action.enterValue(contractorEngagementPage.reasonCampusBlock, reason, "Reason Campus on Campus Tab on Contractor Blocking popup");
+
+            action.isVisibleWait(contractorEngagementPage.addBlockButton, 10000, "Add block button on Campus Tab on Contractor Blocking popup");
+            action.clickElement(contractorEngagementPage.addBlockButton, "Add block button on Campus Tab on Contractor Blocking popup");
+            action.isNotVisibleWait(contractorEngagementPage.addBlockButton, 10000, "Add block button on Campus Tab on Contractor Blocking popup");
+        }
+    }
+});

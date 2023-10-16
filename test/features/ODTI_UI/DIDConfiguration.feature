@@ -492,3 +492,109 @@ Feature: ODTI_UI DID Configuration features
     Examples:
       | username          | password  | TI Service Type | configuration toggles                                                                                      |
       | LLAdmin@looped.in | Octopus@6 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
+
+    #LL-944: Scenario 1: Verify the new field ‘Client TIXP PIN’ is displayed in DID configuration of Client TIXP type
+  @LL-944 @VerifyNewFieldClientTIXPPIN
+  Scenario Outline: Verify the new field ‘Client TIXP PIN’ is displayed in DID configuration of Client TIXP type
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then we see the new field Client TIXP PIN displaying below the Prompt for NES Number toggle
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-944: Scenario 2: Verifying that the new field ‘Client TIXP PIN’ should accept minimum 3 digits only
+  @LL-944 @ClientTIXPPINAcceptsMin3Digits
+  Scenario Outline: Verify the new field ‘Client TIXP PIN’ is displayed in DID configuration of Client TIXP type
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And user enter minimum 3 digits "<client tixp pin>" in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then the DID is saved without any errors with Client TIXP PIN "<client tixp pin>"
+    And user do not enter any value in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+
+    Examples:
+      | username          | password  | campus                  | client tixp pin |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 123             |
+
+    #LL-944: Scenario 3: Verifying that the new field ‘Client TIXP PIN’ should accept maximum 9 digits only
+  @LL-944 @ClientTIXPPINAcceptsMax9Digits
+  Scenario Outline: Verifying that the new field ‘Client TIXP PIN’ should accept maximum 9 digits only
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And user enter maximum 9 digits "<client tixp pin>" in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then the DID is saved without any errors with Client TIXP PIN "<client tixp pin>"
+    And user do not enter any value in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+
+    Examples:
+      | username          | password  | campus                  | client tixp pin |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 123456789       |
+
+    #LL-944: Scenario 4: Verifying that the new field ‘Client TIXP PIN’ should not accept less than 3 digits
+  @LL-944 @ClientTIXPPINShouldNotAcceptLessThan3Digits
+  Scenario Outline: Verifying that the new field ‘Client TIXP PIN’ should not accept less than 3 digits
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And user enter less than 3 digits "<client tixp pin>" in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+    Then the DID is not saved and displays error message ‘Invalid Client TIXP PIN’
+
+    Examples:
+      | username          | password  | campus                  | client tixp pin |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 12              |
+
+    #LL-944: Scenario 5: Verifying that the new field ‘Client TIXP PIN’ is not mandatory
+  @LL-944 @ClientTIXPPINNotMandatory
+  Scenario Outline: Verifying that the new field ‘Client TIXP PIN’ is not mandatory
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And user do not enter any value in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then the DID should be saved and the values are not visible on the Client TIXP PIN field
+
+    Examples:
+      | username          | password  | campus                  |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+
+    #LL-944: Scenario 6: Verifying that the new field ‘Client TIXP PIN’ will not accept non-numeric values
+  @LL-944 @ClientTIXPPINNotAcceptNonNumericValues
+  Scenario Outline: Verifying that the new field ‘Client TIXP PIN’ should accept maximum 9 digits only
+    When I login with "<username>" and "<password>"
+    And the ODTI DID Configurations page is opened
+    And the Admin is on the DID Configurations Tab
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    And user enter any non-numeric values "<client tixp pin>" in the Client TIXP PIN field
+    And has clicked the SAVE button in Edit DID Configuration page
+    And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
+    And the user is navigated to the Edit DID Configuration screen
+    Then the DID should be saved and the values are not visible on the Client TIXP PIN field
+
+    Examples:
+      | username          | password  | campus                  | client tixp pin |
+      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | nonNumericValue |

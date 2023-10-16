@@ -637,4 +637,32 @@ module.exports = {
     get ndisScreeningEditLink() {
         return $('//span[text()="NDIS Screening"]/parent::div/parent::div//a[text()="Edit"]');
     },
+
+    get campusTabOnContractorBlockingPopup() {
+        return $('//div[contains(@id,"tabBlocking_block") and contains(text(),"Campus")]');
+    },
+
+    get searchByCampusNameOrPinOnContractorBlockingPopup() {
+        return $('//input[contains(@id,"tabBlocking") and contains(@id,"SearchCampus")]');
+    },
+
+    get campusNameOrPinResultCheckboxDynamicLocator() {
+        return '//span[contains(text(),"<dynamic>")]/parent::div/parent::div//input[@type="checkbox"]';
+    },
+
+    get campusSeverityDropdown() {
+        return $('//select[contains(@id,"SeverityCampus")]');
+    },
+
+    get startDateCampusBlock() {
+        return $('//input[contains(@id,"StartDateCampus")]');
+    },
+
+    get endDateCampusBlock() {
+        return $('//input[contains(@id,"EndDateCampus")]');
+    },
+
+    get reasonCampusBlock() {
+        return $('//textarea[contains(@id,"ReasonCampus") and (not(contains(@id,"ReasonCampus2")))]');
+    },
 }

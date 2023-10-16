@@ -68,3 +68,56 @@ Then(/^the four options "(.*)" should display the saved values$/, function (conf
         chai.expect(toggleHasSavedValues).to.be.true;
     }
 })
+
+Then(/^we see the new field Client TIXP PIN displaying below the Prompt for NES Number toggle$/, function () {
+    let clientTixpPinTextBoxBelowPromptForNesNumberDisplayStatus = action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    chai.expect(clientTixpPinTextBoxBelowPromptForNesNumberDisplayStatus).to.be.true;
+})
+
+When(/^user enter minimum 3 digits "(.*)" in the Client TIXP PIN field$/, function (clientTixpPin) {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    action.enterValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, clientTixpPin, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page")
+})
+
+When(/^has clicked the SAVE button in Edit DID Configuration page$/, function () {
+    action.isVisibleWait(editDIDConfigurationPage.saveButtonOnEditDIDConfiguration, 10000, "Save button in Edit DID Configuration page");
+    action.clickElement(editDIDConfigurationPage.saveButtonOnEditDIDConfiguration, "Save button in Edit DID Configuration page");
+    action.isNotVisibleWait(editDIDConfigurationPage.saveButtonOnEditDIDConfiguration, 3000, "Save button in Edit DID Configuration page");
+})
+
+Then(/^the DID is saved without any errors with Client TIXP PIN "(.*)"$/, function (expectedClientTixpPin) {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    let clientTixpPinValueActual = action.getElementValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    chai.expect(clientTixpPinValueActual).to.equal(expectedClientTixpPin)
+})
+
+When(/^user do not enter any value in the Client TIXP PIN field$/, function () {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    action.clearValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page")
+})
+
+When(/^user enter maximum 9 digits "(.*)" in the Client TIXP PIN field$/, function (clientTixpPin) {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    action.enterValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, clientTixpPin, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page")
+})
+
+When(/^user enter less than 3 digits "(.*)" in the Client TIXP PIN field$/, function (clientTixpPin) {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    action.enterValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, clientTixpPin, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page")
+})
+
+Then(/^the DID is not saved and displays error message ‘Invalid Client TIXP PIN’$/, function () {
+    let invalidClientTixpPinMessageTextActual = action.isVisibleWait(editDIDConfigurationPage.invalidClientTixpPinMessage, 10000, "Invalid Client TIXP PIN message in Edit DID Configuration page");
+    chai.expect(invalidClientTixpPinMessageTextActual).to.be.true;
+})
+
+Then(/^the DID should be saved and the values are not visible on the Client TIXP PIN field$/, function () {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    let clientTixpPinValueActual = action.getElementValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    chai.expect(clientTixpPinValueActual).to.equal("");
+})
+
+When(/^user enter any non-numeric values "(.*)" in the Client TIXP PIN field$/, function (clientTixpPin) {
+    action.isVisibleWait(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, 10000, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page");
+    action.enterValue(editDIDConfigurationPage.clientTixpPinTextBoxBelowPromptForNesNumber, clientTixpPin, "Client TIXP PIN below the Prompt for NES Number toggle in Edit DID Configuration page")
+})
