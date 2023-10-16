@@ -32,4 +32,16 @@ module.exports = {
     get configurationToggleCheckboxLocator() {
         return '//label[text()="<dynamic>"]/parent::div//input';
     },
+
+    get clientTixpPinTextBoxBelowPromptForNesNumber() {
+        return $('//label[text()="Prompt for NES Number"]//parent::div/parent::div/following::div//input[contains(@id,"DIDConfiguration_TIXPPIN")]');
+    },
+
+    get saveButtonOnEditDIDConfiguration() {
+        return $('//input[@value="Save" and (contains(@id,"Actions")) and not(contains(@id,"Modal"))]');
+    },
+
+    get invalidClientTixpPinMessage() {
+        return $('//span[text()="Invalid Client TIXP PIN"]')
+    },
 }
