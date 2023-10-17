@@ -2,7 +2,7 @@ const GlobalData = require("../../data/GlobalData")
 
 When(/^I click add contractor button$/, function () {
     browser.pause(2000)
-    action.clickElement(contractorEngagementPage.addContractorLink,"Add Contractor link on Contractor Engagement page")
+    action.clickElement(contractorEngagementPage.addContractorLink,"Add Contractor link on Contractor Engagement page");
 })
 
 When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, function (salutation, gender, name, pin, mobile, dob, email, address) {
