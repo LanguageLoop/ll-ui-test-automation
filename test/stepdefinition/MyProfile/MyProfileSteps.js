@@ -83,10 +83,12 @@ When(/^I click save button in emergency contact details$/, function(){
 })
 
 When(/^I click add leave link$/, function(){
+    action.isVisibleWait(myProfilePage.addLeaveLink,20000,"Add leave link in My profile page")
     action.clickElement(myProfilePage.addLeaveLink,"Add leave link in My profile page")
 })
 
 When(/^I enter leave start date "(.*)"$/, function(startdate){
+    action.isVisibleWait(myProfilePage.leaveStartDateInput,10000,"Leave start date text box in My profile page")
     action.enterValueAndPressReturn(myProfilePage.leaveStartDateInput,startdate,"Leave start date text box in My profile page")
 })
 
@@ -100,6 +102,7 @@ When(/^I click onsite checkbox$/, function(){
 
 When(/^I click add leave button$/, function(){
     action.clickElement(myProfilePage.addLeaveButton,"Add leave button in My profile page")
+    action.isNotVisibleWait(myProfilePage.addLeaveButton,10000,"Add leave button in My profile page")
     browser.pause(2000)
 })
 
