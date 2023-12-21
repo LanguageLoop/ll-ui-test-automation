@@ -15,13 +15,15 @@ When(/^I handle the message for interpreters dialog$/, function(){
 
 When(/^I select "(.*)" from the filter dropdown$/,   function(listitem){
   browser.pause(2000)
-  action.isVisibleWait(interpretingPage.filterDropdown,20000,"Filter dropdown in Interpreting page")
+  action.waitForElementClickable(interpretingPage.filterDropdown, "Filter dropdown in Interpreting page");
+  // action.isVisibleWait(interpretingPage.filterDropdown,20000,"Filter dropdown in Interpreting page")
   action.selectTextFromDropdown(interpretingPage.filterDropdown,listitem,"Filter dropdown in Interpreting page")
   browser.pause(2000)
 })
 
 When(/^I click on new job request button$/,function(){
-  action.isVisibleWait(interpretingPage.newJobRequestButton,20000,"New job request button in Interpreting page");
+  action.waitForElementClickable(interpretingPage.newJobRequestButton, "New job request button in Interpreting page");
+  //action.isVisibleWait(interpretingPage.newJobRequestButton,20000,"New job request button in Interpreting page");
   action.clickElement(interpretingPage.newJobRequestButton,"New job request button in Interpreting page")
 })
 

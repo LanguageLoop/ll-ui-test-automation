@@ -25,7 +25,8 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   
   action.clickElement(homePage.InterpretingLink,"Interpreting link in home page")
   action.selectTextFromDropdown(interpretingPage.filterDropdown,"Management","Filter dropdown in Interpreting page")
-  action.isVisibleWait(interpretingPage.newJobRequestButton,30000,"New job request button in Interpreting page")
+  action.waitForElementClickable(interpretingPage.newJobRequestButton, "New job request button in Interpreting page")
+  //action.isVisibleWait(interpretingPage.newJobRequestButton,30000,"New job request button in Interpreting page")
   action.clickElement(interpretingPage.newJobRequestButton,"New job request button in Interpreting page")
   action.isClickableWait(jobRequestPage.campusPinInput,30000,"Campus pin text box in Job request page")
   action.enterValueAndPressReturn(jobRequestPage.campusPinInput,campuspin,"Campus pin text box in Job request page")
