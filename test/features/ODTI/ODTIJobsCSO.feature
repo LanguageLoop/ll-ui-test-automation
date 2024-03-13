@@ -325,7 +325,7 @@ Feature: ODTI Jobs CSO features
 
     Examples:
       | username cso   | password cso | JobInfoSectionName | JobInfoSectionLabels                                                                                                                                                                           | additionalInfoSectionName | additionalInfoSectionLabels                                                                                                                                                        | customFieldsSectionName | customFieldsSectionLabels |
-      | zenq@cso10.com | Test1        | Job Information    | DID,Job Reference Number,Service Type,Campus PIN,Client Call ID,Contractor ID,Gender Preference,Language,Call Start Date/Time,Interpreter Connect Date/Time,Interpreter End Date/Time,Duration | Additional Information    | Job Status,DID Timezone,Client AH / BH,Public holiday,CX1 Contact ID,Operator called,MIL Phone Number,UI capture screen used,Is 5 min rule,Contract Name,NES Details,Record Status | Custom Fields           | [EX1] Reference number    |
+      | zenq@cso10.com | Test1        | Job Information    | DID,ANI,Service Type,Campus PIN,Client Call ID,Contractor ID,Gender Preference,Language,Call Start Date/Time,Interpreter Connect Date/Time,Interpreter End Date/Time,Duration | Additional Information    | Job Status,DID Timezone,Client AH / BH,Public holiday,CX1 Contact ID,Operator called,MIL Phone Number,UI capture screen used,Is 5 min rule,Contract Name,NES Details,Record Status | Custom Fields           | [EX1] Reference number    |
 
     #LL-659 Scenario 5 - CS / Finance user sees Allocated Interpreter section
   @LL-659 @CSSeesAllocatedInterpreterSection
