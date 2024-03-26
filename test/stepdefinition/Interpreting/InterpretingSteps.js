@@ -74,6 +74,8 @@ When(/^I click on bulk upload button$/, function(){
 
 When(/^I search for created job request$/, function(){
   action.isVisibleWait(interpretingPage.searchJobInput,30000,"Search job text box in Interpreting steps");
+  browser.pause(25000);
+ browser.refresh();
   action.clickElement(interpretingPage.searchJobInput,"Search job text box in Interpreting steps")
   action.clearValue(interpretingPage.searchJobInput,"Search job text box in Interpreting steps")
   action.enterValueAndPressReturn(interpretingPage.searchJobInput,GlobalData.CURRENT_JOB_ID.toString(),"Search job text box in Interpreting steps")
