@@ -322,8 +322,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
+      | username          | password  | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
 
     #LL-682 Covid vax exemption allocation logic Scenario 1b: The contractor is not Blocked from a Job Type
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo > AND they are not blocked from a Job Type
@@ -375,8 +375,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 2: The contractor is not blocked
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo >
@@ -428,8 +428,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-618 Scenario 1: Standard Job
   @MetroNotSelectedStandardOutside25 @LL-618
@@ -883,8 +883,8 @@ Feature: Create new booking for Interpreters
     And the admin clicks on Remove on a block
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
 
     #LL-716 Expand the label on the client new job request screen
     # In the ‘Instructions for Interpreters’, the user sees the following text as Label
