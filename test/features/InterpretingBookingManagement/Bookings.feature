@@ -684,8 +684,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 4: In contractor page, user edits the existing block that has prebooked type selected and deselects a PreBooked job type and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type
@@ -753,8 +753,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | jobTypes2 | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | On Site   | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | jobTypes2 | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | On Site   | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 5: In contractor page, user removes the existing block that has prebooked type selected and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
@@ -815,8 +815,8 @@ Feature: Create new booking for Interpreters
     Then the contractor above "<contractor>" status will be "<eligible status>" for the Job
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
+      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
+      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 6: In contractor page, user makes the existing block that has prebooked type as expired and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
