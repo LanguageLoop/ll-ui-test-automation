@@ -182,6 +182,8 @@ Then(/^they will see the Campus PIN hyperlinked$/, function () {
 })
 
 Then(/^they click the Campus PIN$/, function () {
+    let campusPinLinkClickable = action.isClickableWait(jobDetailsPage.campusPinHyperlink, 5000,"Campus pin hyperlink in Job Details page");
+    chai.expect(campusPinLinkClickable).to.be.true;
     action.clickElement(jobDetailsPage.campusPinHyperlink,"Campus pin hyperlink in Job Details page");
 })
 

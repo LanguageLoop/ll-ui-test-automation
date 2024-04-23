@@ -793,7 +793,7 @@ Then(/^the dimension "(.*)","(.*)" is not clickable, it should be readable only$
 
 Then(/^they will be navigated to the Campus page$/, function () {
     action.navigateToLatestWindow();
-    browser.refresh();
+    browser.pause(10000)
     action.isVisibleWait(accountManagementPage.campusPageHeader,50000,"Campus page header");
     let pageTitleActual = action.getPageTitle().trim();
     chai.expect(pageTitleActual).to.equal("CampusDetails");
