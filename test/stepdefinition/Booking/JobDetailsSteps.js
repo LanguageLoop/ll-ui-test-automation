@@ -184,7 +184,7 @@ Then(/^they will see the Campus PIN hyperlinked$/, function () {
 Then(/^they click the Campus PIN$/, function () {
     let campusPinLinkClickable = action.isClickableWait(jobDetailsPage.campusPinHyperlink, 5000,"Campus pin hyperlink in Job Details page");
     chai.expect(campusPinLinkClickable).to.be.true;
-    action.clickElement(jobDetailsPage.campusPinHyperlink,"Campus pin hyperlink in Job Details page");
+    action.doubleClickElement(jobDetailsPage.campusPinHyperlink,"Campus pin hyperlink in Job Details page");
 })
 
 Then(/^they will see the Contract Name hyperlinked$/, function () {
@@ -193,7 +193,7 @@ Then(/^they will see the Contract Name hyperlinked$/, function () {
 })
 
 Then(/^they click the Contract Name$/, function () {
-    action.clickElement(jobDetailsPage.contractNameHyperlink,"Contract Name hyperlink in Job Details page");
+    action.doubleClickElement(jobDetailsPage.contractNameHyperlink,"Contract Name hyperlink in Job Details page");
 })
 
 When(/^the user is viewing the allocated interpreter section$/, function () {
