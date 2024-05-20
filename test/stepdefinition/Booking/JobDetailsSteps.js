@@ -153,7 +153,7 @@ When(/^I change the contractor "(.*)" job status from "(.*)" to "(.*)"$/, functi
         let contractorStatusElement = $('//div[@class="ContractorTable"]//a[contains(text(),"'+contractor+'")]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
         let statusVisible = action.isVisibleWait(contractorStatusElement, 10000,"Contractor status in Job Details page");
         if (statusVisible) {
-            action.clickElement(contractorStatusElement,"Contractor status in Job Details page");
+            action.doubleClickElement(contractorStatusElement,"Contractor status in Job Details page");
             break;
         }
     }
