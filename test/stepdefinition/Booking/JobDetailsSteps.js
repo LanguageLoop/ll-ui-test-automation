@@ -204,7 +204,7 @@ When(/^the user is viewing the allocated interpreter section$/, function () {
 Then(/^they click on the Contractor Name$/, function () {
     let contractNameHyperLink = $(jobDetailsPage.jobAllocationDynamicValueLinkLocator.replace("<dynamicRowNumber>", "1").replace("<dynamicColumnNumber>", "1"));
     action.isVisibleWait(contractNameHyperLink,10000,"Job allocation link in Job Details page");
-    action.clickElement(contractNameHyperLink,"Job allocation link in Job Details page");
+    action.doubleClickElement(contractNameHyperLink,"Job allocation link in Job Details page");
 })
 
 Then(/^they will see a heading with the Job ID number and the Campus Name as per existing functionality$/, function () {
