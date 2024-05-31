@@ -92,6 +92,10 @@ module.exports={
         return $('//*[@class="Feedback_Message_Success"]')
     },
 
+    get jobIDText(){
+        return $('//div[@class="Heading1 Title PH OSInline"]')
+    },
+
     get requesterNameSearchInput(){
         return $('//*[text()="Requester Name"]/..//input')
     },

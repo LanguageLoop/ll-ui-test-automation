@@ -23,6 +23,7 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     Then the job created success message should appear
+    And I click Interpreting header link
     And I search for created job request
     And I verify the job is listed in search results
     And The job id is added to the file
@@ -225,7 +226,7 @@ Feature: Create new booking for Interpreters
     And I click next button
     And I handle duplicate job warning window
     And I click submit and summary button
-    Then the job created success message should appear
+   Then the job created success message should appear for CBO
     And I click Interpreting header link
     And I search for created job request
     And I verify the job is listed in search results
@@ -309,10 +310,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     Then the blocked contractor "<contractor>" status is "<status>" for that Job
@@ -362,10 +363,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+  #  And I search for created job request
+  #  And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     Then the blocked contractor "<contractor>" status is "<status>" for that Job
@@ -415,10 +416,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     Then the blocked contractor "<contractor>" status is "<status>" for that Job
@@ -450,10 +451,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And Accept Metro Service is not selected
     Then interpreters "<contractor>" who live outside the "<distance in KM>" KM are not eligible for the job
@@ -482,10 +483,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And Accept Metro Service is not selected
     Then interpreters "<contractor>" who live outside the "<distance in KM>" KM are not eligible for the job
@@ -513,10 +514,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+  #  And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And Accept Metro Service is not selected
     Then interpreters "<contractor>" who live between "<distance from in KM>" KM and "<distance to in KM>" KM are eligible for the job "<job contractor status>"
@@ -544,10 +545,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And Accept Metro Service is not selected
     Then interpreters "<contractor>" who live between "<distance from in KM>" KM and "<distance to in KM>" KM are eligible for the job "<job contractor status>"
@@ -577,10 +578,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+  #  And I verify the job is listed in search results
+  #  And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And Accept Metro Service is not selected
     Then interpreters "<contractor>" who live within the "<distance in KM>" KM are eligible for the job "<job contractor status>"
@@ -610,10 +611,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+  #  And I search for created job request
+  #  And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And Accept Metro Service is selected
     And search for contractor "<contractor>" in Job Allocation
     Then interpreters "<contractor>" who live within the "<distance in KM>" KM are eligible for the job "<job contractor status>"
@@ -654,10 +655,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     And the contractor above "<contractor>" status will be "<eligible status>" for the Job
@@ -726,10 +727,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+  #  And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     And the blocked contractor "<contractor>" status is "<not eligible status>" for that Job
@@ -795,10 +796,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     And the blocked contractor "<contractor>" status is "<not eligible status>" for that Job
@@ -857,10 +858,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Reset auto notifications link and refresh the page
     And search for contractor "<contractor>" in Job Allocation
     And the blocked contractor "<contractor>" status is "<not eligible status>" for that Job
@@ -922,10 +923,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
@@ -953,10 +954,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   # And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
@@ -967,10 +968,10 @@ Feature: Create new booking for Interpreters
     And I handle duplicate job warning window
     And I click submit button
     And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+  #  And I search for created job request
+   # And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
     Then I confirm the job status "<new status>"
