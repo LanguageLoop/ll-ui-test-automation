@@ -76,14 +76,23 @@ function createJobRequest(notice, campuspin,assignmenttype,language,naatilevel,r
   action.isClickableWait(jobRequestPage.submitButton,30000,"Submit button in Job request page")
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
  jobRequestPage.successMessageText.waitForExist({timeout:30000},{interval:500})
+//This code is after the success message change
 browser.waitUntil(
-      () => jobRequestPage.successMessageText.getText().includes("The Job#"), 10000, 'link not visible'
-  );
-  var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
-  GlobalData.CURRENT_JOB_ID=jobNumber
-  logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
-
+  () => jobRequestPage.successMessageText.getText().includes("The job was successfully created."), 20000, 'link not visible'
+);
+var jobNumber = jobRequestPage.jobIDText.getText().match(/\d+/g).map(Number)
+GlobalData.CURRENT_JOB_ID=jobNumber
+console.timeEnd('t2')
+console.timeLog('t2')
 }
+//This code is before the success message change
+// browser.waitUntil(
+//       () => jobRequestPage.successMessageText.getText().includes("The Job#"), 10000, 'link not visible'
+//   );
+//   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
+//   GlobalData.CURRENT_JOB_ID=jobNumber
+//   logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
+//}
 
 function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmenttype,language,naatilevel,requester,interpreter)
 {
@@ -174,6 +183,4 @@ browser.waitUntil(
   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
   GlobalData.CURRENT_JOB_ID=jobNumber
   logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
-
-
 }

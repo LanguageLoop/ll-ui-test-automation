@@ -345,16 +345,29 @@ Then(/^the job created success message should appear$/, function(){
   action.isVisibleWait(jobRequestPage.successMessageText,90000,"Success message text in Job request page");
   jobRequestPage.successMessageText.waitForExist({timeout:12000})
   chai.expect(action.elementExists(jobRequestPage.successMessage,"Success message text in Job request page")).to.be.true
+ //This code is after the change of success message
+ browser.waitUntil(
+       () => jobRequestPage.successMessageText.getText().includes("The job was successfully created."), 20000, 'link not visible'
+   );
+   var jobNumber = jobRequestPage.jobIDText.getText().match(/\d+/g).map(Number)
+   GlobalData.CURRENT_JOB_ID=jobNumber
+    console.timeEnd('t2')
+   console.timeLog('t2')
+  })
+
+  Then(/^the job created success message should appear for CBO$/, function(){
+    console.time('t2')
+    action.isVisibleWait(jobRequestPage.successMessageText,90000,"Success message text in Job request page");
+    jobRequestPage.successMessageText.waitForExist({timeout:12000})
+    chai.expect(action.elementExists(jobRequestPage.successMessage,"Success message text in Job request page")).to.be.true
+   //This code is before the change for success message
   browser.waitUntil(
       () => jobRequestPage.successMessageText.getText().includes("The Job#"), 20000, 'link not visible'
   );
-  
   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
   GlobalData.CURRENT_JOB_ID=jobNumber
   console.timeEnd('t2')
   console.timeLog('t2')
-
-  
 })
 
 Then(/^I verify the created job id is listed$/, function(){

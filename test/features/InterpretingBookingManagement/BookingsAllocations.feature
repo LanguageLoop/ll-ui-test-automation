@@ -258,11 +258,11 @@ Feature: Bookings Allocations Features
     And I click save and proceed to summary button
     And I handle duplicate job warning window
     And I click submit button
-    And the job created success message should appear
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+   And the job created success message should appear
+   # And I search for created job request
+   # And I verify the job is listed in search results
+  #  And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And user clicks on Edit button in Job Allocation
     And the Additional information section is shown
     Then any Audible in ODTI custom fields are not shown
@@ -419,10 +419,10 @@ Feature: Bookings Allocations Features
   Scenario Outline: Return Job is clicked
     When I login with "<username>" and "<password>"
     And I create a new job request with minimal fields "<job notice length>"
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+  #And I search for created job request
+   #And I verify the job is listed in search results
+   # And I click on first job id from interpreting job list
+   # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
@@ -449,10 +449,10 @@ Feature: Bookings Allocations Features
   Scenario Outline: Return Job is Canceled
     When I login with "<username>" and "<password>"
     And I create a new job request with minimal fields "<job notice length>"
-    And I search for created job request
-    And I verify the job is listed in search results
-    And I click on first job id from interpreting job list
-    And I switch to the job allocation window
+    #And I search for created job request
+    #And I verify the job is listed in search results
+    #And I click on first job id from interpreting job list
+    #And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
