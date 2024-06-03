@@ -39,9 +39,9 @@ Feature: Edit existing booking
    And I click save and proceed to summary button
   # And I handle duplicate job warning window
    And I click yes to confirm editing job request
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+ #  And I search for created job request
+ # And I click on job id from interpreting job search results
+ #  And I switch to the job allocation window
    Then I verify the assignment type "<assignment type>" is updated
    And I verify the gender preference "<gender preference>" is updated
    And The job id is added to the file
@@ -72,9 +72,9 @@ Feature: Edit existing booking
    And I handle job updated warning message by refreshing assignment type "<assignment type>"
    And I handle duplicate job warning window
    And I click yes to confirm editing job request 
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+  # And I search for created job request
+  # And I click on job id from interpreting job search results
+  # And I switch to the job allocation window
    Then I verify the assignment type "<assignment type>" is updated
    And The job id is added to the file
    And the booking is cancelled on behalf of "<Requester Name>"
@@ -112,9 +112,9 @@ Feature: Edit existing booking
    And I handle job updated warning message by refreshing NAATI type "<NAATI>"
    And I handle duplicate job warning window
    And I click yes to confirm editing job request 
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+  # And I search for created job request
+  # And I click on job id from interpreting job search results
+  # And I switch to the job allocation window
    Then I verify the NAATI "<NAATI>" is updated
    And The job id is added to the file
    And the booking is cancelled on behalf of "<Requester Name>"
