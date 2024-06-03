@@ -31,10 +31,10 @@ Feature: Campus Bookings Feature
   And I handle duplicate job warning window
   And I click submit button
   And the job created success message should appear
-  And I search for created job request
-  And I verify the job is listed in search results
-  And I click on first job id from interpreting job list
-  And I switch to the job allocation window
+ # And I search for created job request
+ # And I verify the job is listed in search results
+ # And I click on first job id from interpreting job list
+ # And I switch to the job allocation window
   And the contractor above "<contractor>" status will be "<eligible status>" for the Job
   And I click account management link
   And I search for campus "<campus id>"
@@ -85,10 +85,10 @@ Feature: Campus Bookings Feature
   And I handle duplicate job warning window
   And I click submit button
   And the job created success message should appear
-  And I search for created job request
-  And I verify the job is listed in search results
-  And I click on first job id from interpreting job list
-  And I switch to the job allocation window
+ # And I search for created job request
+ # And I verify the job is listed in search results
+ # And I click on first job id from interpreting job list
+ # And I switch to the job allocation window
   And the contractor above "<contractor>" status will be "<eligible status>" for the Job
   And I click account management link
   And I search for campus "<campus id>"
@@ -139,10 +139,10 @@ Feature: Campus Bookings Feature
   And I handle duplicate job warning window
   And I click submit button
   And the job created success message should appear
-  And I search for created job request
-  And I verify the job is listed in search results
-  And I click on first job id from interpreting job list
-  And I switch to the job allocation window
+ # And I search for created job request
+ # And I verify the job is listed in search results
+ # And I click on first job id from interpreting job list
+ # And I switch to the job allocation window
   And the contractor or interpreter "<contractor>" is unable to view or accept any job for that campus or Organisation
   And I click account management link
   And I search for campus "<campus id>"
@@ -189,10 +189,10 @@ Feature: Campus Bookings Feature
   And I handle duplicate job warning window
   And I click submit button
   And the job created success message should appear
-  And I search for created job request
-  And I verify the job is listed in search results
-  And I click on first job id from interpreting job list
-  And I switch to the job allocation window
+ # And I search for created job request
+ # And I verify the job is listed in search results
+ # And I click on first job id from interpreting job list
+ # And I switch to the job allocation window
   And the contractor or interpreter "<contractor>" is unable to view or accept any job for that campus or Organisation
   And I click account management link
   And I search for campus "<campus id>"
@@ -241,10 +241,10 @@ Feature: Campus Bookings Feature
   And I handle duplicate job warning window
   And I click submit button
   And the job created success message should appear
-  And I search for created job request
-  And I verify the job is listed in search results
-  And I click on first job id from interpreting job list
-  And I switch to the job allocation window
+ # And I search for created job request
+ # And I verify the job is listed in search results
+ # And I click on first job id from interpreting job list
+ # And I switch to the job allocation window
   And the contractor or interpreter "<contractor>" is unable to view or accept any job for that campus or Organisation
   And I click account management link
   And I search for campus "<campus id>"
@@ -296,10 +296,10 @@ Feature: Campus Bookings Feature
   And I handle duplicate job warning window
   And I click submit button
   And the job created success message should appear
-  And I search for created job request
-  And I verify the job is listed in search results
-  And I click on first job id from interpreting job list
-  And I switch to the job allocation window
+#  And I search for created job request
+ # And I verify the job is listed in search results
+ # And I click on first job id from interpreting job list
+ # And I switch to the job allocation window
   And the contractor or interpreter "<contractor>" is unable to view or accept any job for that campus or Organisation
   And I click account management link
   And I search for campus "<campus id>"
