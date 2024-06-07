@@ -71,7 +71,7 @@ When(/^I click Advanced search link in Admin$/, function () {
     action.clickElement(ODTIJobsPage.advancedSearchLink,"Advanced search link in ODTI Jobs page");
 })
 
-When(/^I add filter "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (filterOption, filterOptionIndex, filterComparator, filterComparatorIndex, filterValue, filterValueIndex) {
+When(/^I add filters "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (filterOption, filterOptionIndex, filterComparator, filterComparatorIndex, filterValue, filterValueIndex) {
     let filterFieldDropdownElement = $(ODTIJobsPage.filterFieldDropdownLocator.replace("<dynamic>", filterOptionIndex));
     action.isVisibleWait(filterFieldDropdownElement, 20000,"Filter dropdown in ODTI Jobs page");
     let filterFieldDropdownOptionElement = $(ODTIJobsPage.filterFieldDropdownOptionLocator.replace("<dynamic1>", filterOptionIndex).replace("<dynamic2>", filterOption));
@@ -99,6 +99,84 @@ When(/^I add filter "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (fil
         counter++;
     }
 })
+
+//This method is for new code line (i.e., for default Job Date filter)
+When(/^I add filter "(.*)" "(.*)", "(.*)" "(.*)"$/, function (filterComparator, filterComparatorIndex, filterValue, filterValueIndex) {
+   // let filterFieldDropdownElement = $(ODTIJobsPage.filterFieldDropdownLocator.replace("<dynamic>", filterOptionIndex));
+  //action.isVisibleWait(filterFieldDropdownElement, 20000,"Filter dropdown in ODTI Jobs page");
+  //  let filterFieldDropdownOptionElement = $(ODTIJobsPage.filterFieldDropdownOptionLocator.replace("<dynamic1>", filterOptionIndex).replace("<dynamic2>", filterOption));
+   // action.isExistingWait(filterFieldDropdownOptionElement, 20000,"Filter dropdown option in ODTI Jobs page");
+   // action.selectTextFromDropdown(filterFieldDropdownElement, filterOption,"Filter dropdown in ODTI Jobs page");
+    let filterComparisonDropdownElement = $(ODTIJobsPage.filterComparisonDropdownLocator.replace("<dynamic>", filterComparatorIndex));
+    action.isVisibleWait(filterComparisonDropdownElement, 20000,"Filter comparison dropdown in ODTI Jobs page");
+    let filterComparisonDropdownOptionElement = $(ODTIJobsPage.filterComparisonDropdownOptionLocator.replace("<dynamic1>", filterComparatorIndex).replace("<dynamic2>", filterComparator));
+    action.isExistingWait(filterComparisonDropdownOptionElement, 20000,"Filter comparison dropdown option in ODTI Jobs page")
+    action.selectTextFromDropdown(filterComparisonDropdownElement, filterComparator,"Filter comparison dropdown in ODTI Jobs page");
+    //action.clearValue(ODTIJobsPage.filterValueTextBoxLocator, "testing");
+    let filterValueTextBoxElement = $(ODTIJobsPage.filterValueTextBoxLocator.replace("<dynamic>", filterValueIndex));
+    action.isVisibleWait(filterValueTextBoxElement, 20000,"Filter value text box in ODTI Jobs page");
+    action.clearValue(filterValueTextBoxElement, "Removing the defacult date field value");        
+    action.enterValueAndPressReturn(filterValueTextBoxElement, filterValue,"Filter value text box in ODTI Jobs page");
+    action.pressKeys("Tab");
+    action.clickElement(ODTIJobsPage.searchByTextBox,"Search by text box in ODTI Jobs page");
+    browser.pause(5000);
+    let filterValueSet = action.getElementValue(filterValueTextBoxElement,"Filter value text box in ODTI Jobs page");
+    let counter = 0;
+    //Checking and re-setting the value if not its set as expected
+    while (filterValueSet !== filterValue && counter < 5) {
+        action.addValueAndPressReturnTab(filterValueTextBoxElement, filterValue,"Filter value text box in ODTI Jobs page");
+        action.clickElement(ODTIJobsPage.searchByTextBox,"Search by text box in ODTI Jobs page");
+        browser.pause(5000);
+        filterValueSet = action.getElementValue(filterValueTextBoxElement,"Filter value text box in ODTI Jobs page");
+        counter++;
+    }
+})
+
+
+//This method is to select Before option for Job Date
+When(/^I add Before Date filter "(.*)" "(.*)"$/, function (filterComparator, filterComparatorIndex) {
+    let filterComparisonDropdownElement = $(ODTIJobsPage.filterComparisonDropdownLocator.replace("<dynamic>", filterComparatorIndex));
+     action.isVisibleWait(filterComparisonDropdownElement, 20000,"Filter comparison dropdown in ODTI Jobs page");
+     let filterComparisonDropdownOptionElement = $(ODTIJobsPage.filterComparisonDropdownOptionLocator.replace("<dynamic1>", filterComparatorIndex).replace("<dynamic2>", filterComparator));
+     action.isExistingWait(filterComparisonDropdownOptionElement, 20000,"Filter comparison dropdown option in ODTI Jobs page")
+     action.selectTextFromDropdown(filterComparisonDropdownElement, filterComparator,"Filter comparison dropdown in ODTI Jobs page");
+     browser.pause(5000);
+     action.pressKeys("Tab");
+})
+
+// This is for adding RecordStatus filter and selecting Export option
+When(/^I add filter RecordStatus "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (filterOption, filterOptionIndex, filterComparator, filterComparatorIndex, filterValue, filterValueIndex) {
+    let filterFieldDropdownElement = $(ODTIJobsPage.filterFieldDropdownLocator.replace("<dynamic>", filterOptionIndex));
+    action.isVisibleWait(filterFieldDropdownElement, 20000,"Filter dropdown in ODTI Jobs page");
+    let filterFieldDropdownOptionElement = $(ODTIJobsPage.filterFieldDropdownOptionLocator.replace("<dynamic1>", filterOptionIndex).replace("<dynamic2>", filterOption));
+    action.isExistingWait(filterFieldDropdownOptionElement, 20000,"Filter dropdown option in ODTI Jobs page");
+    action.selectTextFromDropdown(filterFieldDropdownElement, filterOption,"Filter dropdown in ODTI Jobs page");
+    let filterComparisonDropdownElement = $(ODTIJobsPage.filterComparisonDropdownLocator.replace("<dynamic>", filterComparatorIndex));
+    action.isVisibleWait(filterComparisonDropdownElement, 20000,"Filter comparison dropdown in ODTI Jobs page");
+    let filterComparisonDropdownOptionElement = $(ODTIJobsPage.filterComparisonDropdownOptionLocator.replace("<dynamic1>", filterComparatorIndex).replace("<dynamic2>", filterComparator));
+    action.isExistingWait(filterComparisonDropdownOptionElement, 20000,"Filter comparison dropdown option in ODTI Jobs page")
+    action.selectTextFromDropdown(filterComparisonDropdownElement, filterComparator,"Filter comparison dropdown in ODTI Jobs page");
+    
+
+    let filterValueTextBoxElement = $(ODTIJobsPage.filterValueDropdownLocator.replace("<dynamic>", filterValueIndex));
+    action.isVisibleWait(filterValueTextBoxElement, 20000,"Filter value dropdown in ODTI Jobs page");
+    action.selectTextFromDropdown(filterValueTextBoxElement, filterValue,"Filter value dropdown in ODTI Jobs page");
+    action.clickElement(ODTIJobsPage.searchByTextBox,"Search by dropdown in ODTI Jobs page");
+    let filterValueOptionElement = $(ODTIJobsPage.filterValueDropdownOptionLocator.replace("<dynamic1>", filterValueIndex).replace("<dynamic2>", filterValue));
+    browser.pause(5000);
+    let filterValueSet = action.isSelectedWait(filterValueOptionElement,"Filter value dropdown option in ODTI Jobs page");
+    let counter = 0;
+    //Checking and re-setting the value if not its set as expected
+    while (filterValueSet !== false && counter < 5) {
+        action.selectTextFromDropdown(filterValueTextBoxElement, filterValue,"Filter value dropdown option in ODTI Jobs page");
+        action.clickElement(ODTIJobsPage.searchByTextBox,"Search by dropdown in ODTI Jobs page");
+        browser.pause(5000);
+        filterValueSet = action.isSelectedWait(filterValueOptionElement,"Filter value dropdown option in ODTI Jobs page");
+        counter++;
+    }
+})
+
+
 
 Then(/^The results displayed are within the date range "(.*)", "(.*)"$/, function (startDate, endDate) {
     startDate = startDate.replace(/-/g, "/") + " 23:59:59";
