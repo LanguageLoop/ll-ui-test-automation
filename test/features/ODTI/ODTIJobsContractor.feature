@@ -10,13 +10,13 @@ Feature: ODTI Jobs Contractor features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And The RecordStatus Is Export
+    # And The RecordStatus Is Export
+    # And I click Advanced search link in Admin
+    And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
-    And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
-    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
-    And I click Advanced search link in Admin
-    And I add filter "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
+    And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
     And I get the records count in records counter in Admin
     And I get the ODTI SERVICE CHARGE ID values In Admin
     And the looped in login page is opened
@@ -30,7 +30,7 @@ Feature: ODTI Jobs Contractor features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 2                         | 15-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 21-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | Test1               | 16-01-2023 | 20-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 1                         | 15-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 21-01-2023     | 2                    | ContractorID    | 3                     | Is                  | 3                         | 1293           | 3                    | luciacheung192@gmail.com | Test1               | 16-01-2023 | 20-01-2023 |
 
     #Scenario 2 - As Contractor user - Select the Start and End date filters that has no Jobs to be displayed
   @Regression @RegressionS19 @ContractorJobsNotDisplayed
