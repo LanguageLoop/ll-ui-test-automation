@@ -223,17 +223,20 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And The RecordStatus Is Export
+    #And The RecordStatus Is Export
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
-    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
-    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
+   And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     Then The records are displayed only for the entered filter value "<language>" under column number "<Language column number>"
     And The records are displayed only for the entered filter value "<Interpreter Name>" under column number "<Interpreter Name column number>"
 
     Examples:
-      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | language | Language column number | Interpreter Name | Interpreter Name column number |
-      | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | language | Language column number | Interpreter Name | Interpreter Name column number | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | zenq@cso10.com | Test1        | Before              |  1                        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 1                    | Contractor Name | 3                     | Is                  | 2                         | Sunia TUITUPOU | 2                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              | RecordStatus    | 3                     |  Is                 |  4                        | Export         | 2                    |
 
     #Scenario 15 - As CSO User - Applying Advanced Search Filters and verify that results  are display only for the selected filters and the total records value should be updated
   @Regression @RegressionS40 @CSOAdvancedFilterRecords
@@ -241,17 +244,20 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And The RecordStatus Is Export
+   # And The RecordStatus Is Export
+   And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in ODTI before adding filters
     And I click Advanced search link in Admin
-    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
-    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
     Then The total record value should be updated as per the number of records displayed
 
     Examples:
-      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
-      | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
+      | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
 
     #Scenario 16 - As CSO User - Removing the applied Advanced Search filters
   @Regression @RegressionS41 @CSOAdvancedFiltersRemoved
@@ -259,19 +265,22 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And The RecordStatus Is Export
+   # And The RecordStatus Is Export
+   And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+   And I click Advanced search link in Admin
+   And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in ODTI before adding filters
     And I click Advanced search link in Admin
-    And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
-    And I add filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
     And The total record value should be updated as per the number of records displayed
     And I Click on the X Icon beside the filters applied
     Then All the Jobs are displayed as no filters are applied and the number of records gets updated
 
     Examples:
-      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
-      | zenq@cso10.com | Test1        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 2                    | Contractor Name | 3                     | Is                  | 3                         | Sunia TUITUPOU | 1                    |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
+      | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
 
     #LL-659 Scenario 1 - CS / Finance user accesses Job details screen
   @LL-659 @CSUserAccessesJobDetailsScreen
@@ -279,13 +288,14 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     Then I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
     And this will show 1 contractor that was connected to the call
 
     Examples:
-      | username cso   | password cso | job detail page url        |
-      | zenq@cso10.com | Test1        | OnDemandTI/JobDetails.aspx |
+      | username cso   | password cso | job detail page url        | filter comparator 1 | filter comparator index 1 | 
+      | zenq@cso10.com | Test1        | OnDemandTI/JobDetails.aspx | Before              | 1                         |
 
 
     #LL-659 Scenario 3 - Campus PIN Hyperlink
@@ -294,6 +304,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     Then they will see the Campus PIN hyperlinked
@@ -301,8 +312,8 @@ Feature: ODTI Jobs CSO features
     And they will be navigated to the Campus page
 
     Examples:
-      | username cso   | password cso |
-      | zenq@cso10.com | Test1        |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | 
+      | zenq@cso10.com | Test1        | Before              | 1                         |
 
     #LL-659 Scenario 4 - Contract Name Hyperlink
   @LL-659 @CSContractNameHyperlink
@@ -310,6 +321,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     Then they will see the Contract Name hyperlinked
@@ -317,8 +329,8 @@ Feature: ODTI Jobs CSO features
     And they will be navigated to the Contract page
 
     Examples:
-      | username cso   | password cso |
-      | zenq@cso10.com | Test1        |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 |
+      | zenq@cso10.com | Test1        | Before              | 1                         |
 
     #LL-659 Scenario 6 - Contractor Name hyperlinked
   @LL-659 @CSContractorNameHyperlink
@@ -326,6 +338,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     And the user is viewing the allocated interpreter section
@@ -333,8 +346,8 @@ Feature: ODTI Jobs CSO features
     Then they will be navigated to the Contractor’s profile
 
     Examples:
-      | username cso   | password cso |
-      | zenq@cso10.com | Test1        |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 |
+      | zenq@cso10.com | Test1        | Before              |  1                        |
 
     #LL-659 Scenario 2 - CS / Finance user sees Job Info section
   @LL-659 @CSUserSeesJobInfoSection
@@ -342,6 +355,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I get Campus Name value under Campus Name column
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
@@ -351,8 +365,8 @@ Feature: ODTI Jobs CSO features
     And they will see the custom fields section under job info
 
     Examples:
-      | username cso   | password cso | JobInfoSectionName | JobInfoSectionLabels                                                                                                                                                                           | additionalInfoSectionName | additionalInfoSectionLabels                                                                                                                                                        | customFieldsSectionName | customFieldsSectionLabels |
-      | zenq@cso10.com | Test1        | Job Information    | DID,ANI,Service Type,Campus PIN,Client Call ID,Contractor ID,Gender Preference,Language,Call Start Date/Time,Interpreter Connect Date/Time,Interpreter End Date/Time,Duration | Additional Information    | Job Status,DID Timezone,Client AH / BH,Public holiday,CX1 Contact ID,Operator called,MIL Phone Number,UI capture screen used,Is 5 min rule,Contract Name,NES Details,Record Status | Custom Fields           | [EX1] Reference number    |
+      | username cso   | password cso | JobInfoSectionName | JobInfoSectionLabels                                                                                                                                                                                      | additionalInfoSectionName | additionalInfoSectionLabels                                                                                                                             | customFieldsSectionName | customFieldsSectionLabels | filter comparator 1 | filter comparator index 1 |
+      | zenq@cso10.com | Test1        | Job Information    | DID,ANI,Service Type,Campus PIN,Client Call ID,Contractor ID,Gender Preference,Language,Call Start Date/Time,Interpreter Connect Date/Time,Interpreter End Date/Time,Duration | Additional Information    | Job Status,DID Timezone,Client AH / BH,Public holiday,CX1 Contact ID,Operator called,MIL Phone Number,UI capture screen used,Is 5 min rule,Contract Name,NES Details,Record Status  | Custom Fields           | [EX1] Reference number    | Before              |  1                        |
 
     #LL-659 Scenario 5 - CS / Finance user sees Allocated Interpreter section
   @LL-659 @CSSeesAllocatedInterpreterSection
@@ -360,6 +374,7 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     And the user is viewing the Job Details page
     Then they will see the Allocated Interpreter section under the Job Info section as per existing functionality for Job Bookings
@@ -369,5 +384,5 @@ Feature: ODTI Jobs CSO features
     And  the Contractor’s name will be hyperlinked
 
     Examples:
-      | username cso   | password cso | labelsDisplayed                                                   | labelsNotDisplayed                 |
-      | zenq@cso10.com | Test1        | CONTRACTOR,PHONE,NAATI LEVEL,TIMES CONNECTED,DURATION,AFTER HOURS | DISTANCE,GENDER,PROBABILITY,STATUS |
+      | username cso   | password cso | labelsDisplayed                                                   | labelsNotDisplayed                 | filter comparator 1 | filter comparator index 1 |
+      | zenq@cso10.com | Test1        | CONTRACTOR,PHONE,NAATI LEVEL,TIMES CONNECTED,DURATION,AFTER HOURS | DISTANCE,GENDER,PROBABILITY,STATUS | Before              | 1                         |
