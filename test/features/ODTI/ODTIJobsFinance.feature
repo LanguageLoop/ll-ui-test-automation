@@ -36,12 +36,14 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    Then they will see the following fields by default in the Search section: Search by contractor, language and contact ID, RecordStatus
+    Then they will see the following fields by default in the Search section: Search by contractor, language and contact ID
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And the following filters can be added from Advanced Search as per the Jobs Management page: "<advanced search filter options>"
 
     Examples:
-      | username              | password | advanced search filter options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-      | testauto@finance1.com | Test1    | ServiceChargeID,OperatorFlag,Campus PIN,Campus Name,ContractorID,Contractor Name,DID Number,Language,Job Date,Exported (INVP),Exported (PAYP),VITSAHFlag,ContractorAHFlag,InterpreterDuration (In Sec),Bill To Code,Contract name,ClientChargeTotalExGST,InterpreterPaymentTotalExGST,NESPhone,NESConnectionFee,Custom Fields,FiveMinuteRule,RecordStatus,Budget Code - Dimension List,Client Type - Dimension List,PRP dim - Dimension List,Region - Dimension List,Reporting - Dimension List,Service Type - Dimension List,Shortcode - Dimension List,ShortcodeNew - Dimension List |
+      | username              | password | advanced search filter options                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | ServiceChargeID,OperatorFlag,Campus PIN,Campus Name,ContractorID,Contractor Name,DID Number,Language,Job Date,Exported (INVP),Exported (PAYP),VITSAHFlag,ContractorAHFlag,InterpreterDuration (In Sec),Bill To Code,Contract name,ClientChargeTotalExGST,InterpreterPaymentTotalExGST,NESPhone,NESConnectionFee,Custom Fields,FiveMinuteRule,RecordStatus,Budget Code - Dimension List,Client Type - Dimension List,PRP dim - Dimension List,Region - Dimension List,Reporting - Dimension List,Service Type - Dimension List,Shortcode - Dimension List,ShortcodeNew - Dimension List | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-627 Scenario 5a - CS user views ODTI Jobs table
   @LL-627 @CSUserViewsODTIJobsTable
@@ -49,6 +51,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And this will only display jobs that have been Completed Billing & Merging processes done
     Then The columns available for ODTI Jobs for the user are "<column headers>"
@@ -58,8 +63,9 @@ Feature: ODTI Jobs Finance features
     And the user will not see the "<column header not displayed>" column
 
     Examples:
-      | username       | password | column headers                                                                                                         | column header not displayed     |
-      | zenq@cso10.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL | INTERPRETER CHARGE TOTAL EX GST |
+      | username       | password | column headers                                                                                                         | column header not displayed     | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | zenq@cso10.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL | INTERPRETER CHARGE TOTAL EX GST | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
+
 
     #LL-627 Scenario 5b - Finance user views ODTI Jobs table
   @LL-627 @FinanceUserViewsODTIJobsTable
@@ -67,6 +73,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And this will only display jobs that have been Completed Billing & Merging processes done
     Then The columns available for ODTI Jobs for the user are "<column headers>"
@@ -75,8 +84,8 @@ Feature: ODTI Jobs Finance features
     And the number of records will be displayed at the bottom of the table as per existing functionality
 
     Examples:
-      | username              | password | column headers                                                                                                                                         |
-      | testauto@finance1.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL,INTERPRETER CHARGE TOTAL EX GST |
+      | username              | password | column headers                                                                                                                                         | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL,INTERPRETER CHARGE TOTAL EX GST | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-627 Scenario 6 - CS / Finance user clicks a hyperlink
   @LL-627 @FinanceClicksHyperlink
@@ -84,6 +93,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     Then they are navigated to the Job Details page in a new tab
@@ -93,8 +105,8 @@ Feature: ODTI Jobs Finance features
     And they are navigated to the Interpreter’s Profile page in a new tab
 
     Examples:
-      | username              | password |
-      | testauto@finance1.com | Test1    |
+      | username              | password | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 1a: Must select valid campus pin
   @LL-676 @MustSelectValidCampusPin
@@ -102,6 +114,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -110,8 +125,8 @@ Feature: ODTI Jobs Finance features
     Then an inline message in red will appear New PIN must be selected and valid
 
     Examples:
-      | username              | password |
-      | testauto@finance1.com | Test1    |
+      | username              | password | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 1b: New campus pin is for a different contract
   @LL-676 @NewCampusPinDifferentContract
@@ -119,6 +134,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -127,8 +145,8 @@ Feature: ODTI Jobs Finance features
     Then a pop up message will appear before I can proceed The new campus pin is for a different contract, are you sure you want to proceed
 
     Examples:
-      | username              | password | new campus pin |
-      | testauto@finance1.com | Test1    | 33124          |
+      | username              | password | new campus pin | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | 33124          | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 1c: The rate schedule is available for both campus contracts e.g. PH rate, BH hours
   @LL-676 @RateScheduleAvailableCampusContracts
@@ -136,6 +154,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -146,8 +167,8 @@ Feature: ODTI Jobs Finance features
     Then an following error message will appear The Job PIN could not be migrated No contract rate found for Contract ID: XX’ and will not allow the user to proceed with that PIN
 
     Examples:
-      | username              | password | new campus pin |
-      | testauto@finance1.com | Test1    | 32548          |
+      | username              | password | new campus pin | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | 32548          | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 1d: Validation for Service Type
   @LL-676 @ValidationServiceType
@@ -155,6 +176,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -164,8 +188,8 @@ Feature: ODTI Jobs Finance features
     Then a message will appear Service Type is not enabled, do you want to proceed
 
     Examples:
-      | username              | password | new campus pin |
-      | testauto@finance1.com | Test1    | 33124          |
+      | username              | password | new campus pin | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | 33124          | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 1e: All mandatory custom field must completed
   @LL-676 @MandatoryCustomFieldsMustCompleted
@@ -173,6 +197,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -183,8 +210,8 @@ Feature: ODTI Jobs Finance features
     Then an inline message in red will appear Please ensure that all mandatory custom fields are completed
 
     Examples:
-      | username              | password | new campus pin |
-      | testauto@finance1.com | Test1    | 30889          |
+      | username              | password | new campus pin | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | 30889          | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 3: Trying to select Inactive campus pin from Find Campus PIN popup
   @LL-676 @TrySelectInactiveCampusPin
@@ -192,6 +219,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -199,8 +229,8 @@ Feature: ODTI Jobs Finance features
     Then a pop up will display the campus pin "<new campus pin>" in the results, and on hovering over message Campus is disabled
 
     Examples:
-      | username              | password | new campus pin |
-      | testauto@finance1.com | Test1    | 28063          |
+      | username              | password | new campus pin | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | 28063          | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
 
     #LL-676 Scenario 4: Entering the campus pin that does not exists in Find Campus PIN popup
