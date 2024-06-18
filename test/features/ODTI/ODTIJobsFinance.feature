@@ -239,6 +239,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+     And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -247,8 +250,8 @@ Feature: ODTI Jobs Finance features
     Then a pop up will display a message No campus PIN to show…
 
     Examples:
-      | username              | password | new campus pin |
-      | testauto@finance1.com | Test1    | 999999         |
+      | username              | password | new campus pin | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | testauto@finance1.com | Test1    | 999999         | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
     #LL-676 Scenario 2: Successfully changing the campus pin
   @LL-676 @SuccessfullyChangeCampusPin
@@ -256,10 +259,13 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And I enter the search value "<contractor>" in the search field
     And I click Advanced search link in Admin
-    And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
     And they click the ODTI Service Charge ID hyperlink
     And they are navigated to the Job Details page in a new tab
     And I get the existing campus Total rate value
@@ -277,8 +283,8 @@ Feature: ODTI Jobs Finance features
     And I click on Migrate & Recalculate Job Fee after selecting a new campus pin
 
     Examples:
-      | username              | password | new campus pin | old campus pin | contractor | filter option 1        | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | mandatory field names   | mandatory field values | mandatory field names2      | mandatory field values2 |
-      | testauto@finance1.com | Test1    | 30889          | 29449          | Yousef     | ClientChargeTotalExGST | 2                     | Is not              | 2                         | 0.00           | 1                    | [EX1] Test1,[EX2] Test2 | test1,test2            | [EX1] Reference number,test | test1,test2             |
+      | username              | password | new campus pin | old campus pin | contractor | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3        | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | mandatory field names                     | mandatory field values | mandatory field names2      | mandatory field values2 |
+      | testauto@finance1.com | Test1    | 30889          | 29449          | Yousef     | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | ClientChargeTotalExGST | 3                     | Is not              | 3                         | 0.00           | 2                    | [EX1] Test1,[EX2] Test2,[EX2] PO Number1 | test1,test2, test3     | [EX1] Reference number,test | test1,test2             |
 
     #LL-695 Scenario 1a: Job less than or equal to 60 sec duration
   @LL-695 @JobLessThan60SecTotals
@@ -286,6 +292,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And sorts the Call Duration column to get jobs less than 60 seconds
     And they click the ODTI Service Charge ID hyperlink
@@ -298,8 +307,8 @@ Feature: ODTI Jobs Finance features
     And the Total should be the sum of Subtotal and GST
 
     Examples:
-      | username              | password |
-      | testauto@finance1.com | Test1    |
+      | username              | password | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
+      | testauto@finance1.com | Test1    | Before              | 1                          | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                   |            
 
     #LL-695 Scenario 1b: Job > 60sec
   @LL-695 @JobGraterThan60SecTotals
@@ -307,6 +316,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And sorts the Call Duration column to get jobs greater than 60 seconds
     And they click on any of the ODTI Service Charge ID hyperlink
@@ -319,8 +331,8 @@ Feature: ODTI Jobs Finance features
     And the Total should be the sum of Subtotal and GST
 
     Examples:
-      | username              | password |
-      | testauto@finance1.com | Test1    |
+      | username              | password | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
+      | testauto@finance1.com | Test1    | Before              | 1                          | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                   |  
 
     #LL-695 Scenario 2: Job List rename column heading
   @LL-695 @JobListRenameColumnHeading
@@ -341,6 +353,9 @@ Feature: ODTI Jobs Finance features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And I click Advanced search link in Admin
+    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And sorts the Call Duration column to get jobs greater than 60 seconds
     And they click the ODTI Service Charge ID hyperlink in row "<job row>"
@@ -354,5 +369,5 @@ Feature: ODTI Jobs Finance features
     And the Total should be the sum of Subtotal and GST
 
     Examples:
-      | username              | password | job row |
-      | testauto@finance1.com | Test1    | 2       |
+      | username              | password | job row | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
+      | testauto@finance1.com | Test1    | 2       | Before              | 1                          | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                   |
