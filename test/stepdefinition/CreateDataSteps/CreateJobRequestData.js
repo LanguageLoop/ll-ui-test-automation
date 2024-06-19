@@ -126,7 +126,7 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   while(action.isVisibleWait(findInterpreter,10000,"Find interpreter in Job request page")==false){
   action.clickElement(jobRequestPage.addInterpreterLink,"Add interpreter link in Job request page")
   browser.waitUntil(()=> findInterpreter.isDisplayed(),{timeout:7000, timeoutMsg:'Find interpreter modal not displayed in 10s', interval:500} )
-  console.log("inside "+findInterpreter.isDisplayed())
+   console.log("inside "+findInterpreter.isDisplayed())
     break
 }
   action.isClickableWait(jobRequestPage.searchForInterpreterInput,10000,"Search for interpreter text box in Job request page")
@@ -177,10 +177,20 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   jobRequestPage.submitButton.waitForClickable({timeout:10000},{interval:1000})  
   browser.execute("arguments[0].click();", jobRequestPage.submitButton);
  jobRequestPage.successMessageText.waitForExist({timeout:10000})
+ //This code is after the success message change
 browser.waitUntil(
-      () => jobRequestPage.successMessageText.getText().includes("The Job#"), 10000, 'link not visible'
-  );
-  var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
-  GlobalData.CURRENT_JOB_ID=jobNumber
-  logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
+  () => jobRequestPage.successMessageText.getText().includes("The job was successfully created."), 20000, 'link not visible'
+);
+var jobNumber = jobRequestPage.jobIDText.getText().match(/\d+/g).map(Number)
+GlobalData.CURRENT_JOB_ID=jobNumber
+console.timeEnd('t2')
+console.timeLog('t2')
 }
+//This code is before the success message change
+// browser.waitUntil(
+//       () => jobRequestPage.successMessageText.getText().includes("The Job#"), 10000, 'link not visible'
+//   );
+//   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
+//   GlobalData.CURRENT_JOB_ID=jobNumber
+//   logger.info("CURRENT_JOB_ID: "+GlobalData.CURRENT_JOB_ID);
+//}
