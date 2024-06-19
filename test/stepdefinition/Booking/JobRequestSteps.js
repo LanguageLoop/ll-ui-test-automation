@@ -474,6 +474,8 @@ When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameO
 
 When(/^the blocked contractor "(.*)" status is "(.*)" for that Job$/,function(contractorName,expectedStatus){
   let contractorJobStatusLink = $(jobRequestPage.contractorJobStatusLinkLocator.replace("<dynamic>",contractorName));
+  browser.pause(5000);
+  browser.refresh();
   action.isVisibleWait(contractorJobStatusLink,10000,"Contractor job status link in Job request page");
   let contractorJobStatusTextActual = action.getElementText(contractorJobStatusLink,"Contractor job status link in Job request page");
   chai.expect(contractorJobStatusTextActual).to.equal(expectedStatus);
