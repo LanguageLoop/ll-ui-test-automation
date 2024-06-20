@@ -467,6 +467,8 @@ When(/^click on Job Type option "(.*)" in Job Requester Details$/,function(reque
 
 When(/^search for contractor "(.*)" in Job Allocation$/,function(contractorNameOrID){
   action.waitUntilLoadingIconDisappears();
+  browser.pause(5000);
+  browser.refresh();
   action.isVisibleWait(jobRequestPage.contractorSearchBoxJobAllocation,20000,"Contractor search box job allocation in Job request page");
   action.enterValue(jobRequestPage.contractorSearchBoxJobAllocation,contractorNameOrID,"Contractor search box job allocation in Job request page");
   action.pressKeys("Tab");
