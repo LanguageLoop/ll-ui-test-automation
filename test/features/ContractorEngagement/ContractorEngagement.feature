@@ -557,7 +557,7 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password  | contractor | ABN Number1 |  ABN Number2  |
-      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 45217078984 |  32953689249  |
+      | LLAdmin@looped.in | Octopus@6 | Ivanka     | 56004058084 |  32953689249  |
 
      #LL-672 NAV export: ABN validation Scenario 3c: Contractor ABN validated with spaces (save button)
   @ABNValidation @ValidABNSpacesSaveButton
