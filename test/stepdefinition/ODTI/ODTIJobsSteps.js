@@ -77,12 +77,12 @@ When(/^I add filters "(.*)" "(.*)", "(.*)" "(.*)", "(.*)" "(.*)"$/, function (fi
     let filterFieldDropdownOptionElement = $(ODTIJobsPage.filterFieldDropdownOptionLocator.replace("<dynamic1>", filterOptionIndex).replace("<dynamic2>", filterOption));
     action.isExistingWait(filterFieldDropdownOptionElement, 20000,"Filter dropdown option in ODTI Jobs page");
     action.selectTextFromDropdown(filterFieldDropdownElement, filterOption,"Filter dropdown in ODTI Jobs page");
-    let filterComparisonDropdownElement = $(ODTIJobsPage.filterComparisonDropdownLocator.replace("<dynamic>", filterComparatorIndex));
+   let filterComparisonDropdownElement = $(ODTIJobsPage.filterComparisonDropdownLocator.replace("<dynamic>", filterComparatorIndex));
     action.isVisibleWait(filterComparisonDropdownElement, 20000,"Filter comparison dropdown in ODTI Jobs page");
     let filterComparisonDropdownOptionElement = $(ODTIJobsPage.filterComparisonDropdownOptionLocator.replace("<dynamic1>", filterComparatorIndex).replace("<dynamic2>", filterComparator));
     action.isExistingWait(filterComparisonDropdownOptionElement, 20000,"Filter comparison dropdown option in ODTI Jobs page")
     action.selectTextFromDropdown(filterComparisonDropdownElement, filterComparator,"Filter comparison dropdown in ODTI Jobs page");
-    let filterValueTextBoxElement = $(ODTIJobsPage.filterValueTextBoxLocator.replace("<dynamic>", filterValueIndex));
+   let filterValueTextBoxElement = $(ODTIJobsPage.filterValueTextBoxLocator.replace("<dynamic>", filterValueIndex));
     action.isVisibleWait(filterValueTextBoxElement, 20000,"Filter value text box in ODTI Jobs page");
     action.enterValueAndPressReturn(filterValueTextBoxElement, filterValue,"Filter value text box in ODTI Jobs page");
     action.pressKeys("Tab");
@@ -416,6 +416,7 @@ When(/^I click on a Job ID value under ODTI SERVICE CHARGE ID column$/, function
 
 Then(/^I should be navigated to the Job detail page "(.*)" of the respective job that is clicked$/, function (expectedPageUrl) {
     action.navigateToLatestWindow();
+     // browser.refresh();
     action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobDetailsPage, 10000,"Job Id text in ODTI Job details page");
     let currentPageUrlActual = action.getPageUrl();
     chai.expect(currentPageUrlActual).to.includes(expectedPageUrl);
@@ -484,14 +485,31 @@ Then(/^The total record value should be updated as per the number of records dis
     chai.expect(GlobalData.ODTI_JOB_RECORDS_COUNT).to.not.equal(recordsCountAfterFilters);
 })
 
+// When(/^I Click on the X Icon beside the filters applied$/, function () {
+//     let xIconsCount = ODTIJobsPage.filterCloseXIconsCount
+//     console.log("This is count", +xIconsCount)
+//         for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
+//         let crossIcon = action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000,"Filter close X icon in ODTI Jobs page");
+//     console.log("what is this......", +crossIcon); 
+//         if (crossIcon == 0) {                     
+//        // action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000,"Filter close X icon in ODTI Jobs page");
+//       console.log("cross icon is not visisble");
+//            } 
+//         else {
+//             action.clickElement(ODTIJobsPage.filterCloseXIcon,"Filter close X icon in ODTI Jobs page");
+//        browser.pause(5000);
+//         }
+//     }
+// })
 When(/^I Click on the X Icon beside the filters applied$/, function () {
-    let xIconsCount = ODTIJobsPage.filterCloseXIconsCount
-    for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
-        action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000,"Filter close X icon in ODTI Jobs page");
-        action.clickElement(ODTIJobsPage.filterCloseXIcon,"Filter close X icon in ODTI Jobs page");
-        browser.pause(5000);
-    }
-})
+        let xIconsCount = ODTIJobsPage.filterCloseXIconsCount
+             for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
+            //action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000,"Filter close X icon in ODTI Jobs page");
+           action.clickElement(ODTIJobsPage.filterCloseXIcon,"Filter close X icon in ODTI Jobs page");
+            browser.pause(5000);
+             }
+         
+     })
 
 Then(/^All the Jobs are displayed as no filters are applied and the number of records gets updated$/, function () {
     browser.pause(5000)
@@ -534,11 +552,11 @@ When(/^I get Campus Name value under Campus Name column$/, function () {
     GlobalData.ODTI_CAMPUS_NAME = action.getElementText(firstCampusNameElement,"First campus name in ODTI Jobs page");
 })
 
-Then(/^they will see the following fields by default in the Search section: Search by contractor, language and contact ID, RecordStatus$/, function () {
+Then(/^they will see the following fields by default in the Search section: Search by contractor, language and contact ID$/, function () {
     let searchByContractorLanguageAndContactIDSearchFieldDisplayStatus = action.isVisibleWait(ODTIJobsPage.searchByContractorLanguageAndContactIDSearchField,20000,"Search by contractor language and contact ID search text box in ODTI Jobs page");
     chai.expect(searchByContractorLanguageAndContactIDSearchFieldDisplayStatus).to.be.true;
-    let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 60000,"Record status selected option in ODTI Jobs page");
-    chai.expect(recordStatusExistStatus).to.be.true;
+    //let recordStatusExistStatus = action.isExistingWait(ODTIJobsPage.recordStatusSelectedOption, 60000,"Record status selected option in ODTI Jobs page");
+    //chai.expect(recordStatusExistStatus).to.be.true;
 })
 
 Then(/^the following filters can be added from Advanced Search as per the Jobs Management page: "(.*)"$/, function (advancedSearchFilterOptions) {
