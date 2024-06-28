@@ -51,8 +51,9 @@ Feature: Claims processing features
   Scenario Outline: Process claims - process campus and contractor
    When I login with "<username>" and "<password>"
    And I click Claims header link  
-   And I close all special search criteria
-   And I select "<status>" job status
+  # And I close all special search criteria
+  And I enter interview date after "<after date>"
+  And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
    And I click on first job id from claims job list
@@ -67,14 +68,15 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+   | username           | password    | status      | after date  |  claim status |
+   | LLAdmin@looped.in  | Octopus@6   | Completed   | 01-01-2021  |  Signed off   |
 
   @ProcessClaims @ProcessCampusOnly
   Scenario Outline: Process claims -  process campus only
    When I login with "<username>" and "<password>"
    And I click Claims header link  
-   And I close all special search criteria
+  # And I close all special search criteria
+  And I enter interview date after "<after date>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -90,14 +92,15 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Processed    |
+   | username           | password     | status      | after date  | claim status |
+   | LLAdmin@looped.in  | Octopus@6    | Completed  | 01-01-2021  | Processed    |
 
   @ProcessClaims @ReprocessCampusOnly 
   Scenario Outline: Process claims - campus only
    When I login with "<username>" and "<password>"
    And I click Claims header link  
-  And I close all special search criteria
+ # And I close all special search criteria
+ And I enter interview date after "<after date>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -115,14 +118,15 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
+   | username           | password    | status       | after date  |  claim status |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  01-01-2021 |  Signed off   |
 
   @ProcessClaims @ReprocessContractorOnly
   Scenario Outline: Process claims - contractor only
    When I login with "<username>" and "<password>"
    And I click Claims header link  
-   And I close all special search criteria
+   #And I close all special search criteria
+   And I enter interview date after "<after date>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -140,14 +144,15 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
+   | username           | password    | status       | after date  | claim status |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  01-01-2021 | Signed off   |
 
   @ProcessClaims @ReprocessCampusAndContractor
   Scenario Outline: Process claims - reprocess campus and contractor
    When I login with "<username>" and "<password>"
    And I click Claims header link  
-   And I close all special search criteria
+   #And I close all special search criteria
+    And I enter interview date after "<after date>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -165,8 +170,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  13-05-2022 | 1560450 | Signed off   |
+   | username           | password    | status       | after date |claim status |
+   | LLAdmin@looped.in  | Octopus@6    | Signed off  | 01-01-2021 | Signed off   |
 
   
   #  @ProcessClaims @Extend
