@@ -27,7 +27,8 @@ Feature: Claims processing features
   Scenario Outline: Process claims - process contractor, campus
    When I login with "<username>" and "<password>"
    And I click Claims header link  
-   And I close all special search criteria
+   # And I close all special search criteria
+    And I enter interview date after "<after date>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -44,8 +45,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+   | username           | password    | status      | after date  | job id  | claim status |
+   | LLAdmin@looped.in  | Octopus@6   | Completed   |  01-01-2021 | 1560450 | Signed off   |
 
   @ProcessClaims @ProcessCampusAndContractor
   Scenario Outline: Process claims - process campus and contractor
