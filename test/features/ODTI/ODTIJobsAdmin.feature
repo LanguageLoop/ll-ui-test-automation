@@ -150,10 +150,10 @@ Feature: ODTI Jobs Admin features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-  #  And the user has not set a RecordStatus filter, or has set it to show "<export value>"
+  And the user has not set a RecordStatus filter, or has set it to show "<export value>"
    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+   # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     Then the rows which contain a Do Not Export record will have a Gray font-color
 
     Examples:
@@ -198,10 +198,10 @@ Feature: ODTI Jobs Admin features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    # And the user has not set a RecordStatus filter, or has set it to show "<export value>"
-    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    And the user has not set a RecordStatus filter, or has set it to show "<export value>"
+    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"    
+    #And I click Advanced search link in Admin
+   # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     And I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
     Then the 3 Reprocess buttons are not displayed
@@ -457,14 +457,13 @@ Feature: ODTI Jobs Admin features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export 
+    And The RecordStatus Is Export 
     And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
    #  And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
-    And I click Advanced search link in Admin
     # And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I add filter RecordStatus "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
+   # And I add filter RecordStatus "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
      And I get the records count in records counter in Admin
     And user navigates to ODTI Dashboard
     And selects the same Start date "<start date dashboard>" and End date "<end date dashboard>" as in ODTI Jobs page
@@ -473,7 +472,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | start date dashboard | end date dashboard | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 1                     | After               | 1                         | 01-03-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         | RecordStatus    | 3                     | Is                  | 3                         | Export         | 1                    |
+      | LLAdmin@looped.in | Octopus@6 | Job Date        | 1                     | After               | 1                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
 
     #LL-901 Scenario 1: Verifying the explanation text for the Total/Connected count
   @LL-901 @VerifyExplanationTextTotalConnectedCount

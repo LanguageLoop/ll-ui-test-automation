@@ -56,10 +56,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I enter the search value "<contractor>" in the search field
     Then The records are displayed only for the entered filter value "<Interpreter Name>" under column number "<Interpreter Name column number>"
 
@@ -73,10 +72,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I enter the search value "<language>" in the search field
     Then The records are displayed only for the entered filter value "<language>" under column number "<Language column number>"
 
@@ -90,10 +88,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    #  And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
    And I enter the search value "<contact ID>" in the search field
     Then The records are displayed only for the entered filter value "<ODTI SERVICE CHARGE ID>" under column number "<ODTI SERVICE CHARGE ID column number>"
 
@@ -107,10 +104,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    #  And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
    And I enter the search value "<invalid value>" in the search field
     Then The No odti billings to show... message is displayed
 
@@ -154,10 +150,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click on a Job ID value under ODTI SERVICE CHARGE ID column
     Then I should be navigated to the Job detail page "<job detail page url>" of the respective job that is clicked
 
@@ -175,13 +170,12 @@ Feature: ODTI Jobs CSO features
     And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
+    #   And I add filter RecordStatus "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
     Then The results should be sorted on clicking each column header "<column headers>"
 
     Examples:
       | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2  | column headers                                                                                                         | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | zenq@cso10.com | Test1        | Job Date        | 2                     | After               | 1                         | 11-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 19-01-2023     | 2                     | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type,Client Charge Subtotal | RecordStatus    | 3                     |  Is                 |  3                        | Export         | 1                    |
+      | zenq@cso10.com | Test1        | Job Date        | 2                     | After               | 1                         | 11-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                     | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type,Client Charge Subtotal | RecordStatus    | 3                     |  Is                 |  3                        | Export         | 1                    |
 
       #Scenario 12 - AS CSO User - User should be able to click Campus Name under 'Campus Name' column
   @Regression @RegressionS37 @CSOClickCampusName
@@ -189,10 +183,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    #And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click on a non empty Campus Name value under Campus Name column
     Then I should be navigated to the Campus detail page "<Campus detail page url>" of the respective Campus that is clicked
 
@@ -206,10 +199,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    #And The RecordStatus Is Export
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    #And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click on a Interpreter Name value under Interpreter Name column
     Then I should be navigated to the Interpreter detail page "<Interpreter detail page url>" of the respective Interpreter that is clicked
 
@@ -223,20 +215,19 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    #And The RecordStatus Is Export
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
     And I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-   And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+   #And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     Then The records are displayed only for the entered filter value "<language>" under column number "<Language column number>"
     And The records are displayed only for the entered filter value "<Interpreter Name>" under column number "<Interpreter Name column number>"
 
     Examples:
       | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | language | Language column number | Interpreter Name | Interpreter Name column number | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | zenq@cso10.com | Test1        | Before              |  1                        | Language        | 2                     | Is                  | 2                         | zz-Zenq2       | 1                    | Contractor Name | 3                     | Is                  | 2                         | Sunia TUITUPOU | 2                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              | RecordStatus    | 3                     |  Is                 |  4                        | Export         | 2                    |
+      | zenq@cso10.com | Test1        | Before              |  1                        | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              | RecordStatus    | 3                     |  Is                 |  4                        | Export         | 2                    |
 
     #Scenario 15 - As CSO User - Applying Advanced Search Filters and verify that results  are display only for the selected filters and the total records value should be updated
   @Regression @RegressionS40 @CSOAdvancedFilterRecords
@@ -244,10 +235,9 @@ Feature: ODTI Jobs CSO features
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+   #And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in ODTI before adding filters
     And I click Advanced search link in Admin
     And I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
@@ -259,16 +249,16 @@ Feature: ODTI Jobs CSO features
       | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
       | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
 
-    #Scenario 16 - As CSO User - Removing the applied Advanced Search filters
+    #Scenario 16 - As CSO User - Removing the applied Advanced Search filters -- Need to revisit the case after advanced filter record status is fixed on UAT
   @Regression @RegressionS41 @CSOAdvancedFiltersRemoved
   Scenario Outline: CSO user can apply advanced search filters
     When I login with "<username cso>" and "<password cso>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
    And I click Advanced search link in Admin
-   And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+   #And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in ODTI before adding filters
     And I click Advanced search link in Admin
     And I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
