@@ -10,16 +10,14 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
+    And The RecordStatus Is Export
      And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
- #   And The RecordStatus Is Export
-  #  And I click Advanced search link in Admin
-   # And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+       # And I add filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
   And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
   And I click Advanced search link in Admin
    And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+   #  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in records counter in Admin
     And I get the ODTI SERVICE CHARGE ID values In Admin
     And the looped in login page is opened
@@ -34,7 +32,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | filter option 4 | filter option index 4 | filter comparator 4| filter comparator index 4 | filter value 4 | filter value index 4 | username cbo   | password cbo | campus id                                                               | start date | end date   |
-      | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 01-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 19-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 29449          | 3                    | RecordStatus    | 4                     | Is                 | 4                         | Export         | 1                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 |
+      | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 01-01-2023     | 1                    | Job Date        |  3                    | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | RecordStatus    | 4                     | Is                 | 4                         | Export         | 1                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 |
 
     #Scenario 2 - CBO user has multiple campuses - Do not select any campus from the dropdown and select the desired Start Date and End date filters
   @Regression @RegressionS2 @CBOMultipleCampusNoCampusSelected
@@ -42,9 +40,8 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
-   # And I click Advanced search link in Admin
-    And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+   And The RecordStatus Is Export
+   And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
@@ -53,8 +50,7 @@ Feature: ODTI Jobs CBO features
     And I add filters "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 5>" "<filter option index 5>", "<filter comparator 5>" "<filter comparator index 5>", "<filter value 5>" "<filter value index 5>"
-   And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 6>" "<filter option index 6>", "<filter comparator 6>" "<filter comparator index 6>", "<filter value 6>" "<filter value index 6>"
+   #  And I add filter RecordStatus "<filter option 6>" "<filter option index 6>", "<filter comparator 6>" "<filter comparator index 6>", "<filter value 6>" "<filter value index 6>"
     And I get the records count in records counter in Admin
     And I get the ODTI SERVICE CHARGE ID values In Admin
     And the looped in login page is opened
@@ -68,7 +64,7 @@ Feature: ODTI Jobs CBO features
   
    Examples:
     | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 5 | filter option index 5 | filter comparator 5 | filter comparator index 5 | filter value 5 | filter value index 5 | username cbo   | password cbo | start date | end date   | filter option 6 | filter option index 6 | filter comparator 6 | filter comparator index 6 | filter value 6 | filter value index 6 |
-    | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 15-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 19-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 48994          | 3                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 4                    | Campus PIN      | 5                     | Is                  | 5                         | 30340          | 5                    | zenq@cbo11.com | Test1        | 16-01-2023 | 18-01-2023 | RecordStatus    | 6                     | Is                  | 6                         | Export         | 1                    |
+    | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 15-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 48994          | 3                    | Campus PIN      | 5                     | Is                  | 5                         | 29449          | 4                    | Campus PIN      | 6                     | Is                  | 6                         | 30340          | 5                    | zenq@cbo11.com | Test1        | 16-01-2023 | 18-01-2023 | RecordStatus    | 6                     | Is                  | 6                         | Export         | 1                    |
 
 #Examples:
   #   | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 5 | filter option index 5 | filter comparator 5 | filter comparator index 5 | filter value 5 | filter value index 5 | username cbo   | password cbo | start date | end date   |
@@ -81,15 +77,13 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
-   # And I click Advanced search link in Admin
-    And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+     And The RecordStatus Is Export
+   And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in records counter in Admin
     And I get the ODTI SERVICE CHARGE ID values In Admin
     And the looped in login page is opened
@@ -104,7 +98,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                               | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 01-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 19-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 29449          | 3                    | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
+      | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 01-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo10.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 02-01-2023 | 18-01-2023 | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
 
     # Examples:
     #   | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
@@ -116,15 +110,13 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
-   # And I click Advanced search link in Admin
+   And The RecordStatus Is Export
     And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in records counter in Admin
     And I get the ODTI SERVICE CHARGE ID values In Admin
     And the looped in login page is opened
@@ -138,7 +130,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
       | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 01-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 19-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 29449          | 3                    | zenq@cbo10.com | Test1        | 02-01-2023 | 18-01-2023 | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
+      | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 01-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo10.com | Test1        | 02-01-2023 | 18-01-2023 | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
     
     # Examples:
     #   | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | start date | end date   |
@@ -162,15 +154,13 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    #And The RecordStatus Is Export
-    #And I click Advanced search link in Admin
+    And The RecordStatus Is Export
     And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+   # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in records counter in Admin
     And I get the ODTI SERVICE CHARGE ID values In Admin
     And the looped in login page is opened
@@ -185,7 +175,7 @@ Feature: ODTI Jobs CBO features
 
     Examples:
      | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                               | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-     | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 16-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 19-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 17-01-2023 | 18-01-2023 | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
+     | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 16-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 17-01-2023 | 18-01-2023 | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
 
     # Examples:
     #   | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
@@ -211,15 +201,13 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
-   # And I click Advanced search link in Admin
-    And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
+    And The RecordStatus Is Export
+     And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in records counter in Admin
     And The No odti billings to show... message is displayed
     And the looped in login page is opened
@@ -233,7 +221,7 @@ Feature: ODTI Jobs CBO features
    
     Examples:
      | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                               | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-     | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 14-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 16-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
+     | LLAdmin@looped.in | Octopus@6 | After               | 1                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
     
     # Examples:
     #   | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
@@ -246,15 +234,13 @@ Feature: ODTI Jobs CBO features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
-   # And I click Advanced search link in Admin
+    And The RecordStatus Is Export
     And I add filter "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 3>" "<filter option index 3>", "<filter comparator 3>" "<filter comparator index 3>", "<filter value 3>" "<filter value index 3>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+   #  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in records counter in Admin
     And The No odti billings to show... message is displayed
     And the looped in login page is opened
@@ -270,7 +256,7 @@ Feature: ODTI Jobs CBO features
 
    Examples:
       | username          | password  | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                               | start date | end date   |  filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 |  After              | 1                         | 14-01-2023     | 1                    | Job Date        | 2                     | Before              | 2                         | 16-01-2023     | 2                    | Campus PIN      | 3                     | Is                  | 3                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 |  RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
+      | LLAdmin@looped.in | Octopus@6 |  After              | 1                         | 14-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 16-01-2023     | 2                    | Campus PIN      | 4                     | Is                  | 4                         | 29449          | 3                    | zenq@cbo11.com | Test1        | 29449 Contoso Pty LTD Lysterfield Dr, Roxburgh Park VIC 3064, Australia | 15-01-2023 | 15-01-2023 |  RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
    
     # Examples:
     #   | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username cbo   | password cbo | campus id                                                      | start date | end date   |
