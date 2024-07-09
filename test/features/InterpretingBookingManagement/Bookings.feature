@@ -29,9 +29,9 @@ Feature: Create new booking for Interpreters
     And The job id is added to the file
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date         | time  | duration | email        |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice  | 09:30 | 4 hours  | hh@bb.com.au |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date         | time  | duration | email        |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice  | 09:30 | 4 hours  | hh@bb.com.au |
 
 
   @CreateJobRequest @ManualReason
@@ -57,8 +57,8 @@ Feature: Create new booking for Interpreters
     And The job id is added to the file
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | manual reason      |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | manual reason text |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | manual reason      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | manual reason text |
 
   @CreateJobRequest @GenderPreference @GenderMust
   Scenario Outline: Create Booking with gender preference
@@ -83,8 +83,8 @@ Feature: Create new booking for Interpreters
     And The job id is added to the file
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date         | time  | duration | email        | gender preference |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au | Female            |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date         | time  | duration | email        | gender preference |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au | Female            |
 
   @CreateJobRequest @PreferredInterpreters @InterpreterMust
   Scenario Outline: Create Booking with preferred interpreters
@@ -110,8 +110,8 @@ Feature: Create new booking for Interpreters
     And The job id is added to the file
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | interpreter count |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | 3                 |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | interpreter count |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | 3                 |
 
 
   @CreateJobRequest @AncestryPreference @AncestryMust
@@ -137,8 +137,8 @@ Feature: Create new booking for Interpreters
     And The job id is added to the file
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | ancestry preference |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | Austrian            |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | ancestry preference |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | Austrian            |
 
   @CreateJobRequest @ReligionPreference @ReligionMust
   Scenario Outline: Create Booking with religion must preference
@@ -164,8 +164,8 @@ Feature: Create new booking for Interpreters
 
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date         | time  | duration | email        | religion preference |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au | Christian           |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date         | time  | duration | email        | religion preference |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice | 09:30 | 4 hours  | hh@bb.com.au | Christian           |
 
   @CreateJobRequest @DuplicateJob
   Scenario Outline: Create a job request as a duplicate of another job
@@ -187,8 +187,8 @@ Feature: Create new booking for Interpreters
 
 
     Examples:
-      | job notice length | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | job status  |
-      | long notice       | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+      | job notice length | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date        | time  | duration | email        | job status  |
+      | long notice       | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | long notice | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
 
   @CreateJobRequest @BulkUpload
   Scenario Outline: Upload bulk jobs through excel file
@@ -207,8 +207,8 @@ Feature: Create new booking for Interpreters
     Then Bookings created confirmation message is displayed
 
     Examples:
-      | job notice length | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type  | date         | time  | duration | email        | job status  |
-      | long notice       | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Zero min ongoing | short notice | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+      | job notice length | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type  | date         | time  | duration | email        | job status  |
+      | long notice       | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Zero min ongoing | short notice | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
 
 
   @CreateJobRequest @CBO1
@@ -254,8 +254,8 @@ Feature: Create new booking for Interpreters
     And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS
 
     Examples:
-      | username          | password  | dropdown filter | campus pin | firstname     | landline number |
-      | LLAdmin@looped.in | Octopus@6 | Management      | 33124      | AutomationCBO | 0212345678      |
+      | username          | password             | dropdown filter | campus pin | firstname     | landline number |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management      | 33124      | AutomationCBO | 0212345678      |
 
   ##LL-716 Scenario 1 - As CSO User - Instructions for Interpreter
   @InstructionsInterpreterText
@@ -323,8 +323,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
+      | username          | password              | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;76 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
 
     #LL-682 Covid vax exemption allocation logic Scenario 1b: The contractor is not Blocked from a Job Type
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo > AND they are not blocked from a Job Type
@@ -376,8 +376,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password             | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 2: The contractor is not blocked
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo >
@@ -429,8 +429,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password             | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo                                   | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status            |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | UserPay1 - Catholic Education - User Pay | 1             | On Site       | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-618 Scenario 1: Standard Job
   @MetroNotSelectedStandardOutside25 @LL-618
@@ -461,8 +461,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor  | distance in KM   |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor  | distance in KM   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
 
      #LL-618 Scenario 2: Short Notice Job (48 hours notice)
   @MetroNotSelectedShortNoticeOutside25 @LL-618
@@ -493,8 +493,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor  | distance in KM   |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor  | distance in KM   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Rola MIZIAN | 25               |
 
     #LL-618 Scenario 3a: Other Campus, default distance is applied (standard) [Regression Test]
   @MetroNotSelectedStandardOtherCampus @LL-618
@@ -524,8 +524,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | fortnight after | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | Auto Notification     |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | fortnight after | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | Auto Notification     |
 
     #LL-618 Scenario 3b: Other Campus, default distance is applied (short notice) [Regression Test]
   @MetroNotSelectedShortNoticeOtherCampus @LL-618
@@ -555,8 +555,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice    | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | Auto Notification     |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type | date            | time  | email        | contractor    | distance from in KM | distance to in KM | job contractor status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 33124      | Automation Tester | ARABIC   | Halfday         | short notice    | 09:30 | hh@bb.com.au | Alaa ELHASSAN | 25                  | 45                | Auto Notification     |
 
     #LL-618 Scenario 3c: Other Campus, default distance is applied (standard) [Regression Test]
   @MetroNotSelectedStandardWithin25 @LL-618
@@ -588,8 +588,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM | job contractor status | NAATI          |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson    | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25             | Auto Notification     | Non-Accredited |
+      | username          | password             | dropdownfilter | campus pin | Requester Name | language | assignment type            | travel approved | date            | time  | email        | contractor         | distance in KM | job contractor status | NAATI          |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 51907      | Sumi Watson    | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | fortnight after | 09:30 | hh@bb.com.au | Rawaa ABDUL JABBAR | 25             | Auto Notification     | Non-Accredited |
 
     #LL-618 Scenario 3d: Other Campus, default distance is applied (short notice) [Regression Test]
   @MetroSelectedShortNoticeWithin100 @LL-618
@@ -621,8 +621,8 @@ Feature: Create new booking for Interpreters
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status | NAATI          |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     | Non-Accredited |
+      | username          | password             | dropdownfilter | campus pin | Requester Name    | language | assignment type            | travel approved | date            | time  | email        | contractor                | distance in KM   | job contractor status | NAATI          |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 51907      | Sumi Watson       | ARABIC   | QLD-GOV01-Interview-Onsite | Test            | short notice    | 09:30 | hh@bb.com.au | Sara Hassan Shakir HASSAN | 100              | Auto Notification     | Non-Accredited |
 
     #LL-682 Covid vax exemption allocation logic Scenario 3: User creates a Prebooked Job and then user adds a block for PreBooked job type in the contractor page
   #GIVEN a User has requested Prebooked job > #AND the Job Campus belongs to a certain BillTo
@@ -685,8 +685,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+      | username          | password              | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 4: In contractor page, user edits the existing block that has prebooked type selected and deselects a PreBooked job type and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type
@@ -754,8 +754,8 @@ Feature: Create new booking for Interpreters
     And the block "<billTo>" sadly disappears from the list…
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | jobTypes2 | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | On Site   | Auto Notification |
+      | username          | password             | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | jobTypes2 | eligible status   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | On Site   | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 5: In contractor page, user removes the existing block that has prebooked type selected and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
@@ -816,8 +816,8 @@ Feature: Create new booking for Interpreters
     Then the contractor above "<contractor>" status will be "<eligible status>" for the Job
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
+      | username          | password             | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
 
     #LL-682 Covid vax exemption allocation logic Scenario 6: In contractor page, user makes the existing block that has prebooked type as expired and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
@@ -884,8 +884,8 @@ Feature: Create new booking for Interpreters
     And the admin clicks on Remove on a block
 
     Examples:
-      | username          | password  | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
-      | LLAdmin@looped.in | Octopus@6 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
+      | username          | password             | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notification |
 
     #LL-716 Expand the label on the client new job request screen
     # In the ‘Instructions for Interpreters’, the user sees the following text as Label
@@ -933,8 +933,8 @@ Feature: Create new booking for Interpreters
     Then I confirm the job status "<new status>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name | language  | assignment type        | date            | time  | email        | contractor | original status                 | new status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 28642      | Karen          | BURMESE   | FH01-Interview/Meeting | short notice    | 09:30 | hh@bb.com.au | Hnin HMONE | Auto Notification,- No status - | Allocated  |
+      | username          | password             | dropdownfilter | campus pin | Requester Name | language  | assignment type        | date            | time  | email        | contractor | original status                 | new status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 28642      | Karen          | BURMESE   | FH01-Interview/Meeting | short notice    | 09:30 | hh@bb.com.au | Hnin HMONE | Auto Notification,- No status - | Allocated  |
 
     #LL-731 Scenario 2: User duplicates the a Job and allocates the interpreter to job
   @DuplicateAndAllocateJobToHnin28642 @LL-731
@@ -977,8 +977,8 @@ Feature: Create new booking for Interpreters
     Then I confirm the job status "<new status>"
 
     Examples:
-      | username          | password  | dropdownfilter | campus pin | Requester Name | language | assignment type        | date         | time  | email        | contractor | original status                 | new status |
-      | LLAdmin@looped.in | Octopus@6 | Management     | 28642      | Karen          | BURMESE  | FH01-Interview/Meeting | short notice | 09:30 | hh@bb.com.au | Hnin HMONE | Auto Notification,- No status - | Allocated  |
+      | username          | password             | dropdownfilter | campus pin | Requester Name | language | assignment type        | date         | time  | email        | contractor | original status                 | new status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Management     | 28642      | Karen          | BURMESE  | FH01-Interview/Meeting | short notice | 09:30 | hh@bb.com.au | Hnin HMONE | Auto Notification,- No status - | Allocated  |
 
     #LL-723 Scenario 1: Time picker closes after user selects time from time picker
   @TimePickerCloseAfterSelectingTime @LL-723

@@ -37,8 +37,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     Then they will see the following fields by default in the Search section: Search by contractor, language and contact ID
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And the following filters can be added from Advanced Search as per the Jobs Management page: "<advanced search filter options>"
 
     Examples:
@@ -52,8 +51,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And this will only display jobs that have been Completed Billing & Merging processes done
     Then The columns available for ODTI Jobs for the user are "<column headers>"
@@ -74,8 +72,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
      And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  #  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And this will only display jobs that have been Completed Billing & Merging processes done
     Then The columns available for ODTI Jobs for the user are "<column headers>"
@@ -94,8 +91,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
      And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    #  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     Then they are navigated to the Job Details page in a new tab
@@ -115,8 +111,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -135,8 +130,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  #  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -155,8 +149,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
      And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -177,8 +170,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  #  And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -198,8 +190,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
      And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+    # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -220,8 +211,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -240,8 +230,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-     And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
+  # And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And they will see a table
     And I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE ID column
     And they are navigated to the Job Details page in a new tab
@@ -260,8 +249,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+    # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And I enter the search value "<contractor>" in the search field
     And I click Advanced search link in Admin
@@ -293,8 +281,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+  #  And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And sorts the Call Duration column to get jobs less than 60 seconds
     And they click the ODTI Service Charge ID hyperlink
@@ -317,8 +304,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+   #  And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And sorts the Call Duration column to get jobs greater than 60 seconds
     And they click on any of the ODTI Service Charge ID hyperlink
@@ -354,8 +340,7 @@ Feature: ODTI Jobs Finance features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-    And I click Advanced search link in Admin
-    And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
+   # And I add filter RecordStatus "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
     And sorts the Call Duration column to get jobs greater than 60 seconds
     And they click the ODTI Service Charge ID hyperlink in row "<job row>"

@@ -18,8 +18,8 @@ Feature: Contract Management features
    Then I verify contract is created
 
    Examples:
-   | username          | password   | contract title      | contract number | payment terms     | commencement date | completion date |
-   | LLAdmin@looped.in |  Octopus@6  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
+   | username          | password             | contract title      | contract number | payment terms     | commencement date | completion date |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
 
   @DuplicateContract
   Scenario Outline: Duplicate contract
@@ -37,8 +37,8 @@ Feature: Contract Management features
    And I verify duplicate contract is created "<contract title>"
 
    Examples:
-   | username          | password   | contract title      | contract number | payment terms     | commencement date | completion date |
-   | LLAdmin@looped.in |  Octopus@6  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
+   | username          | password              | contract title      | contract number | payment terms     | commencement date | completion date |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Automation Contract |  234234R        |  Automation terms |  today            |  20-12-2033     |
 
    @AddMinimumNAATILevel @tt
    Scenario Outline: Add minium naati level for contract
@@ -56,8 +56,8 @@ Feature: Contract Management features
    #And I delete added miniumum naati
 
     Examples: 
-   | username          | password   | contract title                 | language          | naati level |
-   | LLAdmin@looped.in |  Octopus@6  | Victorian Government - Bill To | AFRIKAANS - Video | Non-Accredited  |
+   | username          | password             | contract title                 | language          | naati level |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Victorian Government - Bill To | AFRIKAANS - Video | Non-Accredited  |
 
    @AddCommonInstructions 
    Scenario Outline: Add common instructions for contract
@@ -74,8 +74,8 @@ Feature: Contract Management features
    Then I verify common instruction title and description "<title>","<description>"
 
     Examples: 
-   | username          | password   | contract title                 | title              | description         |
-   | LLAdmin@looped.in |  Octopus@6  | Victorian Government - Bill To | Automation Testing | simple description  |
+   | username          | password              | contract title                 | title              | description         |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Victorian Government - Bill To | Automation Testing | simple description  |
 
    @AddContractRate
    Scenario Outline: Add contract rates
@@ -90,8 +90,8 @@ Feature: Contract Management features
    Then I verify contract rate is added
 
     Examples: 
-   | username          | password   |language               | contract title      | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing|
-   | LLAdmin@looped.in |  Octopus@6  | All Languages - Video | Automation Contract | Automation Rate | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |    
+   | username          | password             |language               | contract title      | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing|
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | All Languages - Video | Automation Contract | Automation Rate | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |    
 
     
    @AddAssignmentType
@@ -110,8 +110,8 @@ Feature: Contract Management features
    And I delete assignment type
 
     Examples: 
-   | username          | password   | contract title                 | assignment label      | description         |
-   | LLAdmin@looped.in |  Octopus@6  | Victorian Government - Bill To | Automation Assignment | simple description  |
+   | username          | password               | contract title                 | assignment label      | description         |
+   | LLAdmin@looped.in |  +`QmHl3w7OQls9g,Qc;7  | Victorian Government - Bill To | Automation Assignment | simple description  |
 
     #LL-282 Scenario 1 - User views ODTI rate fields
  @LL-282 @UserViewsODTIRateFields
@@ -132,8 +132,8 @@ Feature: Contract Management features
   And the user can add Hour Type "<hour type>"
 
   Examples:
-   | username          | password  | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | hidden fields                                                    | NAATI Level    | hour type     |
-   | LLAdmin@looped.in | Octopus@6 | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Short Notice,Block Booking,After Hours Booking,Half Day,Full Day | Non-Accredited | After Hours A |
+   | username          | password            | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | hidden fields                                                    | NAATI Level    | hour type     |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Short Notice,Block Booking,After Hours Booking,Half Day,Full Day | Non-Accredited | After Hours A |
 
   #LL-282 Scenario 2 - Validate required fields
  @LL-282 @ValidateRequiredFields
@@ -162,8 +162,8 @@ Feature: Contract Management features
   And the saved ODTI Contract Rates will be displayed in the Contract Rates Schedule table "<service language accordion>"
 
   Examples:
-   | username          | password  | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion |
-   | LLAdmin@looped.in | Octopus@6 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        |
+   | username          | password             | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        |
 
   #LL-282 Scenario 3a - Invalid required fields
  @LL-282 @InvalidRequiredFields
@@ -182,8 +182,8 @@ Feature: Contract Management features
   And the user will remain on the Manage Rate popup
 
   Examples:
-   | username          | password  | contract title      | service language               | NAATI Level    | hour type     |
-   | LLAdmin@looped.in | Octopus@6 | Automation Contract | zz-Zenq2 - On Demand Telephone | Non-Accredited | After Hours A |
+   | username          | password             | contract title      | service language               | NAATI Level    | hour type     |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation Contract | zz-Zenq2 - On Demand Telephone | Non-Accredited | After Hours A |
 
   #LL-282 Scenario 3b - Invalid values in time-period fields
  @LL-282 @InvalidValuesTimePeriod
@@ -205,8 +205,8 @@ Feature: Contract Management features
   And the user will remain on the Manage Rate popup
 
   Examples:
-   | username          | password  | contract title      | service language                          | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values               | contractor rates values     | NAATI Level | hour type     | rate name       |
-   | LLAdmin@looped.in | Octopus@6 | Automation Contract | On-Demand Telephone - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1.23,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Conference  | After Hours B | Automation Rate |
+   | username          | password            | contract title      | service language                          | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values               | contractor rates values     | NAATI Level | hour type     | rate name       |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract | On-Demand Telephone - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1.23,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Conference  | After Hours B | Automation Rate |
 
   #LL-282 Scenario 4 - Contract Rates Display
  @LL-282 @ContractRatesDisplay
@@ -237,8 +237,8 @@ Feature: Contract Management features
   And display the minutes value as for example 10 mins no decimal places
 
   Examples:
-   | username          | password  | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values             | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion | min period 1 value  |
-   | LLAdmin@looped.in | Octopus@6 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 10,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        | 10                  |
+   | username          | password            | contract title           | contract number | commencement date | completion date | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values             | contractor rates values     | NAATI Level    | hour type     | rate name       | service language accordion | min period 1 value  |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract test | 234234R         | today             | 20-12-2033      | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 10,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Non-Accredited | After Hours A | Automation Rate | On Demand Telephone        | 10                  |
 
   #LL-324 Scenario 1a: Admin sees ODTI gender preference option on Contract
  @LL-324 @ODTIGenderPreferenceOnContract
@@ -269,8 +269,8 @@ Feature: Contract Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
-   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
+   | username          | password             | contract title                                   | preference type option | campus id | preference | override preference |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
 
   #LL-914 Scenario 1 - Contract that has ODTI Service eligible and has Contract Rates - All the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractODTIMinRateDefinedUseMinRate2
@@ -288,8 +288,8 @@ Feature: Contract Management features
   And I disable the added assignment type in contract
 
   Examples:
-   | username          | password  | contract title                                   | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Automation Assignment | 4                    | 1                            | On Site                  |
+   | username          | password             | contract title                                   | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | Automation Assignment | 4                    | 1                            | On Site                  |
 
   #LL-914 Scenario 2 - Contract that has ODTI Service eligible and has Contract Rates - Only few of the available Contract Rates have Minimum Rate defined including ODTI Contract Rate - and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractODTIFewMinRateDefinedODTIUseMinRate2
@@ -306,8 +306,8 @@ Feature: Contract Management features
   Then a error message appears that provides the list of contract rates that does not have Minimum rate values defined
 
   Examples:
-   | username          | password  | contract title                  | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | Octopus@6 | Queensland Government - Bill To | Automation Assignment | 4                    | 1                            | On Site                  |
+   | username          | password             | contract title                  | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Queensland Government - Bill To | Automation Assignment | 4                    | 1                            | On Site                  |
 
   #LL-914 Scenario 3 - Contract that has ODTI Service eligible and has Contract Rates - Only few of the available Contract Rates have Minimum Rate defined (this excludes ODTI Contract Rate)- and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractODTIMinRateDefinedExcludeODTIUseMinRate2
@@ -324,8 +324,8 @@ Feature: Contract Management features
   Then a error message appears that provides the list of contract rates that does not have Minimum rate values defined
 
   Examples:
-   | username          | password  | contract title      | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | Octopus@6 | Automation Contract | Automation Assignment | 4                    | 1                            | On Site                  |
+   | username          | password              | contract title      | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;76 | Automation Contract | Automation Assignment | 4                    | 1                            | On Site                  |
 
   #LL-914 Scenario 4 - Contract that is not eligible for ODTI Service - All the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractNotODTIMinRateDefinedUseMinRate2
@@ -343,8 +343,8 @@ Feature: Contract Management features
   And I disable the added assignment type in contract
 
   Examples:
-   | username          | password  | contract title             | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | Octopus@6 | Catholic Education Office1 | Automation Assignment | 4                    | 1                            | On Site                  |
+   | username          | password             | contract title             | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Catholic Education Office1 | Automation Assignment | 4                    | 1                            | On Site                  |
 
   #LL-914 Scenario 5 - Contract that is not eligible for ODTI Service - Only few of the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractNotODTIFewMinRateDefinedUseMinRate2
@@ -361,5 +361,5 @@ Feature: Contract Management features
   Then a error message appears that provides the list of contract rates that does not have Minimum rate values defined
 
   Examples:
-   | username          | password  | contract title     | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | Octopus@6 | VicRoads - Bill To | Automation Assignment | 4                    | 1                            | On Site                  |
+   | username          | password             | contract title     | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | VicRoads - Bill To | Automation Assignment | 4                    | 1                            | On Site                  |

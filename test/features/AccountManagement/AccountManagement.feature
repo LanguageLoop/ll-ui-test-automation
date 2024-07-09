@@ -177,8 +177,8 @@ Feature: Account Management features
     Then a message ‘Email address already exist.’ appears
 
     Examples:
-      | username          | password  | role filter option | user account   | emailAddress                |
-      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | britneyspears@police.gov.au |
+      | username          | password             | role filter option | user account   | emailAddress                |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contract Manager   | Britney Spears | britneyspears@police.gov.au |
 
     #LL-43 Scenario 7 - User edits the email and click on Cancel icon in the popup
   @EditEmailAndCancel @LL-43
@@ -197,8 +197,8 @@ Feature: Account Management features
 
 
     Examples:
-      | username          | password  | role filter option | user account   | emailAddress             |
-      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au |
+      | username          | password             | role filter option | user account   | emailAddress             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contract Manager   | Britney Spears | testEmail1@police.gov.au |
 
     #LL-43 Scenario 8 - User enters different emails in New Email field and Confirm Email field
   @EmailsDoNotMatch @LL-43
@@ -216,8 +216,8 @@ Feature: Account Management features
     Then a message ‘Email and confirm email do not match.’ appears
 
     Examples:
-      | username          | password  | role filter option | user account   | newUserEmailAddress         | confirmEmailAddress      |
-      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | britneyspears@police.gov.au | testEmail1@police.gov.au |
+      | username          | password             | role filter option | user account   | newUserEmailAddress         | confirmEmailAddress      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contract Manager   | Britney Spears | britneyspears@police.gov.au | testEmail1@police.gov.au |
 
     #LL-43 Scenario 4a - Login with new email - new email not confirmed  (existing user)
   @LoginNewEmailNewNotConfirmed @LL-43
@@ -240,8 +240,8 @@ Feature: Account Management features
     And the ‘Invalid username or password.’ error message will be displayed
 
     Examples:
-      | username          | password  | role filter option | user account   | newUserEmailAddress      | newUserPassword |
-      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au | Test1           |
+      | username          | password             | role filter option | user account   | newUserEmailAddress      | newUserPassword |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contract Manager   | Britney Spears | testEmail1@police.gov.au | Test1           |
 
     #LL-43 Scenario 4b - Login with old email - new email not confirmed  (existing user)
   @LoginOldEmailNewNotConfirmed @LL-43
@@ -263,5 +263,5 @@ Feature: Account Management features
     Then they will be able to login
 
     Examples:
-      | username          | password  | role filter option | user account   | newUserEmailAddress      | oldUserEmail                | oldUserPassword |
-      | LLAdmin@looped.in | Octopus@6 | Contract Manager   | Britney Spears | testEmail1@police.gov.au | britneyspears@police.gov.au | Test1           |
+      | username          | password             | role filter option | user account   | newUserEmailAddress      | oldUserEmail                | oldUserPassword |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contract Manager   | Britney Spears | testEmail1@police.gov.au | britneyspears@police.gov.au | Test1           |

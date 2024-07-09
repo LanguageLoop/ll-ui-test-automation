@@ -15,13 +15,13 @@ Feature: Claims processing features
 
    
    Examples:
-   | username           | password    | status                 | before date | job id  |
-   | LLAdmin@looped.in  | Octopus@6    | Completed              |  13-05-2022 | 1560450 |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off             |  13-05-2022 | 1560450 |
-   | LLAdmin@looped.in  | Octopus@6    | All                    |  13-05-2022 | 1544161 |
-   | LLAdmin@looped.in  | Octopus@6    |  Processed             |  13-05-2022 | 1560450 |
-   | LLAdmin@looped.in  | Octopus@6    | Cancelled & Processed  |  13-05-2022 | 1537266 |
-   | LLAdmin@looped.in  | Octopus@6    | Cancelled & Signed off |  13-05-2022 | 1537266 |
+   | username           | password                | status                 | before date | job id  |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Completed              |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Signed off             |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | All                    |  13-05-2022 | 1544161 |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;76   |  Processed             |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Cancelled & Processed  |  13-05-2022 | 1537266 |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Cancelled & Signed off |  13-05-2022 | 1537266 |
 
   @ProcessClaims @ProcessCampus @ProcessContractor @v1
   Scenario Outline: Process claims - process contractor, campus
@@ -45,8 +45,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | after date  | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6   | Completed   |  01-01-2021 | 1560450 | Signed off   |
+   | username           | password               | status      | after date  | job id  | claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Completed   |  01-01-2021 | 1560450 | Signed off   |
 
   @ProcessClaims @ProcessCampusAndContractor
   Scenario Outline: Process claims - process campus and contractor
@@ -69,8 +69,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status      | after date  |  claim status |
-   | LLAdmin@looped.in  | Octopus@6   | Completed   | 01-01-2021  |  Signed off   |
+   | username           | password               | status      | after date  |  claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Completed   | 01-01-2021  |  Signed off   |
 
   @ProcessClaims @ProcessCampusOnly
   Scenario Outline: Process claims -  process campus only
@@ -93,8 +93,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password     | status      | after date  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Completed  | 01-01-2021  | Processed    |
+   | username           | password             | status      | after date  | claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Completed  | 01-01-2021  | Processed    |
 
   @ProcessClaims @ReprocessCampusOnly 
   Scenario Outline: Process claims - campus only
@@ -119,8 +119,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status       | after date  |  claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  01-01-2021 |  Signed off   |
+   | username           | password              | status       | after date  |  claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Signed off  |  01-01-2021 |  Signed off   |
 
   @ProcessClaims @ReprocessContractorOnly
   Scenario Outline: Process claims - contractor only
@@ -145,8 +145,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status       | after date  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off  |  01-01-2021 | Signed off   |
+   | username           | password             | status       | after date  | claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Signed off  |  01-01-2021 | Signed off   |
 
   @ProcessClaims @ReprocessCampusAndContractor
   Scenario Outline: Process claims - reprocess campus and contractor
@@ -171,8 +171,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password    | status       | after date |claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Signed off  | 01-01-2021 | Signed off   |
+   | username           | password              | status       | after date |claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Signed off  | 01-01-2021 | Signed off   |
 
   
   #  @ProcessClaims @Extend
@@ -237,8 +237,8 @@ Feature: Claims processing features
 
 
    Examples:
-   | username           | password    | status      | to date     | job id  | claim status |
-   | LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   |
+   | username           | password              | status      | to date     | job id  | claim status |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Completed   |  13-05-2022 | 1560450 | Signed off   |
 
   #@ProcessClaims @VicRoads
   #Scenario Outline: Process claims - vic roads
@@ -279,4 +279,3 @@ Feature: Claims processing features
    #Examples:
    #| username           | password    | status      | to date     | job id  | claim status | campus name            |
    #| LLAdmin@looped.in  | Octopus@6    | Completed   |  13-05-2022 | 1560450 | Signed off   | vic roads wodonga      |
-

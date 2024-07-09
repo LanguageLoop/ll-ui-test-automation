@@ -14,8 +14,8 @@ Feature: ODTI_UI DID Configuration features
     Then a blank form is shown in New DID Configuration
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-577: Scenario 1b - DID ODTI Configuration (Edit)
   @LL-577 @DIDODTIConfigurationEdit
@@ -27,8 +27,8 @@ Feature: ODTI_UI DID Configuration features
     Then the existing configuration is shown
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-577: Scenario 1c - DID ODTI Configuration (Duplicate)
   @LL-577 @DIDODTIConfigurationDuplicate
@@ -41,8 +41,8 @@ Feature: ODTI_UI DID Configuration features
     And the DID is blank in existing DID configuration upon clicking duplicate
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
 
     #LL-577: Scenario 2 - Entering a Campus PIN
@@ -58,8 +58,8 @@ Feature: ODTI_UI DID Configuration features
     And the Campus name "<campus name>" is displayed below the input box in DID configuration
 
     Examples:
-      | username          | password  | campus pin | TI Service Type | campus name     |
-      | LLAdmin@looped.in | Octopus@6 | 29449      | NES Initiated   | Contoso Pty LTD |
+      | username          | password             | campus pin | TI Service Type | campus name     |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449      | NES Initiated   | Contoso Pty LTD |
 
     #LL-577: Scenario 3a - Selecting a Service Type
   @LL-577 @SelectServiceTypeClientTIXP
@@ -73,8 +73,8 @@ Feature: ODTI_UI DID Configuration features
     And the TIXP configuration section is displayed
 
     Examples:
-      | username          | password  | TI Service Type |
-      | LLAdmin@looped.in | Octopus@6 | Client TIXP     |
+      | username          | password             | TI Service Type |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Client TIXP     |
 
     #LL-577: Scenario 3b - Selecting a Service Type
   @LL-577 @SelectServiceTypeNESInitiated
@@ -88,8 +88,8 @@ Feature: ODTI_UI DID Configuration features
     And the TIXP configuration section is hidden
 
     Examples:
-      | username          | password  | TI Service Type |
-      | LLAdmin@looped.in | Octopus@6 | NES Initiated   |
+      | username          | password              | TI Service Type |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | NES Initiated   |
 
     #LL-577: Scenario 3c - Selecting a Service Type
   @LL-577 @SelectServiceTypeGeneralTI
@@ -102,8 +102,8 @@ Feature: ODTI_UI DID Configuration features
     Then the MILS and TIXP configuration sections are not shown
 
     Examples:
-      | username          | password  | TI Service Type |
-      | LLAdmin@looped.in | Octopus@6 | General TI      |
+      | username          | password             | TI Service Type |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | General TI      |
 
     #LL-577: Scenario 5 - Cancel
   @LL-577 @DIDODTIConfigurationCancel
@@ -119,8 +119,8 @@ Feature: ODTI_UI DID Configuration features
     And the admin is navigated back to the configuration list screen
 
     Examples:
-      | username          | password  | campus pin | TI Service Type |
-      | LLAdmin@looped.in | Octopus@6 | 29449      | NES Initiated   |
+      | username          | password             | campus pin | TI Service Type |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449      | NES Initiated   |
 
     #LL-577: Scenario 7a - Adding business hours
   @LL-577 @AddingBusinessHours
@@ -135,8 +135,8 @@ Feature: ODTI_UI DID Configuration features
     And the drop downs contain a list of times in 15minute increments from 00:00 to 23:59
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-577: Scenario 7b - Saving the business hours
   @LL-577 @SavingBusinessHours
@@ -153,8 +153,8 @@ Feature: ODTI_UI DID Configuration features
     And the selected start time "<start Time>" and end time "<end Time>" is reflected in the table for that day
 
     Examples:
-      | username          | password  | start Time | end Time |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+      | username          | password             | start Time | end Time |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00   | 03:00:00 |
 
     #LL-577: Scenario 7c - Cancelling the schedule-edit modal
   @LL-577 @CancellingBusinessHours
@@ -171,8 +171,8 @@ Feature: ODTI_UI DID Configuration features
     And the schedule for that day remains unchanged
 
     Examples:
-      | username          | password  | start Time | end Time |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+      | username          | password             | start Time | end Time |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00   | 03:00:00 |
 
 #LL-577: Scenario 7d - Removing business hours
   @LL-577 @RemovingBusinessHours
@@ -193,8 +193,8 @@ Feature: ODTI_UI DID Configuration features
     And a feedback message is displayed: Time block deleted
 
     Examples:
-      | username          | password  | start Time | end Time |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+      | username          | password             | start Time | end Time |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00   | 03:00:00 |
 
     #LL-577: Scenario 8a - Editing a language option
   @LL-577 @EditingLanguageOption
@@ -209,8 +209,8 @@ Feature: ODTI_UI DID Configuration features
     And the Edit Language modal contains Save & Cancel buttons
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-577: Scenario 8b - Saving the Language option
   @LL-577 @SavingLanguageOption
@@ -227,8 +227,8 @@ Feature: ODTI_UI DID Configuration features
     And the table now reflects the selected language "<language Name>" for the keypad option
 
     Examples:
-      | username          | password  | language Name |
-      | LLAdmin@looped.in | Octopus@6 | ARABIC        |
+      | username          | password             | language Name |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | ARABIC        |
 
     #LL-577: Scenario 8c - Cancelling the modal
   @LL-577 @CancellingLanguageOptionModal
@@ -245,8 +245,8 @@ Feature: ODTI_UI DID Configuration features
     And the keypad option remains unchanged
 
     Examples:
-      | username          | password  | language Name |
-      | LLAdmin@looped.in | Octopus@6 | ARABIC        |
+      | username          | password             | language Name |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | ARABIC        |
 
     #LL-577: Scenario 9: Entering the same DID number that already exists
   @LL-577 @EnteringDIDNumberAlreadyExists
@@ -263,8 +263,8 @@ Feature: ODTI_UI DID Configuration features
     Then the error text message Duplicate phone number exists! is displayed
 
     Examples:
-      | username          | password  | campus pin | TI Service Type | DID number    | welcome Audio File Name | closed Audio File Name | language Audio File | timezone             |
-      | LLAdmin@looped.in | Octopus@6 | 29449      | Client TIXP     | 6173 0821 466 | test1.wmv               | test2.wmv              | test3.wmv           | (UTC+10:00) Brisbane |
+      | username          | password             | campus pin | TI Service Type | DID number    | welcome Audio File Name | closed Audio File Name | language Audio File | timezone             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449      | Client TIXP     | 6173 0821 466 | test1.wmv               | test2.wmv              | test3.wmv           | (UTC+10:00) Brisbane |
 
     #LL-577: Scenario 10: Adding the time blocks that exists between the existing time blocks
   @LL-577 @AddingTimeBlocksBetweenExisting
@@ -282,8 +282,8 @@ Feature: ODTI_UI DID Configuration features
     Then the error text message Time block overlaps with another time block is displayed
 
     Examples:
-      | username          | password  | campus                  | start Time | end Time | weekdays |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 01:00:00   | 03:00:00 | Sat,Sun  |
+      | username          | password             | campus                  | start Time | end Time | weekdays |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | 01:00:00   | 03:00:00 | Sat,Sun  |
 
     #LL-605: Scenario 1: New Table Schedule
   @LL-605 @NewTableSchedule
@@ -297,8 +297,8 @@ Feature: ODTI_UI DID Configuration features
     And an Add More button is shown under the schedule table
 
     Examples:
-      | username          | password  | campus                  | table headers                                      |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Start - End Time,Is Business Hours,Weekdays,Delete |
+      | username          | password             | campus                  | table headers                                      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | Start - End Time,Is Business Hours,Weekdays,Delete |
 
     #LL-605: Scenario 2a: Clicking Add More button
   @LL-605 @ClickingAddMoreButton
@@ -312,8 +312,8 @@ Feature: ODTI_UI DID Configuration features
     Then a schedule time modal window appears in DID configuration
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-605: Scenario 2b: Adding Time Block
   @LL-605 @AddingTimeBlock
@@ -335,8 +335,8 @@ Feature: ODTI_UI DID Configuration features
     And the error text message Time block overlaps with another time block is displayed
 
     Examples:
-      | username          | password  | campus                  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 01:00:00    | 01:15:00  | 02:00:00    | 05:00:00  | Sat,Sun  |
+      | username          | password             | campus                  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | 01:00:00    | 01:15:00  | 02:00:00    | 05:00:00  | Sat,Sun  |
 
     #LL-605: Scenario 2c: Click Cancel
   @LL-605 @ClickCancelOnSchedule
@@ -354,8 +354,8 @@ Feature: ODTI_UI DID Configuration features
     And no changes are saved in the schedule
 
     Examples:
-      | username          | password  | start Time | end Time |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 03:00:00 |
+      | username          | password             | start Time | end Time |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00   | 03:00:00 |
 
     #LL-605: Scenario 2d: Click Save Validation
   @LL-605 @ClickSaveValidation
@@ -383,8 +383,8 @@ Feature: ODTI_UI DID Configuration features
     And the table is sorted by Start time earliest time at the top
 
     Examples:
-      | username          | password  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00    | 02:00:00  | 02:00:00    | 05:00:00  | Sat,Sun  |
+      | username          | password             | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00    | 02:00:00  | 02:00:00    | 05:00:00  | Sat,Sun  |
 
     #LL-605: Scenario 2e: Overlapping time block validation
   @LL-605 @OverlappingTimeBlockValidation
@@ -407,8 +407,8 @@ Feature: ODTI_UI DID Configuration features
     And the user will remain on the Schedule Time Picker popup
 
     Examples:
-      | username          | password  | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00    | 04:00:00  | 02:00:00    | 03:00:00  | Sun,Mon  |
+      | username          | password             | start Time1 | end Time1 | start Time2 | end Time2 | weekdays |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00    | 04:00:00  | 02:00:00    | 03:00:00  | Sun,Mon  |
 
     #LL-605: Scenario 3: Clicking Delete
   @LL-605 @ClickingDeleteTimeBlock
@@ -428,8 +428,8 @@ Feature: ODTI_UI DID Configuration features
     And a feedback message is displayed: Time block deleted
 
     Examples:
-      | username          | password  | start Time | end Time | weekdays |
-      | LLAdmin@looped.in | Octopus@6 | 01:00:00   | 04:00:00 | Sun,Mon  |
+      | username          | password             | start Time | end Time | weekdays |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 01:00:00   | 04:00:00 | Sun,Mon  |
 
     #LL-646: Scenario 1a: There should be a Delete icon beside the Pencil icon
   @LL-646 @DeleteIconBesidePencilIcon
@@ -443,8 +443,8 @@ Feature: ODTI_UI DID Configuration features
     And options with no Language set do not have an X icon
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-646: Scenario 1b: Clicking the Delete icon, removes the Language assigned to the numeric option
   @LL-646 @ClickDeleteRemoveLanguageAssigned
@@ -459,8 +459,8 @@ Feature: ODTI_UI DID Configuration features
     And the X icon disappears in Language Options table
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-655: Scenario 4a: UI for the DID Configuration
   @LL-655 @DIDAllFourOptionsEnabled
@@ -474,8 +474,8 @@ Feature: ODTI_UI DID Configuration features
     And all four options "<configuration toggles>" should be enabled in Default Configuration
 
     Examples:
-      | username          | password  | TI Service Type | configuration toggles                                                                                      |
-      | LLAdmin@looped.in | Octopus@6 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
+      | username          | password             | TI Service Type | configuration toggles                                                                                      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
 
     #LL-655: Scenario 4b: UI for the DID Configuration
   @LL-655 @FourOptionsShouldDisplaySavedValues
@@ -490,8 +490,8 @@ Feature: ODTI_UI DID Configuration features
     And the four options "<configuration toggles>" should display the saved values
 
     Examples:
-      | username          | password  | TI Service Type | configuration toggles                                                                                      |
-      | LLAdmin@looped.in | Octopus@6 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
+      | username          | password             | TI Service Type | configuration toggles                                                                                      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | General TI      | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
 
     #LL-944: Scenario 1: Verify the new field ‘Client TIXP PIN’ is displayed in DID configuration of Client TIXP type
   @LL-944 @VerifyNewFieldClientTIXPPIN
@@ -504,8 +504,8 @@ Feature: ODTI_UI DID Configuration features
     Then we see the new field Client TIXP PIN displaying below the Prompt for NES Number toggle
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-944: Scenario 2: Verifying that the new field ‘Client TIXP PIN’ should accept minimum 3 digits only
   @LL-944 @ClientTIXPPINAcceptsMin3Digits
@@ -524,8 +524,8 @@ Feature: ODTI_UI DID Configuration features
     And has clicked the SAVE button in Edit DID Configuration page
 
     Examples:
-      | username          | password  | campus                  | client tixp pin |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 123             |
+      | username          | password             | campus                  | client tixp pin |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | 123             |
 
     #LL-944: Scenario 3: Verifying that the new field ‘Client TIXP PIN’ should accept maximum 9 digits only
   @LL-944 @ClientTIXPPINAcceptsMax9Digits
@@ -544,8 +544,8 @@ Feature: ODTI_UI DID Configuration features
     And has clicked the SAVE button in Edit DID Configuration page
 
     Examples:
-      | username          | password  | campus                  | client tixp pin |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 123456789       |
+      | username          | password             | campus                  | client tixp pin |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | 123456789       |
 
     #LL-944: Scenario 4: Verifying that the new field ‘Client TIXP PIN’ should not accept less than 3 digits
   @LL-944 @ClientTIXPPINShouldNotAcceptLessThan3Digits
@@ -560,8 +560,8 @@ Feature: ODTI_UI DID Configuration features
     Then the DID is not saved and displays error message ‘Invalid Client TIXP PIN’
 
     Examples:
-      | username          | password  | campus                  | client tixp pin |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | 12              |
+      | username          | password             | campus                  | client tixp pin |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | 12              |
 
     #LL-944: Scenario 5: Verifying that the new field ‘Client TIXP PIN’ is not mandatory
   @LL-944 @ClientTIXPPINNotMandatory
@@ -578,8 +578,8 @@ Feature: ODTI_UI DID Configuration features
     Then the DID should be saved and the values are not visible on the Client TIXP PIN field
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-944: Scenario 6: Verifying that the new field ‘Client TIXP PIN’ will not accept non-numeric values
   @LL-944 @ClientTIXPPINNotAcceptNonNumericValues
@@ -596,5 +596,5 @@ Feature: ODTI_UI DID Configuration features
     Then the DID should be saved and the values are not visible on the Client TIXP PIN field
 
     Examples:
-      | username          | password  | campus                  | client tixp pin |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | nonNumericValue |
+      | username          | password             | campus                  | client tixp pin |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | nonNumericValue |

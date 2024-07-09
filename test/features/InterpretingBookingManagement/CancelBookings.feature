@@ -23,13 +23,13 @@ Feature: Cancel existing booking
    And The job id is added to the file
   
    Examples:
-   |   cancel reason                                 |   on behalf       | job notice length | username           | password    | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  |
-   | NES client no-show                              | Automation Tester | two hours after   | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
-   | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
-   | NES client no-show                              | Automation Tester | long notice       | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | 
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | long notice       | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | 
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+   |   cancel reason                                 |   on behalf       | job notice length | username           | password              | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  |
+   | NES client no-show                              | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+   | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+   | NES client no-show                              | Automation Tester | long notice       | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | 
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | long notice       | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | 
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated |
 
  @CancelAllocatedJobRequest @CancelWithoutFee
   Scenario Outline: Cancel a allocated job request 
@@ -51,8 +51,8 @@ Feature: Cancel existing booking
    And The job id is added to the file
  
    Examples:
-   |   cancel reason                                 |   on behalf       | job notice length | username         | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
-   | NES client no-show                              | Automation Tester | long notice       | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   |   cancel reason                                 |   on behalf       | job notice length | username           |   password              | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
+   | NES client no-show                              | Automation Tester | long notice       | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
 
 @CancelAllocatedJobRequest @CancelWithFee
   Scenario Outline: Cancel a allocated job request 
@@ -74,8 +74,8 @@ Feature: Cancel existing booking
    And The job id is added to the file
  
    Examples:
-   |   cancel reason                                 |   on behalf       | job notice length | username         | password | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   |   cancel reason                                 |   on behalf       | job notice length | username           | password              | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
 
 
 @CancelAllocatedJobRequest @LessThan24Hours
@@ -98,11 +98,11 @@ Feature: Cancel existing booking
    And The job id is added to the file
   
    Examples:
-   |   cancel reason                                 |   on behalf       | job notice length | username           | password    | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
-   | NES client no-show                              | Automation Tester | two hours after   | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
-   | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   |   cancel reason                                 |   on behalf       | job notice length | username           | password               | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
+   | NES client no-show                              | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
 
 #LL-899 Scenario #1: Verifying the new cancellation reasons exists in the dropdown
  @LL-899 @VerifyNewCancellationReasons
@@ -120,5 +120,5 @@ Feature: Cancel existing booking
   Then the new cancellation reasons "<cancellation reason new options>" should be displayed
 
   Examples:
-   | job notice length | username          | password  | cancellation reason new options                               | contractor job status |
-   | short notice      | LLAdmin@looped.in | Octopus@6 | NAATI credential issue,Language/dialect issue,Technical issue | Allocated             |
+   | job notice length | username          | password             | cancellation reason new options                               | contractor job status |
+   | short notice      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | NAATI credential issue,Language/dialect issue,Technical issue | Allocated             |

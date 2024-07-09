@@ -17,8 +17,8 @@ Feature: ODTI Jobs Admin features
     Then the Job Task popup displays similar to popup from Prebooked jobs
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Before              | 1                         |
+      | username          | password             | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         |
 
     #LL-679 Scenario 2: Popup contents
   @LL-679 @JobTaskNotePopupContents
@@ -33,8 +33,8 @@ Feature: ODTI Jobs Admin features
     Then the user can see the items in the popup, as per table
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Before              | 1                         |
+      | username          | password             | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         |
 
     #LL-679 Scenario 3: Save
   @LL-679 @SaveJobTaskNotePopup
@@ -52,8 +52,8 @@ Feature: ODTI Jobs Admin features
     And the Job Task popup is closed
 
     Examples:
-      | username          | password  | note       | message                 | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test message | Before              | 1                         |
+      | username          | password             | note       | message                 | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Other/Note | automation test message | Before              | 1                         |
 
     #LL-679 Scenario 4: Re-opening an existing comment
   @LL-679 @ReopenCommentJobTaskNotePopup
@@ -74,8 +74,8 @@ Feature: ODTI Jobs Admin features
     And the previous comments are sorted by newest-first order
 
     Examples:
-      | username          | password  | note       | message                  | additional messages                               | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message,automation test3 message | Before              | 1                         |
+      | username          | password             | note       | message                  | additional messages                               | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Other/Note | automation test1 message | automation test2 message,automation test3 message | Before              | 1                         |
 
     #LL-679 Scenario 5: Job Notes section will show the newly added message for the existing Notes
   @LL-679 @JobNotesSectionDisplayNewMessage
@@ -94,8 +94,8 @@ Feature: ODTI Jobs Admin features
     Then the latest added message for the existing note is displayed
 
     Examples:
-      | username          | password  | note       | message                  | additional messages                               | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message | automation test2 message,automation test3 message | Before              | 1                         |
+      | username          | password             | note       | message                  | additional messages                               | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Other/Note | automation test1 message | automation test2 message,automation test3 message | Before              | 1                         |
 
     #LL-679 Scenario 6: Adding Multiple Notes
   @LL-679 @AddingMultipleNotes
@@ -110,8 +110,8 @@ Feature: ODTI Jobs Admin features
     Then the notes that are added latest are sorted by newest-first order
 
     Examples:
-      | username          | password  | note       | messages                                                                   | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test1 message,automation test2 message,automation test3 message | Before              | 1                         |
+      | username          | password             | note       | messages                                                                   | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Other/Note | automation test1 message,automation test2 message,automation test3 message | Before              | 1                         |
 
     #LL-679 Scenario 7: User cancels the Note after entering the message
   @LL-679 @CancelNoteAfterEnteringMessage
@@ -129,8 +129,8 @@ Feature: ODTI Jobs Admin features
     And no notes are added under Job Notes section
 
     Examples:
-      | username          | password  | note       | message                 | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Other/Note | automation test message | Before              |  1                        |   
+      | username          | password             | note       | message                 | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Other/Note | automation test message | Before              |  1                        |   
 
   #   #LL-687 Sc1 - by default, a filter on record status should be shown //No longer exists
   # @LL-687 @RecordStatusFilterShownByDefault
@@ -157,8 +157,8 @@ Feature: ODTI Jobs Admin features
     Then the rows which contain a Do Not Export record will have a Gray font-color
 
     Examples:
-      | username          | password  | export value  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2| filter comparator index 2 | filter value 2 | filter value index 2 |
-      | LLAdmin@looped.in | Octopus@6 | Do not export | Before              | 1                         | RecordStatus    | 2                     |  Is                |  2                        | Do not export  | 1                    |  
+      | username          | password             | export value  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2| filter comparator index 2 | filter value 2 | filter value index 2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Do not export | Before              | 1                         | RecordStatus    | 2                     |  Is                |  2                        | Do not export  | 1                    |  
 
   #   #LL-687 Sc2 - display the record status field  //No longer exists
   # @LL-687 @DisplayRecordStatusField
@@ -189,8 +189,8 @@ Feature: ODTI Jobs Admin features
     And does not have the RecordStatus filter
 
     Examples:
-      | username          | password  | job detail page url        | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | OnDemandTI/JobDetails.aspx | Before              | 1                         |
+      | username          | password             | job detail page url        | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | OnDemandTI/JobDetails.aspx | Before              | 1                         |
 
     #LL-687 Sc4 - the reprocessing buttons should be hidden for Export=false
   @LL-687 @ReprocessingButtonsHiddenExportFalse
@@ -207,8 +207,8 @@ Feature: ODTI Jobs Admin features
     Then the 3 Reprocess buttons are not displayed
 
     Examples:
-      | username          | password  | export value  | job detail page url        | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2| filter comparator index 2 | filter value 2 | filter value index 2 |
-      | LLAdmin@looped.in | Octopus@6 | Do not export | OnDemandTI/JobDetails.aspx | Before              | 1                         | RecordStatus    | 2                     | Is                 |   2                       |  Do not export | 1                    |
+      | username          | password             | export value  | job detail page url        | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2| filter comparator index 2 | filter value 2 | filter value index 2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Do not export | OnDemandTI/JobDetails.aspx | Before              | 1                         | RecordStatus    | 2                     | Is                 |   2                       |  Do not export | 1                    |
 
     #LL-724 Scenario 1 - GL Code renamed to BillTo Code
   @LL-724 @GLCodeRenamedToBillToCode
@@ -227,8 +227,8 @@ Feature: ODTI Jobs Admin features
     #   | LLAdmin@looped.in | Octopus@6 | Bill To Code    | 1                     | Is                  | 1                         | DET01          | 1                    | 100000019010 |
    
    Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | job ID       |
-      | LLAdmin@looped.in | Octopus@6 | Before              |  1                        |  Bill To Code   | 2                     | Is                  | 2                         | DET01          | 1                    | 100000019010 |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | job ID       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        |  Bill To Code   | 2                     | Is                  | 2                         | DET01          | 1                    | 100000019010 |
 
 
     #LL-724 Scenario 2 - Service Description renamed to “DID Number”
@@ -246,8 +246,8 @@ Feature: ODTI Jobs Admin features
     And the results displayed belongs to the entered DID number "<filter value 2>"
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | campus name     |
-      | LLAdmin@looped.in | Octopus@6 | Before              |  1                        | DID Number      | 2                     | Is                  | 2                         | 61370349780    | 2                    | Contoso Pty LTD |
+      | username          | password              | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | campus name     |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Before              |  1                        | DID Number      | 2                     | Is                  | 2                         | 61370349780    | 2                    | Contoso Pty LTD |
 
     #LL-724 Scenario 3 - Contractor Name currently only searches first name
   @LL-724 @ContractorNameSearchFirstLastName
@@ -262,8 +262,8 @@ Feature: ODTI Jobs Admin features
     And I should see the expected Interpreter Name "<Interpreter Name>" value under INTERPRETER NAME column
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | Interpreter Name |
-      | LLAdmin@looped.in | Octopus@6 | Before              | 1                         | Contractor Name | 2                     | Is                  | 2                         | Lai Wan LEUNG  | 2                    | Lai Wan LEUNG    |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | Interpreter Name |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contractor Name | 2                     | Is                  | 2                         | Lai Wan LEUNG  | 2                    | Lai Wan LEUNG    |
 
     #LL-724 Scenario 4 - Contract Name should be a drop-down
   @LL-724 @ContractNameShouldBeDropdown
@@ -278,8 +278,8 @@ Feature: ODTI Jobs Admin features
     And I should see the expected Campus Name "<campus name>" value under CAMPUS NAME column
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2                                      | filter value index 2 | campus name                                                      |
-      | LLAdmin@looped.in | Octopus@6 | Before              | 1                         | Contract name   | 2                     | Is                  | 2                         | Department of Health and Human Services - Health    | 1                    | Access Health and Community - DH Community Care North West Metro |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2                                      | filter value index 2 | campus name                                                      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contract name   | 2                     | Is                  | 2                         | Department of Health and Human Services - Health    | 1                    | Access Health and Community - DH Community Care North West Metro |
 
     #LL-724 Scenario 5 - VITSAHFlag
   @LL-724 @VITSAHFlag
@@ -296,8 +296,8 @@ Feature: ODTI Jobs Admin features
     And they will see a table
 
     Examples:
-      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
-      | LLAdmin@looped.in | Octopus@6 | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 1                    | False          | Before              | 1                         | 
+      | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 1                    | False          | Before              | 1                         | 
 
     #LL-724 Scenario 6 - ContractorAHFlag
   @LL-724 @ContractorAHFlag
@@ -314,8 +314,8 @@ Feature: ODTI Jobs Admin features
     And they will see a table
 
     Examples:
-      | username          | password  | filter option 1  | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
-      | LLAdmin@looped.in | Octopus@6 | ContractorAHFlag | 2                     | Is                  | 2                         | True           | 1                    | False          | Before              | 1                         |
+      | username          | password             | filter option 1  | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | ContractorAHFlag | 2                     | Is                  | 2                         | True           | 1                    | False          | Before              | 1                         |
 
     #LL-724 Scenario 7 - Custom Fields search all ODTI custom fields for the value
   @LL-724 @CustomFieldsSearchAllODTICustomFields
@@ -330,8 +330,8 @@ Feature: ODTI Jobs Admin features
     And they will see a table
 
     Examples:
-      | username          | password  | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | Octopus@6 | Custom Fields   | 2                     | Contains            | 2                         | Test           | 2                    | Before              | 1                         | 
+      | username          | password             | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter comparator 1 | filter comparator index 1 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Custom Fields   | 2                     | Contains            | 2                         | Test           | 2                    | Before              | 1                         | 
 
     #LL-761 Scenario 1: Verifying the results for filter DID Number using IS condition
   @LL-761 @FilterDIDNumberISCondition
@@ -348,8 +348,8 @@ Feature: ODTI Jobs Admin features
     And the results displayed belongs to the entered DID number "<filter value 2>"
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
-      | LLAdmin@looped.in | Octopus@6 | Before              |  1                        |  DID Number     | 2                     | Is                  | 2                         | 61370349780    | 2                    |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        |  DID Number     | 2                     | Is                  | 2                         | 61370349780    | 2                    |
 
     #LL-761 Scenario 2: Verifying the results for filter DID Number using Is not condition
   @LL-761 @FilterDIDNumberISNotCondition
@@ -366,8 +366,8 @@ Feature: ODTI Jobs Admin features
     And the results displayed does not belong to the entered DID number "<filter value 2>"
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 1 | filter value index 2 |
-      | LLAdmin@looped.in | Octopus@6 | Before              |  1                        | DID Number      | 2                     | Is not              | 2                         | 61370349780    | 2                    |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 1 | filter value index 2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        | DID Number      | 2                     | Is not              | 2                         | 61370349780    | 2                    |
 
     #LL-761 Scenario 3: Verifying the results for filter VITSAHFlag with IS condition
   @LL-761 @FilterVITSAHFlagISCondition
@@ -393,8 +393,8 @@ Feature: ODTI Jobs Admin features
     And the results displays the Business Hours jobs when VITSAHFlag False
 
     Examples:
-      | username          | password  | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter value 3 | filter value index 3 |
-      | LLAdmin@looped.in | Octopus@6 | Before              | 1                         | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 1                    | False          | 1                    |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter value 3 | filter value index 3 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 1                    | False          | 1                    |
 
     #LL-761 Scenario 4: Verifying the results for filter Interpreter Duration (In Sec) with all available conditions
   @LL-761 @FilterInterpreterDurationSecAllConditions
@@ -444,8 +444,8 @@ Feature: ODTI Jobs Admin features
     And the results display correct jobs which has the duration greater than or equal to the duration set in filters "<expected value 6>"
 
    Examples:
-      | username          | password  | filter comparator 7 | filter comparator index 7 | filter option 1              | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter comparator 2 | filter value 2 | filter comparator 3 | filter value 3 | filter comparator 4 | filter value 4 | filter comparator 5 | filter value 5 | expected value 5 | filter comparator 6 | filter value 6 | expected value 6 |
-      | LLAdmin@looped.in | Octopus@6 | Before              | 1                         | InterpreterDuration (In Sec) | 2                     | <                   | 2                         | 59             | 2                    | <=                  | 59             | Is                  | 59             | Is not              | 59             | >                   | 60             | 0                | >=                  | 60             | 1                |
+      | username          | password             | filter comparator 7 | filter comparator index 7 | filter option 1              | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter comparator 2 | filter value 2 | filter comparator 3 | filter value 3 | filter comparator 4 | filter value 4 | filter comparator 5 | filter value 5 | expected value 5 | filter comparator 6 | filter value 6 | expected value 6 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | InterpreterDuration (In Sec) | 2                     | <                   | 2                         | 59             | 2                    | <=                  | 59             | Is                  | 59             | Is not              | 59             | >                   | 60             | 0                | >=                  | 60             | 1                |
     
     # Examples:
     #   | username          | password  | filter option 1              | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter comparator 2 | filter value 2 | filter comparator 3 | filter value 3 | filter comparator 4 | filter value 4 | filter comparator 5 | filter value 5 | expected value 5 | filter comparator 6 | filter value 6 | expected value 6 |
@@ -471,8 +471,8 @@ Feature: ODTI Jobs Admin features
     Then the value displayed for Calls under Summary section should match with the ODTI Jobs page
 
     Examples:
-      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | start date dashboard | end date dashboard | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 1                     | After               | 1                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
+      | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | start date dashboard | end date dashboard | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Job Date        | 1                     | After               | 1                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
 
     #LL-901 Scenario 1: Verifying the explanation text for the Total/Connected count
   @LL-901 @VerifyExplanationTextTotalConnectedCount
@@ -488,5 +488,5 @@ Feature: ODTI Jobs Admin features
     And Total calls connected by Total calls text is displayed
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |

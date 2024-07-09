@@ -16,8 +16,8 @@ Feature: ODTI_UI Campus Configuration features
     And the Campus PIN input and configuration section are displayed
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-489: Scenario 1b - Campus ODTI Configuration (Edit)
   @LL-489 @CampusODTIConfigurationEdit
@@ -31,8 +31,8 @@ Feature: ODTI_UI Campus Configuration features
     And the saved configuration is displayed
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-489: Scenario 1c - Campus ODTI Configuration (Duplicate)
   @LL-489 @CampusODTIConfigurationDuplicate
@@ -47,8 +47,8 @@ Feature: ODTI_UI Campus Configuration features
     And the Campus PIN is blank upon clicking duplicate
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-489: Scenario 2 - Entering a Campus PIN
   @LL-489 @EnteringCampusPIN
@@ -62,8 +62,8 @@ Feature: ODTI_UI Campus Configuration features
     And the Campus name "<campus name>" is displayed below the input box
 
     Examples:
-      | username          | password  | campus pin | campus name     |
-      | LLAdmin@looped.in | Octopus@6 | 29449      | Contoso Pty LTD |
+      | username          | password             | campus pin | campus name     |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449      | Contoso Pty LTD |
 
     #LL-489: Scenario 5 - Cancel
   @LL-489 @CampusODTIConfigurationCancel
@@ -80,8 +80,8 @@ Feature: ODTI_UI Campus Configuration features
     And the admin is navigated back to the configuration list screen
 
     Examples:
-      | username          | password  | configuration toggles                                                                                      | campus pin |
-      | LLAdmin@looped.in | Octopus@6 | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | 33124      |
+      | username          | password             | configuration toggles                                                                                      | campus pin |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | 33124      |
 
     #LL-489: Scenario 6: User is unable to edit the Campus pin and Service type in the Edit Campus Configuration
   @LL-489 @UnableToEditCampusPinServiceType
@@ -95,8 +95,8 @@ Feature: ODTI_UI Campus Configuration features
     And user cannot update the Service Type and Campus pin fields values
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-489: Scenario 7: User is able to edit configuration settings in the Edit Campus Configuration
   @LL-489 @EditConfigurationSettings
@@ -117,8 +117,8 @@ Feature: ODTI_UI Campus Configuration features
     And clicks on Save button in Edit Campus Configuration
 
     Examples:
-      | username          | password  | campus                  | configuration toggles                                                                                      | configuration toggles updated                                                                                                      |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | Configuration Is Active,Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
+      | username          | password             | campus                  | configuration toggles                                                                                      | configuration toggles updated                                                                                                      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number | Configuration Is Active,Accept Calls on Public Holidays,Prompt Gender Preference,Prompt if More than 30 Mins,Prompt for NES Number |
 
     #LL-489: Scenario 8: User can perform search using DID or Campus Pin
   @LL-489 @SearchUsingDIDOrCampusPin
@@ -131,8 +131,8 @@ Feature: ODTI_UI Campus Configuration features
     Then the correct search results campus "<campus>" are displayed
 
     Examples:
-      | username          | password  | campus                  | campus name     |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Contoso Pty LTD |
+      | username          | password             | campus                  | campus name     |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | Contoso Pty LTD |
 
     #LL-489: Scenario 9: User can perform search using Service Type
   @LL-489 @SearchUsingServiceType
@@ -145,8 +145,8 @@ Feature: ODTI_UI Campus Configuration features
     Then the correct search results service type "<service type>" are displayed
 
     Examples:
-      | username          | password  | service type |
-      | LLAdmin@looped.in | Octopus@6 | General TI   |
+      | username          | password             | service type |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | General TI   |
 
     #LL-515: Scenario 1a - Display List of DID Configurations
   @LL-515 @DisplayListDIDConfigurations
@@ -159,8 +159,8 @@ Feature: ODTI_UI Campus Configuration features
     And the user sees a New Configuration button under DID Configuration tab
 
     Examples:
-      | username          | password  | table headers                     | table row links |
-      | LLAdmin@looped.in | Octopus@6 | DID,Service Type,Campus,Is Active | Edit,Duplicate  |
+      | username          | password             | table headers                     | table row links |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | DID,Service Type,Campus,Is Active | Edit,Duplicate  |
 
     #LL-515: Scenario 1b - Display List of Campus Configurations
   @LL-515 @DisplayListCampusConfigurations
@@ -173,8 +173,8 @@ Feature: ODTI_UI Campus Configuration features
     And the user sees a New Configuration button under Campus Configuration tab
 
     Examples:
-      | username          | password  | table headers                     | table row links |
-      | LLAdmin@looped.in | Octopus@6 | Campus,Service Type,DID,Is Active | Edit,Duplicate  |
+      | username          | password             | table headers                     | table row links |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Campus,Service Type,DID,Is Active | Edit,Duplicate  |
 
     #LL-515: Scenario 2a - Clicking “New Configuration”
   @LL-515 @ClickDIDNewConfiguration
@@ -187,8 +187,8 @@ Feature: ODTI_UI Campus Configuration features
     And a blank form is shown in New DID Configuration
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-515: Scenario 2b - Clicking “New Configuration”
   @LL-515 @ClickCampusNewConfiguration
@@ -201,8 +201,8 @@ Feature: ODTI_UI Campus Configuration features
     And a blank form is shown in New Campus Configuration
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-515: Scenario 3a - Clicking existing configuration Edit link
   @LL-515 @DIDConfigurationEditLink
@@ -215,8 +215,8 @@ Feature: ODTI_UI Campus Configuration features
     And the existing configuration is shown
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-515: Scenario 3b - Clicking existing configuration Edit link
   @LL-489 @CampusConfigurationEditLink
@@ -229,8 +229,8 @@ Feature: ODTI_UI Campus Configuration features
     And the saved configuration is displayed
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-515: Scenario 4a - Clicking existing configuration Duplicate link
   @LL-515 @DIDConfigurationDuplicateLink
@@ -244,8 +244,8 @@ Feature: ODTI_UI Campus Configuration features
     And the DID is blank in existing DID configuration upon clicking duplicate
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-515: Scenario 4b - Clicking existing configuration Duplicate link
   @LL-515 @CampusConfigurationDuplicateLink
@@ -259,8 +259,8 @@ Feature: ODTI_UI Campus Configuration features
     And the Campus PIN is blank upon clicking duplicate
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-515: Scenario 5 - Clicking on a Campus name
   @LL-515 @ClickCampusNameConfiguration
@@ -276,8 +276,8 @@ Feature: ODTI_UI Campus Configuration features
     And they will be navigated to the Campus page
 
     Examples:
-      | username          | password  | campus                  |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
 
     #LL-515: Scenario 6 - Filter
   @LL-515 @FilterCampusConfiguration
@@ -292,5 +292,5 @@ Feature: ODTI_UI Campus Configuration features
     Then the correct search results service type "<service type>" are displayed
 
     Examples:
-      | username          | password  | campus                  | campus name     | service type |
-      | LLAdmin@looped.in | Octopus@6 | 29449 - Contoso Pty LTD | Contoso Pty LTD | General TI   |
+      | username          | password             | campus                  | campus name     | service type |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD | Contoso Pty LTD | General TI   |
