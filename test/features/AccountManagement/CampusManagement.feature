@@ -33,8 +33,8 @@ Feature: Campus Management features
    And I verify manage campus fields are present
    
    Examples:
-   | username           | password    | campus type  | campus address1                             | campus address2                              | postname1   | postname2    |  postal address1                   | postal address2  | abn         | campus name  | entity type | entity name  | po number | invoice frequency | business name   |  bill to                | videoloop pin |
-   | LLAdmin@looped.in  | Octopus@6    | Metro        |  1 St Kilda Rd, St Kilda VIC 3182           |  1 St Kilda Rd, St Kilda VIC 3182, Australia |  first post | second post  |  1 St Kilda Rd, St Kilda VIC 3182  |  St Kilda Street | 53819971946 | Melbourne LL | Government  | ll company   | 42345     | Weekly            | ll trading name | department of transport | 1234          |
+   | username           | password             | campus type  | campus address1                             | campus address2                              | postname1   | postname2    |  postal address1                   | postal address2  | abn         | campus name  | entity type | entity name  | po number | invoice frequency | business name   |  bill to                | videoloop pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Metro        |  1 St Kilda Rd, St Kilda VIC 3182           |  1 St Kilda Rd, St Kilda VIC 3182, Australia |  first post | second post  |  1 St Kilda Rd, St Kilda VIC 3182  |  St Kilda Street | 53819971946 | Melbourne LL | Government  | ll company   | 42345     | Weekly            | ll trading name | department of transport | 1234          |
   
   @ViewCampus  @ScheduleRates
   Scenario Outline: View campus schedule rates
@@ -46,8 +46,8 @@ Feature: Campus Management features
    And I verify the prebooked ti contract section is present
 
    Examples:
-   | username          | password   | campus id        |
-   | LLAdmin@looped.in |  Octopus@6  |  33124           |
+   | username          | password              | campus id        |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  |  33124           |
 
   @ViewCampus  @BillToContracts
   Scenario Outline: View campus bill to contracts
@@ -58,8 +58,8 @@ Feature: Campus Management features
    Then I verify bill to contract section is present
 
    Examples:
-   | username          | password   | campus id |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |
 
    @ViewCampus  @AddGenderPreference
   Scenario Outline: View campus gender preferences.
@@ -77,8 +77,8 @@ Feature: Campus Management features
    And I delete all preferences
 
    Examples:
-   | username          | password   | campus id      |
-   | LLAdmin@looped.in |  Octopus@6  | 33124          |
+   | username          | password              | campus id      |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124          |
 
   @ViewCampus  @AddVaccination
   Scenario Outline: View campus vaccinations
@@ -94,8 +94,8 @@ Feature: Campus Management features
    Then I verify vaccination "<disease>" is present
 
    Examples:
-   | username          | password   | campus id | disease      | valid months |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     |  Hepatitis B |  2           |
+   | username          | password              | campus id | disease      | valid months |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     |  Hepatitis B |  2           |
 
   @ViewCampus  @AddDimension
   Scenario Outline: View campus add dimension
@@ -109,8 +109,8 @@ Feature: Campus Management features
    And I delete the added dimension tag
 
    Examples:
-   | username          | password   | campus id | dimension type   | dimension value |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     |  Client Type     |  Commercial     |
+   | username          | password             | campus id | dimension type   | dimension value |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  Client Type     |  Commercial     |
 
   @ViewCampus  @AddNote1
   Scenario Outline: View campus add notes
@@ -125,8 +125,8 @@ Feature: Campus Management features
    And I delete added note
 
    Examples: 
-   | username          | password   | campus id | note title     | note message         |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     |  Auto notes    |  Test Automation     |
+   | username          | password             | campus id | note title     | note message         |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  Auto notes    |  Test Automation     |
 
   @ViewCampus  @TravelRates
   Scenario Outline: View campus check travel rates section.
@@ -137,8 +137,8 @@ Feature: Campus Management features
    Then I verify travel rate section is present
 
    Examples: 
-   | username          | password   | campus id |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | 
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | 
 
    @ViewCampus  @AddNAATIOverride1
   Scenario Outline: Add naati override for campus.
@@ -155,8 +155,8 @@ Feature: Campus Management features
    And I delete added override naati
 
    Examples: 
-   | username          | password   | campus id         | language                       | naati level |
-   | LLAdmin@looped.in |  Octopus@6  | Melbourne LL      | GERMAN - Video Conferencing    | Recognised  |
+   | username          | password              | campus id         | language                       | naati level |
+   | LLAdmin@looped.in |  +`QmHl3w7OQls9g,Qc;7 | Melbourne LL      | GERMAN - Video Conferencing    | Recognised  |
 
   # @ViewCampus  @CancellationFee
   # Scenario Outline: View campus add cancellation fee.
@@ -192,8 +192,8 @@ Feature: Campus Management features
    And I delete the added nes
 
    Examples: 
-   | username          | password   | campus id        | language                      |
-   | LLAdmin@looped.in |  Octopus@6  | Melbourne LL     | GERMAN - Video Conferencing   |
+   | username          | password              | campus id        | language                      |
+   | LLAdmin@looped.in |  +`QmHl3w7OQls9g,Qc;7 | Melbourne LL     | GERMAN - Video Conferencing   |
 
   @ViewCampus  @CommonInstruction
   Scenario Outline: View campus check common instructions section.
@@ -209,8 +209,8 @@ Feature: Campus Management features
    And I delete added common instruction
 
    Examples: 
-   | username          | password   | campus id  | title               | description      |
-   | LLAdmin@looped.in |  Octopus@6  |  32548     | Automation Testing  | Test Instruction |
+   | username          | password             | campus id  | title               | description      |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |  32548     | Automation Testing  | Test Instruction |
 
    @ViewCampus  @CustomizedField
   Scenario Outline: View campus check travel rates section.
@@ -225,8 +225,8 @@ Feature: Campus Management features
    And I delete added custom field
 
    Examples: 
-   | username          | password   | campus id | field name        | 
-   | LLAdmin@looped.in |  Octopus@6  | 32548     | Automation Field  |
+   | username          | password              | campus id | field name        | 
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 32548     | Automation Field  |
 
  #LL-443 Scenario 3a: Admin views Short Code list
  @ViewShortCodeList
@@ -244,8 +244,8 @@ Feature: Campus Management features
   And select a value dropdown options should not have any value with zzz- prefix in dropdown
 
   Examples:
-   | username          | password    | campus id | shortcode option |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Shortcode        |
+   | username          | password             | campus id | shortcode option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Shortcode        |
 
   #LL-443 Scenario 3b: Admin selects new Short Code dimension and value
  @NewShortCodeDimensionValue
@@ -262,8 +262,8 @@ Feature: Campus Management features
   And They select the red cross x on the tag "<shortcode option>","<shortcode value>"
 
   Examples:
-   | username          | password    | campus id | shortcode option | shortcode value |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Shortcode        | ACC             |
+   | username          | password              | campus id | shortcode option | shortcode value |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     | Shortcode        | ACC             |
 
   #LL-443 Scenario 4a: Admin views Budget Code dimension
  @ViewBudgetCodeDimension
@@ -278,8 +278,8 @@ Feature: Campus Management features
   Then They will see the "<budget code option>" dimension list option
 
   Examples:
-   | username          | password    | campus id | budget code option |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        |
+   | username          | password             | campus id | budget code option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Budget Code        |
 
   #LL-443 Scenario 4b: Admin selects Budget Code dimension
  @SelectBudgetCodeDimension
@@ -295,8 +295,8 @@ Feature: Campus Management features
   Then They will be able to see the list of Budget Code values
 
   Examples:
-   | username          | password    | campus id | budget code option |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        |
+   | username          | password              | campus id | budget code option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     | Budget Code        |
 
   #LL-443 Scenario 4c: Admin adds Budget Code dimension and value
  @AddBudgetCodeDimensionValue
@@ -313,8 +313,8 @@ Feature: Campus Management features
   And They select the red cross x on the tag "<budget code option>","<budget code value>"
 
   Examples:
-   | username          | password    | campus id | budget code option | budget code value |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |
+   | username          | password              | campus id | budget code option | budget code value |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     | Budget Code        | ANZ Bank          |
 
   #LL-443 Scenario 5a: Admin cancels adding a dimension
  @CancelAddingDimension
@@ -331,8 +331,8 @@ Feature: Campus Management features
   And The tag will not be added to the Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus id |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |
 
   #LL-443 Scenario 5b: Admin cancels adding a dimension and value
  @CancelAddingDimensionValue
@@ -350,8 +350,8 @@ Feature: Campus Management features
   And The tag will not be added to the Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus id | budget code option |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        |
+   | username          | password             | campus id | budget code option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Budget Code        |
 
   #LL-443 Scenario 6: Admin removes dimension and value
  @RemoveDimensionValue
@@ -370,8 +370,8 @@ Feature: Campus Management features
   And The tag "<budget code option>","<budget code value>" will not be visible in the Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus id | budget code option | budget code value |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |
+   | username          | password              | campus id | budget code option | budget code value |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     | Budget Code        | ANZ Bank          |
 
   #LL-612 Scenario 1: Admin creates CBO from Campus
  @CreateCBOFromCampus
@@ -391,8 +391,8 @@ Feature: Campus Management features
   And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS
 
   Examples:
-   | username          | password    | campus id | firstname     | landline number |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | AutomationCBO | 0212345678      |
+   | username          | password             | campus id | firstname     | landline number |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationCBO | 0212345678      |
 
   #LL-642 Scenario 1a: Campuses in the Excel file have the same OLD shortcodes (CampusShortCode column) in the excel
  @SameOldShortCodes @LL-642
@@ -401,8 +401,8 @@ Feature: Campus Management features
   Then the campuses "<campus ids>" should have the original short code "<shortcode option>","<shortcode values>" attached in Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus ids                                                  | shortcode option | shortcode values                                                  |
-   | LLAdmin@looped.in |  Octopus@6  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Shortcode        | CV,VIC RD,Victoria Police,CSV,OPP,VLA,HPV,HEALTH,VIC RD,FAMILY CT |
+   | username          | password              | campus ids                                                  | shortcode option | shortcode values                                                  |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Shortcode        | CV,VIC RD,Victoria Police,CSV,OPP,VLA,HPV,HEALTH,VIC RD,FAMILY CT |
 
   #LL-642 Scenario 1b: Campuses in the Excel file have the same NEW shortcodes (Revised Shortcode / Organisation column) in the excel
  @SameNewShortCodes @LL-642
@@ -411,8 +411,8 @@ Feature: Campus Management features
   Then the campuses "<campus ids>" should have the original short code "<shortcode option>","<shortcode values>" attached in Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus ids                                                  | shortcode option | shortcode values                                                                                                                                                                             |
-   | LLAdmin@looped.in |  Octopus@6  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew     | Corrections Victoria,VicRoads Centre,Victoria Police,Magistrates,Office of Public Prosecutions,Victoria Legal Aid,Alfred Health,Alfred Health,VicRoads Centre,Federal Circuit Court of Aust. |
+   | username          | password              | campus ids                                                  | shortcode option | shortcode values                                                                                                                                                                             |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew     | Corrections Victoria,VicRoads Centre,Victoria Police,Magistrates,Office of Public Prosecutions,Victoria Legal Aid,Alfred Health,Alfred Health,VicRoads Centre,Federal Circuit Court of Aust. |
 
   #LL-642 Scenario 4: New budget codes should still exist
  @NewBudgetCodesExist @LL-642
@@ -421,8 +421,8 @@ Feature: Campus Management features
   Then the campuses "<campus ids>" should have the original short code "<budget code option>","<shortcode values>" attached in Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus ids                                                  | budget code option | shortcode values                                                                                                                                                                                    |
-   | LLAdmin@looped.in | Octopus@6   | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Budget Code        | Corrections Victoria,VicRoads,Victoria Police,Court Services Victoria (CSV),Dept of Justice (VIC),Victoria Legal Aid,Healthshare Victoria (HPV),Unallocated,VicRoads,Federal Circuit Court of Aust. |
+   | username          | password               | campus ids                                                  | budget code option | shortcode values                                                                                                                                                                                    |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7   | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | Budget Code        | Corrections Victoria,VicRoads,Victoria Police,Court Services Victoria (CSV),Dept of Justice (VIC),Victoria Legal Aid,Healthshare Victoria (HPV),Unallocated,VicRoads,Federal Circuit Court of Aust. |
 
   #LL-642 Scenario 5: New Dimension List is created ShortCodeNew
  @ShortCodeNewExists @LL-642
@@ -431,8 +431,8 @@ Feature: Campus Management features
   Then the campuses "<campus ids>" list should contain the new dimension called "<dimension list option>"
 
   Examples:
-   | username          | password    | campus ids                                                  | dimension list option |
-   | LLAdmin@looped.in |  Octopus@6  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew          |
+   | username          | password              | campus ids                                                  | dimension list option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew          |
 
   #LL-443 AC 7: User should not be able to add multiple dimensions list at same time
  @MultipleDimensionsNotAtOnce @LL-443
@@ -448,8 +448,8 @@ Feature: Campus Management features
   Then there should not be any plus icon displayed and multiple dimensions cannot be added simultaneously
 
   Examples:
-   | username          | password    | campus id |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     |
+   | username          | password               | campus id |
+   | LLAdmin@looped.in |  +`QmHl3w7OQls9g,Qc;7  | 33124     |
 
 
    #LL-443 AC8: User should not be able to edit the saved/ existing dimensions.
@@ -471,8 +471,8 @@ Feature: Campus Management features
   And The tag "<budget code option>","<budget code value>" will not be visible in the Dimension Tag Cloud section
 
   Examples:
-   | username          | password    | campus id | budget code option | budget code value |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Budget Code        | ANZ Bank          |
+   | username          | password              | campus id | budget code option | budget code value |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     | Budget Code        | ANZ Bank          |
 
   #LL-324 Scenario 1b: Admin sees ODTI gender preference option on Campus
  @LL-324 @ODTIGenderPreferenceOnCampus
@@ -491,8 +491,8 @@ Feature: Campus Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | campus id | preference type option | preference |
-   | LLAdmin@looped.in |  Octopus@6  | 33124     | Gender (On-demand TI)  | Female     |
+   | username          | password             | campus id | preference type option | preference |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Gender (On-demand TI)  | Female     |
 
   #LL-324 Scenario 2: Campus can still add their own Gender (On-Demand TI) even when Contract does not have any
  @LL-324 @CampusAddOwnODTIGenderPreference
@@ -517,8 +517,8 @@ Feature: Campus Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | contract title                                   | campus id | preference type option | preference |
-   | LLAdmin@looped.in |  Octopus@6  | Department of Health and Human Services - Health | 33124     | Gender (On-demand TI)  | Female     |
+   | username          | password             | contract title                                   | campus id | preference type option | preference |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | 33124     | Gender (On-demand TI)  | Female     |
 
   #LL-324 Scenario 3: Updating the preference option on Campus level will not change the actual preference set on Contract
  @LL-324 @UpdatePreferenceOnCampusDoesNotChangeOnContract
@@ -548,8 +548,8 @@ Feature: Campus Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password  | contract title                                   | preference type option | campus id | preference | override preference |
-   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
+   | username          | password             | contract title                                   | preference type option | campus id | preference | override preference |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     | Preferred Female    |
 
   #LL-324 Scenario 4: User cannot delete the preference on Campus level when added on contact page
  @LL-324 @CannotDeleteCampusPreferenceAddedOnContract
@@ -573,8 +573,8 @@ Feature: Campus Management features
   And they remove added preference type option "<preference type option>" in Contract Details
 
   Examples:
-   | username          | password  | contract title                                   | preference type option | campus id | preference |
-   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     |
+   | username          | password             | contract title                                   | preference type option | campus id | preference |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | Gender (On-demand TI)  | 33124     | Female     |
 
   #LL-514 Scenario 1: Campus inherits Contract customised ODTI fields
  @LL-514 @CampusInheritsContractCustomizedFields
@@ -599,8 +599,8 @@ Feature: Campus Management features
   And I click on delete icon on Customised ODTI Field in Campus
 
   Examples:
-   | username          | password  | contract title                                   | customised field name | max length | audio label      | campus id |
-   | LLAdmin@looped.in | Octopus@6 | Department of Health and Human Services - Health | AutomationField       | 50         | automation label | 33124     |
+   | username          | password             | contract title                                   | customised field name | max length | audio label      | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | AutomationField       | 50         | automation label | 33124     |
 
   #LL-514 Scenario 2a: Admin views customised ODTI field
  @LL-514 @ViewsCustomizedODTIFields
@@ -615,8 +615,8 @@ Feature: Campus Management features
   And the letters ‘ODTI’ will be a hyperlink
 
   Examples:
-   | username          | password  | campus id |
-   | LLAdmin@looped.in | Octopus@6 | 33124     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |
 
   #LL-514 Scenario 2b: Admin views customised ODTI field tooltip
  @LL-514 @ViewsCustomizedODTIFieldTooltip
@@ -632,8 +632,8 @@ Feature: Campus Management features
   Then a tooltip will display with the following text: On Demand Telephone Interpreting
 
   Examples:
-   | username          | password  | campus id |
-   | LLAdmin@looped.in | Octopus@6 | 33124     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |
 
   #LL-514 Scenario 3: Admin selects ‘Audible in ODTI’
  @LL-514 @AdminSelectsAudibleInODTI
@@ -648,8 +648,8 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will be mandatory
 
   Examples:
-   | username          | password  | campus id |
-   | LLAdmin@looped.in | Octopus@6 | 33124     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |
 
   #LL-514 Scenario 4: Admin fills out ODTI fields
  @LL-514 @AdminFillsODTIFields
@@ -668,8 +668,8 @@ Feature: Campus Management features
   And I click on delete icon on Customised ODTI Field in Campus
 
   Examples:
-   | username          | password  | campus id | customised field name | max length | audio label      |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label |
+   | username          | password             | campus id | customised field name | max length | audio label      |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label |
 
   #LL-514 Scenario 5: Required fields not filled out
  @LL-514 @CustomisedRequiredFieldsNotFilled
@@ -687,8 +687,8 @@ Feature: Campus Management features
   Then the following inline error message will display: Required field!
 
   Examples:
-   | username          | password  | campus id | customised field name |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       |
+   | username          | password             | campus id | customised field name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       |
 
   #LL-514 Scenario 6: Editing the added custom field ‘Audible in ODTI’
  @LL-514 @EditAddedCustomFieldODTI
@@ -712,8 +712,8 @@ Feature: Campus Management features
   And I click on delete icon on Customised ODTI Field in Campus
 
   Examples:
-   | username          | password  | campus id | customised field name | max length | audio label      | max length edit | audio label edit  |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label | 60              | automation label2 |
+   | username          | password             | campus id | customised field name | max length | audio label      | max length edit | audio label edit  |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label | 60              | automation label2 |
 
   #LL-514 Scenario 7: Deleting the added custom field Audible in ODTI
  @LL-514 @DeleteCustomField
@@ -732,8 +732,8 @@ Feature: Campus Management features
   Then the custom field is deleted in campus
 
   Examples:
-   | username          | password  | campus id | customised field name | max length | audio label      |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | AutomationField       | 50         | automation label |
+   | username          | password             | campus id | customised field name | max length | audio label      |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label |
 
   #LL-664 Scenario 1 : The Campus belongs to a contract with missing rates
  @LL-664 @CampusContractMissingRates
@@ -748,8 +748,8 @@ Feature: Campus Management features
   And a message is displayed below On Demand Telephone This contract does not have complete Rates for On Demand Telephone
 
   Examples:
-   | username          | password  | campus id |
-   | LLAdmin@looped.in | Octopus@6 | 33124     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |
 
   #LL-664 Scenario 2 : The Campus belongs to a contract with complete rates
  @LL-664 @CampusContractCompleteRates
@@ -764,8 +764,8 @@ Feature: Campus Management features
   And the user can check the box, and click Assign in Bill To Popup
 
   Examples:
-   | username          | password  | campus id |
-   | LLAdmin@looped.in | Octopus@6 | 29449     |
+   | username          | password             | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449     |
 
   #LL-809 Scenario 1: Campus has only Gender ODTI preference set - User created a new Onsite Job
  @LL-809 @CampusODTIGenderPreferenceOnsiteJob
@@ -796,8 +796,8 @@ Feature: Campus Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | campus id | preference type option | preference | dropdownfilter | campus pin | Requester Name    | expected preference option |
-   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)  | Female     | Management     | 33124      | Automation Tester | No Preference              |
+   | username          | password               | campus id | preference type option | preference | dropdownfilter | campus pin | Requester Name    | expected preference option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7   | 33124     | Gender (On-demand TI)  | Female     | Management     | 33124      | Automation Tester | No Preference              |
 
   #LL-809 Scenario 2: Campus has only Gender ODTI preference set - User edits already existing Onsite Job
  @LL-809 @CampusODTIGenderPreferenceEditOnsiteJob
@@ -815,10 +815,10 @@ Feature: Campus Management features
   And they select preference option "<preference>" in Campus Details
   And they click save Contract Preference button in Campus Details
   And I create a new job request with minimal fields "<job notice length>"
-  And I click Interpreting header link
-  And I search for created job request
-  And I click on job id from interpreting job search results
-  And I switch to the job allocation window
+ And I click Interpreting header link
+ And I search for created job request
+ And I click on job id from interpreting job search results
+ And I switch to the job allocation window
   And I click on Edit button
   Then the Gender under Service Preferences section shows as "<expected preference option>" under Gender field
   And no Gender ODTI preference should be displayed
@@ -828,8 +828,8 @@ Feature: Campus Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | campus id | preference type option | preference | job notice length | expected preference option |
-   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)  | Female     | short notice      | No Preference              |
+   | username          | password               | campus id | preference type option | preference | job notice length | expected preference option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7   | 33124     | Gender (On-demand TI)  | Female     | short notice      | No Preference              |
 
   #LL-809 Scenario 3: Campus has Gender ODTI preference set to any preference (say: Male) and Onsite Gender to any preference (say: Female)
  @LL-809 @CampusODTIGenderOnsiteGenderPreference
@@ -866,8 +866,8 @@ Feature: Campus Management features
   And they remove added preference type option "<gender preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    |
-   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Female            | Management     | 33124      | Automation Tester |
+   | username          | password               | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Female            | Management     | 33124      | Automation Tester |
 
   #LL-809 Scenario 4: Campus has Gender ODTI preference set to any preference (say: Male) and Onsite Gender to ANY
  @LL-809 @CampusODTIGenderOnsiteGenderPreferenceAny
@@ -904,5 +904,5 @@ Feature: Campus Management features
   And they remove added preference type option "<gender preference type option>" in Campus Details
 
   Examples:
-   | username          | password    | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    |
-   | LLAdmin@looped.in | Octopus@6   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Male              | Management     | 33124      | Automation Tester |
+   | username          | password               | campus id | gender odti preference type option | gender odti preference | gender preference type option | gender preference | dropdownfilter | campus pin | Requester Name    |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7   | 33124     | Gender (On-demand TI)              | Male                   | Gender                        | Male              | Management     | 33124      | Automation Tester |

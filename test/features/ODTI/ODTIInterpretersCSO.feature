@@ -13,8 +13,8 @@ Feature: ODTI Interpreters CSO features
     And it will appear between the Interpreting and Translation menu items
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
     #LL-447 Scenario 2 - CS user clicks ODTI menu item
   @LL-447 @CSUserClicksODTIMenu
@@ -203,8 +203,8 @@ Feature: ODTI Interpreters CSO features
     And the table will not show cancelled jobs for the interpreter "<contractor>"
 
     Examples:
-      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
+      | username          | password             | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
 
     #LL-447Scenario 6d - Table shows next pre-booked job.
   #GIVEN the CS user is looking at the table
@@ -263,8 +263,8 @@ Feature: ODTI Interpreters CSO features
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date                   | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
-      | LLAdmin@looped.in | Octopus@6 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | within fifteen minutes | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
+      | username          | password             | contractor | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date                   | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | within fifteen minutes | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
 
     #LL-447 Scenario 6e - Table shows empty Job ID and Start/End Time
   @LL-447 @TableShowsEmptyJobIdAndTime
@@ -392,8 +392,8 @@ Feature: ODTI Interpreters CSO features
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | contractor | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
-      | LLAdmin@looped.in | Octopus@6 | Automation |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
+      | username          | password             | contractor | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | original status                 | new status | username cso   | password cso | logon status option | service     | from      | to      | level        |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Fullday         | current date | 09:30 | hh@bb.com.au | Auto Notification,- No status - | Allocated  | zenq@cso10.com | Test1        | Any - LogOn Status  | Interpreter | zz-Zenq2  | ENGLISH | Professional |
 
     #LL-447 Scenario 11 - CS views different pages using page numbers in pagination.
   @LL-447 @CSUserUsesPageNumbersInPagination

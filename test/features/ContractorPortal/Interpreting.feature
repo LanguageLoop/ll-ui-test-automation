@@ -43,8 +43,8 @@ Feature: Interpreter features
    Then I verify the job is listed in search results
    
    Examples:
-  | job notice length |admin username    | admin password | contractor username      | contractor password | dropdownfilter      | to date     | job id  | campus pin  |  Requester Name      |
-  | long notice       |LLAdmin@looped.in |   Octopus@6     | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 | 33124       |  Automation Tester   |
+  | job notice length |admin username    | admin password        | contractor username      | contractor password | dropdownfilter      | to date     | job id  | campus pin  |  Requester Name      |
+  | long notice       |LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 | 33124       |  Automation Tester   |
   
 
  @AcceptJobs 
@@ -71,8 +71,8 @@ Feature: Interpreter features
     And the booking is cancelled on behalf of "<Requester Name>"
 
   Examples:
-   | contractor username | contractor password | dropdownfilter | to date    | admin username    | admin password | management filter | Requester Name    |
-   | jabmon1@hotmail.com | Test1               | Available Jobs | 13-05-2022 | LLAdmin@looped.in | Octopus@6      | Management        | Automation Tester |
+   | contractor username | contractor password | dropdownfilter | to date    | admin username    | admin password        | management filter | Requester Name    |
+   | jabmon1@hotmail.com | Test1               | Available Jobs | 13-05-2022 | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Management        | Automation Tester |
   
  
  @UnavailableJobs 
@@ -88,7 +88,7 @@ Feature: Interpreter features
    And I click unavailable job button
    
    Examples:
-  | job notice length |admin username    | admin password | contractor username      | contractor password | dropdownfilter      | to date     | job id  |
-  | long notice       |LLAdmin@looped.in |   Octopus@6     | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 |
+  | job notice length |admin username    | admin password        | contractor username      | contractor password | dropdownfilter      | to date     | job id  |
+  | long notice       |LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 |
   
 

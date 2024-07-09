@@ -53,8 +53,8 @@ Feature: Campus Bookings Feature
   And the admin clicks on Remove on campus blocker
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+   | username          | password             | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
   #LL-334 Scenario 2: Block at Organisation level
  @LL-334 @ContractorBlockOnOrganisation
@@ -109,8 +109,8 @@ Feature: Campus Bookings Feature
   And the admin clicks on Remove on Organisation blocker
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
+   | username          | password             | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
 
   #LL-334 Scenario 4: User deletes the added Block at Campus / Contractor level
  @LL-334 @DeleteContractorBlockOnCampus
@@ -158,8 +158,8 @@ Feature: Campus Bookings Feature
   Then on refreshing the Job page, the contractor "<contractor>" will be eligible for the job
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
+   | username          | password             | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification |
 
   #LL-334 Scenario 5: User edits the block and add the Date Finished to the past date at Campus / Contractor level
  @LL-334 @ContractorExpireBlockOnCampus
@@ -208,8 +208,8 @@ Feature: Campus Bookings Feature
   Then on refreshing the Job page, the contractor "<contractor>" will be eligible for the job
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   | active block name                 |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification | BOLTON CLARKE - DH RDNS - DH RDNS |
+   | username          | password             | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | eligible status   | active block name                 |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Auto Notification | BOLTON CLARKE - DH RDNS - DH RDNS |
 
   #LL-334 Scenario 6: User deletes the added Block at Organization level
  @LL-334 @DeleteContractorBlockOnOrganization
@@ -261,8 +261,8 @@ Feature: Campus Bookings Feature
   Then on refreshing the Job page, the contractor "<contractor>" will be eligible for the job
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
+   | username          | password             | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification |
 
   #LL-334 Scenario 7: User edits the block and add the Date Finished to the past date at Organization level
  @LL-334 @ContractorExpireBlockOnOrganization
@@ -316,8 +316,8 @@ Feature: Campus Bookings Feature
   Then on refreshing the Job page, the contractor "<contractor>" will be eligible for the job
 
   Examples:
-   | username          | password  | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   | active block name |
-   | LLAdmin@looped.in | Octopus@6 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification | VITS LANGUAGELINK |
+   | username          | password             | campus id | contractor    | service     | from      | to      | level                 | request job type     | dropdownfilter | campus pin | Requester Name | language   | assignment type | date         | time  | PO Number | CF_OnSite | email        | eligible status   | active block name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 31333     | Tigist KEBEDE | Interpreter | zz-Zenq2  | ENGLISH | Certified Interpreter | Pre-Booked Telephone |  Management    |  31333     | Jek kek        |  zz-Zenq2  |   Half Day      | short notice | 09:30 | 1234      | 567       | hh@bb.com.au | Auto Notification | VITS LANGUAGELINK |
 
   #LL-897 Scenario #1: User enters the valid address and select the address from the suggestions dropdown
  @LL-897 @UserValidAddressSuggestionDropdown
@@ -381,8 +381,8 @@ Feature: Campus Bookings Feature
   Then the GST field under Campus side has value with 0
 
   Examples:
-   | username          | password  | campus id | job notice length |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | short notice      |
+   | username          | password             | campus id | job notice length |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | short notice      |
 
   #LL-912 Scenario 2: GST value should get added when ‘Charge GST’ is enabled for Campus
  @LL-912 @GSTValueAddedChargeGSTDisabledCampus
@@ -399,5 +399,5 @@ Feature: Campus Bookings Feature
   Then the GST field under Campus side should be 10% value of Job Fee
 
   Examples:
-   | username          | password  | campus id | job notice length |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | short notice      |
+   | username          | password             | campus id | job notice length |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | short notice      |

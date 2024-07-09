@@ -228,8 +228,8 @@ Feature: Bookings Allocations Features
     And the custom field is deleted in campus
 
     Examples:
-      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
-      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
+      | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
 
     #LL-665 Scenario 2: On editing the existing Pre booked Job, the Job Request screen does not show “Audible in ODTI” custom fields
   @LL-665 @EditJobRequestDoesNotShowCustomODTI
@@ -274,8 +274,8 @@ Feature: Bookings Allocations Features
     And the custom field is deleted in campus
 
     Examples:
-      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | language   | assignment type   | date         | time  | email        | Custom Fields                       |
-      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | PO Number,Your Reference,Department |
+      | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | language   | assignment type   | date         | time  | email        | Custom Fields                       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | PO Number,Your Reference,Department |
 
     #LL-665 Scenario 3: Unselecting the AUDIBLE IN ODTI option for few of the custom fields for which option is already enabled
   @LL-665 @UnselectJobRequestShowsCustomODTI
@@ -311,8 +311,8 @@ Feature: Bookings Allocations Features
     And the custom field is deleted in campus
 
     Examples:
-      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
-      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
+      | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
 
     #LL-665 Scenario 4: Selecting the AUDIBLE IN ODTI option for few of the custom fields for which option is not enabled earlier
   @LL-665 @SelectJobRequestDoesNotShowCustomODTI
@@ -347,8 +347,8 @@ Feature: Bookings Allocations Features
     And the custom field is deleted in campus
 
     Examples:
-      | username          | password  | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
-      | LLAdmin@looped.in | Octopus@6 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
+      | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124      | AutomationField       | 50         | automation label | Pre-Booked Telephone | Management     | Automation Tester | PO Number,Your Reference,Department |
 
     #LL-722 Scenario 1: Campus PIN in URL
   @LL-722 @MyJobsCampusPINInURL
@@ -362,8 +362,8 @@ Feature: Bookings Allocations Features
     And the rest of the form should display as if the user has filtered by Campus PIN "<campusName>"
 
     Examples:
-      | username          | password  | My Jobs | campusPIN | campusName      |
-      | LLAdmin@looped.in | Octopus@6 | My Jobs | 29449     | Contoso Pty LTD |
+      | username          | password             | My Jobs | campusPIN | campusName      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | My Jobs | 29449     | Contoso Pty LTD |
 
     #LL-722 Scenario 2: Contractor ID in URL
   @LL-722 @MyJobsContractorIDInURL
@@ -377,8 +377,8 @@ Feature: Bookings Allocations Features
     And the rest of the form should display as if the user has filtered by ContractorID "<interpreterName>"
 
     Examples:
-      | username          | password  | My Jobs | contractorID | interpreterName |
-      | LLAdmin@looped.in | Octopus@6 | My Jobs | 6155         | Adel ODISH      |
+      | username          | password             | My Jobs | contractorID | interpreterName |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | My Jobs | 6155         | Adel ODISH      |
 
     #LL-722 Scenario 3: Job ID in URL
   @LL-722 @MyJobsJobIDInURL
@@ -392,8 +392,8 @@ Feature: Bookings Allocations Features
     And the rest of the form should display as if the user has filtered or searched by JobID "<JobID>"
 
     Examples:
-      | username          | password  | My Jobs | JobID   |
-      | LLAdmin@looped.in | Octopus@6 | My Jobs | 0084483 |
+      | username          | password             | My Jobs | JobID   |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | My Jobs | 0084483 |
 
     #LL-722 Scenario 4: User can perform search using all 3 types of filters in the URL
   @LL-722 @PerformSearch3TypesFilters
@@ -411,8 +411,8 @@ Feature: Bookings Allocations Features
     And the rest of the form should display as if the user has filtered by ContractorID "<interpreterName>"
 
     Examples:
-      | username          | password  | My Jobs | JobID   | campusPIN | campusName      | contractorID | interpreterName | row2 |
-      | LLAdmin@looped.in | Octopus@6 | My Jobs | 1614563 | 29449     | Contoso Pty LTD | 1453         | Ivanka JURIC    | 2    |
+      | username          | password             | My Jobs | JobID   | campusPIN | campusName      | contractorID | interpreterName | row2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | My Jobs | 1614563 | 29449     | Contoso Pty LTD | 1453         | Ivanka JURIC    | 2    |
 
     #LL-925 Scenario 1 : Return Job is clicked
   @LL-925 @ContractorReturnJobIsClicked
@@ -441,8 +441,8 @@ Feature: Bookings Allocations Features
     And they clicked the Confirm Return button
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option | return reason options                                                                                                                                                                  |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        | Accepted in Error,Conflict of Interest,Pay Rates,Illness / Medical Appointment,Transport Issues,Personal Emergency,Accepted another job elsewhere,Accepted another job at LanguageLoop |
+      | username          | password             | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option | return reason options                                                                                                                                                                  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        | Accepted in Error,Conflict of Interest,Pay Rates,Illness / Medical Appointment,Transport Issues,Personal Emergency,Accepted another job elsewhere,Accepted another job at LanguageLoop |
 
     #LL-925 Scenario 2 : Canceled
   @LL-925 @ContractorReturnJobCanceled
@@ -471,8 +471,8 @@ Feature: Bookings Allocations Features
     And I click return job button
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
+      | username          | password             | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
 
     #LL-925 Scenario 3: Confirmed Return before Job Handback Exclusion Zone
   @LL-925 @ContractorConfirmedReturnBeforeHEZ
@@ -501,8 +501,8 @@ Feature: Bookings Allocations Features
     And I verify the job is not listed in search results
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
+      | username          | password             | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        |
 
     #LL-925 Scenario 4: Confirmed Return AFTER Job Handback Exclusion Zone
   @LL-925 @ContractorConfirmedReturnAfterHEZ
@@ -537,8 +537,8 @@ Feature: Bookings Allocations Features
     And the booking is cancelled on behalf of "<Requester Name>"
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option | management filter | Requester Name    |
-      | LLAdmin@looped.in | Octopus@6 | short notice      | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        | Management        | Automation Tester |
+      | username          | password             | job notice length | contractor   | original status                 | new status | contractor username     | contractor password | allocated jobs option | management filter | Requester Name    |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | short notice      | Suzane HANNA | Auto Notification,- No status - | Allocated  | suzanehanna@hotmail.com | Test1               | Allocated Jobs        | Management        | Automation Tester |
 
     #LL-926 Scenario 1 : Internal Staff Return Job is clicked
   @LL-926 @InternalStaffReturnJobIsClicked
@@ -562,8 +562,8 @@ Feature: Bookings Allocations Features
     And they clicked the Confirm Return button
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status | return reason options                                                                                                                                                                                      |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Accepted in Error,Conflict of Interest,Pay Rates,Illness / Medical Appointment,Transport Issues,Personal Emergency,Accepted another job elsewhere,Accepted another job at LanguageLoop,LL Allocation Error |
+      | username          | password             | job notice length | contractor   | original status                 | allocated status | returned status | return reason options                                                                                                                                                                                      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Accepted in Error,Conflict of Interest,Pay Rates,Illness / Medical Appointment,Transport Issues,Personal Emergency,Accepted another job elsewhere,Accepted another job at LanguageLoop,LL Allocation Error |
 
     #LL-926 Scenario 2 : Internal Staff Canceled
   @LL-926 @InternalStaffReturnJobCanceled
@@ -590,8 +590,8 @@ Feature: Bookings Allocations Features
     And they clicked the Confirm Return button
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
+      | username          | password             | job notice length | contractor   | original status                 | allocated status | returned status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
 
     #LL-926 Scenario 3: Internal Staff Confirmed Return before Job Handback Exclusion Zone
   @LL-926 @InternalStaffConfirmedReturnBeforeHEZ
@@ -615,8 +615,8 @@ Feature: Bookings Allocations Features
     And I confirm the job status "<returned status>"
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
+      | username          | password             | job notice length | contractor   | original status                 | allocated status | returned status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
 
     #LL-926 Scenario 4: Confirmed Return AFTER Job Handback Exclusion Zone
   @LL-926 @InternalStaffConfirmedReturnAfterHEZ
@@ -641,8 +641,8 @@ Feature: Bookings Allocations Features
     And I confirm the job status "<returned status>"
 
     Examples:
-      | username          | password  | job notice length  | contractor   | original status                 | allocated status | returned status |
-      | LLAdmin@looped.in | Octopus@6 | short notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
+      | username          | password             | job notice length  | contractor   | original status                 | allocated status | returned status |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | short notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        |
 
     #LL-936 Scenario 1 : Job has not been returned
   @LL-936 @JobHasNotBeenReturned
@@ -663,8 +663,8 @@ Feature: Bookings Allocations Features
     And the Job Return checkbox label is "<Late Job Return label>"
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | allocated status | Late Job Return label |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Late Job Return       |
+      | username          | password             | job notice length | contractor   | original status                 | allocated status | Late Job Return label |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Late Job Return       |
 
     #LL-936 Scenario 2a : Job has been returned, with no IsLateJobReturn
   @LL-936 @JobReturnedWithNoIsLateJobReturn
@@ -692,8 +692,8 @@ Feature: Bookings Allocations Features
     And the Job Return by checkbox label is "<Late Job Return by label>""<contractor>"
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status | Late Job Return by label |
-      | LLAdmin@looped.in | Octopus@6 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Late Job Return by       |
+      | username          | password             | job notice length | contractor   | original status                 | allocated status | returned status | Late Job Return by label |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | long notice       | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Late Job Return by       |
 
     #LL-936 Scenario 2b : CSO Job has been returned, with no IsLateJobReturn
   @LL-936 @CSOJobReturnedWithNoIsLateJobReturn
@@ -749,5 +749,5 @@ Feature: Bookings Allocations Features
     And the Job Return by checkbox label is "<Late Job Return by label>""<contractor>"
 
     Examples:
-      | username          | password  | job notice length | contractor   | original status                 | allocated status | returned status | Late Job Return by label |
-      | LLAdmin@looped.in | Octopus@6 | short notice      | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Late Job Return by       |
+      | username          | password             | job notice length | contractor   | original status                 | allocated status | returned status | Late Job Return by label |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | short notice      | Suzane HANNA | Auto Notification,- No status - | Allocated        | Returned        | Late Job Return by       |

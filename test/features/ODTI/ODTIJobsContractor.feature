@@ -29,8 +29,8 @@ Feature: ODTI Jobs Contractor features
     And The results displayed are within the date range "<start date>", "<end date>"
 
     Examples:
-      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 1                         | 15-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 21-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | Test1               | 16-01-2023 | 20-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
+      | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor  | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Job Date        | 2                     | After               | 1                         | 15-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 21-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N | 16-01-2023 | 20-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
 
     #Scenario 2 - As Contractor user - Select the Start and End date filters that has no Jobs to be displayed
   @Regression @RegressionS19 @ContractorJobsNotDisplayed
@@ -56,8 +56,8 @@ Feature: ODTI Jobs Contractor features
     And The No odti billings to show... message is displayed
 
     Examples:
-      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 1                         | 19-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 21-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | Test1               | 20-01-2023 | 20-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
+      | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor  | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Job Date        | 2                     | After               | 1                         | 19-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 21-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N | 20-01-2023 | 20-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
 
     #Scenario 3 - Verify the Columns available in the ODTI Jobs
   @Regression @RegressionS20 @ContractorColumnHeaders
@@ -68,8 +68,8 @@ Feature: ODTI Jobs Contractor features
     Then The columns available for ODTI Jobs for the user are "<column headers>"
 
     Examples:
-      | username contractor      | password contractor | column headers                                                                                 |
-      | luciacheung192@gmail.com | Test1               | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,CALL TYPE,INTERPRETER FEE |
+      | username contractor      | password contractor  | column headers                                                                                 |
+      | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,CALL TYPE,INTERPRETER FEE |
 
     #Scenario 4 - As Contractor user - Verifying if the results displayed contains only exported Jobs
   @Regression @RegressionS21 @ContractorSeesExported
@@ -96,8 +96,8 @@ Feature: ODTI Jobs Contractor features
     And The results displayed are within the date range "<start date>", "<end date>"
 
     Examples:
-      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 1                         | 22-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 28-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | Test1               | 23-01-2023 | 27-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
+      | username          | password              | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor  | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Job Date        | 2                     | After               | 1                         | 22-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 28-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N | 23-01-2023 | 27-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
 
     #Scenario 5 - As Contractor user - Verify the Job IDs, Campus Name are Unclickable
   @Regression @RegressionS22 @ContractorResultsNotClickable
@@ -109,8 +109,8 @@ Feature: ODTI Jobs Contractor features
     Then The ODTI Service Charge ID and Campus Name results are not clickable and read only
 
     Examples:
-      | username contractor      | password contractor | start date | end date   |
-      | luciacheung192@gmail.com | Test1               | 23-01-2023 | 27-01-2023 |
+      | username contractor      | password contractor   | start date | end date   |
+      | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N  | 23-01-2023 | 27-01-2023 |
 
     #Scenario 6 - As Contractor user - select the desired Start Date and End date filters Click on Export to Excel link
   @Regression @RegressionS23 @ContractorRecordsExportExcel
@@ -137,8 +137,8 @@ Feature: ODTI Jobs Contractor features
     Then The Excel file is downloaded
 
     Examples:
-      | username          | password  | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | LLAdmin@looped.in | Octopus@6 | Job Date        | 2                     | After               | 1                         | 08-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 14-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | Test1               | 09-01-2023 | 13-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
+      | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | username contractor      | password contractor   | start date | end date   | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Job Date        | 2                     | After               | 1                         | 08-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 14-01-2023     | 2                    | ContractorID    | 4                     | Is                  | 4                         | 1293           | 3                    | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N  | 09-01-2023 | 13-01-2023 | RecordStatus    | 4                     |  Is                 |  4                        | Export         | 1                    |
 
     #Scenario 7 - As Contractor User - select the desired Start Date and End date filters that has more than 500 records
   @Regression @RegressionS24 @ContractorMoreThan500Records
@@ -168,8 +168,8 @@ Feature: ODTI Jobs Contractor features
     And I should be navigated to page "<previous page number>"
 
     Examples:
-      | username contractor      | password contractor | start date | end date   | page number | next page number  | previous page number |
-      | luciacheung192@gmail.com | Test1               | 01-07-2022 | 31-01-2023 | 2           | 3                 | 2                    |
+      | username contractor      | password contractor  | start date | end date   | page number | next page number  | previous page number |
+      | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N | 01-07-2022 | 31-01-2023 | 2           | 3                 | 2                    |
 
     #LL-853 Scenario 2: Arrow button is not displayed for Contractor user
   @LL-853 @ContractorArrowButtonNotDisplayed

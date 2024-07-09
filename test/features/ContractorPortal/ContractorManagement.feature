@@ -146,8 +146,8 @@ Feature: Contractor Management features
   Then they will see the On-demand Telephone Interpreting Availability block above Work Availability
 
   Examples:
-   | username                 | password   |  contractor name    |
-   | luciacheung192@gmail.com | Test1      |  Lucia Yee Fong ... |
+   | username                 | password              |  contractor name    |
+   | luciacheung192@gmail.com | _7yJx,h4v^><>edkkJ6N  |  Lucia Yee Fong ... |
 
   #LL-225 Scenario 2 - Changing the state
  @LL-225 @ODTIChangingTheState
@@ -165,8 +165,8 @@ Feature: Contractor Management features
   Then the contractor’s login status and preferred phone is displayed
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | username          | password             | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-225 Scenario 3: Toggling off the Active button
  @LL-225 @ODTIToggleOffActiveButton
@@ -183,8 +183,8 @@ Feature: Contractor Management features
   Then the section is closed and text Not Activated is displayed
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | username          | password             | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;76 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-225 Scenario 4: UI when Active button is toggled on and no option is selected
  @LL-225 @ActiveOnAndNoOptionSelected
@@ -202,8 +202,8 @@ Feature: Contractor Management features
   Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | username          | password            | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-225 Scenario 5: UI when Active button is toggled on and any phone number option is selected and clicking on Logon button
  @LL-225 @ActiveOnAndPhoneSelected
@@ -224,8 +224,8 @@ Feature: Contractor Management features
   And the button Logoff button is displayed
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name | phone option |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA | Home         |
+   | username          | password             | contractor username  | contractor password | contractor name | phone option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA | Home         |
 
   #LL-225 Scenario 6: UI when Active button is toggled on and clicking on Log off button
  @LL-225 @ActiveOnAndClickLogOffButton
@@ -247,8 +247,8 @@ Feature: Contractor Management features
   And the button Logon button is displayed
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | username          | password             | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-763 Scenario 1: Toggling ON the ‘IS LOGGED ON’ status for a interpreter
  @LL-763 @ToggleOnIsLoggedOn
@@ -271,8 +271,8 @@ Feature: Contractor Management features
   Then the user is logged in with default phone number selected under ‘On-demand Telephone Interpreting Availability’ section
 
   Examples:
-   | username          | password  | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+   | username          | password              | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;76 | Aabida SUNASARA |
 
   #LL-763 Scenario 2: Toggling OFF the ‘IS LOGGED ON’ status for a interpreter
  @LL-763 @ToggleOffIsLoggedOn
@@ -297,8 +297,8 @@ Feature: Contractor Management features
   Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
 
   Examples:
-   | username          | password  | contractor name | phone option |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA | Home         |
+   | username          | password             | contractor name | phone option |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Aabida SUNASARA | Home         |
 
   #LL-763 Scenario 3: Toggling OFF the ‘SERVICE TI ACTIVE’ status for a interpreter
  @LL-763 @ToggleOffServiceTiActive
@@ -321,8 +321,8 @@ Feature: Contractor Management features
   Then the section is closed and text Not Activated is displayed
 
   Examples:
-   | username          | password  | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+   | username          | password             | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Aabida SUNASARA |
 
   #LL-763 Scenario 4: Toggling ON the ‘SERVICE TI ACTIVE’ status for a interpreter
  @LL-763 @ToggleOnServiceTiActive
@@ -345,8 +345,8 @@ Feature: Contractor Management features
   And the button Logon button is displayed
 
   Examples:
-   | username          | password  | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+   | username          | password             | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Aabida SUNASARA |
 
   #LL-224 Scenario 1: View or check current status from web contractor portal
  @LL-224 @InternalUserCheckODTILoginStatus
@@ -360,8 +360,8 @@ Feature: Contractor Management features
   Then the contractor’s log out status text is displayed with options Mobile and Home radio options with corresponding phone numbers
 
   Examples:
-   | username          | password  | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+   | username          | password             | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Aabida SUNASARA |
 
   #LL-224 Scenario 2: View or check current status from web contractor portal (deactivated)
  @LL-224 @InternalUserCheckODTIStatusDeactivated
@@ -375,8 +375,8 @@ Feature: Contractor Management features
   And the contractor’s current login status is NOT displayed
 
   Examples:
-   | username          | password  | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA |
+   | username          | password             | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Aabida SUNASARA |
 
   #LL-224 Scenario 5: Verify the Work Availability for ODTI for contractor when ODTI Availability is De Activated
  @LL-224 @WorkAvailabilityODTIDeactivated
@@ -394,8 +394,8 @@ Feature: Contractor Management features
   Then the text ‘You are not activated for On Demand Telephone Interpreting’ is displayed
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | username          | password             | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-224 Scenario 6: Verify the Work Availability for ODTI for contractor when ODTI Availability is Activated
  @LL-224 @WorkAvailabilityODTIActivated
@@ -414,8 +414,8 @@ Feature: Contractor Management features
   Then the text ‘You are activated for On Demand Telephone Interpreting’ is displayed
 
   Examples:
-   | username          | password  | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in | Octopus@6 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | username          | password             | contractor username  | contractor password | contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-768 Scenario 1a: Activation toggle switch (as admin / contractor engagement officer)
  @LL-768 @ActivationToggleSwitchAdminCEO
@@ -559,8 +559,8 @@ Feature: Contractor Management features
   And I remove NDIS Screening clearance
 
   Examples:
-   | username          | password  | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | Aabida SUNASARA | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password             | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Aabida SUNASARA | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 2: We are able to add the clearance for each campus and the system takes into account when searching interpreters for jobs with this clearance type
  @LL-797 @AddClearanceNDISCampusInterpretersJobs
@@ -605,8 +605,8 @@ Feature: Contractor Management features
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
-   | username          | password  | job notice length | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue | job contractor status | ineligible contractor name |
-   | LLAdmin@looped.in | Octopus@6 | short notice      | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       | Auto Notification     | Rola MIZIAN                |
+   | username          | password             | job notice length | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue | job contractor status | ineligible contractor name |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | short notice      | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       | Auto Notification     | Rola MIZIAN                |
 
   #LL-797 Scenario 3a: "NDIS Check" clearance Only users with below roles can make the changes: Account Manager
  @LL-797 @NDISMakeChangesAsAccountManager
@@ -658,8 +658,8 @@ Feature: Contractor Management features
   And I remove NDIS Screening clearance
 
   Examples:
-   | username          | password  | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password             | campus id | preference type option | preference | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | NDIS Screening         | Must       | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 3c: "NDIS Check" clearance Only users with below roles can make the changes: Contractor Engagement Officer
  @LL-797 @NDISMakeChangesAsContractorEngagementOfficer
@@ -701,8 +701,8 @@ Feature: Contractor Management features
   Then error message ‘Required filed!’ is displayed under Document Received Date and Date of expiry fields
 
   Examples:
-   | username          | password  | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password             | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 5: Verifying NDIS Screening tile is showing correct details after saving
  @LL-797 @NDISScreeningCorrectAfterSave
@@ -724,8 +724,8 @@ Feature: Contractor Management features
   And I remove NDIS Screening clearance
 
   Examples:
-   | username          | password  | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password             | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 6: User Edits the existing NDIS Screening clearance
  @LL-797 @UserEditsExistingNDISClearance
@@ -751,8 +751,8 @@ Feature: Contractor Management features
   And I remove NDIS Screening clearance
 
   Examples:
-   | username          | password  | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password             | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
 
   #LL-797 Scenario 7: User removes the NDIS Screening clearance
  @LL-797 @UserRemovesNDISClearance
@@ -774,5 +774,5 @@ Feature: Contractor Management features
   Then the NDIS Screening is removed from clearance section
 
   Examples:
-   | username          | password  | contractor name | clearance type | card number | state of issue |
-   | LLAdmin@looped.in | Octopus@6 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |
+   | username          | password             | contractor name | clearance type | card number | state of issue |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Suzane HANNA    | NDIS Screening | 03266397-02 | Victoria       |

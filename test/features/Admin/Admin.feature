@@ -18,8 +18,8 @@ Feature: Admin features
     And The table will be sorted by Creation Date by default newest at the top
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
   #LL-608 Scenario 2 - Reverse order sort on click (existing logic)
   @ReverseOrderCreationDate
@@ -32,8 +32,8 @@ Feature: Admin features
     Then The table order will be reversed and will be sorted by oldest-newest Creation Date
 
     Examples:
-      | username          | password  |
-      | LLAdmin@looped.in | Octopus@6 |
+      | username          | password             |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 |
 
   #LL-607 Scenario 1 - view dropdown
   @ViewRoleDropdown
@@ -48,8 +48,8 @@ Feature: Admin features
     And These labels "<Client Group Label>","<Contractor Group Label>","<Staff Group Label>" are not clickable
 
     Examples:
-      | username          | password  | Client Group Label | Contractor Group Label | Staff Group Label |
-      | LLAdmin@looped.in | Octopus@6 | Client Group       | Contractor Group       | Staff Group       |
+      | username          | password             | Client Group Label | Contractor Group Label | Staff Group Label |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Client Group       | Contractor Group       | Staff Group       |
 
   #LL-607 Scenario 2 - select option from dropdown
   @SelectOptionRoleDropdown
@@ -64,8 +64,8 @@ Feature: Admin features
     And These options Client Group "<Client Group Options>" Contractor Group "<Contractor Group Options>" Staff Group"<Staff Group Options>" can be selected
 
     Examples:
-      | username          | password  | Client Group Options                                                                                | Contractor Group Options | Staff Group Options                                                                                                                                                                                                                                                                                                                                                           |
-      | LLAdmin@looped.in | Octopus@6 | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor               | Account Manager,Account Payable Officer,Account Receivable Officer,Administrator,After Hours Customer Service,Contractor Engagement Officer ,Customer Service Manager,Customer Service Officer,Developer Features,Finance Manager,Marketing,Relationships and Growth Manager,Senior Customer Service Officer,Team Leader,Translation Project Coordinator,Translations Manager |
+      | username          | password             | Client Group Options                                                                                | Contractor Group Options | Staff Group Options                                                                                                                                                                                                                                                                                                                                                           |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor               | Account Manager,Account Payable Officer,Account Receivable Officer,Administrator,After Hours Customer Service,Contractor Engagement Officer ,Customer Service Manager,Customer Service Officer,Developer Features,Finance Manager,Marketing,Relationships and Growth Manager,Senior Customer Service Officer,Team Leader,Translation Project Coordinator,Translations Manager |
 
   #LL-607 Scenario 3 - user selects option
   @UserSelectsRoleOption
@@ -81,8 +81,8 @@ Feature: Admin features
     Then The table is filtered by the selected role and shows result "<expected oldest result>"
 
     Examples:
-      | username          | password  | role filter option | expected oldest result |
-      | LLAdmin@looped.in | Octopus@6 | Bookings Officer   | Phteven Smith          |
+      | username          | password             | role filter option | expected oldest result |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer   | Phteven Smith          |
 
   #LL-607 Scenario 4 - user selects All Roles
   @UserSelectsAllRoles
@@ -98,8 +98,8 @@ Feature: Admin features
     Then The table shows all accounts "<expected result admin>", "<expected result non admin>" regardless of the role
 
     Examples:
-      | username          | password  | role filter option | expected result admin | expected result non admin |
-      | LLAdmin@looped.in | Octopus@6 | All Roles          | LL Admin              | Phteven Smith             |
+      | username          | password             | role filter option | expected result admin | expected result non admin |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | All Roles          | LL Admin              | Phteven Smith             |
 
   #LL-612 Scenario 3 - Admin creates New Account
   @AdminCreatesNewAccount
@@ -116,8 +116,8 @@ Feature: Admin features
     And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS
 
     Examples:
-      | username          | password  | role toggle | firstname     | landline number |
-      | LLAdmin@looped.in | Octopus@6 | Contractor  | AutomationCBO | 0212345678      |
+      | username          | password             | role toggle | firstname     | landline number |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contractor  | AutomationCBO | 0212345678      |
 
   #LL-612 Scenario 4 - View created date
   @ViewCreatedDate
@@ -222,8 +222,8 @@ Feature: Admin features
     Then the Creation date of the user edited should not change, it shows the actual creation date only
 
     Examples:
-      | username          | password  | role toggle | firstname     | landline number | landline number2 |
-      | LLAdmin@looped.in | Octopus@6 | Contractor  | AutomationCBO | 0212345678      | 0212348765       |
+      | username          | password             | role toggle | firstname     | landline number | landline number2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contractor  | AutomationCBO | 0212345678      | 0212348765       |
 
     #LL-608 Scenario 4 - On selecting any role from dropdown, results obtained should also be sorted with newest date at the top
   @SelectRoleResultsSorted @LL-608
@@ -235,8 +235,8 @@ Feature: Admin features
     And The table will be sorted by Creation Date by default newest at the top
 
     Examples:
-      | username          | password  | role filter option |
-      | LLAdmin@looped.in | Octopus@6 | Bookings Officer   |
+      | username          | password             | role filter option |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer   |
 
     #LL-607 Scenario 5 - User can select only one role at time
   @SelectOnlyOneRole @LL-607
@@ -252,8 +252,8 @@ Feature: Admin features
     And I should be able to pick only one role "<role filter option2>" at a time
 
     Examples:
-      | username          | password  | role filter option1 | role filter option2 |
-      | LLAdmin@looped.in | Octopus@6 | Bookings Officer    | Campus Manager      |
+      | username          | password             | role filter option1 | role filter option2 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer    | Campus Manager      |
 
      #LL-607 Scenario 6 - User should appear in Search results, even if user has multiple roles and on selecting any one role
   @UserMultipleRolesAppearsInSearch @LL-607
@@ -280,8 +280,8 @@ Feature: Admin features
     And I should see the user that has selected role in the search results
 
     Examples:
-      | username          | password  | roles toggle                                         | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
-      | LLAdmin@looped.in | Octopus@6 | Bookings Officer,Contractor,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
+      | username          | password             | roles toggle                                         | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Contractor,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
 
     #LL-669 Log in screen - Invalid permissions : Scenario 1
   @UserLoggedInUrlRedirect @LL-669
@@ -291,8 +291,8 @@ Feature: Admin features
     Then they should be redirected to homepage "<homepage URL>" as a logged in user
 
     Examples:
-      | username          | password  | login URL                                                 | homepage URL                                                |
-      | LLAdmin@looped.in | Octopus@6 | https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx | https://li-uat.languageloop.com.au/UserManagement/Home.aspx |
+      | username          | password             | login URL                                                 | homepage URL                                                |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx | https://li-uat.languageloop.com.au/UserManagement/Home.aspx |
 
     #LL-669 Log in screen - Invalid permissions : Scenario 2
   @UserLoggedOutUrlRedirect @LL-669
@@ -303,5 +303,5 @@ Feature: Admin features
     Then they should be redirected to login page "<login URL>"
 
     Examples:
-      | username          | password  | login URL                                                 |
-      | LLAdmin@looped.in | Octopus@6 | https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx |
+      | username          | password             | login URL                                                 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | https://li-uat.languageloop.com.au/LoopedIn_th/Login.aspx |
