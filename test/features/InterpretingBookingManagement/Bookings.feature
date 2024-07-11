@@ -324,7 +324,7 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password              | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | status       |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;76 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible |
 
     #LL-682 Covid vax exemption allocation logic Scenario 1b: The contractor is not Blocked from a Job Type
     #GIVEN a User has requested Prebooked job > AND the Job Campus belongs to a certain BillTo > AND they are not blocked from a Job Type

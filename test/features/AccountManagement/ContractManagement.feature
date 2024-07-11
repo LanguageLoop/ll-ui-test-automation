@@ -90,7 +90,7 @@ Feature: Contract Management features
    Then I verify contract rate is added
 
     Examples: 
-   | username          | password             |language               | contract title      | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing|
+   | username          | password             | language               | contract title      | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing|
    | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | All Languages - Video | Automation Contract | Automation Rate | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |    
 
     
@@ -111,7 +111,7 @@ Feature: Contract Management features
 
     Examples: 
    | username          | password               | contract title                 | assignment label      | description         |
-   | LLAdmin@looped.in |  +`QmHl3w7OQls9g,Qc;7  | Victorian Government - Bill To | Automation Assignment | simple description  |
+   | LLAdmin@looped.in |  +`QmHl3w7OQls9g,Qc;7   | Victorian Government - Bill To | Automation Assignment | simple description  |
 
     #LL-282 Scenario 1 - User views ODTI rate fields
  @LL-282 @UserViewsODTIRateFields
@@ -325,7 +325,7 @@ Feature: Contract Management features
 
   Examples:
    | username          | password              | contract title      | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;76 | Automation Contract | Automation Assignment | 4                    | 1                            | On Site                  |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Automation Contract | Automation Assignment | 4                    | 1                            | On Site                  |
 
   #LL-914 Scenario 4 - Contract that is not eligible for ODTI Service - All the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractNotODTIMinRateDefinedUseMinRate2

@@ -23,8 +23,8 @@ Given(/^the looped in login page is opened$/,  function(){
        browser.pause(3000)
       if(username==='LLAdmin@looped.in')
       {
-      action.enterValue(Login.newPassword,"Octopus@6","Password text box in Login page")
-      action.enterValue(Login.confirmNewPassword,"Octopus@6","Confirm Password text box in Login page")
+      action.enterValue(Login.newPassword,"+`QmHl3w7OQls9g,Qc;7","Password text box in Login page")
+      action.enterValue(Login.confirmNewPassword,"+`QmHl3w7OQls9g,Qc;7","Confirm Password text box in Login page")
       action.clickElement(Login.savePassword,"Save Password button in Login page")
       }
       else
