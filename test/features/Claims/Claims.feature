@@ -19,7 +19,7 @@ Feature: Claims processing features
    | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Completed              |  13-05-2022 | 1560450 |
    | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Signed off             |  13-05-2022 | 1560450 |
    | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | All                    |  13-05-2022 | 1544161 |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;76   |  Processed             |  13-05-2022 | 1560450 |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    |  Processed             |  13-05-2022 | 1560450 |
    | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Cancelled & Processed  |  13-05-2022 | 1537266 |
    | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Cancelled & Signed off |  13-05-2022 | 1537266 |
 

@@ -272,7 +272,7 @@ Feature: Contractor Management features
 
   Examples:
    | username          | password              | contractor name |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;76 | Aabida SUNASARA |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Aabida SUNASARA |
 
   #LL-763 Scenario 2: Toggling OFF the ‘IS LOGGED ON’ status for a interpreter
  @LL-763 @ToggleOffIsLoggedOn
