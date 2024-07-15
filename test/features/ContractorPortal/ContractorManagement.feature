@@ -184,7 +184,7 @@ Feature: Contractor Management features
 
   Examples:
    | username          | password             | contractor username  | contractor password | contractor name |
-   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;76 | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7  | w.f_2006@yahoo.co.uk | Test1               | Aabida SUNASARA |
 
   #LL-225 Scenario 4: UI when Active button is toggled on and no option is selected
  @LL-225 @ActiveOnAndNoOptionSelected
