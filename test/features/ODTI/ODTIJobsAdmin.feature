@@ -218,7 +218,7 @@ Feature: ODTI Jobs Admin features
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
-    #And The RecordStatus Is Export
+    And The RecordStatus Is Export
     Then I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I should see the expected Job ID "<job ID>" value under ODTI SERVICE CHARGE ID column
 
@@ -228,7 +228,7 @@ Feature: ODTI Jobs Admin features
    
    Examples:
       | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | job ID       |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        |  Bill To Code   | 2                     | Is                  | 2                         | DET01          | 1                    | 100000019010 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        |  Bill To Code   | 3                     | Is                  | 3                         | DET01          | 2                    | 100000019010 |
 
 
     #LL-724 Scenario 2 - Service Description renamed to “DID Number”
@@ -239,7 +239,7 @@ Feature: ODTI Jobs Admin features
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
     Then I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they click the ODTI Service Charge ID hyperlink
     And they are navigated to the Job Details page in a new tab
@@ -247,7 +247,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password              | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | campus name     |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Before              |  1                        | DID Number      | 2                     | Is                  | 2                         | 61370349780    | 2                    | Contoso Pty LTD |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Before              |  1                        | DID Number      | 3                     | Is                  | 3                         | 61370349780    | 2                    | Contoso Pty LTD |
 
     #LL-724 Scenario 3 - Contractor Name currently only searches first name
   @LL-724 @ContractorNameSearchFirstLastName
@@ -257,13 +257,13 @@ Feature: ODTI Jobs Admin features
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
-    # And The RecordStatus Is Export
+    And The RecordStatus Is Export
     Then I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I should see the expected Interpreter Name "<Interpreter Name>" value under INTERPRETER NAME column
 
     Examples:
       | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | Interpreter Name |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contractor Name | 2                     | Is                  | 2                         | Lai Wan LEUNG  | 2                    | Lai Wan LEUNG    |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contractor Name | 3                     | Is                  | 3                         | Lai Wan LEUNG  | 2                    | Lai Wan LEUNG    |
 
     #LL-724 Scenario 4 - Contract Name should be a drop-down
   @LL-724 @ContractNameShouldBeDropdown
@@ -273,13 +273,13 @@ Feature: ODTI Jobs Admin features
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
-    # And The RecordStatus Is Export
+    And The RecordStatus Is Export
     Then I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And I should see the expected Campus Name "<campus name>" value under CAMPUS NAME column
 
     Examples:
       | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2                                      | filter value index 2 | campus name                                                      |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contract name   | 2                     | Is                  | 2                         | Department of Health and Human Services - Health    | 1                    | Access Health and Community - DH Community Care North West Metro |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contract name   | 3                     | Is                  | 3                         | Department of Health and Human Services - Health    | 2                    | Access Health and Community - DH Community Care North West Metro |
 
     #LL-724 Scenario 5 - VITSAHFlag
   @LL-724 @VITSAHFlag
@@ -287,7 +287,7 @@ Feature: ODTI Jobs Admin features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+   And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 3>" "<filter comparator index 3>"
     And I click Advanced search link in Admin
     Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
@@ -297,7 +297,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 1                    | False          | Before              | 1                         | 
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | VITSAHFlag      | 3                     | Is                  | 3                         | True           | 2                    | False          | Before              | 1                         | 
 
     #LL-724 Scenario 6 - ContractorAHFlag
   @LL-724 @ContractorAHFlag
@@ -306,8 +306,8 @@ Feature: ODTI Jobs Admin features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 3>" "<filter comparator index 3>"
+    And The RecordStatus Is Export
     And I click Advanced search link in Admin
-   # And The RecordStatus Is Export
     Then I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     And they will see a table
     And I add dropdown filter "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 2>" "<filter value index 1>"
@@ -315,7 +315,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password             | filter option 1  | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | ContractorAHFlag | 2                     | Is                  | 2                         | True           | 1                    | False          | Before              | 1                         |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | ContractorAHFlag | 3                     | Is                  | 3                         | True           | 2                    | False          | Before              | 1                         |
 
     #LL-724 Scenario 7 - Custom Fields search all ODTI custom fields for the value
   @LL-724 @CustomFieldsSearchAllODTICustomFields
@@ -324,14 +324,14 @@ Feature: ODTI Jobs Admin features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
+    And The RecordStatus Is Export
     And I click Advanced search link in Admin
-    # And The RecordStatus Is Export
     Then I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they will see a table
 
     Examples:
       | username          | password             | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter comparator 1 | filter comparator index 1 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Custom Fields   | 2                     | Contains            | 2                         | Test           | 2                    | Before              | 1                         | 
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Custom Fields   | 3                     | Contains            | 3                         | Test           | 2                    | Before              | 1                         | 
 
     #LL-761 Scenario 1: Verifying the results for filter DID Number using IS condition
   @LL-761 @FilterDIDNumberISCondition
@@ -340,8 +340,8 @@ Feature: ODTI Jobs Admin features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-   # And The RecordStatus Is Export
     And I click Advanced search link in Admin
+    And The RecordStatus Is Export
     Then I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they click the ODTI Service Charge ID hyperlink
     And they are navigated to the Job Details page in a new tab
@@ -349,7 +349,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        |  DID Number     | 2                     | Is                  | 2                         | 61370349780    | 2                    |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        |  DID Number     | 3                     | Is                  | 3                         | 61370349780    | 2                    |
 
     #LL-761 Scenario 2: Verifying the results for filter DID Number using Is not condition
   @LL-761 @FilterDIDNumberISNotCondition
