@@ -358,7 +358,7 @@ Feature: ODTI Jobs Admin features
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I click Advanced search link in Admin
     Then I add filters "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
     And they click the ODTI Service Charge ID hyperlink
@@ -367,7 +367,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 1 | filter value index 2 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        | DID Number      | 2                     | Is not              | 2                         | 61370349780    | 2                    |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              |  1                        | DID Number      | 3                     | Is not              | 3                         | 61370349780    | 2                    |
 
     #LL-761 Scenario 3: Verifying the results for filter VITSAHFlag with IS condition
   @LL-761 @FilterVITSAHFlagISCondition
@@ -375,7 +375,7 @@ Feature: ODTI Jobs Admin features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
     Then I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 2>" "<filter value index 2>"
@@ -384,7 +384,7 @@ Feature: ODTI Jobs Admin features
     And the results displays the After Hours jobs when VITSAHFlag True
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
     And I click Advanced search link in Admin
     Then I add dropdown filter "<filter option 2>" "<filter option index 2>", "<filter comparator 2>" "<filter comparator index 2>", "<filter value 3>" "<filter value index 3>"
@@ -394,7 +394,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter value 3 | filter value index 3 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | VITSAHFlag      | 2                     | Is                  | 2                         | True           | 1                    | False          | 1                    |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | VITSAHFlag      | 3                     | Is                  | 3                         | True           | 2                    | False          | 2                    |
 
     #LL-761 Scenario 4: Verifying the results for filter Interpreter Duration (In Sec) with all available conditions
   @LL-761 @FilterInterpreterDurationSecAllConditions
@@ -402,42 +402,42 @@ Feature: ODTI Jobs Admin features
     When I login with "<username>" and "<password>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-    # And The RecordStatus Is Export
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 7>" "<filter comparator index 7>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 1>" "<filter option index 1>", "<filter comparator 1>" "<filter comparator index 1>", "<filter value 1>" "<filter value index 1>"
     Then the results display correct jobs which has the duration less than the duration set in filters "<filter value 1>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 7>" "<filter comparator index 7>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 1>" "<filter option index 1>", "<filter comparator 2>" "<filter comparator index 1>", "<filter value 2>" "<filter value index 1>"
     And the results display correct jobs which has the duration less than or equal to the duration set in filters "<filter value 2>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 7>" "<filter comparator index 7>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 1>" "<filter option index 1>", "<filter comparator 3>" "<filter comparator index 1>", "<filter value 3>" "<filter value index 1>"
     And the results display correct jobs which has the duration equal to the duration set in filters "<filter value 3>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 7>" "<filter comparator index 7>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 1>" "<filter option index 1>", "<filter comparator 4>" "<filter comparator index 1>", "<filter value 4>" "<filter value index 1>"
     And the results display correct jobs which has the duration not equal to the duration set in filters "<filter value 4>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-   # And The RecordStatus Is Export
+    And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 7>" "<filter comparator index 7>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 1>" "<filter option index 1>", "<filter comparator 5>" "<filter comparator index 1>", "<filter value 5>" "<filter value index 1>"
     And the results display correct jobs which has the duration greater than the duration set in filters "<expected value 5>"
     And I click ODTI header link
     And I view the ODTI > ODTI Jobs page
-  #  And The RecordStatus Is Export
+    And The RecordStatus Is Export
     And I add Before Date filter "<filter comparator 7>" "<filter comparator index 7>"
     And I click Advanced search link in Admin
     And I add filters "<filter option 1>" "<filter option index 1>", "<filter comparator 6>" "<filter comparator index 1>", "<filter value 6>" "<filter value index 1>"
@@ -445,7 +445,7 @@ Feature: ODTI Jobs Admin features
 
    Examples:
       | username          | password             | filter comparator 7 | filter comparator index 7 | filter option 1              | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter comparator 2 | filter value 2 | filter comparator 3 | filter value 3 | filter comparator 4 | filter value 4 | filter comparator 5 | filter value 5 | expected value 5 | filter comparator 6 | filter value 6 | expected value 6 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | InterpreterDuration (In Sec) | 2                     | <                   | 2                         | 59             | 2                    | <=                  | 59             | Is                  | 59             | Is not              | 59             | >                   | 60             | 0                | >=                  | 60             | 1                |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | InterpreterDuration (In Sec) | 3                     | <                   | 3                         | 59             | 2                    | <=                  | 59             | Is                  | 59             | Is not              | 59             | >                   | 60             | 0                | >=                  | 60             | 1                |
     
     # Examples:
     #   | username          | password  | filter option 1              | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter comparator 2 | filter value 2 | filter comparator 3 | filter value 3 | filter comparator 4 | filter value 4 | filter comparator 5 | filter value 5 | expected value 5 | filter comparator 6 | filter value 6 | expected value 6 |
