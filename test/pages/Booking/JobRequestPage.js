@@ -13,7 +13,7 @@ module.exports={
     },
 
     get assignmentTypeDropdown(){
-        return $('//label[text()="Assigment Type"]/../div')
+        return $('//label[text()="Assignment Type"]/../div')
     },
 
     get dateInput(){
