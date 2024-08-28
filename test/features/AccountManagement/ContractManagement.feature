@@ -106,6 +106,7 @@ Feature: Contract Management features
    And I enter assignment type label "<assignment label> "
   
    And I click add assignment button
+   And I search for created assignment type
    Then I verify assignment type is added
    And I delete assignment type
 

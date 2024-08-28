@@ -1,12 +1,13 @@
 
 
 When(/^I search for campus "(.*)"$/, function(campus){
+    accountManagementPage.searchCampusInput.clearValue()
     action.enterValueAndPressReturn(accountManagementPage.searchCampusInput,campus,"Search Campus text box in Account Management page");
     browser.pause(2000)
 })
 
 When(/^I search for created campus$/, function(){
-    console.log("SEARCH CAMPUS :  :: : : : : : : : : : : : :"+GlobalData.CAMPUS_NAME)
+     console.log("SEARCH CAMPUS :  :: : : : : : : : : : : : :"+GlobalData.CAMPUS_NAME)
     action.enterValueAndPressReturn(accountManagementPage.searchCampusInput,GlobalData.CAMPUS_NAME,"Search Campus text box in Account Management page")
     browser.pause(2000)
 })
