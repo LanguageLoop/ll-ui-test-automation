@@ -115,14 +115,21 @@ When(/^I enter assignment type label "(.*)"$/, function(label){
 })
 
 When(/^I click add assignment button$/, function(){
-    browser.pause(2000)
+    browser.pause(20000)
     action.clickElement(contractManagementPage.addAssignmentTypeButton,"Add assignment type button in Contract page")
 })
+
+When(/^I search for created assignment type$/, function(){
+    browser.pause(2000)
+    action.enterValue(contractManagementPage.searchAssignmentType, GlobalData.ASSIGNMENT_LABEL, "Searching for newly created assignment type");
+    action.clickElement(contractManagementPage.searchButtonAssignmentType, "Clicking on Search");
+})
+
 
 Then(/^I verify assignment type is added$/, function(){
     browser.pause(2000)
     var tlength= contractManagementPage.assignmentTypeTableRows.length
-    var elt = contractManagementPage.assignmentTypeTableRows[tlength-3].$$('td')[0].$('a').getText()
+    var elt = contractManagementPage.assignmentTypeTableRows[tlength-3].$$('td')[0].$('div').$('a').getText()
     chai.expect(elt==GlobalData.ASSIGNMENT_LABEL).to.be.true
 
 })

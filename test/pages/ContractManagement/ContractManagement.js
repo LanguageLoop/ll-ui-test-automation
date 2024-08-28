@@ -126,6 +126,14 @@ module.exports = {
         return $('//*[contains(text(),"Add Assignment Type")]/../..//input[@value="Add"]')
     },
 
+    get searchAssignmentType(){
+        return $('//input[@title="Search"]')
+    },
+
+    get searchButtonAssignmentType(){
+        return $('//input[@value="Search"]')
+    },    
+    
     get assignmentTypeTableRows(){
         return $$('//*[contains(text(),"Assignment Type")]/../../..//tr')
     },
