@@ -58,6 +58,7 @@ When(/^I click OK on alert popups after selecting the a new campus pin$/, functi
 })
 
 When(/^I click on Migrate & Recalculate Job Fee after selecting a new campus pin$/, function () {
+    browser.pause(5000)
     action.isVisibleWait(ODTIJobDetailsPage.migrateAndRecalculateJobFeeButton, 10000,"Migrate And Recalculate Job Fee Button in ODTI job details page");
     action.clickElement(ODTIJobDetailsPage.migrateAndRecalculateJobFeeButton, "Migrate And Recalculate Job Fee Button in ODTI job details page");
 })
