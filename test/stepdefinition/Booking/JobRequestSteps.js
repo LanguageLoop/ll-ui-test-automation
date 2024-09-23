@@ -625,7 +625,8 @@ When(/^I handle job updated warning message by refreshing browser and change sta
       const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
       action.isVisibleWait(confirmationWindow, 5000,"Confirmation window in Job request page")
       if (confirmationWindow.isDisplayed()) {
-        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+      //  const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+        const confirmYes = $('//input[contains(@id,"wtActions_wt174")]')
         action.isClickableWait(confirmYes, 30000,"Confirm Yes in Job request page")
         action.clickElement(confirmYes,"Confirm Yes in Job request page")
       }
@@ -656,7 +657,8 @@ When(/^I handle duplicate job updated warning message by refreshing browser and 
       const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]')
       action.isVisibleWait(confirmationWindow, 5000,"Confirmation window in Job request page")
       if (confirmationWindow.isDisplayed()) {
-        const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+      //  const confirmYes = $('//input[contains(@id,"wtActions_wt145")]')
+        const confirmYes = $('//input[contains(@id,"wtActions_wt174")]')
         action.isClickableWait(confirmYes, 30000,"Confirm yes in Job request page")
         action.clickElement(confirmYes,"Confirm yes in Job request page")
       }
