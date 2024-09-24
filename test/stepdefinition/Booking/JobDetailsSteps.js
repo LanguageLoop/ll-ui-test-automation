@@ -163,7 +163,8 @@ When(/^I change the contractor "(.*)" job status from "(.*)" to "(.*)"$/, functi
     action.isVisibleWait(confirmationWindow, 30000,"Confirmation window in Job Details page");
     if (confirmationWindow.isDisplayed()) {
        // const confirmYes = $('//input[contains(@id,"wtActions_wt145")]');
-       const confirmYes = $('//input[contains(@id,"wtActions_wt174")]');
+       //const confirmYes = $('//input[contains(@id,"wtActions_wt174")]');
+       const confirmYes = $('//input[contains(@id,"wtOverlapConfirmationModal") and (@value="Yes")]');
         action.isClickableWait(confirmYes, 30000,"Confirm yes button in Job Details page");
         action.clickElement(confirmYes,"Confirm yes button in Job Details page");
     }
