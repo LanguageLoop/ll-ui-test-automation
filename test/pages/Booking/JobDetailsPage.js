@@ -186,7 +186,7 @@ module.exports = {
     },
 
     get contractorJobStatusLinkLocator() {
-        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//a[contains(@id,"JobStatus")]';
+        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div/parent::div//a[contains(@id,"JobStatus")]';
     },
 
     get organisationCampusBlocksContractorText() {

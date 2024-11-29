@@ -314,7 +314,7 @@ module.exports={
     },
 
     get contractorJobStatusLinkLocator() {
-        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//a[contains(@id,"JobStatus")]';
+        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div/parent::div//a[contains(@id,"JobStatus")]';
     },
 
     get resetAutoNotificationsLink() {
@@ -330,7 +330,7 @@ module.exports={
     },
 
     get contractorDistanceLocator() {
-        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div//div[contains(text(),"KM")]';
+        return '//a[contains(text(),"<dynamic>")]/parent::div/parent::div/parent::div//div[contains(text(),"KM")]';
     },
 
     get jobStatusLink() {
