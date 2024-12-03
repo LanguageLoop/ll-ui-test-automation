@@ -646,7 +646,7 @@ When(/^I handle duplicate job updated warning message by refreshing browser and 
       browser.refresh()
       let originalJobStatusList = original_jobStatus.split(",");
       for (let i = 0; i < originalJobStatusList.length; i++) {
-        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + contractor + '"]/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
+        let contractorStatusElement = $('//div[@class="ContractorTable"]//a[text()="' + contractor + '"]/parent::div/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
         let statusVisible = action.isVisibleWait(contractorStatusElement, 10000,"Contractor status in Job request page");
         if (statusVisible) {
           action.clickElement(contractorStatusElement,"Contractor status in Job request page");
@@ -737,6 +737,7 @@ When(/^I enter CF_OnSite "(.*)"$/, function(CF_OnSite){
 })
 
 Then(/^the Job Request screen will display$/, function () {
+  browser.pause(20000);
   let pageTitleActual = action.getPageTitle();
   chai.expect(pageTitleActual).to.includes("Booking Request");
 })
