@@ -143,5 +143,9 @@ module.exports ={
 
     get jobFeeTextBoxUnderCampus() {
         return $('(//label[text()="Job Fee"]/following-sibling::input)[1]');
+    }, 
+     get jobIdResult() {
+
+    return $('//table[contains(@id,"JobTable")]//td//a/div');
+     }
     }
-}
