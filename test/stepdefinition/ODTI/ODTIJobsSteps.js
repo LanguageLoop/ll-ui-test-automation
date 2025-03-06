@@ -415,9 +415,9 @@ When(/^I click on a Job ID value under ODTI SERVICE CHARGE ID column$/, function
 })
 
 Then(/^I should be navigated to the Job detail page "(.*)" of the respective job that is clicked$/, function (expectedPageUrl) {
+     browser.pause(8000);
     action.navigateToLatestWindow();
-     // browser.refresh();
-    action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobDetailsPage, 10000,"Job Id text in ODTI Job details page");
+   action.isVisibleWait(ODTIJobsPage.jobIDTextInODTIJobDetailsPage, 10000,"Job Id text in ODTI Job details page");
     let currentPageUrlActual = action.getPageUrl();
     chai.expect(currentPageUrlActual).to.includes(expectedPageUrl);
     let jobIDValueInJobDetails = action.getElementText(ODTIJobsPage.jobIDTextInODTIJobDetailsPage,"Job Id text in ODTI Job details page");
@@ -434,6 +434,7 @@ When(/^I click on a Campus Name value under Campus Name column$/, function () {
 })
 
 Then(/^I should be navigated to the Campus detail page "(.*)" of the respective Campus that is clicked$/, function (expectedCampusPageUrl) {
+    browser.pause(8000);
     action.navigateToLatestWindow();
     action.isVisibleWait(ODTIJobsPage.selectedCampusNameText, 10000,"Selected campus name text in ODTI Job details page");
     let currentCampusPageUrl = action.getPageUrl();
@@ -504,7 +505,7 @@ Then(/^The total record value should be updated as per the number of records dis
 When(/^I Click on the X Icon beside the filters applied$/, function () {
         let xIconsCount = ODTIJobsPage.filterCloseXIconsCount
              for (let iconNumber = 0; iconNumber < xIconsCount; iconNumber++) {
-            //action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000,"Filter close X icon in ODTI Jobs page");
+            action.isVisibleWait(ODTIJobsPage.filterCloseXIcon,10000,"Filter close X icon in ODTI Jobs page");
            action.clickElement(ODTIJobsPage.filterCloseXIcon,"Filter close X icon in ODTI Jobs page");
             browser.pause(5000);
              }
@@ -531,6 +532,7 @@ When(/^I click on a Interpreter Name value under Interpreter Name column$/, func
 })
 
 Then(/^I should be navigated to the Interpreter detail page "(.*)" of the respective Interpreter that is clicked$/, function (expectedInterpreterPageUrl) {
+    browser.pause(8000);
     action.navigateToLatestWindow();
     action.isVisibleWait(ODTIJobsPage.selectedInterpreterNameText, 10000,"Selected interpreter name in ODTI Jobs page");
     let currentInterpreterPageUrl = action.getPageUrl();
@@ -616,6 +618,7 @@ When(/^they click the ODTI Service Charge ID hyperlink$/, function () {
     let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataElementLocator.replace("<dynamicColumnIndex>", "1"));
     action.isVisibleWait(serviceChargeID1TextElement, 10000,"Service charge ID in ODTI Jobs page");
     action.clickElement(serviceChargeID1TextElement,"Service charge ID in ODTI Jobs page");
+    browser.pause(10000)
 })
 
 When(/^they are navigated to the Job Details page in a new tab$/, function () {
@@ -904,6 +907,7 @@ When(/^I click on a Job ID value with non empty campus under ODTI SERVICE CHARGE
     action.isVisibleWait(jobIdFirstValueElement, 10000);
     GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE = action.getElementText(jobIdFirstValueElement, "Job Id first value in ODTI Jobs page");
     action.clickElement(jobIdFirstValueElement, "Job Id first value in ODTI Jobs page");
+    browser.pause(5000);
 })
 
 When(/^ODTI Service Charge ID, non empty Campus Name and Interpreter Name will all be hyperlinked and in bold font weight$/, function () {
