@@ -81,7 +81,7 @@ module.exports ={
         return $('//*[text()="Reprocess Campus"]/../..//input[@value="Yes"]')
     },
     get reprocessCampusAndContractorConfirmYesButtonNew(){
-        return $('//*[text()="Reprocess Campus and Interpreter"]/../..//input[@value="Yes"]')
+        return $('//*[text()="Reprocess Campus and Contractor"]/../..//input[@value="Yes"]')
     },
     
 
