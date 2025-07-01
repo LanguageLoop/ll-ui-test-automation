@@ -99,7 +99,7 @@ Feature: Account Management features
 
     Examples:
       | username        | password | role filter option | user account   | client group roles                                                                                  | other roles                  |
-      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor Group,Staff Group |
+      | TestA@gmail.com | Test1    | Contract Manager   | Britney Spears | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Interpreter Group,Staff Group |
 
     #LL-619 Scenario 6a: Save Client group profile
   @SaveClientGroupProfile @LL-619
