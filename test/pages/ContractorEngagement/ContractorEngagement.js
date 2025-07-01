@@ -1,7 +1,7 @@
 module.exports = {
 
     get addContractorLink() {
-        return $('//*[contains(text(),"Add contractor")]')
+        return $('//*[contains(text(),"Add interpreter")]')
     },
 
     get salutationDropdown() {
@@ -110,7 +110,7 @@ module.exports = {
     },
 
     get searchContractorInput() {
-        return $('//input[contains(@placeholder,"Search by Contractor")]')
+        return $('//input[contains(@placeholder,"Search by Interpreter")]') //updated the text
     },
 
     get contractorTable() {

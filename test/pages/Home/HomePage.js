@@ -20,7 +20,7 @@ module.exports = {
     },
 
     get contractorEngagementLink(){
-        return $('//a[text()="Contractor Engagement"]')
+        return $('//a[text()="Interpreter Engagement"]') //updated text
     },
 
     get contractorMessageOKButton(){

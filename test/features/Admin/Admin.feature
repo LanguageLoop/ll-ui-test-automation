@@ -117,7 +117,7 @@ Feature: Admin features
 
     Examples:
       | username          | password             | role toggle | firstname     | landline number |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contractor  | AutomationCBO | 0212345678      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Interpreter | AutomationCBO | 0212345678      |
 
   #LL-612 Scenario 4 - View created date
   @ViewCreatedDate
@@ -223,7 +223,7 @@ Feature: Admin features
 
     Examples:
       | username          | password             | role toggle | firstname     | landline number | landline number2 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Contractor  | AutomationCBO | 0212345678      | 0212348765       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Interpreter  | AutomationCBO | 0212345678      | 0212348765       |
 
     #LL-608 Scenario 4 - On selecting any role from dropdown, results obtained should also be sorted with newest date at the top
   @SelectRoleResultsSorted @LL-608
@@ -280,8 +280,8 @@ Feature: Admin features
     And I should see the user that has selected role in the search results
 
     Examples:
-      | username          | password             | roles toggle                                         | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Contractor,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
+      | username          | password             | roles toggle                                          | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Interpreter,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
 
     #LL-669 Log in screen - Invalid permissions : Scenario 1
   @UserLoggedInUrlRedirect @LL-669
