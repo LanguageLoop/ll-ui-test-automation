@@ -167,7 +167,7 @@ module.exports = {
     },
 
     get contractorRatesDynamicFieldLocator() {
-        return '//span[text()="Contractor Rates"]/parent::div//label[text()="<dynamicFieldName>"]/parent::div/input';
+        return '//span[text()="Interpreter Rates"]/parent::div//label[text()="<dynamicFieldName>"]/parent::div/input';
     },
 
     get fieldNameCommonLocator() {

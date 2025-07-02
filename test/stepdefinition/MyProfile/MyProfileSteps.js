@@ -35,7 +35,7 @@ When(/^I click reset password button$/,  function(){
 
  When(/^I click save button in my details$/, function(){
      action.clickElement(myProfilePage.saveButton,"Save button in My profile page")
-     browser.waitUntil(()=>browser.getTitle()==="PreviewContractorProfile" ,{timeout:10000, timeoutMsg:'save not happened within 10s', interval:1000 })
+     browser.waitUntil(()=>browser.getTitle()==="PreviewInterpreterProfile" ,{timeout:10000, timeoutMsg:'save not happened within 10s', interval:1000 })
  })
 
  When(/^I click on emergency contact link$/, function(){
@@ -218,7 +218,7 @@ Then(/^I verify naati table is present$/, function(){
 When(/^the contractor is viewing their profile$/, function () {
     action.isVisibleWait(myProfilePage.myProfilePageHeader,30000,"My Profile page header");
     let pageTitleActual = action.getPageTitle();
-    chai.expect(pageTitleActual).to.equal("PreviewContractorProfile");
+    chai.expect(pageTitleActual).to.equal("PreviewInterpreterProfile");
 })
 
 Then(/^they will see the On-demand Telephone Interpreting Availability block above Work Availability$/, function () {

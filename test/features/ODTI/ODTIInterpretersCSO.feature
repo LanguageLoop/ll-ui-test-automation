@@ -339,7 +339,7 @@ Feature: ODTI Interpreters CSO features
 
     Examples:
       | username cso   | password cso | language | logon status option | column headers                                                                                                     |
-      | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  | Contractor ID,Name,NAATI Level,Gender,Empty,Logon Status,Attempts,On Call,CURRENT BOOKING Start/End,Job/Contact ID |
+      | zenq@cso10.com | Test1        | zz-Zenq2 | Any - LogOn Status  | Interpreter ID,Name,NAATI Level,Gender,Empty,Logon Status,Attempts,On Call,CURRENT BOOKING Start/End,Job/Contact ID |
 
     #LL-447 Scenario 8 - CS user clicks Job ID
   @LL-447 @CSUserClicksJobID
