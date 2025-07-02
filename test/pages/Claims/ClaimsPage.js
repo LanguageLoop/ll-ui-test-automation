@@ -22,7 +22,8 @@ module.exports ={
     },
 
     get searchCriteriaCloseButtons(){
-        return $$('//span[contains(@class,"close")]')
+      return $$('//a[contains(@id,"wtListAdvanceSearchRule")]/span[contains(@class,"close")]')
+        //return $$('//span[contains(@class,"close")]') - updated to above locator
     },
 
     get campusFeeInput(){

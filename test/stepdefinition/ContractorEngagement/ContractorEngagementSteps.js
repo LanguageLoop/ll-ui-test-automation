@@ -51,13 +51,13 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
 
     //action.clickElement(contractorEngagementPage.saveContractorButton)
     browser.waitUntil(function () {
-        if (browser.getTitle() === 'Contractors') {
+        if (browser.getTitle() === 'Interpreters') {
             contractorEngagementPage.saveContractorButton.click()
         }
-        return browser.getTitle() === 'PreviewContractorProfile'
+        return browser.getTitle() === 'PreviewInterpreterProfile'
     }, 5000)
 
-    browser.waitUntil(() => browser.getTitle() === 'PreviewContractorProfile', {
+    browser.waitUntil(() => browser.getTitle() === 'PreviewInterpreterProfile', {
         timeout: 5000,
         timeoutMsg: 'preview title not displayed in 5s',
         interval: 500
@@ -332,7 +332,7 @@ Then(/^I delete the naati accreditation$/, function () {
 })
 
 Then(/^I verify contractor is created$/, function () {
-    browser.pause(2000)
+    browser.pause(20000)
     action.enterValueAndPressReturn(contractorEngagementPage.searchContractorInput, GlobalData.NEW_CONTRACTOR_NAME, "Search Contractor Input field on Contractor Engagement page")
     browser.pause(2000)
     var searchresult = $$('//table[contains(@id,"Contractor")]//td')[1].getText()
@@ -856,7 +856,7 @@ Then(/^they will be navigated to the Contractor’s profile$/, function () {
     action.navigateToLatestWindow();
     action.isVisibleWait(contractorEngagementPage.interpreterDetailsHeader,10000, "Interpreter Details Header on Contractor Engagement page");
     let pageTitleActual = action.getPageTitle().trim();
-    chai.expect(pageTitleActual).to.equal("PreviewContractorProfile");
+    chai.expect(pageTitleActual).to.equal("PreviewInterpreterProfile");
 })
 
 Then(/^the contractor is Activated for ODTI$/, function () {

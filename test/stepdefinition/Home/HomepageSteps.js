@@ -23,7 +23,7 @@ When(/^I click logout button$/, function(){
 
 When(/^I click contractor engagement link$/, function(){
    action.clickElement(homePage.contractorEngagementLink,"Contractor Engagement link in Home page")
-   browser.waitUntil(()=>browser.getTitle()=='Contractors',{timeout:5000,timeoutMsg:'Contractors page not displayed in 5s',inteval:500})
+   browser.waitUntil(()=>browser.getTitle()=='Interpreters',{timeout:5000,timeoutMsg:'Contractors page not displayed in 5s',inteval:500})
    //browser.pause(2000)
 })
 
