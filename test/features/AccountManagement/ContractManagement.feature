@@ -86,12 +86,12 @@ Feature: Contract Management features
    And I click the first contract link from search results
   
    And I click add contract rates
-   And I enter contract rate details "<rate name>","<hour>","<language>","<contract min period>","<contract min rate>","<contract ongoing>","<contractor min period>","<contractor min rate>","<contractor ongoing>"
+   And I enter contract rate details "<rate name>","<hour>","<language>","<contract min period>","<contract min rate>","<contract ongoing>","<contract rate>","<contractor min period>","<contractor min rate>","<contractor ongoing>","<contractor rate>"
    Then I verify contract rate is added
 
     Examples: 
-   | username          | password             | language               | contract title      | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing|
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | All Languages - Video | Automation Contract | Automation Rate | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |    
+   | username          | password             | language               | contract title        | rate name       | hour             | contract min period | contract min rate | contract ongoing | contractor min period | contractor min rate | contractor ongoing| contract rate | contractor rate |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | All Languages - Video | Automation Contract 01 | Automation Rate  | Business Hour A  |    2                |    200            |  15              |      2                |     250             |     15            |   100         |     101         | 
 
     
    @AddAssignmentType
@@ -133,8 +133,8 @@ Feature: Contract Management features
   And the user can add Hour Type "<hour type>"
 
   Examples:
-   | username          | password            | contract title      | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | hidden fields                                                    | NAATI Level    | hour type     |
-   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Short Notice,Block Booking,After Hours Booking,Half Day,Full Day | Non-Accredited | After Hours A |
+   | username          | password            | contract title         | service language               | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values            | contractor rates values     | hidden fields                                                    | NAATI Level    | hour type     |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract 01 | zz-Zenq2 - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Short Notice,Block Booking,After Hours Booking,Half Day,Full Day | Non-Accredited | After Hours A |
 
   #LL-282 Scenario 2 - Validate required fields
  @LL-282 @ValidateRequiredFields
@@ -183,8 +183,8 @@ Feature: Contract Management features
   And the user will remain on the Manage Rate popup
 
   Examples:
-   | username          | password             | contract title      | service language               | NAATI Level    | hour type     |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation Contract | zz-Zenq2 - On Demand Telephone | Non-Accredited | After Hours A |
+   | username          | password             | contract title         | service language               | NAATI Level    | hour type     |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation Contract 01 | zz-Zenq2 - On Demand Telephone | Non-Accredited | After Hours A |
 
   #LL-282 Scenario 3b - Invalid values in time-period fields
  @LL-282 @InvalidValuesTimePeriod
@@ -206,8 +206,8 @@ Feature: Contract Management features
   And the user will remain on the Manage Rate popup
 
   Examples:
-   | username          | password            | contract title      | service language                          | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values               | contractor rates values     | NAATI Level | hour type     | rate name       |
-   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract | On-Demand Telephone - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1.23,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Conference  | After Hours B | Automation Rate |
+   | username          | password            | contract title         | service language                          | contract rates fields                                                                                                                                                                                                      | contractor rates fields                                                                                                                                                                                 | contract rates values               | contractor rates values     | NAATI Level | hour type     | rate name       |
+   | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Automation Contract 01 | On-Demand Telephone - On Demand Telephone | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),NES Connection Fee,Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | Minimum Period 1 (mins),Minimum Rate 1 ($/period),Ongoing Period 1 (mins),Ongoing Rate 1 ($/period),Minimum Period 2 (mins),Minimum Rate 2 ($/period),Ongoing Period 2 (mins),Ongoing Rate 2 ($/period) | 1.23,1.00,2,2.00,6.00,3,3.00,4,4.00 | 1,1.00,2,2.00,3,3.00,4,4.00 | Conference  | After Hours B | Automation Rate |
 
   #LL-282 Scenario 4 - Contract Rates Display
  @LL-282 @ContractRatesDisplay
@@ -325,8 +325,8 @@ Feature: Contract Management features
   Then a error message appears that provides the list of contract rates that does not have Minimum rate values defined
 
   Examples:
-   | username          | password              | contract title      | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Automation Contract | Automation Assignment | 4                    | 1                            | On Site                  |
+   | username          | password              | contract title         | assignment label      | Minimum Period hours | Ongoing Minimum Period hours | Service Used By Contract |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Automation Contract 01 | Automation Assignment | 4                    | 1                            | On Site                  |
 
   #LL-914 Scenario 4 - Contract that is not eligible for ODTI Service - All the available Contract Rates have Minimum Rate defined and verified by adding Assignment type by selecting ‘Use Minimum Rate 2’ option
  @LL-914 @ContractNotODTIMinRateDefinedUseMinRate2

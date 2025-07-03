@@ -226,8 +226,8 @@ Feature: ODTI Jobs CSO features
     And The records are displayed only for the entered filter value "<Interpreter Name>" under column number "<Interpreter Name column number>"
 
     Examples:
-      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | language | Language column number | Interpreter Name | Interpreter Name column number | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | zenq@cso10.com | Test1        | Before              |  1                        | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              | RecordStatus    | 3                     |  Is                 |  4                        | Export         | 2                    |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3  | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 | language | Language column number | Interpreter Name | Interpreter Name column number | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | zenq@cso10.com | Test1        | Before              |  1                        | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Interpreter Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    | zz-Zenq2 | 5                      | Sunia TUITUPOU   | 6                              | RecordStatus    | 3                     |  Is                 |  4                        | Export         | 2                    |
 
     #Scenario 15 - As CSO User - Applying Advanced Search Filters and verify that results  are display only for the selected filters and the total records value should be updated
   @Regression @RegressionS40 @CSOAdvancedFilterRecords
@@ -246,8 +246,8 @@ Feature: ODTI Jobs CSO features
     Then The total record value should be updated as per the number of records displayed
 
     Examples:
-      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3  | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
+      | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Interpreter Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
 
     #Scenario 16 - As CSO User - Removing the applied Advanced Search filters -- Need to revisit the case after advanced filter record status is fixed on UAT
   @Regression @RegressionS41 @CSOAdvancedFiltersRemoved
@@ -257,7 +257,7 @@ Feature: ODTI Jobs CSO features
     And I view the ODTI > ODTI Jobs page
     And The RecordStatus Is Export
    And I add Before Date filter "<filter comparator 1>" "<filter comparator index 1>"
-   And I click Advanced search link in Admin
+   #And I click Advanced search link in Admin
    #And I add filter RecordStatus "<filter option 4>" "<filter option index 4>", "<filter comparator 4>" "<filter comparator index 4>", "<filter value 4>" "<filter value index 4>"
     And I get the records count in ODTI before adding filters
     And I click Advanced search link in Admin
@@ -269,8 +269,8 @@ Feature: ODTI Jobs CSO features
     Then All the Jobs are displayed as no filters are applied and the number of records gets updated
 
     Examples:
-      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Contractor Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
+      | username cso   | password cso | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | filter option 3  | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
+      | zenq@cso10.com | Test1        | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    | Language        | 3                     | Is                  | 3                         | zz-Zenq2       | 2                    | Interpreter Name | 4                     | Is                  | 4                         | Sunia TUITUPOU | 2                    |
 
     #LL-659 Scenario 1 - CS / Finance user accesses Job details screen
   @LL-659 @CSUserAccessesJobDetailsScreen
