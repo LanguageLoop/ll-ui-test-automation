@@ -491,7 +491,7 @@ module.exports = {
     },
 
     get showContractAuditTrialsLink() {
-        return $('//a[text()="Show Contractor Audit Trails"]');
+        return $('//a[text()="Show Interpreter Audit Trails"]');
     },
 
     get auditHistoryNoItemsToShowMessage() {

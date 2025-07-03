@@ -170,7 +170,7 @@ module.exports = {
     },
 
     get searchByContractorLanguageAndContactIDSearchField(){
-        return $('//input[@placeholder="Search by contractor, language and contact ID"]');
+        return $('//input[@placeholder="Search by interpreter, language and contact ID"]');
     },
 
     get resultsTableBodyData() {

@@ -76,7 +76,7 @@ When(/^I click add contract rates$/, function(){
     action.clickElement(contractManagementPage.addContractRateButton,"Add Contact Rate button in Contract page");
 })
 
-When(/^I enter contract rate details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, function(name,businesshour,language,contractminperiod,contractminrate,contractongoing,contractorminperiod,contractorminrate,contractorongoing){
+When(/^I enter contract rate details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, function(name,businesshour,language,contractminperiod,contractminrate,contractongoing,contractrate,contractorminperiod,contractorminrate,contractorongoing,contractorrate){
     browser.pause(2000)
     name = name + (Math.floor(Math.random() * 100000) + 1).toString()
     GlobalData.CONTRACT_NAME= name
@@ -91,13 +91,16 @@ When(/^I enter contract rate details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","
     action.enterValue(contractManagementPage.minimumPeriodContract, contractminperiod,"Minimum Period Contract in Contract page")
     action.enterValue(contractManagementPage.minimumRateContract, contractminrate,"Minimum Rate Contract in Contract page")
     action.enterValue(contractManagementPage.ongoingPeriodContract, contractongoing,"Ongoing Period in Contract page")
+    action.enterValue(contractManagementPage.ongoingRateContract, contractrate,"Ongoing Period in Contract page")
 
     //contractor section
     action.enterValue(contractManagementPage.minimumPeriodContractor, contractorminperiod,"Minimum Period Contract in Contract page")
     action.enterValue(contractManagementPage.minimumRateContractor, contractorminrate,"Minimum Rate Contract in Contract page")
     action.enterValue(contractManagementPage.ongoingPeriodContractor, contractorongoing,"Ongoing Period in Contract page")
+    action.enterValue(contractManagementPage.ongoingRateContractor, contractorrate,"Ongoing Period in Contract page")
 
     //click save button
+    browser.pause(2000)
     action.clickElement(contractManagementPage.saveContractRateButton,"Save Contact Rate button in Contract page")
     browser.pause(2000)
 })

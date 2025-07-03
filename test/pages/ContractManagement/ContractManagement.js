@@ -91,7 +91,11 @@ module.exports = {
     },
 
     get ongoingPeriodContract(){
-        return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Period")]/..//input')[0]
+       // return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Period")]/..//input')[0]
+       return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Period 1")]/..//input')[0]
+    },
+   get ongoingRateContract(){
+       return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Rate 1")]/..//input')[0]
     },
 
     get minimumPeriodContractor(){
@@ -103,7 +107,11 @@ module.exports = {
     },
 
     get ongoingPeriodContractor(){
-        return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Period")]/..//input')[1]
+        return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Period 1")]/..//input')[1]
+    },
+
+    get ongoingRateContractor(){
+        return $$('//*[contains(text(),"Manage Rate")]/../..//*[contains(text(),"Ongoing Rate 1")]/..//input')[1]
     },
 
     get scheduleSegment(){

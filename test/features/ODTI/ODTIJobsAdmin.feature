@@ -262,8 +262,8 @@ Feature: ODTI Jobs Admin features
     And I should see the expected Interpreter Name "<Interpreter Name>" value under INTERPRETER NAME column
 
     Examples:
-      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | Interpreter Name |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Contractor Name | 3                     | Is                  | 3                         | Lai Wan LEUNG  | 2                    | Lai Wan LEUNG    |
+      | username          | password             | filter comparator 1 | filter comparator index 1 | filter option 2  | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | Interpreter Name |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Before              | 1                         | Interpreter Name | 3                     | Is                  | 3                         | Lai Wan LEUNG  | 2                    | Lai Wan LEUNG    |
 
     #LL-724 Scenario 4 - Contract Name should be a drop-down
   @LL-724 @ContractNameShouldBeDropdown
@@ -314,8 +314,8 @@ Feature: ODTI Jobs Admin features
     And they will see a table
 
     Examples:
-      | username          | password             | filter option 1  | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | ContractorAHFlag | 3                     | Is                  | 3                         | True           | 2                    | False          | Before              | 1                         |
+      | username          | password             | filter option 1   | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter value 2 | filter comparator 3 | filter comparator index 3 |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | InterpreterAHFlag | 3                     | Is                  | 3                         | True           | 2                    | False          | Before              | 1                         |
 
     #LL-724 Scenario 7 - Custom Fields search all ODTI custom fields for the value
   @LL-724 @CustomFieldsSearchAllODTICustomFields
