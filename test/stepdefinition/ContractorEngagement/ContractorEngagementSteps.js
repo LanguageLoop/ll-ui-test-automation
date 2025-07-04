@@ -118,7 +118,7 @@ When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function 
     action.addValueAndPressReturnTab(contractorEngagementPage.dateIssuedInput, fields[1].replace(/[/.]/g, "-"), "Date Issued input field on Contractor Engagement page")
     action.isClickableWait(contractorEngagementPage.saveAndCloseButton, 10000, "Save and Close button on Contractor Engagement page")
     action.clickElement(contractorEngagementPage.saveAndCloseButton, "Save and Close button on Contractor Engagement page")
-    browser.pause(2000)
+    browser.pause(5000)
     if (action.isVisibleWait(contractorEngagementPage.translatorXTMAlert, 5000, "TranslatorXTM Alert on Contractor Engagement page")) {
         action.isClickableWait(contractorEngagementPage.xtmConfirmButton, 5000, "XTM Confirm button on Contractor Engagement page")
         action.clickElement(contractorEngagementPage.xtmConfirmButton, "XTM Confirm button on Contractor Engagement page")
@@ -312,7 +312,7 @@ Then(/^I delete contractor notes$/, function () {
 Then(/^I verify the created naati accreditation "(.*)","(.*)"$/, function (from, to) {
     browser.pause(4000)
     var tlength = contractorEngagementPage.naatiTableRows.length
-    console.log(tlength)
+    console.log("tlength is''''''''''''"+tlength)
     //var temp_value= contractorEngagementPage.naatiTableRows[tlength-1].getText()
     for (var i = 1; i < tlength; i++) {
         var temp_value = contractorEngagementPage.naatiTableRows[i].getText()

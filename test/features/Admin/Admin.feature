@@ -49,7 +49,7 @@ Feature: Admin features
 
     Examples:
       | username          | password             | Client Group Label | Contractor Group Label | Staff Group Label |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Client Group       | Contractor Group       | Staff Group       |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Client Group       | Interpreter Group       | Staff Group       |
 
   #LL-607 Scenario 2 - select option from dropdown
   @SelectOptionRoleDropdown
@@ -65,7 +65,7 @@ Feature: Admin features
 
     Examples:
       | username          | password             | Client Group Options                                                                                | Contractor Group Options | Staff Group Options                                                                                                                                                                                                                                                                                                                                                           |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Contractor               | Account Manager,Account Payable Officer,Account Receivable Officer,Administrator,After Hours Customer Service,Contractor Engagement Officer ,Customer Service Manager,Customer Service Officer,Developer Features,Finance Manager,Marketing,Relationships and Growth Manager,Senior Customer Service Officer,Team Leader,Translation Project Coordinator,Translations Manager |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Campus Manager,Contract Manager,Organisation Finance Manager,VideoLoop Client Role | Interpreter               | Account Manager,Account Payable Officer,Account Receivable Officer,Administrator,After Hours Customer Service,Interpreter Engagement Officer ,Customer Service Manager,Customer Service Officer,Developer Features,Finance Manager,Marketing,Relationships and Growth Manager,Senior Customer Service Officer,Team Leader,Translation Project Coordinator,Translations Manager |
 
   #LL-607 Scenario 3 - user selects option
   @UserSelectsRoleOption
@@ -281,7 +281,7 @@ Feature: Admin features
 
     Examples:
       | username          | password             | roles toggle                                          | firstname     | landline number | role filter option1 | role filter option2 | role filter option3      |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Interpreter,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Contractor          | Customer Service Officer |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Bookings Officer,Interpreter,Customer Service Officer | AutomationCBO | 0212345678      | Bookings Officer    | Interpreter         | Customer Service Officer |
 
     #LL-669 Log in screen - Invalid permissions : Scenario 1
   @UserLoggedInUrlRedirect @LL-669

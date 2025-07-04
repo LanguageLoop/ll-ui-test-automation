@@ -383,7 +383,7 @@ module.exports = {
     },
 
     get contractorBlockingModalPopup() {
-        return $('//span[text()="Contractor Blocking"]//parent::div/parent::div[contains(@id,"block_Modal")]');
+        return $('//span[text()="Interpreter Blocking"]//parent::div/parent::div[contains(@id,"block_Modal")]');
     },
 
     get contractorBlockPopupTabs() {

@@ -310,7 +310,7 @@ module.exports={
     },
 
     get contractorSearchBoxJobAllocation() {
-        return $('//input[@placeholder="Search by Name or Contractor ID"]');
+        return $('//input[@placeholder="Search by Name or Interpreter ID"]');
     },
 
     get contractorJobStatusLinkLocator() {
