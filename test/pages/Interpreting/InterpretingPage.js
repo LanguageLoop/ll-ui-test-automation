@@ -13,7 +13,7 @@ module.exports={
 
     get searchJobInput()
     {
-        return $('//input[contains(@placeholder,"Search by")]')
+        return $('//input[@placeholder="Search by Job Id, campus name, and job address"]')
     },
 
     get jobStatusDropdown()
@@ -121,4 +121,25 @@ module.exports={
         return $('//span[text()="Please note you can’t return this job on the portal. You will need to call us to return your job."]');
     },
 
+    //This is created for internal usage
+    get languageColumnTextAvailable() {
+        return $('//th/div[contains(@id,"Language")]');
+    },
+
+    //This is created for internal usage
+    get firstJobIDFromList() {
+        return $('//td/div[contains(@id,"JobId")]');
+    },
+
+    get JobIDFromLists() {
+        return '(//td/div[contains(@id,"JobId")])[<dynamicIndex>]';
+    },
+
+    get jobIDRowCount() {
+        return $$('//td/div[contains(@id,"JobId")]').length;
+    },
+
+    get indexDropdownCount() {
+        return $('//select[contains(@name,"wt323")]');
+    },
 }

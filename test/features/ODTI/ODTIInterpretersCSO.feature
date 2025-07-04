@@ -123,7 +123,7 @@ Feature: ODTI Interpreters CSO features
 
     Examples:
       | username cso   | password cso | language | logon status option | column headers                                                                                                     |
-      | zenq@cso10.com | Test1        | Zenq3    | Any - LogOn Status  | CONTRACTOR ID,NAME,NAATI LEVEL,GENDER,PHONE,LOGON STATUS,ATTEMPTS,ON CALL,CURRENT BOOKING START/END,JOB/CONTACT ID |
+      | zenq@cso10.com | Test1        | Zenq3    | Any - LogOn Status  | INTERPRETER ID,NAME,NAATI LEVEL,GENDER,PHONE,LOGON STATUS,ATTEMPTS,ON CALL,CURRENT BOOKING START/END,JOB/CONTACT ID |
 
     #LL-447 Scenario 6b - NAATI level shown for current language
   @LL-447 @NAATILevelShownForLanguage

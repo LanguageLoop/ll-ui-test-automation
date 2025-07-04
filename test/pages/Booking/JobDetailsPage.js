@@ -131,7 +131,7 @@ module.exports = {
     },
 
     get searchContractorInput(){
-        return $('//input[@placeholder="Search by Name or Contractor ID"]')
+        return $('//input[@placeholder="Search by Name or Interpreter ID"]')
     },
 
     get assignmentTypeLabel(){

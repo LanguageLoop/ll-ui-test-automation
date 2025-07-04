@@ -55,7 +55,7 @@ module.exports = {
     },
 
     get contractorGroupOptionsLocator(){
-        return '//optgroup[@label="Contractor Group"]/child::option[text()="<dynamic>"]';
+        return '//optgroup[@label="Interpreter Group"]/child::option[text()="<dynamic>"]';
     },
 
     get staffGroupOptionsLocator(){

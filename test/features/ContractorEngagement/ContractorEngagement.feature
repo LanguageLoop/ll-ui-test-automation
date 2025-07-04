@@ -152,7 +152,7 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password              | contractor | service     | from     | to       | level                             | naati     |
-     | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 6155       | Interpreter | ASSYRIAN | ENGLISH  | Recognised Practising Interpreter | CPN9LK67K |
+     | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 6155       | Interpreter | CHALDEAN  | ENGLISH  | Recognised Practising Interpreter | CPN9LK67K |
      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7   | 6155       | Translator  | ASSYRIAN | ENGLISH  | 3-into English                    | CPN7CL35L |
      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 6155       | Translator  | ENGLISH  | ASSYRIAN | 3-from English                    | CPN7CL35L |
 
