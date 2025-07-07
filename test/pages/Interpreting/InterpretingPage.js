@@ -13,7 +13,7 @@ module.exports={
 
     get searchJobInput()
     {
-        return $('//input[@placeholder="Search by Job Id, campus name, and job address"]')
+        return $('//div[contains(@id,"SearchInputText_block")]/input[contains(@placeholder,"Search by")]')
     },
 
     get jobStatusDropdown()
