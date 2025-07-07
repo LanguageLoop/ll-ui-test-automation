@@ -845,6 +845,7 @@ Then(/^a thumbs down icon will appear next to the Check button with hover over e
 When(/^I click on Save contractor button$/, function () {
     action.isClickableWait(contractorEngagementPage.saveContractorButton, "Save Contractor Button on Contractor Engagement page");
     action.clickElement(contractorEngagementPage.saveContractorButton, "Save Contractor Button on Contractor Engagement page");
+    browser.pause(3000)
 })
 
 When(/^a error text message is displayed below the ABN filed No details found for ABN "(.*)"$/, function (enteredABNNumber){
