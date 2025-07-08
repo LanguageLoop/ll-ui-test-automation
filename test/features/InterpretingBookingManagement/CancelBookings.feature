@@ -40,7 +40,7 @@ Feature: Cancel existing booking
    And I click on job id from interpreting job search results
    And I switch to the job allocation window
    And I refresh the page
-   And I set the contractor job status from "Auto Notification" to "<contractor job status>"
+   And I set the contractor job status from "- No status -" to "<contractor job status>"
    And I click on Cancel button
    And I click confirm cancel yes button
    And I select "<cancel reason>" cancel reason
@@ -63,7 +63,7 @@ Feature: Cancel existing booking
    And I click on job id from interpreting job search results
    And I switch to the job allocation window
    And I refresh the page
-   And I set the contractor job status from "Auto Notification" to "<contractor job status>"
+   And I set the contractor job status from "- No status -" to "<contractor job status>"
    And I click on Cancel button
    And I confirm yes to cancellation fee
    And I select "<cancel reason>" cancel reason
@@ -87,7 +87,7 @@ Feature: Cancel existing booking
    And I click on job id from interpreting job search results
    And I switch to the job allocation window
    And I refresh the page
-   And I set the contractor job status from "Auto Notification" to "<contractor job status>"
+   And I set the contractor job status from "- No status -" to "<contractor job status>"
    And I click on Cancel button
    And I confirm yes to cancellation fee
    And I select "<cancel reason>" cancel reason

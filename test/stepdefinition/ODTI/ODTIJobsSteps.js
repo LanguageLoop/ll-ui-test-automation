@@ -412,6 +412,7 @@ When(/^I click on a Job ID value under ODTI SERVICE CHARGE ID column$/, function
     action.isVisibleWait(jobIdFirstValueElement, 10000);
     GlobalData.ODTI_SERVICE_CHARGE_JOB_ID_IN_TABLE = action.getElementText(jobIdFirstValueElement,"Job Id first value in ODTI Jobs page");
     action.clickElement(jobIdFirstValueElement,"Job Id first value in ODTI Jobs page");
+     browser.pause(5000);
 })
 
 Then(/^I should be navigated to the Job detail page "(.*)" of the respective job that is clicked$/, function (expectedPageUrl) {
