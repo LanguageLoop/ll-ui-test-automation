@@ -198,7 +198,7 @@ module.exports = {
     // Work eligibility section
 
     get addWorkEligbileLink() {
-        return $('//*[contains(text(),"Manage work eligible")]')
+        return $('//*[contains(text(),"Manage work eligibility")]')
     },
 
     get workRightsDropdown() {

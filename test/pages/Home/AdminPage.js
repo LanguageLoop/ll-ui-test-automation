@@ -190,7 +190,7 @@ module.exports = {
     },
 
     get terminateUserButton() {
-        return $('//input[@value="Terminate User"]');
+        return $('//input[@value="Deactivate Account"]');
     },
 
     get lastNameFieldCreateAccount(){

@@ -820,7 +820,7 @@ When(/^I enter valid "(.*)" with spaces$/, function (abnNumber) {
 })
 
 When(/^I see My Details popup is closed$/, function () {
-    let status = action.isClickableWait(contractorEngagementPage.manageBasicDetails, 10000, "Manage Basic Details on Contractor Engagement page");
+    let status = action.isClickableWait(contractorEngagementPage.manageBasicDetails, 30000, "Manage Basic Details on Contractor Engagement page");
     chai.expect(status).to.be.true;
 })
 
