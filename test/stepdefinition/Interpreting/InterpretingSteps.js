@@ -204,18 +204,18 @@ Then(/the rest of the form should display as if the user has filtered by Campus 
   browser.pause(5000);
   let jobRowsCount = interpretingPage.jobTableRowsCount;
   for (let rowIndex = 1; rowIndex <= jobRowsCount; rowIndex++) {
-    let campusNameTextElement = $(interpretingPage.jobTableDynamicTextValueLocator.replace("<dynamicRowIndex>",rowIndex.toString()).replace("<dynamicColumnIndex>","6"));
+    let campusNameTextElement = $(interpretingPage.jobTableDynamicTextValueLocator.replace("<dynamicRowIndex>",rowIndex.toString()).replace("<dynamicColumnIndex>","7"));
     let actualCampusNameText = action.getElementText(campusNameTextElement,"Campus name in Interpreting steps");
     chai.expect(actualCampusNameText).to.equal(campusName);
   }
 })
 
 When(/^the URL contains the ContractorID parameter "(.*)"$/, function (contractorID) {
-  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/Bookings.aspx?ContractorId=" + contractorID);
+  action.launchURL("https://li-uat.languageloop.com.au/LoopedIn/Bookings.aspx?InterpreterId=" + contractorID);
 })
 
 Then(/^a ContractorID filter should be pre-filled with the given ContractorID "(.*)"$/, function (contractorID) {
-  let contractorIDElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>","1").replace("<dynamicOption>","Contractor ID"));
+  let contractorIDElement = $(interpretingPage.jobFilterFieldDropdownOptionLocator.replace("<dynamicIndex>","1").replace("<dynamicOption>","Interpreter ID"));
   let contractorIDFilterSelectedStatus = action.isSelectedWait(contractorIDElement,20000,"Contractor ID filter dropdown in Interpreting steps");
   chai.expect(contractorIDFilterSelectedStatus).to.be.true;
   let contractorIDValuePreFilledElement = $(interpretingPage.jobFilterValueTextBoxLocator.replace("<dynamicIndex>","1"));
