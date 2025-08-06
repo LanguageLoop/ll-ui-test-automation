@@ -39,8 +39,8 @@ module.exports ={
     },
 
     get contractorFeeInput(){
-        //return $('//label[text()="Contractor Payment"]/..//input')
-        return $('//label[text()="Interpreter Payment"]/..//input')
+       return $('//label[text()="Contractor Payment"]/..//input')
+       // return $('//label[text()="Interpreter Payment"]/..//input')
     },
 
     get rscFeeInput(){
@@ -56,23 +56,23 @@ module.exports ={
     },
 
     get processContractorButton(){
-        //return $('//input[@value="Process Contractor"]')
-      return $('//input[@value="Process Interpreter"]')
+    return $('//input[@value="Process Contractor"]')
+    //  return $('//input[@value="Process Interpreter"]')
     },
 
     get reprocessContractorButton(){
-       // return $('//input[@value="Reprocess Contractor"]')
-       return $('//input[@value="Reprocess Interpreter"]')
+       return $('//input[@value="Reprocess Contractor"]')
+       // return $('//input[@value="Reprocess Interpreter"]')
     },
 
     get processCampusAndContractorButton(){
-      //  return $('//input[@value="Process Campus and Contractor"]')
-       return $('//input[@value="Process Campus and Interpreter"]')
+      return $('//input[@value="Process Campus and Contractor"]')
+      // return $('//input[@value="Process Campus and Interpreter"]')
     },
 
     get reprocessCampusAndContractorButton(){
-        // return $('//input[@value="Reprocess Campus and Contractor"]')
-        return $('//input[@value="Reprocess Campus and Interpreter"]')
+         return $('//input[@value="Reprocess Campus and Contractor"]')
+        // return $('//input[@value="Reprocess Campus and Interpreter"]')
     },
 
     get jobStatusColumn(){
