@@ -77,7 +77,8 @@ module.exports = {
 
     get jobCancellationFeeConfirmYesButton()
     {
-        return $('//*[contains(text(),"This job will incur Cancel Fee of")]/../../../../../../..//input[@value="Yes"]')
+        //return $('//*[contains(text(),"This job will incur Cancel Fee of")]/../../../../../../..//input[@value="Yes"]')
+        return $('//*[contains(text(),"Please note this job may incur a cancellation fee")]/../../../../../../..//input[@value="Yes"]')
     },
 
     get contractorListTable()
