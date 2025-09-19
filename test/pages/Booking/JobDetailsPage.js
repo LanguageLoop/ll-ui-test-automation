@@ -8,7 +8,8 @@ module.exports = {
 
     get editButton()
     {
-        return $('//input[@value="Edit"]')
+        //return $('//input[@value="Edit"]')
+        return $('//*[contains(@id,"wtbtnEditEnable")]')
     },
 
     get cancelButton()
