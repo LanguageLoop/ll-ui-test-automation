@@ -62,7 +62,7 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password             | contractor | clearance    | salutation | gender | name       | pin  | mobile     | dob        | email | address                 | id                  | number | years |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | Police Check | Mr         | female | Automation | 1232 | 0400000000 | 12-12-1982 | all   | St Kilda VIC, Australia | Permanent Residence | 123456 | 4     |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | Police Check | Ms         | Female | Automation | 1232 | 0400000000 | 12-12-1982 | all   | St Kilda VIC, Australia | Permanent Residence | 123456 | 4     |
 
 
   @AddClearance
@@ -80,7 +80,7 @@ Feature: Contractor Engagement features
 
     Examples:
       | username          | password             | contractor | clearance    | salutation | gender | name       | pin  | mobile     | dob        | email | address                 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | Police Check | Mr         | female | Automation | 1232 | 0400000000 | 12-12-1982 | all   | St Kilda VIC, Australia |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | Police Check | Ms         | Female | Automation | 1232 | 0400000000 | 12-12-1982 | all   | St Kilda VIC, Australia |
 
 
   @AddAvailability
