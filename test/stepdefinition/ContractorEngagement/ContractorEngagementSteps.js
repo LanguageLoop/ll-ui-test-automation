@@ -15,9 +15,10 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
 
     action.selectTextFromDropdown(contractorEngagementPage.salutationDropdown, salutation,"Salutation dropdown on Contractor Engagement page")
     if (gender == "Male") {
-        action.clickElement(contractorEngagementPage.maleRadioButton, "Male Radio button on Contractor Engagement page")
+        action.selectTextFromDropdown(contractorEngagementPage.maleRadioButton, gender,"Male Radio button on Contractor Engagement page")
+       // action.clickElement(contractorEngagementPage.maleRadioButton, "Male Radio button on Contractor Engagement page")
     } else {
-        action.clickElement(contractorEngagementPage.femaleRadioButton,"Female Radio button on Contractor Engagement page")
+        action.selectTextFromDropdown(contractorEngagementPage.femaleRadioButton, gender,"Female Radio button on Contractor Engagement page")
     }
 
     action.enterValue(contractorEngagementPage.telephonePinInput, pin, "Telephone pin Input field on Contractor Engagement page")

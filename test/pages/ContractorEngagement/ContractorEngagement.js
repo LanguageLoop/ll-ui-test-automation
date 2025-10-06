@@ -9,11 +9,12 @@ module.exports = {
     },
 
     get maleRadioButton() {
-        return $('//*[text()="My Details"]/../..//*[text()="Male"]/..//input')
+      //  return $('//*[text()="My Details"]/../..//*[text()="Male"]/..//input')
+       return $('//*[text()="My Details"]/../..//*[text()="Gender"]/..//select')
     },
 
     get femaleRadioButton() {
-        return $('//*[text()="My Details"]/../..//*[text()="Female"]/..//input')
+        return $('//*[text()="My Details"]/../..//*[text()="Gender"]/..//select')
     },
 
     get telephonePinInput() {
