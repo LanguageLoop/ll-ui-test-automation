@@ -472,7 +472,7 @@ Feature: ODTI Jobs Admin features
 
     Examples:
       | username          | password             | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2 | start date dashboard | end date dashboard | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Job Date        | 1                     | After               | 1                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-09-2023     | 2                    | 02-03-2023           | 04-09-2023         | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Job Date        | 1                     | After               | 1                         | 01-03-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 05-06-2023     | 2                    | 02-03-2023           | 04-06-2023         | RecordStatus    | 4                     | Is                  | 4                         | Export         | 1                    |
 
     #LL-901 Scenario 1: Verifying the explanation text for the Total/Connected count
   @LL-901 @VerifyExplanationTextTotalConnectedCount

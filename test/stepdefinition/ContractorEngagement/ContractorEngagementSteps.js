@@ -109,14 +109,16 @@ When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function 
     action.enterValue(contractorEngagementPage.naatiNumber, naati, "Naati number field on Contractor Engagement page")
     action.isClickableWait(contractorEngagementPage.validateButton, 10000, "Validate button on Contractor Engagement page")
     action.clickElement(contractorEngagementPage.validateButton, "Validate button on Contractor Engagement page")
-    action.isVisibleWait(contractorEngagementPage.validFrom, 30000, "Valid From field on Contractor Engagement page")
-    var txt = contractorEngagementPage.validFrom.getText()
-    console.log(txt)
-    var fields = txt.split(': ');
-    browser.pause(1000)
-    console.log(fields[1].replace(/[/.]/g, "-"))
-    action.isClickableWait(contractorEngagementPage.dateIssuedInput, 10000, "Date Issued input field on Contractor Engagement page")
-    action.addValueAndPressReturnTab(contractorEngagementPage.dateIssuedInput, fields[1].replace(/[/.]/g, "-"), "Date Issued input field on Contractor Engagement page")
+    //commenting the below lines as the Valid from is now auto populated when a validating the CPN after all details are entered
+  //Note: If in future behavior changes, we can again include the below lines based on new improvements
+    // action.isVisibleWait(contractorEngagementPage.validFrom, 30000, "Valid From field on Contractor Engagement page")
+    // var txt = contractorEngagementPage.validFrom.getText()
+    // console.log(txt)
+    // var fields = txt.split(': ');    
+    // browser.pause(1000)
+    // console.log(fields[1].replace(/[/.]/g, "-"))
+    // action.isClickableWait(contractorEngagementPage.dateIssuedInput, 10000, "Date Issued input field on Contractor Engagement page")
+    // action.addValueAndPressReturnTab(contractorEngagementPage.dateIssuedInput, fields[1].replace(/[/.]/g, "-"), "Date Issued input field on Contractor Engagement page")
     action.isClickableWait(contractorEngagementPage.saveAndCloseButton, 10000, "Save and Close button on Contractor Engagement page")
     action.clickElement(contractorEngagementPage.saveAndCloseButton, "Save and Close button on Contractor Engagement page")
     browser.pause(5000)
@@ -876,7 +878,7 @@ Then(/^the Activate toggle is off for ODTI$/, function () {
     let contractorActivatedStatus = action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,3000,"ODTI Availability Activate toggle input in Contractor Engagement page");
     if (contractorActivatedStatus === true) {
         action.clickElement(contractorEngagementPage.ODTIAvailabilityActivateToggleLabel,"ODTI Availability Activate toggle label in Contractor Engagement page");
-        browser.waitUntil(() => action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,0,"ODTI Availability Activate toggle input in Contractor Engagement page") === false, {
+        browser.waitUntil(() => action.isSelectedWait(contractorEngagementPage.ODTIAvailabilityActivateToggleInput,5000,"ODTI Availability Activate toggle input in Contractor Engagement page") === false, {
             timeout: 5000,
             timeoutMsg: 'contractor toggle not activated in 5s',
         })

@@ -874,6 +874,7 @@ When(/^they click on any of the ODTI Service Charge ID hyperlink$/, function () 
     let serviceChargeID1TextElement = $(ODTIJobsPage.odtiTableResultsHyperlinkDataDynamicRowElementLocator.replace("<dynamicRowIndex>", "3").replace("<dynamicColumnIndex>", "1"));
     action.isVisibleWait(serviceChargeID1TextElement, 10000,"Service charge ID in ODTI Jobs page");
     action.clickElement(serviceChargeID1TextElement,"Service charge ID in ODTI Jobs page");
+    browser.pause(3000)
 })
 
 When(/^I click on a non empty Campus Name value under Campus Name column$/, function () {
