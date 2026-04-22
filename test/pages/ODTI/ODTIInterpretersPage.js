@@ -61,7 +61,8 @@ module.exports = {
     },
 
     get interpreterResultsLinkTextValueLocator() {
-        return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]'
+       // return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]'
+        return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::div/parent::td/parent::tr/td[<dynamicColumnNumber>]'
     },
 
     get interpreterResultsValueLinkLocator() {
@@ -77,7 +78,8 @@ module.exports = {
     },
 
     get interpreterResultsLinkTextLinkLocator() {
-        return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]/a'
+     //   return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::td/parent::tr/td[<dynamicColumnNumber>]/a'
+        return '//table[contains(@id,"ContractorODTITable")]/tbody//span[contains(text(),"<dynamicRowLinkText>")]/parent::a/parent::div/parent::td/parent::tr/td[<dynamicColumnNumber>]/a'
     },
 
     get jobIDTextInODTIJobAllocationPage() {
