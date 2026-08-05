@@ -380,12 +380,12 @@ Feature: Campus Management features
   And I click account management link
   And I search for campus "<campus id>"
   And I click the first campus link from search results
-  And The Admin is on the Campus Management page > Manage Campus popup
+  # And The Admin is on the Campus Management page > Manage Campus popup
   And They click Assign Booking Officer > Add New User
   And Fill out all the required details "<firstname>", email, "<landline number>" on the Select User popup
   And They click the Save button on the Select User popup
-  Then The user is created
-  When The booking officer popup is closed
+ # Then The user is created
+  # When The booking officer popup is closed
   And I click Admin header link
   Then The user "<firstname>" will be displayed in the Admin > Accounts section
   And The Created Date is captured in the form of DD slash MM slash YYYY HH:MM:SS

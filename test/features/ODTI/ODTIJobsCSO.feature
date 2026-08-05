@@ -123,8 +123,8 @@ Feature: ODTI Jobs CSO features
     Then The columns available for ODTI Jobs for the user are "<column headers>"
 
     Examples:
-      | username cso   | password cso | column headers                                                                                                          |
-      | zenq@cso10.com | Test1        | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL  |
+      | username cso   | password cso | column headers                                                                                   |
+      | zenq@cso10.com | Test1        | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE  |
 
       #Scenario 10 - User should be able to view different pages using pagination when they are more number of records
   @Regression @RegressionS30 @CSOPagination
@@ -174,8 +174,8 @@ Feature: ODTI Jobs CSO features
     Then The results should be sorted on clicking each column header "<column headers>"
 
     Examples:
-      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2  | column headers                                                                                                         | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
-      | zenq@cso10.com | Test1        | Job Date        | 2                     | After               | 1                         | 11-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                     | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type,Client Charge Subtotal | RecordStatus    | 3                     |  Is                 |  3                        | Export         | 1                    |
+      | username cso   | password cso | filter option 1 | filter option index 1 | filter comparator 1 | filter comparator index 1 | filter value 1 | filter value index 1 | filter option 2 | filter option index 2 | filter comparator 2 | filter comparator index 2 | filter value 2 | filter value index 2  | column headers                                                                                  | filter option 3 | filter option index 3 | filter comparator 3 | filter comparator index 3 | filter value 3 | filter value index 3 |
+      | zenq@cso10.com | Test1        | Job Date        | 2                     | After               | 1                         | 11-01-2023     | 1                    | Job Date        | 3                     | Before              | 3                         | 19-01-2023     | 2                     | ODTI Service Charge ID,Call Start,Call Duration,Campus Name,Language,Interpreter Name,Call Type | RecordStatus    | 3                     |  Is                 |  3                        | Export         | 1                    |
 
       #Scenario 12 - AS CSO User - User should be able to click Campus Name under 'Campus Name' column
   @Regression @RegressionS37 @CSOClickCampusName

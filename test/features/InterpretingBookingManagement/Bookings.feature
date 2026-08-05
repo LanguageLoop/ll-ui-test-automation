@@ -816,8 +816,8 @@ Feature: Create new booking for Interpreters
     Then the contractor above "<contractor>" status will be "<eligible status>" for the Job
 
     Examples:
-      | username          | password             | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | - No status -     |
+      | username          | password             | campus id | campus PinBillToCode | contractor                 | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status      |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974 | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notifciation    |
 
     #LL-682 Covid vax exemption allocation logic Scenario 6: In contractor page, user makes the existing block that has prebooked type as expired and verify the contractor eligibility for Prebooked job
   #GIVEN a contractor has block created for that Campus BillTo for Prebooked job type > #WHEN User has requested Prebooked job
@@ -885,7 +885,7 @@ Feature: Create new booking for Interpreters
 
     Examples:
       | username          | password             | campus id | campus PinBillToCode | contractor                  | service     | from      | to      | level        | billTo          | severityLevel | jobTypes      | startDate  | endDate    | request job type     | dropdownfilter | campus pin | Requester Name      | language   | assignment type   | date         | time  | email        | not eligible status | eligible status   |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | - No status -     |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     |  33124 - DH006       | Automation Contractor65974  | Interpreter | zz-Zenq2  | ENGLISH | Professional | DH006 - DH RDNS | 1             | Pre-booked TI | 05-02-2023 | 06-02-2023 | Pre-Booked Telephone |  Management    |  33124     |  Automation Tester  |  zz-Zenq2  |   Halfday         | short notice | 09:30 | hh@bb.com.au | Not eligible        | Auto Notifciation |
 
     #LL-716 Expand the label on the client new job request screen
     # In the ‘Instructions for Interpreters’, the user sees the following text as Label

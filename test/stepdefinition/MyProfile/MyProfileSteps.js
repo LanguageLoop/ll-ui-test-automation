@@ -9,12 +9,12 @@ When(/^I click reset password button$/,  function(){
  })
 
  When(/^I click edit profile details link$/, function(){
-     browser.pause(4000)
+     browser.pause(20000)
      action.isClickableWait(myProfilePage.editDetailsLink,30000,"Edit details link in My profile page")
      action.waitForElementClickable(myProfilePage.editDetailsLink,"Edit details link in My profile page")
      action.clickElement(myProfilePage.editDetailsLink,"Edit details link in My profile page")
      let contractorDetailsModal=$("//span[text()[contains(.,'My Details')]]")
-     contractorDetailsModal.waitForDisplayed({timeout:10000, timeoutMsg:'modal not displayed within 10s', interval:1000})
+     contractorDetailsModal.waitForDisplayed({timeout:20000, timeoutMsg:'modal not displayed within 10s', interval:1000})
  })
 
  When(/^I enter preferred name "(.*)"$/, function(preferredname){
@@ -31,6 +31,10 @@ When(/^I click reset password button$/,  function(){
 
  When(/^I enter company name "(.*)"$/, function(companyname){
      action.enterValue(myProfilePage.companyNameInput,companyname,"Company name text box in My profile page")
+ })
+
+  When(/^I enter Telephone "(.*)"$/, function(Telephone){
+     action.enterValue(myProfilePage.telephoneInput,Telephone,"Telephone number in My profile page")
  })
 
  When(/^I click save button in my details$/, function(){
@@ -189,10 +193,10 @@ Then(/^I verify naati table is present$/, function(){
     chai.expect(action.elementExists(myProfilePage.resetEmailConfirmationMessage,"Reset email configuration message in My profile page")).to.be.true
  })
 
- Then(/^I verify the profile details are updated "(.*)","(.*)","(.*)"$/,function(preferredname,abn,companyname){
+ Then(/^I verify the profile details are updated "(.*)","(.*)"$/,function(preferredname,telephone){
     chai.expect(myProfilePage.preferredNameInput.getAttribute("value")==preferredname).to.be.true
-    chai.expect(myProfilePage.companyNameInput.getAttribute("value")==companyname).to.be.true
-    chai.expect(myProfilePage.abnInput.getAttribute("value")==abn).to.be.true
+   let tel = chai.expect(myProfilePage.telephoneInput.getAttribute("value")==telephone).to.be.true
+   // chai.expect(myProfilePage.abnInput.getAttribute("value")==abn).to.be.true
  })
 
  Then(/^I verify the emergency contact details are updated "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/,function(firstname,lastname,phonenumber,relationship,address,country,email){

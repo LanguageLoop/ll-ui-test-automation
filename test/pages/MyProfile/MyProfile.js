@@ -92,6 +92,10 @@ module.exports ={
         return $('//input[contains(@id,"CompanyName")]')
     },
 
+   get telephoneInput(){
+        return $('//input[contains(@id,"LandlinePhoneNumber")]')
+ },
+
     get businessTypeDropdown(){
         return $('//select[contains(@id,"IndustryTypes")]')
     },
