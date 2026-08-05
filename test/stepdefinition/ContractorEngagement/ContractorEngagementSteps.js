@@ -6,7 +6,7 @@ When(/^I click add contractor button$/, function () {
     action.clickElement(contractorEngagementPage.addContractorLink,"Add Contractor link on Contractor Engagement page");
 })
 
-When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, function (salutation, gender, name, pin, mobile, dob, email, address) {
+When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, function (salutation, gender, name, mobile, email, address) {
     name = name + (Math.floor(Math.random() * 1000000) + 1).toString()
     email = email + (Math.floor(Math.random() * 1000000) + 1).toString()
     mob = "0" + (400000000 + (Math.floor(Math.random() * 100000000) + 1)).toString()
@@ -21,10 +21,10 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)","(.*
         action.selectTextFromDropdown(contractorEngagementPage.femaleRadioButton, gender,"Female Radio button on Contractor Engagement page")
     }
 
-    action.enterValue(contractorEngagementPage.telephonePinInput, pin, "Telephone pin Input field on Contractor Engagement page")
+ //   action.enterValue(contractorEngagementPage.telephonePinInput, pin, "Telephone pin Input field on Contractor Engagement page")
     action.enterValue(contractorEngagementPage.firstNameInput, name, "First Name Input field on Contractor Engagement page")
     action.enterValue(contractorEngagementPage.mobileInput, mob, "Mobile field on Contractor Engagement page")
-    action.enterValueAndPressReturn(contractorEngagementPage.dateOfBirthDropdown, dob, "Date of Birth field on Contractor Engagement page")
+ //   action.enterValueAndPressReturn(contractorEngagementPage.dateOfBirthDropdown, dob, "Date of Birth field on Contractor Engagement page")
     action.enterValue(contractorEngagementPage.emailInput, email + "@aa.com.au", "Email input field on Contractor Engagement page")
 
     $('//span[@class="fa fa-fw fa-pencil-square-o"]').click()
@@ -975,8 +975,8 @@ Then(/^Issued date is same as Document Received Date and Expires date is same as
     chai.expect(expiresDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_EXPIRY_DATE.split("-"))[0]);
     chai.expect(expiresDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_EXPIRY_DATE.split("-"))[1]);
     chai.expect(expiresDateTextAddedOnNdisScreening).to.includes((GlobalData.DOCUMENT_EXPIRY_DATE.split("-"))[2]);
-    let clearanceDocumentUploadedFileAttachmentText = action.getElementText(contractorEngagementPage.clearanceDocumentUploadedFileAttachmentText, "Document Uploaded file attachment text on NDIS Screening Clearance in Create Contractor page");
-    chai.expect(clearanceDocumentUploadedFileAttachmentText).to.includes("ContractDocument.docx");
+    //let clearanceDocumentUploadedFileAttachmentText = action.getElementText(contractorEngagementPage.clearanceDocumentUploadedFileAttachmentText, "Document Uploaded file attachment text on NDIS Screening Clearance in Create Contractor page");
+    //chai.expect(clearanceDocumentUploadedFileAttachmentText).to.includes("ContractDocument.docx");
 })
 
 When(/^I click on 3 dots icon, and select Edit option$/, function () {

@@ -24,17 +24,18 @@ Feature: Contractor Management features
     And I click "<contractor name>" user link
     And I click edit profile details link
     And I enter preferred name "<preferred name>"
-    And I enter abn "<abn>"
-    And I click check abn button
-    And I enter company name "<company name>"
+    And I enter Telephone "<Telephone>"
+    #And I enter abn "<abn>"
+    #And I click check abn button
+    #And I enter company name "<company name>"
     And I click save button in my details
     And I click edit profile details link
-    Then I verify the profile details are updated "<preferred name>","<abn>","<company name>"
+    Then I verify the profile details are updated "<preferred name>","<Telephone>"
 
   Examples:
-   | username                 | password | dropdownfilter      |  contractor name  | preferred name |  abn         |  company name       |
-   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Su            |  50664505657 |  VITS LANGUAGELINK |
-   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Suzanne       |  53819971946 |  HANNA, SUZANE     |
+   | username                 | password | dropdownfilter      |  contractor name  | preferred name |  Telephone  |  
+   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Su            |  02 5465 8978 |
+   | suzanehanna@hotmail.com  | Test1    | Available Jobs      |  Suzane HANNA     |  Suzanne       |  02 5465 8977 |
 
    @EmergencyContact
    Scenario Outline: Edit emergency contact details

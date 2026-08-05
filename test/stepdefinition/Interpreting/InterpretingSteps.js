@@ -147,6 +147,7 @@ When(/^I click "(.*)" user link$/, function(user){
   const  usernameElt = $('//*[text()="<dynamic>"]'.replace("<dynamic>",user));
   action.isVisibleWait(usernameElt,20000,"Username in Interpreting steps");
   action.clickElement(usernameElt,"Username in Interpreting steps");
+  browser.pause(10000)
 })
 
 When(/^I keep refreshing$/, function(){

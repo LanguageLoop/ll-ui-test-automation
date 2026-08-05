@@ -687,9 +687,9 @@ Given(/^The Admin is on the Campus Management page > Manage Campus popup$/, func
 })
 
 Given(/^They click Assign Booking Officer > Add New User$/, function(){
-    action.isVisibleWait(campusDetailsPage.assignBookingOfficerLink,10000,"Assign booking officer link in campus page")
-    action.isClickableWait(campusDetailsPage.assignBookingOfficerLink,10000,"Assign booking officer link in campus page")
-    action.clickElement(campusDetailsPage.assignBookingOfficerLink,"Assign booking officer link in campus page");
+  //  action.isVisibleWait(campusDetailsPage.assignBookingOfficerLink,10000,"Assign booking officer link in campus page")
+   // action.isClickableWait(campusDetailsPage.assignBookingOfficerLink,10000,"Assign booking officer link in campus page")
+    //action.clickElement(campusDetailsPage.assignBookingOfficerLink,"Assign booking officer link in campus page");
     action.isVisibleWait(campusDetailsPage.addNewUserButton,10000,"Add new user button in campus page");
     action.isClickableWait(campusDetailsPage.addNewUserButton,10000,"Add new user button in campus page");
     action.clickElement(campusDetailsPage.addNewUserButton,"Add new user button in campus page");
@@ -701,6 +701,7 @@ Given(/^Fill out all the required details "(.*)", email, "(.*)" on the Select Us
     GlobalData.BOOKING_OFFICER_FIRSTNAME = firstName
     action.enterValue(campusDetailsPage.firstNameFieldBookingOfficer,GlobalData.BOOKING_OFFICER_FIRSTNAME,"First name field booking officer in campus page");
     let email = GlobalData.BOOKING_OFFICER_FIRSTNAME + "@ll.com"
+    console.log("email is...................", +email)
     action.enterValue(campusDetailsPage.emailFieldBookingOfficer,email,"Email field booking officer in campus page");
     action.enterValue(campusDetailsPage.landLineNumberFieldBookingOfficer,landLineNumber,"Landline number field booking officer in campus page");
 })

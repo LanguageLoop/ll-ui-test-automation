@@ -10,7 +10,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I click add contractor button
-    And I enter contractor details "<salutation>","<gender>","<name>","<pin>","<mobile>","<dob>","<email>","<address>"
+    And I enter contractor details "<salutation>","<gender>","<name>","<mobile>","<email>","<address>"
     And I click contractor engagement link
     Then I verify contractor is created
 
@@ -53,7 +53,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I click add contractor button
-    And I enter contractor details "<salutation>","<gender>","<name>","<pin>","<mobile>","<dob>","<email>","<address>"
+    And I enter contractor details "<salutation>","<gender>","<name>","<mobile>","<email>","<address>"
     And I click contractor engagement link
     And I search and open created contractor
     And I click add work eligibility link
@@ -70,7 +70,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I click add contractor button
-    And I enter contractor details "<salutation>","<gender>","<name>","<pin>","<mobile>","<dob>","<email>","<address>"
+    And I enter contractor details "<salutation>","<gender>","<name>","<mobile>","<email>","<address>"
     And I click contractor engagement link
     And I search and open created contractor
     And I click add clearance link
@@ -88,7 +88,7 @@ Feature: Contractor Engagement features
     When I login with "<username>" and "<password>"
     And I click contractor engagement link
     And I click add contractor button
-    And I enter contractor details "<salutation>","<gender>","<name>","<pin>","<mobile>","<dob>","<email>","<address>"
+    And I enter contractor details "<salutation>","<gender>","<name>","<mobile>","<email>","<address>"
     And I click contractor engagement link
     And I search and open created contractor
     And I click add availability link
@@ -126,8 +126,8 @@ Feature: Contractor Engagement features
     And I delete referees
 
     Examples:
-      | username          | password             | contractor | agency        | name        |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | BOLTON CLARKE | Auto tester |
+      | username          | password             | contractor                   | agency        | name        |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation Contractor104670  | BOLTON CLARKE | Auto tester |
 
 
 

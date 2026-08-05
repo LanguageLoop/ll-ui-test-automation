@@ -340,23 +340,28 @@ module.exports ={
     },
 
     get addNewUserButton(){
-        return $('//input[contains(@id,"BookingOfficerDialog")][@value="Add New User"]');
+        //return $('//input[contains(@id,"BookingOfficerDialog")][@value="Add New User"]');
+       return $('//input[@class="Button"][@value="Add New User"]');
     },
 
     get firstNameFieldBookingOfficer(){
-        return $('//input[contains(@id,"FirstName") and contains(@id,"BookingOfficerDialog")]')
+       // return $('//input[contains(@id,"FirstName") and contains(@id,"BookingOfficerDialog")]')
+        return $('//input[contains(@id,"FirstName") and contains(@id,"AddNewUserModal")]')
     },
 
     get emailFieldBookingOfficer(){
-        return $('//input[contains(@id,"UserEmail") and contains(@id,"BookingOfficerDialog")]')
+    //    return $('//input[contains(@id,"UserEmail") and contains(@id,"BookingOfficerDialog")]')
+       return $('//input[contains(@id,"UserEmail") and contains(@id,"AddNewUserModal")]')
     },
 
     get landLineNumberFieldBookingOfficer(){
-        return $('//input[contains(@id,"LandlinePhoneNumber") and contains(@id,"BookingOfficerDialog")]')
+       // return $('//input[contains(@id,"LandlinePhoneNumber") and contains(@id,"BookingOfficerDialog")]')
+        return $('//input[contains(@id,"LandlinePhoneNumber") and contains(@id,"AddNewUserModal")]')
     },
 
     get saveButtonBookingOfficer(){
-        return $('//input[contains(@id,"btnSave") and contains(@id,"BookingOfficerDialog")]')
+        //return $('//input[contains(@id,"btnSave") and contains(@id,"BookingOfficerDialog")]')
+        return $('//input[contains(@id,"btnSave") and contains(@id,"AddNewUserModal")]')
     },
 
     get bookingOfficerPopupCloseButton(){
