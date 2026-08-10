@@ -454,13 +454,19 @@ Feature: ODTI_UI DID Configuration features
     And the Admin is on the DID Configurations Tab
     And the Admin is on the Edit DID Configuration screen of Campus "<campus>"
     And the user is navigated to the Edit DID Configuration screen
+     And the admin has clicked the Edit icon beside a language option
+    And from out of nowhere, a modal window for Edit Language magically appears!
+    And has selected a language "<language Name>" form Language Name drop-down in Edit Language modal
+    And has clicked the SAVE button in Edit Language modal
+    Then the modal window for Edit Language closes
+    And the table now reflects the selected language "<language Name>" for the keypad option
     And the Admin clicks the X icon in Language Options table
     Then the language option is cleared in Language Options table
     And the X icon disappears in Language Options table
 
     Examples:
-      | username          | password             | campus                  |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |
+      | username          | password             | campus                  | language Name  |
+      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 29449 - Contoso Pty LTD |  ARABIC        |
 
     #LL-655: Scenario 4a: UI for the DID Configuration
   @LL-655 @DIDAllFourOptionsEnabled
