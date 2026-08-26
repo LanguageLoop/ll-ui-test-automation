@@ -447,6 +447,7 @@ module.exports={
 
     get customFieldDynamicLabel() {
         return '//div[contains(@id,"CustFields")]//span[text()="<dynamic>"]';
+     // return $('//div[contains(@id,"CustFields")]//span[text()="AutomationField"]');
     },
 
     get findContractorPopup() {

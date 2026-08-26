@@ -61,8 +61,8 @@ Feature: ODTI Jobs Finance features
     And the user will not see the "<column header not displayed>" column
 
     Examples:
-      | username       | password | column headers                                                                                                         | column header not displayed     | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
-      | zenq@cso10.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE,CLIENT CHARGE SUBTOTAL | INTERPRETER CHARGE TOTAL EX GST | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
+      | username       | password | column headers                                                                                                                    | column header not displayed     | filter comparator 1 | filter comparator index 1 | filter option 4 | filter option index 4 | filter comparator 4 | filter comparator index 4 | filter value 4 | filter value index 4 |
+      | zenq@cso10.com | Test1    | ODTI SERVICE CHARGE ID,CALL START,CALL DURATION,CAMPUS NAME,LANGUAGE,INTERPRETER NAME,CALL TYPE | INTERPRETER CHARGE TOTAL EX GST | Before              | 1                         | RecordStatus    | 2                     |  Is                 |  2                        | Export         | 1                    |
 
 
     #LL-627 Scenario 5b - Finance user views ODTI Jobs table

@@ -418,8 +418,10 @@ Then(/^in contract page, the actual preference set "(.*)" still stays the same$/
 When(/^the Admin adds a Customised ODTI Field "(.*)","(.*)","(.*)"$/, function (fieldName, maxLength, audioLabel) {
     action.isVisibleWait(contractManagementPage.addCustomizedFieldLink, 10000,"Add Customized field link in Contract page");
     action.clickElement(contractManagementPage.addCustomizedFieldLink,"Add Customized field link in Contract page");
-    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
-    action.enterValue(contractManagementPage.fieldNameTextBoxOnEditOptions,GlobalData.CUSTOMISED_FIELD_NAME,"Field name text box in Contract page");
+   // GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+    //action.enterValue(contractManagementPage.fieldNameTextBoxOnEditOptions,GlobalData.CUSTOMISED_FIELD_NAME,"Field name text box in Contract page");
+    action.enterValue(contractManagementPage.fieldNameTextBoxOnEditOptions,fieldName,"Field name text box in Contract page");
+    action.enterValue(contractManagementPage.fieldNameTextBoxOnEditOptions,fieldName,"Field name text box in Contract page");
     action.clickElement(contractManagementPage.freeTextRadioButton,"Free text radio button in Contract page");
     action.clickElement(contractManagementPage.audibleInODTICheckboxOnEditOptions,"Audible in ODTI checkbox on edit options in Contract page");
     action.isVisibleWait(contractManagementPage.maxLengthTextBoxOnEditOptions,10000,"Max length text box on edit options in Contract page");
@@ -428,11 +430,12 @@ When(/^the Admin adds a Customised ODTI Field "(.*)","(.*)","(.*)"$/, function (
     action.clickElement(contractManagementPage.addButtonOnEditOptions,"Add button on edit options in Contract page");
 })
 
-Then(/^the Customised ODTI Field is removed$/, function () {
-    let customisedFieldToggle = $(contractManagementPage.customisedFieldToggleDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
+Then(/^the "(.*)" is removed$/, function (customOdtiField) {
+  //  let customisedFieldToggle = $(contractManagementPage.customisedFieldToggleDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
+  let customisedFieldToggle = $(contractManagementPage.customisedFieldToggleDynamicLocator.replace("<dynamic>", customOdtiField));
     action.isVisibleWait(customisedFieldToggle, 10000,"Customized field toggle in Contract page");
     action.clickElement(customisedFieldToggle,"Customized field toggle in Contract page");
-    let customisedFieldRemoveLink = $(contractManagementPage.customisedFieldRemoveLinkDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
+  let customisedFieldRemoveLink = $(contractManagementPage.customisedFieldRemoveLinkDynamicLocator.replace("<dynamic>", customOdtiField));
     action.isVisibleWait(customisedFieldRemoveLink, 10000,"Customized field remove link in Contract page");
     action.clickElement(customisedFieldRemoveLink,"Customized field remove link in Contract page");
     action.isNotVisibleWait(customisedFieldToggle, 10000,"Customized field toggle in Contract page");

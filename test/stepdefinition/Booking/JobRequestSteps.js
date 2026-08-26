@@ -793,9 +793,10 @@ When(/^the Additional information section is shown$/, function () {
   chai.expect(additionalInformationSectionDisplayStatus).to.be.true;
 })
 
-When(/^any Audible in ODTI custom fields are not shown$/, function () {
-  let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
-  let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 1000,"Audible in ODTI custom field "+GlobalData.CUSTOMISED_FIELD_NAME+" in Job Request Page");
+When(/^any Audible in ODTI "(.*)" are not shown$/, function (customField) {
+ // let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",customField));
+  let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 1000,"Audible in ODTI custom field "+customField+" in Job Request Page");
   chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.false;
 })
 
@@ -808,8 +809,9 @@ When(/^other custom fields "(.*)" are still visible or editable$/, function (cus
   }
 })
 
-When(/^the custom field for which the option is Audible in ODTI is unselected is displayed$/, function () {
-  let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+When(/^the "(.*)" for which the option is Audible in ODTI is unselected is displayed$/, function (customField) {
+  //let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  let customFieldLabel = $(jobRequestPage.customFieldDynamicLabel.replace("<dynamic>",customField));
   let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 1000,"Audible in ODTI custom field "+GlobalData.CUSTOMISED_FIELD_NAME+" in Job Request Page");
   chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.true;
 })

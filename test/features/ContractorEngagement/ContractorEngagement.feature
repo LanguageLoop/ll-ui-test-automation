@@ -100,19 +100,20 @@ Feature: Contractor Engagement features
       | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Mr         | Male   | Automation Contractor | 2323 | 0400000000 | 20-04-1982 | aa    | St Kilda VIC, Australia | Translation | 5     |
 
 
-  @AddWorkPreference
-  Scenario Outline: Add work preference
-    When I login with "<username>" and "<password>"
-    And I click contractor engagement link
-    And I search and open contractor "<contractor>"
-    And I click add work preference link
-    And I enter preference details "<company>"
-    Then I verify work preference "<company>"
-    And I delete work preferences
+  # @AddWorkPreference
+  # this is no longer valid as per the UI changes
+  # Scenario Outline: Add work preference
+  #   When I login with "<username>" and "<password>"
+  #   And I click contractor engagement link
+  #   And I search and open contractor "<contractor>"
+  #   And I click add work preference link
+  #   And I enter preference details "<company>"
+  #   Then I verify work preference "<company>"
+  #   And I delete work preferences
 
-    Examples:
-      | username          | password             | contractor | company                 |
-      | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | BOLTON CLARKE - DH RDNS |
+  #   Examples:
+  #     | username          | password             | contractor | company                 |
+  #     | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Automation | BOLTON CLARKE - DH RDNS |
 
 
   @AddReferees @test12
