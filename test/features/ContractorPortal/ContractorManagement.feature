@@ -114,17 +114,18 @@ Feature: Contractor Management features
     | username                | password   |  contractor name  |
     | suzanehanna@hotmail.com | Test1      |  Suzane HANNA     |
 
-@WorkWithChildren
-   Scenario Outline: Upload working with children document and verify
-    When I login with "<username>" and "<password>"
-    And I handle contractor message
-    And I click "<contractor name>" user link
-    And I upload working with children document
-    Then I verify the working with children document is uploaded   
+# @WorkWithChildren
+#Not valid as per latest changes
+#    Scenario Outline: Upload working with children document and verify
+#     When I login with "<username>" and "<password>"
+#     And I handle contractor message
+#     And I click "<contractor name>" user link
+#     And I upload working with children document
+#     Then I verify the working with children document is uploaded   
 
-  Examples:
-    | username                | password   |  contractor name  |
-    | suzanehanna@hotmail.com | Test1      |  Suzane HANNA     |
+#   Examples:
+#     | username                | password   |  contractor name  |
+#     | suzanehanna@hotmail.com | Test1      |  Suzane HANNA     |
 
   # @WorkEligibility
   # Scenario Outline: Upload work eligibility document and verify

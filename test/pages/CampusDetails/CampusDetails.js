@@ -478,6 +478,7 @@ module.exports ={
 
     get customisedFieldsOverrideLinkLocator() {
         return '//table[contains(@id,"CustFieldOverride")]/tbody//a[text()="<dynamic>"]';
+      //  return $('//table[contains(@id,"CustFieldOverride")]/tbody//a[text()="AutomationFieldTest"]');
     },
 
     get overrideCampusDataButtonOnManageCustomisedField() {
@@ -533,11 +534,13 @@ module.exports ={
     },
 
     get customisedFieldsOverrideAudibleInODTICheckboxLocator() {
-        return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]';
+       // return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]';
+       return $('//a[text()="AutomationField"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]');
     },
 
     get customisedFieldDeleteIconDynamicLocator() {
-        return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[9]//a[@class="LinkDelete"]';
+       return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[9]//a[@class="LinkDelete"]';
+       // return $('//a[text()="AutomationField"]/parent::div/parent::div/parent::td/following-sibling::td[9]//a[@class="LinkDelete"]');
     },
 
     get maxLengthRequiredFieldMessageOnManageCustomizedField() {

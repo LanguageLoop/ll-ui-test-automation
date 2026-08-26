@@ -276,10 +276,13 @@ module.exports = {
 
     get customisedFieldToggleDynamicLocator() {
         return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]'
+       // return $('//a[text()="AutomationFieldTest"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]');
+        
     },
 
     get customisedFieldRemoveLinkDynamicLocator() {
         return '//a[text()="<dynamic>"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]/following::a[text()="Remove"]'
+        // return $('//a[text()="AutomationFieldTest"]/parent::div/parent::td/parent::tr//label[contains(@id,"Toggle")]/following::a[text()="Remove"]');
     },
 
     get useMinimumRate2Checkbox() {

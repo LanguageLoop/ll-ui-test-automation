@@ -432,7 +432,7 @@ Feature: Campus Management features
 
   Examples:
    | username          | password              | campus ids                                                  | dimension list option |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 10070,10114,10146,10600,10665,10788,11788,12112,12184,12228 | ShortcodeNew          |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | 28063,31156,16384,30877,62749,56998,27322,27334,27355,27424 | ShortcodeNew          |
 
   #LL-443 AC 7: User should not be able to add multiple dimensions list at same time
  @MultipleDimensionsNotAtOnce @LL-443
@@ -587,20 +587,21 @@ Feature: Campus Management features
   And I click account management link
   And I search for campus "<campus id>"
   And I click the first campus link from search results
-  Then the Customised field will be inherited by the Campus
-  And the Customised field can be overridden on the Campus page
+  Then the "<customised field name>" will be inherited by the Campus
+  And the "<customised field name>" can be overridden on the Campus page
   And I click account management link
   And I search for contract title "<contract title>"
   And I click the contract link "<contract title>" from search results
-  And the Customised ODTI Field is removed
+  And the "<Customised ODTI Field>" is removed
   And I click account management link
   And I search for campus "<campus id>"
   And I click the first campus link from search results
-  And I click on delete icon on Customised ODTI Field in Campus
+ # And I click on delete icon on Customised ODTI Field in Campus
+  And I click on delete icon on "<Customised ODTI Field>" in Campus
 
   Examples:
-   | username          | password             | contract title                                   | customised field name | max length | audio label      | campus id |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | AutomationField       | 50         | automation label | 33124     |
+   | username          | password             | contract title                                   | customised field name | Customised ODTI Field    | max length | audio label      | campus id |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | Department of Health and Human Services - Health | AutomationFieldTest   |  AutomationFieldTest  | 50         | automation label | 33124     |
 
   #LL-514 Scenario 2a: Admin views customised ODTI field
  @LL-514 @ViewsCustomizedODTIFields
@@ -663,13 +664,14 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will display
   And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
   And the Admin clicks the ‘Add’ button On Manage Customized Field
-  Then the customised field will be created
+  Then the "<customised field name>" will be created
   And there is a checkbox checked for the above custom field under the column Audible in ODTI
-  And I click on delete icon on Customised ODTI Field in Campus
+ # And I click on delete icon on Customised ODTI Field in Campus
+  And I click on delete icon on "<Customised ODTI Field>" in Campus
 
   Examples:
-   | username          | password             | campus id | customised field name | max length | audio label      |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label |
+   | username          | password             | campus id | customised field name | max length | audio label      | Customised ODTI Field |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label | AutomationField       |
 
   #LL-514 Scenario 5: Required fields not filled out
  @LL-514 @CustomisedRequiredFieldsNotFilled
@@ -702,18 +704,18 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will display
   And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
   And the Admin clicks the ‘Add’ button On Manage Customized Field
-  And the customised field will be created
-  And they select Customised field in the Campus page
+  And the "<customised field name>" will be created
+  And they select "<customised field name>" in the Campus page
   And the Manage Customised Field modal is displayed
   And I edit any data under Audible in ODTI "<max length edit>","<audio label edit>" in campus
   And the Admin clicks the ‘Save’ button On Manage Customized Field
-  And they select Customised field in the Campus page
+  And they select "<customised field name>" in the Campus page
   Then the custom field is updated with latest values "<max length edit>","<audio label edit>"
-  And I click on delete icon on Customised ODTI Field in Campus
+  And I click on delete icon on "<Customised ODTI Field>" in Campus
 
   Examples:
-   | username          | password             | campus id | customised field name | max length | audio label      | max length edit | audio label edit  |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label | 60              | automation label2 |
+   | username          | password             | campus id | customised field name | max length | audio label      | max length edit | audio label edit  | Customised ODTI Field |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label | 60              | automation label2 | AutomationField       |
 
   #LL-514 Scenario 7: Deleting the added custom field Audible in ODTI
  @LL-514 @DeleteCustomField
@@ -727,13 +729,13 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will display
   And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
   And the Admin clicks the ‘Add’ button On Manage Customized Field
-  And the customised field will be created
-  And I click on delete icon on Customised ODTI Field in Campus
-  Then the custom field is deleted in campus
+   And the "<customised field name>" will be created
+  And I click on delete icon on "<Customised ODTI Field>" in Campus
+  Then the "<Customised ODTI Field>" is deleted in campus
 
   Examples:
-   | username          | password             | campus id | customised field name | max length | audio label      |
-   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label |
+   | username          | password             | campus id | customised field name | max length | audio label      | Customised ODTI Field  |
+   | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7 | 33124     | AutomationField       | 50         | automation label | AutomationField    |
 
   #LL-664 Scenario 1 : The Campus belongs to a contract with missing rates
  @LL-664 @CampusContractMissingRates
