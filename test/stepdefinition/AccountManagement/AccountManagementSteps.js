@@ -1,6 +1,7 @@
 
 
 When(/^I search for campus "(.*)"$/, function(campus){
+   browser.pause(10000)
     accountManagementPage.searchCampusInput.clearValue()
     action.enterValueAndPressReturn(accountManagementPage.searchCampusInput,campus,"Search Campus text box in Account Management page");
     browser.pause(2000)

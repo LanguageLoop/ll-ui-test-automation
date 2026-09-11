@@ -13,7 +13,7 @@ When(/^I click Claims header link$/,   function(){
 
 When(/^I click account management link$/, function(){
    action.clickElement(homePage.accountManagementLink,"Account Management link in Home page")
-   browser.pause(2000)
+   browser.pause(20000)
 })
 
 When(/^I click logout button$/, function(){
