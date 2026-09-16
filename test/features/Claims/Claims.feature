@@ -28,7 +28,10 @@ Feature: Claims processing features
    When I login with "<username>" and "<password>"
    And I click Claims header link  
    # And I close all special search criteria
-    And I enter interview date after "<after date>"
+  And I enter interview date after "<after date>"
+  And I click advanced search link
+   And I select "Campus Pin" from dropdown
+  And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -45,8 +48,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password               | status      | after date  | job id  | claim status |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Completed   |  01-01-2021 | 1560450 | Signed off   |
+   | username           | password               | status      | after date  | claim status | campus pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Completed   |  01-01-2021 | Signed off   |  33124     |
 
   @ProcessClaims @ProcessCampusAndContractor
   Scenario Outline: Process claims - process campus and contractor
@@ -54,6 +57,9 @@ Feature: Claims processing features
    And I click Claims header link  
   # And I close all special search criteria
   And I enter interview date after "<after date>"
+  And I click advanced search link
+   And I select "Campus Pin" from dropdown
+  And I enter the Campus pin "<campus pin>"
   And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -69,8 +75,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password               | status      | after date  |  claim status |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Completed   | 01-01-2021  |  Signed off   |
+   | username           | password               | status      | after date  |  claim status | campus pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Completed   | 01-01-2021  |  Signed off   |  33124     |
 
   @ProcessClaims @ProcessCampusOnly
   Scenario Outline: Process claims -  process campus only
@@ -78,6 +84,9 @@ Feature: Claims processing features
    And I click Claims header link  
   # And I close all special search criteria
   And I enter interview date after "<after date>"
+  And I click advanced search link
+   And I select "Campus Pin" from dropdown
+  And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -93,8 +102,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password             | status      | after date  | claim status |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Completed  | 01-01-2021  | Processed    |
+   | username           | password             | status      | after date  | claim status | campus pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Completed  | 01-01-2021  | Processed    |  33124      |
 
   @ProcessClaims @ReprocessCampusOnly 
   Scenario Outline: Process claims - campus only
@@ -102,6 +111,9 @@ Feature: Claims processing features
    And I click Claims header link  
  # And I close all special search criteria
  And I enter interview date after "<after date>"
+ And I click advanced search link
+   And I select "Campus Pin" from dropdown
+  And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -119,8 +131,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password              | status       | after date  |  claim status |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Signed off  |  01-01-2021 |  Signed off   |
+   | username           | password              | status       | after date  |  claim status | campus pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Signed off  |  01-01-2021 |  Signed off   |  33124      |
 
   @ProcessClaims @ReprocessContractorOnly
   Scenario Outline: Process claims - contractor only
@@ -128,6 +140,9 @@ Feature: Claims processing features
    And I click Claims header link  
    #And I close all special search criteria
    And I enter interview date after "<after date>"
+   And I click advanced search link
+   And I select "Campus Pin" from dropdown
+  And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -145,8 +160,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password             | status       | after date  | claim status |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Signed off  |  01-01-2021 | Signed off   |
+   | username           | password             | status       | after date  | claim status | campus pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7 | Signed off  |  01-01-2021 | Signed off   | 33124       |
 
   @ProcessClaims @ReprocessCampusAndContractor
   Scenario Outline: Process claims - reprocess campus and contractor
@@ -154,6 +169,9 @@ Feature: Claims processing features
    And I click Claims header link  
    #And I close all special search criteria
     And I enter interview date after "<after date>"
+    And I click advanced search link
+   And I select "Campus Pin" from dropdown
+  And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
    And I get the campus fee for first job
    And I get the contractor fee for first job
@@ -171,8 +189,8 @@ Feature: Claims processing features
    Then I verify the job status is "<claim status>"
    
    Examples:
-   | username           | password              | status       | after date |claim status |
-   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Signed off  | 01-01-2021 | Signed off   |
+   | username           | password              | status       | after date |claim status |  campus pin |
+   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Signed off  | 01-01-2021 | Signed off   |  33124      |
 
   
   #  @ProcessClaims @Extend

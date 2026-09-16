@@ -153,5 +153,13 @@ module.exports ={
      get jobIdResult() {
 
     return $('//table[contains(@id,"JobTable")]//td//a/div');
-     }
-    }
+     },
+
+     get campusPinField(){
+      return $('//span[@class="ListRecords"]/span[3]/div/div/input[contains(@id,"SearchValue")]')  
+      },
+
+      get campusPinDropdown(){
+       return $('//span[@class="ListRecords"]/span[3]/div[1]/select[contains(@id,"wtcbField")]')
+    },
+}

@@ -121,7 +121,8 @@ When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function 
     // action.addValueAndPressReturnTab(contractorEngagementPage.dateIssuedInput, fields[1].replace(/[/.]/g, "-"), "Date Issued input field on Contractor Engagement page")
     action.isClickableWait(contractorEngagementPage.saveAndCloseButton, 10000, "Save and Close button on Contractor Engagement page")
     action.clickElement(contractorEngagementPage.saveAndCloseButton, "Save and Close button on Contractor Engagement page")
-    browser.pause(30000)
+       browser.pause(10000)
+    chai.expect(action.isVisibleWait(contractorEngagementPage.saveAndCloseButton)).to.be.false
     if (action.isVisibleWait(contractorEngagementPage.translatorXTMAlert, 5000, "TranslatorXTM Alert on Contractor Engagement page")) {
         action.isClickableWait(contractorEngagementPage.xtmConfirmButton, 5000, "XTM Confirm button on Contractor Engagement page")
         action.clickElement(contractorEngagementPage.xtmConfirmButton, "XTM Confirm button on Contractor Engagement page")
