@@ -394,3 +394,12 @@ Then(/^the GST field under Campus side should be 10% value of Job Fee$/, functio
     let tenPercentOfJobFee = jobFeeTextBoxUnderCampusActualValue.replace("$ ", "").replace(",", "") * 0.1;
     chai.expect(Number(gstTextBoxUnderCampusActualValue.replace("$ ", ""))).to.equal(Number(tenPercentOfJobFee.toFixed(2)));
 })
+
+When(/^I select "(.*)" from dropdown$/, function (campusOptionDropdown) {
+    action.selectTextFromDropdown(claimsPage.campusPinDropdown, campusOptionDropdown, "Advance Search Category dropdown on claims page")
+    browser.pause(2000)
+})
+
+When(/^I enter the Campus pin "(.*)"$/, function (campusPin) {
+    action.enterValue(claimsPage.campusPinField, campusPin, "Campus pin in claims page")
+})
