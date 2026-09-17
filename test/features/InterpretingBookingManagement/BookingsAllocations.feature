@@ -214,7 +214,7 @@ Feature: Bookings Allocations Features
     And the Max Length and Audio-label fields will display
     And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
     And the Admin clicks the ‘Add’ button On Manage Customized Field
-    And the "<customised field name>" will be created
+    And the customised field will be created
     And I click Interpreting header link
     And I select "<dropdownfilter>" from the filter dropdown
     And I click on new job request button
@@ -223,13 +223,13 @@ Feature: Bookings Allocations Features
     And I select "<Requester Name>" from the requester name dropdown
     And I click next button
     And the Additional information section is shown
-     Then any Audible in ODTI "<customised field name>" are not shown
+     Then any Audible in ODTI custom fields are not shown
     And other custom fields "<Custom Fields>" are still visible or editable
     And I click account management link
     And I search for campus "<campus pin>"
     And I click the first campus link from search results
-     And I click on delete icon on "<customised field name>" in Campus
-    And the "<customised field name>" is deleted in campus
+     And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
   
 
     Examples:
@@ -248,7 +248,7 @@ Feature: Bookings Allocations Features
     And the Max Length and Audio-label fields will display
     And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
     And the Admin clicks the ‘Add’ button On Manage Customized Field
-    And the "<customised field name>" will be created
+    And the customised field will be created
     And I click Interpreting header link
     And I select "<dropdownfilter>" from the filter dropdown
     And I click on new job request button
@@ -270,13 +270,13 @@ Feature: Bookings Allocations Features
    # And I switch to the job allocation window
     And user clicks on Edit button in Job Allocation
     And the Additional information section is shown
-    Then any Audible in ODTI "<customised field name>" are not shown
+    Then any Audible in ODTI custom fields are not shown
     And other custom fields "<Custom Fields>" are still visible or editable
     And I click account management link
     And I search for campus "<campus pin>"
     And I click the first campus link from search results
-    And I click on delete icon on "<Customised ODTI Field>" in Campus
-    And the "<Customised ODTI Field>" is deleted in campus
+    And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
 
     Examples:
       | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | language   | assignment type   | date         | time  | email        | Custom Fields                       |  Customised ODTI Field  |
@@ -294,8 +294,8 @@ Feature: Bookings Allocations Features
     And the Max Length and Audio-label fields will display
     And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
     And the Admin clicks the ‘Add’ button On Manage Customized Field
-    And the "<customised field name>" will be created
-    And they select "<customised field name>" in the Campus page
+    And the customised field will be created
+    And they select Customised field in the Campus page
     And the Manage Customised Field modal is displayed
     And user deselects the option AUDIBLE IN ODTI for the existing custom field
     And the Admin clicks the ‘Save’ button On Manage Customized Field
@@ -307,15 +307,13 @@ Feature: Bookings Allocations Features
     And I select "<Requester Name>" from the requester name dropdown
     And I click next button
     And the Additional information section is shown
-    Then the "<customised field name>" for which the option is Audible in ODTI is unselected is displayed
+    Then the custom field for which the option is Audible in ODTI is unselected is displayed
     And other custom fields "<Custom Fields>" are still visible or editable
     And I click account management link
     And I search for campus "<campus pin>"
     And I click the first campus link from search results
-     And I click on delete icon on "<customised field name>" in Campus
-    And the "<customised field name>" is deleted in campus
-    #And I click on delete icon on Customised ODTI Field in Campus
-    #And the custom field is deleted in campus
+    And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
 
     Examples:
       | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |
@@ -331,8 +329,8 @@ Feature: Bookings Allocations Features
     And they click add Customised Field
     And the Admin enters Customised ODTI Field Name "<customised field name>" in campus
     And the Admin clicks the ‘Add’ button On Manage Customized Field
-    And the "<customised field name>" will be created
-    And they select "<customised field name>" in the Campus page
+    And the customised field will be created
+    And they select Customised field in the Campus page
     And the Manage Customised Field modal is displayed
     And they select ‘Audible in ODTI’ checkbox
     And the Admin enters Customised ODTI Field Max length "<max length>" and Audio-label "<audio label>" in campus
@@ -345,13 +343,13 @@ Feature: Bookings Allocations Features
     And I select "<Requester Name>" from the requester name dropdown
     And I click next button
     And the Additional information section is shown
-    Then any Audible in ODTI "<customised field name>" are not shown
+    Then any Audible in ODTI custom fields are not shown
     And other custom fields "<Custom Fields>" are still visible or editable
     And I click account management link
     And I search for campus "<campus pin>"
     And I click the first campus link from search results
-   And I click on delete icon on "<customised field name>" in Campus
-    And the "<customised field name>" is deleted in campus
+   And I click on delete icon on Customised ODTI Field in Campus
+    And the custom field is deleted in campus
 
     Examples:
       | username          | password             | campus pin | customised field name | max length | audio label      | request job type     | dropdownfilter | Requester Name    | Custom Fields                       |

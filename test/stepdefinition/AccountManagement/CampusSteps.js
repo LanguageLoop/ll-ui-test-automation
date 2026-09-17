@@ -938,16 +938,16 @@ When(/^I click on Show Expired toggle in campus page$/, function () {
     action.clickElement(campusDetailsPage.showExpiredBlocksToggleCheck,"Show expired blocks toggle check in campus page");
 })
 
-Then(/^the "(.*)" will be inherited by the Campus$/, function (customField) {
-    //let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
-  let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
+Then(/^the Customised field will be inherited by the Campus$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  //let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
     let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,10000,"Customized field override link in campus page");
     chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.true;
 })
 
-Then(/^the "(.*)" can be overridden on the Campus page$/, function (customField) {
-    //let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
-    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
+Then(/^the Customised field can be overridden on the Campus page$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+   // let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
     action.clickElement(customisedFieldOverrideLink,"Customized field override link in campus page");
     let overrideCampusDataButtonOnManageCustomisedFieldDisplayStatus = action.isVisibleWait(campusDetailsPage.overrideCampusDataButtonOnManageCustomisedField,10000);
     chai.expect(overrideCampusDataButtonOnManageCustomisedFieldDisplayStatus).to.be.true;
@@ -1011,9 +1011,9 @@ Then(/^the Max Length and Audio-label fields will be mandatory$/, function () {
 })
 
 When(/^the Admin enters Customised ODTI Field data "(.*)","(.*)","(.*)" in campus$/, function (fieldName, maxLength, audioLabel) {
-   // GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
-    //action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,GlobalData.CUSTOMISED_FIELD_NAME,"Field name text box on manage customized field in campus page");
-   action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,fieldName,"Field name text box on manage customized field in campus page");
+    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+   action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,GlobalData.CUSTOMISED_FIELD_NAME,"Field name text box on manage customized field in campus page");
+  // action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,fieldName,"Field name text box on manage customized field in campus page");
     action.clickElement(campusDetailsPage.freeTextRadioButtonOnManageCustomizedField,"Free text radio button on manage customized field in campus page");
     action.isVisibleWait(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,20000,"Max length text box on manage customized field in campus page");
     action.enterValue(campusDetailsPage.maxLengthTextBoxOnManageCustomizedField,maxLength,"Max length text box on manage customized field in campus page");
@@ -1025,24 +1025,23 @@ When(/^the Admin clicks the ‘Add’ button On Manage Customized Field$/, funct
     action.clickElement(campusDetailsPage.addButtonOnManageCustomizedField,"Add button on manage customized field in campus page");
 })
 
-//Then(/^the customised field will be created$/, function () {
-Then(/^the "(.*)" will be created$/, function (customField) {
-  //  let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
-   let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
+Then(/^the customised field will be created$/, function () {
+   let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  // let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
  let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,10000,"Customized field override link in campus page");
     chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.true;
 })
 
 Then(/^there is a checkbox checked for the above custom field under the column Audible in ODTI$/, function () {
-  //  let customisedFieldsOverrideAudibleInODTICheckbox = $(campusDetailsPage.customisedFieldsOverrideAudibleInODTICheckboxLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
- //   let customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus = action.isSelectedWait(customisedFieldsOverrideAudibleInODTICheckbox,10000,"Customized field override Audible in ODTI checkbox in campus page");
- let customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus = action.isSelectedWait(campusDetailsPage.customisedFieldsOverrideAudibleInODTICheckboxLocator,10000,"Customized field override Audible in ODTI checkbox in campus page");
+   let customisedFieldsOverrideAudibleInODTICheckbox = $(campusDetailsPage.customisedFieldsOverrideAudibleInODTICheckboxLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+    let customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus = action.isSelectedWait(customisedFieldsOverrideAudibleInODTICheckbox,10000,"Customized field override Audible in ODTI checkbox in campus page");
+ //let customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus = action.isSelectedWait(campusDetailsPage.customisedFieldsOverrideAudibleInODTICheckboxLocator,10000,"Customized field override Audible in ODTI checkbox in campus page");
     chai.expect(customisedFieldsOverrideAudibleInODTICheckboxSelectedStatus).to.be.true;
 })
 
-// Then(/^I click on delete icon on Customised ODTI Field in Campus$/, function () {
-Then(/^I click on delete icon on "(.*)" in Campus$/, function (customisedField) {
-      let customisedFieldDeleteIcon = $(campusDetailsPage.customisedFieldDeleteIconDynamicLocator.replace("<dynamic>", customisedField));
+ Then(/^I click on delete icon on Customised ODTI Field in Campus$/, function () {
+//Then(/^I click on delete icon on "(.*)" in Campus$/, function (customisedField) {
+      let customisedFieldDeleteIcon = $(campusDetailsPage.customisedFieldDeleteIconDynamicLocator.replace("<dynamic>", GlobalData.CUSTOMISED_FIELD_NAME));
     action.isVisibleWait(customisedFieldDeleteIcon, 10000,"Customized field delete icon in campus page");
     action.clickElement(customisedFieldDeleteIcon,"Customized field delete icon in campus page");
     action.getAlertText();
@@ -1069,9 +1068,9 @@ Then(/^the following inline error message will display: Required field!$/, funct
     chai.expect(audioLabelRequiredFieldMessageDisplayStatus).to.be.true;
 })
 
-When(/^they select "(.*)" in the Campus page$/, function (customFieldName) {
-    //let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
-    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customFieldName));
+When(/^they select Customised field in the Campus page$/, function () {
+    let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+   // let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customFieldName));
    action.clickElement(customisedFieldOverrideLink,"Customized field override link in campus page");
     
 })
@@ -1100,9 +1099,9 @@ Then(/^the custom field is updated with latest values "(.*)","(.*)"$/, function 
     chai.expect(audioLabelFieldLabelClass).to.includes(audioLabel);
 })
 
-Then(/^the "(.*)" is deleted in campus$/, function (customField) {
-   // let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
-   let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
+Then(/^the custom field is deleted in campus$/, function () {
+   let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",GlobalData.CUSTOMISED_FIELD_NAME));
+  // let customisedFieldOverrideLink = $(campusDetailsPage.customisedFieldsOverrideLinkLocator.replace("<dynamic>",customField));
     let customisedFieldOverrideLinkDisplayStatus = action.isVisibleWait(customisedFieldOverrideLink,1000,"Customized field override link in campus page");
     chai.expect(customisedFieldOverrideLinkDisplayStatus).to.be.false;
 })
@@ -1143,8 +1142,8 @@ When(/^user deselects the option AUDIBLE IN ODTI for the existing custom field$/
 })
 
 When(/^the Admin enters Customised ODTI Field Name "(.*)" in campus$/, function (fieldName) {
-  //  GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
-    action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,fieldName,"Field name text box on manage customized field in campus page");
+    GlobalData.CUSTOMISED_FIELD_NAME = fieldName + (Math.floor(Math.random() * 100000) + 1).toString();
+    action.enterValue(campusDetailsPage.fieldNameTextBoxOnManageCustomizedField,GlobalData.CUSTOMISED_FIELD_NAME,"Field name text box on manage customized field in campus page");
 })
 
 When(/^the Admin enters Customised ODTI Field Max length "(.*)" and Audio-label "(.*)" in campus$/, function (maxLength, audioLabel) {

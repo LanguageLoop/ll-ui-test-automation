@@ -534,8 +534,8 @@ module.exports ={
     },
 
     get customisedFieldsOverrideAudibleInODTICheckboxLocator() {
-       // return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]';
-       return $('//a[text()="AutomationField"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]');
+        return '//a[text()="<dynamic>"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]';
+       //return $('//a[text()="AutomationField"]/parent::div/parent::div/parent::td/following-sibling::td[5]//input[@type="checkbox"]');
     },
 
     get customisedFieldDeleteIconDynamicLocator() {
