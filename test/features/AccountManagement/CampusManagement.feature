@@ -587,17 +587,17 @@ Feature: Campus Management features
   And I click account management link
   And I search for campus "<campus id>"
   And I click the first campus link from search results
-  Then the "<customised field name>" will be inherited by the Campus
-  And the "<customised field name>" can be overridden on the Campus page
+  Then the Customised field will be inherited by the Campus
+  And the Customised field can be overridden on the Campus page
   And I click account management link
   And I search for contract title "<contract title>"
   And I click the contract link "<contract title>" from search results
-  And the "<Customised ODTI Field>" is removed
+  And the Customised ODTI Field is removed
   And I click account management link
   And I search for campus "<campus id>"
   And I click the first campus link from search results
- # And I click on delete icon on Customised ODTI Field in Campus
-  And I click on delete icon on "<Customised ODTI Field>" in Campus
+  And I click on delete icon on Customised ODTI Field in Campus
+ # And I click on delete icon on "<Customised ODTI Field>" in Campus
 
   Examples:
    | username          | password             | contract title                                   | customised field name | Customised ODTI Field    | max length | audio label      | campus id |
@@ -664,10 +664,10 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will display
   And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
   And the Admin clicks the ‘Add’ button On Manage Customized Field
-  Then the "<customised field name>" will be created
+  Then the customised field will be created
   And there is a checkbox checked for the above custom field under the column Audible in ODTI
- # And I click on delete icon on Customised ODTI Field in Campus
-  And I click on delete icon on "<Customised ODTI Field>" in Campus
+  And I click on delete icon on Customised ODTI Field in Campus
+ # And I click on delete icon on "<Customised ODTI Field>" in Campus
 
   Examples:
    | username          | password             | campus id | customised field name | max length | audio label      | Customised ODTI Field |
@@ -704,14 +704,14 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will display
   And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
   And the Admin clicks the ‘Add’ button On Manage Customized Field
-  And the "<customised field name>" will be created
-  And they select "<customised field name>" in the Campus page
+  And the customised field will be created
+  And they select Customised field in the Campus page
   And the Manage Customised Field modal is displayed
   And I edit any data under Audible in ODTI "<max length edit>","<audio label edit>" in campus
   And the Admin clicks the ‘Save’ button On Manage Customized Field
-  And they select "<customised field name>" in the Campus page
+  And they select Customised field in the Campus page
   Then the custom field is updated with latest values "<max length edit>","<audio label edit>"
-  And I click on delete icon on "<Customised ODTI Field>" in Campus
+  And I click on delete icon on Customised ODTI Field in Campus
 
   Examples:
    | username          | password             | campus id | customised field name | max length | audio label      | max length edit | audio label edit  | Customised ODTI Field |
@@ -729,9 +729,9 @@ Feature: Campus Management features
   And the Max Length and Audio-label fields will display
   And the Admin enters Customised ODTI Field data "<customised field name>","<max length>","<audio label>" in campus
   And the Admin clicks the ‘Add’ button On Manage Customized Field
-   And the "<customised field name>" will be created
-  And I click on delete icon on "<Customised ODTI Field>" in Campus
-  Then the "<Customised ODTI Field>" is deleted in campus
+   And the customised field will be created
+  And I click on delete icon on Customised ODTI Field in Campus
+  Then the custom field is deleted in campus
 
   Examples:
    | username          | password             | campus id | customised field name | max length | audio label      | Customised ODTI Field  |

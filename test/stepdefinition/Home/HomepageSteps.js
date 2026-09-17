@@ -13,7 +13,9 @@ When(/^I click Claims header link$/,   function(){
 
 When(/^I click account management link$/, function(){
    action.clickElement(homePage.accountManagementLink,"Account Management link in Home page")
-   browser.pause(20000)
+  let accountManagementTextDisplayStatus = action.isVisibleWait(homePage.accountManagementText,20000,"Account Management text appeared")
+chai.expect(accountManagementTextDisplayStatus).to.be.true;
+   browser.pause(5000)
 })
 
 When(/^I click logout button$/, function(){

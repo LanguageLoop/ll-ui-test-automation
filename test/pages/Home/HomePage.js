@@ -49,5 +49,9 @@ module.exports = {
 
     get loopedInHeaderLogo() {
         return $('//a[contains(@id,"Header_LoopedIn")]/img')
+    },
+
+    get accountManagementText() {
+        return $('//div[text()="Account Management"]')
     }
 }
