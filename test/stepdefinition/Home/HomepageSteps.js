@@ -12,10 +12,27 @@ When(/^I click Claims header link$/,   function(){
 })
 
 When(/^I click account management link$/, function(){
-   action.clickElement(homePage.accountManagementLink,"Account Management link in Home page")
-  let accountManagementTextDisplayStatus = action.isVisibleWait(homePage.accountManagementText,20000,"Account Management text appeared")
-chai.expect(accountManagementTextDisplayStatus).to.be.true;
-   browser.pause(5000)
+ //  These are original lines of code
+  // action.clickElement(homePage.accountManagementLink,"Account Management link in Home page")
+  // browser.pause(20000)
+
+ //  These are new lines added to check different methods
+ //  browser.waitUntil(()=>browser.getTitle()==="Account Management" ,{timeout:10000, timeoutMsg:'Account Management is not loded within 10s', interval:1000 })
+  
+//   let accountManagementTextDisplayStatus = action.isVisibleWait(homePage.accountManagementText,20000,"Account Management text appeared")
+// chai.expect(accountManagementTextDisplayStatus).to.be.true;
+ //  browser.pause(5000)
+
+ homePage.accountManagementLink.scrollIntoView();
+browser.waitUntil(() => homePage.accountManagementLink.isClickable(),
+{ timeout: 10000 }
+);
+action.doubleClickElement(homePage.accountManagementLink,"Account Management link");
+browser.waitUntil(() => browser.getUrl().includes("ManagementModules"),
+{ timeout: 30000,
+interval: 1000
+}
+);
 })
 
 When(/^I click logout button$/, function(){

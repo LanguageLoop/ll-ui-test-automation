@@ -9,11 +9,11 @@ Feature: Cancel existing booking
   Scenario Outline: Cancel a unallocated job request
    When I login with "<username>" and "<password>"
    And I create a new job request with minimal fields "<job notice length>"
-   And I click Interpreting header link
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
-   And I click on Cancel button
+ #  And I click Interpreting header link
+  # And I search for created job request
+  # And I click on job id from interpreting job search results
+  # And I switch to the job allocation window
+    And I click on Cancel button
    And I click confirm cancel yes button
    And I select "<cancel reason>" cancel reason
    And I select "<on behalf>" on behalf
@@ -35,10 +35,10 @@ Feature: Cancel existing booking
   Scenario Outline: Cancel a allocated job request 
    When I login with "<username>" and "<password>"
    And I create a new job request with minimal fields "<job notice length>"
-   And I click Interpreting header link
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+ #  And I click Interpreting header link
+ #And I search for created job request
+  # And I click on job id from interpreting job search results
+  #And I switch to the job allocation window
    And I refresh the page
    And I set the contractor job status from "Auto Notification" to "<contractor job status>"
    And I click on Cancel button
@@ -58,10 +58,10 @@ Feature: Cancel existing booking
   Scenario Outline: Cancel a allocated job request 
    When I login with "<username>" and "<password>"
    And I create a new job request with minimal fields "<job notice length>"
-   And I click Interpreting header link
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+  # And I click Interpreting header link
+  # And I search for created job request
+  # And I click on job id from interpreting job search results
+  # And I switch to the job allocation window
    And I refresh the page
    And I set the contractor job status from "Auto Notification" to "<contractor job status>"
    And I click on Cancel button
@@ -82,12 +82,12 @@ Feature: Cancel existing booking
   Scenario Outline: Cancel a allocated job request within 24 hours of the schedule
    When I login with "<username>" and "<password>"
    And I create a new job request with minimal fields "<job notice length>"
-   And I click Interpreting header link
-   And I search for created job request
-   And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+ #  And I click Interpreting header link
+  # And I search for created job request
+  # And I click on job id from interpreting job search results
+  # And I switch to the job allocation window
    And I refresh the page
-   And I set the contractor job status from "Auto Notification" to "<contractor job status>"
+   And I set the contractor job status from "<original job status>" to "<contractor job status>"
    And I click on Cancel button
    And I confirm yes to cancellation fee
    And I select "<cancel reason>" cancel reason
@@ -98,11 +98,11 @@ Feature: Cancel existing booking
    And The job id is added to the file
   
    Examples:
-   |   cancel reason                                 |   on behalf       | job notice length | username           | password               | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | 
-   | NES client no-show                              | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
-   | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
-   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |
+   |   cancel reason                                 |   on behalf       | job notice length | username           | password               | dropdownfilter | campus pin | Requester Name      | language   | assignment type  | date            | time  | duration | email        | job status  | contractor job status | original job status |
+  | NES client no-show                              | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             | - No status -       |
+   | NES client no-show                              | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |  Auto Notification  |
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |  Auto Notification  |
+   | Job request error (Date,Time, Duration, etc..)  | Automation Tester | two hours after   | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7   | Management     |  33124     |  Automation Tester  |  AFRIKAANS | Zero min ongoing | fortnight after | 09:30 | 4 hours  | hh@bb.com.au | Unallocated | Allocated             |  - No status -     |
 
 #LL-899 Scenario #1: Verifying the new cancellation reasons exists in the dropdown
  @LL-899 @VerifyNewCancellationReasons

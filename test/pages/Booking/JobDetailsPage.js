@@ -242,4 +242,12 @@ module.exports = {
     get lateJobReturnByCheckboxLabelText() {
         return $('//span[contains(text(),"Late Job Return by")]');
     },
+    get jobStatusField() {
+       //return $('//div[@class="ContractorTableRow"]/div[7]');
+       return $('//div[contains(@id,"block_wtJobStatus")]/div[2]');
+ 
+    },
+    get errorMessagePageRefresh() {
+        return $('//span[@class="Feedback_Message_Text"]');
+    }
 }
