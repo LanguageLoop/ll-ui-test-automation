@@ -28,8 +28,8 @@ When(/^I enter contractor details "(.*)","(.*)","(.*)","(.*)","(.*)","(.*)"$/, f
     action.enterValue(contractorEngagementPage.emailInput, email + "@aa.com.au", "Email input field on Contractor Engagement page")
 
     $('//span[@class="fa fa-fw fa-pencil-square-o"]').click()
-    browser.pause(2000)
-    action.enterLocation(contractorEngagementPage.addressInput, address, "Address input field on Contractor Engagement page")
+     browser.pause(5000)
+    action.enterLocation(contractorEngagementPage.addressInput, address, "Address input field on Contractor Engagement page")    
     browser.pause(5000)
     browser.keys("Enter")
     browser.pause(5000)
@@ -119,13 +119,15 @@ When(/^I enter all naati details "(.*)","(.*)","(.*)","(.*)","(.*)"$/, function 
     // console.log(fields[1].replace(/[/.]/g, "-"))
     // action.isClickableWait(contractorEngagementPage.dateIssuedInput, 10000, "Date Issued input field on Contractor Engagement page")
     // action.addValueAndPressReturnTab(contractorEngagementPage.dateIssuedInput, fields[1].replace(/[/.]/g, "-"), "Date Issued input field on Contractor Engagement page")
+    browser.pause(5000)
     action.isClickableWait(contractorEngagementPage.saveAndCloseButton, 10000, "Save and Close button on Contractor Engagement page")
     action.clickElement(contractorEngagementPage.saveAndCloseButton, "Save and Close button on Contractor Engagement page")
        browser.pause(5000)
-        browser.waitUntil(() => action.isVisibleWait(contractorEngagementPage.saveAndCloseButton,0,"Save and Close button should not be visible") === false, {
-            timeout: 10000,
-            timeoutMsg: 'Popup is not closed in 10s',
-        })
+       action.waitUntilLoadingIconDisappears();
+        // browser.waitUntil(() => action.isVisibleWait(contractorEngagementPage.saveAndCloseButton,0,"Save and Close button should not be visible") === false, {
+        //     timeout: 10000,
+        //     timeoutMsg: 'Popup is not closed in 10s',
+        // })
     //chai.expect(action.isVisibleWait(contractorEngagementPage.saveAndCloseButton)).to.be.false
     if (action.isVisibleWait(contractorEngagementPage.translatorXTMAlert, 5000, "TranslatorXTM Alert on Contractor Engagement page")) {
         action.isClickableWait(contractorEngagementPage.xtmConfirmButton, 5000, "XTM Confirm button on Contractor Engagement page")

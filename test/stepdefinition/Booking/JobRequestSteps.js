@@ -807,7 +807,7 @@ When(/^other custom fields "(.*)" are still visible or editable$/, function (cus
     let audibleInOdtiCustomFieldDisplayStatus = action.isVisibleWait(customFieldLabel, 10000,"Custom field "+customFieldsList[i]+" in Job Request Page");
     chai.expect(audibleInOdtiCustomFieldDisplayStatus).to.be.true;
   }
-  browser.pause(20000)
+  browser.pause(5000)
 })
 
 When(/^the custom field for which the option is Audible in ODTI is unselected is displayed$/, function () {

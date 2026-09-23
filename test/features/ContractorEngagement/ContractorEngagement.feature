@@ -15,8 +15,8 @@ Feature: Contractor Engagement features
     Then I verify contractor is created
 
     Examples:
-      | username          | password             | salutation | gender | name                  | pin  | mobile     | dob        | email | address                 |
-      | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Mr         | Male   | Automation Contractor | 2323 | 0400000000 | 20-04-1982 | aa    | St Kilda VIC, Australia |
+      | username          | password             | salutation | gender | name                  | pin  | mobile     | dob        | email | address                   |
+      | LLAdmin@looped.in |+`QmHl3w7OQls9g,Qc;7 | Mr         | Male   | Automation Contractor | 2323 | 0400000000 | 20-04-1982 | aa    | St Kilda VIC, Australia 3182 |
 
 
   @AddNAATIAccreditation
