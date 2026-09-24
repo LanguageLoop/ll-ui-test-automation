@@ -11,6 +11,11 @@ When(/^I click Claims header link$/,   function(){
    browser.pause(2000)
 })
 
+When (/^I navigate to Campus Management URL directly$/, function(){
+   action.launchURL("https://li-uat.languageloop.com.au/ManagementModules/CampusDetails.aspx?CampusId=229178")
+   browser.waitUntil(()=>browser.getTitle()=='CampusDetails',{timeout:10000,timeoutMsg:'Contractors page not displayed in 10s',inteval:500})
+});
+
 When(/^I click account management link$/, function(){
  //  These are original lines of code
   // action.clickElement(homePage.accountManagementLink,"Account Management link in Home page")
