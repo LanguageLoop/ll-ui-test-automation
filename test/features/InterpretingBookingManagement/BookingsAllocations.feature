@@ -225,9 +225,10 @@ Feature: Bookings Allocations Features
     And the Additional information section is shown
      Then any Audible in ODTI custom fields are not shown
     And other custom fields "<Custom Fields>" are still visible or editable
-    And I click account management link
-    And I search for campus "<campus pin>"
-    And I click the first campus link from search results
+   And I navigate to Campus Management URL directly
+   # And I click account management link
+   # And I search for campus "<campus pin>"
+   # And I click the first campus link from search results
      And I click on delete icon on Customised ODTI Field in Campus
     And the custom field is deleted in campus
   
@@ -272,9 +273,10 @@ Feature: Bookings Allocations Features
     And the Additional information section is shown
     Then any Audible in ODTI custom fields are not shown
     And other custom fields "<Custom Fields>" are still visible or editable
-    And I click account management link
-    And I search for campus "<campus pin>"
-    And I click the first campus link from search results
+    And I navigate to Campus Management URL directly
+   # And I click account management link
+   # And I search for campus "<campus pin>"
+   # And I click the first campus link from search results
     And I click on delete icon on Customised ODTI Field in Campus
     And the custom field is deleted in campus
 
@@ -309,9 +311,10 @@ Feature: Bookings Allocations Features
     And the Additional information section is shown
     Then the custom field for which the option is Audible in ODTI is unselected is displayed
     And other custom fields "<Custom Fields>" are still visible or editable
-    And I click account management link
-    And I search for campus "<campus pin>"
-    And I click the first campus link from search results
+    And I navigate to Campus Management URL directly
+    #And I click account management link
+    #And I search for campus "<campus pin>"
+    #And I click the first campus link from search results
     And I click on delete icon on Customised ODTI Field in Campus
     And the custom field is deleted in campus
 
@@ -345,9 +348,10 @@ Feature: Bookings Allocations Features
     And the Additional information section is shown
     Then any Audible in ODTI custom fields are not shown
     And other custom fields "<Custom Fields>" are still visible or editable
-    And I click account management link
-    And I search for campus "<campus pin>"
-    And I click the first campus link from search results
+    And I navigate to Campus Management URL directly
+   # And I click account management link
+   # And I search for campus "<campus pin>"
+   # And I click the first campus link from search results
    And I click on delete icon on Customised ODTI Field in Campus
     And the custom field is deleted in campus
 
