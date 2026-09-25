@@ -793,9 +793,10 @@ Feature: Campus Management features
   And I click next button
   Then the Gender under Service Preferences section shows as "<expected preference option>" under Gender field
   And no Gender ODTI preference should be displayed
-  And I click account management link
-  And I search for campus "<campus id>"
-  And I click the first campus link from search results
+  And I navigate to Campus Management URL directly
+  #And I click account management link
+  #And I search for campus "<campus id>"
+  #And I click the first campus link from search results
   And they remove added preference type option "<preference type option>" in Campus Details
 
   Examples:
@@ -862,9 +863,10 @@ Feature: Campus Management features
   And I click next button
   Then the Gender under Service Preferences section shows as "<gender preference>" under Gender field
   And no Gender ODTI preference should be displayed
-  And I click account management link
-  And I search for campus "<campus id>"
-  And I click the first campus link from search results
+  And I navigate to Campus Management URL directly
+  #And I click account management link
+  #And I search for campus "<campus id>"
+  #And I click the first campus link from search results
   And they remove added preference type option "<gender odti preference type option>" in Campus Details
   And they remove added preference type option "<gender preference type option>" in Campus Details
 
@@ -900,9 +902,10 @@ Feature: Campus Management features
   And I click next button
   Then the Gender under Service Preferences section shows as "<gender preference>" under Gender field
   And no Gender ODTI preference should be displayed
-  And I click account management link
-  And I search for campus "<campus id>"
-  And I click the first campus link from search results
+  #And I click account management link
+  #And I search for campus "<campus id>"
+  #And I click the first campus link from search results
+  And I navigate to Campus Management URL directly
   And they remove added preference type option "<gender odti preference type option>" in Campus Details
   And they remove added preference type option "<gender preference type option>" in Campus Details
 

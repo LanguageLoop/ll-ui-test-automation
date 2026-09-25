@@ -141,8 +141,8 @@ module.exports={
         browser.pause(3000)
         var temp= $$('//*[@class="pac-matched"]')[0] 
         temp.click()
-      //  browser.keys("ArrowDown")
-       // browser.keys("Enter")
+       browser.keys("ArrowDown") //this and below step was commented..
+        browser.keys("Enter")
         browser.pause(2000)
         if (eltFriendlyName !== undefined) {
             logger.info("Entered Location " + location + " in " + eltFriendlyName);
