@@ -89,7 +89,8 @@ When(/^I confirm yes to cancellation fee$/, function(){
 })
 
 When(/^I search for contractor "(.*)"$/, function(contractor){
-    browser.pause(10000)
+    browser.refresh()
+    browser.pause(5000)
     browser.refresh()
     action.enterValueAndPressReturn(jobDetailsPage.searchContractorInput,contractor,"Search contractor text box in Job Details page")
 })
