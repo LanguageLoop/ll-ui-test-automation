@@ -90,7 +90,7 @@ When(/^I confirm yes to cancellation fee$/, function(){
 
 When(/^I search for contractor "(.*)"$/, function(contractor){
     browser.refresh()
-    browser.pause(5000)
+    browser.pause(10000)
     browser.refresh()
     action.enterValueAndPressReturn(jobDetailsPage.searchContractorInput,contractor,"Search contractor text box in Job Details page")
 })
@@ -205,18 +205,19 @@ Then(/^I confirm the job status "(.*)"$/, function(jobstatus){
 })
 
 When(/^I change the contractor "(.*)" job status from "(.*)" to "(.*)"$/, function (contractor, original_jobStatus, new_jobStatus) {
+    browser.refresh()    
     let originalJobStatusList = original_jobStatus.split(",");
     for (let i = 0; i < originalJobStatusList.length; i++) {
         let contractorStatusElement = $('//div[@class="ContractorTable"]//a[contains(text(),"'+contractor+'")]/parent::div/parent::div/parent::div//child::a[text()="' + originalJobStatusList[i] + '"]')
         let statusVisible = action.isVisibleWait(contractorStatusElement, 10000,"Contractor status in Job Details page");
         if (statusVisible) {
-            action.doubleClickElement(contractorStatusElement,"Contractor status in Job Details page");
-            break;
+            action.clickElement(contractorStatusElement,"Contractor status in Job Details page");
+           break; 
         }
     }
     action.isVisibleWait(jobDetailsPage.jobContractorStatusDropdown, 10000,"Job Contractor status dropdown in Job Details page");
     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown, new_jobStatus,"Job Contractor status dropdown in Job Details page");
-    const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]');
+        const confirmationWindow = $('//*[text()[contains(.,"Overlap Confirmation")]]');
     action.isVisibleWait(confirmationWindow, 30000,"Confirmation window in Job Details page");
     if (confirmationWindow.isDisplayed()) {
        // const confirmYes = $('//input[contains(@id,"wtActions_wt145")]');
@@ -235,7 +236,7 @@ browser.pause(10000)
     browser.refresh()
         //  action.isVisibleWait(jobDetailsPage.jobStatusField,10000,"Job status field in Job Details page")
         //  let jobStatusText =jobDetailsPage.jobStatusField.getText() 
-        console.log("Job status update failed, expecting it is due to refreshing the page and trying again")
+        console.log("Job status update failed, expecting it is due to page refreshing error ")
          chai.expect(statusText).to.equal(new_jobStatus)
   }
 })
