@@ -434,8 +434,8 @@ Feature: Bookings Allocations Features
    #And I verify the job is listed in search results
    # And I click on first job id from interpreting job list
    # And I switch to the job allocation window
-    And search for contractor "<contractor>" in Job Allocation
-    And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
+   And search for contractor "<contractor>" in Job Allocation
+   And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
     And I confirm the job status "<new status>"
     And the looped in login page is opened
@@ -496,7 +496,7 @@ Feature: Bookings Allocations Features
    # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<new status>"
-    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
+   And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<new status>"
     And I confirm the job status "<new status>"
     And the looped in login page is opened
     And I login with "<contractor username>" and "<contractor password>"
@@ -562,9 +562,9 @@ Feature: Bookings Allocations Features
    # And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
-    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+   And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     Then a popup is shown, with title Job Return Reason
     And the popup contains some text on why we ask
@@ -585,17 +585,17 @@ Feature: Bookings Allocations Features
    # And I verify the job is listed in search results
    # And I click on first job id from interpreting job list
   #  And I switch to the job allocation window
-    And search for contractor "<contractor>" in Job Allocation
-    And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
-    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+   And search for contractor "<contractor>" in Job Allocation
+   And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
+   And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And they clicked the Cancel button on return job popup
     Then the Job Return Reason popup is closed
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And they clicked the Confirm Return button
@@ -613,11 +613,11 @@ Feature: Bookings Allocations Features
   #  And I verify the job is listed in search results
   #  And I click on first job id from interpreting job list
   #  And I switch to the job allocation window
-    And search for contractor "<contractor>" in Job Allocation
+   And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
@@ -638,11 +638,11 @@ Feature: Bookings Allocations Features
   #  And I verify the job is listed in search results
   #  And I click on first job id from interpreting job list
   #  And I switch to the job allocation window
-    And search for contractor "<contractor>" in Job Allocation
-    And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
+   # And search for contractor "<contractor>" in Job Allocation
+    And search for contractor "<contractor>" and I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
@@ -666,7 +666,7 @@ Feature: Bookings Allocations Features
   #  And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
-    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+   And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
     And the user is on the Job Detail page
     Then the Late Job Return checkbox and label are displayed
@@ -688,9 +688,9 @@ Feature: Bookings Allocations Features
   #  And I switch to the job allocation window
     And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
-    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+   And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
@@ -715,11 +715,11 @@ Feature: Bookings Allocations Features
   #  And I verify the job is listed in search results
   #  And I click on first job id from interpreting job list
   #  And I switch to the job allocation window
-    And search for contractor "<contractor>" in Job Allocation
+   And search for contractor "<contractor>" in Job Allocation
     And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
-    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
@@ -748,7 +748,7 @@ Feature: Bookings Allocations Features
     And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
-    And I change the contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
