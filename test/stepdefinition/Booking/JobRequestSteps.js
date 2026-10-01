@@ -341,6 +341,7 @@ When(/^I click no change required button$/,function()
 })
 
 Then(/^the job created success message should appear$/, function(){
+  browser.pause(2000)
   console.time('t2')
   action.isVisibleWait(jobRequestPage.successMessageText,90000,"Success message text in Job request page");
   jobRequestPage.successMessageText.waitForExist({timeout:12000})
@@ -351,8 +352,9 @@ Then(/^the job created success message should appear$/, function(){
    );
    var jobNumber = jobRequestPage.jobIDText.getText().match(/\d+/g).map(Number)
    GlobalData.CURRENT_JOB_ID=jobNumber
-    console.timeEnd('t2')
    console.timeLog('t2')
+    console.timeEnd('t2')
+   
   })
 
   Then(/^the job created success message should appear for CBO$/, function(){
@@ -366,8 +368,9 @@ Then(/^the job created success message should appear$/, function(){
   );
   var jobNumber = jobRequestPage.successMessageText.getText().match(/\d+/g).map(Number)
   GlobalData.CURRENT_JOB_ID=jobNumber
+     console.timeLog('t2')
   console.timeEnd('t2')
-  console.timeLog('t2')
+ 
 })
 
 Then(/^I verify the created job id is listed$/, function(){
