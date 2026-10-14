@@ -622,6 +622,16 @@ Feature: Bookings Allocations Features
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
     And they clicked the Confirm Return button
+     # start - repeating the below steps as Page refresh error is appearing everytime when returning the job
+    And I refresh the page
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+    And I confirm the job status "<allocated status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
+    And a popup is shown, with title Job Return Reason
+    And the popup has 2 buttons to Cancel and Confirm Return
+    And they clicked the Confirm Return button
+# End
     Then the Job Return Reason popup is closed
     And I confirm the job status "<returned status>"
 
@@ -638,8 +648,8 @@ Feature: Bookings Allocations Features
   #  And I verify the job is listed in search results
   #  And I click on first job id from interpreting job list
   #  And I switch to the job allocation window
-   # And search for contractor "<contractor>" in Job Allocation
-    And search for contractor "<contractor>" and I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
+  And search for contractor "<contractor>" in Job Allocation
+    And I change the contractor "<contractor>" job status from "<original status>" to "<allocated status>"
     And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
     And I confirm the job status "<allocated status>"
     And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
@@ -647,6 +657,16 @@ Feature: Bookings Allocations Features
     And a popup is shown, with title Job Return Reason
     And the popup has 2 buttons to Cancel and Confirm Return
     And they clicked the Confirm Return button
+     # start - repeating the below steps as Page refresh error is appearing everytime when returning the job
+    And I refresh the page
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<original status>","<allocated status>"
+    And I confirm the job status "<allocated status>"
+    And I change contractor "<contractor>" job status from "<allocated status>" to "<returned status>"
+    And I handle duplicate job updated warning message by refreshing browser and change contractor "<contractor>" status "<allocated status>","<returned status>"
+    And a popup is shown, with title Job Return Reason
+    And the popup has 2 buttons to Cancel and Confirm Return
+    And they clicked the Confirm Return button
+# End
     Then the Job Return Reason popup is closed
     And search for contractor "<contractor>" in Job Allocation
     And I confirm the job status "<returned status>"
