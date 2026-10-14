@@ -108,6 +108,7 @@ When(/^I search for first contractor on list$/, function(){
 When(/^I refresh the page$/, function(){
     browser.pause(10000)
     browser.refresh()
+    console.log("Page refreshed successfully......")
 })
 
 When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(original_jobstatus,new_jobstatus){

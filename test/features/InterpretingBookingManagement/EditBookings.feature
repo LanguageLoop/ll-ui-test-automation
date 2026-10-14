@@ -10,9 +10,9 @@ Feature: Edit existing booking
    When I login with "<username>" and "<password>"
    And I create a new job request with minimal fields "<job notice length>"
    And I click Interpreting header link
-   And I search for created job request
+  And I search for created job request
    And I click on job id from interpreting job search results
-   And I switch to the job allocation window
+  And I switch to the job allocation window
    And I click on Edit button
    And I select language "<language>"
    And I select assignment type "<assignment type>"
@@ -37,8 +37,29 @@ Feature: Edit existing booking
    And I enter confirmation phone number "<confirmation phone number>"
    And I enter "<confirmation email>" email address
    And I click save and proceed to summary button
-  # And I handle duplicate job warning window
-   And I click yes to confirm editing job request
+   
+   #start - repeating few of the above steps as few fields revert after refreshing the page
+  And I refresh the page
+  And I select language "<language>"
+  And I select assignment type "<assignment type>"
+  And I enter schedule "<date>" and "<time>"
+  And I select duration "<duration>"
+  And I click gender preference must checkbox
+  And I select gender "<gender preference>"
+  And I click add preferred interpreter button
+  And I select "1" interpreters from the list
+  And I click add interpreters button
+  And I enter PO number "<PO Number>"
+  And I enter report to location "<report location>"
+  And I enter report to name "<report name>"
+  And I enter report to phone number "<report phone number>"
+  And I select confirmation mode "<confirmation mode>"
+  And I enter confirmation phone number "<confirmation phone number>"
+  And I enter "<confirmation email>" email address
+  And I click save and proceed to summary button
+ #End
+   # And I handle duplicate job warning window
+  # And I click yes to confirm editing job request
  #  And I search for created job request
  # And I click on job id from interpreting job search results
  #  And I switch to the job allocation window
@@ -71,7 +92,7 @@ Feature: Edit existing booking
    And I click save and proceed to summary button
    And I handle job updated warning message by refreshing assignment type "<assignment type>"
    And I handle duplicate job warning window
-   And I click yes to confirm editing job request 
+  # And I click yes to confirm editing job request 
   # And I search for created job request
   # And I click on job id from interpreting job search results
   # And I switch to the job allocation window

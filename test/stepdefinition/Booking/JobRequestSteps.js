@@ -129,6 +129,7 @@ When(/^I click gender preference must checkbox$/,function(){
 })
 
 When(/^I select gender "(.*)"$/,function(gender){
+  browser.pause(1000)
   action.selectTextFromDropdown(jobRequestPage.genderDropdown,gender,"Gender dropdown in Job request page")
 })
 
