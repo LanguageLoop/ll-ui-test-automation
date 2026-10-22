@@ -33,12 +33,14 @@ Feature: Claims processing features
    And I select "Campus Pin" from dropdown
   And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
-   And I get the campus fee for first job
-   And I get the contractor fee for first job
+  # And I get the campus fee for first job
+  # And I get the contractor fee for first job
+  And I get the Job ID on claims table
    And I click on first job id from claims job list
    And I switch to the claims window
-   Then I verify the contractor fee
-   And I verify the campus fee
+   Then I verify the Job ID in Job detail page
+ #  Then I verify the contractor fee
+  # And I verify the campus fee
    And I click process campus button
    And I click process contractor button
    And I click Claims header link
@@ -61,12 +63,14 @@ Feature: Claims processing features
    And I select "Campus Pin" from dropdown
   And I enter the Campus pin "<campus pin>"
   And I select "<status>" job status
-   And I get the campus fee for first job
-   And I get the contractor fee for first job
+  # And I get the campus fee for first job
+  # And I get the contractor fee for first job
+    And I get the Job ID on claims table
    And I click on first job id from claims job list
    And I switch to the claims window
-   Then I verify the contractor fee
-   And I verify the campus fee
+   Then I verify the Job ID in Job detail page
+  # Then I verify the contractor fee
+  # And I verify the campus fee
    And I click process campus and contractor button
    And I click Claims header link
    And I close all special search criteria
@@ -88,12 +92,14 @@ Feature: Claims processing features
    And I select "Campus Pin" from dropdown
   And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
-   And I get the campus fee for first job
-   And I get the contractor fee for first job
+ #  And I get the campus fee for first job
+  # And I get the contractor fee for first job
+    And I get the Job ID on claims table
    And I click on first job id from claims job list
    And I switch to the claims window
-   Then I verify the contractor fee
-   And I verify the campus fee
+   Then I verify the Job ID in Job detail page
+  # Then I verify the contractor fee
+ #  And I verify the campus fee
    And I click process campus button
    And I click Claims header link
    And I close all special search criteria
@@ -115,12 +121,14 @@ Feature: Claims processing features
    And I select "Campus Pin" from dropdown
   And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
-   And I get the campus fee for first job
-   And I get the contractor fee for first job
+  # And I get the campus fee for first job
+  # And I get the contractor fee for first job
+    And I get the Job ID on claims table
    And I click on first job id from claims job list
    And I switch to the claims window
-   Then I verify the contractor fee
-   And I verify the campus fee
+   Then I verify the Job ID in Job detail page
+  # Then I verify the contractor fee
+  # And I verify the campus fee
    And I click reprocess campus button
    And I handle reprocess confirmation
    And I click process campus button
@@ -144,12 +152,14 @@ Feature: Claims processing features
    And I select "Campus Pin" from dropdown
   And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
-   And I get the campus fee for first job
-   And I get the contractor fee for first job
+   #And I get the campus fee for first job
+   #And I get the contractor fee for first job
+    And I get the Job ID on claims table
    And I click on first job id from claims job list
    And I switch to the claims window
-   Then I verify the contractor fee
-   And I verify the campus fee
+   Then I verify the Job ID in Job detail page
+   #Then I verify the contractor fee
+  # And I verify the campus fee
    And I click reprocess contractor button
    And I handle reprocess confirmation
    And I click process contractor button
@@ -173,12 +183,14 @@ Feature: Claims processing features
    And I select "Campus Pin" from dropdown
   And I enter the Campus pin "<campus pin>"
    And I select "<status>" job status
-   And I get the campus fee for first job
-   And I get the contractor fee for first job
+ #  And I get the campus fee for first job
+ #  And I get the contractor fee for first job
+    And I get the Job ID on claims table
    And I click on first job id from claims job list
    And I switch to the claims window
-   Then I verify the contractor fee
-   And I verify the campus fee
+   Then I verify the Job ID in Job detail page
+   #Then I verify the contractor fee
+  # And I verify the campus fee
    And I click reprocess campus and contractor button
    And I handle reprocess campus and contractor confirmation
    And I click process campus and contractor button

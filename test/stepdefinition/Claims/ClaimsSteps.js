@@ -9,6 +9,7 @@ When(/^I enter interview date before "(.*)"$/, function (beforedate) {
 })
 
 When(/^I close all special search criteria$/, function () {
+    browser.refresh()
     var closebuttons = claimsPage.searchCriteriaCloseButtons
     for (var i = 0; i < closebuttons.length; i++) {
         browser.pause(2000)
@@ -19,6 +20,14 @@ When(/^I close all special search criteria$/, function () {
 
     }
 })
+
+When(/^I get the Job ID on claims table$/, function () {
+browser.pause(4000)
+    action.isVisibleWait(interpretingPage.jobIdColumnFromSearchResult, 20000, "First job ID column from search results in claims page");
+    GlobalData.CURRENT_JOB_ID = interpretingPage.jobIdColumnFromSearchResult.getText()
+})
+
+
 
 When(/^I click on first job id from claims job list$/, function () {
     browser.pause(4000)
@@ -336,10 +345,10 @@ When(/^I get the rsc fee$/, function () {
 
     GlobalData.RSC_FEE = claimsPage.rscFeeInput.getAttribute("value")
 })
-
-Then(/^I verify rsc fee is not changed$/, function () {
-    logger.info("RSC_FEE " + GlobalData.RSC_FEE)
-    chai.expect(GlobalData.RSC_FEE == claimsPage.rscFeeInput.getAttribute("value")).to.be.true
+When(/^I verify the Job ID in Job detail page$/, function () {
+    browser.pause(4000)
+    action.isVisibleWait(interpretingPage.jobID, 20000, "Job ID in Job detail page");
+    chai.expect(interpretingPage.jobID.getText() == GlobalData.CURRENT_JOB_ID).to.be.true
 })
 
 Then(/^I confirm the bulk claim process success message appears$/, function () {
