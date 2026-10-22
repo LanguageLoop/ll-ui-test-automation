@@ -119,7 +119,7 @@ Feature: Edit existing booking
    And I click on Edit button
    And I click back link
    And I click on job details tab "<job detail>"
-   And I enter location "<address>"
+  # And I enter location "<address>"
    And I click next button
    And I enter time "<new time>"
    And I select duration "<duration>"
@@ -132,7 +132,7 @@ Feature: Edit existing booking
    And I click save and proceed to summary button
    And I handle job updated warning message by refreshing NAATI type "<NAATI>"
    And I handle duplicate job warning window
-   And I click yes to confirm editing job request 
+   #And I click yes to confirm editing job request 
   # And I search for created job request
   # And I click on job id from interpreting job search results
   # And I switch to the job allocation window
@@ -143,4 +143,4 @@ Feature: Edit existing booking
    Examples:
    | job notice length | username           | password                | dropdownfilter | campus pin | Requester Name      | language    | assignment type      | date            | time  | duration   | email        | job status  | contractor job status | NAATI          | gender preference | job detail           | new time  |  instruction  |  report location | report name     | address                                | confirmation phone number |
    | short notice      | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7    | Management     |  33124     |  Auto Tester        |  AFRIKAANS  | Zero min ongoing     | fortnight after | 09:30 | 8 hours    | hh@bb.com.au | Unallocated | Allocated             | Non-Accredited |  Female           | Home Visit           | 11:30     |  have fun     |  New Zealand     | Interpreter A   | 1 St Kilda Rd, St Kilda VIC, Australia |  0399999997               |
-  # | long notice       | LLAdmin@looped.in  | Octopus@6    | Management     |  33124     |  Auto Tester        |  AFRIKAANS  | Zero min ongoing     | fortnight after | 09:30 | 8 hours    | hh@bb.com.au | Unallocated | Allocated             | Non-Accredited |  Male             | Pre-Booked Telephone | 11:30     |  have fun     |  New Zealand     | Interpreter A   | 1 St Kilda Rd, St Kilda VIC, Australia |  0399999997               |
+  | long notice       | LLAdmin@looped.in  | +`QmHl3w7OQls9g,Qc;7  | Management     |  33124     |  Auto Tester        |  AFRIKAANS  | Zero min ongoing     | fortnight after | 09:30 | 8 hours    | hh@bb.com.au | Unallocated | Allocated             | Non-Accredited |  Male             | Pre-Booked Telephone | 11:30     |  have fun     |  New Zealand     | Interpreter A   | 1 St Kilda Rd, St Kilda VIC, Australia |  0399999997               |

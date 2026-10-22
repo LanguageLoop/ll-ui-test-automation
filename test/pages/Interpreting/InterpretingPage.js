@@ -26,6 +26,11 @@ module.exports={
         return $('//*[@data-loopedin-columnname="JobId" or @data-divname="JobIdCol" or @data-columnname="JobId"]')
     },
 
+    get jobID()
+    {
+        return $('//a[contains(@id,"block_wtTitle_wt33")]')
+    },
+
     get jobIdsColumnFromSearchResult()
     {
         return $$('//*[@data-loopedin-columnname="JobId" or @data-divname="JobIdCol"]')
