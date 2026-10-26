@@ -161,6 +161,10 @@ module.exports={
         return $$('//*[text()="Find Interpreter"]/../..//table//input')
     },
 
+    get interpreterSearchResultsName(){
+       return $('//*[text()="Find Interpreter"]/../..//table/tbody/tr[1]/td[3]')
+    }, 
+
     get successMessageText(){
         return $('//span[@class="Feedback_Message_Text"]')
     },
