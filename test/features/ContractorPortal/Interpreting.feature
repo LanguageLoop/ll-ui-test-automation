@@ -30,12 +30,14 @@ Feature: Interpreter features
  @RejectJobs1 
   Scenario Outline: Reject jobs
   When I login with "<admin username>" and "<admin password>"
-  And I create a job request with preffered interpreter "<contractor username>"
+  And I create a job request with preffered interpreter "<contractor name>"
   And I click logout button
 #login as interpreter
    When I login with "<contractor username>" and "<contractor password>"
    And I handle the message for interpreters dialog
    And I select "<dropdownfilter>" from the filter dropdown
+And I search for created job request
+     And I verify the job is listed in search results   
    And I click on first job id from interpreting job list
    And I click reject job button
    And I select "Rejected Jobs" from the filter dropdown
@@ -43,18 +45,20 @@ Feature: Interpreter features
    Then I verify the job is listed in search results
    
    Examples:
-  | job notice length |admin username    | admin password        | contractor username      | contractor password | dropdownfilter      | to date     | job id  | campus pin  |  Requester Name      |
-  | long notice       |LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 | 33124       |  Automation Tester   |
+  | job notice length |admin username    | admin password        | contractor username      | contractor password | dropdownfilter      | to date     | job id  | campus pin  |  Requester Name      |  contractor name  |
+  | long notice       |LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 | 33124       |  Automation Tester   |   Mona JABBOUR   |
   
 
  @AcceptJobs 
    Scenario Outline: Accept jobs
     When I login with "<admin username>" and "<admin password>"
-    And I create a job request with preffered interpreter "<contractor username>"
+    And I create a job request with preffered interpreter "<contractor name>"
     And I click logout button
     #login as interpreter
     When I login with "<contractor username>" and "<contractor password>"
     And I select "<dropdownfilter>" from the filter dropdown
+    And I search for created job request
+     And I verify the job is listed in search results
     And I click on first job id from interpreting job list
     And I click accept job button
     And I select "Allocated Jobs" from the filter dropdown
@@ -71,24 +75,26 @@ Feature: Interpreter features
     And the booking is cancelled on behalf of "<Requester Name>"
 
   Examples:
-   | contractor username | contractor password | dropdownfilter | to date    | admin username    | admin password        | management filter | Requester Name    |
-   | jabmon1@hotmail.com | Test1               | Available Jobs | 13-05-2022 | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Management        | Automation Tester |
+   | contractor username | contractor password | dropdownfilter | to date    | admin username    | admin password        | management filter | Requester Name    |  contractor name  |
+   | jabmon1@hotmail.com | Test1               | Available Jobs | 13-05-2022 | LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Management        | Automation Tester |  Mona JABBOUR   |
   
  
  @UnavailableJobs 
   Scenario Outline: Unavailable for job
    When I login with "<admin username>" and "<admin password>"
-   And I create a job request with preffered interpreter "<contractor username>"
+   And I create a job request with preffered interpreter "<contractor name>"
    And I click logout button
     #login as interpreter
    When I login with "<contractor username>" and "<contractor password>"
    And I handle the message for interpreters dialog
    And I select "<dropdownfilter>" from the filter dropdown
+    And I search for created job request
+     And I verify the job is listed in search results
    And I click on first job id from interpreting job list
    And I click unavailable job button
    
    Examples:
-  | job notice length |admin username    | admin password        | contractor username      | contractor password | dropdownfilter      | to date     | job id  |
-  | long notice       |LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 |
+  | job notice length |admin username    | admin password        | contractor name   |contractor username      | contractor password | dropdownfilter      | to date     | job id  |
+  | long notice       |LLAdmin@looped.in | +`QmHl3w7OQls9g,Qc;7  | Mona JABBOUR      | jabmon1@hotmail.com      | Test1               | Available Jobs      |  13-05-2022 | 1560450 |
   
 

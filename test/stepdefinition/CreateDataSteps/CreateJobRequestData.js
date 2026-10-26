@@ -125,13 +125,21 @@ function createJobRequestWithPreferredInterpreter(notice, campuspin,assignmentty
   const findInterpreter=$("//*[text()[contains(.,'Find Interpreter')]]")
   while(action.isVisibleWait(findInterpreter,10000,"Find interpreter in Job request page")==false){
   action.clickElement(jobRequestPage.addInterpreterLink,"Add interpreter link in Job request page")
-  browser.waitUntil(()=> findInterpreter.isDisplayed(),{timeout:7000, timeoutMsg:'Find interpreter modal not displayed in 10s', interval:500} )
-   console.log("inside "+findInterpreter.isDisplayed())
+  //  browser.waitUntil(()=> findInterpreter.isDisplayed(),{timeout:7000, timeoutMsg:'Find interpreter modal not displayed in 10s', interval:500} )
+    browser.waitUntil(()=> findInterpreter.isVisibleWait(findInterpreter,10000,"Find interpreter in Job request page"))
+    console.log("inside "+findInterpreter.isDisplayed())
     break
 }
   action.isClickableWait(jobRequestPage.searchForInterpreterInput,10000,"Search for interpreter text box in Job request page")
   action.enterValue(jobRequestPage.searchForInterpreterInput,interpreter,"Search for interpreter text box in Job request page")
-  browser.pause(5000)
+  browser.pause(10000)
+  //verifying the searched interpreter is displayed in the search results
+
+  var search_results=jobRequestPage.interpreterSearchResultsName
+  action.isVisibleWait(search_results,10000,"Search results in Job request page")
+  var search_results_text=search_results.getText()
+ chai.expect(search_results_text).to.include(interpreter)
+
   //select the first interpreter
   var check_boxes=jobRequestPage.interpreterSearchResultsCheckBoxes
   action.isClickableWait(check_boxes[0],10000,"Interpreter search result checkbox in Job request page")
