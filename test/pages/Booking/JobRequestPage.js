@@ -246,7 +246,7 @@ module.exports={
     },
 
     get prebookedTelephoneTab(){
-        return $('//label[text()="Pre-Booked Telephone"]')
+        return $('//*[text()="Pre-Booked Telephone"]')
     },
 
     get prebookedVideoTab(){

@@ -110,8 +110,9 @@ When(/^I refresh the page$/, function(){
     browser.refresh()
     console.log("Page refreshed successfully......")
 })
+ //This method will first try to updated the job status and if page refresh error aoppears, it will refresh and retry to allocate once again
 
-When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(original_jobstatus,new_jobstatus){
+ When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(original_jobstatus,new_jobstatus){
 browser.pause(2000)
      action.isVisibleWait($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),30000)
      action.elementExists(jobDetailsPage.contractorListTable,"Contractor list table in Job Details page")
@@ -128,20 +129,70 @@ browser.pause(2000)
         action.clickElement(confirmYes,"Confirm Yes button in Job Details page")
      } 
      browser.pause(10000)
-  
+  //repeating the job allocation process again
    let statusText = action.isVisibleWait(jobDetailsPage.jobStatusField,10000,"Job status field in Job Details page")
    chai.expect(statusText).to.be.true
     console.log("Selected job status:::::::::::::::::: " + jobDetailsPage.jobStatusField.getText());
-  if(jobDetailsPage.jobStatusField.getText() != new_jobstatus) {
-    //browser.pause(10000)
+ if(jobDetailsPage.jobStatusField.getText() != new_jobstatus) {
+    browser.pause(5000)
     browser.refresh()
-        //  action.isVisibleWait(jobDetailsPage.jobStatusField,10000,"Job status field in Job Details page")
-        //  let jobStatusText =jobDetailsPage.jobStatusField.getText() 
+    browser.pause(2000)
+    action.isVisibleWait($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),30000)
+     action.elementExists(jobDetailsPage.contractorListTable,"Contractor list table in Job Details page")
+     action.clickElement($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),"Contractor list table job status "+original_jobstatus+" in Job Details page")
+     browser.pause(5000)
+     action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus,"Contractor list table job status "+new_jobstatus+" dropdown in Job Details page")
+     const confirmationWindow =$('//*[text()[contains(.,"Overlap Confirmation")]]')
+    action.isVisibleWait(confirmationWindow,30000,"Confirmation window in Job Details page")
+    if(confirmationWindow.isDisplayed())
+    {
+        //const confirmYes =$('//input[contains(@id,"wtActions_wt145")]')
+        const confirmYes = $('//input[contains(@id,"wtOverlapConfirmationModal") and (@value="Yes")]');
+        action.isClickableWait(confirmYes,30000,"Confirm Yes button in Job Details page")
+        action.clickElement(confirmYes,"Confirm Yes button in Job Details page")
+     } 
+     if(jobDetailsPage.jobStatusField.getText() != new_jobstatus) {
         console.log("Job status update failed, expecting it is due to refreshing the page and trying again")
          chai.expect(statusText).to.equal(new_jobstatus)
-         
-    } 
+
+    }
+     }
 })
+
+
+ //Rewritten the below method to the above once, commenting this for now 
+
+// When(/^I set the contractor job status from "(.*)" to "(.*)"$/, function(original_jobstatus,new_jobstatus){
+// browser.pause(2000)
+//      action.isVisibleWait($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),30000)
+//      action.elementExists(jobDetailsPage.contractorListTable,"Contractor list table in Job Details page")
+//      action.clickElement($('//div[@class="ContractorTable"]//a[text()="'+original_jobstatus+'"]'),"Contractor list table job status "+original_jobstatus+" in Job Details page")
+//      browser.pause(5000)
+//      action.selectTextFromDropdown(jobDetailsPage.jobContractorStatusDropdown,new_jobstatus,"Contractor list table job status "+new_jobstatus+" dropdown in Job Details page")
+//      const confirmationWindow =$('//*[text()[contains(.,"Overlap Confirmation")]]')
+//     action.isVisibleWait(confirmationWindow,30000,"Confirmation window in Job Details page")
+//     if(confirmationWindow.isDisplayed())
+//     {
+//         //const confirmYes =$('//input[contains(@id,"wtActions_wt145")]')
+//         const confirmYes = $('//input[contains(@id,"wtOverlapConfirmationModal") and (@value="Yes")]');
+//         action.isClickableWait(confirmYes,30000,"Confirm Yes button in Job Details page")
+//         action.clickElement(confirmYes,"Confirm Yes button in Job Details page")
+//      } 
+//      browser.pause(10000)
+  
+//    let statusText = action.isVisibleWait(jobDetailsPage.jobStatusField,10000,"Job status field in Job Details page")
+//    chai.expect(statusText).to.be.true
+//     console.log("Selected job status:::::::::::::::::: " + jobDetailsPage.jobStatusField.getText());
+//   if(jobDetailsPage.jobStatusField.getText() != new_jobstatus) {
+//     //browser.pause(10000)
+//     //browser.refresh()
+//         //  action.isVisibleWait(jobDetailsPage.jobStatusField,10000,"Job status field in Job Details page")
+//         //  let jobStatusText =jobDetailsPage.jobStatusField.getText() 
+//         console.log("Job status update failed, expecting it is due to refreshing the page and trying again")
+//          chai.expect(statusText).to.equal(new_jobstatus)
+         
+//     } 
+// })
 
 When(/^I click on accept metro service checkbox$/, function(){
     action.clickElement(jobDetailsPage.acceptMetroServiceCheckBox,"Accept metro service check box in Job Details page")
